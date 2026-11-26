@@ -1,0 +1,72 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
+  "name": "82605e1ece8a2d26e9f0",
+  "position": {
+    "x": 83.040629095674973,
+    "y": 65.11140235910878,
+    "z": 3000,
+    "height": 62.280471821756223,
+    "width": 237.79816513761469,
+    "tabOrder": 3000
+  },
+  "visual": {
+    "visualType": "slicer",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "VBA_RECEITA_RATEIO_REL"
+                    }
+                  },
+                  "Property": "COMPETENCIA"
+                }
+              },
+              "queryRef": "VBA_RECEITA_RATEIO_REL.COMPETENCIA",
+              "nativeQueryRef": "COMPETENCIA",
+              "active": true
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "VBA_RECEITA_RATEIO_REL"
+                  }
+                },
+                "Property": "COMPETENCIA"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "data": [
+        {
+          "properties": {
+            "mode": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Between'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}
