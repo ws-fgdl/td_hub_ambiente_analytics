@@ -1,0 +1,167 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
+  "name": "5f8caf9b9efcdc3252d5",
+  "position": {
+    "x": 18.4474287585981,
+    "y": 25.155584670815589,
+    "z": 0,
+    "height": 306.89813298395018,
+    "width": 667.46151326564029,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RECEITA CLIENTE"
+                    }
+                  },
+                  "Property": "SERVIÇO"
+                }
+              },
+              "queryRef": "RECEITA CLIENTE.SERVIÇO",
+              "nativeQueryRef": "Serviço",
+              "displayName": "Serviço"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "RECEITA CLIENTE"
+                        }
+                      },
+                      "Property": "REAL"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(RECEITA CLIENTE.REAL)",
+              "nativeQueryRef": "Real",
+              "displayName": "Real"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "RECEITA CLIENTE"
+                        }
+                      },
+                      "Property": "CUSTOS VARIAVEIS"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(RECEITA CLIENTE.CUSTOS VARIAVEIS)",
+              "nativeQueryRef": "Custos Variaveis",
+              "displayName": "Custos Variaveis"
+            },
+            {
+              "field": {
+                "NativeVisualCalculation": {
+                  "Language": "dax",
+                  "Expression": "DIVIDE([Real] + [Custos Variaveis], [Real], 0)",
+                  "Name": "Margem %"
+                }
+              },
+              "queryRef": "select2",
+              "nativeQueryRef": "Margem %",
+              "format": "0.00%;-0.00%;0.00%"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "RECEITA CLIENTE"
+                        }
+                      },
+                      "Property": "ATRACAÇÕES"
+                    }
+                  },
+                  "Function": 4
+                }
+              },
+              "queryRef": "Sum(RECEITA CLIENTE.ATRACAÇÕES)",
+              "nativeQueryRef": "Atracações",
+              "displayName": "Atracações"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "RECEITA CLIENTE"
+                        }
+                      },
+                      "Property": "HORAS"
+                    }
+                  },
+                  "Function": 4
+                }
+              },
+              "queryRef": "Sum(RECEITA CLIENTE.HORAS)",
+              "nativeQueryRef": "Horas",
+              "displayName": "Horas"
+            },
+            {
+              "field": {
+                "NativeVisualCalculation": {
+                  "Language": "dax",
+                  "Expression": "[Real]/[Horas]",
+                  "Name": "Por hora"
+                }
+              },
+              "queryRef": "select",
+              "nativeQueryRef": "Por hora"
+            },
+            {
+              "field": {
+                "NativeVisualCalculation": {
+                  "Language": "dax",
+                  "Expression": "[Real]/[Atracações]",
+                  "Name": "Por escala"
+                }
+              },
+              "queryRef": "select1",
+              "nativeQueryRef": "Por escala"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "NativeVisualCalculation": {
+                "Language": "dax",
+                "Expression": "DIVIDE([Real] + [Custos Variaveis], [Real], 0)",
+                "Name": "Margem %"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

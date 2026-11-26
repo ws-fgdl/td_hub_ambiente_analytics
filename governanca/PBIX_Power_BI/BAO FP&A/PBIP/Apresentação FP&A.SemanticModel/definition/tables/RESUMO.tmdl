@@ -1,0 +1,185 @@
+table RESUMO
+	lineageTag: 475f85bd-4470-4a41-925f-92af4bc6bf10
+
+	measure 'Justificativa Selecionada' = ```
+			
+			IF(
+			    HASONEVALUE('RESUMO'[MÊS]), 
+			    SELECTEDVALUE('RESUMO'[JUSTIFICATIVA], "Sem justificativa para este período."),
+			    "Por favor, selecione um único mês para visualizar a análise.")
+			```
+		lineageTag: d4130a00-6138-41df-98c8-dbb058495279
+
+	column ORDEM
+		dataType: int64
+		formatString: 0
+		lineageTag: 420c9895-6b72-49d9-9597-0a82496c8f42
+		summarizeBy: sum
+		sourceColumn: ORDEM
+
+		changedProperty = IsHidden
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column MÊS
+		dataType: string
+		lineageTag: edcb08f0-45dc-4091-8c99-c4a2e1c74582
+		summarizeBy: none
+		sourceColumn: MÊS
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column MOEDA
+		dataType: string
+		lineageTag: 38bf35bb-ffe7-4669-b6fd-3fc466a8fc85
+		summarizeBy: none
+		sourceColumn: MOEDA
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column RESULTADO
+		dataType: string
+		lineageTag: fb0a80a3-17f5-4b09-9670-de559ec47845
+		summarizeBy: none
+		sourceColumn: RESULTADO
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column REAL
+		dataType: double
+		lineageTag: 96005815-91ff-4ece-823d-cdb3162eae13
+		summarizeBy: sum
+		sourceColumn: REAL
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ORÇADO
+		dataType: double
+		lineageTag: c99592cc-4560-431e-b480-428c865db556
+		summarizeBy: sum
+		sourceColumn: ORÇADO
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'VAR %'
+		dataType: double
+		lineageTag: ce2bf29d-20c1-4a3a-a684-31e6bb35e380
+		summarizeBy: sum
+		sourceColumn: VAR %
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'REAL YTD'
+		dataType: double
+		lineageTag: ef2a61ea-31c4-44da-ac73-874ce78df361
+		summarizeBy: sum
+		sourceColumn: REAL YTD
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'ORÇADO YTD'
+		dataType: double
+		lineageTag: 7ec0d240-1778-42c1-bbf3-90a6a82d6770
+		summarizeBy: sum
+		sourceColumn: ORÇADO YTD
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'VAR YTD %'
+		dataType: double
+		lineageTag: 2d741a63-ac06-4af3-921b-705abd6f0b69
+		summarizeBy: sum
+		sourceColumn: VAR YTD %
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column USD
+		dataType: string
+		lineageTag: 49d2caf9-61e7-48a0-926e-8edaabba6307
+		summarizeBy: none
+		sourceColumn: USD
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'REAL USD'
+		dataType: double
+		lineageTag: 34e0e17f-c97f-41c5-849c-10a3b792142b
+		summarizeBy: sum
+		sourceColumn: REAL USD
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'ORÇADO USD'
+		dataType: double
+		lineageTag: e65a73c7-7a67-4e2b-8397-cc298cb3b1cc
+		summarizeBy: sum
+		sourceColumn: ORÇADO USD
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column JUSTIFICATIVA
+		dataType: string
+		lineageTag: 94ba5061-1be2-4774-9f65-bdf64f3f4568
+		summarizeBy: none
+		sourceColumn: JUSTIFICATIVA
+
+		annotation SummarizationSetBy = Automatic
+
+	partition RESUMO = m
+		mode: import
+		source =
+				let
+				  Origem = GoogleSheets.Contents("https://docs.google.com/spreadsheets/d/1CL7ZCR5XuY7je_BK8VmVBRCVS4weIj_rSlUc6DOt4Y4/edit?gid=0#gid=0"),
+				  #"Navegação 1" = Origem{[name = "RESUMO", ItemKind = "Table"]}[Data],
+				  #"Cabeçalhos promovidos" = Table.PromoteHeaders(#"Navegação 1", [PromoteAllScalars = true]),
+				  #"Tipo de coluna alterado" = Table.TransformColumnTypes(#"Cabeçalhos promovidos", {{"REAL", type number}, {"ORÇADO", type number}, {"VAR %", type number}, {"REAL YTD", type number}, {"ORÇADO YTD", type number}, {"VAR YTD %", type number}, {"REAL USD", type number}, {"ORÇADO USD", type number}}),
+				  #"Colunas removidas" = Table.RemoveColumns(#"Tipo de coluna alterado", {"", "_1", "_2"})
+				in
+				  #"Colunas removidas"
+
+	changedProperty = IsHidden
+
+	annotation PBI_ResultType = Table
+

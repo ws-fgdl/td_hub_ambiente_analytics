@@ -1,0 +1,93 @@
+table 'Margem 3'
+	lineageTag: d6d5f616-b08b-4316-9b18-50f53fb6c8c4
+
+	column Margem
+		dataType: string
+		lineageTag: 9477421c-5805-4843-a7ea-0706f8035c23
+		summarizeBy: none
+		sourceColumn: Margem
+
+		annotation SummarizationSetBy = Automatic
+
+	column REAL
+		dataType: double
+		lineageTag: 5ae2b0dc-9cdb-4b57-a3bc-b718bcdc720b
+		summarizeBy: sum
+		sourceColumn: REAL
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ORÇADO
+		dataType: double
+		lineageTag: 92f1e04e-7503-4ce1-a819-4110405c6730
+		summarizeBy: sum
+		sourceColumn: ORÇADO
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'VAR (p.p.)'
+		dataType: double
+		lineageTag: 051629e2-35c9-4a98-bfeb-ab7f8302bfea
+		summarizeBy: sum
+		sourceColumn: VAR (p.p.)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'REAL YTD'
+		dataType: double
+		lineageTag: 368a1f01-1de1-4c92-8634-6c5badef71a1
+		summarizeBy: sum
+		sourceColumn: REAL YTD
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'ORÇ YTD'
+		dataType: double
+		lineageTag: 193382ca-3479-455c-ab72-afddcc559a61
+		summarizeBy: sum
+		sourceColumn: ORÇ YTD
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'VAR (p.p.) YTD'
+		dataType: double
+		lineageTag: fbeb39c3-ab86-4295-8b00-cf4b9c99298c
+		summarizeBy: sum
+		sourceColumn: VAR (p.p.) YTD
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Ordem
+		dataType: int64
+		formatString: 0
+		lineageTag: ed81c8c4-140c-40fc-be28-2565e8040a93
+		summarizeBy: none
+		sourceColumn: Ordem
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Margem 3' = m
+		mode: import
+		source =
+				let
+				  Origem = GoogleSheets.Contents("https://docs.google.com/spreadsheets/d/1jnAg-mX_7NPjiGQa6eDgE_CvVamawFAej_dRFbz5zms/edit?gid=1946594180#gid=1946594180"),
+				  #"Navegação 1" = Origem{[name = "Margem", ItemKind = "Table"]}[Data],
+				  #"Cabeçalhos promovidos" = Table.PromoteHeaders(#"Navegação 1", [PromoteAllScalars = true]),
+				  #"Tipo de coluna alterado" = Table.TransformColumnTypes(#"Cabeçalhos promovidos", {{"Margem", type text}, {"REAL", type number}, {"ORÇADO", type number}, {"VAR (p.p.)", type number}, {"REAL YTD", type number}, {"ORÇ YTD", type number}, {"VAR (p.p.) YTD", type number}, {"Ordem", Int64.Type}})
+				in
+				  #"Tipo de coluna alterado"
+
+	annotation PBI_ResultType = Table
+

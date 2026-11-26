@@ -1,0 +1,56 @@
+table Ação
+	lineageTag: c03c347b-1fb3-4f65-916a-f75eb9417d1a
+
+	column 'O que?'
+		dataType: string
+		lineageTag: ba19dcb9-3a1b-442a-b61a-0199bffb2f27
+		summarizeBy: none
+		sourceColumn: O que?
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quem?
+		dataType: string
+		lineageTag: 726bcf9b-4869-4888-9ce8-707923fc057d
+		summarizeBy: none
+		sourceColumn: Quem?
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quando?
+		dataType: string
+		lineageTag: c609446a-96f5-43d0-b6d7-36828513ac23
+		summarizeBy: none
+		sourceColumn: Quando?
+
+		annotation SummarizationSetBy = Automatic
+
+	column Como?
+		dataType: string
+		lineageTag: 6c0148bd-4fda-4d3c-9727-b15378cf6133
+		summarizeBy: none
+		sourceColumn: Como?
+
+		annotation SummarizationSetBy = Automatic
+
+	column Status
+		dataType: string
+		lineageTag: 93d29d68-2747-4dc7-b509-3b494130de7d
+		summarizeBy: none
+		sourceColumn: Status
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Ação = m
+		mode: import
+		source =
+				let
+				  Origem = GoogleSheets.Contents("https://docs.google.com/spreadsheets/d/1CL7ZCR5XuY7je_BK8VmVBRCVS4weIj_rSlUc6DOt4Y4/edit?gid=1773208135#gid=1773208135"),
+				  #"Navegação 1" = Origem{[name = "Ação", ItemKind = "Table"]}[Data],
+				  #"Cabeçalhos promovidos" = Table.PromoteHeaders(#"Navegação 1", [PromoteAllScalars = true]),
+				  #"Tipo de coluna alterado" = Table.TransformColumnTypes(#"Cabeçalhos promovidos", {{"O que?", type text}, {"Quem?", type text}, {"Quando?", type text}, {"Como?", type text}, {"Status", type text}})
+				in
+				  #"Tipo de coluna alterado"
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,37 @@
+model Model
+	culture: pt-BR
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: pt-BR
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["CAR","PM (2)","CAPEX","Reprov","RESUMO","RECEITA CLIENTE","DESPESAS","MARGEM (2)","ENERGIA RIO","ENERGIA NIT","ENERGIA GXD","Custos fixos - Pessoal","FORECAST","MARGEM 2","PREÇO MÉDIO","TOTAL DESPESAS","Ação","Margem 3"]
+
+annotation PBI_ProTooling = ["WebModelingEdit","DevMode"]
+
+annotation __LastRPTime = 134335205049444716
+
+ref table CAR
+ref table 'PM (2)'
+ref table CAPEX
+ref table Reprov
+ref table RESUMO
+ref table 'RECEITA CLIENTE'
+ref table DESPESAS
+ref table 'MARGEM (2)'
+ref table 'ENERGIA RIO'
+ref table 'ENERGIA NIT'
+ref table 'ENERGIA GXD'
+ref table 'Custos fixos - Pessoal'
+ref table FORECAST
+ref table 'MARGEM 2'
+ref table 'PREÇO MÉDIO'
+ref table 'TOTAL DESPESAS'
+ref table Ação
+ref table 'Margem 3'
+
+ref cultureInfo pt-BR
+

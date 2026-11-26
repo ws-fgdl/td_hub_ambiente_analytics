@@ -1,0 +1,72 @@
+table 'Custos fixos - Pessoal'
+	lineageTag: 06b238cb-c86a-4d00-b853-a28dc404c18b
+
+	column Ordem
+		dataType: string
+		lineageTag: 0922da3e-6095-4979-8b79-18ce4b49e578
+		summarizeBy: none
+		sourceColumn: Ordem
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Resultado 2026'
+		dataType: string
+		lineageTag: 8cdd961a-f383-40e0-9c6a-a966a67c61b4
+		summarizeBy: none
+		sourceColumn: Resultado 2026
+
+		annotation SummarizationSetBy = Automatic
+
+	column Real
+		dataType: double
+		lineageTag: f3de2113-1c7c-4339-8ff7-0e980fd7f3d1
+		summarizeBy: sum
+		sourceColumn: Real
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Orçado
+		dataType: double
+		lineageTag: 4b792e3a-3155-4f87-979a-b3c16ab7a1e4
+		summarizeBy: sum
+		sourceColumn: Orçado
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Var %'
+		dataType: double
+		lineageTag: d1d7a2fa-b047-491c-842c-4abba261329a
+		summarizeBy: sum
+		sourceColumn: Var %
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Var
+		dataType: double
+		lineageTag: 9ed13372-c14d-4d3a-ba81-ad21b0363946
+		summarizeBy: sum
+		sourceColumn: Var
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'Custos fixos - Pessoal' = m
+		mode: import
+		source =
+				let
+				  Origem = GoogleSheets.Contents("https://docs.google.com/spreadsheets/d/1jnAg-mX_7NPjiGQa6eDgE_CvVamawFAej_dRFbz5zms/edit?gid=1218458351#gid=1218458351"),
+				  #"Navegação 1" = Origem{[name = "Custos fixos - Pessoal", ItemKind = "Table"]}[Data],
+				  #"Cabeçalhos promovidos" = Table.PromoteHeaders(#"Navegação 1", [PromoteAllScalars = true]),
+				  #"Tipo de coluna alterado" = Table.TransformColumnTypes(#"Cabeçalhos promovidos", {{"Real", type number}, {"Orçado", type number}, {"Var %", type number}, {"Var", type number}})
+				in
+				  #"Tipo de coluna alterado"
+
+	annotation PBI_ResultType = Table
+

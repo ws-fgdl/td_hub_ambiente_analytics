@@ -1,0 +1,172 @@
+table 'PREÇO MÉDIO'
+	lineageTag: b10ef081-4779-418b-84f2-058be062f96e
+
+	column CLIENTE
+		dataType: string
+		lineageTag: da847e4d-2429-446b-8688-0448b9dc1363
+		summarizeBy: none
+		sourceColumn: CLIENTE
+
+		annotation SummarizationSetBy = Automatic
+
+	column 2024
+		dataType: double
+		lineageTag: 1e8abfba-1ca2-457b-9643-ca086cbd61b7
+		summarizeBy: sum
+		sourceColumn: 2024
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 2025
+		dataType: double
+		lineageTag: 5d5451c7-483d-419f-b1ee-3787652dfa60
+		summarizeBy: sum
+		sourceColumn: 2025
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 2026
+		dataType: double
+		lineageTag: b99684d0-f7de-4393-89bf-35b7336023b7
+		summarizeBy: sum
+		sourceColumn: 2026
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column MÊS
+		dataType: string
+		lineageTag: d8c4fe57-9aed-4901-a3de-7d09ee4ee391
+		summarizeBy: none
+		sourceColumn: MÊS
+
+		annotation SummarizationSetBy = Automatic
+
+	column TIPO
+		dataType: string
+		lineageTag: e78e778f-12b7-4e5a-9efa-a172688cbe77
+		summarizeBy: none
+		sourceColumn: TIPO
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'RL REAL'
+		dataType: double
+		lineageTag: 5fc8a726-f07f-4c82-adb2-ecfcca1fc2c1
+		summarizeBy: sum
+		sourceColumn: RL REAL
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'ATRAC REAL'
+		dataType: double
+		lineageTag: 6d51f81c-e692-43cb-8bd7-61edc7a7989b
+		summarizeBy: sum
+		sourceColumn: ATRAC REAL
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'RL ORÇ'
+		dataType: double
+		lineageTag: 3fef806c-a1e2-4c8e-a116-2078b7f4c567
+		summarizeBy: sum
+		sourceColumn: RL ORÇ
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'ATRAC ORÇ'
+		dataType: double
+		lineageTag: ad800968-acc7-4267-93dd-2275b56f42f0
+		summarizeBy: sum
+		sourceColumn: ATRAC ORÇ
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'RL REAL YTD'
+		dataType: double
+		lineageTag: 305c0c42-3442-4a63-9d19-865523558fe0
+		summarizeBy: sum
+		sourceColumn: RL REAL YTD
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'ATRAC REAL YTD'
+		dataType: double
+		lineageTag: f0fb69b6-38cb-4a26-ab81-9dafa204fd0d
+		summarizeBy: sum
+		sourceColumn: ATRAC REAL YTD
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'RL ORÇ YTD'
+		dataType: double
+		lineageTag: 90f3298a-346f-4340-aa18-d832bbe9c8fd
+		summarizeBy: sum
+		sourceColumn: RL ORÇ YTD
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'ATRAC ORÇ YTD'
+		dataType: double
+		lineageTag: a9a28d47-62bd-4602-97a3-9e85eff1a476
+		summarizeBy: sum
+		sourceColumn: ATRAC ORÇ YTD
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'PM REAL'
+		dataType: double
+		lineageTag: 1a87dc70-8515-4016-9975-374c15ee140b
+		summarizeBy: sum
+		sourceColumn: PM REAL
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'PM ORÇ'
+		dataType: double
+		lineageTag: 3c107cb2-55af-4bc6-87f9-3bdfc1ffa822
+		summarizeBy: sum
+		sourceColumn: PM ORÇ
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'PREÇO MÉDIO' = m
+		mode: import
+		source =
+				let
+				  Origem = GoogleSheets.Contents("https://docs.google.com/spreadsheets/d/1CL7ZCR5XuY7je_BK8VmVBRCVS4weIj_rSlUc6DOt4Y4/edit?gid=1996329735#gid=1996329735"),
+				  #"Navegação 1" = Origem{[name = "PREÇO MÉDIO", ItemKind = "Table"]}[Data],
+				  #"Cabeçalhos promovidos" = Table.PromoteHeaders(#"Navegação 1", [PromoteAllScalars = true]),
+				  #"Colunas removidas" = Table.RemoveColumns(#"Cabeçalhos promovidos", {""}),
+				  #"Tipo de coluna alterado 1" = Table.TransformColumnTypes(#"Colunas removidas", {{"2024", type number}, {"2025", type number}}),
+				  #"Tipo de coluna alterado" = Table.TransformColumnTypes(#"Tipo de coluna alterado 1", {{"2024", type number}, {"2025", type number}, {"2026", type number}, {"ATRAC REAL", type number}, {"RL ORÇ", type number}, {"RL REAL", type number}, {"ATRAC ORÇ", type number}, {"RL REAL YTD", type number}, {"ATRAC REAL YTD", type number}, {"RL ORÇ YTD", type number}, {"ATRAC ORÇ YTD", type number}, {"PM REAL", type number}, {"PM ORÇ", type number}})
+				in
+				  #"Tipo de coluna alterado"
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,164 @@
+table CAPEX
+	lineageTag: 77a78948-9170-4ec6-8a7b-67ed103417d9
+
+	column 'Nome do Projeto'
+		dataType: string
+		lineageTag: 61b610c6-41b8-4ef2-956c-5e3f6b9907fa
+		summarizeBy: none
+		sourceColumn: Nome do Projeto
+
+		annotation SummarizationSetBy = Automatic
+
+	column Jan
+		dataType: double
+		lineageTag: 004822ae-76c0-4a96-93f1-29bcc6bb0c37
+		summarizeBy: sum
+		sourceColumn: Jan
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Fev
+		dataType: double
+		lineageTag: 9c1da8b2-85c8-4575-9eb5-22079ea62393
+		summarizeBy: sum
+		sourceColumn: Fev
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Mar
+		dataType: double
+		lineageTag: aeeaa433-a6e2-4a6f-95a2-1671fa374731
+		summarizeBy: sum
+		sourceColumn: Mar
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Abr
+		dataType: double
+		lineageTag: e9161388-ad85-48ed-b0ed-d1a47b2ab035
+		summarizeBy: sum
+		sourceColumn: Abr
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Mai
+		dataType: double
+		lineageTag: b6324a9a-f419-4783-bb55-cb0d8d5a2d63
+		summarizeBy: sum
+		sourceColumn: Mai
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Jun
+		dataType: double
+		lineageTag: 373858a1-f34f-48ce-b0ef-c2109bc9850d
+		summarizeBy: sum
+		sourceColumn: Jun
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Jul
+		dataType: double
+		lineageTag: 95648d6c-7439-4c87-96e8-46b5ecee55e9
+		summarizeBy: sum
+		sourceColumn: Jul
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Ago
+		dataType: double
+		lineageTag: 057a90d0-da13-463d-a8c8-527e6385a4ee
+		summarizeBy: sum
+		sourceColumn: Ago
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Set
+		dataType: double
+		lineageTag: 9cb4b21c-0b8c-4252-baa2-2fada0cf7db3
+		summarizeBy: sum
+		sourceColumn: Set
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Out
+		dataType: double
+		lineageTag: 118cdedd-a76d-4803-8c91-071c27131a4e
+		summarizeBy: sum
+		sourceColumn: Out
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Nov
+		dataType: double
+		lineageTag: 81c627df-3871-41db-a6dc-e48e7f638178
+		summarizeBy: sum
+		sourceColumn: Nov
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Dez
+		dataType: double
+		lineageTag: 07f3aa5e-4449-466b-89ff-a64b0284a3a5
+		summarizeBy: sum
+		sourceColumn: Dez
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Total Forecast'
+		dataType: double
+		lineageTag: 1bb4576e-0f32-48c4-a32e-0946faa2bc61
+		summarizeBy: sum
+		sourceColumn: Total Forecast
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Total Orçado'
+		dataType: double
+		lineageTag: 8446df0f-c2f6-477c-b3bf-b03c2083087d
+		summarizeBy: sum
+		sourceColumn: Total Orçado
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition CAPEX = m
+		mode: import
+		source =
+				let
+				  Origem = GoogleSheets.Contents("https://docs.google.com/spreadsheets/d/1jnAg-mX_7NPjiGQa6eDgE_CvVamawFAej_dRFbz5zms/edit?gid=532730455#gid=532730455"),
+				  #"Navegação 1" = Origem{[name = "CAPEX", ItemKind = "Table"]}[Data],
+				  #"Cabeçalhos promovidos" = Table.PromoteHeaders(#"Navegação 1", [PromoteAllScalars = true]),
+				  #"Tipo de coluna alterado" = Table.TransformColumnTypes(#"Cabeçalhos promovidos", {{"Jan", type number}, {"Fev", type number}, {"Mar", type number}, {"Abr", type number}, {"Mai", type number}, {"Jun", type number}, {"Jul", type number}, {"Ago", type number}, {"Set", type number}, {"Out", type number}, {"Nov", type number}, {"Dez", type number}, {"Total Forecast", type number}, {"Total Orçado", type number}})
+				in
+				  #"Tipo de coluna alterado"
+
+	annotation PBI_ResultType = Table
+

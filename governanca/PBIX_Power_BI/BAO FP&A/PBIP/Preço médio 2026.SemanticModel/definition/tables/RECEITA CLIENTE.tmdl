@@ -1,0 +1,174 @@
+table 'RECEITA CLIENTE'
+	lineageTag: 7359eb77-7406-4546-addc-c6a3b5e411ca
+
+	column MÊS
+		dataType: string
+		lineageTag: d62334af-4f4f-4aaf-81c0-129ee59cc72b
+		summarizeBy: none
+		sourceColumn: MÊS
+
+		annotation SummarizationSetBy = Automatic
+
+	column TIPO
+		dataType: string
+		lineageTag: dd355ebe-63e5-47d0-b465-3e6ef1eeaa6e
+		summarizeBy: none
+		sourceColumn: TIPO
+
+		annotation SummarizationSetBy = Automatic
+
+	column CLIENTE
+		dataType: string
+		lineageTag: 78705ec8-dd70-43a1-8fbc-959c6e44f72e
+		summarizeBy: none
+		sourceColumn: CLIENTE
+
+		annotation SummarizationSetBy = Automatic
+
+	column SERVIÇO
+		dataType: string
+		lineageTag: 4f22e0dc-0153-4249-80ee-edb862c2b789
+		summarizeBy: none
+		sourceColumn: SERVIÇO
+
+		annotation SummarizationSetBy = Automatic
+
+	column REAL
+		dataType: double
+		lineageTag: 65a85aaa-9c39-4ba1-9847-fdb5a8737045
+		summarizeBy: sum
+		sourceColumn: REAL
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ORÇADO
+		dataType: int64
+		formatString: 0
+		lineageTag: 04694d56-6401-44a2-b6e2-5db35296d228
+		summarizeBy: sum
+		sourceColumn: ORÇADO
+
+		annotation SummarizationSetBy = Automatic
+
+	column VAR
+		dataType: double
+		lineageTag: 6911161e-5cdb-4eb3-b735-5345c9cc4049
+		summarizeBy: sum
+		sourceColumn: VAR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'REAL YTD'
+		dataType: double
+		lineageTag: ad5c2ec0-f60a-4161-91f6-e5016b62ad5b
+		summarizeBy: sum
+		sourceColumn: REAL YTD
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'ORÇADO YTD'
+		dataType: int64
+		formatString: 0
+		lineageTag: 2ccd8565-2e90-423e-9a8a-1939d744d03e
+		summarizeBy: sum
+		sourceColumn: ORÇADO YTD
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'VAR YTD'
+		dataType: double
+		lineageTag: 16e72f1e-8208-458b-828d-36efbe731d77
+		summarizeBy: sum
+		sourceColumn: VAR YTD
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'CUSTOS VARIAVEIS'
+		dataType: double
+		lineageTag: 592d074d-1fc8-41cd-bc5b-7fcb2aeebeea
+		summarizeBy: sum
+		sourceColumn: CUSTOS VARIAVEIS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'CVs YTD'
+		dataType: double
+		lineageTag: 213ec8ad-b2c3-4e9c-9166-0b081f6b2bdd
+		summarizeBy: sum
+		sourceColumn: CVs YTD
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ATRACAÇÕES
+		dataType: int64
+		formatString: 0
+		lineageTag: 6335132a-9ca3-4812-b482-6ebebad233f2
+		summarizeBy: sum
+		sourceColumn: ATRACAÇÕES
+
+		annotation SummarizationSetBy = Automatic
+
+	column HORAS
+		dataType: double
+		lineageTag: b306d0cf-c1cb-4089-8e8b-6211b9fa999a
+		summarizeBy: sum
+		sourceColumn: HORAS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Por escala'
+		dataType: double
+		lineageTag: fe0e5606-6180-405b-9cc2-680c7a78406d
+		summarizeBy: sum
+		sourceColumn: Por escala
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Por hora'
+		dataType: double
+		lineageTag: 76cd6c1c-8ddb-44b5-943d-bfab60c633b7
+		summarizeBy: sum
+		sourceColumn: Por hora
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'CONT Atrac'
+		dataType: int64
+		formatString: 0
+		lineageTag: 1d95024a-2b88-4bd1-809c-2a7b8f9a4394
+		summarizeBy: sum
+		sourceColumn: CONT Atrac
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'RECEITA CLIENTE' = m
+		mode: import
+		source =
+				let
+				  Origem = GoogleSheets.Contents("https://docs.google.com/spreadsheets/d/1CL7ZCR5XuY7je_BK8VmVBRCVS4weIj_rSlUc6DOt4Y4/edit?gid=2070850202#gid=2070850202"),
+				  #"Navegação 1" = Origem{[name = "RECEITA CLIENTE", ItemKind = "Table"]}[Data],
+				  #"Cabeçalhos promovidos" = Table.PromoteHeaders(#"Navegação 1", [PromoteAllScalars = true]),
+				  #"Tipo de coluna alterado" = Table.TransformColumnTypes(#"Cabeçalhos promovidos", {{"MÊS", type text}, {"TIPO", type text}, {"CLIENTE", type text}, {"SERVIÇO", type text}, {"REAL", type number}, {"ORÇADO", Int64.Type}, {"VAR", type number}, {"REAL YTD", type number}, {"ORÇADO YTD", Int64.Type}, {"VAR YTD", type number}, {"CUSTOS VARIAVEIS", type number}, {"CVs YTD", type number}, {"ATRACAÇÕES", Int64.Type}, {"HORAS", type number}, {"Por escala", type number}, {"Por hora", type number}, {"CONT Atrac", Int64.Type}})
+				in
+				  #"Tipo de coluna alterado"
+
+	annotation PBI_ResultType = Table
+

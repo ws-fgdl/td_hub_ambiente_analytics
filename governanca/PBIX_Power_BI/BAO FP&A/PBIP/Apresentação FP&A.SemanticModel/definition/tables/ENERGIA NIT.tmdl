@@ -1,0 +1,134 @@
+table 'ENERGIA NIT'
+	lineageTag: 95e8f01b-65c9-436f-aea5-dada968d0b20
+
+	column TIPO
+		dataType: string
+		lineageTag: 970155a9-4608-45cc-a55a-4999baea98c6
+		summarizeBy: none
+		sourceColumn: TIPO
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'OUT - 25'
+		dataType: double
+		lineageTag: fe78066c-7977-488d-a23b-a82cd09cbcd6
+		summarizeBy: sum
+		sourceColumn: OUT - 25
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'NOV - 25'
+		dataType: double
+		lineageTag: 7d06f327-b4c3-41dd-9968-2de97b6f2986
+		summarizeBy: sum
+		sourceColumn: NOV - 25
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'DEZ - 25'
+		dataType: double
+		lineageTag: cc8db45b-aa69-444f-8025-830f4cdb9f8d
+		summarizeBy: sum
+		sourceColumn: DEZ - 25
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column JAN
+		dataType: double
+		lineageTag: 29de3959-9a14-4010-a2d2-48c76831c8e8
+		summarizeBy: sum
+		sourceColumn: JAN
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FEV
+		dataType: double
+		lineageTag: 549f4188-908f-443b-88ca-96b52513b21b
+		summarizeBy: sum
+		sourceColumn: FEV
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column MAR
+		dataType: double
+		lineageTag: 1ead3c2e-c347-4e78-9565-4fd20479afc6
+		summarizeBy: sum
+		sourceColumn: MAR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column MÊS
+		dataType: string
+		lineageTag: 8557f9ba-260d-4ee3-ac77-870cd6a87844
+		summarizeBy: none
+		sourceColumn: MÊS
+
+		annotation SummarizationSetBy = Automatic
+
+	column CONSUMO
+		dataType: double
+		lineageTag: 4ed0c010-f39f-4040-8393-73d1836ff911
+		summarizeBy: sum
+		sourceColumn: CONSUMO
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CUSTO
+		dataType: double
+		lineageTag: 986b4d8f-b142-4889-ad3a-cb910f0c3ce2
+		summarizeBy: sum
+		sourceColumn: CUSTO
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Ordem
+		dataType: double
+		lineageTag: 7e0fbac1-dede-43ca-847c-c003746e1804
+		summarizeBy: none
+		sourceColumn: Ordem
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ABR
+		dataType: double
+		lineageTag: 3f2af7f0-35bc-462a-88df-1504e79e3e72
+		summarizeBy: sum
+		sourceColumn: ABR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'ENERGIA NIT' = m
+		mode: import
+		source =
+				let
+				  Origem = GoogleSheets.Contents("https://docs.google.com/spreadsheets/d/1zBuOszTALdZNm3KNjnpGJ2U9zrp-mklEoA-jSzpZnuc/edit?gid=549289690#gid=549289690"),
+				  #"Navegação 1" = Origem{[name = "NIT", ItemKind = "Table"]}[Data],
+				  #"Cabeçalhos promovidos" = Table.PromoteHeaders(#"Navegação 1", [PromoteAllScalars = true]),
+				  #"Tipo de coluna alterado" = Table.TransformColumnTypes(#"Cabeçalhos promovidos", {{"OUT - 25", type number}, {"NOV - 25", type number}, {"DEZ - 25", type number}, {"JAN", type number}, {"FEV", type number}, {"MAR", type number}, {"CONSUMO", type number}, {"CUSTO", type number}, {"ABR", type number}, {"Ordem", Int64.Type}}),
+				  #"Colunas removidas" = Table.RemoveColumns(#"Tipo de coluna alterado", {""}),
+				  #"Tipo de coluna alterado 1" = Table.TransformColumnTypes(#"Colunas removidas", {{"Ordem", type number}})
+				in
+				  #"Tipo de coluna alterado 1"
+
+	annotation PBI_ResultType = Table
+

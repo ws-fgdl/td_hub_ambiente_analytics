@@ -1,0 +1,84 @@
+table 'MARGEM 2'
+	lineageTag: 73a19bda-da07-44e2-ba60-5a2034cbe8da
+
+	column TIPO
+		dataType: string
+		lineageTag: e8d12b7d-aad2-4ee4-bbae-d61e331f3772
+		summarizeBy: none
+		sourceColumn: TIPO
+
+		annotation SummarizationSetBy = Automatic
+
+	column REAL
+		dataType: double
+		lineageTag: 9a6a8135-3c8c-4757-87e5-9da2eb32ba73
+		summarizeBy: sum
+		sourceColumn: REAL
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ORÇADO
+		dataType: double
+		lineageTag: 965918a7-5ca3-4b40-a7c2-915eb2ce32ba
+		summarizeBy: sum
+		sourceColumn: ORÇADO
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column YTD
+		dataType: double
+		lineageTag: 38718018-d6bc-42d0-835a-471d5628991d
+		summarizeBy: sum
+		sourceColumn: YTD
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'REAL YTD'
+		dataType: double
+		lineageTag: 9abd1610-334d-4163-849e-fc115a3d78a7
+		summarizeBy: sum
+		sourceColumn: REAL YTD
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'ORÇ YTD'
+		dataType: double
+		lineageTag: 068940e8-d80d-4164-b2a8-6f4819a725ba
+		summarizeBy: sum
+		sourceColumn: ORÇ YTD
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'VAR YTD'
+		dataType: double
+		lineageTag: 9ccf1181-cf70-451c-ae2f-dbf65a18b332
+		summarizeBy: sum
+		sourceColumn: VAR YTD
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'MARGEM 2' = m
+		mode: import
+		source =
+				let
+				  Origem = GoogleSheets.Contents("https://docs.google.com/spreadsheets/d/1CL7ZCR5XuY7je_BK8VmVBRCVS4weIj_rSlUc6DOt4Y4/edit?gid=1173572421#gid=1173572421"),
+				  #"Navegação 1" = Origem{[name = "MARGEM 2", ItemKind = "Table"]}[Data],
+				  #"Cabeçalhos promovidos" = Table.PromoteHeaders(#"Navegação 1", [PromoteAllScalars = true]),
+				  #"Tipo de coluna alterado" = Table.TransformColumnTypes(#"Cabeçalhos promovidos", {{"REAL", type number}, {"ORÇADO", type number}, {"YTD", type number}, {"REAL YTD", type number}, {"ORÇ YTD", type number}, {"VAR YTD", type number}})
+				in
+				  #"Tipo de coluna alterado"
+
+	annotation PBI_ResultType = Table
+

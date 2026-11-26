@@ -1,0 +1,137 @@
+table DESPESAS
+	lineageTag: e98b3595-1f57-4af1-b0c2-f5785b2dd636
+
+	measure Comentários = ```
+			
+			IF(
+			    HASONEVALUE('DESPESAS'[MÊS]), 
+			    SELECTEDVALUE(DESPESAS[JUSTIFICATIVA], "Sem justificativa para este período."),
+			    "Por favor, selecione um único mês para visualizar a análise.")
+			```
+		lineageTag: 1167de2f-0e07-4443-a8c7-3caaed5f9e45
+
+	column MÊS
+		dataType: string
+		lineageTag: 47190d41-92e3-4ed9-b826-7715810607d0
+		summarizeBy: none
+		sourceColumn: MÊS
+
+		annotation SummarizationSetBy = Automatic
+
+	column PACOTE
+		dataType: string
+		lineageTag: c4687a61-ac75-43d2-801a-983b26fda943
+		summarizeBy: none
+		sourceColumn: PACOTE
+
+		annotation SummarizationSetBy = Automatic
+
+	column REAL
+		dataType: double
+		lineageTag: 38a3579c-6d28-4da8-8db7-260f7c0eda9b
+		summarizeBy: sum
+		sourceColumn: REAL
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ORÇADO
+		dataType: double
+		lineageTag: 7df0aeba-3969-4b4e-864c-8095dadce02c
+		summarizeBy: sum
+		sourceColumn: ORÇADO
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column VAR
+		dataType: double
+		lineageTag: c17c1995-fc9a-49d2-93f8-86fff335fb0b
+		summarizeBy: sum
+		sourceColumn: VAR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'REAL YTD'
+		dataType: double
+		lineageTag: 8580c64a-c791-425c-a4cc-b3136e117e56
+		summarizeBy: sum
+		sourceColumn: REAL YTD
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'ORÇ YTD'
+		dataType: double
+		lineageTag: 5a6cc66e-def1-49c4-b829-69a7425f55fe
+		summarizeBy: sum
+		sourceColumn: ORÇ YTD
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'VAR YTD'
+		dataType: double
+		lineageTag: 50e67736-2c38-4dff-bd4a-8dd05561dbe4
+		summarizeBy: sum
+		sourceColumn: VAR YTD
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Apresentar?
+		dataType: string
+		lineageTag: 3e1427ba-2fb8-45b4-b3d3-35eb990357c1
+		summarizeBy: none
+		sourceColumn: Apresentar?
+
+		annotation SummarizationSetBy = Automatic
+
+	column JUSTIFICATIVA
+		dataType: string
+		lineageTag: 2652ed95-360a-4ae1-9754-3aabea4708fd
+		summarizeBy: none
+		sourceColumn: JUSTIFICATIVA
+
+		annotation SummarizationSetBy = Automatic
+
+	column ABS
+		dataType: double
+		lineageTag: a19431d5-a4ef-4b43-ac36-5a7f988823a5
+		summarizeBy: sum
+		sourceColumn: ABS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'VAR YTD %'
+		dataType: double
+		lineageTag: 1cd4732f-273d-45bd-9d85-975d5ec6c539
+		summarizeBy: sum
+		sourceColumn: VAR YTD %
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition DESPESAS = m
+		mode: import
+		source =
+				let
+				  Origem = GoogleSheets.Contents("https://docs.google.com/spreadsheets/d/1CL7ZCR5XuY7je_BK8VmVBRCVS4weIj_rSlUc6DOt4Y4/edit?gid=907648069#gid=907648069"),
+				  #"Navegação 1" = Origem{[name = "DESPESAS", ItemKind = "Table"]}[Data],
+				  #"Cabeçalhos promovidos" = Table.PromoteHeaders(#"Navegação 1", [PromoteAllScalars = true]),
+				  #"Tipo de coluna alterado" = Table.TransformColumnTypes(#"Cabeçalhos promovidos", {{"REAL", type number}, {"ORÇADO", type number}, {"VAR", type number}, {"REAL YTD", type number}, {"ORÇ YTD", type number}, {"VAR YTD", type number}, {"ABS", type number}, {"VAR YTD %", type number}})
+				in
+				  #"Tipo de coluna alterado"
+
+	annotation PBI_ResultType = Table
+

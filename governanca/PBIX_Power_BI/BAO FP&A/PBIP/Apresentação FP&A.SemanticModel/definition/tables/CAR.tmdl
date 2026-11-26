@@ -1,0 +1,100 @@
+table CAR
+	lineageTag: b73b3cef-2512-4334-a959-cb142e8a4ad9
+
+	column Cliente
+		dataType: string
+		lineageTag: 477b92f4-7190-4b7a-b6e8-9a5ddf64c1e5
+		summarizeBy: none
+		sourceColumn: Cliente
+
+		annotation SummarizationSetBy = Automatic
+
+	column '6 - 30 Dias'
+		dataType: int64
+		lineageTag: 50d0e189-04d8-4868-9f3d-0902f73cc2a7
+		summarizeBy: sum
+		sourceColumn: 6 - 30 Dias
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '31 - 90 Dias'
+		dataType: int64
+		lineageTag: c87e2de8-9a40-4706-9c43-730bf64142cd
+		summarizeBy: sum
+		sourceColumn: 31 - 90 Dias
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '91 - 180 Dias'
+		dataType: int64
+		lineageTag: cc35e173-d0f2-4e4d-8563-6a15b1c80296
+		summarizeBy: sum
+		sourceColumn: 91 - 180 Dias
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Acima de 180 dias'
+		dataType: int64
+		lineageTag: 7c95ed42-41ac-457f-a1e8-1261a68571c3
+		summarizeBy: sum
+		sourceColumn: Acima de 180 dias
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Saldo Vencido'
+		dataType: int64
+		lineageTag: 4f9f1b24-0190-441d-a14f-6cb6ec775379
+		summarizeBy: sum
+		sourceColumn: Saldo Vencido
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Observação
+		dataType: string
+		lineageTag: 1c8f1961-0669-497a-a0c6-1ef2daf16a59
+		summarizeBy: none
+		sourceColumn: Observação
+
+		annotation SummarizationSetBy = Automatic
+
+	column PDD
+		dataType: string
+		lineageTag: dc619a20-1e50-4bef-ab43-05097bce3ea7
+		summarizeBy: none
+		sourceColumn: PDD
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ordem
+		dataType: int64
+		lineageTag: 7cc533ab-bb69-4f2c-b50c-1676de35df23
+		summarizeBy: none
+		sourceColumn: Ordem
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition CAR = m
+		mode: import
+		source =
+				let
+				  Origem = GoogleSheets.Contents("https://docs.google.com/spreadsheets/d/1jnAg-mX_7NPjiGQa6eDgE_CvVamawFAej_dRFbz5zms/edit?gid=20466323#gid=20466323"),
+				  #"Navegação 1" = Origem{[name = "CAR", ItemKind = "Table"]}[Data],
+				  #"Cabeçalhos promovidos" = Table.PromoteHeaders(#"Navegação 1", [PromoteAllScalars = true]),
+				  #"Tipo de coluna alterado" = Table.TransformColumnTypes(#"Cabeçalhos promovidos", {{"Cliente", type text}, {"6 - 30 Dias", Int64.Type}, {"31 - 90 Dias", Int64.Type}, {"91 - 180 Dias", Int64.Type}, {"Acima de 180 dias", Int64.Type}, {"Saldo Vencido", Int64.Type}, {"Observação", type text}, {"PDD", type text}, {"Ordem", Int64.Type}})
+				in
+				  #"Tipo de coluna alterado"
+
+	annotation PBI_ResultType = Table
+

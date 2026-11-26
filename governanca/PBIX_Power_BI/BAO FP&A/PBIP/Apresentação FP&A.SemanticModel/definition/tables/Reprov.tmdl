@@ -1,0 +1,94 @@
+table Reprov
+	lineageTag: eea9b8ae-2b63-416f-99a4-62a32421204d
+
+	column Cliente
+		dataType: string
+		lineageTag: 2c4d9377-d835-4df3-beaf-080110b3cacb
+		summarizeBy: none
+		sourceColumn: Cliente
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Valor (R$)'
+		dataType: double
+		lineageTag: c5cc22ca-ed55-40b9-9172-2b377c67136f
+		summarizeBy: sum
+		sourceColumn: Valor (R$)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Competência
+		dataType: string
+		lineageTag: 4db06270-a9aa-47fb-82a3-87bebaa3dc4c
+		summarizeBy: none
+		sourceColumn: Competência
+
+		annotation SummarizationSetBy = Automatic
+
+	column Serviço
+		dataType: string
+		lineageTag: ef82437e-9444-494c-891a-e88f2359428a
+		summarizeBy: none
+		sourceColumn: Serviço
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Serviço 2'
+		dataType: string
+		lineageTag: c580261c-74c7-49c1-a1ca-53350762a795
+		summarizeBy: none
+		sourceColumn: Serviço 2
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Custo NCG'
+		dataType: double
+		lineageTag: 99a024f7-858e-490e-9e6b-20351ac6b093
+		summarizeBy: sum
+		sourceColumn: Custo NCG
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Cliente 2'
+		dataType: string
+		lineageTag: 3955ab67-be70-4b7f-9578-00acab820675
+		summarizeBy: none
+		sourceColumn: Cliente 2
+
+		annotation SummarizationSetBy = Automatic
+
+	column Tipo
+		dataType: string
+		lineageTag: 272fa36f-b418-4663-b4b7-e2f0bb2e81ec
+		summarizeBy: none
+		sourceColumn: Tipo
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Provável reprovisão (R$)'
+		dataType: double
+		lineageTag: e1ca22df-1069-4055-956e-b0930a2365b2
+		summarizeBy: sum
+		sourceColumn: Provável reprovisão (R$)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition Reprov = m
+		mode: import
+		source =
+				let
+				  Origem = GoogleSheets.Contents("https://docs.google.com/spreadsheets/d/1jnAg-mX_7NPjiGQa6eDgE_CvVamawFAej_dRFbz5zms/edit?gid=1379041312#gid=1379041312"),
+				  #"Navegação 1" = Origem{[name = "Reprov", ItemKind = "Table"]}[Data],
+				  #"Cabeçalhos promovidos" = Table.PromoteHeaders(#"Navegação 1", [PromoteAllScalars = true]),
+				  #"Tipo de coluna alterado" = Table.TransformColumnTypes(#"Cabeçalhos promovidos", {{"Valor (R$)", type number}, {"Custo NCG", type number}, {"Provável reprovisão (R$)", type number}, {"Competência", type text}})
+				in
+				  #"Tipo de coluna alterado"
+
+	annotation PBI_ResultType = Table
+

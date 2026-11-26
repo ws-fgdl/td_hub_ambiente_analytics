@@ -1,0 +1,38 @@
+relationship AutoDetected_6afd47df-d197-45ba-856d-f2f44e9f9b6d
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: 'ENERGIA RIO'.Ordem
+	toColumn: CAR.Ordem
+
+relationship AutoDetected_928d8ebc-ec80-4303-a47d-2b97d1d29064
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: 'ENERGIA NIT'.Ordem
+	toColumn: CAR.Ordem
+
+relationship AutoDetected_854528bc-9fdb-4c6e-a68d-8e6097d1372a
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: 'ENERGIA GXD'.Ordem
+	toColumn: CAR.Ordem
+
+relationship AutoDetected_ec04597c-f5d9-4a42-b54c-166f922db82d
+	isActive: false
+	fromColumn: 'PREÇO MÉDIO'.MÊS
+	toColumn: 'ENERGIA RIO'.MÊS
+
+relationship AutoDetected_b945eb24-5278-4630-bbdc-f852bb531140
+	isActive: false
+	fromColumn: 'PREÇO MÉDIO'.MÊS
+	toColumn: 'ENERGIA NIT'.MÊS
+
+relationship AutoDetected_cb0e3aa2-d005-433e-96a7-e202256280ff
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'PREÇO MÉDIO'.MÊS
+	toColumn: 'ENERGIA GXD'.MÊS
+
+relationship AutoDetected_85c61c51-3137-41b0-9ea0-ee5c8dee443c
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'Margem 3'.Ordem
+	toColumn: 'ENERGIA RIO'.Ordem
+

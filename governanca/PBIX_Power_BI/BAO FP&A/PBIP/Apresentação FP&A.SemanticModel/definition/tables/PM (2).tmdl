@@ -1,0 +1,120 @@
+table 'PM (2)'
+	lineageTag: 88505dfc-4527-44b2-8637-078aa39235e5
+
+	column TIPO
+		dataType: string
+		lineageTag: d619ed41-59ec-4138-888f-7152e2d894f0
+		summarizeBy: none
+		sourceColumn: TIPO
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Rec. Real'
+		dataType: int64
+		formatString: 0
+		lineageTag: 401d151c-c1b5-4307-9f59-7dfe1529b2b2
+		summarizeBy: sum
+		sourceColumn: Rec. Real
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Rec. Orçado'
+		dataType: int64
+		formatString: 0
+		lineageTag: ac3c4c17-259a-47a5-8ddb-d658289bd458
+		summarizeBy: sum
+		sourceColumn: Rec. Orçado
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Atrac. Real'
+		dataType: int64
+		formatString: 0
+		lineageTag: 790d9499-4126-4ff6-9641-112b58c03896
+		summarizeBy: sum
+		sourceColumn: Atrac. Real
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Atrac. Orç'
+		dataType: int64
+		formatString: 0
+		lineageTag: 798697a7-f568-48ae-a520-6c6e1cc28caa
+		summarizeBy: sum
+		sourceColumn: Atrac. Orç
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'PM Real'
+		dataType: double
+		lineageTag: 35bc894c-3d45-4dd6-99d3-375ce3b41ef8
+		summarizeBy: sum
+		sourceColumn: PM Real
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'PM Orçado'
+		dataType: double
+		lineageTag: d6973833-9a88-44cc-81a9-d4ff68d0aabb
+		summarizeBy: sum
+		sourceColumn: PM Orçado
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'PM 2024'
+		dataType: double
+		lineageTag: c91dcec4-5c13-43c1-b4f1-716a10248208
+		summarizeBy: sum
+		sourceColumn: PM 2024
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'PM 2025'
+		dataType: double
+		lineageTag: dbb09866-a1c4-4a51-82a9-706a1e244da9
+		summarizeBy: sum
+		sourceColumn: PM 2025
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Atracações 2024'
+		dataType: int64
+		formatString: 0
+		lineageTag: 61e84894-f590-49c1-a83e-e75e5223d96b
+		summarizeBy: sum
+		sourceColumn: Atracações 2024
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Atracações 2025'
+		dataType: int64
+		formatString: 0
+		lineageTag: aa656210-c821-4d13-aee4-d88b4854ce3b
+		summarizeBy: sum
+		sourceColumn: Atracações 2025
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'PM (2)' = m
+		mode: import
+		source =
+				let
+				  Origem = GoogleSheets.Contents("https://docs.google.com/spreadsheets/d/1jnAg-mX_7NPjiGQa6eDgE_CvVamawFAej_dRFbz5zms/edit?gid=20466323#gid=20466323"),
+				  #"Navegação 1" = Origem{[name = "PM", ItemKind = "Table"]}[Data],
+				  #"Cabeçalhos promovidos" = Table.PromoteHeaders(#"Navegação 1", [PromoteAllScalars = true]),
+				  #"Tipo de coluna alterado" = Table.TransformColumnTypes(#"Cabeçalhos promovidos", {{"TIPO", type text}, {"Rec. Real", Int64.Type}, {"Rec. Orçado", Int64.Type}, {"Atrac. Real", Int64.Type}, {"Atrac. Orç", Int64.Type}, {"PM Real", type number}, {"PM Orçado", type number}, {"PM 2024", type number}, {"PM 2025", type number}, {"Atracações 2024", Int64.Type}, {"Atracações 2025", Int64.Type}}),
+				  #"Colunas reordenadas" = Table.ReorderColumns(#"Tipo de coluna alterado", {"TIPO", "Rec. Real", "Rec. Orçado", "Atrac. Real", "Atrac. Orç", "PM Real", "PM Orçado", "PM 2024", "PM 2025", "Atracações 2024", "Atracações 2025", "_1", "", "_2"}),
+				  #"Colunas removidas" = Table.RemoveColumns(#"Colunas reordenadas", {"_1", "", "_2"})
+				in
+				  #"Colunas removidas"
+
+	annotation PBI_ResultType = Table
+

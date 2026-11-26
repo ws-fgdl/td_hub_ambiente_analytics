@@ -1,0 +1,114 @@
+table FORECAST
+	lineageTag: fbe44182-f745-4f96-a380-1e90d8720d14
+
+	column TIPO
+		dataType: string
+		lineageTag: 53254d96-0d61-46fc-99de-751009089d64
+		summarizeBy: none
+		sourceColumn: TIPO
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Rec. Liq - REAL'
+		dataType: double
+		lineageTag: 1371c333-362f-4836-9d4a-8febb9cbaf1f
+		summarizeBy: sum
+		sourceColumn: Rec. Liq - REAL
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Rec. Liq - ORÇADO'
+		dataType: double
+		lineageTag: 41c05d38-4276-46b9-96e5-de7dfd4d07f9
+		summarizeBy: sum
+		sourceColumn: Rec. Liq - ORÇADO
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'EBITDA - REAL'
+		dataType: double
+		lineageTag: ce9ef22c-5bf5-4748-8a22-b7be00e1b04f
+		summarizeBy: sum
+		sourceColumn: EBITDA - REAL
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'EBITDA - ORÇADO'
+		dataType: double
+		lineageTag: fce1aefb-3803-4acb-a42c-8ed08202c535
+		summarizeBy: sum
+		sourceColumn: EBITDA - ORÇADO
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'EBIT - REAL'
+		dataType: double
+		lineageTag: 56f70fdb-4047-4021-a7ac-e225e2a32231
+		summarizeBy: sum
+		sourceColumn: EBIT - REAL
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'EBIT - ORÇADO'
+		dataType: double
+		lineageTag: 6fef9ea5-8c02-42e5-ab2e-2a46ac9431e4
+		summarizeBy: sum
+		sourceColumn: EBIT - ORÇADO
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'LAIR - REAL'
+		dataType: double
+		lineageTag: 80391ae1-41ac-45ba-a252-a5f3c830deaa
+		summarizeBy: sum
+		sourceColumn: LAIR - REAL
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'LAIR - ORÇADO'
+		dataType: double
+		lineageTag: 1afe2165-4d73-4116-a877-f897429c32f6
+		summarizeBy: sum
+		sourceColumn: LAIR - ORÇADO
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column %
+		dataType: double
+		lineageTag: 26a79c6d-cde0-4138-bff0-157ce6857a86
+		summarizeBy: sum
+		sourceColumn: %
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition FORECAST = m
+		mode: import
+		source =
+				let
+				  Origem = GoogleSheets.Contents("https://docs.google.com/spreadsheets/d/1CL7ZCR5XuY7je_BK8VmVBRCVS4weIj_rSlUc6DOt4Y4/edit?gid=183143254#gid=183143254"),
+				  #"Navegação 1" = Origem{[name = "FORECAST", ItemKind = "Table"]}[Data],
+				  #"Cabeçalhos promovidos" = Table.PromoteHeaders(#"Navegação 1", [PromoteAllScalars = true]),
+				  #"Tipo de coluna alterado" = Table.TransformColumnTypes(#"Cabeçalhos promovidos", {{"Rec. Liq - REAL", type number}, {"Rec. Liq - ORÇADO", type number}, {"EBITDA - REAL", type number}, {"EBITDA - ORÇADO", type number}, {"EBIT - REAL", type number}, {"EBIT - ORÇADO", type number}, {"LAIR - REAL", type number}, {"LAIR - ORÇADO", type number}, {"%", type number}})
+				in
+				  #"Tipo de coluna alterado"
+
+	annotation PBI_ResultType = Table
+

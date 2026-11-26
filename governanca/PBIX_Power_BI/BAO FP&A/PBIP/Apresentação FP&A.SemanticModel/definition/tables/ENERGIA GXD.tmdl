@@ -1,0 +1,133 @@
+table 'ENERGIA GXD'
+	lineageTag: df2b2829-7885-4eb7-bebc-556ee68feea1
+
+	column TIPO
+		dataType: string
+		lineageTag: 2e44c816-5d59-41ca-9246-bd183a815a9c
+		summarizeBy: none
+		sourceColumn: TIPO
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'OUT - 25'
+		dataType: double
+		lineageTag: b8c04b52-56c1-4d94-9647-59b8d76053ce
+		summarizeBy: sum
+		sourceColumn: OUT - 25
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'NOV - 25'
+		dataType: double
+		lineageTag: 3fcc357d-403f-4cb9-9751-4848c54cb39f
+		summarizeBy: sum
+		sourceColumn: NOV - 25
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'DEZ - 25'
+		dataType: double
+		lineageTag: a60182dd-b011-4901-aac2-b9ba8fe16b6f
+		summarizeBy: sum
+		sourceColumn: DEZ - 25
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column JAN
+		dataType: double
+		lineageTag: 01718acc-9608-4977-b64e-e7b11ce8ad16
+		summarizeBy: sum
+		sourceColumn: JAN
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FEV
+		dataType: double
+		lineageTag: f54ae1bf-85dc-4786-aa57-5508e9563f7e
+		summarizeBy: sum
+		sourceColumn: FEV
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column MAR
+		dataType: double
+		lineageTag: a75ce3ea-1a69-49fd-9248-bb54127c8a00
+		summarizeBy: sum
+		sourceColumn: MAR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column MÊS
+		dataType: string
+		lineageTag: f46ef2d2-432d-450a-93fd-4314901e938a
+		summarizeBy: none
+		sourceColumn: MÊS
+
+		annotation SummarizationSetBy = Automatic
+
+	column CONSUMO
+		dataType: double
+		lineageTag: f23fe5e6-e926-44da-8228-2bfe7de6ff40
+		summarizeBy: sum
+		sourceColumn: CONSUMO
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CUSTO
+		dataType: double
+		lineageTag: c76ae98d-47fa-4c4d-8b08-05fb0472bbcd
+		summarizeBy: sum
+		sourceColumn: CUSTO
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Ordem
+		dataType: double
+		lineageTag: 70e03a87-528a-4f83-8e7c-705c0d43aac0
+		summarizeBy: none
+		sourceColumn: Ordem
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ABR
+		dataType: double
+		lineageTag: 3746f690-6f36-468b-9f50-5c7c64b6c352
+		summarizeBy: sum
+		sourceColumn: ABR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'ENERGIA GXD' = m
+		mode: import
+		source =
+				let
+				  Origem = GoogleSheets.Contents("https://docs.google.com/spreadsheets/d/1zBuOszTALdZNm3KNjnpGJ2U9zrp-mklEoA-jSzpZnuc/edit?gid=549289690#gid=549289690"),
+				  #"Navegação 1" = Origem{[name = "GXD", ItemKind = "Table"]}[Data],
+				  #"Cabeçalhos promovidos" = Table.PromoteHeaders(#"Navegação 1", [PromoteAllScalars = true]),
+				  #"Tipo de coluna alterado" = Table.TransformColumnTypes(#"Cabeçalhos promovidos", {{"OUT - 25", type number}, {"NOV - 25", type number}, {"DEZ - 25", type number}, {"JAN", type number}, {"FEV", type number}, {"MAR", type number}, {"ABR", type number}, {"CONSUMO", type number}, {"CUSTO", type number}, {"Ordem", type number}}),
+				  #"Colunas removidas" = Table.RemoveColumns(#"Tipo de coluna alterado", {""})
+				in
+				  #"Colunas removidas"
+
+	annotation PBI_ResultType = Table
+
