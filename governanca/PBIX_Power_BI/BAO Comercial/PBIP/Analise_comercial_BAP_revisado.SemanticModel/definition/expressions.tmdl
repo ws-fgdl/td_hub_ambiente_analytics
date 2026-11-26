@@ -1,0 +1,1131 @@
+expression Entrada = ```
+		let
+		    Fonte = PowerPlatform.Dataflows(null),
+		    Workspaces = Fonte{[Id="Workspaces"]}[Data],
+		    #"0bef760f-99ce-4200-9edb-b282009d0b4e" = Workspaces{[workspaceId="0bef760f-99ce-4200-9edb-b282009d0b4e"]}[Data],
+		    #"4846be40-a4bc-4f5d-a858-6a8959e1b076" = #"0bef760f-99ce-4200-9edb-b282009d0b4e"{[dataflowId="4846be40-a4bc-4f5d-a858-6a8959e1b076"]}[Data],
+		    Entrada = #"4846be40-a4bc-4f5d-a858-6a8959e1b076"{[entity="f_estadia",version=""]}[Data],
+		    #"Colunas Renomeadas" = Table.RenameColumns(Entrada,{{"id_disparo", "ID Disparo"}, {"id_ocorrencia", "ID Ocorrência"}, {"natureza", "Natureza"}, {"nome_cerca", "Nome"}, {"descricao_cerca", "Descrição"}, {"tipo", "Tipo"}, {"tipo_abreviado", "Tipo Abreviado"}, {"tipo_especifico_alarme", "Tipo específico do alarme"}, {"pre_zona", "Pré-Zona"}, {"entrada_saida", "Entrada/Saída"}, {"tempo_atuacao_min", "Tempo de Atuação (min)"}, {"timer_min", "Timer (min)"}, {"mensagem_padrao", "Justificativa Padrão"}, {"justificativa", "Justificativa"}, {"operador", "Operador"}, {"imo", "IMO"}, {"embarcacao", "Embarcação"}, {"situacao", "Situação"}, {"disparo", "Disparo"}, {"enviado_por", "Enviado pelo(a)"}}),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Colunas Renomeadas", {
+		        {"ID Ocorrência", Int64.Type}, {"ID Disparo", Int64.Type}, {"Natureza", type text}, 
+		        {"Nome", type text}, {"Descrição", type text}, {"Tipo", type text}, {"Tipo Abreviado", type text},
+		        {"Tipo específico do alarme", type text}, {"Pré-Zona", type text}, 
+		         {"Entrada/Saída", type text},
+		          {"Embarcação", type text},
+		        {"IMO", Int64.Type}, {"Enviado pelo(a)", type text}, {"Situação", type text}, {"Disparo", type datetime},
+		        {"Operador", type text}, {"Tempo de Atuação (min)", type number}, {"Timer (min)", Int64.Type},
+		        {"Justificativa", type text}, {"Justificativa Padrão", type text}
+		    })
+		
+		// {"Alarm Reg. Min Vel", type text}, LOCALIZACAO
+		
+		// {"Localização", type text},
+		,
+		    #"Filtered Rows" = Table.SelectRows(#"Changed Type", each ([Natureza] = "Cerca") and ([Tipo específico do alarme] = "alarme")),
+		    #"Replaced Value1" = Table.ReplaceValue(#"Filtered Rows", "Teste Triunfo (rafael)", "Triunfo", Replacer.ReplaceText, {"Nome"}),
+		    #"Removed Columns" = Table.RemoveColumns(#"Replaced Value1", {"Tipo",   "Enviado pelo(a)", "Situação", "Operador", "Tempo de Atuação (min)", "Timer (min)", "Justificativa", "Justificativa Padrão", "Pré-Zona"}),
+		    #"Changed Type1" = Table.TransformColumnTypes(#"Removed Columns", {{"IMO", type text}, {"ID Disparo", type text}, {"ID Ocorrência", type text}}),
+		    #"Sorted Rows" = Table.Sort(#"Changed Type1", {{"Disparo", Order.Ascending}}),
+		    #"Filtered Rows2" = Table.SelectRows(#"Sorted Rows", each ([Nome] <> "teste") ),
+		
+		    // Passo 1: remover disparos com menos de X min (mantém menor para Entrou e maior para Saiu)
+		    #"Removed Close Disparos" =
+		        Table.Group(
+		            #"Filtered Rows2",
+		            {"Embarcação", "Nome"},
+		            {
+		                {
+		                    "Data",
+		                    (tbl) =>
+		                        let
+		                            Sorted =
+		                                Table.Sort(tbl, {{"Disparo", Order.Ascending}}),
+		                                
+		                            AddedIndex = Table.AddIndexColumn(Sorted, "Idx", 0, 1, Int64.Type),
+		                            Kept =
+		                                List.Accumulate(
+		                                    Table.ToRecords(AddedIndex),
+		                                    {},
+		                                    (state, current) =>
+		                                        if List.IsEmpty(state) then
+		                                            state & {current}
+		                                        else
+		                                            let
+		                                                lastTime = state{List.Count(state) - 1}[Disparo],
+		                                                diffMin = Duration.TotalMinutes(current[Disparo] - lastTime)
+		                                            in
+		                                                if Number.Abs(diffMin) >= 30 then
+		                                                    state & {current}
+		                                                else
+		                                                    state
+		                                ),
+		                            BackToTable = Table.FromRecords(Kept),
+		                            RemovedIdx = Table.RemoveColumns(BackToTable, {"Idx"})
+		                        in
+		                            RemovedIdx,
+		                    type table
+		                        [ID Ocorrência = nullable number, ID Disparo = nullable number, Natureza = nullable text,
+		                         Localização = nullable text, Nome = nullable text, Descrição = nullable text,
+		                         Tipo = nullable text, #"Entrada/Saída" = nullable text, Embarcação = nullable text,
+		                         Disparo = nullable datetime, IMO = nullable number]
+		                }
+		            }
+		        ),
+		    #"Renamed Columns2" = Table.RenameColumns(#"Removed Close Disparos",{{"Embarcação", "Embarcação1"}, {"Nome", "Nome_1"}}),
+		
+		    // Expande para voltar ao formato plano
+		    #"Expanded Data" = Table.ExpandTableColumn(#"Renamed Columns2", "Data", Table.ColumnNames(#"Filtered Rows2")),
+		
+		
+		    // NOVO: Remoção "cross-type" — descarta qualquer evento (Entrou ou Saiu) que ocorra nos X minutos após um Entrou preservado
+		    #"Removed Cross-Type Close" =
+		        Table.Group(
+		            #"Expanded Data",
+		            {"Embarcação"},
+		            {
+		                {
+		                    "Data",
+		                    (tbl) =>
+		                        let
+		                            Sorted = Table.Sort(tbl, {{"Disparo", Order.Ascending}}),
+		                            Recs = Table.ToRecords(Sorted),
+		                            Init = [Kept = {}, LastEntrou = null],
+		                            Step = (s as record, r as record) as record =>
+		                                let
+		                                    t = r[Disparo],
+		                                    isEntrou = Text.Upper(Text.Trim(r[#"Entrada/Saída"])) = "ENTROU",
+		                                    withinWindow =
+		                                        (s[LastEntrou] <> null)
+		                                        and (Duration.TotalMinutes(t - s[LastEntrou]) <= 10)
+		                                in
+		                                    if withinWindow then
+		                                        s
+		                                    else
+		                                        [
+		                                            Kept = s[Kept] & {r},
+		                                            LastEntrou = if isEntrou then t else s[LastEntrou]
+		                                        ],
+		                            Final = List.Accumulate(Recs, Init, Step),
+		                            Out = Table.FromRecords(Final[Kept])
+		                        in
+		                            Out,
+		                    type table
+		                        [ID Ocorrência=nullable text, ID Disparo=nullable text, Natureza=nullable text,
+		                         Localização=nullable text, Nome=nullable text, Descrição=nullable text,
+		                         Tipo Abreviado=nullable text, Tipo específico do alarme=nullable text,
+		                         #"Entrada/Saída"=nullable text, Embarcação=nullable text, IMO=nullable text,
+		                         Disparo=nullable datetime]
+		                }
+		            }
+		        ),
+		    #"Renamed Columns3" = Table.RenameColumns(#"Removed Cross-Type Close",{{"Embarcação", "Embarcação2"}}),
+		
+		    #"Expanded Cross-Type Close" = Table.ExpandTableColumn(#"Renamed Columns3", "Data", Table.ColumnNames(#"Expanded Data")),
+		
+		    //===========
+		     #"Removed Cross-Type Close_saiu" =
+		        Table.Group(
+		            #"Expanded Cross-Type Close",
+		            {"Embarcação"},
+		            {
+		                {
+		                    "Data",
+		                    (tbl) =>
+		                        let
+		                            Sorted = Table.Sort(tbl, {{"Disparo", Order.Descending}}),
+		                            Recs = Table.ToRecords(Sorted),
+		                            Init = [Kept = {}, LastSaiu = null],
+		                            Step = (s as record, r as record) as record =>
+		                                let
+		                                    t = r[Disparo],
+		                                    isSaiu = Text.Upper(Text.Trim(r[#"Entrada/Saída"])) = "SAIU",
+		                                    withinWindow =
+		                                        (s[LastSaiu] <> null)
+		                                        and (Duration.TotalMinutes(t - s[LastSaiu]) <= 10)
+		                                in
+		                                    if withinWindow then
+		                                        s
+		                                    else
+		                                        [
+		                                            Kept = s[Kept] & {r},
+		                                            LastSaiu = if isSaiu then t else s[LastSaiu]
+		                                        ],
+		                            Final = List.Accumulate(Recs, Init, Step),
+		                            Out = Table.FromRecords(Final[Kept])
+		                        in
+		                            Out,
+		                    type table
+		                        [ID Ocorrência=nullable text, ID Disparo=nullable text, Natureza=nullable text,
+		                         Localização=nullable text, Nome=nullable text, Descrição=nullable text,
+		                         Tipo Abreviado=nullable text, Tipo específico do alarme=nullable text,
+		                         #"Entrada/Saída"=nullable text, Embarcação=nullable text, IMO=nullable text,
+		                         Disparo=nullable datetime]
+		                }
+		            }
+		        ),
+		    #"Renamed Columns_6" = Table.RenameColumns(#"Removed Cross-Type Close",{{"Embarcação", "Embarcação_4"}}),
+		
+		    #"Expanded Cross-Type Close_Saiu" = Table.ExpandTableColumn(#"Renamed Columns_6", "Data", Table.ColumnNames(#"Expanded Cross-Type Close")),
+		
+		    //===========
+		
+		    // NOVO: remover "Entrou" consecutivos por Embarcação + Nome, mantendo apenas o primeiro
+		    #"Removed Consecutive Entrou" =
+		        Table.Group(
+		            #"Expanded Cross-Type Close_Saiu",
+		            {"Embarcação", "Nome"},
+		            {
+		                {
+		                    "Data",
+		                    (tbl) =>
+		                        let
+		                            Sorted = Table.Sort(tbl, {{"Disparo", Order.Ascending}}),
+		                            Recs = Table.ToRecords(Sorted),
+		                            Init = [Kept = {}, LastWasEntrou = false],
+		                            Step = (s as record, r as record) as record =>
+		                                let
+		                                    isEntrou = Text.Upper(Text.Trim(r[#"Entrada/Saída"])) = "ENTROU"
+		                                in
+		                                    if isEntrou and s[LastWasEntrou] then
+		                                        // pula este "Entrou" porque o anterior também foi "Entrou"
+		                                        s
+		                                    else
+		                                        [
+		                                            Kept = s[Kept] & {r},
+		                                            LastWasEntrou = isEntrou
+		                                        ],
+		                            Final = List.Accumulate(Recs, Init, Step),
+		                            Out = Table.FromRecords(Final[Kept])
+		                        in
+		                            Out,
+		                    type table
+		                        [ID Ocorrência=nullable text, ID Disparo=nullable text, Natureza=nullable text,
+		                         Localização=nullable text, Nome=nullable text, Descrição=nullable text,
+		                         Tipo Abreviado=nullable text, Tipo específico do alarme=nullable text,
+		                         #"Entrada/Saída"=nullable text, Embarcação=nullable text, IMO=nullable text,
+		                         Disparo=nullable datetime]
+		                }
+		            }
+		        ),
+		    #"Renamed Columns4" = Table.RenameColumns(#"Removed Consecutive Entrou",{{"Nome", "Nome_2"}, {"Embarcação", "Embarcação_2"}}),
+		    #"Expanded Removed Consecutive Entrou" =
+		        Table.ExpandTableColumn(#"Renamed Columns4", "Data", Table.ColumnNames(#"Expanded Cross-Type Close")),
+		    
+		    //==================
+		    #"Removed Consecutive Saiu" =
+		        Table.Group(
+		            #"Expanded Removed Consecutive Entrou",
+		            {"Embarcação", "Nome"},
+		            {
+		                {
+		                    "Data",
+		                    (tbl) =>
+		                        let
+		                            Sorted = Table.Sort(tbl, {{"Disparo", Order.Descending}}),
+		                            Recs = Table.ToRecords(Sorted),
+		                            Init = [Kept = {}, LastWasEntrou = false],
+		                            Step = (s as record, r as record) as record =>
+		                                let
+		                                    isSaiu = Text.Upper(Text.Trim(r[#"Entrada/Saída"])) = "SAIU"
+		                                in
+		                                    if isSaiu and s[LastWasEntrou] then
+		                                        // pula este "Saiu" porque o anterior também foi "Saiu"
+		                                        s
+		                                    else
+		                                        [
+		                                            Kept = s[Kept] & {r},
+		                                            LastWasEntrou = isSaiu
+		                                        ],
+		                            Final = List.Accumulate(Recs, Init, Step),
+		                            Out = Table.FromRecords(Final[Kept])
+		                        in
+		                            Out,
+		                    type table
+		                        [ID Ocorrência=nullable text, ID Disparo=nullable text, Natureza=nullable text,
+		                         Localização=nullable text, Nome=nullable text, Descrição=nullable text,
+		                         Tipo Abreviado=nullable text, Tipo específico do alarme=nullable text,
+		                         #"Entrada/Saída"=nullable text, Embarcação=nullable text, IMO=nullable text,
+		                         Disparo=nullable datetime]
+		                }
+		            }
+		        ),
+		    #"Renamed Columns_5" = Table.RenameColumns(#"Removed Consecutive Saiu",{{"Nome", "Nome_3"}, {"Embarcação", "Embarcação_3"}}),
+		    #"Expanded Removed Consecutive Saiu" =
+		        Table.ExpandTableColumn(#"Renamed Columns_5", "Data", Table.ColumnNames(#"Expanded Removed Consecutive Entrou")),
+		
+		    //=======================
+		
+		
+		    
+		    #"Sorted Rows3" = Table.Sort(#"Expanded Removed Consecutive Saiu", {{"Disparo", Order.Ascending}, {"ID Disparo", Order.Ascending}}),
+		    Filtered_Rows = Table.SelectRows(#"Sorted Rows3", each ([#"Entrada/Saída"] = "Entrou")),
+		    #"Sorted Rows1" = Table.Sort(Filtered_Rows, {{"Disparo", Order.Descending}}),
+		    #"Inserted Merged Column" = Table.AddColumn(#"Sorted Rows1", "Merged", each Text.Combine({[Embarcação], [Nome]}, "-"), type text),
+		    #"Renamed Columns" = Table.RenameColumns(#"Inserted Merged Column", {{"Merged", "Loc"}}),
+		    #"Sorted Rows2" = Table.Sort(#"Renamed Columns", {{"Disparo", Order.Ascending}}),
+		    #"Removed Columns2" = Table.RemoveColumns(#"Sorted Rows2", {"ID Ocorrência", "ID Disparo"}),
+		    #"Removed Duplicates" = Table.Distinct(#"Removed Columns2"),
+		    #"Grouped Rows" = Table.Group(#"Removed Duplicates", {"Loc"}, {{"Count", each _, type table [ID Ocorrência=nullable text, ID Disparo=nullable text, Natureza=nullable text, Localização=nullable text, Nome=nullable text, Descrição=nullable text, Tipo Abreviado=nullable text, Tipo específico do alarme=nullable text, #"Entrada/Saída"=nullable text, Embarcação=nullable text, IMO=nullable text, Disparo=nullable datetime]}}),
+		    #"Added Custom" = Table.AddColumn(#"Grouped Rows", "Custom", each Table.AddIndexColumn([Count], "Index", 1, 1)),
+		    #"Expanded Custom" = Table.ExpandTableColumn(#"Added Custom", "Custom", {"Nome", "Embarcação", "IMO", "Disparo", "Index"}, {"Custom.Nome", "Custom.Embarcação", "Custom.IMO", "Custom.Disparo", "Custom.Index"}),
+		    #"Removed Columns1" = Table.RemoveColumns(#"Expanded Custom", {"Count"}),
+		    #"Inserted Merged Column1" = Table.AddColumn(#"Removed Columns1", "Merged", each Text.Combine({[Loc], Text.From([Custom.Index], "en-GB")}, ""), type text),
+		    #"Renamed Columns1" = Table.RenameColumns(#"Inserted Merged Column1", {{"Loc", "LocEntrada"}, {"Custom.Disparo", "DisparoEntrada"}, {"Custom.Index", "IndexEntrada"}}),
+		    #"Replaced Value" = Table.ReplaceValue(#"Renamed Columns1", "Teste Triunfo (rafael)", "Triunfo", Replacer.ReplaceText, {"Custom.Nome"}),
+		    #"Replaced Value2" = Table.ReplaceValue(#"Replaced Value", "Mac Laren", "Mac Laren I.C ", Replacer.ReplaceText, {"Custom.Nome"}),
+		    #"Replaced Value3" = Table.ReplaceValue(#"Replaced Value2", "MacLaren", "Mac Laren P.A", Replacer.ReplaceText, {"Custom.Nome"})
+		in
+		    #"Replaced Value3"
+		```
+	lineageTag: 8ef0866c-9ed0-4d87-b4bf-e1a86ff93f7a
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression Saida = ```
+		let
+		    Fonte = PowerPlatform.Dataflows(null),
+		    Workspaces = Fonte{[Id="Workspaces"]}[Data],
+		    #"0bef760f-99ce-4200-9edb-b282009d0b4e" = Workspaces{[workspaceId="0bef760f-99ce-4200-9edb-b282009d0b4e"]}[Data],
+		    #"4846be40-a4bc-4f5d-a858-6a8959e1b076" = #"0bef760f-99ce-4200-9edb-b282009d0b4e"{[dataflowId="4846be40-a4bc-4f5d-a858-6a8959e1b076"]}[Data],
+		    Entrada = #"4846be40-a4bc-4f5d-a858-6a8959e1b076"{[entity="f_estadia",version=""]}[Data],
+		    #"Colunas Renomeadas" = Table.RenameColumns(Entrada,{{"id_disparo", "ID Disparo"}, {"id_ocorrencia", "ID Ocorrência"}, {"natureza", "Natureza"}, {"nome_cerca", "Nome"}, {"descricao_cerca", "Descrição"}, {"tipo", "Tipo"}, {"tipo_abreviado", "Tipo Abreviado"}, {"tipo_especifico_alarme", "Tipo específico do alarme"}, {"pre_zona", "Pré-Zona"}, {"entrada_saida", "Entrada/Saída"}, {"tempo_atuacao_min", "Tempo de Atuação (min)"}, {"timer_min", "Timer (min)"}, {"mensagem_padrao", "Justificativa Padrão"}, {"justificativa", "Justificativa"}, {"operador", "Operador"}, {"imo", "IMO"}, {"embarcacao", "Embarcação"}, {"situacao", "Situação"}, {"disparo", "Disparo"}, {"enviado_por", "Enviado pelo(a)"}}),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Colunas Renomeadas", {
+		        {"ID Ocorrência", Int64.Type}, {"ID Disparo", Int64.Type}, {"Natureza", type text}, 
+		        {"Nome", type text}, {"Descrição", type text}, {"Tipo", type text}, {"Tipo Abreviado", type text},
+		        {"Tipo específico do alarme", type text}, {"Pré-Zona", type text}, 
+		         {"Entrada/Saída", type text},
+		          {"Embarcação", type text},
+		        {"IMO", Int64.Type}, {"Enviado pelo(a)", type text}, {"Situação", type text}, {"Disparo", type datetime},
+		        {"Operador", type text}, {"Tempo de Atuação (min)", type number}, {"Timer (min)", Int64.Type},
+		        {"Justificativa", type text}, {"Justificativa Padrão", type text}
+		    })
+		
+		// {"Alarm Reg. Min Vel", type text}, LOCALIZACAO
+		
+		// {"Localização", type text},
+		,
+		    #"Filtered Rows" = Table.SelectRows(#"Changed Type", each ([Natureza] = "Cerca") and ([Tipo específico do alarme] = "alarme")),
+		    #"Replaced Value1" = Table.ReplaceValue(#"Filtered Rows", "Teste Triunfo (rafael)", "Triunfo", Replacer.ReplaceText, {"Nome"}),
+		    #"Removed Columns" = Table.RemoveColumns(#"Replaced Value1", {"Tipo",  "Enviado pelo(a)", "Situação", "Operador", "Tempo de Atuação (min)", "Timer (min)", "Justificativa", "Justificativa Padrão", "Pré-Zona"}),
+		    #"Changed Type1" = Table.TransformColumnTypes(#"Removed Columns", {{"IMO", type text}, {"ID Disparo", type text}, {"ID Ocorrência", type text}}),
+		    #"Sorted Rows" = Table.Sort(#"Changed Type1", {{"Disparo", Order.Ascending}}),
+		    #"Filtered Rows3" = Table.SelectRows(#"Sorted Rows", each ([Nome] <> "teste")),
+		    // 🔹 Remove primeiras linhas "Saiu" por embarcação
+		    #"Removed Initial Saiu" =
+		        Table.Group(
+		            #"Filtered Rows3",
+		            {"Embarcação"},
+		            {
+		                {
+		                    "Data",
+		                    (tbl) =>
+		                        let
+		                            // Adiciona índice para identificar posição
+		                            Indexed = Table.AddIndexColumn(tbl, "Idx", 0, 1, Int64.Type),
+		                            // Encontra primeira linha que NÃO seja "Saiu"
+		                            FirstKeepIndex =
+		                                try List.Min(
+		                                    List.Select(Indexed[Idx], (i) => Indexed[#"Entrada/Saída"]{i} <> "Saiu")
+		                                )
+		                                otherwise null,
+		                            // Se encontrou, mantém apenas a partir dela
+		                            Filtered =
+		                                if FirstKeepIndex <> null then
+		                                    Table.SelectRows(Indexed, each [Idx] >= FirstKeepIndex)
+		                                else
+		                                    Indexed,
+		                            RemovedIndex = Table.RemoveColumns(Filtered, {"Idx"})
+		                        in
+		                            RemovedIndex,
+		                    type table
+		                        [ID Ocorrência = nullable text, ID Disparo = nullable text, Natureza = nullable text,
+		                         Localização = nullable text, Nome = nullable text, Descrição = nullable text,
+		                         Tipo Abreviado = nullable text, Tipo específico do alarme = nullable text,
+		                         #"Entrada/Saída" = nullable text, Embarcação = nullable text,
+		                         IMO = nullable text, Disparo = nullable datetime]
+		                }
+		            }
+		        ),
+		    #"Renamed Columns5" = Table.RenameColumns(#"Removed Initial Saiu",{{"Embarcação", "Embarcação_1"}}),
+		    #"Expanded Data_1" = Table.ExpandTableColumn(#"Renamed Columns5", "Data", Table.ColumnNames(#"Filtered Rows3")),
+		    
+		
+		    // Passo 1: remover disparos com menos de X min (mantém menor para Entrou e maior para Saiu)
+		    #"Removed Close Disparos" =
+		        Table.Group(
+		            #"Expanded Data_1",
+		            {"Embarcação", "Nome"},
+		            {
+		                {
+		                    "Data",
+		                    (tbl) =>
+		                        let
+		                            Sorted =
+		                                Table.Sort(tbl, {{"Disparo", Order.Ascending}}),
+		                                
+		                            AddedIndex = Table.AddIndexColumn(Sorted, "Idx", 0, 1, Int64.Type),
+		                            Kept =
+		                                List.Accumulate(
+		                                    Table.ToRecords(AddedIndex),
+		                                    {},
+		                                    (state, current) =>
+		                                        if List.IsEmpty(state) then
+		                                            state & {current}
+		                                        else
+		                                            let
+		                                                lastTime = state{List.Count(state) - 1}[Disparo],
+		                                                diffMin = Duration.TotalMinutes(current[Disparo] - lastTime)
+		                                            in
+		                                                if Number.Abs(diffMin) >= 30 then
+		                                                    state & {current}
+		                                                else
+		                                                    state
+		                                ),
+		                            BackToTable = Table.FromRecords(Kept),
+		                            RemovedIdx = Table.RemoveColumns(BackToTable, {"Idx"})
+		                        in
+		                            RemovedIdx,
+		                    type table
+		                        [ID Ocorrência = nullable number, ID Disparo = nullable number, Natureza = nullable text,
+		                         Localização = nullable text, Nome = nullable text, Descrição = nullable text,
+		                         Tipo = nullable text, #"Entrada/Saída" = nullable text, Embarcação = nullable text,
+		                         Disparo = nullable datetime, IMO = nullable number]
+		                }
+		            }
+		        ),
+		    #"Renamed Columns2" = Table.RenameColumns(#"Removed Close Disparos",{{"Embarcação", "Embarcação1"}, {"Nome", "Nome_1"}}),
+		
+		    // Expande para voltar ao formato plano
+		    #"Expanded Data" = Table.ExpandTableColumn(#"Renamed Columns2", "Data", Table.ColumnNames(#"Expanded Data_1")),
+		
+		    // NOVO: Remoção "cross-type" — descarta qualquer evento (Entrou ou Saiu) que ocorra nos 5 minutos após um Entrou preservado
+		    #"Removed Cross-Type Close" =
+		        Table.Group(
+		            #"Expanded Data",
+		            {"Embarcação"},
+		            {
+		                {
+		                    "Data",
+		                    (tbl) =>
+		                        let
+		                            Sorted = Table.Sort(tbl, {{"Disparo", Order.Ascending}}),
+		                            Recs = Table.ToRecords(Sorted),
+		                            Init = [Kept = {}, LastEntrou = null],
+		                            Step = (s as record, r as record) as record =>
+		                                let
+		                                    t = r[Disparo],
+		                                    isEntrou = Text.Upper(Text.Trim(r[#"Entrada/Saída"])) = "ENTROU",
+		                                    withinWindow =
+		                                        (s[LastEntrou] <> null)
+		                                        and (Duration.TotalMinutes(t - s[LastEntrou]) <= 10)
+		                                in
+		                                    if withinWindow then
+		                                        s
+		                                    else
+		                                        [
+		                                            Kept = s[Kept] & {r},
+		                                            LastEntrou = if isEntrou then t else s[LastEntrou]
+		                                        ],
+		                            Final = List.Accumulate(Recs, Init, Step),
+		                            Out = Table.FromRecords(Final[Kept])
+		                        in
+		                            Out,
+		                    type table
+		                        [ID Ocorrência=nullable text, ID Disparo=nullable text, Natureza=nullable text,
+		                         Localização=nullable text, Nome=nullable text, Descrição=nullable text,
+		                         Tipo Abreviado=nullable text, Tipo específico do alarme=nullable text,
+		                         #"Entrada/Saída"=nullable text, Embarcação=nullable text, IMO=nullable text,
+		                         Disparo=nullable datetime]
+		                }
+		            }
+		        ),
+		    #"Renamed Columns3" = Table.RenameColumns(#"Removed Cross-Type Close",{{"Embarcação", "Embarcação2"}}),
+		
+		    #"Expanded Cross-Type Close" = Table.ExpandTableColumn(#"Renamed Columns3", "Data", Table.ColumnNames(#"Expanded Data")),
+		
+		    // NOVO: remover "Entrou" consecutivos por Embarcação + Nome, mantendo apenas o primeiro
+		    #"Removed Consecutive Entrou" =
+		        Table.Group(
+		            #"Expanded Cross-Type Close",
+		            {"Embarcação", "Nome"},
+		            {
+		                {
+		                    "Data",
+		                    (tbl) =>
+		                        let
+		                            Sorted = Table.Sort(tbl, {{"Disparo", Order.Ascending}}),
+		                            Recs = Table.ToRecords(Sorted),
+		                            Init = [Kept = {}, LastWasEntrou = false],
+		                            Step = (s as record, r as record) as record =>
+		                                let
+		                                    isEntrou = Text.Upper(Text.Trim(r[#"Entrada/Saída"])) = "ENTROU"
+		                                in
+		                                    if isEntrou and s[LastWasEntrou] then
+		                                        // pula este "Entrou" porque o anterior também foi "Entrou"
+		                                        s
+		                                    else
+		                                        [
+		                                            Kept = s[Kept] & {r},
+		                                            LastWasEntrou = isEntrou
+		                                        ],
+		                            Final = List.Accumulate(Recs, Init, Step),
+		                            Out = Table.FromRecords(Final[Kept])
+		                        in
+		                            Out,
+		                    type table
+		                        [ID Ocorrência=nullable text, ID Disparo=nullable text, Natureza=nullable text,
+		                         Localização=nullable text, Nome=nullable text, Descrição=nullable text,
+		                         Tipo Abreviado=nullable text, Tipo específico do alarme=nullable text,
+		                         #"Entrada/Saída"=nullable text, Embarcação=nullable text, IMO=nullable text,
+		                         Disparo=nullable datetime]
+		                }
+		            }
+		        ),
+		    #"Renamed Columns4" = Table.RenameColumns(#"Removed Consecutive Entrou",{{"Nome", "Nome_2"}, {"Embarcação", "Embarcação_2"}}),
+		    #"Expanded Removed Consecutive Entrou" =
+		        Table.ExpandTableColumn(#"Renamed Columns4", "Data", Table.ColumnNames(#"Expanded Cross-Type Close")),
+		    //=====
+		     //==================
+		    #"Removed Consecutive Saiu" =
+		        Table.Group(
+		            #"Expanded Removed Consecutive Entrou",
+		            {"Embarcação", "Nome"},
+		            {
+		                {
+		                    "Data",
+		                    (tbl) =>
+		                        let
+		                            Sorted = Table.Sort(tbl, {{"Disparo", Order.Descending}}),
+		                            Recs = Table.ToRecords(Sorted),
+		                            Init = [Kept = {}, LastWasEntrou = false],
+		                            Step = (s as record, r as record) as record =>
+		                                let
+		                                    isSaiu = Text.Upper(Text.Trim(r[#"Entrada/Saída"])) = "SAIU"
+		                                in
+		                                    if isSaiu and s[LastWasEntrou] then
+		                                        // pula este "Saiu" porque o anterior também foi "Saiu"
+		                                        s
+		                                    else
+		                                        [
+		                                            Kept = s[Kept] & {r},
+		                                            LastWasEntrou = isSaiu
+		                                        ],
+		                            Final = List.Accumulate(Recs, Init, Step),
+		                            Out = Table.FromRecords(Final[Kept])
+		                        in
+		                            Out,
+		                    type table
+		                        [ID Ocorrência=nullable text, ID Disparo=nullable text, Natureza=nullable text,
+		                         Localização=nullable text, Nome=nullable text, Descrição=nullable text,
+		                         Tipo Abreviado=nullable text, Tipo específico do alarme=nullable text,
+		                         #"Entrada/Saída"=nullable text, Embarcação=nullable text, IMO=nullable text,
+		                         Disparo=nullable datetime]
+		                }
+		            }
+		        ),
+		    #"Renamed Columns_5" = Table.RenameColumns(#"Removed Consecutive Saiu",{{"Nome", "Nome_3"}, {"Embarcação", "Embarcação_3"}}),
+		    #"Expanded Removed Consecutive Saiu" =
+		        Table.ExpandTableColumn(#"Renamed Columns_5", "Data", Table.ColumnNames(#"Expanded Removed Consecutive Entrou")),
+		    //=======================
+		
+		    // Continuação do seu fluxo
+		    #"Sorted Rows3" = Table.Sort(#"Expanded Removed Consecutive Saiu", {{"Disparo", Order.Ascending}, {"ID Disparo", Order.Ascending}}),
+		    #"Filtered Rows1" = Table.SelectRows(#"Sorted Rows3", each ([#"Entrada/Saída"] = "Saiu")),
+		    #"Removed Duplicates" = Table.Distinct(#"Filtered Rows1"),
+		    #"Sorted Rows1" = Table.Sort(#"Removed Duplicates",{{"Disparo", Order.Ascending}}),
+		    #"Inserted Merged Column" = Table.AddColumn(#"Sorted Rows1", "Merged", each Text.Combine({[Embarcação], [Nome]}, "-"), type text),
+		    #"Renamed Columns" = Table.RenameColumns(#"Inserted Merged Column",{{"Merged", "Loc"}, {"Natureza", "Natureza"},  {"Nome", "Nome"}, {"Descrição", "Descrição"}, {"Tipo Abreviado", "Tipo Abreviado"}, {"Tipo específico do alarme", "Tipo específico do alarme"}, {"Entrada/Saída", "Entrada/Saída"}, {"IMO", "IMO"}, {"Disparo", "Disparo"}}),
+		    #"Grouped Rows" = Table.Group(#"Renamed Columns", {"Loc"}, {{"Count", each _, type table [ID Ocorrência=nullable text, ID Disparo=nullable text, Natureza=nullable text, Localização=nullable text, Nome=nullable text, Descrição=nullable text, Tipo Abreviado=nullable text, Tipo específico do alarme=nullable text, #"Entrada/Saída"=nullable text, Embarcação=nullable text, IMO=nullable text, Disparo=nullable datetime]}}),
+		    #"Added Custom" = Table.AddColumn(#"Grouped Rows", "Custom", each Table.AddIndexColumn([Count], "Index", 1, 1)),
+		    #"Expanded Custom" = Table.ExpandTableColumn(#"Added Custom", "Custom", {"Nome", "Embarcação", "IMO", "Disparo", "Index"}, {"Custom.Nome", "Custom.Embarcação", "Custom.IMO", "Custom.Disparo", "Custom.Index"}),
+		    #"Sorted Rows4" = Table.Sort(#"Expanded Custom",{{"Loc", Order.Ascending}}),
+		    #"Removed Columns2" = Table.RemoveColumns(#"Sorted Rows4",{"Count"}),
+		    #"Inserted Merged Column1" = Table.AddColumn(#"Removed Columns2", "Merged", each Text.Combine({[Loc], Text.From([Custom.Index], "en-GB")}, ""), type text),
+		    #"Renamed Columns1" = Table.RenameColumns(#"Inserted Merged Column1",{{"Loc", "LocSaida"}}),
+		    #"Removed Columns3" = Table.RemoveColumns(#"Renamed Columns1",{"Custom.Nome", "Custom.Embarcação", "Custom.IMO"}),
+		    #"Renamed Columns6" = Table.RenameColumns(#"Removed Columns3",{{"Custom.Disparo", "DisparoSaida"}, {"Custom.Index", "IndexSaida"}, {"Merged", "Merged2"}})
+		in
+		    #"Renamed Columns6"
+		```
+	lineageTag: 2f1078d3-d2ca-4851-9ebe-0aad338a6b3a
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression RemoveAcentos =
+		(texto as text) =>
+		let
+		    ComAcentos = Text.ToList("àáâãäèéêëìíîïòóôõöùúûüÀÁÂÃÄÈÉÊËÌÍÎÒÓÔÕÖÙÚÛÜçÇñÑ"),
+		    SemAcentos = Text.ToList("aaaaaeeeeiiiiooooouuuuAAAAAEEEEIIIOOOOOUUUUcCnN"),
+		    ParesAcentos = List.Zip({ComAcentos, SemAcentos}),
+		    TextoQuebrado = Text.ToList(texto),
+		    Substituicao = List.ReplaceMatchingItems(TextoQuebrado, ParesAcentos),
+		    Resultado = Text.Combine(Substituicao)
+		in
+		    Resultado
+	lineageTag: fb7cb8d1-6a70-4db7-a463-1a64885be0c5
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Function
+
+expression Entrada_old = ```
+		let
+		    Fonte = PowerPlatform.Dataflows(null),
+		    Workspaces = Fonte{[Id="Workspaces"]}[Data],
+		    #"0bef760f-99ce-4200-9edb-b282009d0b4e" = Workspaces{[workspaceId="0bef760f-99ce-4200-9edb-b282009d0b4e"]}[Data],
+		    #"4846be40-a4bc-4f5d-a858-6a8959e1b076" = #"0bef760f-99ce-4200-9edb-b282009d0b4e"{[dataflowId="4846be40-a4bc-4f5d-a858-6a8959e1b076"]}[Data],
+		    Entrada = #"4846be40-a4bc-4f5d-a858-6a8959e1b076"{[entity="f_estadia",version=""]}[Data],
+		    #"Colunas Renomeadas" = Table.RenameColumns(Entrada,{{"id_disparo", "ID Disparo"}, {"id_ocorrencia", "ID Ocorrência"}, {"natureza", "Natureza"}, {"nome_cerca", "Nome"}, {"descricao_cerca", "Descrição"}, {"tipo", "Tipo"}, {"tipo_abreviado", "Tipo Abreviado"}, {"tipo_especifico_alarme", "Tipo específico do alarme"}, {"pre_zona", "Pré-Zona"}, {"entrada_saida", "Entrada/Saída"}, {"tempo_atuacao_min", "Tempo de Atuação (min)"}, {"timer_min", "Timer (min)"}, {"mensagem_padrao", "Justificativa Padrão"}, {"justificativa", "Justificativa"}, {"operador", "Operador"}, {"imo", "IMO"}, {"embarcacao", "Embarcação"}, {"situacao", "Situação"}, {"disparo", "Disparo"}, {"enviado_por", "Enviado pelo(a)"}}),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Colunas Renomeadas", {
+		        {"ID Ocorrência", Int64.Type}, {"ID Disparo", Int64.Type}, {"Natureza", type text}, 
+		        {"Nome", type text}, {"Descrição", type text}, {"Tipo", type text}, {"Tipo Abreviado", type text},
+		        {"Tipo específico do alarme", type text}, {"Pré-Zona", type text}, 
+		         {"Entrada/Saída", type text},
+		          {"Embarcação", type text},
+		        {"IMO", Int64.Type}, {"Enviado pelo(a)", type text}, {"Situação", type text}, {"Disparo", type datetime},
+		        {"Operador", type text}, {"Tempo de Atuação (min)", type number}, {"Timer (min)", Int64.Type},
+		        {"Justificativa", type text}, {"Justificativa Padrão", type text}
+		    })
+		
+		// {"Alarm Reg. Min Vel", type text}, LOCALIZACAO
+		
+		// {"Localização", type text},
+		,
+		    #"Filtered Rows" = Table.SelectRows(#"Changed Type", each ([Natureza] = "Cerca") and ([Tipo específico do alarme] = "alarme")),
+		    #"Replaced Value1" = Table.ReplaceValue(#"Filtered Rows", "Teste Triunfo (rafael)", "Triunfo", Replacer.ReplaceText, {"Nome"}),
+		    #"Removed Columns" = Table.RemoveColumns(#"Replaced Value1", {"Tipo",   "Enviado pelo(a)", "Situação", "Operador", "Tempo de Atuação (min)", "Timer (min)", "Justificativa", "Justificativa Padrão", "Pré-Zona"}),
+		    #"Changed Type1" = Table.TransformColumnTypes(#"Removed Columns", {{"IMO", type text}, {"ID Disparo", type text}, {"ID Ocorrência", type text}}),
+		    #"Sorted Rows" = Table.Sort(#"Changed Type1", {{"Disparo", Order.Ascending}}),
+		    #"Filtered Rows2" = Table.SelectRows(#"Sorted Rows", each ([Nome] <> "teste") ),
+		
+		    // Passo 1: remover disparos com menos de X min (mantém menor para Entrou e maior para Saiu)
+		    #"Removed Close Disparos" =
+		        Table.Group(
+		            #"Filtered Rows2",
+		            {"Embarcação", "Nome"},
+		            {
+		                {
+		                    "Data",
+		                    (tbl) =>
+		                        let
+		                            Sorted =
+		                                Table.Sort(tbl, {{"Disparo", Order.Ascending}}),
+		                                
+		                            AddedIndex = Table.AddIndexColumn(Sorted, "Idx", 0, 1, Int64.Type),
+		                            Kept =
+		                                List.Accumulate(
+		                                    Table.ToRecords(AddedIndex),
+		                                    {},
+		                                    (state, current) =>
+		                                        if List.IsEmpty(state) then
+		                                            state & {current}
+		                                        else
+		                                            let
+		                                                lastTime = state{List.Count(state) - 1}[Disparo],
+		                                                diffMin = Duration.TotalMinutes(current[Disparo] - lastTime)
+		                                            in
+		                                                if Number.Abs(diffMin) >= 30 then
+		                                                    state & {current}
+		                                                else
+		                                                    state
+		                                ),
+		                            BackToTable = Table.FromRecords(Kept),
+		                            RemovedIdx = Table.RemoveColumns(BackToTable, {"Idx"})
+		                        in
+		                            RemovedIdx,
+		                    type table
+		                        [ID Ocorrência = nullable number, ID Disparo = nullable number, Natureza = nullable text,
+		                         Localização = nullable text, Nome = nullable text, Descrição = nullable text,
+		                         Tipo = nullable text, #"Entrada/Saída" = nullable text, Embarcação = nullable text,
+		                         Disparo = nullable datetime, IMO = nullable number]
+		                }
+		            }
+		        ),
+		    #"Renamed Columns2" = Table.RenameColumns(#"Removed Close Disparos",{{"Embarcação", "Embarcação1"}, {"Nome", "Nome_1"}}),
+		
+		    // Expande para voltar ao formato plano
+		    #"Expanded Data" = Table.ExpandTableColumn(#"Renamed Columns2", "Data", Table.ColumnNames(#"Filtered Rows2")),
+		
+		
+		    // NOVO: Remoção "cross-type" — descarta qualquer evento (Entrou ou Saiu) que ocorra nos X minutos após um Entrou preservado
+		    #"Removed Cross-Type Close" =
+		        Table.Group(
+		            #"Expanded Data",
+		            {"Embarcação"},
+		            {
+		                {
+		                    "Data",
+		                    (tbl) =>
+		                        let
+		                            Sorted = Table.Sort(tbl, {{"Disparo", Order.Ascending}}),
+		                            Recs = Table.ToRecords(Sorted),
+		                            Init = [Kept = {}, LastEntrou = null],
+		                            Step = (s as record, r as record) as record =>
+		                                let
+		                                    t = r[Disparo],
+		                                    isEntrou = Text.Upper(Text.Trim(r[#"Entrada/Saída"])) = "ENTROU",
+		                                    withinWindow =
+		                                        (s[LastEntrou] <> null)
+		                                        and (Duration.TotalMinutes(t - s[LastEntrou]) <= 10)
+		                                in
+		                                    if withinWindow then
+		                                        s
+		                                    else
+		                                        [
+		                                            Kept = s[Kept] & {r},
+		                                            LastEntrou = if isEntrou then t else s[LastEntrou]
+		                                        ],
+		                            Final = List.Accumulate(Recs, Init, Step),
+		                            Out = Table.FromRecords(Final[Kept])
+		                        in
+		                            Out,
+		                    type table
+		                        [ID Ocorrência=nullable text, ID Disparo=nullable text, Natureza=nullable text,
+		                         Localização=nullable text, Nome=nullable text, Descrição=nullable text,
+		                         Tipo Abreviado=nullable text, Tipo específico do alarme=nullable text,
+		                         #"Entrada/Saída"=nullable text, Embarcação=nullable text, IMO=nullable text,
+		                         Disparo=nullable datetime]
+		                }
+		            }
+		        ),
+		    #"Renamed Columns3" = Table.RenameColumns(#"Removed Cross-Type Close",{{"Embarcação", "Embarcação2"}}),
+		
+		    #"Expanded Cross-Type Close" = Table.ExpandTableColumn(#"Renamed Columns3", "Data", Table.ColumnNames(#"Expanded Data")),
+		
+		    //===========
+		     #"Removed Cross-Type Close_saiu" =
+		        Table.Group(
+		            #"Expanded Cross-Type Close",
+		            {"Embarcação"},
+		            {
+		                {
+		                    "Data",
+		                    (tbl) =>
+		                        let
+		                            Sorted = Table.Sort(tbl, {{"Disparo", Order.Descending}}),
+		                            Recs = Table.ToRecords(Sorted),
+		                            Init = [Kept = {}, LastSaiu = null],
+		                            Step = (s as record, r as record) as record =>
+		                                let
+		                                    t = r[Disparo],
+		                                    isSaiu = Text.Upper(Text.Trim(r[#"Entrada/Saída"])) = "SAIU",
+		                                    withinWindow =
+		                                        (s[LastSaiu] <> null)
+		                                        and (Duration.TotalMinutes(t - s[LastSaiu]) <= 10)
+		                                in
+		                                    if withinWindow then
+		                                        s
+		                                    else
+		                                        [
+		                                            Kept = s[Kept] & {r},
+		                                            LastSaiu = if isSaiu then t else s[LastSaiu]
+		                                        ],
+		                            Final = List.Accumulate(Recs, Init, Step),
+		                            Out = Table.FromRecords(Final[Kept])
+		                        in
+		                            Out,
+		                    type table
+		                        [ID Ocorrência=nullable text, ID Disparo=nullable text, Natureza=nullable text,
+		                         Localização=nullable text, Nome=nullable text, Descrição=nullable text,
+		                         Tipo Abreviado=nullable text, Tipo específico do alarme=nullable text,
+		                         #"Entrada/Saída"=nullable text, Embarcação=nullable text, IMO=nullable text,
+		                         Disparo=nullable datetime]
+		                }
+		            }
+		        ),
+		    #"Renamed Columns_6" = Table.RenameColumns(#"Removed Cross-Type Close",{{"Embarcação", "Embarcação_4"}}),
+		
+		    #"Expanded Cross-Type Close_Saiu" = Table.ExpandTableColumn(#"Renamed Columns_6", "Data", Table.ColumnNames(#"Expanded Cross-Type Close")),
+		
+		    //===========
+		
+		    // NOVO: remover "Entrou" consecutivos por Embarcação + Nome, mantendo apenas o primeiro
+		    #"Removed Consecutive Entrou" =
+		        Table.Group(
+		            #"Expanded Cross-Type Close_Saiu",
+		            {"Embarcação", "Nome"},
+		            {
+		                {
+		                    "Data",
+		                    (tbl) =>
+		                        let
+		                            Sorted = Table.Sort(tbl, {{"Disparo", Order.Ascending}}),
+		                            Recs = Table.ToRecords(Sorted),
+		                            Init = [Kept = {}, LastWasEntrou = false],
+		                            Step = (s as record, r as record) as record =>
+		                                let
+		                                    isEntrou = Text.Upper(Text.Trim(r[#"Entrada/Saída"])) = "ENTROU"
+		                                in
+		                                    if isEntrou and s[LastWasEntrou] then
+		                                        // pula este "Entrou" porque o anterior também foi "Entrou"
+		                                        s
+		                                    else
+		                                        [
+		                                            Kept = s[Kept] & {r},
+		                                            LastWasEntrou = isEntrou
+		                                        ],
+		                            Final = List.Accumulate(Recs, Init, Step),
+		                            Out = Table.FromRecords(Final[Kept])
+		                        in
+		                            Out,
+		                    type table
+		                        [ID Ocorrência=nullable text, ID Disparo=nullable text, Natureza=nullable text,
+		                         Localização=nullable text, Nome=nullable text, Descrição=nullable text,
+		                         Tipo Abreviado=nullable text, Tipo específico do alarme=nullable text,
+		                         #"Entrada/Saída"=nullable text, Embarcação=nullable text, IMO=nullable text,
+		                         Disparo=nullable datetime]
+		                }
+		            }
+		        ),
+		    #"Renamed Columns4" = Table.RenameColumns(#"Removed Consecutive Entrou",{{"Nome", "Nome_2"}, {"Embarcação", "Embarcação_2"}}),
+		    #"Expanded Removed Consecutive Entrou" =
+		        Table.ExpandTableColumn(#"Renamed Columns4", "Data", Table.ColumnNames(#"Expanded Cross-Type Close")),
+		    
+		    //==================
+		    #"Removed Consecutive Saiu" =
+		        Table.Group(
+		            #"Expanded Removed Consecutive Entrou",
+		            {"Embarcação", "Nome"},
+		            {
+		                {
+		                    "Data",
+		                    (tbl) =>
+		                        let
+		                            Sorted = Table.Sort(tbl, {{"Disparo", Order.Descending}}),
+		                            Recs = Table.ToRecords(Sorted),
+		                            Init = [Kept = {}, LastWasEntrou = false],
+		                            Step = (s as record, r as record) as record =>
+		                                let
+		                                    isSaiu = Text.Upper(Text.Trim(r[#"Entrada/Saída"])) = "SAIU"
+		                                in
+		                                    if isSaiu and s[LastWasEntrou] then
+		                                        // pula este "Saiu" porque o anterior também foi "Saiu"
+		                                        s
+		                                    else
+		                                        [
+		                                            Kept = s[Kept] & {r},
+		                                            LastWasEntrou = isSaiu
+		                                        ],
+		                            Final = List.Accumulate(Recs, Init, Step),
+		                            Out = Table.FromRecords(Final[Kept])
+		                        in
+		                            Out,
+		                    type table
+		                        [ID Ocorrência=nullable text, ID Disparo=nullable text, Natureza=nullable text,
+		                         Localização=nullable text, Nome=nullable text, Descrição=nullable text,
+		                         Tipo Abreviado=nullable text, Tipo específico do alarme=nullable text,
+		                         #"Entrada/Saída"=nullable text, Embarcação=nullable text, IMO=nullable text,
+		                         Disparo=nullable datetime]
+		                }
+		            }
+		        ),
+		    #"Renamed Columns_5" = Table.RenameColumns(#"Removed Consecutive Saiu",{{"Nome", "Nome_3"}, {"Embarcação", "Embarcação_3"}}),
+		    #"Expanded Removed Consecutive Saiu" =
+		        Table.ExpandTableColumn(#"Renamed Columns_5", "Data", Table.ColumnNames(#"Expanded Removed Consecutive Entrou")),
+		
+		    //=======================
+		
+		
+		    
+		    #"Sorted Rows3" = Table.Sort(#"Expanded Removed Consecutive Saiu", {{"Disparo", Order.Ascending}, {"ID Disparo", Order.Ascending}}),
+		    Filtered_Rows = Table.SelectRows(#"Sorted Rows3", each ([#"Entrada/Saída"] = "Entrou")),
+		    #"Sorted Rows1" = Table.Sort(Filtered_Rows, {{"Disparo", Order.Descending}}),
+		    #"Inserted Merged Column" = Table.AddColumn(#"Sorted Rows1", "Merged", each Text.Combine({[Embarcação], [Nome]}, "-"), type text),
+		    #"Renamed Columns" = Table.RenameColumns(#"Inserted Merged Column", {{"Merged", "Loc"}}),
+		    #"Sorted Rows2" = Table.Sort(#"Renamed Columns", {{"Disparo", Order.Ascending}}),
+		    #"Removed Columns2" = Table.RemoveColumns(#"Sorted Rows2", {"ID Ocorrência", "ID Disparo"}),
+		    #"Removed Duplicates" = Table.Distinct(#"Removed Columns2"),
+		    #"Grouped Rows" = Table.Group(#"Removed Duplicates", {"Loc"}, {{"Count", each _, type table [ID Ocorrência=nullable text, ID Disparo=nullable text, Natureza=nullable text, Localização=nullable text, Nome=nullable text, Descrição=nullable text, Tipo Abreviado=nullable text, Tipo específico do alarme=nullable text, #"Entrada/Saída"=nullable text, Embarcação=nullable text, IMO=nullable text, Disparo=nullable datetime]}}),
+		    #"Added Custom" = Table.AddColumn(#"Grouped Rows", "Custom", each Table.AddIndexColumn([Count], "Index", 1, 1)),
+		    #"Expanded Custom" = Table.ExpandTableColumn(#"Added Custom", "Custom", {"Nome", "Embarcação", "IMO", "Disparo", "Index"}, {"Custom.Nome", "Custom.Embarcação", "Custom.IMO", "Custom.Disparo", "Custom.Index"}),
+		    #"Removed Columns1" = Table.RemoveColumns(#"Expanded Custom", {"Count"}),
+		    #"Inserted Merged Column1" = Table.AddColumn(#"Removed Columns1", "Merged", each Text.Combine({[Loc], Text.From([Custom.Index], "en-GB")}, ""), type text),
+		    #"Renamed Columns1" = Table.RenameColumns(#"Inserted Merged Column1", {{"Loc", "LocEntrada"}, {"Custom.Disparo", "DisparoEntrada"}, {"Custom.Index", "IndexEntrada"}}),
+		    #"Replaced Value" = Table.ReplaceValue(#"Renamed Columns1", "Teste Triunfo (rafael)", "Triunfo", Replacer.ReplaceText, {"Custom.Nome"}),
+		    #"Replaced Value2" = Table.ReplaceValue(#"Replaced Value", "Mac Laren", "Mac Laren I.C ", Replacer.ReplaceText, {"Custom.Nome"}),
+		    #"Replaced Value3" = Table.ReplaceValue(#"Replaced Value2", "MacLaren", "Mac Laren P.A", Replacer.ReplaceText, {"Custom.Nome"})
+		in
+		    #"Replaced Value3"
+		```
+	lineageTag: dc9bd4d3-3d0c-429e-8a77-d32fccb1e590
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression Saida_old = ```
+		let
+		    Fonte = PowerPlatform.Dataflows([]),
+		    Workspaces = Fonte{[Id="Workspaces"]}[Data],
+		    #"0bef760f-99ce-4200-9edb-b282009d0b4e" = Workspaces{[workspaceId="0bef760f-99ce-4200-9edb-b282009d0b4e"]}[Data],
+		    #"4846be40-a4bc-4f5d-a858-6a8959e1b076" = #"0bef760f-99ce-4200-9edb-b282009d0b4e"{[dataflowId="4846be40-a4bc-4f5d-a858-6a8959e1b076"]}[Data],
+		    Entrada = #"4846be40-a4bc-4f5d-a858-6a8959e1b076"{[entity="f_estadia",version=""]}[Data],
+		    #"Colunas Renomeadas" = Table.RenameColumns(Entrada,{{"id_disparo", "ID Disparo"}, {"id_ocorrencia", "ID Ocorrência"}, {"natureza", "Natureza"}, {"nome_cerca", "Nome"}, {"descricao_cerca", "Descrição"}, {"tipo", "Tipo"}, {"tipo_abreviado", "Tipo Abreviado"}, {"tipo_especifico_alarme", "Tipo específico do alarme"}, {"pre_zona", "Pré-Zona"}, {"entrada_saida", "Entrada/Saída"}, {"tempo_atuacao_min", "Tempo de Atuação (min)"}, {"timer_min", "Timer (min)"}, {"mensagem_padrao", "Justificativa Padrão"}, {"justificativa", "Justificativa"}, {"operador", "Operador"}, {"imo", "IMO"}, {"embarcacao", "Embarcação"}, {"situacao", "Situação"}, {"disparo", "Disparo"}, {"enviado_por", "Enviado pelo(a)"}}),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Colunas Renomeadas", {
+		        {"ID Ocorrência", Int64.Type}, {"ID Disparo", Int64.Type}, {"Natureza", type text}, 
+		        {"Nome", type text}, {"Descrição", type text}, {"Tipo", type text}, {"Tipo Abreviado", type text},
+		        {"Tipo específico do alarme", type text}, {"Pré-Zona", type text}, 
+		         {"Entrada/Saída", type text},
+		          {"Embarcação", type text},
+		        {"IMO", Int64.Type}, {"Enviado pelo(a)", type text}, {"Situação", type text}, {"Disparo", type datetime},
+		        {"Operador", type text}, {"Tempo de Atuação (min)", type number}, {"Timer (min)", Int64.Type},
+		        {"Justificativa", type text}, {"Justificativa Padrão", type text}
+		    })
+		
+		// {"Alarm Reg. Min Vel", type text}, LOCALIZACAO
+		
+		// {"Localização", type text},
+		,
+		    #"Filtered Rows" = Table.SelectRows(#"Changed Type", each ([Natureza] = "Cerca") and ([Tipo específico do alarme] = "alarme")),
+		    #"Replaced Value1" = Table.ReplaceValue(#"Filtered Rows", "Teste Triunfo (rafael)", "Triunfo", Replacer.ReplaceText, {"Nome"}),
+		    #"Removed Columns" = Table.RemoveColumns(#"Replaced Value1", {"Tipo",  "Enviado pelo(a)", "Situação", "Operador", "Tempo de Atuação (min)", "Timer (min)", "Justificativa", "Justificativa Padrão", "Pré-Zona"}),
+		    #"Changed Type1" = Table.TransformColumnTypes(#"Removed Columns", {{"IMO", type text}, {"ID Disparo", type text}, {"ID Ocorrência", type text}}),
+		    #"Sorted Rows" = Table.Sort(#"Changed Type1", {{"Disparo", Order.Ascending}}),
+		    #"Filtered Rows3" = Table.SelectRows(#"Sorted Rows", each ([Nome] <> "teste")),
+		    // 🔹 Remove primeiras linhas "Saiu" por embarcação
+		    #"Removed Initial Saiu" =
+		        Table.Group(
+		            #"Filtered Rows3",
+		            {"Embarcação"},
+		            {
+		                {
+		                    "Data",
+		                    (tbl) =>
+		                        let
+		                            // Adiciona índice para identificar posição
+		                            Indexed = Table.AddIndexColumn(tbl, "Idx", 0, 1, Int64.Type),
+		                            // Encontra primeira linha que NÃO seja "Saiu"
+		                            FirstKeepIndex =
+		                                try List.Min(
+		                                    List.Select(Indexed[Idx], (i) => Indexed[#"Entrada/Saída"]{i} <> "Saiu")
+		                                )
+		                                otherwise null,
+		                            // Se encontrou, mantém apenas a partir dela
+		                            Filtered =
+		                                if FirstKeepIndex <> null then
+		                                    Table.SelectRows(Indexed, each [Idx] >= FirstKeepIndex)
+		                                else
+		                                    Indexed,
+		                            RemovedIndex = Table.RemoveColumns(Filtered, {"Idx"})
+		                        in
+		                            RemovedIndex,
+		                    type table
+		                        [ID Ocorrência = nullable text, ID Disparo = nullable text, Natureza = nullable text,
+		                         Localização = nullable text, Nome = nullable text, Descrição = nullable text,
+		                         Tipo Abreviado = nullable text, Tipo específico do alarme = nullable text,
+		                         #"Entrada/Saída" = nullable text, Embarcação = nullable text,
+		                         IMO = nullable text, Disparo = nullable datetime]
+		                }
+		            }
+		        ),
+		    #"Renamed Columns5" = Table.RenameColumns(#"Removed Initial Saiu",{{"Embarcação", "Embarcação_1"}}),
+		    #"Expanded Data_1" = Table.ExpandTableColumn(#"Renamed Columns5", "Data", Table.ColumnNames(#"Filtered Rows3")),
+		    
+		
+		    // Passo 1: remover disparos com menos de X min (mantém menor para Entrou e maior para Saiu)
+		    #"Removed Close Disparos" =
+		        Table.Group(
+		            #"Expanded Data_1",
+		            {"Embarcação", "Nome"},
+		            {
+		                {
+		                    "Data",
+		                    (tbl) =>
+		                        let
+		                            Sorted =
+		                                Table.Sort(tbl, {{"Disparo", Order.Ascending}}),
+		                                
+		                            AddedIndex = Table.AddIndexColumn(Sorted, "Idx", 0, 1, Int64.Type),
+		                            Kept =
+		                                List.Accumulate(
+		                                    Table.ToRecords(AddedIndex),
+		                                    {},
+		                                    (state, current) =>
+		                                        if List.IsEmpty(state) then
+		                                            state & {current}
+		                                        else
+		                                            let
+		                                                lastTime = state{List.Count(state) - 1}[Disparo],
+		                                                diffMin = Duration.TotalMinutes(current[Disparo] - lastTime)
+		                                            in
+		                                                if Number.Abs(diffMin) >= 30 then
+		                                                    state & {current}
+		                                                else
+		                                                    state
+		                                ),
+		                            BackToTable = Table.FromRecords(Kept),
+		                            RemovedIdx = Table.RemoveColumns(BackToTable, {"Idx"})
+		                        in
+		                            RemovedIdx,
+		                    type table
+		                        [ID Ocorrência = nullable number, ID Disparo = nullable number, Natureza = nullable text,
+		                         Localização = nullable text, Nome = nullable text, Descrição = nullable text,
+		                         Tipo = nullable text, #"Entrada/Saída" = nullable text, Embarcação = nullable text,
+		                         Disparo = nullable datetime, IMO = nullable number]
+		                }
+		            }
+		        ),
+		    #"Renamed Columns2" = Table.RenameColumns(#"Removed Close Disparos",{{"Embarcação", "Embarcação1"}, {"Nome", "Nome_1"}}),
+		
+		    // Expande para voltar ao formato plano
+		    #"Expanded Data" = Table.ExpandTableColumn(#"Renamed Columns2", "Data", Table.ColumnNames(#"Expanded Data_1")),
+		
+		    // NOVO: Remoção "cross-type" — descarta qualquer evento (Entrou ou Saiu) que ocorra nos 5 minutos após um Entrou preservado
+		    #"Removed Cross-Type Close" =
+		        Table.Group(
+		            #"Expanded Data",
+		            {"Embarcação"},
+		            {
+		                {
+		                    "Data",
+		                    (tbl) =>
+		                        let
+		                            Sorted = Table.Sort(tbl, {{"Disparo", Order.Ascending}}),
+		                            Recs = Table.ToRecords(Sorted),
+		                            Init = [Kept = {}, LastEntrou = null],
+		                            Step = (s as record, r as record) as record =>
+		                                let
+		                                    t = r[Disparo],
+		                                    isEntrou = Text.Upper(Text.Trim(r[#"Entrada/Saída"])) = "ENTROU",
+		                                    withinWindow =
+		                                        (s[LastEntrou] <> null)
+		                                        and (Duration.TotalMinutes(t - s[LastEntrou]) <= 10)
+		                                in
+		                                    if withinWindow then
+		                                        s
+		                                    else
+		                                        [
+		                                            Kept = s[Kept] & {r},
+		                                            LastEntrou = if isEntrou then t else s[LastEntrou]
+		                                        ],
+		                            Final = List.Accumulate(Recs, Init, Step),
+		                            Out = Table.FromRecords(Final[Kept])
+		                        in
+		                            Out,
+		                    type table
+		                        [ID Ocorrência=nullable text, ID Disparo=nullable text, Natureza=nullable text,
+		                         Localização=nullable text, Nome=nullable text, Descrição=nullable text,
+		                         Tipo Abreviado=nullable text, Tipo específico do alarme=nullable text,
+		                         #"Entrada/Saída"=nullable text, Embarcação=nullable text, IMO=nullable text,
+		                         Disparo=nullable datetime]
+		                }
+		            }
+		        ),
+		    #"Renamed Columns3" = Table.RenameColumns(#"Removed Cross-Type Close",{{"Embarcação", "Embarcação2"}}),
+		
+		    #"Expanded Cross-Type Close" = Table.ExpandTableColumn(#"Renamed Columns3", "Data", Table.ColumnNames(#"Expanded Data")),
+		
+		    // NOVO: remover "Entrou" consecutivos por Embarcação + Nome, mantendo apenas o primeiro
+		    #"Removed Consecutive Entrou" =
+		        Table.Group(
+		            #"Expanded Cross-Type Close",
+		            {"Embarcação", "Nome"},
+		            {
+		                {
+		                    "Data",
+		                    (tbl) =>
+		                        let
+		                            Sorted = Table.Sort(tbl, {{"Disparo", Order.Ascending}}),
+		                            Recs = Table.ToRecords(Sorted),
+		                            Init = [Kept = {}, LastWasEntrou = false],
+		                            Step = (s as record, r as record) as record =>
+		                                let
+		                                    isEntrou = Text.Upper(Text.Trim(r[#"Entrada/Saída"])) = "ENTROU"
+		                                in
+		                                    if isEntrou and s[LastWasEntrou] then
+		                                        // pula este "Entrou" porque o anterior também foi "Entrou"
+		                                        s
+		                                    else
+		                                        [
+		                                            Kept = s[Kept] & {r},
+		                                            LastWasEntrou = isEntrou
+		                                        ],
+		                            Final = List.Accumulate(Recs, Init, Step),
+		                            Out = Table.FromRecords(Final[Kept])
+		                        in
+		                            Out,
+		                    type table
+		                        [ID Ocorrência=nullable text, ID Disparo=nullable text, Natureza=nullable text,
+		                         Localização=nullable text, Nome=nullable text, Descrição=nullable text,
+		                         Tipo Abreviado=nullable text, Tipo específico do alarme=nullable text,
+		                         #"Entrada/Saída"=nullable text, Embarcação=nullable text, IMO=nullable text,
+		                         Disparo=nullable datetime]
+		                }
+		            }
+		        ),
+		    #"Renamed Columns4" = Table.RenameColumns(#"Removed Consecutive Entrou",{{"Nome", "Nome_2"}, {"Embarcação", "Embarcação_2"}}),
+		    #"Expanded Removed Consecutive Entrou" =
+		        Table.ExpandTableColumn(#"Renamed Columns4", "Data", Table.ColumnNames(#"Expanded Cross-Type Close")),
+		    //=====
+		     //==================
+		    #"Removed Consecutive Saiu" =
+		        Table.Group(
+		            #"Expanded Removed Consecutive Entrou",
+		            {"Embarcação", "Nome"},
+		            {
+		                {
+		                    "Data",
+		                    (tbl) =>
+		                        let
+		                            Sorted = Table.Sort(tbl, {{"Disparo", Order.Descending}}),
+		                            Recs = Table.ToRecords(Sorted),
+		                            Init = [Kept = {}, LastWasEntrou = false],
+		                            Step = (s as record, r as record) as record =>
+		                                let
+		                                    isSaiu = Text.Upper(Text.Trim(r[#"Entrada/Saída"])) = "SAIU"
+		                                in
+		                                    if isSaiu and s[LastWasEntrou] then
+		                                        // pula este "Saiu" porque o anterior também foi "Saiu"
+		                                        s
+		                                    else
+		                                        [
+		                                            Kept = s[Kept] & {r},
+		                                            LastWasEntrou = isSaiu
+		                                        ],
+		                            Final = List.Accumulate(Recs, Init, Step),
+		                            Out = Table.FromRecords(Final[Kept])
+		                        in
+		                            Out,
+		                    type table
+		                        [ID Ocorrência=nullable text, ID Disparo=nullable text, Natureza=nullable text,
+		                         Localização=nullable text, Nome=nullable text, Descrição=nullable text,
+		                         Tipo Abreviado=nullable text, Tipo específico do alarme=nullable text,
+		                         #"Entrada/Saída"=nullable text, Embarcação=nullable text, IMO=nullable text,
+		                         Disparo=nullable datetime]
+		                }
+		            }
+		        ),
+		    #"Renamed Columns_5" = Table.RenameColumns(#"Removed Consecutive Saiu",{{"Nome", "Nome_3"}, {"Embarcação", "Embarcação_3"}}),
+		    #"Expanded Removed Consecutive Saiu" =
+		        Table.ExpandTableColumn(#"Renamed Columns_5", "Data", Table.ColumnNames(#"Expanded Removed Consecutive Entrou")),
+		    //=======================
+		
+		    // Continuação do seu fluxo
+		    #"Sorted Rows3" = Table.Sort(#"Expanded Removed Consecutive Saiu", {{"Disparo", Order.Ascending}, {"ID Disparo", Order.Ascending}}),
+		    #"Filtered Rows1" = Table.SelectRows(#"Sorted Rows3", each ([#"Entrada/Saída"] = "Saiu")),
+		    #"Removed Duplicates" = Table.Distinct(#"Filtered Rows1"),
+		    #"Sorted Rows1" = Table.Sort(#"Removed Duplicates",{{"Disparo", Order.Ascending}}),
+		    #"Inserted Merged Column" = Table.AddColumn(#"Sorted Rows1", "Merged", each Text.Combine({[Embarcação], [Nome]}, "-"), type text),
+		    #"Renamed Columns" = Table.RenameColumns(#"Inserted Merged Column",{{"Merged", "Loc"}, {"Natureza", "Natureza"},  {"Nome", "Nome"}, {"Descrição", "Descrição"}, {"Tipo Abreviado", "Tipo Abreviado"}, {"Tipo específico do alarme", "Tipo específico do alarme"}, {"Entrada/Saída", "Entrada/Saída"}, {"IMO", "IMO"}, {"Disparo", "Disparo"}}),
+		    #"Grouped Rows" = Table.Group(#"Renamed Columns", {"Loc"}, {{"Count", each _, type table [ID Ocorrência=nullable text, ID Disparo=nullable text, Natureza=nullable text, Localização=nullable text, Nome=nullable text, Descrição=nullable text, Tipo Abreviado=nullable text, Tipo específico do alarme=nullable text, #"Entrada/Saída"=nullable text, Embarcação=nullable text, IMO=nullable text, Disparo=nullable datetime]}}),
+		    #"Added Custom" = Table.AddColumn(#"Grouped Rows", "Custom", each Table.AddIndexColumn([Count], "Index", 1, 1)),
+		    #"Expanded Custom" = Table.ExpandTableColumn(#"Added Custom", "Custom", {"Nome", "Embarcação", "IMO", "Disparo", "Index"}, {"Custom.Nome", "Custom.Embarcação", "Custom.IMO", "Custom.Disparo", "Custom.Index"}),
+		    #"Sorted Rows4" = Table.Sort(#"Expanded Custom",{{"Loc", Order.Ascending}}),
+		    #"Removed Columns2" = Table.RemoveColumns(#"Sorted Rows4",{"Count"}),
+		    #"Inserted Merged Column1" = Table.AddColumn(#"Removed Columns2", "Merged", each Text.Combine({[Loc], Text.From([Custom.Index], "en-GB")}, ""), type text),
+		    #"Renamed Columns1" = Table.RenameColumns(#"Inserted Merged Column1",{{"Loc", "LocSaida"}}),
+		    #"Removed Columns3" = Table.RemoveColumns(#"Renamed Columns1",{"Custom.Nome", "Custom.Embarcação", "Custom.IMO"}),
+		    #"Renamed Columns6" = Table.RenameColumns(#"Removed Columns3",{{"Custom.Disparo", "DisparoSaida"}, {"Custom.Index", "IndexSaida"}, {"Merged", "Merged2"}})
+		in
+		    #"Renamed Columns6"
+		```
+	lineageTag: 2c14de7d-b39a-46ee-a10a-75992197cad3
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

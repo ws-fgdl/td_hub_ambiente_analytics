@@ -1,0 +1,275 @@
+table Estadia
+	lineageTag: 7a3dfc85-7094-4f46-8094-1f24567a3d5f
+
+	measure 'Estadia Média' = AVERAGE( Estadia[Tempo Estadia] ) *24
+		displayFolder: _Medidas
+		lineageTag: a4652da6-c3b9-483a-9aff-f6ee059c6b12
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _Yaxis_gantt = ROUNDDOWN(MIN( Estadia[Custom]) , 0)
+		displayFolder: _Medidas
+		lineageTag: bb7a2327-35be-44c8-815d-58b8097e8980
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _text_label_local = ```
+			ROUND( Estadia[Estadia Média] , 2 ) & " horas" 
+			```
+		displayFolder: _Medidas
+		lineageTag: 73ac01e8-a6ab-4bb2-88c3-ea0523f686a2
+
+	measure #_entradas = COUNT(Estadia[Custom] )
+		formatString: 0
+		displayFolder: _Medidas
+		lineageTag: 40b89075-60aa-4573-878d-4a530139cbc2
+
+	measure _text_label_local2 = [#_entradas] & " emb."
+		displayFolder: _Medidas
+		lineageTag: 198bdd1a-d645-4ec5-a413-a8e0dc20bb6f
+
+	measure _x_axis_gantt_start = ```
+			SWITCH( TRUE(),  
+			SELECTEDVALUE( Estadia[DisparoSaida]) = BLANK() , BLANK(), 
+			MIN( Estadia[Custom])
+			)
+			
+			```
+		displayFolder: _Medidas
+		lineageTag: ae6d12a5-f5cf-4fdf-bb8e-b0a1fa4ee303
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _color_local = ```
+			SWITCH( TRUE(),
+			                        SELECTEDVALUE(Estadia[Custom.Nome]) = "Triunfo"  , "#6A90B6",
+			                        SELECTEDVALUE(Estadia[Custom.Nome]) = "Nitshore" , "#D6C672	",
+			                        SELECTEDVALUE(Estadia[Custom.Nome]) = "Mac Laren P.A" , "#8DAA87",
+			                        SELECTEDVALUE(Estadia[Custom.Nome]) = "Mac Laren I.C" , "#BCA58E"   
+			)
+			
+			```
+		displayFolder: _Medidas
+		lineageTag: 9b82a19b-416f-4c28-b559-ef72083d8796
+
+	measure _text_estadia_table = IF( Estadia[Estadia Média]=BLANK(), "⚓" , Estadia[Estadia Média])
+		displayFolder: _Medidas
+		lineageTag: e3acbb1c-5072-4595-937c-e4c3b11100c2
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Cumulativo = ```
+			
+			
+			VAR B = SELECTEDVALUE( Estadia[Total Hours (bins)] )
+			
+			RETURN
+			SUMX(
+			    FILTER(
+			        SUMMARIZE( ALL( Estadia ), Estadia[Total Hours (bins)], 
+			        "Fat" , CALCULATE([#_entradas], Estadia[DisparoSaida]<>0)),
+			        Estadia[Total Hours (bins)] <= B),
+			    [Fat] /* Somatoria para fazer o cumulativo */
+			    )
+			```
+		formatString: 0
+		displayFolder: _Medidas
+		lineageTag: e7323189-4e09-4066-8079-815b0735db94
+
+	measure 'Cumulativo %' =
+			/* Calcula o % sobre o total cumulativo */
+			VAR A= [Cumulativo]
+			VAR B=CALCULATE( [#_entradas] , FILTER(ALL(Estadia), Estadia[DisparoSaida]<>0))
+			RETURN
+			DIVIDE(A,B)
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: _Medidas
+		lineageTag: 86c90aa3-480e-446c-b855-5704fc09fdfe
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: b7d16eba-9f4f-4e84-9f60-614cfb45e353
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column LocEntrada
+		dataType: string
+		lineageTag: 35aefbdb-fcc1-46d6-b14a-f71895a4915d
+		summarizeBy: none
+		sourceColumn: LocEntrada
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Custom.Nome'
+		dataType: string
+		lineageTag: 2f7e03d0-3891-4b0f-bf82-757f37f0ab5a
+		summarizeBy: none
+		sourceColumn: Custom.Nome
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Custom.Embarcação'
+		dataType: string
+		lineageTag: 10e7ddac-3c10-4474-8075-a74a0e2911f5
+		summarizeBy: none
+		sourceColumn: Custom.Embarcação
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Custom.IMO'
+		dataType: string
+		lineageTag: 55757834-89d4-4818-bc5b-4d45c0e48235
+		summarizeBy: none
+		sourceColumn: Custom.IMO
+
+		annotation SummarizationSetBy = Automatic
+
+	column DisparoEntrada
+		dataType: dateTime
+		formatString: dd-mmm-yy hh:nn:ss
+		lineageTag: 01d5c08a-9b90-421f-a2f3-8650bd2fbc31
+		summarizeBy: none
+		sourceColumn: DisparoEntrada
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column DisparoSaida
+		dataType: dateTime
+		formatString: dd-mmm-yy hh:nn:ss
+		lineageTag: f7b22fe4-a6fa-4e8b-b0d5-6fb97ed34370
+		summarizeBy: none
+		sourceColumn: DisparoSaida
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column 'Tempo Estadia'
+		dataType: double
+		lineageTag: 7f1dfbe7-abc6-4f8c-b669-a73efb1086f4
+		summarizeBy: sum
+		sourceColumn: Tempo Estadia
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Custom
+		dataType: double
+		lineageTag: c99dbe15-9aa5-409a-802f-a68baa6eb906
+		summarizeBy: sum
+		sourceColumn: Custom
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Index
+		dataType: string
+		lineageTag: c0172c2c-a663-4c41-9302-b5fa030dde7a
+		summarizeBy: none
+		sourceColumn: Index
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column Hour
+		dataType: int64
+		formatString: 0
+		lineageTag: 8296ed16-1295-4811-86f6-d66b7b3b77cb
+		summarizeBy: sum
+		sourceColumn: Hour
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Total Hours'
+		dataType: double
+		lineageTag: 1d3055d6-cdac-4eab-b8c7-48030e28dfa5
+		summarizeBy: sum
+		sourceColumn: Total Hours
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+		annotation __PBI_SemanticLinks = [{"LinkTarget":{"TableName":"Estadia","TableItemName":"Total Hours (bins)","ObjectType":4},"LinkType":"UsedInGroup"}]
+
+	column 'Total Hours (bins)' =
+			IF(
+				ISBLANK('Estadia'[Total Hours]),
+				BLANK(),
+				IF(
+					'Estadia'[Total Hours] >= 0,
+					ROUNDDOWN('Estadia'[Total Hours] / 3, 0) * 3,
+					ROUNDUP('Estadia'[Total Hours] / 3, 0) * 3
+				)
+			)
+		formatString: 0
+		lineageTag: 5a56deb8-ff8a-4322-9db8-75d1899c40c9
+		summarizeBy: none
+
+		extendedProperty GroupingMetadata =
+				{
+				  "version": 0,
+				  "groupedColumns": [
+				    {
+				      "Column": {
+				        "Expression": {
+				          "SourceRef": {
+				            "Entity": "Estadia"
+				          }
+				        },
+				        "Property": "Total Hours"
+				      }
+				    }
+				  ],
+				  "binningMetadata": {
+				    "binSize": {
+				      "value": 3.0,
+				      "unit": 0
+				    }
+				  }
+				}
+
+		annotation GroupingDesignState = {"Version":0,"Sources":[{"Name":"e","Entity":"Estadia"}],"GroupedColumns":[{"Column":{"Expression":{"SourceRef":{"Source":"e"}},"Property":"Total Hours"}}],"BinItem":{"Expression":{"Floor":{"Expression":{"Column":{"Expression":{"SourceRef":{"Source":"e"}},"Property":"Total Hours"}},"Size":3.0}}}}
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	partition Estadia = m
+		mode: import
+		source =
+				let
+				    Source = Table.Join(Entrada, {"Merged"}, Saida, {"Merged2"}, JoinKind.LeftOuter),
+				    #"Removed Columns" = Table.RemoveColumns(Source,{"LocSaida", "Merged"}),
+				    #"Reordered Columns" = Table.ReorderColumns(#"Removed Columns",{"LocEntrada", "Custom.Nome", "Custom.Embarcação", "Custom.IMO", "IndexEntrada", "IndexSaida", "DisparoEntrada", "DisparoSaida", "Merged2"}),
+				    #"Removed Columns1" = Table.RemoveColumns(#"Reordered Columns",{"Merged2"}),
+				    #"Inserted Time Subtraction" = Table.AddColumn(#"Removed Columns1", "Subtraction", each [DisparoSaida] - [DisparoEntrada], type duration),
+				    #"Renamed Columns" = Table.RenameColumns(#"Inserted Time Subtraction",{{"Subtraction", "Tempo Estadia"}}),
+				    #"Removed Columns2" = Table.RemoveColumns(#"Renamed Columns",{"IndexSaida", "IndexEntrada"}),
+				    #"Sorted Rows" = Table.Sort(#"Removed Columns2",{{"DisparoEntrada", Order.Ascending}}),
+				    #"Filtered Rows" = Table.SelectRows(#"Sorted Rows", each ([Custom.Nome] <> "teste")),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Filtered Rows",{{"DisparoEntrada", type datetime}, {"DisparoSaida", type datetime}}),
+				    #"Inserted Date" = Table.AddColumn(#"Changed Type", "Date", each DateTime.Date([DisparoEntrada]), type date),
+				    #"Reordered Columns1" = Table.ReorderColumns(#"Inserted Date",{"Date", "LocEntrada", "Custom.Nome", "Custom.Embarcação", "Custom.IMO", "DisparoEntrada", "DisparoSaida", "Tempo Estadia"}),
+				    #"Added Custom" = Table.AddColumn(#"Reordered Columns1", "Custom", each [DisparoEntrada]),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Added Custom",{{"Custom", type number}}),
+				    #"Added Index" = Table.AddIndexColumn(#"Changed Type1", "Index", 1, 1, Int64.Type),
+				    #"Inserted Hour" = Table.AddColumn(#"Added Index", "Hour", each Time.Hour([DisparoEntrada]), Int64.Type),
+				    #"Inserted Total Hours" = Table.AddColumn(#"Inserted Hour", "Total Hours", each Duration.TotalHours([Tempo Estadia]), type number)
+				in
+				    #"Inserted Total Hours"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

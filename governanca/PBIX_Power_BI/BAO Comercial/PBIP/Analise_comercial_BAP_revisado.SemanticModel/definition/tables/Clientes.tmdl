@@ -1,0 +1,107 @@
+table Clientes
+	lineageTag: 9954d44f-29f4-4538-afc0-3e1a533531e3
+
+	column CLIENTE
+		dataType: string
+		lineageTag: 54654d84-ddf7-4924-a8e5-799546e53979
+		summarizeBy: none
+		sourceColumn: CLIENTE
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'TIPO [CLASSE]'
+		dataType: string
+		lineageTag: f133e958-e6b0-4f8b-b4e8-458354865811
+		summarizeBy: none
+		sourceColumn: TIPO [CLASSE]
+
+		annotation SummarizationSetBy = Automatic
+
+	column ANO
+		dataType: int64
+		formatString: 0
+		lineageTag: 124f0456-c7ea-42ab-ab1f-8512d8c94dcd
+		summarizeBy: none
+		sourceColumn: ANO
+
+		annotation SummarizationSetBy = Automatic
+
+	column TPB
+		dataType: double
+		lineageTag: 626ade6e-a2e5-4059-8ddb-dcb4df976e8c
+		summarizeBy: none
+		sourceColumn: TPB
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column SITUAÇÃO
+		dataType: string
+		lineageTag: 63a61d0c-7056-49c4-b23d-9d3f7a7e05b6
+		summarizeBy: none
+		sourceColumn: SITUAÇÃO
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'EMPRESA PROPRIETÁRIA'
+		dataType: string
+		lineageTag: d22eb46a-5733-40bd-b46f-399a220ff2cf
+		summarizeBy: none
+		sourceColumn: EMPRESA PROPRIETÁRIA
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'EMPRESA OPERADORA'
+		dataType: string
+		lineageTag: 0f09d55b-ca4f-419a-9ed7-6ad841c2ac85
+		summarizeBy: none
+		sourceColumn: EMPRESA OPERADORA
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'EMBARCAÇÃO - Copy'
+		dataType: string
+		lineageTag: c298e096-5a76-482c-a88e-088ee7e98a5f
+		summarizeBy: none
+		sourceColumn: EMBARCAÇÃO - Copy
+
+		annotation SummarizationSetBy = Automatic
+
+	column EMBARCAÇÃO
+		dataType: string
+		lineageTag: d3b271dc-def5-4c8e-8956-5e88265c81b3
+		summarizeBy: none
+		sourceColumn: EMBARCAÇÃO
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Clientes = m
+		mode: import
+		source =
+				let
+				    Fonte = PowerPlatform.Dataflows(null),
+				    Workspaces = Fonte{[Id="Workspaces"]}[Data],
+				    #"0bef760f-99ce-4200-9edb-b282009d0b4e" = Workspaces{[workspaceId="0bef760f-99ce-4200-9edb-b282009d0b4e"]}[Data],
+				    #"4846be40-a4bc-4f5d-a858-6a8959e1b076" = #"0bef760f-99ce-4200-9edb-b282009d0b4e"{[dataflowId="4846be40-a4bc-4f5d-a858-6a8959e1b076"]}[Data],
+				    Clientes = #"4846be40-a4bc-4f5d-a858-6a8959e1b076"{[entity="d_Clientes",version=""]}[Data],
+				    #"Colunas Renomeadas" = Table.RenameColumns(Clientes,{{"ANO", "ANO"}}),
+				    #"Changed Type2" = Table.TransformColumnTypes(#"Colunas Renomeadas",  {{"EMBARCAÇÃO", type text}, {"TIPO [CLASSE]", type text}, {"ANO", Int64.Type}, {"TPB", type number}, {"SITUAÇÃO", type text}, {"EMPRESA PROPRIETÁRIA", type text}, {"EMPRESA OPERADORA", type text}}),
+				    #"Colunas Removidas" = Table.RemoveColumns(#"Changed Type2",{"CLIENTE"}),
+				    #"Added Conditional Column" = Table.AddColumn(#"Colunas Removidas", "CLIENTE", each if [SITUAÇÃO] = "AFRETADA" then [EMPRESA OPERADORA] else [EMPRESA PROPRIETÁRIA]),
+				    #"Filtered Rows" = Table.SelectRows(#"Added Conditional Column", each [EMBARCAÇÃO] <> null and [EMBARCAÇÃO] <> ""),
+				    #"Sorted Rows" = Table.Sort(#"Filtered Rows",{{"EMBARCAÇÃO", Order.Ascending}}),
+				    #"Duplicated Column" = Table.DuplicateColumn(#"Sorted Rows", "EMBARCAÇÃO", "EMBARCAÇÃO - Copy"),
+				    #"Replaced Value" = Table.ReplaceValue(#"Duplicated Column"," (REB)","",Replacer.ReplaceText,{"EMBARCAÇÃO"}),
+				    #"Invoked Custom Function" = Table.AddColumn(#"Replaced Value", "EMBARCACAO", each RemoveAcentos([EMBARCAÇÃO])),
+				    #"Reordered Columns" = Table.ReorderColumns(#"Invoked Custom Function",{"EMBARCAÇÃO", "EMBARCACAO", "TIPO [CLASSE]", "ANO", "TPB", "SITUAÇÃO", "EMPRESA PROPRIETÁRIA", "EMPRESA OPERADORA", "CLIENTE", "EMBARCAÇÃO - Copy"}),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Reordered Columns",{{"EMBARCACAO", type text}}),
+				    #"Removed Columns1" = Table.RemoveColumns(#"Changed Type",{"EMBARCAÇÃO"}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Removed Columns1",{{"EMBARCACAO", "EMBARCAÇÃO"}})
+				in
+				    #"Renamed Columns"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
