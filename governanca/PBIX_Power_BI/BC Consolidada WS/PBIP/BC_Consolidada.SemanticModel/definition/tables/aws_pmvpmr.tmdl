@@ -1,0 +1,299 @@
+table aws_pmvpmr
+	lineageTag: 423fde7f-c7f4-4b25-a0cd-e467afa67466
+	sourceLineageTag: ede85069-a848-4ea7-8d01-67d1635dbfd9
+
+	column cod_empr_sap
+		dataType: string
+		lineageTag: eb6c7ba0-de34-4535-81b8-9f5bb53231e8
+		sourceLineageTag: 8498a377-cb75-4f42-ae2f-1327dd583c44
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: cod_empr_sap
+
+		annotation SummarizationSetBy = User
+
+	column cod_cliente_sap
+		dataType: string
+		lineageTag: e91c2fb6-7d40-4e80-96de-d1444d5b679f
+		sourceLineageTag: 7502cafd-ba6b-406c-a03e-610e8e026d42
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: cod_cliente_sap
+
+		annotation SummarizationSetBy = User
+
+	column documento
+		dataType: double
+		lineageTag: f6e98b56-a76d-479d-ba34-3bbe239f9d7a
+		sourceLineageTag: f9595a66-f232-42cf-b037-e172bb8fa8e9
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: documento
+
+		annotation SummarizationSetBy = User
+
+	column num_nf
+		dataType: string
+		lineageTag: 93a72ba6-52b0-4fdc-9946-2b2ed86b1113
+		sourceLineageTag: f812cc57-051b-433e-81b2-7a8e183dc650
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: num_nf
+
+		annotation SummarizationSetBy = User
+
+	column item_doc
+		dataType: string
+		lineageTag: 37e3325c-51b4-4072-963d-b44ac86c3ca5
+		sourceLineageTag: 6a29a0fa-0273-4135-b42a-dafcd44fcaef
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: item_doc
+
+		annotation SummarizationSetBy = User
+
+	column data_lancamento
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: ab525b57-f8fe-4745-a15b-b4eea7efec55
+		sourceLineageTag: 2d69466e-716c-4456-b03b-d95c2095fa04
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: data_lancamento
+
+		variation Variation
+			isDefault
+			relationship: 3bddb9a0-34ff-4824-9756-33f4cb949df7
+			defaultHierarchy: LocalDateTable_bd2bf53b-7dde-4bd8-8ae5-c69997308b26.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = User
+
+	column exercicio
+		dataType: string
+		lineageTag: 486da4bd-fca7-484d-8da8-ace954a3ff89
+		sourceLineageTag: 2b2cc4d9-170f-494e-b4b4-4bfa7318de9d
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: exercicio
+
+		annotation SummarizationSetBy = User
+
+	column doc_competencia
+		dataType: string
+		lineageTag: 78edfc37-023a-44bb-8d1b-2f1d9dbe4b60
+		sourceLineageTag: 206bb967-087c-4e30-af3f-192284209ba8
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: doc_competencia
+
+		annotation SummarizationSetBy = User
+
+	column tipo_doc
+		dataType: string
+		lineageTag: d7f2edec-56f0-4f23-babc-2adbc8b48810
+		sourceLineageTag: b81fd873-2b51-429e-9745-9c9c8295ef4d
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: tipo_doc
+
+		annotation SummarizationSetBy = User
+
+	column debito_credito
+		dataType: string
+		lineageTag: b7c00681-be2a-4fbc-89ef-2f71d1a6733f
+		sourceLineageTag: b5a5a6c7-e4c6-48fe-809a-04f5ba390f3e
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: debito_credito
+
+		annotation SummarizationSetBy = User
+
+	column conta_contabil
+		dataType: string
+		lineageTag: ec80e26d-f1b4-4880-8780-87b1447e2085
+		sourceLineageTag: b36c841f-923c-4aa3-be58-e00c1e1692bc
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: conta_contabil
+
+		annotation SummarizationSetBy = User
+
+	column texto
+		dataType: string
+		lineageTag: c0aaae49-6be6-44fa-aee5-74e92f2db6b9
+		sourceLineageTag: fd05f60c-cb6e-4d88-90ff-17f66597a048
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: texto
+
+		annotation SummarizationSetBy = User
+
+	column valor
+		dataType: double
+		lineageTag: d33b9ecd-8327-4c21-bf18-f745b285befb
+		sourceLineageTag: 96d2b973-3487-44cb-a79f-f8fd95aca056
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: valor
+
+		annotation SummarizationSetBy = User
+
+	column data_criacao
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: a2b62117-dcb1-4aac-b92f-715dd030a124
+		sourceLineageTag: b347fd59-6235-4e0c-a34a-d16ac5995585
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: data_criacao
+
+		variation Variation
+			isDefault
+			relationship: 542915ef-8ec7-4d6e-bcb1-91e61bec5846
+			defaultHierarchy: LocalDateTable_24bc5d57-9593-4ebd-8f43-009ccc452519.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = User
+
+	column hora
+		dataType: string
+		lineageTag: 3a46580a-e87d-44c7-8fde-a14c9d5261d6
+		sourceLineageTag: 633b6244-063e-4879-8b87-63500dfe6064
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: hora
+
+		annotation SummarizationSetBy = Automatic
+
+	column cod_estab_sap
+		dataType: string
+		lineageTag: e91db15f-28bf-4f06-877d-d66aa1d3fea2
+		sourceLineageTag: 23f8a2b4-a944-4f8b-921b-a0ed8ca4c154
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: cod_estab_sap
+
+		annotation SummarizationSetBy = User
+
+	column UN
+		dataType: string
+		lineageTag: 7c391e5b-b16c-4056-8776-253ca026c2ac
+		sourceLineageTag: 63f612a2-f00d-48b1-92b3-e2703d6d10ce
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: UN
+
+		annotation SummarizationSetBy = User
+
+	column data_compensacao
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 07496966-4a4d-47d1-a4c3-ce7eef910cfa
+		sourceLineageTag: c962eeda-a923-4357-842d-9ec1ef8ac3eb
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: data_compensacao
+
+		annotation SummarizationSetBy = User
+
+	column data_vencimento
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 5220e37d-9fdc-45e4-8ef8-d0fc89fbeff7
+		sourceLineageTag: fc3727ef-c7f3-459a-931c-614e06ddc578
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: data_vencimento
+
+		variation Variation
+			isDefault
+			relationship: 20a840be-3c60-4b38-8a80-5f1db5b43943
+			defaultHierarchy: LocalDateTable_dfb9cf43-8a07-4dd0-81c2-e1482307d70d.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = User
+
+	column doc_nf
+		dataType: string
+		lineageTag: f64847d0-fe05-4584-a3c6-e309158701f2
+		sourceLineageTag: 8195f278-6d09-415f-829d-260999af70c9
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: doc_nf
+
+		annotation SummarizationSetBy = User
+
+	column chave_pmf
+		dataType: string
+		lineageTag: 04ba2fcc-6269-46bf-967a-97c1e90ecb29
+		sourceLineageTag: 625be09a-e94f-43e5-bd81-a5df0250b744
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: chave_pmf
+
+		annotation SummarizationSetBy = User
+
+	column dias_prazo_vencimento
+		dataType: double
+		lineageTag: 1552e814-4371-481e-8f74-445ed1fdc71f
+		sourceLineageTag: 32a3f8a6-cbc5-4990-9858-8d5ad739bd7a
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: dias_prazo_vencimento
+
+		annotation SummarizationSetBy = User
+
+	column dias_prazo_recebimento
+		dataType: double
+		lineageTag: 923d0d84-3fcd-467d-9b7d-901b16539d16
+		sourceLineageTag: b63b57d1-00cd-4b8d-a984-f63521779757
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: dias_prazo_recebimento
+
+		annotation SummarizationSetBy = User
+
+	column dias_prazo_inadimplencia
+		dataType: double
+		lineageTag: 977b890d-d9b5-4be2-83c4-b20acb008430
+		sourceLineageTag: 9cf88637-061e-42c7-9c4b-be63927e6350
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: dias_prazo_inadimplencia
+
+		annotation SummarizationSetBy = User
+
+	column pond_prazo_vencimento
+		dataType: double
+		lineageTag: b635bc6f-d982-4c76-92d3-74011ea863e0
+		sourceLineageTag: 047be07d-f024-4e7c-b1fe-e0b633a8c86d
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: pond_prazo_vencimento
+
+		annotation SummarizationSetBy = User
+
+	column pond_prazo_recebimento
+		dataType: double
+		lineageTag: 581f5875-b193-4b7e-87cd-41ca851fdeff
+		sourceLineageTag: 6dc71c18-f7bf-4fa4-8d88-bade87280962
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: pond_prazo_recebimento
+
+		annotation SummarizationSetBy = User
+
+	column pond_prazo_inadimplencia
+		dataType: double
+		lineageTag: d4dc8dd3-d114-4dc6-bc77-6781f213f6de
+		sourceLineageTag: 4e5fa224-8e78-4f4b-9517-e2d0b46efd89
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: pond_prazo_inadimplencia
+
+		annotation SummarizationSetBy = User
+
+	partition aws_pmvpmr = entity
+		mode: directQuery
+		source
+			entityName: aws_pmvpmr
+			expressionSource: 'DirectQuery para AS – MS_Bussola_Comercial_Consolidada'
+

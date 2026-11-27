@@ -1,0 +1,56 @@
+table aws_index_cpi
+	lineageTag: 31e6186b-da34-4233-9283-4a997666d7e7
+	sourceLineageTag: 1a145aa6-f9f8-41f6-9920-64ace7c0633a
+
+	column date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 95540615-a823-4ea9-8c3b-9c4d26cd2e6a
+		sourceLineageTag: 453d5a52-4f18-4423-a82f-8ffe6f005942
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: date
+
+		variation Variation
+			isDefault
+			relationship: 7c82216d-c7a6-4410-8fb3-0597200333df
+			defaultHierarchy: LocalDateTable_ebfc0c62-a109-46cc-9230-f795b5f151d4.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = User
+
+	column value
+		dataType: double
+		lineageTag: 619ffb57-9c36-4dcb-8121-5efa6e24ecc4
+		sourceLineageTag: 683b637a-09d1-42e9-a0f5-c3b00dec7d59
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: value
+
+		annotation SummarizationSetBy = User
+
+	column variacao_percentual
+		dataType: double
+		lineageTag: ff492b4f-2933-4dd9-b894-ea81ea3ab32d
+		sourceLineageTag: aa54c580-e5bd-4b9e-9ba8-3d82a8e94bbc
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: variacao_percentual
+
+		annotation SummarizationSetBy = User
+
+	column ANO
+		dataType: double
+		lineageTag: de7e2831-203e-4c42-9307-f764c00d0c3a
+		sourceLineageTag: 6478cbe3-664a-4fb3-9d17-6fa12c186ce6
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: ANO
+
+		annotation SummarizationSetBy = User
+
+	partition aws_index_cpi = entity
+		mode: directQuery
+		source
+			entityName: aws_index_cpi
+			expressionSource: 'DirectQuery para AS – MS_Bussola_Comercial_Consolidada'
+

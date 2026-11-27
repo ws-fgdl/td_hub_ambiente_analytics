@@ -1,0 +1,471 @@
+table aws_bussola_comercial_ter
+	lineageTag: f8120d75-00c9-46fa-9a12-767d44cca041
+
+	column valor_faturado_brl
+		dataType: double
+		lineageTag: 47d0aad3-11c0-4bc5-be84-7d147b6e14d2
+		summarizeBy: sum
+		sourceColumn: valor_faturado_brl
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column un
+		dataType: string
+		lineageTag: 1f4aaeca-93f6-4406-a2f0-b927145492f3
+		summarizeBy: none
+		sourceColumn: un
+
+		annotation SummarizationSetBy = Automatic
+
+	column divisao
+		dataType: string
+		lineageTag: 65c95c82-8ac4-4afc-9d83-3bebf71041af
+		summarizeBy: none
+		sourceColumn: divisao
+
+		annotation SummarizationSetBy = Automatic
+
+	column os
+		dataType: string
+		lineageTag: 01840289-a835-4e5b-8766-38fc734840ee
+		summarizeBy: none
+		sourceColumn: os
+
+		annotation SummarizationSetBy = Automatic
+
+	column data_do_inicio_do_evento
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: c12a2755-88cd-44d2-9d10-b21cd5bd5b15
+		summarizeBy: none
+		sourceColumn: data_do_inicio_do_evento
+
+		variation Variation
+			isDefault
+			relationship: 889b57d7-5a76-42a1-8d28-dc74485210ab
+			defaultHierarchy: LocalDateTable_5668724d-726c-418a-9595-9950cb313010.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column data_do_fim_do_evento
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 00e12164-7b63-41bb-ad48-9891673b880f
+		summarizeBy: none
+		sourceColumn: data_do_fim_do_evento
+
+		variation Variation
+			isDefault
+			relationship: 7fff0b6c-d5e2-402c-962a-04aa01df0e98
+			defaultHierarchy: LocalDateTable_806784e3-0187-4a1d-9254-62bd802367df.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column duracao
+		dataType: int64
+		formatString: 0
+		lineageTag: 88fd2461-e83b-43cd-b1f4-2c397e2ee422
+		summarizeBy: sum
+		sourceColumn: duracao
+
+		annotation SummarizationSetBy = Automatic
+
+	column n_doc_nf
+		dataType: string
+		lineageTag: 8168199a-09b4-4ab9-a07b-87a83b51ceab
+		summarizeBy: none
+		sourceColumn: n_doc_nf
+
+		annotation SummarizationSetBy = Automatic
+
+	column valor_da_nf
+		dataType: double
+		lineageTag: 846c63fb-df24-449f-a9ce-1c8e5474114f
+		summarizeBy: sum
+		sourceColumn: valor_da_nf
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column valor_provisionado
+		dataType: double
+		lineageTag: f905ffcd-1a3b-451f-bd01-2fab2115a9e5
+		summarizeBy: sum
+		sourceColumn: valor_provisionado
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column volumetria
+		dataType: int64
+		formatString: 0
+		lineageTag: f96b1965-1654-49d1-8ae5-5ab67efba4bf
+		summarizeBy: sum
+		sourceColumn: volumetria
+
+		annotation SummarizationSetBy = Automatic
+
+	column tipo_de_volume
+		dataType: string
+		lineageTag: 036a2047-43cc-45db-9d46-6ba95070a4da
+		summarizeBy: none
+		sourceColumn: tipo_de_volume
+
+		annotation SummarizationSetBy = Automatic
+
+	column competencia
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: d560368b-8108-4b8e-a03f-beb2ffab99fc
+		summarizeBy: none
+		sourceColumn: competencia
+
+		variation Variation
+			isDefault
+			relationship: 2e443f9a-5d2e-41e5-aaba-8d11f85f9822
+			defaultHierarchy: LocalDateTable_afa823de-b8d8-45ef-8bd1-5215eef5fc19.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column movimento
+		dataType: string
+		lineageTag: 169c87e9-0aae-4307-937a-2dc1f6dfc232
+		summarizeBy: none
+		sourceColumn: movimento
+
+		annotation SummarizationSetBy = Automatic
+
+	column tipo_de_movimento
+		dataType: string
+		lineageTag: a9bbcff1-df21-449c-9ae0-f62d6ac4b537
+		summarizeBy: none
+		sourceColumn: tipo_de_movimento
+
+		annotation SummarizationSetBy = Automatic
+
+	column navio
+		dataType: string
+		lineageTag: 47ccbc54-6b2b-49ef-8c1c-cc4869f39722
+		summarizeBy: none
+		sourceColumn: navio
+
+		annotation SummarizationSetBy = Automatic
+
+	column owner
+		dataType: string
+		lineageTag: e2c7e13d-c8f3-4950-84d6-f2dd072fdd44
+		summarizeBy: none
+		sourceColumn: owner
+
+		annotation SummarizationSetBy = Automatic
+
+	column container
+		dataType: string
+		lineageTag: ba5378be-3a06-4578-b38b-e54ea9f994c3
+		summarizeBy: none
+		sourceColumn: container
+
+		annotation SummarizationSetBy = Automatic
+
+	column servico
+		dataType: string
+		lineageTag: 80c25b93-e02c-4d92-8176-021dd507a195
+		summarizeBy: none
+		sourceColumn: servico
+
+		annotation SummarizationSetBy = Automatic
+
+	column cliente
+		dataType: string
+		lineageTag: 5d5c637a-6606-4daa-894a-ce32c415c711
+		summarizeBy: none
+		sourceColumn: cliente
+
+		annotation SummarizationSetBy = Automatic
+
+	column cliente_sap
+		dataType: int64
+		formatString: 0
+		lineageTag: e404b13d-0024-4549-ae47-e210f34c71d0
+		summarizeBy: sum
+		sourceColumn: cliente_sap
+
+		annotation SummarizationSetBy = Automatic
+
+	column grupo_economico
+		dataType: string
+		lineageTag: ebd50c9e-6739-402b-8230-9c36531a52ec
+		summarizeBy: none
+		sourceColumn: grupo_economico
+
+		annotation SummarizationSetBy = Automatic
+
+	column commodity
+		dataType: string
+		lineageTag: 15618362-dbaf-4c56-8339-fe6f1f7a6856
+		summarizeBy: none
+		sourceColumn: commodity
+
+		annotation SummarizationSetBy = Automatic
+
+	column cif
+		dataType: double
+		lineageTag: e962cfaa-6cfe-4e9c-b8a7-fb4cf9fc3ee3
+		summarizeBy: sum
+		sourceColumn: cif
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column descontos
+		dataType: string
+		lineageTag: 024e5605-0ef0-44aa-a962-ea8f456c3090
+		summarizeBy: none
+		sourceColumn: descontos
+
+		annotation SummarizationSetBy = Automatic
+
+	column descontos_pos_execucao
+		dataType: string
+		lineageTag: 5b4ff714-44e9-4958-a82b-a004ef05ddee
+		summarizeBy: none
+		sourceColumn: descontos_pos_execucao
+
+		annotation SummarizationSetBy = Automatic
+
+	column isencoes
+		dataType: string
+		lineageTag: 38765971-8827-4b4f-af0f-213993af699e
+		summarizeBy: none
+		sourceColumn: isencoes
+
+		annotation SummarizationSetBy = Automatic
+
+	column tamanho_container
+		dataType: string
+		lineageTag: 46d05a0e-542a-42db-a74f-aa0ceecbeacf
+		summarizeBy: none
+		sourceColumn: tamanho_container
+
+		annotation SummarizationSetBy = Automatic
+
+	column status_container
+		dataType: string
+		lineageTag: 29fcda75-34de-4516-8eae-261e5963269d
+		summarizeBy: none
+		sourceColumn: status_container
+
+		annotation SummarizationSetBy = Automatic
+
+	column caracteristica_do_container
+		dataType: string
+		lineageTag: 1b57f356-68dc-44b2-8cda-24b3794665e7
+		summarizeBy: none
+		sourceColumn: caracteristica_do_container
+
+		annotation SummarizationSetBy = Automatic
+
+	column imo
+		dataType: string
+		lineageTag: aa2c3678-ecf1-456d-9d23-5c1d1ef1e548
+		summarizeBy: none
+		sourceColumn: imo
+
+		annotation SummarizationSetBy = Automatic
+
+	column oog
+		dataType: string
+		lineageTag: f845f343-8355-4974-96a2-e2a9ff4ba767
+		summarizeBy: none
+		sourceColumn: oog
+
+		annotation SummarizationSetBy = Automatic
+
+	column situacao_pf
+		dataType: string
+		lineageTag: 78f886e2-c1a7-4189-90ca-2a0895f30686
+		summarizeBy: none
+		sourceColumn: situacao_pf
+
+		annotation SummarizationSetBy = Automatic
+
+	column ncm
+		dataType: string
+		lineageTag: 45fafeb9-bca2-436b-b2bb-e32ec0bc5419
+		summarizeBy: none
+		sourceColumn: ncm
+
+		annotation SummarizationSetBy = Automatic
+
+	column cobrar_de
+		dataType: string
+		lineageTag: 298ee1a0-7b0e-423a-bb77-29f5b008cfe0
+		summarizeBy: none
+		sourceColumn: cobrar_de
+
+		annotation SummarizationSetBy = Automatic
+
+	column cobrar_de_sap
+		dataType: string
+		lineageTag: 45f696d2-a6b4-4b12-ab47-a3a0550c0809
+		summarizeBy: none
+		sourceColumn: cobrar_de_sap
+
+		annotation SummarizationSetBy = Automatic
+
+	column contrato_id
+		dataType: int64
+		formatString: 0
+		lineageTag: aefc83ec-a1a5-41ce-9580-d35841982e98
+		summarizeBy: sum
+		sourceColumn: contrato_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column qtd
+		dataType: double
+		lineageTag: 603d5ca7-7c64-4451-a852-59cd1bb8787f
+		summarizeBy: sum
+		sourceColumn: qtd
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column dias_permanencia_reais
+		dataType: int64
+		formatString: 0
+		lineageTag: 4426a7c6-3465-4d06-9505-d0077cb9ea90
+		summarizeBy: sum
+		sourceColumn: dias_permanencia_reais
+
+		annotation SummarizationSetBy = Automatic
+
+	column dias_servico
+		dataType: int64
+		formatString: 0
+		lineageTag: ff1c1202-c0be-41f1-9e61-f62aa9c2200b
+		summarizeBy: sum
+		sourceColumn: dias_servico
+
+		annotation SummarizationSetBy = Automatic
+
+	column duracao_em_dias
+		dataType: int64
+		formatString: 0
+		lineageTag: bce6fe14-25e3-4819-81ff-2cf196a1c0fc
+		summarizeBy: sum
+		sourceColumn: duracao_em_dias
+
+		annotation SummarizationSetBy = Automatic
+
+	column chave
+		dataType: string
+		lineageTag: bbdbebd4-769e-4226-8c5c-1fc81c0904ac
+		summarizeBy: none
+		sourceColumn: chave
+
+		annotation SummarizationSetBy = Automatic
+
+	column ticket
+		dataType: double
+		lineageTag: d082f54e-277d-4220-a2e6-3a13d7ea9326
+		summarizeBy: sum
+		sourceColumn: ticket
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column hstmv_id
+		dataType: string
+		lineageTag: 85c37f6f-74d7-4ba0-b354-a82008f4de38
+		summarizeBy: none
+		sourceColumn: hstmv_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column Chave_pmf = ```
+			
+			VAR Prefixo = 
+			    SWITCH(
+			        TRUE(),
+			        aws_bussola_comercial_ter[un] = "TRG", "W015",
+			        aws_bussola_comercial_ter[un] = "TSV", "W018"
+			    )
+			RETURN
+			    IF(
+			        ISBLANK(Prefixo),
+			        BLANK(),
+			        Prefixo & 
+			        YEAR(aws_bussola_comercial_ter[competencia]) & 
+			        aws_bussola_comercial_ter[n_doc_nf]
+			    )
+			```
+		lineageTag: 8424756e-5ba5-429f-bbf6-e410ed3e77bb
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column servico_especial
+		dataType: string
+		lineageTag: e8467fa0-6216-43c6-9d0e-071f6b582656
+		summarizeBy: none
+		sourceColumn: servico_especial
+
+		annotation SummarizationSetBy = Automatic
+
+	column servico_maritimo
+		dataType: string
+		lineageTag: 3649ed8f-ad28-491d-8efa-633dc8aeef73
+		summarizeBy: none
+		sourceColumn: servico_maritimo
+
+		annotation SummarizationSetBy = Automatic
+
+	column valor_nf_armexp
+		dataType: double
+		lineageTag: 08cbb92a-b556-4cf8-ae65-4e960b9bb5c1
+		summarizeBy: sum
+		sourceColumn: valor_nf_armexp
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition aws_bussola_comercial_ter = m
+		mode: import
+		source =
+				let
+				    Fonte = PowerPlatform.Dataflows(null),
+				    Workspaces = Fonte{[Id="Workspaces"]}[Data],
+				    #"bcd54b55-e85f-4c30-a169-bfbf18f90f30" = Workspaces{[workspaceId="bcd54b55-e85f-4c30-a169-bfbf18f90f30"]}[Data],
+				    #"cadcce22-5655-467e-8a04-84dfc9125e00" = #"bcd54b55-e85f-4c30-a169-bfbf18f90f30"{[dataflowId="cadcce22-5655-467e-8a04-84dfc9125e00"]}[Data],
+				    bussola_comercial_ter_daily_ = #"cadcce22-5655-467e-8a04-84dfc9125e00"{[entity="bussola_comercial_ter_daily",version=""]}[Data],
+				    #"Tipo Alterado" = Table.TransformColumnTypes(bussola_comercial_ter_daily_,{{"data_do_inicio_do_evento", type datetime}, {"data_do_fim_do_evento", type datetime}}),
+				    #"Texto Aparado" = Table.TransformColumns(Table.TransformColumnTypes(#"Tipo Alterado", {{"os", type text}}, "pt-BR"),{{"os", Text.Trim, type text}}),
+				    #"Texto Limpo" = Table.TransformColumns(#"Texto Aparado",{{"os", Text.Clean, type text}}),
+				    #"Texto Aparado1" = Table.TransformColumns(Table.TransformColumnTypes(#"Texto Limpo", {{"n_doc_nf", type text}}, "pt-BR"),{{"n_doc_nf", Text.Trim, type text}}),
+				    #"Texto Limpo1" = Table.TransformColumns(#"Texto Aparado1",{{"n_doc_nf", Text.Clean, type text}}),
+				    #"Texto Aparado2" = Table.TransformColumns(#"Texto Limpo1",{{"un", Text.Trim, type text}}),
+				    #"Texto Limpo2" = Table.TransformColumns(#"Texto Aparado2",{{"un", Text.Clean, type text}}),
+				    #"Tipo Alterado1" = Table.TransformColumnTypes(#"Texto Limpo2",{{"data_do_inicio_do_evento", type date}, {"data_do_fim_do_evento", type date}, {"cliente_sap", Int64.Type}}),
+				    #"Erros Removidos" = Table.RemoveRowsWithErrors(#"Tipo Alterado1", {"cliente_sap"})
+				in
+				    #"Erros Removidos"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

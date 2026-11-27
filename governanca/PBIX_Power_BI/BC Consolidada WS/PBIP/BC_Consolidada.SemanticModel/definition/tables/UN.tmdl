@@ -1,0 +1,21 @@
+table UN
+	lineageTag: c88f537c-cef4-4914-9774-f7d2717b54a5
+	sourceLineageTag: ddd6ae24-ad6c-428a-9cc3-31be535b12e6
+
+	column un
+		dataType: string
+		isNullable: false
+		lineageTag: 315a72b3-8efb-49b8-b768-a77c1348daab
+		sourceLineageTag: 78b48610-8051-4dba-8510-c028c77752c2
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: un
+
+		annotation SummarizationSetBy = User
+
+	partition UN = entity
+		mode: directQuery
+		source
+			entityName: UN
+			expressionSource: 'DirectQuery para AS – MS_Bussola_Comercial_Consolidada'
+

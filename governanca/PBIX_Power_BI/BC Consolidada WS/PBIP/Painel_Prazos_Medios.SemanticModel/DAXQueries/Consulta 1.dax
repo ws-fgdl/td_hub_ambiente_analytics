@@ -1,0 +1,8 @@
+EVALUATE
+VAR Ano_Dif = SELECTEDVALUE(aws_calendario_competencia[ano_calendario])-SELECTEDVALUE(Anos_Selecao1[Ano])
+
+RETURN
+CALCULATE(
+    [Flag_Fataturamento],
+    DATEADD('aws_calendario_competencia'[data],-Ano_Dif, YEAR)
+)

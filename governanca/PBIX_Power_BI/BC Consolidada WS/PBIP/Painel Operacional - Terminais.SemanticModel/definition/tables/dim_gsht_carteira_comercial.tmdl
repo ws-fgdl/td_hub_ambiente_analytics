@@ -1,0 +1,163 @@
+table dim_gsht_carteira_comercial
+	lineageTag: c342016c-46b5-4969-837b-199c39c5093d
+
+	column ID
+		dataType: string
+		lineageTag: e26b47e6-3cc9-4297-aae7-46e3a5138c82
+		summarizeBy: none
+		sourceColumn: ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column PARENTID
+		dataType: string
+		lineageTag: 5dd21ca6-4f2c-410d-b826-22b90d128aa3
+		summarizeBy: none
+		sourceColumn: PARENTID
+
+		annotation SummarizationSetBy = Automatic
+
+	column CIDADE
+		dataType: string
+		lineageTag: 94e1c8a0-2347-4ea0-a531-0fd9a46bae60
+		summarizeBy: none
+		sourceColumn: CIDADE
+
+		annotation SummarizationSetBy = Automatic
+
+	column PAIS
+		dataType: string
+		lineageTag: c7e0a349-d0be-4b50-b2c4-b6588debfb57
+		summarizeBy: none
+		sourceColumn: PAIS
+
+		annotation SummarizationSetBy = Automatic
+
+	column ESTADO
+		dataType: string
+		lineageTag: a6c63f06-0953-4d78-ba84-b699fba5d23e
+		summarizeBy: none
+		sourceColumn: ESTADO
+
+		annotation SummarizationSetBy = Automatic
+
+	column CNPJ
+		dataType: string
+		lineageTag: cae7ced6-ac10-4a28-b2ac-1d5e5f232bbc
+		summarizeBy: none
+		sourceColumn: CNPJ
+
+		annotation SummarizationSetBy = Automatic
+
+	column CPF
+		dataType: string
+		lineageTag: e931ad4f-b90c-40cf-9dbc-b78cb282fee1
+		summarizeBy: none
+		sourceColumn: CPF
+
+		annotation SummarizationSetBy = Automatic
+
+	column GRUPO_ECONOMICO
+		dataType: string
+		lineageTag: c4b7d108-56b9-43e6-93e1-501f2c723429
+		summarizeBy: none
+		sourceColumn: GRUPO_ECONOMICO
+
+		annotation SummarizationSetBy = Automatic
+
+	column GRUPO_COMERCIAL
+		dataType: string
+		lineageTag: 32c73d29-2146-4123-9385-38db3ba40c64
+		summarizeBy: none
+		sourceColumn: GRUPO_COMERCIAL
+
+		annotation SummarizationSetBy = Automatic
+
+	column CODIGO_POSTAL
+		dataType: string
+		lineageTag: 29ec8466-7824-43f7-b090-c6506831363c
+		summarizeBy: none
+		sourceColumn: CODIGO_POSTAL
+
+		annotation SummarizationSetBy = Automatic
+
+	column ENDEREÇO
+		dataType: string
+		lineageTag: 74a65702-5bf3-45fa-8bf4-e93867847010
+		summarizeBy: none
+		sourceColumn: ENDEREÇO
+
+		annotation SummarizationSetBy = Automatic
+
+	column RAZAO_SOCIAL
+		dataType: string
+		lineageTag: c5379c3f-ae5a-41b5-bc1a-1aa0fc55ba01
+		summarizeBy: none
+		sourceColumn: RAZAO_SOCIAL
+
+		annotation SummarizationSetBy = Automatic
+
+	column CODIGO_SAP
+		dataType: string
+		lineageTag: 5a452e83-a499-4aec-a499-5db1ecfc0223
+		summarizeBy: none
+		sourceColumn: CODIGO_SAP
+
+		annotation SummarizationSetBy = Automatic
+
+	column DUNS_NUMBER
+		dataType: string
+		lineageTag: d1defe34-0df5-4e5a-9eff-b458ec2b8c3b
+		summarizeBy: none
+		sourceColumn: DUNS_NUMBER
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'ARMADOR/CLIENTE CARGA'
+		dataType: string
+		lineageTag: 7bcd56e7-c5ba-45e1-a7c9-a11d526a9005
+		summarizeBy: none
+		sourceColumn: ARMADOR/CLIENTE CARGA
+
+		annotation SummarizationSetBy = Automatic
+
+	column GrupoEconomico
+		dataType: string
+		lineageTag: b0244482-a1eb-467f-b948-7b71e0855cda
+		summarizeBy: none
+		sourceColumn: GrupoEconomico
+
+		annotation SummarizationSetBy = Automatic
+
+	column GrupoComercial
+		dataType: string
+		lineageTag: 0e651bf5-9cc8-424e-b0cf-5eb39fa9b70f
+		summarizeBy: none
+		sourceColumn: GrupoComercial
+
+		annotation SummarizationSetBy = Automatic
+
+	column CODIGO_SAP_Padronizado
+		dataType: string
+		lineageTag: b9d05624-e1c5-428c-b31c-6675f1075af2
+		summarizeBy: none
+		sourceColumn: CODIGO_SAP_Padronizado
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_gsht_carteira_comercial = m
+		mode: import
+		source =
+				let
+				    Fonte = PowerPlatform.Dataflows(null),
+				    Workspaces = Fonte{[Id="Workspaces"]}[Data],
+				    #"8c5cc8ba-ed75-4d39-9606-af9ead89ca36" = Workspaces{[workspaceId="8c5cc8ba-ed75-4d39-9606-af9ead89ca36"]}[Data],
+				    #"76724120-5011-4d57-819a-1a6b727174d2" = #"8c5cc8ba-ed75-4d39-9606-af9ead89ca36"{[dataflowId="76724120-5011-4d57-819a-1a6b727174d2"]}[Data],
+				    Dim_Carteira_Comercial_Consolidada_ = #"76724120-5011-4d57-819a-1a6b727174d2"{[entity="Dim_Carteira_Comercial_Consolidada",version=""]}[Data]
+				in
+				    Dim_Carteira_Comercial_Consolidada_
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

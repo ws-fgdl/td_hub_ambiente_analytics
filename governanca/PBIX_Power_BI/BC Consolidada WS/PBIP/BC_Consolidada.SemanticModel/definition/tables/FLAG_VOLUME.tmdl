@@ -1,0 +1,47 @@
+table FLAG_VOLUME
+	lineageTag: 830c43de-5f43-406e-88f4-11eed161b7de
+	sourceLineageTag: f32e7703-4fc7-47c0-abf5-cfeb72fdea24
+
+	measure Volume_Dinamico = EXTERNALMEASURE("Volume_Dinamico", DOUBLE, "DirectQuery para AS – MS_Bussola_Comercial_Consolidada")
+		formatString: #,0
+		lineageTag: 6b5ad86d-e163-45a9-b96e-10712c248168
+		sourceLineageTag: c0dce199-5f00-4590-8273-0adde3f55f64
+		dataCategory: Uncategorized
+
+	column ID
+		dataType: int64
+		formatString: 0
+		lineageTag: 51cbf9ea-d821-454f-ab25-63bbcedf4356
+		sourceLineageTag: f52f0846-ffcb-4fb4-9620-7dd2b0389365
+		dataCategory: Uncategorized
+		summarizeBy: count
+		sourceColumn: ID
+
+		annotation SummarizationSetBy = User
+
+	column Nome_PT
+		dataType: string
+		lineageTag: 10a172e0-65c0-47be-8b89-6009af4bd503
+		sourceLineageTag: 92d786b1-b9cf-450e-a62d-3203964dc31f
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Nome_PT
+
+		annotation SummarizationSetBy = User
+
+	column Nome_EN
+		dataType: string
+		lineageTag: b1f58b9c-8f03-4dc3-9af1-fe0374f3b6be
+		sourceLineageTag: 31dbc161-388c-4bf1-8f74-079ebd00c1b9
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Nome_EN
+
+		annotation SummarizationSetBy = User
+
+	partition FLAG_VOLUME = entity
+		mode: directQuery
+		source
+			entityName: FLAG_VOLUME
+			expressionSource: 'DirectQuery para AS – MS_Bussola_Comercial_Consolidada'
+

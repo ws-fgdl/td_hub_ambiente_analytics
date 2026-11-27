@@ -1,0 +1,936 @@
+table Medidas_RI_Reb
+	lineageTag: e1d15099-acd7-4445-a29c-629caf3a4bfd
+
+	measure Vol_Manobra = SUM('CUBOS_NOVOS - RL_DW_FATO_CUBO_REBOC'[RL_DW_FATO_CUBO_REBOC_VOLUME.VOLUME])
+		formatString: #,0
+		lineageTag: b587a68c-3590-49bf-b0f7-db91662936d0
+
+	measure Volume_Manobra_Atual =
+			
+			VAR vUltimaData = MAX('CUBOS_NOVOS - RL_DW_FATO_CUBO_REBOC'[DT_OPER])
+			VAR vUltimoAno = YEAR(vUltimaData)
+			VAR vUltimoMes = MONTH(vUltimaData)
+			
+			RETURN
+			    CALCULATE(
+			        [Vol_Manobra],
+			            YEAR(_Tempo[data]) = vUltimoAno &&
+			            MONTH(_Tempo[data]) = vUltimoMes
+			        )
+		formatString: 0
+		displayFolder: Competencia
+		lineageTag: c7b1c2df-0a43-4ca1-a685-f914f63c7d40
+
+	measure Volume_Manobra_Mes_Atual_AnoAnterior = ```
+			
+			VAR vUltimaData = MAX('CUBOS_NOVOS - RL_DW_FATO_CUBO_REBOC'[DT_OPER])
+			VAR vUltimoAnoAnterior = YEAR(vUltimaData) - 1
+			VAR vInicioMesAnoAnterior = DATE(vUltimoAnoAnterior, MONTH(vUltimaData), 1)
+			
+			RETURN
+			    CALCULATE(
+			        [Vol_Manobra],
+			        FILTER(
+			            ALL(_Tempo),
+			            _Tempo[data] >= vInicioMesAnoAnterior &&
+			            _Tempo[data] <= EDATE(vUltimaData, -12)
+			        )
+			    )
+			
+			```
+		formatString: #,0
+		displayFolder: Competencia
+		lineageTag: bdae0b99-80fa-4ab5-9ba1-2a159e12df38
+
+	measure VolManobra_X_MediaDWT = ```
+			
+			SUMX( 
+			    -- Itera apenas sobre as faixas únicas, o que é muito mais rápido do que iterar a tabela inteira
+			    VALUES('CUBOS_NOVOS - RL_DW_FATO_CUBO_REBOC'[FAIXA_DWT]), 
+			    
+			    VAR FaixaAtual = 'CUBOS_NOVOS - RL_DW_FATO_CUBO_REBOC'[FAIXA_DWT]
+			    
+			    -- Substitui o "-" por "|" para transformar o texto em um "caminho" (path) que o DAX consegue ler
+			    VAR StringSubst = SUBSTITUTE(FaixaAtual, "-", "|")
+			    
+			    -- Extrai o primeiro valor e o segundo valor do texto e os converte para número
+			    VAR LimiteInferior = VALUE(TRIM(PATHITEM(StringSubst, 1)))
+			    VAR LimiteSuperior = VALUE(TRIM(PATHITEM(StringSubst, 2)))
+			    
+			    -- Calcula a média da faixa
+			    VAR MediaDaFaixa = DIVIDE(LimiteInferior + LimiteSuperior, 2)
+			    
+			    -- Calcula o volume total especificamente para essa faixa no contexto atual
+			    VAR VolumeDaFaixa = CALCULATE(SUM('CUBOS_NOVOS - RL_DW_FATO_CUBO_REBOC'[RL_DW_FATO_CUBO_REBOC_VOLUME.VOLUME]))
+			    
+			    -- Retorna a multiplicação do volume pela média da faixa
+			    RETURN 
+			    VolumeDaFaixa * MediaDaFaixa
+			)
+			```
+		lineageTag: 25702ef4-7f10-4057-bde6-cd92e071d96d
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Soma_VolManobra_X_MediaDWT =
+			
+			// Esta medida calcula a soma do produto de 'VolManobra_X_MediaDWT' para cada linha na tabela 'aws_bussola_comercial'
+			SUMX('aws_bussola_comercial_mar', [VolManobra_X_MediaDWT])
+		lineageTag: 228249f4-5896-45c3-aec0-f836907ab3af
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Resultado_Volume_Media = ```
+			
+			DIVIDE(
+			    -- Numerador: Medida ajustada que já faz a ponderação correta
+			    [VolManobra_X_MediaDWT],  
+			    
+			    -- Denominador: Soma total do volume no contexto atual
+			    SUM('CUBOS_NOVOS - RL_DW_FATO_CUBO_REBOC'[RL_DW_FATO_CUBO_REBOC_VOLUME.VOLUME]),  
+			    
+			    -- Valor alternativo em caso de erro/divisão por zero
+			    0  
+			)
+			```
+		lineageTag: 4f367e86-be2f-4fde-b12c-a303ba2bfa24
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure DwtMedio_Mes_Atual_AnoAnterior = ```
+			
+			VAR vUltimaData = MAX('CUBOS_NOVOS - RL_DW_FATO_CUBO_REBOC'[DT_OPER])
+			VAR vUltimoAnoAnterior = YEAR(vUltimaData) - 1
+			VAR vInicioMesAnoAnterior = DATE(vUltimoAnoAnterior, MONTH(vUltimaData), 1)
+			
+			RETURN
+			    CALCULATE(
+			        [Resultado_Volume_Media],
+			        FILTER(
+			            ALL(_Tempo),
+			            _Tempo[data] >= vInicioMesAnoAnterior &&
+			            _Tempo[data] <= EDATE(vUltimaData, -12)
+			        )
+			    )
+			
+			```
+		displayFolder: Competencia
+		lineageTag: 438bf144-05fc-499f-a681-b87a43a4652e
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure DwtMedio_Mes_Atual =
+			
+			VAR vUltimaData = MAX('CUBOS_NOVOS - RL_DW_FATO_CUBO_REBOC'[DT_OPER])
+			VAR vUltimoAno = YEAR(vUltimaData)
+			VAR vUltimoMes = MONTH(vUltimaData)
+			
+			RETURN
+			    CALCULATE(
+			        [Resultado_Volume_Media],
+			            YEAR(_Tempo[data]) = vUltimoAno &&
+			            MONTH(_Tempo[data]) = vUltimoMes
+			        )
+		displayFolder: Competencia
+		lineageTag: 4473dfd4-50e0-4d88-b947-59c0a732e236
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Media_Dwt_Acumulado_YTM =
+			
+			VAR vUltimaData = MAX('CUBOS_NOVOS - RL_DW_FATO_CUBO_REBOC'[DT_OPER])
+			VAR vUltimoAno = YEAR(vUltimaData)
+			VAR vUltimoMes = MONTH(vUltimaData)
+			
+			RETURN
+			    CALCULATE(
+			        [Resultado_Volume_Media],
+			        FILTER(
+			            ALL(_Tempo),
+			            YEAR(_Tempo[data]) = vUltimoAno &&
+			            MONTH(_Tempo[data]) <= vUltimoMes
+			        )
+			    )
+		formatString: 0
+		displayFolder: Competencia
+		lineageTag: 907b7c2e-fae8-4745-bd92-f7ffa82d4be1
+
+	measure Media_Dwt_Acumulado_YTM_Anterior =
+			
+			VAR vUltimaData = MAX('CUBOS_NOVOS - RL_DW_FATO_CUBO_REBOC'[DT_OPER])
+			VAR vUltimoAnoAnterior = YEAR(vUltimaData) - 1
+			
+			RETURN
+			    CALCULATE(
+			        [Resultado_Volume_Media],
+			        FILTER(
+			            ALL(_Tempo),
+			            YEAR(_Tempo[data]) = vUltimoAnoAnterior &&
+			            _Tempo[data] <= EDATE(vUltimaData, -12)
+			        )
+			    )
+		displayFolder: Competencia
+		lineageTag: dbc21de2-e96b-4eab-b53a-eaa26ae5b169
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Δ_Media_Dwt_YTD =
+			DIVIDE(
+			    ([Media_Dwt_Acumulado_YTM] - [Media_Dwt_Acumulado_YTM_Anterior]),
+			    [Media_Dwt_Acumulado_YTM_Anterior],
+			    0
+			)
+		displayFolder: Competencia
+		lineageTag: e1f3009a-3768-4473-993f-e618232778ce
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Vol_Manobra_Acumulado_YTM =
+			
+			VAR vUltimaData = MAX('CUBOS_NOVOS - RL_DW_FATO_CUBO_REBOC'[DT_OPER])
+			VAR vUltimoAno = YEAR(vUltimaData)
+			VAR vUltimoMes = MONTH(vUltimaData)
+			
+			RETURN
+			    CALCULATE(
+			        [Vol_Manobra],
+			        FILTER(
+			            ALL(_Tempo),
+			            YEAR(_Tempo[data]) = vUltimoAno &&
+			            MONTH(_Tempo[data]) <= vUltimoMes
+			        )
+			    )
+		formatString: #,0
+		displayFolder: Competencia
+		lineageTag: e566bcc5-ebc5-43e9-9d35-d70dd9aced9f
+
+	measure Vol_Manobra_Acumulado_YTM_Anterior = ```
+			
+			VAR vUltimaData = MAX('CUBOS_NOVOS - RL_DW_FATO_CUBO_REBOC'[DT_OPER])
+			VAR vUltimoAnoAnterior = YEAR(vUltimaData) - 1
+			
+			RETURN
+			    CALCULATE(
+			        [Vol_Manobra],
+			        FILTER(
+			            ALL(_Tempo),
+			            YEAR(_Tempo[data]) = vUltimoAnoAnterior &&
+			            _Tempo[data] <= EDATE(vUltimaData, -12)
+			        )
+			    )
+			
+			```
+		formatString: #,0
+		displayFolder: Competencia
+		lineageTag: fdd239c3-95c3-41b4-92bf-92a1b081f668
+
+	measure Δ_Volume_Manobra_YTD =
+			DIVIDE(
+			    ([Vol_Manobra_Acumulado_YTM] - [Vol_Manobra_Acumulado_YTM_Anterior]),
+			    [Vol_Manobra_Acumulado_YTM_Anterior],
+			    0
+			)
+		displayFolder: Competencia
+		lineageTag: 8cba5db2-fe2c-4bbf-9a0a-409ff22ef0f8
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Δ_Volume_Manobra_YTM =
+			DIVIDE(
+			    ([Volume_Manobra_Atual] - [Volume_Manobra_Mes_Atual_AnoAnterior]),
+			    [Volume_Manobra_Mes_Atual_AnoAnterior],
+			    0
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Competencia
+		lineageTag: d568ab65-c655-4b48-a435-468b964c551e
+
+	measure Δ_Media_Dwt_YTM =
+			DIVIDE(
+			    ([DwtMedio_Mes_Atual] - [DwtMedio_Mes_Atual_AnoAnterior]),
+			    [DwtMedio_Mes_Atual_AnoAnterior],
+			    0
+			)
+		displayFolder: Competencia
+		lineageTag: 8fc89760-b8e3-481d-886d-5de7186de7d1
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure VolManobra_X_MediaDWT_Atual = [Volume_Manobra_Atual] * [DwtMedio_Mes_Atual]
+		lineageTag: 8c47cf02-dcc9-40ca-b8c6-4396af2b06bf
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure data_ultimo_evento_reb = ```
+			
+			    MAXX(
+			        ALL('CUBOS_NOVOS - RL_DW_FATO_CUBO_REBOC'[DT_OPER]),
+			        'CUBOS_NOVOS - RL_DW_FATO_CUBO_REBOC'[DT_OPER]
+			    )
+			```
+		formatString: Short Date
+		lineageTag: a5fa7813-bd29-471b-8a78-bd573f67c754
+
+	measure AnoMesMaisRecente = ```
+			
+			    CALCULATE(
+			        MAX('aws_bussola_comercial_mar'[competencia]),
+			        ALL('aws_bussola_comercial_mar')
+			    )
+			```
+		formatString: Short Date
+		lineageTag: c5616c72-cb7c-4d86-ae0e-11f8fe09fed0
+
+	measure DwtRealMedio_Mes_Atual =
+			
+			VAR vUltimaData = MAX('aws_bussola_comercial_mar'[competencia])
+			VAR vUltimoAno = YEAR(vUltimaData)
+			VAR vUltimoMes = MONTH(vUltimaData)
+			
+			RETURN
+			    CALCULATE(
+			        AVERAGE('aws_bussola_comercial_mar'[dwt]),
+			        YEAR('aws_bussola_comercial_mar'[competencia]) = vUltimoAno &&
+			        MONTH('aws_bussola_comercial_mar'[competencia]) = vUltimoMes
+			    )
+		displayFolder: Competencia
+		lineageTag: 405a3404-5eaa-4d99-8249-9d86d3970ec1
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure DwtRealMediana_Mes_Atual =
+			
+			VAR vUltimaData = MAX('aws_bussola_comercial_mar'[competencia])
+			VAR vUltimoAno = YEAR(vUltimaData)
+			VAR vUltimoMes = MONTH(vUltimaData)
+			
+			RETURN
+			    CALCULATE(
+			        MEDIAN('aws_bussola_comercial_mar'[dwt]),
+			        YEAR('aws_bussola_comercial_mar'[competencia]) = vUltimoAno &&
+			        MONTH('aws_bussola_comercial_mar'[competencia]) = vUltimoMes
+			    )
+		displayFolder: Competencia
+		lineageTag: 0df73ea9-caec-4e2b-b2b6-b04220458e4d
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Manobras_Contagem_diária = ```
+			
+			// 1. Descobre a última data de carga da base
+			VAR vUltimaData = CALCULATE( MAX('CUBOS_NOVOS - RL_DW_FATO_CUBO_REBOC'[DT_OPER]), REMOVEFILTERS() )
+			VAR vUltimoMes = MONTH(vUltimaData)  
+			VAR vUltimoDia = DAY(vUltimaData)    
+			VAR vUltimoAno = YEAR(vUltimaData)   
+			
+			RETURN
+			CALCULATE(
+			    [Vol_Manobra],
+			    KEEPFILTERS(
+			        FILTER(
+			            ALL('_Tempo'), 
+			            
+			            // Regra 1: Pega apenas os 3 anos desejados
+			            YEAR('_Tempo'[data]) IN {vUltimoAno, vUltimoAno-1, vUltimoAno-2} &&
+			            
+			            // Regra 2: A Mágica do Total
+			            (
+			                // Se for o mês da última carga (ex: Maio), trava no dia da carga (ex: <= 17)
+			                (MONTH('_Tempo'[data]) = vUltimoMes && DAY('_Tempo'[data]) <= vUltimoDia)
+			                ||
+			                // OU, se for qualquer outro mês do passado, deixa passar todos os dias livremente
+			                (MONTH('_Tempo'[data]) <> vUltimoMes)
+			            )
+			        )
+			    )
+			)
+			
+			// Manobras_Contagem_diária = 
+			// // 1. Encontra a última data na base para servir de referência
+			// VAR vUltimaData = CALCULATE( 
+			//     MAX('CUBOS_NOVOS - RL_DW_FATO_CUBO_REBOC'[DT_OPER]), 
+			//     REMOVEFILTERS('CUBOS_NOVOS - RL_DW_FATO_CUBO_REBOC') 
+			// )
+			// VAR vUltimoMes = MONTH(vUltimaData)
+			// VAR vUltimoAno = YEAR(vUltimaData)
+			// VAR vUltimoDia = DAY(vUltimaData)
+			
+			// RETURN
+			// CALCULATE(
+			//     [Vol_Manobra],
+			    
+			//     // 2. KEEPFILTERS garante que a matriz não fique com o mesmo número repetido
+			//     KEEPFILTERS(
+			//         FILTER(
+			//             ALL('_Tempo'), 
+			//             // Pega apenas o mês atual da última carga
+			//             MONTH('_Tempo'[data]) = vUltimoMes &&
+			            
+			//             // Pega o ano atual e os dois anteriores
+			//             YEAR('_Tempo'[data]) IN {vUltimoAno, vUltimoAno-1, vUltimoAno-2} &&
+			            
+			//             // Trava para não mostrar dias no futuro (além da última carga)
+			//             DAY('_Tempo'[data]) <= vUltimoDia
+			//         )
+			//     )
+			// )
+			```
+		lineageTag: b4cdb563-1c1a-47c7-9258-6d11bfec3644
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure ExibirAnoMesMaisRecente = ```
+			
+			VAR UltimaData = CALCULATE(MAX('aws_bussola_comercial_mar'[competencia]), ALL('aws_bussola_comercial_mar'))
+			VAR UltimoAno = YEAR(UltimaData)
+			VAR UltimoMes = MONTH(UltimaData)
+			VAR UltimoDia = DAY(UltimaData)
+			
+			RETURN 
+			    IF(
+			        CALCULATE(
+			            COUNTROWS('aws_bussola_comercial_mar'),
+			            FILTER(
+			                'aws_bussola_comercial_mar',
+			                'aws_bussola_comercial_mar'[competencia] <= DATE(UltimoAno, UltimoMes, UltimoDia)
+			                )
+			        ) > 0,
+			        1,
+			        0
+			    )
+			```
+		formatString: 0
+		lineageTag: 806e9d60-3339-4759-87b8-0d34f9be467c
+
+	measure blank = BLANK()
+		formatString: 0
+		lineageTag: b6b50498-e5a7-40e2-ac73-c0e0be650743
+
+	measure Volume_Manobra_Atual_DataFim =
+			
+			VAR vUltimaData = MAX('aws_bussola_comercial_mar'[data_do_fim_do_evento])
+			VAR vAno = YEAR(vUltimaData)
+			VAR vMes = MONTH(vUltimaData)
+			
+			VAR vVolume =
+			    CALCULATE(
+			        [Vol_Manobra],
+			        FILTER(
+			            ALL('dim_calendario'[Data]),
+			            YEAR('dim_calendario'[Data]) = vAno &&
+			            MONTH('dim_calendario'[Data]) = vMes
+			        ),
+			        USERELATIONSHIP('dim_calendario'[Data], 'aws_bussola_comercial_mar'[data_do_fim_do_evento])
+			    )
+			
+			RETURN
+			    IF(ISBLANK(vVolume), 0, vVolume)
+		displayFolder: DataFim
+		lineageTag: 615d23b1-2579-4f8c-8d62-35d33ea30d0c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Volume_Manobra_Mes_Atual_AnoAnterior_DataFim =
+			
+			VAR vUltimaData = MAX('CUBOS_NOVOS - RL_DW_FATO_CUBO_REBOC'[DT_OPER])
+			VAR vAno = YEAR(vUltimaData) - 1
+			VAR vMes = MONTH(vUltimaData)
+			VAR vDia = DAY(vUltimaData)
+			
+			VAR vVolume =
+			    CALCULATE(
+			        [Vol_Manobra],
+			        FILTER(
+			            ALL('_Tempo'[Data]),
+			            YEAR('_Tempo'[Data]) = vAno &&
+			            MONTH('_Tempo'[Data]) = vMes &&
+			            DAY('_Tempo'[Data]) <= vDia
+			        ),
+			        USERELATIONSHIP('_Tempo'[Data], 'CUBOS_NOVOS - RL_DW_FATO_CUBO_REBOC'[DT_OPER])
+			    )
+			
+			RETURN
+			    IF(ISBLANK(vVolume), 0, vVolume)
+		displayFolder: DataFim
+		lineageTag: ad776076-ff60-4073-a575-e7babac41dac
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure DwtMedio_Mes_Atual_DataFim = ```
+			
+			VAR vUltimaData = MAX('CUBOS_NOVOS - RL_DW_FATO_CUBO_REBOC'[DT_OPER])
+			VAR vUltimoAno = YEAR(vUltimaData)
+			VAR vUltimoMes = MONTH(vUltimaData)
+			
+			RETURN
+			    CALCULATE(
+			        [Resultado_Volume_Media],
+			            FILTER(
+			            ALL('_Tempo'[data]), 
+			            YEAR('_Tempo'[data]) = vUltimoAno &&
+			            MONTH('_Tempo'[data]) = vUltimoMes
+			        ),
+			        USERELATIONSHIP('_Tempo'[data], 'CUBOS_NOVOS - RL_DW_FATO_CUBO_REBOC'[DT_OPER])
+			    )
+			```
+		formatString: 0.000
+		displayFolder: DataFim
+		lineageTag: 03ee8440-87c9-4998-96ce-99f0bfc44cd9
+
+	measure DwtRealMediana_Mes_Atual_DataFim =
+			
+			VAR vUltimaData = MAX('aws_bussola_comercial_mar'[data_do_fim_do_evento])
+			VAR vUltimoAno = YEAR(vUltimaData)
+			VAR vUltimoMes = MONTH(vUltimaData)
+			
+			RETURN
+			    CALCULATE(
+			        MEDIAN('aws_bussola_comercial_mar'[dwt]),
+			        FILTER(
+			            ALL('dim_calendario'[Data]),
+			            YEAR('dim_calendario'[Data]) = vUltimoAno &&
+			            MONTH('dim_calendario'[Data]) = vUltimoMes
+			        ),
+			        USERELATIONSHIP('dim_calendario'[Data], 'aws_bussola_comercial_mar'[data_do_fim_do_evento])
+			    )
+		formatString: #,0
+		displayFolder: DataFim
+		lineageTag: 45ec258c-c446-4010-90ac-ee651ea90824
+
+	measure DwtRealMedio_Mes_Atual_DataFim =
+			
+			VAR vUltimaData = MAX('aws_bussola_comercial_mar'[data_do_fim_do_evento])
+			VAR vUltimoAno = YEAR(vUltimaData)
+			VAR vUltimoMes = MONTH(vUltimaData)
+			
+			RETURN
+			    CALCULATE(
+			        AVERAGE('aws_bussola_comercial_mar'[dwt]),
+			        FILTER(
+			            ALL('dim_calendario'[Data]),
+			            YEAR('dim_calendario'[Data]) = vUltimoAno &&
+			            MONTH('dim_calendario'[Data]) = vUltimoMes
+			        ),
+			        USERELATIONSHIP('dim_calendario'[Data], 'aws_bussola_comercial_mar'[data_do_fim_do_evento])
+			    )
+		formatString: #,0
+		displayFolder: DataFim
+		lineageTag: 4680f934-a4ff-48ba-a93e-57b2fe31aaf7
+
+	measure Δ_Volume_Manobra_YTM_dataFim =
+			DIVIDE(
+			    ([Volume_Manobra_Atual_DataFim] - [Volume_Manobra_Mes_Atual_AnoAnterior_DataFim]),
+			    [Volume_Manobra_Mes_Atual_AnoAnterior_DataFim],
+			    0
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: DataFim
+		lineageTag: 25148791-b09b-4e06-98c9-3f930cc822b5
+
+	measure DwtMedio_Mes_Atual_AnoAnterior_DataFim =
+			
+			VAR vUltimaData = MAX('CUBOS_NOVOS - RL_DW_FATO_CUBO_REBOC'[DT_OPER])
+			VAR vUltimoAno = YEAR(vUltimaData) - 1
+			VAR vUltimoMes = MONTH(vUltimaData)
+			VAR vUltimoDia = DAY(vUltimaData)
+			
+			RETURN
+			    CALCULATE(
+			        [Resultado_Volume_Media],
+			        KEEPFILTERS(
+			            FILTER(
+			                ALL('_Tempo'),
+			                YEAR('_Tempo'[data]) = vUltimoAno &&
+			                MONTH('_Tempo'[data]) = vUltimoMes &&
+			                DAY('_Tempo'[data]) <= vUltimoDia
+			            )
+			        ),
+			        USERELATIONSHIP('_Tempo'[data], 'CUBOS_NOVOS - RL_DW_FATO_CUBO_REBOC'[DT_OPER])
+			    )
+		displayFolder: DataFim
+		lineageTag: bfe78172-d6c3-45de-a9c0-5d3410234034
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Vol_Manobra_Acumulado_YTM_DataFim =
+			
+			VAR vUltimaData = MAX('aws_bussola_comercial_mar'[data_do_fim_do_evento])
+			VAR vUltimoAno = YEAR(vUltimaData)
+			VAR vUltimoMes = MONTH(vUltimaData)
+			
+			RETURN
+			    CALCULATE(
+			        [Vol_Manobra],
+			        KEEPFILTERS(
+			            FILTER(
+			                ALL('dim_calendario'),
+			                YEAR('dim_calendario'[data]) = vUltimoAno &&
+			                MONTH('dim_calendario'[data]) <= vUltimoMes
+			            )
+			        ),
+			        USERELATIONSHIP('dim_calendario'[data], 'aws_bussola_comercial_mar'[data_do_fim_do_evento])
+			    )
+		formatString: #,0
+		displayFolder: DataFim
+		lineageTag: d4cb1681-220f-4b1a-b22f-66509f2d989d
+
+	measure Vol_Manobra_Acumulado_YTM_Anterior_DataFim =
+			
+			VAR vUltimaData = MAX('aws_bussola_comercial_mar'[data_do_fim_do_evento])
+			VAR vDataInicioAnterior = DATE(YEAR(vUltimaData) - 1, 1, 1)
+			VAR vDataFimAnterior = DATE(YEAR(vUltimaData) - 1, MONTH(vUltimaData), DAY(vUltimaData))
+			
+			RETURN
+			    CALCULATE(
+			        [Vol_Manobra],
+			        DATESBETWEEN(
+			            'dim_calendario'[data],
+			            vDataInicioAnterior,
+			            vDataFimAnterior
+			        ),
+			        USERELATIONSHIP('dim_calendario'[data], 'aws_bussola_comercial_mar'[data_do_fim_do_evento])
+			    )
+		formatString: #,0
+		displayFolder: DataFim
+		lineageTag: c11e726a-9af3-460b-ae5f-670c983aa299
+
+	measure Media_Dwt_Acumulado_YTM_DataFim =
+			
+			VAR vUltimaData = MAX('aws_bussola_comercial_mar'[data_do_fim_do_evento])
+			VAR vUltimoAno = YEAR(vUltimaData)
+			VAR vUltimoMes = MONTH(vUltimaData)
+			
+			RETURN
+			    CALCULATE(
+			        [Resultado_Volume_Media],
+			        KEEPFILTERS(
+			            FILTER(
+			                ALL('dim_calendario'),
+			                YEAR('dim_calendario'[data]) = vUltimoAno &&
+			                MONTH('dim_calendario'[data]) <= vUltimoMes
+			            )
+			        ),
+			        USERELATIONSHIP('dim_calendario'[data], 'aws_bussola_comercial_mar'[data_do_fim_do_evento])
+			    )
+		displayFolder: DataFim
+		lineageTag: bd2c0b2a-7171-4b55-9a27-0582003fb62e
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Media_Dwt_Acumulado_YTM_Anterior_DataFim =
+			
+			VAR vUltimaData = MAX('aws_bussola_comercial_mar'[data_do_fim_do_evento])
+			VAR vDataInicioAnterior = DATE(YEAR(vUltimaData) - 1, 1, 1)
+			VAR vDataFimAnterior = DATE(YEAR(vUltimaData) - 1, MONTH(vUltimaData), DAY(vUltimaData))
+			
+			RETURN
+			    CALCULATE(
+			        [Resultado_Volume_Media],
+			        DATESBETWEEN(
+			            'dim_calendario'[data],
+			            vDataInicioAnterior,
+			            vDataFimAnterior
+			        ),
+			        USERELATIONSHIP('dim_calendario'[data], 'aws_bussola_comercial_mar'[data_do_fim_do_evento])
+			    )
+		displayFolder: DataFim
+		lineageTag: d89f9407-6ee6-4a8c-b828-f037c25374ff
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Δ_Volume_Manobra_YTD_DataFim = ```
+			DIVIDE(
+			    ([Vol_Manobra_Acumulado_YTM_DataFim] - [Vol_Manobra_Acumulado_YTM_Anterior_DataFim]),
+			    [Vol_Manobra_Acumulado_YTM_Anterior_DataFim],   
+			    0
+			)
+			```
+		displayFolder: DataFim
+		lineageTag: 32525bae-191d-4f34-9a84-71f95c417a16
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Δ_Media_Dwt_YTD_DataFim =
+			DIVIDE(
+			    ([Media_Dwt_Acumulado_YTM_DataFim] - [Media_Dwt_Acumulado_YTM_Anterior_DataFim]),
+			    [Media_Dwt_Acumulado_YTM_Anterior_DataFim],
+			    0
+			)
+		displayFolder: DataFim
+		lineageTag: a5bc8324-b832-43ca-9488-76cdf984ccd8
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Δ_Media_Dwt_YTM_DataFim =
+			DIVIDE(
+			    ([DwtMedio_Mes_Atual_DataFim] - [DwtMedio_Mes_Atual_AnoAnterior_DataFim]),
+			    [DwtMedio_Mes_Atual_AnoAnterior_DataFim],
+			    0
+			)
+		displayFolder: DataFim
+		lineageTag: 58062cb3-6df5-4637-9c70-cb47ed69e580
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure MostrarLinha =
+			
+			IF(
+			    [Volume_Manobra_Atual_DataFim] > 0 || [Volume_Manobra_Mes_Atual_AnoAnterior_DataFim] > 0,
+			    1,
+			    0
+			)
+		formatString: 0
+		displayFolder: DataFim
+		lineageTag: 005c7b8f-730a-46ad-9b87-b84e8c56da2a
+
+	measure ExibirAnoMesMaisRecente_datafim = ```
+			
+			VAR UltimaData = CALCULATE(MAX('aws_bussola_comercial_mar'[data_do_fim_do_evento]), ALL('aws_bussola_comercial_mar'))
+			
+			// A função EDATE subtrai exatamente 1 mês da data completa de forma segura
+			VAR DataMenosUmMes = EDATE(UltimaData, -1) 
+			
+			RETURN 
+			    IF(
+			        CALCULATE(
+			            COUNTROWS('aws_bussola_comercial_mar'),
+			            'aws_bussola_comercial_mar'[data_do_fim_do_evento] <= DataMenosUmMes
+			        ) > 0,
+			        1,
+			        0
+			    )
+			```
+		formatString: 0
+		lineageTag: 434f79a9-8b1a-4906-9499-5fa83a1939df
+
+	measure Legenda_Rebocadores = "REBOCADORES"
+		lineageTag: 800af9ec-96c2-41f7-b1fa-81cde6ea5cb5
+
+	measure Legenda_Tugboat = "TUGBOATS"
+		lineageTag: 311e81ee-01db-48f8-90b4-470c742a45b2
+
+	measure Legenda_MesAnoAnterior_Competencia = UPPER(FORMAT(EDATE(MAX('aws_bussola_comercial_mar'[competencia]), -12), "MMM/YY"))
+		lineageTag: e5c2162f-a939-4f25-aa48-508b13ba3efb
+
+	measure Legenda_MesAnoAnterior_DataFim = UPPER(FORMAT(EDATE(MAX('aws_bussola_comercial_mar'[data_do_fim_do_evento]), -12), "MMM/YY"))
+		lineageTag: 20364fe6-b7e0-4b65-a825-20b4a7e5a02e
+
+	measure Legenda_MesAnoAnterior_Competencia_eng = UPPER(FORMAT(EDATE(MAX('aws_bussola_comercial_mar'[competencia]), -12), "MMM/YY", "en-US"))
+		lineageTag: 273d36cf-f4a2-4da9-a069-be1c4339bc5b
+
+	measure Legenda_MesAnoAnterior_DataFim_eng = UPPER(FORMAT(EDATE(MAX('CUBOS_NOVOS - RL_DW_FATO_CUBO_REBOC'[DT_OPER]), -12), "MMM/YY", "en-US"))
+		lineageTag: 1cb3ecd4-cb51-4500-a841-a84cfc7bb702
+
+	measure Legenda_MesAnoAtual_Competencia = UPPER(FORMAT(MAX('aws_bussola_comercial_mar'[competencia]), "MMM/YY"))
+		lineageTag: 5bcb5116-bc52-4ebc-be15-8d202f6d36b6
+
+	measure Legenda_MesAnoAtual_DataFim = UPPER(FORMAT(MAX('aws_bussola_comercial_mar'[data_do_fim_do_evento]), "MMM/YY"))
+		lineageTag: 3bce168d-1e8e-4dd9-bf1b-1e6709c65a8a
+
+	measure Legenda_MesAnoAtual_Competencia_eng = ```
+			UPPER(FORMAT(MAX('aws_bussola_comercial_mar'[competencia]), "MMM/YY", "en-US"))
+			
+			```
+		lineageTag: 330796ff-271d-415f-b226-87af76a57b95
+
+	measure Legenda_MesAnoAtual_DataFim_eng = ```
+			UPPER(FORMAT(MAX('CUBOS_NOVOS - RL_DW_FATO_CUBO_REBOC'[DT_OPER]), "MMM/YY", "en-US"))
+			
+			```
+		lineageTag: a3e0a9f0-a333-4202-b573-e77712eaa497
+
+	measure 'Legenda_Δ YTM(%)' = "Δ YTM(%)"
+		lineageTag: 00651e0e-f05c-4c3c-8988-e07a1536fdf2
+
+	measure Legenda_Δ(%) = "Δ(%)"
+		lineageTag: b2debd2a-c9bd-4a82-a0f0-a1becf8ddcd5
+
+	measure _Volume_MesAtual = ```
+			
+			VAR MaxData = MAX('CUBOS_NOVOS - RL_DW_FATO_CUBO_REBOC'[DT_OPER])
+			VAR AnoMax = YEAR(MaxData)
+			VAR MesMax = MONTH(MaxData)
+			
+			RETURN
+			CALCULATE(
+			    [Vol_Manobra], 
+			    REMOVEFILTERS('_Tempo'),
+			    YEAR('CUBOS_NOVOS - RL_DW_FATO_CUBO_REBOC'[DT_OPER]) = AnoMax,
+			    MONTH('CUBOS_NOVOS - RL_DW_FATO_CUBO_REBOC'[DT_OPER]) = MesMax
+			)
+			```
+		lineageTag: a81cd612-87d2-4c1e-8342-2a4e62710c1d
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _Volume_MesAnterior = ```
+			
+			VAR MaxData = MAX('CUBOS_NOVOS - RL_DW_FATO_CUBO_REBOC'[DT_OPER])
+			VAR DataMesAnterior = EOMONTH(MaxData, -1)
+			VAR AnoAnt = YEAR(DataMesAnterior)
+			VAR MesAnt = MONTH(DataMesAnterior)
+			
+			RETURN
+			CALCULATE(
+			    [Vol_Manobra], 
+			    REMOVEFILTERS('_Tempo'), 
+			    YEAR('CUBOS_NOVOS - RL_DW_FATO_CUBO_REBOC'[DT_OPER]) = AnoAnt,
+			    MONTH('CUBOS_NOVOS - RL_DW_FATO_CUBO_REBOC'[DT_OPER]) = MesAnt
+			)
+			```
+		lineageTag: 7cfd901a-014e-417d-bda4-4c528f0387fb
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Manobras_Contagem_diaria2 = ```
+			
+			// 1. Encontra a última data na base para servir de referência
+			VAR vUltimaDataFato = CALCULATE( 
+			    MAX('CUBOS_NOVOS - RL_DW_FATO_CUBO_REBOC'[DT_OPER]), 
+			    REMOVEFILTERS('CUBOS_NOVOS - RL_DW_FATO_CUBO_REBOC') 
+			)
+			VAR vMaxMes = MONTH(vUltimaDataFato)
+			VAR vMaxAno = YEAR(vUltimaDataFato)
+			VAR vMaxDia = DAY(vUltimaDataFato)
+			
+			// 2. Verifica se o usuário filtrou Ano ou Mês
+			VAR vAnoFiltrado = ISFILTERED('_Tempo'[Ano]) 
+			VAR vMesFiltrado = ISFILTERED('_Tempo'[#Mês]) 
+			
+			// 3. Guarda as seleções do usuário
+			VAR vAnosSelecionados = VALUES('_Tempo'[Ano])
+			VAR vMesesSelecionados = VALUES('_Tempo'[#Mês])
+			
+			RETURN
+			CALCULATE(
+			    [Vol_Manobra],
+			    
+			    KEEPFILTERS(
+			        FILTER(
+			            ALL('_Tempo'), 
+			            
+			            // Regra do Ano: Adicionado VALUE() para converter o texto da coluna em número
+			            (
+			                (vAnoFiltrado = TRUE() && '_Tempo'[Ano] IN vAnosSelecionados) ||
+			                (vAnoFiltrado = FALSE() && VALUE('_Tempo'[Ano]) IN {vMaxAno, vMaxAno-1, vMaxAno-2})
+			            )
+			            &&
+			            
+			            // Regra do Mês: Adicionado VALUE() para converter o texto da coluna em número
+			            (
+			                (vMesFiltrado = TRUE() && '_Tempo'[#Mês] IN vMesesSelecionados) ||
+			                (vMesFiltrado = FALSE() && VALUE('_Tempo'[#Mês]) = vMaxMes) 
+			            )
+			            &&
+			            
+			            // Trava o dia
+			            DAY('_Tempo'[data]) <= vMaxDia
+			        )
+			    )
+			)
+			```
+		formatString: 0
+		lineageTag: 0916d406-6495-4fef-a48c-ce361e4b24a5
+
+	measure _VolumeMedio_MesAtual = ```
+			
+			VAR MaxData = MAX('CUBOS_NOVOS - RL_DW_FATO_CUBO_REBOC'[DT_OPER])
+			VAR AnoMax = YEAR(MaxData)
+			VAR MesMax = MONTH(MaxData)
+			
+			RETURN
+			CALCULATE(
+			    [Média], 
+			    
+			    // 1. Remove os filtros que vieram de fora (tela)
+			    REMOVEFILTERS('_Tempo'),
+			    
+			    // 2. Aplica o filtro do Mês Máximo e Ano Máximo na TABELA DIMENSÃO (_Tempo)
+			    YEAR('_Tempo'[Data]) = AnoMax,
+			    MONTH('_Tempo'[Data]) = MesMax
+			)
+			```
+		lineageTag: eb33c0c8-6a19-4c0d-bc09-aa1be0d74c7c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _VolumeMedio_AnoAnterior = ```
+			
+			VAR MaxData = MAX('CUBOS_NOVOS - RL_DW_FATO_CUBO_REBOC'[DT_OPER])
+			
+			// Subtrai 1 do ano e mantém o mesmo mês da última carga
+			VAR AnoAnt = YEAR(MaxData) - 1
+			VAR MesAtual = MONTH(MaxData)
+			
+			RETURN
+			CALCULATE(
+			    [Média], 
+			    
+			    // 1. Limpa os filtros atuais do calendário
+			    REMOVEFILTERS('_Tempo'), 
+			    
+			    // 2. Filtra a DIMENSÃO Calendário para o mesmo mês no ano anterior
+			    YEAR('_Tempo'[Data]) = AnoAnt,
+			    MONTH('_Tempo'[Data]) = MesAtual
+			)
+			```
+		lineageTag: 252bd451-e771-481c-94f2-03110a15691e
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _VolumeMedio_YTD = ```
+			
+			VAR MaxData = MAX('CUBOS_NOVOS - RL_DW_FATO_CUBO_REBOC'[DT_OPER])
+			VAR AnoAtual = YEAR(MaxData)
+			
+			RETURN
+			CALCULATE(
+			    [Média], 
+			    // 1. Limpa qualquer filtro de Mês/Ano que venha da tela
+			    REMOVEFILTERS('_Tempo'),
+			    
+			    // 2. Filtra do início do ano até a data da última carga
+			    YEAR('_Tempo'[Data]) = AnoAtual,
+			    '_Tempo'[Data] <= MaxData
+			)
+			```
+		lineageTag: 778ad768-8fef-4bd1-a8e2-841154f3c6c9
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _VolumeMedio_PYTD = ```
+			
+			VAR MaxData = MAX('CUBOS_NOVOS - RL_DW_FATO_CUBO_REBOC'[DT_OPER])
+			VAR AnoAnterior = YEAR(MaxData) - 1
+			
+			// Calcula a data correspondente no ano passado (mesmo dia e mês)
+			VAR MaxDataAnoAnterior = DATE(AnoAnterior, MONTH(MaxData), DAY(MaxData))
+			
+			RETURN
+			CALCULATE(
+			    [Média], 
+			    REMOVEFILTERS('_Tempo'),
+			    
+			    // Filtra do início do ano anterior até o mesmo dia do ano anterior
+			    YEAR('_Tempo'[Data]) = AnoAnterior,
+			    '_Tempo'[Data] <= MaxDataAnoAnterior
+			)
+			```
+		lineageTag: 03ea5f87-bef7-4bf0-88d7-6719955447f4
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition Medidas_RI_Reb = m
+		mode: import
+		source =
+				let
+				    Fonte = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [#"Coluna 1" = _t]),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(Fonte,{{"Coluna 1", type text}}),
+				    #"Colunas Removidas" = Table.RemoveColumns(#"Tipo Alterado",{"Coluna 1"})
+				in
+				    #"Colunas Removidas"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navegação
+

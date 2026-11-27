@@ -1,0 +1,27 @@
+relationship 35035205-85c2-4d85-a1d6-f9fc25269467
+	joinOnDateBehavior: datePartOnly
+	fromColumn: dim_calendario.data
+	toColumn: LocalDateTable_ad2e8930-fcf2-43bb-b7f6-934caa42ea68.Date
+
+relationship 8a503c11-5722-ce83-23ab-230ef12e6cfc
+	fromColumn: aws_movimentacao_cntr.cod_sap
+	toColumn: aws_salesforce.codigo_sap
+
+relationship 3d173159-2c42-1903-60a2-9d1ed697e603
+	fromColumn: aws_movimentacao_cntr.cod_sap
+	toColumn: dim_gsht_carteira_comercial.CODIGO_SAP_Padronizado
+
+relationship 2225faa4-b760-b4ec-d5af-007d8ba35492
+	fromColumn: aws_movimentacao_cntr.data
+	toColumn: dim_calendario.data
+
+relationship 675d594c-725d-40b6-ad59-f232c780d430
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Medidas.data
+	toColumn: LocalDateTable_5639f38f-c8d7-4a49-8127-0ef6a7c31448.Date
+
+relationship 45eaf819-f4a9-4d62-8692-7e718f4a5412
+	joinOnDateBehavior: datePartOnly
+	fromColumn: aws_salesforce.etl_updated_at
+	toColumn: LocalDateTable_85201c9a-4214-462e-ae3d-0ffbf68d4b6c.Date
+

@@ -1,0 +1,177 @@
+table dim_calendario
+	lineageTag: 661a5eb0-b141-4f1d-9ed0-0d80b2864279
+
+	column data
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 075daf93-7960-4e34-a0dd-3345c8e73ad3
+		summarizeBy: none
+		sourceColumn: data
+
+		variation Variation
+			isDefault
+			relationship: 35035205-85c2-4d85-a1d6-f9fc25269467
+			defaultHierarchy: LocalDateTable_ad2e8930-fcf2-43bb-b7f6-934caa42ea68.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column ano_calendario
+		dataType: int64
+		formatString: 0
+		lineageTag: d169670a-275e-4a3e-9f27-d9cb5e756f42
+		summarizeBy: sum
+		sourceColumn: ano_calendario
+
+		annotation SummarizationSetBy = Automatic
+
+	column mes_ano
+		dataType: string
+		lineageTag: b039f3fd-2bc9-40cf-b025-3600028cf864
+		summarizeBy: none
+		sourceColumn: mes_ano
+
+		annotation SummarizationSetBy = Automatic
+
+	column nome_mes_pt
+		dataType: string
+		lineageTag: f46424d2-febc-4ee0-a62a-dd09fd59bbf5
+		summarizeBy: none
+		sourceColumn: nome_mes_pt
+
+		annotation SummarizationSetBy = Automatic
+
+	column nome_mes_ing
+		dataType: string
+		lineageTag: 97b3c175-83bd-49db-adf0-6750ddf3a53b
+		summarizeBy: none
+		sourceColumn: nome_mes_ing
+
+		annotation SummarizationSetBy = Automatic
+
+	column numero_mes
+		dataType: int64
+		formatString: 0
+		lineageTag: 6e3e6bb7-7877-4ea6-8d71-e565fc9d628b
+		summarizeBy: sum
+		sourceColumn: numero_mes
+
+		annotation SummarizationSetBy = Automatic
+
+	column dia_semana_pt
+		dataType: string
+		lineageTag: cc929e71-d300-4d35-a216-0aaadaa18111
+		summarizeBy: none
+		sourceColumn: dia_semana_pt
+
+		annotation SummarizationSetBy = Automatic
+
+	column dia_semana_ing
+		dataType: string
+		lineageTag: 2aa34d2d-0e8d-4090-92fd-d309e755434d
+		summarizeBy: none
+		sourceColumn: dia_semana_ing
+
+		annotation SummarizationSetBy = Automatic
+
+	column trimestre
+		dataType: int64
+		formatString: 0
+		lineageTag: 8dfe79df-df88-4753-b975-ade69f051451
+		summarizeBy: sum
+		sourceColumn: trimestre
+
+		annotation SummarizationSetBy = Automatic
+
+	column dia_util
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: f8fb3052-5dfb-41da-94bd-59d76763ded0
+		summarizeBy: none
+		sourceColumn: dia_util
+
+		annotation SummarizationSetBy = Automatic
+
+	column nome_mes_abrevado_pt
+		dataType: string
+		lineageTag: cdd77cd2-4db4-402a-84e8-05cf9510012b
+		summarizeBy: none
+		sourceColumn: nome_mes_abrevado_pt
+		sortByColumn: numero_mes
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column nome_mes_abreviado_ing
+		dataType: string
+		lineageTag: d0b940f6-73cf-4b7e-bf6b-09fd847965a5
+		summarizeBy: none
+		sourceColumn: nome_mes_abreviado_ing
+		sortByColumn: numero_mes
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column eh_ate_mes_anterior
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: e373e549-bbc7-4359-8dae-c9deb4b0f34f
+		summarizeBy: none
+		sourceColumn: eh_ate_mes_anterior
+
+		annotation SummarizationSetBy = Automatic
+
+	column dia_invertido
+		dataType: int64
+		formatString: 0
+		lineageTag: 6323a078-2d90-4c07-ad49-8368871d79b8
+		summarizeBy: sum
+		sourceColumn: dia_invertido
+
+		annotation SummarizationSetBy = Automatic
+
+	column dia_do_mes
+		dataType: int64
+		formatString: 0
+		lineageTag: 8cc18104-f0f6-4f3e-9307-c247bc97535f
+		summarizeBy: sum
+		sourceColumn: dia_do_mes
+
+		annotation SummarizationSetBy = Automatic
+
+	column semana_do_ano
+		dataType: int64
+		formatString: 0
+		lineageTag: 3fcfc069-e531-435b-998e-45140fd2ea0d
+		summarizeBy: sum
+		sourceColumn: semana_do_ano
+
+		annotation SummarizationSetBy = Automatic
+
+	column ano_semana
+		dataType: string
+		lineageTag: 01ea375f-7431-44a5-ba20-304f05891e1a
+		summarizeBy: none
+		sourceColumn: ano_semana
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_calendario = m
+		mode: import
+		source =
+				let
+				    Fonte = PowerPlatform.Dataflows(null),
+				    Workspaces = Fonte{[Id="Workspaces"]}[Data],
+				    #"8c5cc8ba-ed75-4d39-9606-af9ead89ca36" = Workspaces{[workspaceId="8c5cc8ba-ed75-4d39-9606-af9ead89ca36"]}[Data],
+				    #"e4b7fa7c-8c0b-454a-96d9-23c7b2f411ae" = #"8c5cc8ba-ed75-4d39-9606-af9ead89ca36"{[dataflowId="e4b7fa7c-8c0b-454a-96d9-23c7b2f411ae"]}[Data],
+				    Dim_calendario_ = #"e4b7fa7c-8c0b-454a-96d9-23c7b2f411ae"{[entity="Dim_calendario",version=""]}[Data]
+				in
+				    Dim_calendario_
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

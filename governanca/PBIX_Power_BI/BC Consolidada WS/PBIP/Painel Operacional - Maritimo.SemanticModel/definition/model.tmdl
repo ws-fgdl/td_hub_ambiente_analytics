@@ -1,0 +1,39 @@
+model Model
+	culture: pt-BR
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: pt-BR
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+/// Erros nas consultas que foram carregadas em 30/08/2024 14:59:51.
+queryGroup 'Erros na Consulta - 30/08/2024 14:59:51'
+
+	annotation PBI_QueryGroupOrder = 0
+
+annotation PBI_QueryOrder = ["Medidas_RI_Reb","DirectQuery para AS – Modelo Rebocadores"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table Medidas_RI_Reb
+ref table Paine_RI_PT_competencia
+ref table Paine_RI_ENG_competencia
+ref table Paine_RI_ENG_DataFim
+ref table Paine_RI_PT_DataFim
+ref table _Tempo
+ref table 'CUBOS_NOVOS - RL_DW_DIM_FILIAL'
+ref table 'CUBOS_NOVOS - RL_DW_DIM_GRUPO_DONO_MANOBRA'
+ref table 'CUBOS_NOVOS - RL_DW_DIM_GRUPO_OPERADOR'
+ref table 'CUBOS_NOVOS - RL_DW_FATO_CUBO_REBOC'
+ref table 'CUBOS_NOVOS - RL_DW_DIM_DIV_COMERCIAL'
+ref table 'CUBOS_NOVOS - RL_DW_DIM_GRUPO_CLIENTE'
+ref table 'Volume Próprio e Terceiros e Perfil Afretamento - Competencia'
+ref table 'Volume Próprio e Terceiros e Perfil Afretamento - Perfil Afretamento'
+ref table 'Volume Próprio e Terceiros e Perfil Afretamento - Prop_Terc'
+ref table 'Volume Próprio e Terceiros e Perfil Afretamento - Volume'
+ref table Dim_FaixaDWT
+
+ref cultureInfo pt-BR
+

@@ -1,0 +1,170 @@
+table Medidas_BC_Consolidada
+	lineageTag: c7d5f5cb-7103-4f54-a909-3af1c1e32954
+	sourceLineageTag: 69686ca9-d3c2-4a2a-bb48-5b9e351e8b4c
+
+	measure FaturamentoUSD = EXTERNALMEASURE("FaturamentoUSD", DOUBLE, "DirectQuery para AS – MS_Bussola_Comercial_Consolidada")
+		lineageTag: 33b08968-5e51-4a21-81cf-0596f07664ef
+		sourceLineageTag: 923ae28f-8c06-4244-b7fd-9a17b687af19
+		dataCategory: Uncategorized
+
+	measure FaturamentoBRL = EXTERNALMEASURE("FaturamentoBRL", DOUBLE, "DirectQuery para AS – MS_Bussola_Comercial_Consolidada")
+		lineageTag: bcb40045-09a7-4345-9e08-ce48b0e87519
+		sourceLineageTag: 684f0d29-a455-48da-b7ff-60082ebf7623
+		dataCategory: Uncategorized
+
+	measure VolumeServico = EXTERNALMEASURE("VolumeServico", DOUBLE, "DirectQuery para AS – MS_Bussola_Comercial_Consolidada")
+		formatString: #,0
+		lineageTag: ceed32c9-855d-489b-a403-fbf29e8ed59a
+		sourceLineageTag: cf2347c6-9d13-4578-ad9a-d0f58d8d30f1
+		dataCategory: Uncategorized
+
+	measure VolumeContainer = EXTERNALMEASURE("VolumeContainer", INTEGER, "DirectQuery para AS – MS_Bussola_Comercial_Consolidada")
+		formatString: #,0
+		lineageTag: 64088978-aa21-407e-84ac-c7e70783087d
+		sourceLineageTag: 89eebe21-6878-4220-815c-00f1aea73f45
+		dataCategory: Uncategorized
+
+	measure Ticket_TER_Dinamico = EXTERNALMEASURE("Ticket_TER_Dinamico", DOUBLE, "DirectQuery para AS – MS_Bussola_Comercial_Consolidada")
+		lineageTag: b55bce24-0673-4088-8430-8a362c140ef4
+		sourceLineageTag: 85a4bcf3-940d-4ae1-9292-200b55071fdc
+		dataCategory: Uncategorized
+
+	measure Filtro_UN_por_Volume = EXTERNALMEASURE("Filtro_UN_por_Volume", INTEGER, "DirectQuery para AS – MS_Bussola_Comercial_Consolidada")
+		formatString: 0
+		lineageTag: 7099ecee-642e-40a2-85cc-dd403fb5f4c7
+		sourceLineageTag: e611000b-59b8-447c-9b51-e7042cdad3e4
+		dataCategory: Uncategorized
+
+	measure Filtro_flag_Volume = EXTERNALMEASURE("Filtro_flag_Volume", INTEGER, "DirectQuery para AS – MS_Bussola_Comercial_Consolidada")
+		formatString: 0
+		lineageTag: a583d98b-ccf7-4820-9583-35e5bf690adc
+		sourceLineageTag: 83b905b1-2229-4681-a568-2ff5560df9df
+		dataCategory: Uncategorized
+
+	measure %_CAR_sobre_Fat = EXTERNALMEASURE("%_CAR_sobre_Fat", DOUBLE, "DirectQuery para AS – MS_Bussola_Comercial_Consolidada")
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 550b88ce-9b69-4ce9-beaa-276cda509799
+		sourceLineageTag: 3c5f5bea-c0ed-4e53-b6f3-d8137e8961d6
+		dataCategory: Uncategorized
+
+	measure blank = EXTERNALMEASURE("blank", INTEGER, "DirectQuery para AS – MS_Bussola_Comercial_Consolidada")
+		formatString: 0
+		lineageTag: a677da5a-bb82-4676-b2d3-7b7ad3dfcecc
+		sourceLineageTag: e92052a9-1c23-4320-8f09-034c8b823ab8
+		dataCategory: Uncategorized
+
+	measure Faturamento_YTD = EXTERNALMEASURE("Faturamento_YTD", DOUBLE, "DirectQuery para AS – MS_Bussola_Comercial_Consolidada")
+		formatString: #,0
+		lineageTag: 3f6ac511-3579-4afc-b55c-a8a84b481e34
+		sourceLineageTag: 4b0b605b-6e4c-496f-a0b4-e18b2a1d00e0
+		dataCategory: Uncategorized
+
+	measure Faturamento_YTD_AnoAnterior = EXTERNALMEASURE("Faturamento_YTD_AnoAnterior", DOUBLE, "DirectQuery para AS – MS_Bussola_Comercial_Consolidada")
+		formatString: #,0
+		lineageTag: 06217339-e4f5-4d39-a0bf-28d2fd41b58a
+		sourceLineageTag: e43a4ad4-9d20-4725-a665-7a37dbae84ac
+		dataCategory: Uncategorized
+
+	measure Faturamento_YTD_AnoAtual = EXTERNALMEASURE("Faturamento_YTD_AnoAtual", DOUBLE, "DirectQuery para AS – MS_Bussola_Comercial_Consolidada")
+		formatString: #,0
+		lineageTag: 1439e4dc-1d00-42e2-ad28-4f68b6fff681
+		sourceLineageTag: ea996b3a-90c9-4cb5-b2de-e9d238d68991
+		dataCategory: Uncategorized
+
+	measure Legenda_AnoAnterior = EXTERNALMEASURE("Legenda_AnoAnterior", STRING, "DirectQuery para AS – MS_Bussola_Comercial_Consolidada")
+		lineageTag: 39d323cc-8b15-4302-a8a1-8225dadae713
+		sourceLineageTag: 8079bcbf-e4e1-4383-86c4-f3fe1b679f57
+		dataCategory: Uncategorized
+
+	measure Legenda_AnoAtual = EXTERNALMEASURE("Legenda_AnoAtual", STRING, "DirectQuery para AS – MS_Bussola_Comercial_Consolidada")
+		lineageTag: aa957b78-8f0c-4723-8e6b-e046109a4f46
+		sourceLineageTag: dd0cbf32-e2d0-403e-8506-e309b368f666
+		dataCategory: Uncategorized
+
+	measure PMI_AVG = EXTERNALMEASURE("PMI_AVG", DOUBLE, "DirectQuery para AS – MS_Bussola_Comercial_Consolidada")
+		lineageTag: bb8b3bfc-8fcf-4f42-92d2-ce2962fa0f26
+		sourceLineageTag: c43a7cd8-0da8-4503-b699-5aab1fd164da
+		dataCategory: Uncategorized
+
+	measure PMR_AVG = EXTERNALMEASURE("PMR_AVG", DOUBLE, "DirectQuery para AS – MS_Bussola_Comercial_Consolidada")
+		lineageTag: 82504ee0-d0c8-46b5-bb57-3ee4227e19d1
+		sourceLineageTag: 1499b581-773c-41c7-ad82-375993f407b0
+		dataCategory: Uncategorized
+
+	measure Ranking_Historico = EXTERNALMEASURE("Ranking_Historico", INTEGER, "DirectQuery para AS – MS_Bussola_Comercial_Consolidada")
+		formatString: 0
+		lineageTag: 37aeb87e-715a-4d70-8f62-00ba012f637d
+		sourceLineageTag: e75c2ebd-9081-4e02-9259-ccb2bcba51d0
+		dataCategory: Uncategorized
+
+	measure Ticket_Medio_YTD = EXTERNALMEASURE("Ticket_Medio_YTD", DOUBLE, "DirectQuery para AS – MS_Bussola_Comercial_Consolidada")
+		formatString: #,0
+		lineageTag: 6e083a45-e1db-4303-9872-95d2722ec1a3
+		sourceLineageTag: 0837c38d-f182-4f5b-b7d2-8412d3d100db
+		dataCategory: Uncategorized
+
+	measure PMV_AVG = EXTERNALMEASURE("PMV_AVG", DOUBLE, "DirectQuery para AS – MS_Bussola_Comercial_Consolidada")
+		lineageTag: 80d06fbc-1bfc-41a9-97b9-7ced14766604
+		sourceLineageTag: c900ca08-b73e-488b-a623-ad5cbc947295
+		dataCategory: Uncategorized
+
+	measure Val_montante_interno_vencido = EXTERNALMEASURE("Val_montante_interno_vencido", DOUBLE, "DirectQuery para AS – MS_Bussola_Comercial_Consolidada")
+		formatString: #,0
+		lineageTag: 5e9a1b4c-a0f4-4fa5-9615-2ff29faac060
+		sourceLineageTag: e535d42c-51be-4271-b360-6ad4c63efd44
+		dataCategory: Uncategorized
+
+	measure Variacao_Faturamenrto_YTM = EXTERNALMEASURE("Variacao_Faturamenrto_YTM", DOUBLE, "DirectQuery para AS – MS_Bussola_Comercial_Consolidada")
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 9d5eb783-2168-43f4-b3b8-1b165b44b88e
+		sourceLineageTag: a6145927-a17e-45fd-b556-cab23d2e2479
+		dataCategory: Uncategorized
+
+	measure Volume_YTD = EXTERNALMEASURE("Volume_YTD", DOUBLE, "DirectQuery para AS – MS_Bussola_Comercial_Consolidada")
+		formatString: #,0
+		lineageTag: 0da89596-92ca-4af2-8908-237a09b8a7d8
+		sourceLineageTag: e2313813-27b4-4a2d-bd1d-a0ddb4894030
+		dataCategory: Uncategorized
+
+	measure Volume_YTD_AnoAnterior = EXTERNALMEASURE("Volume_YTD_AnoAnterior", DOUBLE, "DirectQuery para AS – MS_Bussola_Comercial_Consolidada")
+		formatString: #,0
+		lineageTag: e9ca433d-c087-477c-b41c-3b7aa44fbe66
+		sourceLineageTag: d5a21b96-baca-4411-aabd-79be28ca3aa5
+		dataCategory: Uncategorized
+
+	measure Volume_YTD_AnoAtual = EXTERNALMEASURE("Volume_YTD_AnoAtual", DOUBLE, "DirectQuery para AS – MS_Bussola_Comercial_Consolidada")
+		formatString: #,0
+		lineageTag: 716d574d-6607-4a07-95d1-842de060616a
+		sourceLineageTag: 27a03513-8168-4361-8403-c105fba693b0
+		dataCategory: Uncategorized
+
+	measure Δ_Faturamento_YTD = EXTERNALMEASURE("Δ_Faturamento_YTD", DOUBLE, "DirectQuery para AS – MS_Bussola_Comercial_Consolidada")
+		formatString: #,0%;-#,0%;#,0%
+		lineageTag: 4febd3a3-b3e8-4bc8-a81a-7195c14ed208
+		sourceLineageTag: 3e871920-419b-4922-b996-f6640e8f8f1b
+		dataCategory: Uncategorized
+
+	measure Δ_Volume_YTD = EXTERNALMEASURE("Δ_Volume_YTD", DOUBLE, "DirectQuery para AS – MS_Bussola_Comercial_Consolidada")
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 9fb852f9-7c35-4d33-b4e3-fd6f9d682b42
+		sourceLineageTag: 1ef5229e-3404-4780-b0fc-120adfe5b021
+		dataCategory: Uncategorized
+
+	measure Variacao_Volume_YTM = EXTERNALMEASURE("Variacao_Volume_YTM", DOUBLE, "DirectQuery para AS – MS_Bussola_Comercial_Consolidada")
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: d124326b-60cb-4e03-bfdf-22fc5e0d2aab
+		sourceLineageTag: 832c554a-5e72-49ab-a5d8-3b6fb3949082
+		dataCategory: Uncategorized
+
+	measure Val_montante_transacao_vencido = EXTERNALMEASURE("Val_montante_transacao_vencido", DOUBLE, "DirectQuery para AS – MS_Bussola_Comercial_Consolidada")
+		formatString: #,0
+		lineageTag: 8e677604-ef42-44c3-b842-a06eae6899b6
+		sourceLineageTag: 129a795b-8a4a-4ce2-8d84-1fcde2a40e9c
+		dataCategory: Uncategorized
+
+	partition Medidas_BC_Consolidada = entity
+		mode: directQuery
+		source
+			entityName: Medidas_BC_Consolidada
+			expressionSource: 'DirectQuery para AS – MS_Bussola_Comercial_Consolidada'
+

@@ -1,0 +1,23 @@
+expression 'Erros em aws_bussola_comercial_mar' =
+		let
+		Fonte = aws_bussola_comercial_mar,
+		  #"Incompatibilidades de Tipo Detectadas" = let
+		    tableWithOnlyPrimitiveTypes = Table.SelectColumns(Fonte, Table.ColumnsOfType(Fonte, {type nullable number, type nullable text, type nullable logical, type nullable date, type nullable datetime, type nullable datetimezone, type nullable time, type nullable duration})),
+		    recordTypeFields = Type.RecordFields(Type.TableRow(Value.Type(tableWithOnlyPrimitiveTypes))),
+		    fieldNames = Record.FieldNames(recordTypeFields),
+		    fieldTypes = List.Transform(Record.ToList(recordTypeFields), each [Type]),
+		    pairs = List.Transform(List.Positions(fieldNames), (i) => {fieldNames{i}, (v) => if v = null or Value.Is(v, fieldTypes{i}) then v else error [Message = "O tipo do valor não corresponde ao tipo da coluna.", Detail = v], fieldTypes{i}})
+		in
+		    Table.TransformColumns(Fonte, pairs),
+		  #"Índice Adicionado" = Table.AddIndexColumn(#"Incompatibilidades de Tipo Detectadas", "Número da Linha" ,1),
+		  #"Erros Mantidos" = Table.SelectRowsWithErrors(#"Índice Adicionado", {"origem", "os", "data_do_inicio_do_evento", "inicio_operacao", "fim_operacao", "data_do_fim_do_evento", "tipo_doc", "n_doc_nf", "contrato_em_qual_moeda", "competencia", "filial", "operador", "dono_manobra", "navio", "servico", "rebocador", "cliente", "grupo_economico", "commodity", "categoria", "valor_faturado_usd", "valor_faturado_brl", "volume", "oper_especial_seq_id", "op_especial", "faixa_dwt", "valor_nd_usd", "valor_nd_real", "porto", "cliente_sap", "dwt", "regional", "portcall", "divisao", "valor_tab_ref_dolar", "valor_desc_ref_dolar", "valor_tif", "un", "duracao", "duracao_em_segundos", "duracao_em_horas", "remuneracao_hora_brl", "remuneracao_hora_usd", "manobra_especial", "imo", "faixa_dwt_min", "faixa_dwt_max", "cobrar_de", "cobrar_de_sap", "Faixa_dwt_padronizada", "Ordenar_faixa_dwt", "media_faixa_dwt", "data_do_inicio_do_evento_tratado", "data_do_fim_do_evento_tratado", "date_fim_evento"}),
+		  #"Colunas Reordenadas" = Table.ReorderColumns(#"Erros Mantidos", {"Número da Linha", "origem", "os", "data_do_inicio_do_evento", "inicio_operacao", "fim_operacao", "data_do_fim_do_evento", "tipo_doc", "n_doc_nf", "contrato_em_qual_moeda", "competencia", "filial", "operador", "dono_manobra", "navio", "servico", "rebocador", "cliente", "grupo_economico", "commodity", "categoria", "valor_faturado_usd", "valor_faturado_brl", "volume", "oper_especial_seq_id", "op_especial", "faixa_dwt", "valor_nd_usd", "valor_nd_real", "porto", "cliente_sap", "dwt", "regional", "portcall", "divisao", "valor_tab_ref_dolar", "valor_desc_ref_dolar", "valor_tif", "un", "duracao", "duracao_em_segundos", "duracao_em_horas", "remuneracao_hora_brl", "remuneracao_hora_usd", "manobra_especial", "imo", "faixa_dwt_min", "faixa_dwt_max", "cobrar_de", "cobrar_de_sap", "Faixa_dwt_padronizada", "Ordenar_faixa_dwt", "media_faixa_dwt", "data_do_inicio_do_evento_tratado", "data_do_fim_do_evento_tratado", "date_fim_evento"})
+		in
+		  #"Colunas Reordenadas"
+	lineageTag: a82a0942-ab09-49f3-9f27-7ceff6a38570
+	queryGroup: 'Erros na Consulta - 26/08/2025 17:08:53'
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

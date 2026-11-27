@@ -1,0 +1,31 @@
+model Model
+	culture: pt-BR
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: pt-BR
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+/// Erros nas consultas que foram carregadas em 30/08/2024 14:59:51.
+queryGroup 'Erros na Consulta - 30/08/2024 14:59:51'
+
+	annotation PBI_QueryGroupOrder = 0
+
+annotation PBI_QueryOrder = ["Medidas","aws_movimentacao_cntr","aws_salesforce","dim_calendario","dim_gsht_carteira_comercial"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table Medidas
+ref table aws_movimentacao_cntr
+ref table DateTableTemplate_3d349bf4-80e0-4010-9594-c8d3e5ecd49b
+ref table aws_salesforce
+ref table dim_calendario
+ref table LocalDateTable_ad2e8930-fcf2-43bb-b7f6-934caa42ea68
+ref table dim_gsht_carteira_comercial
+ref table LocalDateTable_5639f38f-c8d7-4a49-8127-0ef6a7c31448
+ref table LocalDateTable_85201c9a-4214-462e-ae3d-0ffbf68d4b6c
+
+ref cultureInfo pt-BR
+

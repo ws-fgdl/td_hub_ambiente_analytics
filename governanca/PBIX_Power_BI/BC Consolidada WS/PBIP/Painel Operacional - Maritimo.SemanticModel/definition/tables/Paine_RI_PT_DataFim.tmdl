@@ -1,0 +1,109 @@
+table Paine_RI_PT_DataFim
+	lineageTag: f7fd0232-c7a2-480d-bb8c-564968b413c5
+
+	measure Vol_e_Dwt_AnoAnterior_DataFim =
+			
+			IF(
+			    SELECTEDVALUE(Paine_RI_PT_DataFim[Rebocadores]) = "Manobras Portuárias",
+			    [Volume_Manobra_Mes_Atual_AnoAnterior_DataFim],
+			    [DwtMedio_Mes_Atual_AnoAnterior_DataFim]
+			)
+		lineageTag: 9dd9d4d9-fc97-4a93-b46e-77ced8d06951
+
+		formatStringDefinition =
+				IF(
+				    SELECTEDVALUE(Paine_RI_PT_DataFim[Rebocadores]) = "Manobras Portuárias",
+				    "#,##0",     // Formato inteiro (sem casas decimais)
+				    "#,##0.00"   // Formato decimal (com 2 casas decimais)
+				)
+
+	measure Vol_e_Dwt_AnoAtual_DataFim =
+			
+			IF(
+			    SELECTEDVALUE(Paine_RI_PT_DataFim[Rebocadores]) = "Manobras Portuárias",
+			    [Volume_Manobra_Atual_DataFim],
+			    [DwtMedio_Mes_Atual_DataFim]
+			)
+		lineageTag: afd74fcf-71d6-4563-80ee-8acf4d955e6b
+
+		formatStringDefinition =
+				IF(
+				    SELECTEDVALUE(Paine_RI_PT_DataFim[Rebocadores]) = "Manobras Portuárias",
+				    "#,##0",     // Formato inteiro (sem casas decimais)
+				    "#,##0.00"   // Formato decimal (com 2 casas decimais)
+				)
+
+	measure Vol_YTM_AnoAnterior_DataFim =
+			
+			IF(
+			    SELECTEDVALUE(Paine_RI_PT_DataFim[Rebocadores]) = "Manobras Portuárias",
+			    [Vol_Manobra_Acumulado_YTM_Anterior_DataFim],
+			    [Media_Dwt_Acumulado_YTM_Anterior_DataFim]
+			)
+		lineageTag: efaf43b9-6d14-47ff-b13e-9448ce7921ec
+
+		formatStringDefinition =
+				IF(
+				    SELECTEDVALUE(Paine_RI_PT_DataFim[Rebocadores]) = "Manobras Portuárias",
+				    "#,##0",     // Formato inteiro (sem casas decimais)
+				    "#,##0.00"   // Formato decimal (com 2 casas decimais)
+				)
+
+	measure Vol_YTM_AnoAtual_DataFim =
+			
+			IF(
+			    SELECTEDVALUE(Paine_RI_PT_DataFim[Rebocadores]) = "Manobras Portuárias",
+			    [Vol_Manobra_Acumulado_YTM_DataFim],
+			    [Media_Dwt_Acumulado_YTM_DataFim]
+			)
+		lineageTag: 3e61325f-71f8-4034-803b-7516c31f9661
+
+		formatStringDefinition =
+				IF(
+				    SELECTEDVALUE(Paine_RI_PT_DataFim[Rebocadores]) = "Manobras Portuárias",
+				    "#,##0",     // Formato inteiro (sem casas decimais)
+				    "#,##0.00"   // Formato decimal (com 2 casas decimais)
+				)
+
+	measure Δ_YTD_DataFim =
+			
+			IF(
+			    SELECTEDVALUE(Paine_RI_PT_DataFim[Rebocadores]) = "Manobras Portuárias",
+			    [Δ_Volume_Manobra_YTD_DataFim],
+			    [Δ_Media_Dwt_YTD_DataFim]
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 5f7a733d-6f7d-4537-a27b-063c1f898377
+
+	measure Δ_YTM_DataFim =
+			
+			IF(
+			    SELECTEDVALUE(Paine_RI_PT_DataFim[Rebocadores]) = "Manobras Portuárias",
+			    [Δ_Volume_Manobra_YTM_dataFim],
+			    [Δ_Media_Dwt_YTM_DataFim]
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: d1a61297-f652-4996-a30a-12b260d79c6b
+
+	column Rebocadores
+		lineageTag: f6959e86-d49b-495d-86da-8e39a28d9791
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Rebocadores]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Paine_RI_PT_DataFim = calculated
+		mode: import
+		source =
+				
+				DATATABLE(
+				    "Rebocadores", STRING,
+				    {
+				        {"Manobras Portuárias"},
+				        {"DWT Média Atendido"}
+				    }
+				)
+
+	annotation PBI_Id = 73586dbbe5614cacbfa0e31d1a84bb96
+

@@ -1,0 +1,111 @@
+table Paine_RI_ENG_competencia
+	lineageTag: 03d0648d-5d7e-4b26-b32d-20a4e3c04e1d
+
+	measure Vol_e_Dwt_Atual_ENG =
+			
+			IF(
+			    SELECTEDVALUE(Paine_RI_ENG_competencia[Tugboats]) = "Port Manoeuvre",
+			    [Volume_Manobra_Atual],
+			    [DwtMedio_Mes_Atual]
+			)
+		lineageTag: 4c35e8dd-ea86-4a4f-99b4-9298fdecf125
+
+		formatStringDefinition =
+				IF(
+				    SELECTEDVALUE(Paine_RI_ENG_competencia[Tugboats]) = "Port Manoeuvre",
+				    "#,##0",     // Formato inteiro (sem casas decimais)
+				    "#,##0"   // Formato decimal (com 2 casas decimais)
+				)
+
+	measure Vol_e_Dwt_AnoAnterior_ENG =
+			
+			IF(
+			    SELECTEDVALUE(Paine_RI_ENG_competencia[Tugboats]) = "Port Manoeuvre",
+			    [Volume_Manobra_Mes_Atual_AnoAnterior],
+			    [DwtMedio_Mes_Atual_AnoAnterior]
+			)
+		lineageTag: 7f7477de-89e6-4903-ae42-5a91cb38b6b9
+
+		formatStringDefinition =
+				IF(
+				    SELECTEDVALUE(Paine_RI_ENG_competencia[Tugboats]) = "Port Manoeuvre",
+				    "#,##0",     // Formato inteiro (sem casas decimais)
+				    "#,##0"   // Formato decimal (com 2 casas decimais)
+				)
+
+	measure Vol_YTD_AnoAtual_ENG =
+			
+			IF(
+			    SELECTEDVALUE(Paine_RI_ENG_competencia[Tugboats]) = "Port Manoeuvre",
+			    [Vol_Manobra_Acumulado_YTM],
+			    [Media_Dwt_Acumulado_YTM]
+			)
+		lineageTag: 8789b320-5062-4829-a570-7686eb4706e5
+
+		formatStringDefinition = ```
+				IF(
+				    SELECTEDVALUE(Paine_RI_ENG_competencia[Tugboats]) = "Port Manoeuvre",
+				    "#,##0",    
+				    "#,##0"  
+				)
+				```
+
+	measure Vol_YTD_AnoAnterior_ENG =
+			
+			IF(
+			    SELECTEDVALUE(Paine_RI_ENG_competencia[Tugboats]) = "Port Manoeuvre",
+			    [Vol_Manobra_Acumulado_YTM_Anterior],
+			    [Media_Dwt_Acumulado_YTM_Anterior]
+			)
+		lineageTag: 67a677db-d4b1-46a5-a76a-bf91e1e796c4
+
+		formatStringDefinition = ```
+				IF(
+				    SELECTEDVALUE(Paine_RI_ENG_competencia[Tugboats]) = "Port Manoeuvre",
+				    "#,##0",     
+				    "#,##0"  
+				)
+				```
+
+	measure Δ_YTD_ENG =
+			
+			IF(
+			    SELECTEDVALUE(Paine_RI_ENG_competencia[Tugboats]) = "Port Manoeuvre",
+			    [Δ_Volume_Manobra_YTD],
+			    [Δ_Media_Dwt_YTD]
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 72f0b306-baec-43cd-8a2f-9a9a16b335b7
+
+	measure Δ_YTM_ENG =
+			
+			IF(
+			    SELECTEDVALUE(Paine_RI_ENG_competencia[Tugboats]) = "Port Manoeuvre",
+			    [Δ_Volume_Manobra_YTM],
+			    [Δ_Media_Dwt_YTM]
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 15a29e92-9370-4c9b-b668-fea1605d9d29
+
+	column Tugboats
+		lineageTag: 2caa8bd3-0a50-48da-ace5-f3cdc06c8d56
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Tugboats]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Paine_RI_ENG_competencia = calculated
+		mode: import
+		source =
+				
+				DATATABLE(
+				    "Tugboats", STRING,
+				    {
+				        {"Port Manoeuvre"},
+				        {"Avg DWT Served"}
+				    }
+				)
+
+	annotation PBI_Id = d6972c70ab1a41b08ccab082f081efbc
+

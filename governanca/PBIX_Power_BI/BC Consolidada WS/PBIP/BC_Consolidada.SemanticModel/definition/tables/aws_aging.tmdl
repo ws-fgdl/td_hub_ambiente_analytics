@@ -1,0 +1,462 @@
+table aws_aging
+	lineageTag: 11c57de8-5bb3-4ab9-a405-a0efcc6995fa
+	sourceLineageTag: c7e8a7e2-1fc5-4e49-96a2-04b2cd51612b
+
+	column partida_aberta_compen_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 0491981f-05f6-4b34-9280-68cfc258bcdc
+		sourceLineageTag: 6b615303-855d-4cd1-9e69-20d2ba90d6cd
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: partida_aberta_compen_id
+
+		annotation SummarizationSetBy = User
+
+	column cod_empresa_sap
+		dataType: string
+		lineageTag: 68986e93-4bf6-4bac-a74a-0645f75daa45
+		sourceLineageTag: 8d807343-ba0a-4952-a96d-589f1d756969
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: cod_empresa_sap
+
+		annotation SummarizationSetBy = User
+
+	column cod_estab_sap
+		dataType: string
+		lineageTag: b4597c3d-54c2-43b9-bfec-70a8d8db471b
+		sourceLineageTag: 91e0097e-fd93-4442-9dd9-da79814ca9e9
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: cod_estab_sap
+
+		annotation SummarizationSetBy = User
+
+	column cod_cliente_sap
+		dataType: string
+		lineageTag: a1772345-1362-425f-82dc-6891d5ad7042
+		sourceLineageTag: f51c3e3e-1dcb-482f-b521-89b528cfb04d
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: cod_cliente_sap
+
+		annotation SummarizationSetBy = User
+
+	column cod_referencia_mi
+		dataType: string
+		lineageTag: 8ef56392-ccf3-4847-92f9-150038f55361
+		sourceLineageTag: e71eac5d-8e95-4d20-b8f9-4268590dd39b
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: cod_referencia_mi
+
+		annotation SummarizationSetBy = User
+
+	column num_doc_contab_sap
+		dataType: string
+		lineageTag: ebe94238-a586-4193-93dc-78353f2adc53
+		sourceLineageTag: 7ba2906c-22f5-413a-ab59-4aa437c34d73
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: num_doc_contab_sap
+
+		annotation SummarizationSetBy = User
+
+	column num_ano_exerc
+		dataType: double
+		lineageTag: 3cfc947d-d1e9-4d4a-b57d-f164e2d68309
+		sourceLineageTag: 3ca066d6-8759-4977-a466-1fefee12fd6c
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: num_ano_exerc
+
+		annotation SummarizationSetBy = User
+
+	column num_linha_lanc
+		dataType: int64
+		formatString: 0
+		lineageTag: ae766a14-6a12-4934-a4bb-e453469888a6
+		sourceLineageTag: 9d83d00c-f0f8-45a3-ae1b-89cd6dfa3090
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: num_linha_lanc
+
+		annotation SummarizationSetBy = User
+
+	column dat_lancamento
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: aea727b7-629b-47b7-aeaf-88df5fb65558
+		sourceLineageTag: bac33fde-3b34-404d-b6e6-ad9f08bbdef6
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: dat_lancamento
+
+		variation Variation
+			isDefault
+			relationship: 7e2fbe24-cd0b-4ba9-bd3e-f09fcc519912
+			defaultHierarchy: LocalDateTable_4cee1eca-ac20-4431-99da-6cb54c68acf3.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = User
+
+	column dat_documento
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: da9caa97-589a-4032-bed4-3badc5c3ebe0
+		sourceLineageTag: e5999724-2701-43d3-8961-ca830b43e3bc
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: dat_documento
+
+		variation Variation
+			isDefault
+			relationship: 7aa11cf9-4ecd-4e79-9636-1831c81bfab5
+			defaultHierarchy: LocalDateTable_4d2b2e2c-26fe-4252-8bcc-328baa49b011.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = User
+
+	column tip_moeda
+		dataType: string
+		lineageTag: cc1b2ae2-ddb0-4a71-a21b-eae86ab39430
+		sourceLineageTag: 76b13292-f79e-4d22-badb-19093f319b61
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: tip_moeda
+
+		annotation SummarizationSetBy = User
+
+	column num_referencia
+		dataType: string
+		lineageTag: e0d5706f-5b0b-415d-9fe9-4317cf219fd0
+		sourceLineageTag: 08f2d2a2-aa14-40e7-8693-9f97cb275ca4
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: num_referencia
+
+		annotation SummarizationSetBy = User
+
+	column tip_doc
+		dataType: string
+		lineageTag: 6b35278b-1677-47ff-94d8-5d400798de24
+		sourceLineageTag: 2100a71e-00a2-4e34-ba93-10709d0d7afe
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: tip_doc
+
+		annotation SummarizationSetBy = User
+
+	column dat_vencimento
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 104d6b47-c1fa-4355-b27d-e37451c4da45
+		sourceLineageTag: 3ce0a1a4-fc39-438a-bf6a-9bf841ed3c95
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: dat_vencimento
+
+		annotation SummarizationSetBy = User
+
+	column val_montante_interno
+		dataType: double
+		lineageTag: 6efd54df-32c2-40f1-af57-7671bc5057ab
+		sourceLineageTag: d2d43dff-7f0b-4305-bbdc-44ce0a0dbd8a
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: val_montante_interno
+
+		annotation SummarizationSetBy = User
+
+	column val_montante_transacao
+		dataType: double
+		lineageTag: 79e42759-5acc-43ac-a4a7-2b06bcb4d268
+		sourceLineageTag: 87800514-1578-483c-b821-d1925f68d8fa
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: val_montante_transacao
+
+		annotation SummarizationSetBy = User
+
+	column num_doc_faturamento
+		dataType: string
+		lineageTag: 1d00054a-08e2-45ae-9f96-83baf718adda
+		sourceLineageTag: 5404f4a0-d685-437b-9802-9bcb3a9dad25
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: num_doc_faturamento
+
+		annotation SummarizationSetBy = User
+
+	column ch_refer_banc2
+		dataType: string
+		lineageTag: dd4f992e-a965-4ae7-bc19-bc8cece45c93
+		sourceLineageTag: d954f9d9-ba9a-47f1-b816-21a483a3fefe
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: ch_refer_banc2
+
+		annotation SummarizationSetBy = User
+
+	column ch_refer_banc3
+		dataType: string
+		lineageTag: 678c3397-fd30-4f42-af54-b36f5898891d
+		sourceLineageTag: 60d201ea-caa4-4044-b85f-adb31147c14e
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: ch_refer_banc3
+
+		annotation SummarizationSetBy = User
+
+	column ch_refer_banc4
+		dataType: string
+		lineageTag: 68c95e3b-d4db-4bd1-92d1-29490c19abaa
+		sourceLineageTag: 2f2b908b-85e9-49c4-8e20-d7cd5d9b1ecf
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: ch_refer_banc4
+
+		annotation SummarizationSetBy = User
+
+	column cod_banco_empresa
+		dataType: string
+		lineageTag: 3668fd18-d1ef-44aa-99f9-688ca79603d1
+		sourceLineageTag: c1ce21f0-3f45-4566-b25a-7c068b593995
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: cod_banco_empresa
+
+		annotation SummarizationSetBy = User
+
+	column ch_banco
+		dataType: string
+		lineageTag: 668dbe42-1276-4dc6-b44d-b09c541280e8
+		sourceLineageTag: 5061e8fc-332f-48ff-a072-cd176acdc84f
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: ch_banco
+
+		annotation SummarizationSetBy = User
+
+	column num_conta_bancaria
+		dataType: string
+		lineageTag: 6c6ec760-55a3-4bb2-a80c-518ee0b95e33
+		sourceLineageTag: d7fffac9-6a12-44ef-a5b3-dca654c142ea
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: num_conta_bancaria
+
+		annotation SummarizationSetBy = User
+
+	column ch_ctr_banco
+		dataType: string
+		lineageTag: d796d049-ab67-4b42-9c73-3e587283d9cb
+		sourceLineageTag: 03d74d5b-7660-40c9-8a2e-c36cd89c4726
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: ch_ctr_banco
+
+		annotation SummarizationSetBy = User
+
+	column dat_compensacao
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 90009477-7eb0-4290-8751-523fb60bcd52
+		sourceLineageTag: 4f2ac328-db7b-4690-a431-afc123411de0
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: dat_compensacao
+
+		variation Variation
+			isDefault
+			relationship: f14ce7dd-c251-4fef-8b92-9e48659d1ed3
+			defaultHierarchy: LocalDateTable_c4a97d7e-2930-45d0-9dce-3c7c4edc3b66.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = User
+
+	column dat_incl_reg
+		dataType: dateTime
+		formatString: General Number
+		lineageTag: f227c152-5926-47fe-864e-e45dc099c79a
+		sourceLineageTag: 002b52a5-8f7e-4059-b36e-967bf96acb52
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: dat_incl_reg
+
+		variation Variation
+			isDefault
+			relationship: e53a5e85-82e7-4b67-bf28-6dbcf016b422
+			defaultHierarchy: LocalDateTable_195eb42c-9018-4cd3-89cc-5a19871644a3.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = User
+
+	column ch_usr_incl_reg
+		dataType: string
+		lineageTag: 2f588e11-e97d-4c0e-b2c8-f01486ce7599
+		sourceLineageTag: 5d8e776a-02a2-4180-ba8e-809e46a57e2f
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: ch_usr_incl_reg
+
+		annotation SummarizationSetBy = User
+
+	column dat_alt_reg
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 0718d658-de0c-491f-af07-c18ff4b4b411
+		sourceLineageTag: 60edc3dc-c3af-4d0d-b08e-567be45a6968
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: dat_alt_reg
+
+		variation Variation
+			isDefault
+			relationship: 578ba9ab-61a2-487f-9a9c-dd745544148c
+			defaultHierarchy: LocalDateTable_63b5f414-c502-4aff-b89a-855b2242cd45.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = User
+
+	column ch_usr_alt_reg
+		dataType: string
+		lineageTag: 28007b84-b7b8-433a-afde-92ada23c1a11
+		sourceLineageTag: 48b6a7cc-81e0-4f43-b61f-43d13b700a8f
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: ch_usr_alt_reg
+
+		annotation SummarizationSetBy = User
+
+	column arquivo_remessa_id_baixa
+		dataType: int64
+		formatString: 0
+		lineageTag: 0a23054c-613f-4298-b4dd-797fb9990d13
+		sourceLineageTag: 2b19d9c0-15f2-43f7-a249-2c769af8a415
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: arquivo_remessa_id_baixa
+
+		annotation SummarizationSetBy = User
+
+	column flag_negativacao
+		dataType: string
+		lineageTag: 3f1fa2b3-9b3a-4350-939b-1d2ed007be34
+		sourceLineageTag: 09e74038-7daf-490a-966c-7bc6fad55cfc
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: flag_negativacao
+
+		annotation SummarizationSetBy = User
+
+	column UN
+		dataType: string
+		lineageTag: 89332b2d-bcf2-401b-9f70-5d60fa974a75
+		sourceLineageTag: 7902f947-3bfd-4ddb-af3a-c4b67973b41a
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: UN
+
+		annotation SummarizationSetBy = User
+
+	column CATEGORIA_VENCIMENTO =
+			
+			VAR DataReferencia = MAXX(ALL(aws_aging), aws_aging[dat_incl_reg])
+			VAR Dias = DATEDIFF(aws_aging[dat_vencimento], DataReferencia, DAY)
+			
+			RETURN
+			    SWITCH( TRUE(),
+			        Dias <= 0, "A Vencer",
+			        Dias <= 5, "0 a 5 Dias",
+			        Dias <= 30, "6 a 30 Dias",
+			        Dias <= 90, "31 a 90 Dias",
+			        Dias <= 180, "91 a 180 Dias",
+			        "+ de 180 Dias"
+			    )
+		lineageTag: 7e7736c9-7d12-4d38-a130-fc891501a195
+		summarizeBy: none
+		sortByColumn: CATEGORIA_VENCIMENTO_ORDEM
+
+		changedProperty = Name
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column ORDENAR_CATEGORIA_VENCIMENTO = ```
+			
+			VAR Dias = 
+			DATEDIFF(
+			    aws_aging[dat_vencimento],
+			    TODAY(),
+			    DAY
+			)
+			RETURN 
+			SWITCH(
+			    TRUE(),
+			    Dias >= 0 && Dias <= 5, 5,
+			    Dias >= 6 && Dias <= 30, 6,
+			    Dias >= 31 && Dias <= 90, 30,
+			    Dias >= 91 && Dias <= 180, 90,
+			    188
+			)
+			
+			```
+		formatString: 0
+		lineageTag: 4540a7c7-05d0-4c4a-9450-9cb3e4b1a005
+		summarizeBy: sum
+
+		changedProperty = Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column CATEGORIA_VENCIMENTO_ORDEM =
+			
+			-- Captura a maior data de registro da tabela inteira como referência
+			VAR DataReferencia = MAXX(ALL(aws_aging), aws_aging[dat_incl_reg])
+			VAR Dias = DATEDIFF(aws_aging[dat_vencimento], DataReferencia, DAY)
+			
+			RETURN
+			    SWITCH( TRUE(),
+			        Dias <= 0, 0, -- Caso queira tratar faturas a vencer ou no dia
+			        Dias <= 5, 1,
+			        Dias <= 30, 2,
+			        Dias <= 90, 3,
+			        Dias <= 180, 4,
+			        5
+			    )
+		formatString: 0
+		lineageTag: 49d5ceec-62b1-4b47-8533-75d383d2b384
+		summarizeBy: sum
+
+		changedProperty = Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column CATEGORIA_VENCIMENTO_ING =
+			
+			VAR DataReferencia = MAXX(ALL(aws_aging), aws_aging[dat_incl_reg])
+			VAR Dias = DATEDIFF(aws_aging[dat_vencimento], DataReferencia, DAY)
+			
+			RETURN
+			    SWITCH( TRUE(),
+			        Dias <= 0, "A Vencer",
+			        Dias <= 5, "0 to 5 Days",
+			        Dias <= 30, "6 to 30 Days",
+			        Dias <= 90, "31 to 90 Days",
+			        Dias <= 180, "91 to 180 Days",
+			        "+ 180 Days"
+			    )
+		lineageTag: 00bcf25e-5795-42d8-89d4-919d8e0e6f5f
+		summarizeBy: none
+		sortByColumn: CATEGORIA_VENCIMENTO_ORDEM
+
+		changedProperty = Name
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	partition aws_aging = entity
+		mode: directQuery
+		source
+			entityName: aws_aging
+			expressionSource: 'DirectQuery para AS – MS_Bussola_Comercial_Consolidada'
+

@@ -1,0 +1,109 @@
+table Paine_RI_PT_competencia
+	lineageTag: de0f5197-c76b-4c6b-8705-6cc1f45074c9
+
+	measure Vol_e_Dwt_AnoAtual =
+			
+			IF(
+			    SELECTEDVALUE(Paine_RI_PT_competencia[Rebocadores]) = "Manobras Portuárias",
+			    [Volume_Manobra_Atual],
+			    [DwtMedio_Mes_Atual]
+			)
+		lineageTag: 0faff0c7-40f4-4c16-9971-a5d142fa3154
+
+		formatStringDefinition =
+				IF(
+				    SELECTEDVALUE(Paine_RI_PT_competencia[Rebocadores]) = "Manobras Portuárias",
+				    "#,##0",     // Formato inteiro (sem casas decimais)
+				    "#,##0.00"   // Formato decimal (com 2 casas decimais)
+				)
+
+	measure Vol_e_Dwt_AnoAnterior =
+			
+			IF(
+			    SELECTEDVALUE(Paine_RI_PT_competencia[Rebocadores]) = "Manobras Portuárias",
+			    [Volume_Manobra_Mes_Atual_AnoAnterior],
+			    [DwtMedio_Mes_Atual_AnoAnterior]
+			)
+		lineageTag: 96c1aff9-9227-4a25-bfb3-1735c516ce95
+
+		formatStringDefinition =
+				IF(
+				    SELECTEDVALUE(Paine_RI_PT_competencia[Rebocadores]) = "Manobras Portuárias",
+				    "#,##0",     // Formato inteiro (sem casas decimais)
+				    "#,##0.00"   // Formato decimal (com 2 casas decimais)
+				)
+
+	measure Δ_YTM =
+			
+			IF(
+			    SELECTEDVALUE(Paine_RI_PT_competencia[Rebocadores]) = "Manobras Portuárias",
+			    [Δ_Volume_Manobra_YTM],
+			    [Δ_Media_Dwt_YTM]
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: d1051445-4a66-4ee5-a372-61a0a740d97b
+
+	measure Vol_YTM_AnoAtual =
+			
+			IF(
+			    SELECTEDVALUE(Paine_RI_PT_competencia[Rebocadores]) = "Manobras Portuárias",
+			    [Vol_Manobra_Acumulado_YTM],
+			    [Media_Dwt_Acumulado_YTM]
+			)
+		lineageTag: 6bd15279-128b-43cc-8214-6ac5fdf31e48
+
+		formatStringDefinition =
+				IF(
+				    SELECTEDVALUE(Paine_RI_PT_competencia[Rebocadores]) = "Manobras Portuárias",
+				    "#,##0",     // Formato inteiro (sem casas decimais)
+				    "#,##0.00"   // Formato decimal (com 2 casas decimais)
+				)
+
+	measure Vol_YTM_AnoAnterior =
+			
+			IF(
+			    SELECTEDVALUE(Paine_RI_PT_competencia[Rebocadores]) = "Manobras Portuárias",
+			    [Vol_Manobra_Acumulado_YTM_Anterior],
+			    [Media_Dwt_Acumulado_YTM_Anterior]
+			)
+		lineageTag: 4a44d237-ceea-45fc-b0fc-4e70b744e9a9
+
+		formatStringDefinition =
+				IF(
+				    SELECTEDVALUE(Paine_RI_PT_competencia[Rebocadores]) = "Manobras Portuárias",
+				    "#,##0",     // Formato inteiro (sem casas decimais)
+				    "#,##0.00"   // Formato decimal (com 2 casas decimais)
+				)
+
+	measure Δ_YTD =
+			
+			IF(
+			    SELECTEDVALUE(Paine_RI_PT_competencia[Rebocadores]) = "Manobras Portuárias",
+			    [Δ_Volume_Manobra_YTD],
+			    [Δ_Media_Dwt_YTD]
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: e3fde61a-7a97-4408-9722-f2f27b411ed0
+
+	column Rebocadores
+		lineageTag: bbc049e6-7ee5-4681-9ba4-de2b43ac4970
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Rebocadores]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Paine_RI_PT_competencia = calculated
+		mode: import
+		source =
+				
+				DATATABLE(
+				    "Rebocadores", STRING,
+				    {
+				        {"Manobras Portuárias"},
+				        {"DWT Média Atendido"}
+				    }
+				)
+
+	annotation PBI_Id = 4891f10214ce42b48be5153b9324ac3a
+

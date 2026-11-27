@@ -1,0 +1,374 @@
+table aws_pmvpmr
+	lineageTag: 947ae10b-318e-41b9-b62d-7b9ebdb25f09
+
+	column UN = ```
+			
+			// A coluna UN é criada para classificar os códigos de empresa SAP em diferentes unidades de negócio (UN).
+			SWITCH(
+			    TRUE(),  // Inicia a função SWITCH, permitindo avaliar várias condições.    
+			    aws_pmvpmr[cod_empr_sap] = "W014", "REB",  
+			    aws_pmvpmr[cod_empr_sap] = "W015", "TRG",
+			    aws_pmvpmr[cod_empr_sap] = "W017", "TSC",    
+			    aws_pmvpmr[cod_empr_sap] = "W018", "TSV",
+			    BLANK() // Se nenhum dos códigos acima corresponder, retorna BLANK() (valor em branco).
+			)
+			```
+		lineageTag: 50dc2ed5-bd67-4239-a743-3ad4c70c34ab
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column cod_empr_sap
+		dataType: string
+		lineageTag: 8d3db6a8-1d10-4ab6-a268-d56fe018dc41
+		summarizeBy: none
+		sourceColumn: cod_empr_sap
+
+		annotation SummarizationSetBy = Automatic
+
+	column cod_cliente_sap
+		dataType: int64
+		formatString: 0
+		lineageTag: dc669705-54f4-40f9-9624-42f238b426d9
+		summarizeBy: none
+		sourceColumn: cod_cliente_sap
+
+		annotation SummarizationSetBy = Automatic
+
+	column documento
+		dataType: string
+		lineageTag: 6531dca3-2aca-448d-8812-bf29a6cfd633
+		summarizeBy: none
+		sourceColumn: documento
+
+		annotation SummarizationSetBy = Automatic
+
+	column num_nf
+		dataType: string
+		lineageTag: 3b962eb4-24f4-430f-83c0-4d6385386142
+		summarizeBy: none
+		sourceColumn: num_nf
+
+		annotation SummarizationSetBy = Automatic
+
+	column item_doc
+		dataType: string
+		lineageTag: c475beff-a20d-460b-9fe9-3b1a8e43a618
+		summarizeBy: none
+		sourceColumn: item_doc
+
+		annotation SummarizationSetBy = Automatic
+
+	column data_lancamento
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: d3f8ab5b-6080-457c-b6d3-778f71613d6b
+		summarizeBy: none
+		sourceColumn: data_lancamento
+
+		variation Variation
+			isDefault
+			relationship: 230f7d03-6b73-4340-a614-d43176577acc
+			defaultHierarchy: LocalDateTable_022bc9d3-3ff4-4d05-a421-65b34e96aae9.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column exercicio
+		dataType: string
+		lineageTag: 38955fff-77bc-404a-8bed-b22efc66b50a
+		summarizeBy: none
+		sourceColumn: exercicio
+
+		annotation SummarizationSetBy = Automatic
+
+	column doc_competencia
+		dataType: string
+		lineageTag: a32e88dc-6b18-41a8-bcd1-e7b9a83d536c
+		summarizeBy: none
+		sourceColumn: doc_competencia
+
+		annotation SummarizationSetBy = Automatic
+
+	column tipo_doc
+		dataType: string
+		lineageTag: 99746fd0-d15d-4875-83a8-cc2b3af483ae
+		summarizeBy: none
+		sourceColumn: tipo_doc
+
+		annotation SummarizationSetBy = Automatic
+
+	column debito_credito
+		dataType: string
+		lineageTag: 3536a5d0-77fd-403b-99b4-fc2dc6485afe
+		summarizeBy: none
+		sourceColumn: debito_credito
+
+		annotation SummarizationSetBy = Automatic
+
+	column conta_contabil
+		dataType: string
+		lineageTag: bf248e00-c0e2-4cb4-8d8f-ab8eed8ffddd
+		summarizeBy: none
+		sourceColumn: conta_contabil
+
+		annotation SummarizationSetBy = Automatic
+
+	column texto
+		dataType: string
+		lineageTag: a6e512c8-f111-41f3-9a1e-3d93330ef508
+		summarizeBy: none
+		sourceColumn: texto
+
+		annotation SummarizationSetBy = Automatic
+
+	column valor
+		dataType: double
+		lineageTag: 13d6412e-8b95-4a66-b859-17de9c9bf48c
+		summarizeBy: sum
+		sourceColumn: valor
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column data_criacao
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 5c77a7c9-1533-4e05-89a7-6823f4fdd115
+		summarizeBy: none
+		sourceColumn: data_criacao
+
+		variation Variation
+			isDefault
+			relationship: aef572bf-38bd-4dbb-bc14-06fde6340300
+			defaultHierarchy: LocalDateTable_28f39903-6060-4cab-8e6a-ab3056243264.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column hora
+		dataType: string
+		lineageTag: 1a5c650c-670f-4858-ba83-d84bbbdd6c84
+		summarizeBy: none
+		sourceColumn: hora
+
+		annotation SummarizationSetBy = Automatic
+
+	column cod_estab_sap
+		dataType: string
+		lineageTag: 98c5ff5c-5f33-4d79-8d3f-7554ad40aa9d
+		summarizeBy: none
+		sourceColumn: cod_estab_sap
+
+		annotation SummarizationSetBy = Automatic
+
+	column Data_Fim_Manobra = ```
+			
+			VAR ChaveAtual = 'aws_pmvpmr'[chave_pmf]
+			    
+			VAR DataFaina = 
+			    CALCULATE(
+			        MAX(aws_bussola_comercial_faina[Data_fim_Evento]),
+			        FILTER(
+			            aws_bussola_comercial_faina,
+			            aws_bussola_comercial_faina[Chave_pmf] = ChaveAtual
+			        )
+			    )
+			
+			VAR DataTer = 
+			    CALCULATE(
+			        MAX(aws_bussola_comercial_ter[data_do_fim_do_evento]),
+			        FILTER(
+			            aws_bussola_comercial_ter,
+			            aws_bussola_comercial_ter[Chave_pmf] = ChaveAtual
+			        )
+			    )
+			
+			RETURN
+			    COALESCE(DataFaina, DataTer)
+			```
+		formatString: Short Date
+		lineageTag: 09be4f88-082e-4e5f-815f-5c4d72dc84b8
+		summarizeBy: none
+
+		variation Variation
+			isDefault
+			relationship: 1d1cbf84-2f5c-4bfc-93e2-78124345a8dd
+			defaultHierarchy: LocalDateTable_8a14539e-3c6b-4b20-96e4-31893cc36cfb.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Data_Inicio_Manobra = ```
+			
+			VAR ChaveAtual = 'aws_pmvpmr'[Chave_pmf]
+			    
+			VAR DataFaina = 
+			    CALCULATE(
+			        MIN(aws_bussola_comercial_faina[Data_Inicio_Evento]),
+			        FILTER(
+			            aws_bussola_comercial_faina,
+			            aws_bussola_comercial_faina[Chave_pmf] = ChaveAtual
+			        )
+			    )
+			
+			VAR DataTer = 
+			    CALCULATE(
+			        MIN(aws_bussola_comercial_ter[data_do_Inicio_do_evento]),
+			        FILTER(
+			            aws_bussola_comercial_ter,
+			            aws_bussola_comercial_ter[Chave_pmf] = ChaveAtual
+			        )
+			    )
+			
+			RETURN
+			    COALESCE(DataFaina, DataTer)
+			```
+		formatString: Short Date
+		lineageTag: a169867f-e54b-458f-8ef7-c325ae5802db
+		summarizeBy: none
+
+		variation Variation
+			isDefault
+			relationship: 4a16c133-200a-4f9d-8705-10c293823910
+			defaultHierarchy: LocalDateTable_835adae9-5ee5-44c2-adab-e69134f1338c.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column data_compensacao
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 7b929da8-2586-48d1-a775-55c4626d7ac7
+		summarizeBy: none
+		sourceColumn: data_compensacao
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column data_vencimento
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 44ae9b42-5f3f-412f-955c-0a8725d5ce6a
+		summarizeBy: none
+		sourceColumn: data_vencimento
+
+		variation Variation
+			isDefault
+			relationship: 5bcac2bd-c3ea-45f5-83de-87d63a3264a8
+			defaultHierarchy: LocalDateTable_f855fa60-0387-46a0-9855-716a2ebf66e1.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column doc_nf
+		dataType: string
+		lineageTag: 940b570d-e944-48b6-aa71-dabeba7ebf3d
+		summarizeBy: none
+		sourceColumn: doc_nf
+
+		annotation SummarizationSetBy = Automatic
+
+	column chave_pmf
+		dataType: string
+		lineageTag: 8cdecf26-ad8d-45f8-b994-e69f156a6844
+		summarizeBy: none
+		sourceColumn: chave_pmf
+
+		annotation SummarizationSetBy = Automatic
+
+	column dias_prazo_vencimento
+		dataType: int64
+		lineageTag: bbe45df8-cf7d-4793-a217-8ac99588f9ba
+		summarizeBy: sum
+		sourceColumn: dias_prazo_vencimento
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column dias_prazo_recebimento
+		dataType: int64
+		lineageTag: af4c72a1-6353-4956-b4c4-8242257017f5
+		summarizeBy: sum
+		sourceColumn: dias_prazo_recebimento
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column dias_prazo_inadimplencia
+		dataType: int64
+		lineageTag: ffdb4852-1c3e-4970-bb99-5e0633d9b55e
+		summarizeBy: sum
+		sourceColumn: dias_prazo_inadimplencia
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column pond_prazo_vencimento
+		dataType: double
+		lineageTag: df5bfb85-a797-48ff-a850-46132e3b044b
+		summarizeBy: sum
+		sourceColumn: pond_prazo_vencimento
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column pond_prazo_recebimento
+		dataType: double
+		lineageTag: ce19de53-662e-4b38-8d70-fd1892a51266
+		summarizeBy: sum
+		sourceColumn: pond_prazo_recebimento
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column pond_prazo_inadimplencia
+		dataType: double
+		lineageTag: 92d527f5-05f9-46f5-8a49-b4ab119e44b6
+		summarizeBy: sum
+		sourceColumn: pond_prazo_inadimplencia
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column etl_updated_at
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 3d7d9611-070c-4aff-a9fd-eab361e50f17
+		summarizeBy: none
+		sourceColumn: etl_updated_at
+
+		variation Variation
+			isDefault
+			relationship: d004cfcd-2556-47b0-a1a3-9519e62288d1
+			defaultHierarchy: LocalDateTable_d5118b82-770e-466a-9fe8-4e848f0fd782.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	partition aws_pmvpmr = m
+		mode: import
+		source =
+				let
+				    Fonte = PowerPlatform.Dataflows(null),
+				    Workspaces = Fonte{[Id="Workspaces"]}[Data],
+				    #"8c5cc8ba-ed75-4d39-9606-af9ead89ca36" = Workspaces{[workspaceId="8c5cc8ba-ed75-4d39-9606-af9ead89ca36"]}[Data],
+				    #"ba6f8701-a31d-453e-8a2b-d02d55c50e37" = #"8c5cc8ba-ed75-4d39-9606-af9ead89ca36"{[dataflowId="ba6f8701-a31d-453e-8a2b-d02d55c50e37"]}[Data],
+				    pmv_pmr_ = #"ba6f8701-a31d-453e-8a2b-d02d55c50e37"{[entity="pmv_pmr",version=""]}[Data],
+				    #"Tipo Alterado" = Table.TransformColumnTypes(pmv_pmr_,{{"cod_cliente_sap", Int64.Type}}),
+				    #"Erros Removidos" = Table.RemoveRowsWithErrors(#"Tipo Alterado", {"cod_cliente_sap"})
+				in
+				    #"Erros Removidos"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navegação
+

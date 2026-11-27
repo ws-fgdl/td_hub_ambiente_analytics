@@ -1,0 +1,13 @@
+expression 'DirectQuery para AS – MS_Bussola_Comercial_Consolidada' =
+		let
+		    Source = AnalysisServices.Database("powerbi://api.powerbi.com/v1.0/myorg/BC%20Consolidada%20WS", "MS_Bussola_Comercial_Consolidada"),
+		    Cubes = Table.Combine(Source[Data]),
+		    Cube = Cubes{[Id="Model", Kind="Cube"]}[Data]
+		in
+		    Cube
+	lineageTag: af641271-9690-4f1f-a9e3-9c2a139427bd
+
+	annotation PBI_IncludeFutureArtifacts = True
+
+	annotation PBI_RemovedChildren = [{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"5d7168d5-036c-448e-9ff0-58be25084c93"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"3c24bfc2-3a51-41c8-8811-aced8e7f0a9c"}},"objectType":"Table"}]
+

@@ -1,0 +1,169 @@
+table dim_calendario
+	lineageTag: 22415b2a-23ce-4345-9a1f-9c7b19f532bd
+	sourceLineageTag: 99874c06-5d26-4857-a60f-404504b61e30
+
+	column data
+		dataType: dateTime
+		isNullable: false
+		formatString: Long Date
+		lineageTag: fc669cfa-d7c9-4387-8dda-52bc24053925
+		sourceLineageTag: 08cf8ca4-2825-4bd7-b7fa-a49a435a2870
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: data
+
+		variation Variation
+			isDefault
+			relationship: 43aa6707-495c-42e8-8e0a-bb42d09b9742
+			defaultHierarchy: LocalDateTable_19f7f5cd-8bd1-4696-a6c5-e1ceb369f1b6.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = User
+
+	column ano_calendario
+		dataType: int64
+		formatString: 0
+		lineageTag: bb82f706-6c18-4a53-b80c-d2e58d9dfcb0
+		sourceLineageTag: 2cd4014a-0ae9-4fe1-abeb-f82c3c1bfe29
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: ano_calendario
+
+		annotation SummarizationSetBy = User
+
+	column mes_ano
+		dataType: string
+		lineageTag: daab496e-932c-4a32-9c8e-c3d2e8340967
+		sourceLineageTag: a31af451-4f4d-42db-9fac-e6857240f1f4
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: mes_ano
+
+		annotation SummarizationSetBy = User
+
+	column nome_mes_pt
+		dataType: string
+		lineageTag: adebb694-a9ff-419d-8102-9bbf4cbdb0c0
+		sourceLineageTag: 9911829d-3a51-4a84-917f-dfea811a5ae5
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: nome_mes_pt
+
+		annotation SummarizationSetBy = User
+
+	column nome_mes_ing
+		dataType: string
+		lineageTag: 69ffa646-9b21-4554-b7b9-92372286b223
+		sourceLineageTag: 61502407-a98e-4435-a7c4-e9fe30ae5b34
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: nome_mes_ing
+
+		annotation SummarizationSetBy = User
+
+	column numero_mes
+		dataType: int64
+		formatString: 0
+		lineageTag: 68a714ee-f961-49ed-bd6a-e8db8669d01b
+		sourceLineageTag: 10cf251a-8a7b-46ab-8c62-2bbdaa4bdd7a
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: numero_mes
+
+		annotation SummarizationSetBy = User
+
+	column dia_semana_pt
+		dataType: string
+		lineageTag: 644fb533-2cb1-46e0-b4a1-5edd1499fea4
+		sourceLineageTag: 7ddbde09-cf10-4d6b-8654-6e5626e1df7a
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: dia_semana_pt
+
+		annotation SummarizationSetBy = User
+
+	column dia_semana_ing
+		dataType: string
+		lineageTag: d69a7cfb-e5ab-4b63-8299-a5b157638df5
+		sourceLineageTag: e93df2b3-b588-42e3-a41d-e55f2f34072a
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: dia_semana_ing
+
+		annotation SummarizationSetBy = User
+
+	column trimestre
+		dataType: int64
+		formatString: 0
+		lineageTag: 5295bac8-8d62-47aa-98e8-c02634c4a117
+		sourceLineageTag: 64c605ff-8a82-4dae-841d-065493fd4806
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: trimestre
+
+		annotation SummarizationSetBy = User
+
+	column dia_util
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: b2e6cc0d-722c-4d8f-875a-4cec1bc83d15
+		sourceLineageTag: f37ecc8f-2e08-47c1-889a-bc89627f3bea
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: dia_util
+
+		annotation SummarizationSetBy = User
+
+	column nome_mes_abrevado_pt
+		dataType: string
+		lineageTag: 98cc47ee-9c2c-454f-9841-6255abe11164
+		sourceLineageTag: e8c6120d-180e-49c5-949d-3d66d25f27be
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: nome_mes_abrevado_pt
+		sortByColumn: numero_mes
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = User
+
+	column nome_mes_abreviado_ing
+		dataType: string
+		lineageTag: 638ec408-d229-44da-9ffe-5a3fdc45bb7f
+		sourceLineageTag: 891a1d0a-89ad-4f59-8bee-24eee703bede
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: nome_mes_abreviado_ing
+		sortByColumn: numero_mes
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = User
+
+	column eh_ate_mes_anterior
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: e896ab6f-1893-489d-a60c-1f95f6703ddb
+		sourceLineageTag: 5bff17cf-d5aa-415c-b1f9-b6d095afb3c7
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: eh_ate_mes_anterior
+
+		annotation SummarizationSetBy = User
+
+	column dia_invertido
+		dataType: int64
+		formatString: 0
+		lineageTag: cbdf9ddc-4a67-4e0f-bb26-8cd65dd7785d
+		sourceLineageTag: b0006dc3-a374-4e31-92c9-716e339594d1
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: dia_invertido
+
+		annotation SummarizationSetBy = User
+
+	partition dim_calendario = entity
+		mode: directQuery
+		source
+			entityName: dim_calendario
+			expressionSource: 'DirectQuery para AS – MS_Bussola_Comercial_Consolidada'
+

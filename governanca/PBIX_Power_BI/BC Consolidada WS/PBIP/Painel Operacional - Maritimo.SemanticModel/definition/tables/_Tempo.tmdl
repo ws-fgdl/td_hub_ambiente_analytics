@@ -1,0 +1,530 @@
+table _Tempo
+	lineageTag: 0f215368-2d6f-4f29-b000-49b120ef7380
+	sourceLineageTag: f06ea0a0-0ffc-4542-9112-0c8acff81c2d
+
+	measure 'Horas Sum' = EXTERNALMEASURE("Horas Sum", INTEGER, "DirectQuery para AS – Modelo Rebocadores")
+		formatString: 0
+		lineageTag: bcc4f42c-ca38-4279-b9de-2a39913a8d8f
+		sourceLineageTag: 6a472a39-7556-41ff-a75e-4d6f536e9005
+		dataCategory: Uncategorized
+
+	measure 'Horas Mês (Média)' = EXTERNALMEASURE("Horas Mês (Média)", DOUBLE, "DirectQuery para AS – Modelo Rebocadores")
+		lineageTag: 7240c365-fb95-4132-ad5d-8e6c5fb6a719
+		sourceLineageTag: 0d3b73bb-37b2-44d7-874a-8d045f3fd31f
+		dataCategory: Uncategorized
+
+	measure 'Anos Selecionados' = EXTERNALMEASURE("Anos Selecionados", STRING, "DirectQuery para AS – Modelo Rebocadores")
+		lineageTag: 4097b45b-63dc-4ada-b4d8-7c7a541f4241
+		sourceLineageTag: bdbd6e80-1afe-4f41-a01b-103ae0977cfd
+		dataCategory: Uncategorized
+
+	column TEMPO_ID
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		lineageTag: e5e6641e-7899-47ed-9a1e-503a2135ec32
+		sourceLineageTag: c4c1b824-3025-4f3b-b25b-bb3243cf72b1
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: TEMPO_ID
+
+		annotation SummarizationSetBy = User
+
+	column Data
+		dataType: dateTime
+		isNullable: false
+		formatString: Short Date
+		lineageTag: 9e71b199-8a38-4ed8-a9c2-1a107d62832b
+		sourceLineageTag: f6e7a2cf-2acc-417c-8048-de489fb85967
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Data
+
+		annotation SummarizationSetBy = User
+
+	column Ano
+		dataType: string
+		lineageTag: 0eaaf781-ebdf-45f2-81f4-ca4b32dde663
+		sourceLineageTag: 8f5372b2-aee2-4665-9687-e26de0bcc504
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Ano
+
+		annotation SummarizationSetBy = User
+
+	column Semestre
+		dataType: string
+		lineageTag: 784613d5-7608-4d42-a6be-2c7c9f702259
+		sourceLineageTag: d1a55a26-982a-4e5f-aa0d-daf6e9d4ee72
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Semestre
+
+		annotation SummarizationSetBy = User
+
+	column Trimestre
+		dataType: string
+		lineageTag: d31687de-0077-44bd-987c-b18a2098c8cf
+		sourceLineageTag: 4838aae9-1e8b-4e97-856b-bb5c1f805385
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Trimestre
+
+		annotation SummarizationSetBy = User
+
+	column Bimestre
+		dataType: string
+		lineageTag: 903d5dca-f95b-453f-a942-e8b251d63c7c
+		sourceLineageTag: 42988ff5-ad17-4cea-96d1-74eca31a6ed8
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Bimestre
+
+		annotation SummarizationSetBy = User
+
+	column 'Mês Ano'
+		dataType: string
+		lineageTag: 3328c53b-1f9d-48f6-8a88-50a8b940c1bc
+		sourceLineageTag: 919d91d1-0323-473c-801f-6b254b788424
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Mês Ano
+		sortByColumn: #Ano/Mês
+
+		annotation SummarizationSetBy = User
+
+	column 'Mês Ano Abrev US'
+		dataType: string
+		lineageTag: 45ecb693-4f11-408b-ac7b-936d8bcd845b
+		sourceLineageTag: bede10a4-71e7-490e-9d33-9b7cee45d667
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Mês Ano Abrev US
+		sortByColumn: #Ano/Mês
+
+		annotation SummarizationSetBy = User
+
+	column 'Mês Ano Abrev BR'
+		dataType: string
+		lineageTag: 505fbc80-948a-4520-9105-dfbea34d6de9
+		sourceLineageTag: 11b48e36-892c-4c3f-95f5-0e34ed3431dd
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Mês Ano Abrev BR
+		sortByColumn: #Ano/Mês
+
+		annotation SummarizationSetBy = User
+
+	column 'Mês Ano US'
+		dataType: string
+		lineageTag: f81a2714-c7e9-4f9c-92c8-f9f2ad2266cc
+		sourceLineageTag: a9b05927-fcfe-4be0-9e77-5da62cde4182
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Mês Ano US
+		sortByColumn: #Ano/Mês
+
+		annotation SummarizationSetBy = User
+
+	column 'Mês Ano BR'
+		dataType: string
+		lineageTag: 5e0992d4-585b-4afc-ab2c-fb4b7c23ab96
+		sourceLineageTag: c7dc3291-d437-43d1-ac91-aab2215fbac7
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Mês Ano BR
+		sortByColumn: #Ano/Mês
+
+		annotation SummarizationSetBy = User
+
+	column 'Mês US'
+		dataType: string
+		lineageTag: ff336497-48a0-4892-b50b-43da7b2021f6
+		sourceLineageTag: 258d8098-58de-43eb-a5d7-5c1521813817
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Mês US
+		sortByColumn: #Mês
+
+		annotation SummarizationSetBy = User
+
+	column Mês
+		dataType: string
+		lineageTag: 5cfbb604-fcf3-4a2b-88c5-d09bf1cbf56a
+		sourceLineageTag: 7ad64f08-b343-450a-9f52-b3c777b9fafe
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Mês
+		sortByColumn: #Mês
+
+		annotation SummarizationSetBy = User
+
+	column 'Semana Mês'
+		dataType: string
+		lineageTag: b96f4e01-7d66-449a-bafa-c9b34bca7e6a
+		sourceLineageTag: c2dc6499-003d-49ef-8b09-256920fdccb8
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Semana Mês
+
+		annotation SummarizationSetBy = User
+
+	column 'Semana Ano'
+		dataType: string
+		lineageTag: 34a3baf0-46b8-4f69-8de2-3f18543fc76f
+		sourceLineageTag: 1a054d09-db1a-4163-8069-542834c0d44c
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Semana Ano
+
+		annotation SummarizationSetBy = User
+
+	column 'Semana Ano Seg Dom'
+		dataType: string
+		lineageTag: ee48eb56-defc-46b1-b644-171922e6f36f
+		sourceLineageTag: 22f1f58d-5cf1-4415-a6e4-15f5c0165596
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Semana Ano Seg Dom
+
+		annotation SummarizationSetBy = User
+
+	column Dia
+		dataType: string
+		lineageTag: cc0be1ee-1df1-47de-801d-02edb9aaab44
+		sourceLineageTag: e99c0935-505a-42e1-88e9-7db94478d7e5
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Dia
+		sortByColumn: Data
+
+		annotation SummarizationSetBy = User
+
+	column 'Dia Semana US'
+		dataType: string
+		lineageTag: 501feba8-ed36-4488-b14d-8124c464ee89
+		sourceLineageTag: a1e521b5-828e-4094-b2b2-62ce8c95e6ae
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Dia Semana US
+
+		annotation SummarizationSetBy = User
+
+	column 'Dia Semana BR'
+		dataType: string
+		lineageTag: c339695f-cc71-4814-a40c-ace69f197305
+		sourceLineageTag: b4d86177-1059-49d3-b8e8-855688773827
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Dia Semana BR
+
+		annotation SummarizationSetBy = User
+
+	column 'Dia Extenso US'
+		dataType: string
+		lineageTag: f707133d-0e89-476b-a813-24f9738312d5
+		sourceLineageTag: f17f62ca-5a18-4619-b0ec-672032343db3
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Dia Extenso US
+		sortByColumn: Data
+
+		annotation SummarizationSetBy = User
+
+	column 'Mês Ano Abrev US YY'
+		dataType: string
+		lineageTag: 39196741-9557-44cf-a057-b74d5411cfb1
+		sourceLineageTag: eb11788e-58dc-4e4a-8138-e99c24f083ac
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Mês Ano Abrev US YY
+		sortByColumn: #Ano/Mês
+
+		annotation SummarizationSetBy = User
+
+	column 'Mês Ano Abrev BR YY'
+		dataType: string
+		lineageTag: d7a8e034-678c-4d39-9d36-938f7733991e
+		sourceLineageTag: cab831a5-13dc-48f6-82b0-6e26248344b9
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Mês Ano Abrev BR YY
+		sortByColumn: #Ano/Mês
+
+		annotation SummarizationSetBy = User
+
+	column 'Dezena Mês'
+		dataType: string
+		lineageTag: f6188012-ae0a-4c85-939c-6b37177a8308
+		sourceLineageTag: 8921d62b-f3e5-41a8-b800-dde0f326c801
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Dezena Mês
+
+		annotation SummarizationSetBy = User
+
+	column 'Quinzena Mês'
+		dataType: string
+		lineageTag: e4efe6fc-c7df-4213-9a10-a7b2ad294bfa
+		sourceLineageTag: bfba5ff4-cc92-4929-a0f8-d47e906a5a45
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Quinzena Mês
+
+		annotation SummarizationSetBy = User
+
+	column #Trimestre
+		dataType: int64
+		formatString: 0
+		lineageTag: 91966c6f-270f-4037-ad2d-3bb435a78f17
+		sourceLineageTag: 97c4ebfe-ee90-41b6-b93b-d4588ff71219
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: #Trimestre
+
+		annotation SummarizationSetBy = User
+
+	column #Mês
+		dataType: int64
+		formatString: 0
+		lineageTag: 4efa42cf-01de-416c-90c3-b47bb74c03e8
+		sourceLineageTag: 23c0d632-71e4-4fb7-bd27-59e961376fdc
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: #Mês
+
+		annotation SummarizationSetBy = User
+
+	column '#Semana Ano'
+		dataType: int64
+		formatString: 0
+		lineageTag: 5fd3df84-5568-4836-a1af-9aba20b61b55
+		sourceLineageTag: 90b08edb-35e8-47e5-806f-827623a13862
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: #Semana Ano
+
+		annotation SummarizationSetBy = User
+
+	column #Ano/Mês
+		dataType: string
+		lineageTag: 2d2561db-f647-431d-a98c-46c83e8a84fd
+		sourceLineageTag: bc13249b-d790-4001-ab07-11f093d31582
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: #Ano/Mês
+
+		annotation SummarizationSetBy = User
+
+	column 'Ano Atual'
+		dataType: string
+		lineageTag: 694857e5-bca7-46b5-8df2-018124e283a9
+		sourceLineageTag: 5dd44af7-c57b-40cf-9e4b-072e7f65174a
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Ano Atual
+
+		annotation SummarizationSetBy = User
+
+	column 'Mês atual'
+		dataType: string
+		lineageTag: 6f5b3699-9372-4e73-9ca2-a2ae69d253b4
+		sourceLineageTag: 95ff5bce-e2ec-4469-9588-e2f6aeb58156
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Mês atual
+
+		annotation SummarizationSetBy = User
+
+	column 'Ano/Mês Atual'
+		dataType: string
+		lineageTag: 19c76115-d9c6-4620-a969-f711994ffb8c
+		sourceLineageTag: 5b476855-c67c-43ba-9ed6-de8127187d6c
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Ano/Mês Atual
+
+		annotation SummarizationSetBy = User
+
+	column 'Dia Atual'
+		dataType: string
+		lineageTag: ac8b97e0-18e2-453d-b809-de74bfa1f2bd
+		sourceLineageTag: 99e805a6-e1b8-4ded-a102-0b41c1a1dda8
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Dia Atual
+
+		annotation SummarizationSetBy = User
+
+	column Horas
+		dataType: int64
+		formatString: 0
+		lineageTag: e7fcc521-45b7-49ab-b092-590852ede618
+		sourceLineageTag: 4e2af411-244c-468b-a75f-ff2bcae7b213
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Horas
+
+		annotation SummarizationSetBy = User
+
+	column '#Semana Ano Seg Dom'
+		dataType: string
+		lineageTag: 3b31978b-87ef-466f-b8b5-54c3d5e07911
+		sourceLineageTag: 48939984-831d-4c66-a972-c092e79c0f93
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: #Semana Ano Seg Dom
+
+		annotation SummarizationSetBy = User
+
+	column 'Dia Mês'
+		dataType: string
+		lineageTag: ae6b48cd-be85-4a0e-bb0d-6cbb07f4f0eb
+		sourceLineageTag: 8ff426e0-59f5-4550-99e2-3a299d1bcf7a
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Dia Mês
+
+		annotation SummarizationSetBy = User
+
+	column DD
+		dataType: int64
+		formatString: 0
+		lineageTag: 91b2f8dd-531f-4f6e-ac0d-84180004197c
+		sourceLineageTag: ee3a62a4-60d9-4e22-b839-68f72dec1d64
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: DD
+
+		annotation SummarizationSetBy = User
+
+	column #Ano
+		dataType: int64
+		formatString: 0
+		lineageTag: 4cf47f84-96e3-4cc9-a47d-ba7061d9be7d
+		sourceLineageTag: f25abdee-1ade-4870-a82e-f75f039c750e
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: #Ano
+
+		annotation SummarizationSetBy = User
+
+	column ANO_ANTERIOR
+		dataType: string
+		lineageTag: 913a9612-bdd5-4916-b489-c6dbae41f647
+		sourceLineageTag: f7c5ff8b-0807-4f00-8932-8d873118fd32
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: ANO_ANTERIOR
+
+		annotation SummarizationSetBy = User
+
+	column MES_ANTERIOR
+		dataType: string
+		lineageTag: c5e34e08-e97e-47da-9ee9-235c0668eea1
+		sourceLineageTag: 569eccef-0b33-4665-a8b0-587761d7e134
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: MES_ANTERIOR
+
+		annotation SummarizationSetBy = User
+
+	column ANO_MES_ANTERIOR
+		dataType: string
+		lineageTag: ca2ada74-eb44-4d72-80ad-3f01cd1ffaf9
+		sourceLineageTag: 1e2acea2-846d-4fd3-b8d6-48a0d3b8679f
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: ANO_MES_ANTERIOR
+
+		annotation SummarizationSetBy = User
+
+	column DIA_ANO_ANTERIOR
+		dataType: string
+		lineageTag: 6d36f045-243b-4921-ab66-9d20814cdc43
+		sourceLineageTag: 5739f4f8-0725-4530-8433-06d51a2ca6cc
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: DIA_ANO_ANTERIOR
+
+		annotation SummarizationSetBy = User
+
+	column ULTIMOS_12_MESES
+		dataType: string
+		lineageTag: 390bad05-a539-418c-ab2b-367fdf568a5c
+		sourceLineageTag: 6e4f3043-ed0f-48fa-a9c1-477cce2e23bb
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: ULTIMOS_12_MESES
+
+		annotation SummarizationSetBy = User
+
+	column DIA01
+		dataType: int64
+		formatString: 0
+		lineageTag: e4cea294-1e24-40ce-af1e-57b1d75278a5
+		sourceLineageTag: ed0361f8-d75a-4673-92b8-92ebb612afbe
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: DIA01
+
+		annotation SummarizationSetBy = User
+
+	column 'Mês Abrev'
+		dataType: string
+		lineageTag: fba9732f-19c6-4946-b5de-d8fb04c6891d
+		sourceLineageTag: 936b0db4-363f-4da5-8040-5666e5f3a2b1
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Mês Abrev
+		sortByColumn: #Mês
+
+		annotation SummarizationSetBy = User
+
+	column 'Ano Anterior'
+		dataType: int64
+		formatString: 0
+		lineageTag: fa0d92de-ec57-476a-92ff-dadb571db9b9
+		sourceLineageTag: 10161da2-a6ae-4f4f-b26f-e807f4cc8707
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Ano Anterior
+
+		annotation SummarizationSetBy = User
+
+	column 'Texto Real Ano Anterior'
+		dataType: string
+		lineageTag: 94b3ef66-e751-4166-8604-2a3cc68bd63e
+		sourceLineageTag: 15afbe83-7997-4081-b5fa-afc4d5073d74
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Texto Real Ano Anterior
+
+		annotation SummarizationSetBy = User
+
+	column 'Texto Real Ano'
+		dataType: string
+		lineageTag: e8e1c543-046a-4393-a250-89938acaf86b
+		sourceLineageTag: b504afab-e0db-40c1-8e42-6317488be47a
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Texto Real Ano
+
+		annotation SummarizationSetBy = User
+
+	column 'Texto Orçado Ano'
+		dataType: string
+		lineageTag: 62b95089-fbfb-4dc4-97d1-3c2e44cc08a9
+		sourceLineageTag: 7134a547-98a7-4d9d-bff1-882dd96692b5
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Texto Orçado Ano
+
+		annotation SummarizationSetBy = User
+
+	partition _Tempo = entity
+		mode: directQuery
+		source
+			entityName: _Tempo
+			expressionSource: 'DirectQuery para AS – Modelo Rebocadores'
+

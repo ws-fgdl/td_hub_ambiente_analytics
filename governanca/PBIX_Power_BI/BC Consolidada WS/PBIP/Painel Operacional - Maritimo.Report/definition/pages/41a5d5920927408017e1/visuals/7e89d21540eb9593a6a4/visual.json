@@ -1,0 +1,109 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
+  "name": "7e89d21540eb9593a6a4",
+  "position": {
+    "x": 480,
+    "y": 30,
+    "z": 2000,
+    "height": 198.88888888888889,
+    "width": 301.11111111111109,
+    "tabOrder": 2000
+  },
+  "visual": {
+    "visualType": "kpi",
+    "query": {
+      "queryState": {
+        "Goal": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "CUBOS_NOVOS - RL_DW_FATO_CUBO_REBOC"
+                    }
+                  },
+                  "Property": "Volume PY"
+                }
+              },
+              "queryRef": "CUBOS_NOVOS - RL_DW_FATO_CUBO_REBOC.Volume PY",
+              "nativeQueryRef": "Volume PY"
+            }
+          ]
+        },
+        "Indicator": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidas_RI_Reb"
+                    }
+                  },
+                  "Property": "Vol_Manobra"
+                }
+              },
+              "queryRef": "Medidas_RI_Reb.Vol_Manobra",
+              "nativeQueryRef": "Vol_Manobra"
+            }
+          ]
+        },
+        "TrendLine": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Tempo"
+                    }
+                  },
+                  "Property": "Mês Ano"
+                }
+              },
+              "queryRef": "_Tempo.Mês Ano",
+              "nativeQueryRef": "Mês Ano"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "lastDate": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "indicator": [
+        {
+          "properties": {
+            "indicatorDisplayUnits": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            },
+            "indicatorPrecision": {
+              "expr": {
+                "Literal": {
+                  "Value": "0L"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

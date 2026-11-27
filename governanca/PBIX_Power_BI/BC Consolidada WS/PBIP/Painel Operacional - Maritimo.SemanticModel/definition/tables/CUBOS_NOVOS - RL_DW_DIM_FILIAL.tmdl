@@ -1,0 +1,114 @@
+table 'CUBOS_NOVOS - RL_DW_DIM_FILIAL'
+	lineageTag: 7c863fb6-0c5e-4a27-80c0-a1d7784380b9
+	sourceLineageTag: 195ce49c-7b60-4714-9cdd-c9cd3f086992
+
+	column FILIAL_SEQ_ID
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		lineageTag: 230d4463-0b53-4c91-bf99-742ab5c279d8
+		sourceLineageTag: e5d7fff5-1c24-473f-b580-5162822d2794
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: FILIAL_SEQ_ID
+
+		annotation SummarizationSetBy = User
+
+	column FILIAL_ID
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		lineageTag: 14f7ec51-cd0c-4a18-9ed5-b1a7cdf6fcea
+		sourceLineageTag: ef8e152a-5713-438a-88fe-11a59ef2d6aa
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: FILIAL_ID
+
+		annotation SummarizationSetBy = User
+
+	column FILIAL
+		dataType: string
+		lineageTag: da6647f9-b044-4a88-a8e3-a26f44f9b323
+		sourceLineageTag: 44815a06-91aa-4a50-9ad8-bb7a194e556a
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: FILIAL
+
+		annotation SummarizationSetBy = User
+
+	column LATITUDE
+		dataType: double
+		lineageTag: 33b7df91-a957-452c-88e2-6148c863c04f
+		sourceLineageTag: 51504559-6afe-4820-a248-14995a7b6c45
+		dataCategory: Latitude
+		summarizeBy: none
+		sourceColumn: LATITUDE
+
+		annotation SummarizationSetBy = User
+
+	column LONGITUDE
+		dataType: double
+		lineageTag: 3ac2ae61-4fb8-4386-8ad3-5f83f418ae1b
+		sourceLineageTag: 5609052b-73bd-4946-8644-187f8d55ace3
+		dataCategory: Longitude
+		summarizeBy: none
+		sourceColumn: LONGITUDE
+
+		annotation SummarizationSetBy = User
+
+	column MUNICIPIO
+		dataType: string
+		lineageTag: f9f9ff4b-d8d5-4f91-9c02-f77521bee1da
+		sourceLineageTag: a39a700e-f1aa-4491-afce-9dd7f9fe2ca9
+		dataCategory: County
+		summarizeBy: none
+		sourceColumn: MUNICIPIO
+
+		annotation SummarizationSetBy = User
+
+	column ESTADO
+		dataType: string
+		lineageTag: ab30fba6-4b76-4d1f-96a3-1857d9489741
+		sourceLineageTag: 07b4a2f9-2194-4a42-805c-5c95c536768d
+		dataCategory: StateOrProvince
+		summarizeBy: none
+		sourceColumn: ESTADO
+
+		annotation SummarizationSetBy = User
+
+	column COD_REGIONAL
+		dataType: string
+		lineageTag: 76d3bbcd-0e2a-462d-87db-d58c47e93612
+		sourceLineageTag: 5dda2365-636d-48a8-a94f-f5ed773ebdff
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: COD_REGIONAL
+
+		annotation SummarizationSetBy = User
+
+	column COD_REGIONAL2
+		dataType: string
+		lineageTag: 7e49d3f1-0fcd-4af8-9ba2-72379d429e78
+		sourceLineageTag: 2cb8ed19-09f7-4795-8cd9-7a7ccceb777e
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: COD_REGIONAL2
+
+		annotation SummarizationSetBy = User
+
+	column FILIAL2
+		dataType: string
+		lineageTag: 5ceaa8fb-0ef3-4812-a59a-7c0c42432d3f
+		sourceLineageTag: a008eb0d-4a7a-4293-8410-0b0409c38ab4
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: FILIAL2
+
+		annotation SummarizationSetBy = User
+
+	partition 'CUBOS_NOVOS - RL_DW_DIM_FILIAL' = entity
+		mode: directQuery
+		source
+			entityName: CUBOS_NOVOS - RL_DW_DIM_FILIAL
+			expressionSource: 'DirectQuery para AS – Modelo Rebocadores'
+

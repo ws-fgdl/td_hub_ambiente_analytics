@@ -1,0 +1,22 @@
+table DIM_STATUS_CONTAINER
+	lineageTag: 74d8310c-d65b-48cf-91a5-b42599824b70
+
+	column 'Status Container'
+		dataType: string
+		lineageTag: c4e29c3c-3212-4827-9e2c-642fc0abc954
+		summarizeBy: none
+		sourceColumn: Status Container
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DIM_STATUS_CONTAINER = m
+		mode: import
+		source =
+				let
+				    Fonte = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i45WcvZw9fRXitWJVgpzjAKxYgE=", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [#"Status Container" = _t]),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(Fonte,{{"Status Container", type text}})
+				in
+				    #"Tipo Alterado"
+
+	annotation PBI_ResultType = Table
+

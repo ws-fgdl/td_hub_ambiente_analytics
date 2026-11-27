@@ -1,0 +1,45 @@
+model Model
+	culture: pt-BR
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: pt-BR
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["DirectQuery para AS – MS_Bussola_Comercial_Consolidada","DIM_STATUS_CONTAINER"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table dim_calendario
+ref table aws_aging
+ref table aws_pmvpmr
+ref table aws_salesforce
+ref table dim_gsht_servico
+ref table BUSSOLA_COMERCIAL_CONSOLIDADA
+ref table UN
+ref table aws_movimentacao_cntr
+ref table dim_gsht_carteira_comercial
+ref table LocalDateTable_19f7f5cd-8bd1-4696-a6c5-e1ceb369f1b6
+ref table LocalDateTable_4cee1eca-ac20-4431-99da-6cb54c68acf3
+ref table LocalDateTable_4d2b2e2c-26fe-4252-8bcc-328baa49b011
+ref table LocalDateTable_c4a97d7e-2930-45d0-9dce-3c7c4edc3b66
+ref table LocalDateTable_195eb42c-9018-4cd3-89cc-5a19871644a3
+ref table LocalDateTable_63b5f414-c502-4aff-b89a-855b2242cd45
+ref table LocalDateTable_bd2bf53b-7dde-4bd8-8ae5-c69997308b26
+ref table LocalDateTable_24bc5d57-9593-4ebd-8f43-009ccc452519
+ref table DIM_STATUS_CONTAINER
+ref table FLAG_MOEDA
+ref table FLAG_VOLUME
+ref table Medidas_BC_Consolidada
+ref table aws_index_cpi
+ref table aws_dre_reb
+ref table aws_index_ipca_igpm_inpc_dolar
+ref table LocalDateTable_ebfc0c62-a109-46cc-9230-f795b5f151d4
+ref table LocalDateTable_44096fda-b776-411c-afd2-336737a843d6
+ref table LocalDateTable_dfb9cf43-8a07-4dd0-81c2-e1482307d70d
+ref table LocalDateTable_eac6cb73-b457-4f49-9f72-472699ffea61
+
+ref cultureInfo pt-BR
+

@@ -1,0 +1,151 @@
+table aws_salesforce
+	lineageTag: 292daed1-b2e4-4d0c-9f48-a1ede3eeebc7
+	sourceLineageTag: c21bc0e6-148d-4d90-8ab1-af55469a90e8
+
+	column id
+		dataType: string
+		lineageTag: 5ee63fc8-803b-46f8-bf89-438e7d1aa65d
+		sourceLineageTag: 51cebc9f-2961-49c6-a744-977620923002
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: id
+
+		annotation SummarizationSetBy = User
+
+	column parentid
+		dataType: string
+		lineageTag: 1ca2ea8d-a4dc-40ee-a178-ad6096b2f750
+		sourceLineageTag: 5f319217-b7e7-4ee4-b356-136c87ab488c
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: parentid
+
+		annotation SummarizationSetBy = User
+
+	column grupo_economico
+		dataType: string
+		lineageTag: e0e5e1db-2621-4012-a946-eb40a9d1a7aa
+		sourceLineageTag: f64cf128-80dc-4336-8c06-87e30358f016
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: grupo_economico
+
+		annotation SummarizationSetBy = User
+
+	column grupo_comercial
+		dataType: string
+		lineageTag: a6f7be5e-fce8-468a-9bf3-8dcafd2ebb49
+		sourceLineageTag: d18653fb-1cf4-47bc-915e-a2fb729ea2c5
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: grupo_comercial
+
+		annotation SummarizationSetBy = User
+
+	column cidade
+		dataType: string
+		lineageTag: 83fba8ba-a982-4245-a1eb-888dbaa55361
+		sourceLineageTag: 51526d1a-8d33-4716-bda0-54a4d4c1ed7a
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: cidade
+
+		annotation SummarizationSetBy = User
+
+	column pais
+		dataType: string
+		lineageTag: 9fe88474-629e-48a0-8c5a-c376e39d9aff
+		sourceLineageTag: d5a1f207-dcdf-478b-b8d2-ac182ff90ccf
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: pais
+
+		annotation SummarizationSetBy = User
+
+	column codigo_postal
+		dataType: string
+		lineageTag: 480051c6-e2dd-4efc-b75b-8a3ce6856de5
+		sourceLineageTag: 365cdacc-1590-4f7f-a88e-a33207978795
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: codigo_postal
+
+		annotation SummarizationSetBy = User
+
+	column estado
+		dataType: string
+		lineageTag: 30433291-8cdf-4aec-81f1-aacd0d5ac496
+		sourceLineageTag: c183bece-d6d9-47e1-afb3-c969474405e1
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: estado
+
+		annotation SummarizationSetBy = User
+
+	column endereço
+		dataType: string
+		lineageTag: 86a4907c-dbbe-49da-9ba2-497666e774db
+		sourceLineageTag: 2743984c-643f-4e43-9e81-29848d799b64
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: endereço
+
+		annotation SummarizationSetBy = User
+
+	column razao_social
+		dataType: string
+		lineageTag: 7bfcb808-12fc-4329-9c73-133da9a7ee5d
+		sourceLineageTag: 2f18ead7-9478-40d8-8a3b-727ac7ef8554
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: razao_social
+
+		annotation SummarizationSetBy = User
+
+	column codigo_sap
+		dataType: string
+		isNullable: false
+		lineageTag: 7586b32f-9ee2-4606-8a41-3b62d3567ccb
+		sourceLineageTag: ebf83de2-7521-43f6-886f-01bc4b342b25
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: codigo_sap
+
+		annotation SummarizationSetBy = User
+
+	column cnpj
+		dataType: string
+		lineageTag: b41acf1b-2a9a-45d6-ba70-33bad0576090
+		sourceLineageTag: 06ee934b-2310-41b3-842d-990b912ca836
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: cnpj
+
+		annotation SummarizationSetBy = User
+
+	column cpf
+		dataType: string
+		lineageTag: 63df02bd-f238-48a7-8c75-fee6c714a6ce
+		sourceLineageTag: 8d20ed95-89a3-4c6a-a6f2-a27e9587e056
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: cpf
+
+		annotation SummarizationSetBy = User
+
+	column duns_number
+		dataType: string
+		lineageTag: e2805185-05f4-482f-a5cf-df9d20054c7d
+		sourceLineageTag: 3c0b6a90-d29d-4fac-87da-7346fdeb58a5
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: duns_number
+
+		annotation SummarizationSetBy = User
+
+	partition aws_salesforce = entity
+		mode: directQuery
+		source
+			entityName: aws_salesforce
+			expressionSource: 'DirectQuery para AS – MS_Bussola_Comercial_Consolidada'
+

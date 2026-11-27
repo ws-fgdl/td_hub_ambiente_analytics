@@ -1,0 +1,129 @@
+table aws_movimentacao_cntr
+	lineageTag: d2f143b6-d316-4607-905f-b2b193fa7026
+
+	column cod_sap
+		dataType: string
+		lineageTag: 40e867c8-d668-42df-90a1-c98ea4f1859e
+		summarizeBy: none
+		sourceColumn: cod_sap
+
+		annotation SummarizationSetBy = Automatic
+
+	column mov_cntr
+		dataType: int64
+		formatString: 0
+		lineageTag: 557b85ec-4755-4c0c-87da-6b0d8aa0ef65
+		summarizeBy: sum
+		sourceColumn: mov_cntr
+
+		annotation SummarizationSetBy = Automatic
+
+	column data
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 902d663d-2eb3-44b3-961e-efcb0be8d26a
+		summarizeBy: none
+		sourceColumn: data
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column modalidade
+		dataType: string
+		lineageTag: f9fbd449-0b42-432c-808a-1234fb8e559e
+		summarizeBy: none
+		sourceColumn: modalidade
+
+		annotation SummarizationSetBy = Automatic
+
+	column status
+		dataType: string
+		lineageTag: 7fa5278f-5fa7-4fe2-aa6f-57c1859b4b74
+		summarizeBy: none
+		sourceColumn: status
+
+		annotation SummarizationSetBy = Automatic
+
+	column dsc_grupo_armador
+		dataType: string
+		lineageTag: 5c01b9b6-80ae-4388-8488-ef24b478f924
+		summarizeBy: none
+		sourceColumn: dsc_grupo_armador
+
+		annotation SummarizationSetBy = Automatic
+
+	column emp_sap
+		dataType: string
+		lineageTag: d5103579-3cd5-459c-8f78-3335412e5599
+		summarizeBy: none
+		sourceColumn: emp_sap
+
+		annotation SummarizationSetBy = Automatic
+
+	column qnt_teu
+		dataType: double
+		lineageTag: 6f6e09d7-a156-441e-859a-b6da0519956d
+		summarizeBy: sum
+		sourceColumn: qnt_teu
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column modalidade_painel
+		dataType: string
+		lineageTag: e3eebeaf-f338-4afb-a17b-728cc4aa7bea
+		summarizeBy: none
+		sourceColumn: modalidade_painel
+
+		annotation SummarizationSetBy = Automatic
+
+	column un
+		dataType: string
+		lineageTag: 4cee59d4-bf81-4225-8a0f-e91652692e68
+		summarizeBy: none
+		sourceColumn: un
+
+		annotation SummarizationSetBy = Automatic
+
+	column operacao_por_navio
+		dataType: string
+		lineageTag: b7e3d757-5064-43b1-a266-3170cc8545eb
+		summarizeBy: none
+		sourceColumn: operacao_por_navio
+
+		annotation SummarizationSetBy = Automatic
+
+	column linha_maritima
+		dataType: string
+		lineageTag: 0108170c-c6cb-4270-84f8-dceed3edd05f
+		summarizeBy: none
+		sourceColumn: linha_maritima
+
+		annotation SummarizationSetBy = Automatic
+
+	column tipo
+		dataType: string
+		lineageTag: fd9870e3-b7a5-48c3-b27d-e9d569a68a7e
+		summarizeBy: none
+		sourceColumn: tipo
+
+		annotation SummarizationSetBy = Automatic
+
+	partition aws_movimentacao_cntr = m
+		mode: import
+		source =
+				let
+				    Fonte = PowerPlatform.Dataflows(null),
+				    Workspaces = Fonte{[Id="Workspaces"]}[Data],
+				    #"bcd54b55-e85f-4c30-a169-bfbf18f90f30" = Workspaces{[workspaceId="bcd54b55-e85f-4c30-a169-bfbf18f90f30"]}[Data],
+				    #"74f928b0-f022-428d-b321-23ee127044d6" = #"bcd54b55-e85f-4c30-a169-bfbf18f90f30"{[dataflowId="74f928b0-f022-428d-b321-23ee127044d6"]}[Data],
+				    movimentacao_cntr_ = #"74f928b0-f022-428d-b321-23ee127044d6"{[entity="movimentacao_cntr",version=""]}[Data]
+				in
+				    movimentacao_cntr_
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

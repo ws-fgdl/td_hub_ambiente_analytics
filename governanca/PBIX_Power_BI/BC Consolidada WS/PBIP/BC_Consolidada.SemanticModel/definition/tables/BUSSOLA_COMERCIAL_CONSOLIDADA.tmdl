@@ -1,0 +1,189 @@
+table BUSSOLA_COMERCIAL_CONSOLIDADA
+	lineageTag: ab810f3f-c527-452d-9230-79fea476c6ff
+	sourceLineageTag: 7d5411ca-d7db-4a57-a78e-13a2afb1f78b
+
+	column os
+		dataType: int64
+		formatString: 0
+		lineageTag: c0dec3b7-45ab-4e59-a805-021581cf2e3a
+		sourceLineageTag: c11b6ca1-bd16-4641-9535-52e7518a5c81
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: os
+
+		annotation SummarizationSetBy = User
+
+	column data_do_inicio_do_evento
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: fa71a050-6e59-40c2-86f8-dce672bdfa67
+		sourceLineageTag: 18058d2f-f7ea-497b-bd6f-39a3522ad135
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: data_do_inicio_do_evento
+
+		variation Variation
+			isDefault
+			relationship: 6b3af706-d988-4bc2-b447-ff3e93282c38
+			defaultHierarchy: LocalDateTable_eac6cb73-b457-4f49-9f72-472699ffea61.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = User
+
+	column data_do_fim_do_evento
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 3ef3ea0e-bff9-4095-80d9-4cb0a2c151cf
+		sourceLineageTag: 25eccce5-2a71-4f9d-81e9-db598bf076d4
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: data_do_fim_do_evento
+
+		annotation SummarizationSetBy = User
+
+	column competencia
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: e2046ccd-4946-4ace-8404-d8790ec319b6
+		sourceLineageTag: a5cfd0ac-56ce-4ff8-afca-278fdb6cd8be
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: competencia
+
+		annotation SummarizationSetBy = User
+
+	column navio
+		dataType: string
+		lineageTag: 6e32a7c7-ff40-47b9-838e-3d477e3d04ba
+		sourceLineageTag: d711bc79-442e-4d55-8105-2575454e87b9
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: navio
+
+		annotation SummarizationSetBy = User
+
+	column servico
+		dataType: string
+		lineageTag: d8a0d86f-26e4-44fb-9bca-715de2b29028
+		sourceLineageTag: 3c65a2c2-edc2-421d-8700-4a845462ba9e
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: servico
+
+		annotation SummarizationSetBy = User
+
+	column cliente
+		dataType: string
+		lineageTag: 0ef3e6b4-445f-44e8-bae8-0597b873f1f8
+		sourceLineageTag: 361bff80-939f-4ea5-90c5-89d5627062e1
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: cliente
+
+		annotation SummarizationSetBy = User
+
+	column valor_faturado_usd
+		dataType: double
+		lineageTag: 071cb3f8-b60a-4779-b5ca-55d407ec88ac
+		sourceLineageTag: 3f1c37c2-55ae-423e-ad8e-efac6aa7371d
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: valor_faturado_usd
+
+		annotation SummarizationSetBy = User
+
+	column valor_faturado_brl
+		dataType: double
+		lineageTag: 546b1877-9009-441b-b1f7-1176e9aa7b70
+		sourceLineageTag: 843ad3e2-8ab1-493b-b0f8-a2c7df66c071
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: valor_faturado_brl
+
+		annotation SummarizationSetBy = User
+
+	column volume
+		dataType: double
+		lineageTag: 8d6dcc84-462f-49af-9aa0-9875cf496357
+		sourceLineageTag: bd02a511-c1ee-4fcf-bc8c-7a3a223c4d43
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: volume
+
+		annotation SummarizationSetBy = User
+
+	column cobrar_de_sap
+		dataType: string
+		lineageTag: 02233a8d-f34c-4a99-80b6-98fb47be1307
+		sourceLineageTag: 0c5ce7b7-f095-4a54-b3f1-452400e785ce
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: cobrar_de_sap
+
+		annotation SummarizationSetBy = User
+
+	column un
+		dataType: string
+		lineageTag: b1ff7a3d-6674-4282-b8e2-8e48a04f9a91
+		sourceLineageTag: 39a331b5-abf0-4cea-91d3-39e64f84d137
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: un
+
+		annotation SummarizationSetBy = User
+
+	column manobra_especial
+		dataType: string
+		lineageTag: 81e907a7-8413-4ed9-84ae-0a3bf93c718d
+		sourceLineageTag: bed143bb-bfb6-475c-8c7f-d260586a3fd8
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: manobra_especial
+
+		annotation SummarizationSetBy = User
+
+	column duracao_em_dias
+		dataType: double
+		lineageTag: c30cadfc-b619-4fff-9cf7-c27ca26521b7
+		sourceLineageTag: 0176aaf1-2bfd-4e1a-8bcd-a7fa9e944e12
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: duracao_em_dias
+
+		annotation SummarizationSetBy = User
+
+	column Id_servico
+		dataType: string
+		lineageTag: bb43c0e8-762f-40c7-b1e4-5ed035eee678
+		sourceLineageTag: d2e84b1c-656c-4e82-ac03-a7f399c1845f
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Id_servico
+
+		annotation SummarizationSetBy = User
+
+	column MODALIDADE
+		dataType: string
+		lineageTag: 044b55c4-3d5a-4429-b7fe-3bfd128f1b6c
+		sourceLineageTag: 95da1528-c784-4195-b961-06d866b3cb12
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: MODALIDADE
+
+		annotation SummarizationSetBy = User
+
+	column SERV_IMPACTADO_TEMPO
+		dataType: string
+		lineageTag: c06c09de-3266-4b12-b770-091dda400406
+		sourceLineageTag: 8e41d5b5-7768-4e1d-bebd-f03f41b25ef0
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: SERV_IMPACTADO_TEMPO
+
+		annotation SummarizationSetBy = User
+
+	partition BUSSOLA_COMERCIAL_CONSOLIDADA = entity
+		mode: directQuery
+		source
+			entityName: BUSSOLA_COMERCIAL_CONSOLIDADA
+			expressionSource: 'DirectQuery para AS – MS_Bussola_Comercial_Consolidada'
+

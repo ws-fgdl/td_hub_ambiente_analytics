@@ -1,0 +1,52 @@
+relationship add891bf-a90c-4bc3-90dd-de76d0f017d2
+	fromColumn: 'CUBOS_NOVOS - RL_DW_FATO_CUBO_REBOC'.FILIAL_SEQ_ID
+	toColumn: 'CUBOS_NOVOS - RL_DW_DIM_FILIAL'.FILIAL_SEQ_ID
+
+relationship b9f65d68-a11d-4729-82e1-30c00e2ce379
+	fromColumn: 'CUBOS_NOVOS - RL_DW_FATO_CUBO_REBOC'.GRUPO_DONO_MANOBRA_SEQ_ID
+	toColumn: 'CUBOS_NOVOS - RL_DW_DIM_GRUPO_DONO_MANOBRA'.GRUPO_DONO_MANOBRA_SEQ_ID
+
+relationship a2ed71e1-a64e-4b20-9eaf-5f74dc81c99e
+	fromColumn: 'CUBOS_NOVOS - RL_DW_FATO_CUBO_REBOC'.GRUPO_OPERADOR_SEQ_ID
+	toColumn: 'CUBOS_NOVOS - RL_DW_DIM_GRUPO_OPERADOR'.GRUPO_OPERADOR_SEQ_ID
+
+relationship e0de11fe-f967-47f7-a23a-fb7fe7e21b0f
+	fromColumn: 'CUBOS_NOVOS - RL_DW_FATO_CUBO_REBOC'.DT_OPER
+	toColumn: _Tempo.Data
+
+relationship b50f673a-6c6a-4b42-9633-9a425e37398f
+	fromColumn: 'CUBOS_NOVOS - RL_DW_FATO_CUBO_REBOC'.DIV_COMERCIAL_SEQ_ID
+	toColumn: 'CUBOS_NOVOS - RL_DW_DIM_DIV_COMERCIAL'.DIV_COMERCIAL_SEQ_ID
+
+relationship c84be3df-a46a-4769-b94d-1c10b572318f
+	fromColumn: 'CUBOS_NOVOS - RL_DW_FATO_CUBO_REBOC'.GRUPO_CLIENTE_SEQ_ID
+	toColumn: 'CUBOS_NOVOS - RL_DW_DIM_GRUPO_CLIENTE'.GRUPO_CLIENTE_SEQ_ID
+
+relationship 461c7bb2-2e75-43a1-bde4-21116a9facc7
+	fromColumn: 'Volume Próprio e Terceiros e Perfil Afretamento - Perfil Afretamento'.TIPO_PROP_TERC
+	toColumn: 'Volume Próprio e Terceiros e Perfil Afretamento - Prop_Terc'.TIPO_PROP_TERC
+
+relationship 0e496970-70f3-42d8-be3a-600eececf1a7
+	fromColumn: 'Volume Próprio e Terceiros e Perfil Afretamento - Volume'.TIPO_PROP_TERC
+	toColumn: 'Volume Próprio e Terceiros e Perfil Afretamento - Prop_Terc'.TIPO_PROP_TERC
+
+relationship 1600ff0c-0cca-4530-b227-cbf364314193
+	fromColumn: 'Volume Próprio e Terceiros e Perfil Afretamento - Volume'.ANOMES
+	toColumn: 'Volume Próprio e Terceiros e Perfil Afretamento - Competencia'.ANOMES
+
+relationship 2a04afd7-94f7-4340-9c00-39d6edb6cff7
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: _Tempo.#Ano/Mês
+	toColumn: 'Volume Próprio e Terceiros e Perfil Afretamento - Perfil Afretamento'.ANOMES
+
+relationship f316cb4b-9af5-4daa-8d83-11c60bea472e
+	toCardinality: many
+	fromColumn: 'Volume Próprio e Terceiros e Perfil Afretamento - Volume'.ANOMES
+	toColumn: _Tempo.#Ano/Mês
+
+relationship 15c6b39e-ddcc-4ec1-a84d-c37fe1bd7a53
+	toCardinality: many
+	fromColumn: 'CUBOS_NOVOS - RL_DW_FATO_CUBO_REBOC'.FAIXA_DWT
+	toColumn: Dim_FaixaDWT.FAIXA_DWT
+

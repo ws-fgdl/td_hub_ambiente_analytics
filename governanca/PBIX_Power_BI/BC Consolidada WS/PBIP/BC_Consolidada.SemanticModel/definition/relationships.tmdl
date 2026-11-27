@@ -1,0 +1,113 @@
+relationship 43aa6707-495c-42e8-8e0a-bb42d09b9742
+	fromColumn: dim_calendario.data
+	toColumn: LocalDateTable_19f7f5cd-8bd1-4696-a6c5-e1ceb369f1b6.Date
+
+relationship 7e2fbe24-cd0b-4ba9-bd3e-f09fcc519912
+	fromColumn: aws_aging.dat_lancamento
+	toColumn: LocalDateTable_4cee1eca-ac20-4431-99da-6cb54c68acf3.Date
+
+relationship 7aa11cf9-4ecd-4e79-9636-1831c81bfab5
+	fromColumn: aws_aging.dat_documento
+	toColumn: LocalDateTable_4d2b2e2c-26fe-4252-8bcc-328baa49b011.Date
+
+relationship f14ce7dd-c251-4fef-8b92-9e48659d1ed3
+	fromColumn: aws_aging.dat_compensacao
+	toColumn: LocalDateTable_c4a97d7e-2930-45d0-9dce-3c7c4edc3b66.Date
+
+relationship e53a5e85-82e7-4b67-bf28-6dbcf016b422
+	fromColumn: aws_aging.dat_incl_reg
+	toColumn: LocalDateTable_195eb42c-9018-4cd3-89cc-5a19871644a3.Date
+
+relationship 578ba9ab-61a2-487f-9a9c-dd745544148c
+	fromColumn: aws_aging.dat_alt_reg
+	toColumn: LocalDateTable_63b5f414-c502-4aff-b89a-855b2242cd45.Date
+
+relationship 0810f467-2314-4fa8-990b-92098dedd866
+	fromColumn: aws_aging.cod_cliente_sap
+	toColumn: aws_salesforce.codigo_sap
+
+relationship cf2d56a9-e2fa-4c7d-9515-88b637633df7
+	fromColumn: aws_aging.dat_vencimento
+	toColumn: dim_calendario.data
+
+relationship d76d9dba-d3e8-4214-aea5-89d2e37ed466
+	fromColumn: aws_aging.UN
+	toColumn: UN.un
+
+relationship 3bddb9a0-34ff-4824-9756-33f4cb949df7
+	fromColumn: aws_pmvpmr.data_lancamento
+	toColumn: LocalDateTable_bd2bf53b-7dde-4bd8-8ae5-c69997308b26.Date
+
+relationship 542915ef-8ec7-4d6e-bcb1-91e61bec5846
+	fromColumn: aws_pmvpmr.data_criacao
+	toColumn: LocalDateTable_24bc5d57-9593-4ebd-8f43-009ccc452519.Date
+
+relationship 3798c5c2-0ac8-4c6b-a92c-144c345a6c01
+	fromColumn: aws_pmvpmr.UN
+	toColumn: UN.un
+
+relationship 93346f19-805c-4dfd-a808-030c959a81cf
+	fromColumn: BUSSOLA_COMERCIAL_CONSOLIDADA.competencia
+	toColumn: dim_calendario.data
+
+relationship c50cebc1-fd9a-4a51-8afc-4ffb5bee3e62
+	fromColumn: BUSSOLA_COMERCIAL_CONSOLIDADA.un
+	toColumn: UN.un
+
+relationship 48c9798a-98d9-4289-8450-f46802e33de2
+	fromColumn: BUSSOLA_COMERCIAL_CONSOLIDADA.cobrar_de_sap
+	toColumn: aws_salesforce.codigo_sap
+
+relationship 0270ae58-fef3-4152-9431-f40d8bf94363
+	isActive: false
+	fromColumn: BUSSOLA_COMERCIAL_CONSOLIDADA.data_do_fim_do_evento
+	toColumn: dim_calendario.data
+
+relationship c797032e-d7f1-4f64-8f1c-3f3d8f6ea810
+	fromColumn: BUSSOLA_COMERCIAL_CONSOLIDADA.Id_servico
+	toColumn: dim_gsht_servico.Chave-Bussola
+
+relationship 8ce61f4c-b941-448d-b166-32222ff07496
+	fromColumn: BUSSOLA_COMERCIAL_CONSOLIDADA.cobrar_de_sap
+	toColumn: dim_gsht_carteira_comercial.CODIGO_SAP_Padronizado
+
+relationship 5629e3bd-24e2-4843-ae0a-ccd65c0434cb
+	fromColumn: aws_movimentacao_cntr.un
+	toColumn: UN.un
+
+relationship b725ac2f-2598-4cc5-91b4-1a3b800e6331
+	fromColumn: aws_movimentacao_cntr.cod_sap
+	toColumn: aws_salesforce.codigo_sap
+
+relationship 6a18a1bd-f136-4b25-b951-811f0c23c8b8
+	fromColumn: aws_movimentacao_cntr.data
+	toColumn: dim_calendario.data
+
+relationship 452b9137-a473-49dc-b9d2-464d97d48ccb
+	fromColumn: aws_aging.cod_cliente_sap
+	toColumn: dim_gsht_carteira_comercial.CODIGO_SAP_Padronizado
+
+relationship d5c580ec-4d56-44df-aac8-700e33d9ea52
+	fromColumn: aws_movimentacao_cntr.cod_sap
+	toColumn: dim_gsht_carteira_comercial.CODIGO_SAP_Padronizado
+
+relationship 7c82216d-c7a6-4410-8fb3-0597200333df
+	fromColumn: aws_index_cpi.date
+	toColumn: LocalDateTable_ebfc0c62-a109-46cc-9230-f795b5f151d4.Date
+
+relationship b73ccdca-a63c-4b66-a188-5838a5834d2e
+	fromColumn: aws_dre_reb.competencia
+	toColumn: LocalDateTable_44096fda-b776-411c-afd2-336737a843d6.Date
+
+relationship 20a840be-3c60-4b38-8a80-5f1db5b43943
+	fromColumn: aws_pmvpmr.data_vencimento
+	toColumn: LocalDateTable_dfb9cf43-8a07-4dd0-81c2-e1482307d70d.Date
+
+relationship 6b3af706-d988-4bc2-b447-ff3e93282c38
+	fromColumn: BUSSOLA_COMERCIAL_CONSOLIDADA.data_do_inicio_do_evento
+	toColumn: LocalDateTable_eac6cb73-b457-4f49-9f72-472699ffea61.Date
+
+relationship 9df4afe9-3d77-4c10-a0d5-1dd253e97525
+	fromColumn: aws_pmvpmr.data_compensacao
+	toColumn: dim_calendario.data
+

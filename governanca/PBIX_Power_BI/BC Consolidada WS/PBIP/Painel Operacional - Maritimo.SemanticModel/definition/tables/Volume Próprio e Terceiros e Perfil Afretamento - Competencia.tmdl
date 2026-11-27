@@ -1,0 +1,63 @@
+table 'Volume Próprio e Terceiros e Perfil Afretamento - Competencia'
+	lineageTag: 420d9ccc-40b0-4975-8be6-e8daed2c41d3
+	sourceLineageTag: 720240a4-186e-400d-adb0-581827dc2c4a
+
+	column COMPETENCIA
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 36ff0650-9ce5-4e96-9656-564e6d6b22db
+		sourceLineageTag: 5421886c-0ac8-40e5-8775-a7641775b858
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: COMPETENCIA
+
+		annotation SummarizationSetBy = User
+
+	column ANOMES
+		dataType: string
+		isNullable: false
+		lineageTag: 72b5f327-9227-460d-bfba-59192c8a2010
+		sourceLineageTag: d3c7a7fe-37a9-446a-88cd-22be1d9d5afa
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: ANOMES
+
+		annotation SummarizationSetBy = User
+
+	column ANOMES_13
+		dataType: string
+		lineageTag: 41f0020c-9047-48dd-a6c1-a3f873ef9436
+		sourceLineageTag: 0eddd8b1-a76c-4ff8-9b6a-ccf1c1a2ab7a
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: ANOMES_13
+
+		annotation SummarizationSetBy = User
+
+	column COMPETENCIA_ANOMES
+		dataType: string
+		lineageTag: bb375b4e-bc66-47ab-8630-f0d731fd79e2
+		sourceLineageTag: bfde29b7-4adc-4776-ac1c-379e2ed296a8
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: COMPETENCIA_ANOMES
+		sortByColumn: COMPETENCIA
+
+		annotation SummarizationSetBy = User
+
+	column ANO
+		dataType: string
+		lineageTag: 5d177f1a-58d3-439e-86bb-9fe232296b3c
+		sourceLineageTag: c66eb3c2-c99f-41a7-8047-f676cb5bba64
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: ANO
+
+		annotation SummarizationSetBy = User
+
+	partition 'Volume Próprio e Terceiros e Perfil Afretamento - Competencia' = entity
+		mode: directQuery
+		source
+			entityName: Volume Próprio e Terceiros e Perfil Afretamento - Competencia
+			expressionSource: 'DirectQuery para AS – Modelo Rebocadores'
+

@@ -1,0 +1,43 @@
+table 'CUBOS_NOVOS - RL_DW_DIM_GRUPO_CLIENTE'
+	lineageTag: 44fbd18e-e259-4d30-8764-876fb10ffde7
+	sourceLineageTag: 4cc9e064-104c-4191-9447-ae2269c2d89a
+
+	column GRUPO_CLIENTE_SEQ_ID
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		lineageTag: dd22bc0a-074b-4fdd-9541-21a14af4eace
+		sourceLineageTag: c45eee1b-a0a8-4025-ae3e-dd1043f01c84
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: GRUPO_CLIENTE_SEQ_ID
+
+		annotation SummarizationSetBy = User
+
+	column GRUPO_CLIENTE_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: 8f5ef530-ed62-44b7-9aea-b0bf86128b7e
+		sourceLineageTag: 28c1fdb1-1b76-4b97-9849-37bb18a4b9e4
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: GRUPO_CLIENTE_ID
+
+		annotation SummarizationSetBy = User
+
+	column GRUPO_CLIENTE
+		dataType: string
+		lineageTag: 09853ac9-102b-4908-b014-8f19efbd9fc4
+		sourceLineageTag: 7521d8d0-4a3a-483f-af33-671137ea244c
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: GRUPO_CLIENTE
+
+		annotation SummarizationSetBy = User
+
+	partition 'CUBOS_NOVOS - RL_DW_DIM_GRUPO_CLIENTE' = entity
+		mode: directQuery
+		source
+			entityName: CUBOS_NOVOS - RL_DW_DIM_GRUPO_CLIENTE
+			expressionSource: 'DirectQuery para AS – Modelo Rebocadores'
+

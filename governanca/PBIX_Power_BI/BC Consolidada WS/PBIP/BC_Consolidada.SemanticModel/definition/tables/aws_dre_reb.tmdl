@@ -1,0 +1,90 @@
+table aws_dre_reb
+	lineageTag: 413cd4e6-d773-4245-9071-8c56e4cc2846
+	sourceLineageTag: f3206bef-a72e-4a05-9827-477f4f614d36
+
+	column competencia
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 3fe4dc61-e280-4330-b524-e6de7ade710f
+		sourceLineageTag: 5bbcd6ed-00ba-4c5d-92b4-42c09064d54f
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: competencia
+
+		variation Variation
+			isDefault
+			relationship: b73ccdca-a63c-4b66-a188-5838a5834d2e
+			defaultHierarchy: LocalDateTable_44096fda-b776-411c-afd2-336737a843d6.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = User
+
+	column filial
+		dataType: string
+		lineageTag: cefb4c92-6cc1-47d3-be8f-562417d35f89
+		sourceLineageTag: 3834664e-96b9-4819-bc29-13df8eb38a97
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: filial
+
+		annotation SummarizationSetBy = User
+
+	column linha_dre
+		dataType: string
+		lineageTag: c8270029-3cef-4aab-b80c-b0daaece1b02
+		sourceLineageTag: c302212b-322a-4ef3-a7b8-93d6b081abb1
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: linha_dre
+
+		annotation SummarizationSetBy = User
+
+	column orcado_dolar
+		dataType: int64
+		formatString: 0
+		lineageTag: cbbe9853-9501-4bb0-b446-6abc20ab941d
+		sourceLineageTag: 022ea112-94b1-4160-830a-6b064cd08b7d
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: orcado_dolar
+
+		annotation SummarizationSetBy = User
+
+	column realizado_dolar
+		dataType: int64
+		formatString: 0
+		lineageTag: 71076b57-fd51-4fc1-ab78-20402e3f7da8
+		sourceLineageTag: 13d0b4d0-7c68-40ee-8c2e-376b700f1de8
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: realizado_dolar
+
+		annotation SummarizationSetBy = User
+
+	column orcado_real
+		dataType: int64
+		formatString: 0
+		lineageTag: a700eddb-abb2-417c-8084-e6d1677ff949
+		sourceLineageTag: a0a02201-bdfe-4dc3-8505-da474f12b69d
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: orcado_real
+
+		annotation SummarizationSetBy = User
+
+	column realizado_real
+		dataType: int64
+		formatString: 0
+		lineageTag: 3d25664c-0fac-4e88-8c79-90bfcae6f1bb
+		sourceLineageTag: 705443d0-cb36-4c0f-ac3d-af84c1e2f1c4
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: realizado_real
+
+		annotation SummarizationSetBy = User
+
+	partition aws_dre_reb = entity
+		mode: directQuery
+		source
+			entityName: aws_dre_reb
+			expressionSource: 'DirectQuery para AS – MS_Bussola_Comercial_Consolidada'
+

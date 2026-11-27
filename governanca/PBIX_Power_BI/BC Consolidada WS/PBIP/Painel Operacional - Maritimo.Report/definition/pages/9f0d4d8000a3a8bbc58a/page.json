@@ -1,0 +1,108 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "9f0d4d8000a3a8bbc58a",
+  "displayName": "Operational Dashboard",
+  "displayOption": "FitToWidth",
+  "height": 2800,
+  "width": 2000,
+  "pageBinding": {
+    "name": "656783a2e8e5f5fe709b",
+    "type": "Default",
+    "parameters": [],
+    "acceptsFilterContext": "None"
+  },
+  "objects": {
+    "background": [
+      {
+        "properties": {
+          "color": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "ThemeDataColor": {
+                    "ColorId": 0,
+                    "Percent": 0
+                  }
+                }
+              }
+            }
+          },
+          "transparency": {
+            "expr": {
+              "Literal": {
+                "Value": "0D"
+              }
+            }
+          },
+          "image": {
+            "image": {
+              "name": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'PADRAO.png'"
+                  }
+                }
+              },
+              "url": {
+                "expr": {
+                  "ResourcePackageItem": {
+                    "PackageName": "RegisteredResources",
+                    "PackageType": 1,
+                    "ItemName": "PADRAO593675213248315.png"
+                  }
+                }
+              },
+              "scaling": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'Normal'"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ],
+    "outspacePane": [
+      {
+        "properties": {
+          "width": {
+            "expr": {
+              "Literal": {
+                "Value": "258L"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "visualInteractions": [
+    {
+      "source": "6b8294f23e05208caee9",
+      "target": "721853492590d943a700",
+      "type": "DataFilter"
+    },
+    {
+      "source": "e65b52b12ced6bc3701b",
+      "target": "10e2aef8f49ab80feea3",
+      "type": "NoFilter"
+    },
+    {
+      "source": "560c80a84c12bc7fbf69",
+      "target": "d91f4473f38bb49f165b",
+      "type": "NoFilter"
+    },
+    {
+      "source": "560c80a84c12bc7fbf69",
+      "target": "721853492590d943a700",
+      "type": "DataFilter"
+    },
+    {
+      "source": "e65b52b12ced6bc3701b",
+      "target": "721853492590d943a700",
+      "type": "NoFilter"
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+table 'CUBOS_NOVOS - RL_DW_DIM_GRUPO_DONO_MANOBRA'
+	lineageTag: e9e47f9d-c6ab-46c8-89b6-49b191a3c584
+	sourceLineageTag: 4a72953d-22e8-4371-a0df-9a2c8dae22b8
+
+	column GRUPO_DONO_MANOBRA_SEQ_ID
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		lineageTag: b1c7a4df-6c78-49cf-b068-41e5c43e1c70
+		sourceLineageTag: 4e8f266d-1e9a-4a97-8e00-f2b9067f28dc
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: GRUPO_DONO_MANOBRA_SEQ_ID
+
+		annotation SummarizationSetBy = User
+
+	column GRUPO_DONO_MANOBRA_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: 7ac407eb-7ed1-48aa-b929-22086006eb93
+		sourceLineageTag: 2c527985-fd9a-4181-bb8c-03b1b61ba67d
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: GRUPO_DONO_MANOBRA_ID
+
+		annotation SummarizationSetBy = User
+
+	column GRUPO_DONO_MANOBRA
+		dataType: string
+		lineageTag: 8ca7e20e-773a-497d-b166-2e1d38668c22
+		sourceLineageTag: 5899f9e5-f53a-4079-a523-40cb84d85d82
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: GRUPO_DONO_MANOBRA
+
+		annotation SummarizationSetBy = User
+
+	column GRUPO_DONO_MANOBRA_WS
+		dataType: string
+		lineageTag: 03d220e9-c04c-4736-bccb-0b53296eed03
+		sourceLineageTag: 939e2112-20d9-409b-a250-b6b27c88953d
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: GRUPO_DONO_MANOBRA_WS
+
+		annotation SummarizationSetBy = User
+
+	column GRUPO_DONO_MANOBRA_WS_OTHERS
+		dataType: string
+		lineageTag: 46263652-ff4f-4c0a-bbaf-11ea76058e47
+		sourceLineageTag: 0464027f-3a48-4345-8849-4e7aed2f06e4
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: GRUPO_DONO_MANOBRA_WS_OTHERS
+
+		annotation SummarizationSetBy = User
+
+	partition 'CUBOS_NOVOS - RL_DW_DIM_GRUPO_DONO_MANOBRA' = entity
+		mode: directQuery
+		source
+			entityName: CUBOS_NOVOS - RL_DW_DIM_GRUPO_DONO_MANOBRA
+			expressionSource: 'DirectQuery para AS – Modelo Rebocadores'
+

@@ -1,0 +1,1410 @@
+table 'CUBOS_NOVOS - RL_DW_FATO_CUBO_REBOC'
+	lineageTag: fcc86066-57de-4de0-8b02-520131c9252b
+	sourceLineageTag: c19dff84-99a1-4a1a-8ed7-dbde5567c590
+
+	measure Média = EXTERNALMEASURE("Média", DOUBLE, "DirectQuery para AS – Modelo Rebocadores")
+		lineageTag: baa6a9d2-b250-40b1-9c30-1b87b64b94ec
+		sourceLineageTag: c7259968-8d88-4a2a-a9ac-6c380d3a46df
+		dataCategory: Uncategorized
+
+	measure 'Média PY' = EXTERNALMEASURE("Média PY", DOUBLE, "DirectQuery para AS – Modelo Rebocadores")
+		lineageTag: 854892e6-d109-4b78-8c49-c96ddc714212
+		sourceLineageTag: 1282f11a-fa89-4c3f-812b-d4098a9ebb7c
+		dataCategory: Uncategorized
+
+	measure Media_Semana = EXTERNALMEASURE("Media_Semana", DOUBLE, "DirectQuery para AS – Modelo Rebocadores")
+		lineageTag: 446260e6-536e-48fa-86fd-cff72a28ed19
+		sourceLineageTag: f2cb772d-bb2b-4d3c-8c9b-60e8882ac533
+		dataCategory: Uncategorized
+
+	measure Qtd_dias_mes = EXTERNALMEASURE("Qtd_dias_mes", DOUBLE, "DirectQuery para AS – Modelo Rebocadores")
+		lineageTag: 1dadab9f-e699-4b2c-8045-5412d84bf980
+		sourceLineageTag: af529b93-0ed9-4180-bced-8bb09afe8605
+		dataCategory: Uncategorized
+
+	measure Ult_dia = EXTERNALMEASURE("Ult_dia", DOUBLE, "DirectQuery para AS – Modelo Rebocadores")
+		lineageTag: 1637fbb3-90dc-4ed0-962f-4699cfead54e
+		sourceLineageTag: f0dd19f5-03b7-4086-9c14-7c107465c727
+		dataCategory: Uncategorized
+
+	measure Ult_dia3 = EXTERNALMEASURE("Ult_dia3", DATETIME, "DirectQuery para AS – Modelo Rebocadores")
+		formatString: General Number
+		lineageTag: 7bb2a1c2-0b0b-48f3-925d-06e9610c9826
+		sourceLineageTag: 2fd6a6f4-266e-430f-84a7-24b0efdc2f49
+		dataCategory: Uncategorized
+
+	measure Ult_semana = EXTERNALMEASURE("Ult_semana", INTEGER, "DirectQuery para AS – Modelo Rebocadores")
+		formatString: 0
+		lineageTag: 5061c806-ed51-4d49-9289-6a5bcb3f7edf
+		sourceLineageTag: 859644c7-edd5-42ee-8d6c-71c70dcc85eb
+		dataCategory: Uncategorized
+
+	measure 'Vol Proj' = EXTERNALMEASURE("Vol Proj", DOUBLE, "DirectQuery para AS – Modelo Rebocadores")
+		lineageTag: ca349abf-0ddb-473c-bdf4-13d17206ca9b
+		sourceLineageTag: 608bde8d-4754-4c08-88e4-c47faed84be2
+		dataCategory: Uncategorized
+
+	measure 'Vol Proj PY' = EXTERNALMEASURE("Vol Proj PY", DOUBLE, "DirectQuery para AS – Modelo Rebocadores")
+		lineageTag: 786e1373-8c2b-49fa-94da-4d6ae84ac660
+		sourceLineageTag: 9d1c3a35-6f7e-4c46-b761-cb9a678fbbec
+		dataCategory: Uncategorized
+
+	measure 'Volume PY' = EXTERNALMEASURE("Volume PY", DOUBLE, "DirectQuery para AS – Modelo Rebocadores")
+		lineageTag: d7835639-4305-4967-aa33-aa449223b751
+		sourceLineageTag: 5de90dbe-087b-4c12-9bcd-4110feefd1ab
+		dataCategory: Uncategorized
+
+	measure 'Contagem distinta Navios' = EXTERNALMEASURE("Contagem distinta Navios", INTEGER, "DirectQuery para AS – Modelo Rebocadores")
+		formatString: 0
+		lineageTag: ec7cc606-ff5a-4aef-88f1-089265120ec3
+		sourceLineageTag: 6e83cee6-f1cf-4bc7-9a0d-1478b2a42fc5
+		dataCategory: Uncategorized
+
+	measure 'Meses oper Selecionados' = EXTERNALMEASURE("Meses oper Selecionados", STRING, "DirectQuery para AS – Modelo Rebocadores")
+		lineageTag: b95871d7-bf78-449f-8ee0-07b749f1dc0e
+		sourceLineageTag: 9f0d44b3-d169-4765-96c4-8b2701569bfd
+		dataCategory: Uncategorized
+
+	measure 'Ult_dia PY' = EXTERNALMEASURE("Ult_dia PY", DOUBLE, "DirectQuery para AS – Modelo Rebocadores")
+		lineageTag: 54029eab-36b8-4418-8914-22af5ed4a85c
+		sourceLineageTag: ec401d56-5816-4ea8-a83f-385ca7734128
+		dataCategory: Uncategorized
+
+	measure 'Vol. Proj' = EXTERNALMEASURE("Vol. Proj", DOUBLE, "DirectQuery para AS – Modelo Rebocadores")
+		lineageTag: b8940e49-9f0e-4d3b-97d0-08fac90e5f27
+		sourceLineageTag: 8f88b20b-77ed-46c6-a713-0fbe4827e4c9
+		dataCategory: Uncategorized
+
+	measure ultm_dia_calendario = EXTERNALMEASURE("ultm_dia_calendario", INTEGER, "DirectQuery para AS – Modelo Rebocadores")
+		formatString: 0
+		lineageTag: 1a5ac721-6200-48da-b6e4-87239816649f
+		sourceLineageTag: cc6f5f6f-938a-4ce8-941f-92cca1f9c544
+		dataCategory: Uncategorized
+
+	measure qtd_dia_calendario = EXTERNALMEASURE("qtd_dia_calendario", INTEGER, "DirectQuery para AS – Modelo Rebocadores")
+		formatString: 0
+		lineageTag: 49140e03-5e19-4350-8753-6153edb5a8a2
+		sourceLineageTag: 0cc7f607-1477-46b7-b08f-665af0df3dfd
+		dataCategory: Uncategorized
+
+	measure QTD_dias_ate_hoje = EXTERNALMEASURE("QTD_dias_ate_hoje", INTEGER, "DirectQuery para AS – Modelo Rebocadores")
+		formatString: 0
+		lineageTag: 13d4d2be-a3cf-4fbd-9667-a72387a9bf8c
+		sourceLineageTag: 68958f38-154f-4866-b53e-625c6bb0fac6
+		dataCategory: Uncategorized
+
+	measure qtd_dia_calendario_py = EXTERNALMEASURE("qtd_dia_calendario_py", INTEGER, "DirectQuery para AS – Modelo Rebocadores")
+		formatString: 0
+		lineageTag: 55524ee2-d123-420d-b8a1-4563cdb9ceeb
+		sourceLineageTag: eed3ea3d-782c-4ebb-9074-08d472ec8d3e
+		dataCategory: Uncategorized
+
+	column ORIGEM
+		dataType: string
+		lineageTag: 631caace-7fb1-4103-b133-26f3389a7abf
+		sourceLineageTag: ee692e53-5e13-4d21-969b-9c13eeeec709
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: ORIGEM
+
+		annotation SummarizationSetBy = User
+
+	column ORIGEM_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: ab0f38f1-9fc7-4a16-8e64-80cce3060383
+		sourceLineageTag: 7bff94f2-3f87-46f2-a8ea-3dc21b26431c
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: ORIGEM_ID
+
+		annotation SummarizationSetBy = User
+
+	column FTR_ID
+		dataType: string
+		lineageTag: 01db242c-4670-4d53-8dc7-d3ce5518cc66
+		sourceLineageTag: 6220502c-4a8a-4ab3-a2c2-70dc00d41909
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: FTR_ID
+
+		annotation SummarizationSetBy = User
+
+	column TIPO_FATURAMENTO
+		dataType: string
+		lineageTag: aa66c0c4-9b61-43f3-b420-f7eebb7dcc3e
+		sourceLineageTag: e5d8ec09-2411-4485-8150-ae0005e85e6b
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: TIPO_FATURAMENTO
+
+		annotation SummarizationSetBy = User
+
+	column TIPO_DOC
+		dataType: string
+		lineageTag: 41555943-e915-4962-916c-1f79839bb567
+		sourceLineageTag: 03636e04-1c34-4b15-8bf3-b9cf7c3690af
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: TIPO_DOC
+
+		annotation SummarizationSetBy = User
+
+	column NUM_DOC
+		dataType: string
+		lineageTag: 284ca44e-d194-4d78-925c-4af173a83050
+		sourceLineageTag: fdddd75e-4f33-4d5e-94b2-056a9f80271d
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: NUM_DOC
+
+		annotation SummarizationSetBy = User
+
+	column COMPETENCIA
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: cadd5891-7ba9-4b9d-a9c8-da1c5fc5b9fa
+		sourceLineageTag: b0c0f1ff-6a72-4110-beee-381dec0301bb
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: COMPETENCIA
+
+		annotation SummarizationSetBy = User
+
+	column EMISSAO
+		dataType: string
+		lineageTag: b6640388-db6a-4551-b005-de306ed976e1
+		sourceLineageTag: 4027224c-b59c-487a-a00e-6d70d5c3ed9c
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: EMISSAO
+
+		annotation SummarizationSetBy = User
+
+	column DT_HR_OPER
+		dataType: dateTime
+		formatString: General Number
+		lineageTag: a8338522-f5f9-4f74-ab88-4ce3664a7ef9
+		sourceLineageTag: 254f31ce-2343-42cd-9817-64afb1183be6
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: DT_HR_OPER
+
+		annotation SummarizationSetBy = User
+
+	column FILIAL_SEQ_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: 17fb8754-0ae6-43c5-9665-36f2894d05af
+		sourceLineageTag: 83cdd5b3-b6f2-41e9-9ba0-0667839f7ad1
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: FILIAL_SEQ_ID
+
+		annotation SummarizationSetBy = User
+
+	column PORTO_SEQ_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: a14c8b06-9cc5-4da0-92ee-d14de99fd828
+		sourceLineageTag: 2d205d96-6741-490a-9cc8-bf8b55b2f4f3
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: PORTO_SEQ_ID
+
+		annotation SummarizationSetBy = User
+
+	column DIV_COMERCIAL_SEQ_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: a4164cd8-6d7d-4ad4-a110-123d13faf5e7
+		sourceLineageTag: 895ceeb6-d2af-4226-9c82-a89beeb471cf
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: DIV_COMERCIAL_SEQ_ID
+
+		annotation SummarizationSetBy = User
+
+	column LOCAL_PORTO_SEQ_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: 6f84fc63-b5b8-4923-ae63-c6b42a2d4228
+		sourceLineageTag: 93bd1230-3727-4cf5-b31c-5bb7c4ec8ebd
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: LOCAL_PORTO_SEQ_ID
+
+		annotation SummarizationSetBy = User
+
+	column EMB_SEQ_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: f8e49ad8-503f-414c-aec4-c4f91d991b65
+		sourceLineageTag: c6949e9b-971d-4808-9b8b-4d8ad85c4e41
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: EMB_SEQ_ID
+
+		annotation SummarizationSetBy = User
+
+	column NAVIO_SEQ_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: 490790e1-ee8d-4696-9394-c9b8fb87340b
+		sourceLineageTag: cc4a48bf-3104-4ee0-9bfb-0727977f36d7
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: NAVIO_SEQ_ID
+
+		annotation SummarizationSetBy = User
+
+	column SERVICO_SEQ_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: daee81e8-94ee-45c2-9fa8-4dd514185da5
+		sourceLineageTag: c38dec2a-2804-4938-bc62-a7a402a1a1b1
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: SERVICO_SEQ_ID
+
+		annotation SummarizationSetBy = User
+
+	column MANOBRA_SEQ_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: 617097c2-fca3-4a5d-a7f6-befa56eebf18
+		sourceLineageTag: 9675da63-c841-48e6-ba30-e616175fb8a8
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: MANOBRA_SEQ_ID
+
+		annotation SummarizationSetBy = User
+
+	column CLIENTE_SEQ_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: 545af115-7616-416e-969b-87103880b25f
+		sourceLineageTag: 4e20ed27-8ea8-4d7d-adb5-5df13c617848
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: CLIENTE_SEQ_ID
+
+		annotation SummarizationSetBy = User
+
+	column OPERADOR_SEQ_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: 9cebe2f2-5a05-4c09-9964-7c9ef6cc185f
+		sourceLineageTag: 7ad7e511-d077-48c6-a4c3-f1d8992a2690
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: OPERADOR_SEQ_ID
+
+		annotation SummarizationSetBy = User
+
+	column DONO_MANOBRA_SEQ_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: a1037eac-ec43-447b-ba25-b4b215e6504a
+		sourceLineageTag: 42147d5d-b831-4143-b080-50ec44e73bbf
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: DONO_MANOBRA_SEQ_ID
+
+		annotation SummarizationSetBy = User
+
+	column OPER_ESPECIAL_SEQ_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: c2ebf85f-027d-48a2-abd7-4b321c8f66fa
+		sourceLineageTag: cb9ee7db-c94a-4fa0-af02-b8d74e92f12b
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: OPER_ESPECIAL_SEQ_ID
+
+		annotation SummarizationSetBy = User
+
+	column FAIXA_DWT
+		dataType: string
+		lineageTag: 0154d8dc-6395-431e-aa2b-6e2dc4e59919
+		sourceLineageTag: ca5c4bab-d7f0-4444-9ecc-f9acb333acb9
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: FAIXA_DWT
+
+		annotation SummarizationSetBy = User
+
+	column VALOR_REAL
+		dataType: double
+		lineageTag: daf43832-3578-42f1-9246-15d4fd68c064
+		sourceLineageTag: d6b38815-4886-49a5-acbe-8997cee5df66
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: VALOR_REAL
+
+		annotation SummarizationSetBy = User
+
+	column VALOR_DOLAR_FMR
+		dataType: double
+		lineageTag: 844b0762-0060-4d48-ad3e-5c58b3c50e96
+		sourceLineageTag: 4247b737-9b01-44c4-a17e-3f6d8abb71c6
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: VALOR_DOLAR_FMR
+
+		annotation SummarizationSetBy = User
+
+	column VALOR_DOLAR_PTAX
+		dataType: double
+		lineageTag: 316cda48-a895-4a17-b366-9d6cfe936563
+		sourceLineageTag: 0fea1705-979f-4dc4-b28c-5f78be14adbb
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: VALOR_DOLAR_PTAX
+
+		annotation SummarizationSetBy = User
+
+	column VOLUME
+		dataType: double
+		lineageTag: 7cb0b61d-4d3e-498b-806b-79fd3eeb632e
+		sourceLineageTag: 17878acc-9af1-498b-a951-8a469a64bd11
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: VOLUME
+
+		annotation SummarizationSetBy = User
+
+	column QTD_MANOBRA
+		dataType: double
+		lineageTag: b0b85afe-5064-4bbe-bc5e-f7132c6785a1
+		sourceLineageTag: 5fb816b7-5bf3-42c0-ba28-a3b7809e74c7
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: QTD_MANOBRA
+
+		annotation SummarizationSetBy = User
+
+	column FATOR
+		dataType: double
+		lineageTag: 748ca3da-0563-4133-a92a-13fc24948039
+		sourceLineageTag: c47f0c1e-bccb-4cd8-9a51-f070af6bb881
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: FATOR
+
+		annotation SummarizationSetBy = User
+
+	column FATOR_VOLUME
+		dataType: double
+		lineageTag: 2c46bff0-cf8d-485f-831e-888a25fe5ce5
+		sourceLineageTag: 7bcd1cbb-5ca9-4cfd-a580-04a642d19254
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: FATOR_VOLUME
+
+		annotation SummarizationSetBy = User
+
+	column GRUPO_CLIENTE_SEQ_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: 6ea3d56d-f773-43a6-a348-6949e3a4fe20
+		sourceLineageTag: bbe6c2f6-d2d1-46b8-aa1e-f6c303447f15
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: GRUPO_CLIENTE_SEQ_ID
+
+		annotation SummarizationSetBy = User
+
+	column GRUPO_OPERADOR_SEQ_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: 2df270e2-1f18-4cc5-8bd4-ca13b408fc32
+		sourceLineageTag: 34ff1fb6-7d86-46c9-922f-30a2b858479d
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: GRUPO_OPERADOR_SEQ_ID
+
+		annotation SummarizationSetBy = User
+
+	column GRUPO_DONO_MANOBRA_SEQ_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: ebe1ed72-782b-485a-9b66-df78e98c0ab0
+		sourceLineageTag: 387090b1-99ed-44af-be9e-70d156d4b7bb
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: GRUPO_DONO_MANOBRA_SEQ_ID
+
+		annotation SummarizationSetBy = User
+
+	column GRP_COMERC_ID_MOVIM_PORT
+		dataType: int64
+		formatString: 0
+		lineageTag: c506bcf0-c82b-4af3-928a-fc43c799e3e2
+		sourceLineageTag: dac1f480-b591-4c9c-a156-b74605ae80c4
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: GRP_COMERC_ID_MOVIM_PORT
+
+		annotation SummarizationSetBy = User
+
+	column BRL_NF
+		dataType: double
+		displayFolder: BRL
+		lineageTag: 99072fdc-883a-4ad5-ba7c-9bd90fddc958
+		sourceLineageTag: 65469c69-c4c5-4922-bdc7-95ada6eea260
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: BRL_NF
+
+		annotation SummarizationSetBy = User
+
+	column BRL_REC
+		dataType: double
+		displayFolder: BRL
+		lineageTag: 585f834e-244a-47be-b882-2c873b032aee
+		sourceLineageTag: b5340d2d-0527-411c-9e9c-dfd822314d49
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: BRL_REC
+
+		annotation SummarizationSetBy = User
+
+	column BRL_INV
+		dataType: double
+		displayFolder: BRL
+		lineageTag: cb190c6f-5dd7-453e-8b66-4599b3b11af0
+		sourceLineageTag: 521bbce4-685d-4f84-85a3-cab72af75fba
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: BRL_INV
+
+		annotation SummarizationSetBy = User
+
+	column BRL_NOTA_DESCONTO_NF
+		dataType: double
+		displayFolder: BRL
+		lineageTag: 8a8101c0-baff-4c77-8cbb-66b0f1ef1e1c
+		sourceLineageTag: 26bb4ae5-ce0d-47a5-a616-5f14bbe75628
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: BRL_NOTA_DESCONTO_NF
+
+		annotation SummarizationSetBy = User
+
+	column BRL_NOTA_DESCONTO_REC
+		dataType: double
+		displayFolder: BRL
+		lineageTag: 8afdeffa-66ac-4663-9845-9b58ad953322
+		sourceLineageTag: 7ccf473c-75ef-4bb6-80c5-72f7ebad92d4
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: BRL_NOTA_DESCONTO_REC
+
+		annotation SummarizationSetBy = User
+
+	column BRL_NOTA_DESCONTO_INV
+		dataType: double
+		displayFolder: BRL
+		lineageTag: eaafded6-269b-416f-bd4a-3d7815a8f969
+		sourceLineageTag: 8f196f27-55b9-4304-a6fe-51900bbdef5a
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: BRL_NOTA_DESCONTO_INV
+
+		annotation SummarizationSetBy = User
+
+	column BRL_NF_CANCELADA
+		dataType: double
+		displayFolder: BRL
+		lineageTag: d9b22781-9c5a-4639-83bc-5de639b3950f
+		sourceLineageTag: 16ccc5f9-c611-44fa-a9e6-a3fecb7385cf
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: BRL_NF_CANCELADA
+
+		annotation SummarizationSetBy = User
+
+	column BRL_REC_CANCELADO
+		dataType: double
+		displayFolder: BRL
+		lineageTag: 33e3b561-2661-4785-a79e-1e84ac158e5e
+		sourceLineageTag: e807ed7d-1caf-4111-a0e1-96e2b62571e0
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: BRL_REC_CANCELADO
+
+		annotation SummarizationSetBy = User
+
+	column BRL_INV_CANCELADA
+		dataType: double
+		displayFolder: BRL
+		lineageTag: f53eb1c0-cbd4-484b-99a6-2bfc7719211a
+		sourceLineageTag: a383f29c-f723-400b-a386-1e7f7ed09f22
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: BRL_INV_CANCELADA
+
+		annotation SummarizationSetBy = User
+
+	column BRL_NOTA_DESCONTO_NF_CANCELADA
+		dataType: double
+		displayFolder: BRL
+		lineageTag: c500c7df-4aea-4163-b829-0bf7c963c60e
+		sourceLineageTag: 575f7309-7951-492a-b64b-a6b0901d97c6
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: BRL_NOTA_DESCONTO_NF_CANCELADA
+
+		annotation SummarizationSetBy = User
+
+	column BRL_NOTA_DESCONTO_REC_CANCELADO
+		dataType: double
+		displayFolder: BRL
+		lineageTag: de4e52b1-1c84-4d08-a34f-bc0434c330d5
+		sourceLineageTag: bc059d97-6656-435a-8464-03a2db4a9c0c
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: BRL_NOTA_DESCONTO_REC_CANCELADO
+
+		annotation SummarizationSetBy = User
+
+	column BRL_NOTA_DESCONTO_INV_CANCELADA
+		dataType: double
+		displayFolder: BRL
+		lineageTag: 7eec15df-fe3b-4a08-ac3b-127d1d72432d
+		sourceLineageTag: 491aa710-b036-40f4-b629-14ed7113f5f0
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: BRL_NOTA_DESCONTO_INV_CANCELADA
+
+		annotation SummarizationSetBy = User
+
+	column BRL_PROVISAO
+		dataType: double
+		displayFolder: BRL
+		lineageTag: 2615c573-b9cc-4441-a46f-2bdee9c9c1e9
+		sourceLineageTag: 97db4392-89fb-475d-af97-41ca9a57fbcf
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: BRL_PROVISAO
+
+		annotation SummarizationSetBy = User
+
+	column BRL_REVERSAO
+		dataType: double
+		displayFolder: BRL
+		lineageTag: 7708bc58-6822-4741-a5bb-be7e864758e0
+		sourceLineageTag: ec008128-0149-4559-b05c-d8c8446c3f14
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: BRL_REVERSAO
+
+		annotation SummarizationSetBy = User
+
+	column BRL_FATURAMENTO_BRUTO
+		dataType: double
+		displayFolder: BRL Consolidado
+		lineageTag: f68a5e64-139c-4fd8-8c70-7f29d2ae6780
+		sourceLineageTag: dfe32330-afb6-4f72-9396-30ab506894fc
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: BRL_FATURAMENTO_BRUTO
+
+		annotation SummarizationSetBy = User
+
+	column BRL_NOTA_DESCONTO
+		dataType: double
+		displayFolder: BRL Consolidado
+		lineageTag: e40af829-4f2d-4fa7-b464-85d870f362dc
+		sourceLineageTag: 2b34808b-650a-4933-918f-8fb443121ba7
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: BRL_NOTA_DESCONTO
+
+		annotation SummarizationSetBy = User
+
+	column BRL_CANCELAMENTO_FATURAMENTO
+		dataType: double
+		displayFolder: BRL Consolidado
+		lineageTag: 2cec5965-f654-4f4b-a38a-71cb793d27d6
+		sourceLineageTag: 06912768-74e5-4b47-9288-f3fce9aa4cdd
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: BRL_CANCELAMENTO_FATURAMENTO
+
+		annotation SummarizationSetBy = User
+
+	column BRL_CANCELAMENTO_NOTA_DESCONTO
+		dataType: double
+		displayFolder: BRL Consolidado
+		lineageTag: 3cff51b0-9e17-4584-b927-935c4bd304d0
+		sourceLineageTag: c5524176-8226-411d-a631-e27571b4b984
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: BRL_CANCELAMENTO_NOTA_DESCONTO
+
+		annotation SummarizationSetBy = User
+
+	column BRL_RECEITA_BRUTA_LIQUIDA_DESCONTOS
+		dataType: double
+		displayFolder: BRL Consolidado
+		lineageTag: f97423e5-9f39-4e34-a9bb-92f95511249c
+		sourceLineageTag: a792f4e7-1e51-4dae-bb21-e2b4534afeb5
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: BRL_RECEITA_BRUTA_LIQUIDA_DESCONTOS
+
+		annotation SummarizationSetBy = User
+
+	column BRL_RECEITA_BRUTA
+		dataType: double
+		displayFolder: BRL Consolidado
+		lineageTag: 2e2355c2-2aa0-4736-8fc2-4c92bf28a19a
+		sourceLineageTag: a73199a4-7069-4ec6-8fe4-ec282ba0ba6b
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: BRL_RECEITA_BRUTA
+
+		annotation SummarizationSetBy = User
+
+	column USD_FMR_NF
+		dataType: double
+		displayFolder: USD FMR
+		lineageTag: 305a4ab2-4e71-4de4-9dbc-e9df082140e7
+		sourceLineageTag: 7d923a74-c0ef-4a6e-8258-39a6f37d2946
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: USD_FMR_NF
+
+		annotation SummarizationSetBy = User
+
+	column USD_FMR_REC
+		dataType: double
+		displayFolder: USD FMR
+		lineageTag: 1ad3cc8a-ddc7-40bd-995e-14770124554f
+		sourceLineageTag: b7df689e-f6ae-4056-abb7-0ed84a750192
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: USD_FMR_REC
+
+		annotation SummarizationSetBy = User
+
+	column USD_FMR_INV
+		dataType: double
+		displayFolder: USD FMR
+		lineageTag: 4cf9ad1b-b60d-4bca-9f69-6cb59850b8cc
+		sourceLineageTag: 445c1fd9-d090-41f9-b91a-deb23c2d6924
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: USD_FMR_INV
+
+		annotation SummarizationSetBy = User
+
+	column USD_FMR_NOTA_DESCONTO_NF
+		dataType: double
+		displayFolder: USD FMR
+		lineageTag: 05e095db-68b1-4171-b22e-0789b5cc0b00
+		sourceLineageTag: fca6cfbf-9710-4848-889c-9c7140898e1e
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: USD_FMR_NOTA_DESCONTO_NF
+
+		annotation SummarizationSetBy = User
+
+	column USD_FMR_NOTA_DESCONTO_REC
+		dataType: double
+		displayFolder: USD FMR
+		lineageTag: 07751906-dbf0-47da-aa80-81267553bb86
+		sourceLineageTag: 3f54ee37-3a17-48ea-894f-c1d062aca606
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: USD_FMR_NOTA_DESCONTO_REC
+
+		annotation SummarizationSetBy = User
+
+	column USD_FMR_NOTA_DESCONTO_INV
+		dataType: double
+		displayFolder: USD FMR
+		lineageTag: c3ec0571-6472-4f4f-917f-034ffbff2dec
+		sourceLineageTag: 6974b4a2-1fab-4b0a-8fda-1f458282fa67
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: USD_FMR_NOTA_DESCONTO_INV
+
+		annotation SummarizationSetBy = User
+
+	column USD_FMR_NF_CANCELADA
+		dataType: double
+		displayFolder: USD FMR
+		lineageTag: 44e65fd8-e115-435c-8f9b-63f5c450d8d2
+		sourceLineageTag: 1ab625b9-035e-4a26-8ef5-62bccd2c04e7
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: USD_FMR_NF_CANCELADA
+
+		annotation SummarizationSetBy = User
+
+	column USD_FMR_REC_CANCELADO
+		dataType: double
+		displayFolder: USD FMR
+		lineageTag: ddd5db71-f6d6-4dc6-a5fe-ebb681120ddf
+		sourceLineageTag: cd4ed218-cff2-4e34-877b-8ea8ee0ee274
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: USD_FMR_REC_CANCELADO
+
+		annotation SummarizationSetBy = User
+
+	column USD_FMR_INV_CANCELADA
+		dataType: double
+		displayFolder: USD FMR
+		lineageTag: 694a74e4-0472-4a74-8618-8802be7d2a71
+		sourceLineageTag: 7a0a29f9-be16-4c0f-982b-3d7f68aac5ba
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: USD_FMR_INV_CANCELADA
+
+		annotation SummarizationSetBy = User
+
+	column USD_FMR_NOTA_DESCONTO_NF_CANCELADA
+		dataType: double
+		displayFolder: USD FMR
+		lineageTag: e675f425-6c05-443e-95be-0fb9dc8f3297
+		sourceLineageTag: 543e2180-297d-4f48-be22-d8e881451a2e
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: USD_FMR_NOTA_DESCONTO_NF_CANCELADA
+
+		annotation SummarizationSetBy = User
+
+	column USD_FMR_NOTA_DESCONTO_REC_CANCELADO
+		dataType: double
+		displayFolder: USD FMR
+		lineageTag: 739ce0ce-280e-4b5c-a12e-f881e481e3dc
+		sourceLineageTag: 3c32d49c-d8f6-4cf1-843f-5c885ebc1393
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: USD_FMR_NOTA_DESCONTO_REC_CANCELADO
+
+		annotation SummarizationSetBy = User
+
+	column USD_FMR_NOTA_DESCONTO_INV_CANCELADA
+		dataType: double
+		displayFolder: USD FMR
+		lineageTag: adcc3d98-2118-48c1-bf71-76bec302b0c1
+		sourceLineageTag: c73a02cb-5b6a-4561-bc5b-6ab854323050
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: USD_FMR_NOTA_DESCONTO_INV_CANCELADA
+
+		annotation SummarizationSetBy = User
+
+	column USD_FMR_PROVISAO
+		dataType: double
+		displayFolder: USD FMR
+		lineageTag: a4e85a2e-ea62-4f8d-9491-9d11afa2a354
+		sourceLineageTag: 5f8567f4-ac31-4087-ab58-cd18bd64e080
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: USD_FMR_PROVISAO
+
+		annotation SummarizationSetBy = User
+
+	column USD_FMR_REVERSAO
+		dataType: double
+		displayFolder: USD FMR
+		lineageTag: ba52b153-85c5-4572-8266-3f2354fc2dc5
+		sourceLineageTag: 9fc1c544-ae4e-41fd-8624-3984b919300c
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: USD_FMR_REVERSAO
+
+		annotation SummarizationSetBy = User
+
+	column USD_FMR_FATURAMENTO_BRUTO
+		dataType: double
+		displayFolder: USD FMR Consolidado
+		lineageTag: 378e6cc0-d649-4223-af46-a10fa83fcb0d
+		sourceLineageTag: 51a78b2a-1067-4541-a9c4-9c8aecb4986f
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: USD_FMR_FATURAMENTO_BRUTO
+
+		annotation SummarizationSetBy = User
+
+	column USD_FMR_NOTA_DESCONTO
+		dataType: double
+		displayFolder: USD FMR Consolidado
+		lineageTag: 550427bd-0623-49ee-ad79-0608c7d5dda1
+		sourceLineageTag: f4c85844-503a-4373-a82e-da4116d0f8d7
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: USD_FMR_NOTA_DESCONTO
+
+		annotation SummarizationSetBy = User
+
+	column USD_FMR_CANCELAMENTO_FATURAMENTO
+		dataType: double
+		displayFolder: USD FMR Consolidado
+		lineageTag: e89ac7b8-cfde-4da4-b771-d08d5bf1788d
+		sourceLineageTag: 87368abe-849c-44e4-8829-f45f1a74deb8
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: USD_FMR_CANCELAMENTO_FATURAMENTO
+
+		annotation SummarizationSetBy = User
+
+	column USD_FMR_CANCELAMENTO_NOTA_DESCONTO
+		dataType: double
+		displayFolder: USD FMR Consolidado
+		lineageTag: 0da2ed92-6fc8-4c0f-9815-fb46960c5bd1
+		sourceLineageTag: 358f15dd-4bce-48ff-b482-4b3ed40006fb
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: USD_FMR_CANCELAMENTO_NOTA_DESCONTO
+
+		annotation SummarizationSetBy = User
+
+	column USD_FMR_RECEITA_BRUTA_LIQUIDA_DESCONTOS
+		dataType: double
+		displayFolder: USD FMR Consolidado
+		lineageTag: 27f92c16-876f-4a2d-afa2-200830f95217
+		sourceLineageTag: feac9824-2b4d-4f1b-8387-469a3adbcc6b
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: USD_FMR_RECEITA_BRUTA_LIQUIDA_DESCONTOS
+
+		annotation SummarizationSetBy = User
+
+	column USD_FMR_RECEITA_BRUTA
+		dataType: double
+		displayFolder: USD FMR Consolidado
+		lineageTag: 24e0e1cd-32c2-48c0-a59d-4ae21da62240
+		sourceLineageTag: ed2c964c-7bf4-4109-ac2f-083444b304ec
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: USD_FMR_RECEITA_BRUTA
+
+		annotation SummarizationSetBy = User
+
+	column USD_PTAX_NF
+		dataType: double
+		displayFolder: USD PTAX
+		lineageTag: 945414b3-c39c-4ee1-a3e5-8464335742d4
+		sourceLineageTag: 67a7a23b-8ece-4b9f-8765-14289ab6dca5
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: USD_PTAX_NF
+
+		annotation SummarizationSetBy = User
+
+	column USD_PTAX_REC
+		dataType: double
+		displayFolder: USD PTAX
+		lineageTag: b48410ed-5a84-472a-8e35-273422f11b76
+		sourceLineageTag: 60cbd606-1846-4d3b-a20b-af8b88c7f54e
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: USD_PTAX_REC
+
+		annotation SummarizationSetBy = User
+
+	column USD_PTAX_INV
+		dataType: double
+		displayFolder: USD PTAX
+		lineageTag: fa2ceacf-26ea-4176-8b5f-9043e9f40d93
+		sourceLineageTag: 3bfa094d-4a89-4cf6-8395-38524e3d3a33
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: USD_PTAX_INV
+
+		annotation SummarizationSetBy = User
+
+	column USD_PTAX_NOTA_DESCONTO_NF
+		dataType: double
+		displayFolder: USD PTAX
+		lineageTag: 5a25c9c3-6cee-4aec-b474-8f747b958aa6
+		sourceLineageTag: ca50585e-97ad-4382-988e-842993e100f8
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: USD_PTAX_NOTA_DESCONTO_NF
+
+		annotation SummarizationSetBy = User
+
+	column USD_PTAX_NOTA_DESCONTO_REC
+		dataType: double
+		displayFolder: USD PTAX
+		lineageTag: d254dcdb-56ef-45f2-9257-ea9f8dfcb245
+		sourceLineageTag: 9e34449e-e56e-4051-99f0-f1c49601cf8c
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: USD_PTAX_NOTA_DESCONTO_REC
+
+		annotation SummarizationSetBy = User
+
+	column USD_PTAX_NOTA_DESCONTO_INV
+		dataType: double
+		displayFolder: USD PTAX
+		lineageTag: 2c721e9e-9bdc-479a-8fde-d978bda75720
+		sourceLineageTag: 72a472bb-18d9-4c6e-994c-a67f3ebae5c6
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: USD_PTAX_NOTA_DESCONTO_INV
+
+		annotation SummarizationSetBy = User
+
+	column USD_PTAX_NF_CANCELADA
+		dataType: double
+		displayFolder: USD PTAX
+		lineageTag: 347b2f4f-7bc1-4499-aec9-6c0d5bc4740d
+		sourceLineageTag: b1f923d4-1d71-4e8d-8a6a-aec468913b1f
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: USD_PTAX_NF_CANCELADA
+
+		annotation SummarizationSetBy = User
+
+	column USD_PTAX_REC_CANCELADO
+		dataType: double
+		displayFolder: USD PTAX
+		lineageTag: c5d62172-7ea4-417d-a435-825c5e35304d
+		sourceLineageTag: d612aab4-58ac-4499-9ff8-0fd1ca891891
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: USD_PTAX_REC_CANCELADO
+
+		annotation SummarizationSetBy = User
+
+	column USD_PTAX_INV_CANCELADA
+		dataType: double
+		displayFolder: USD PTAX
+		lineageTag: c96c6a05-bdf8-4186-84c2-1e0a4d825730
+		sourceLineageTag: 9232cf6e-74c2-42d6-9551-8849d2fde298
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: USD_PTAX_INV_CANCELADA
+
+		annotation SummarizationSetBy = User
+
+	column USD_PTAX_NOTA_DESCONTO_NF_CANCELADA
+		dataType: double
+		displayFolder: USD PTAX
+		lineageTag: d6a0cc54-2b9f-492e-abba-dfd2321b1d95
+		sourceLineageTag: 1e87b952-f850-4f1c-bed3-118e0eaff64e
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: USD_PTAX_NOTA_DESCONTO_NF_CANCELADA
+
+		annotation SummarizationSetBy = User
+
+	column USD_PTAX_NOTA_DESCONTO_REC_CANCELADO
+		dataType: double
+		displayFolder: USD PTAX
+		lineageTag: 0627fb77-d700-4cc4-8ae2-73c1d2b722bd
+		sourceLineageTag: cf890a1a-c8c6-4fe1-9ce1-584e51dbf817
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: USD_PTAX_NOTA_DESCONTO_REC_CANCELADO
+
+		annotation SummarizationSetBy = User
+
+	column USD_PTAX_NOTA_DESCONTO_INV_CANCELADA
+		dataType: double
+		displayFolder: USD PTAX
+		lineageTag: 9021c9f9-1e56-46ed-bbad-d9b57ad77f04
+		sourceLineageTag: 5899bd29-1394-4d57-909d-1abc204930ee
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: USD_PTAX_NOTA_DESCONTO_INV_CANCELADA
+
+		annotation SummarizationSetBy = User
+
+	column USD_PTAX_PROVISAO
+		dataType: double
+		displayFolder: USD PTAX
+		lineageTag: 435c85d0-15a6-4b97-a751-c04f40568a02
+		sourceLineageTag: e3ba7e53-fbd0-4ecf-904c-5a7a547e89d3
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: USD_PTAX_PROVISAO
+
+		annotation SummarizationSetBy = User
+
+	column USD_PTAX_REVERSAO
+		dataType: double
+		displayFolder: USD PTAX
+		lineageTag: 4a98286c-02e2-4848-b2a1-0dc5d952687d
+		sourceLineageTag: 5e0cc8f7-0588-49fb-9072-be4c18dd6581
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: USD_PTAX_REVERSAO
+
+		annotation SummarizationSetBy = User
+
+	column USD_PTAX_FATURAMENTO_BRUTO
+		dataType: double
+		displayFolder: USD PTAX Consolidado
+		lineageTag: 23ad0dee-8f8e-4880-ab71-8f4a441627ff
+		sourceLineageTag: 37de0351-b38a-48af-a454-6e821f91fd92
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: USD_PTAX_FATURAMENTO_BRUTO
+
+		annotation SummarizationSetBy = User
+
+	column USD_PTAX_NOTA_DESCONTO
+		dataType: double
+		displayFolder: USD PTAX Consolidado
+		lineageTag: 1bca48e6-4e5a-40ca-ba0e-852d0f442f86
+		sourceLineageTag: efc50150-2035-43b8-b583-6ff6e712e3b0
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: USD_PTAX_NOTA_DESCONTO
+
+		annotation SummarizationSetBy = User
+
+	column USD_PTAX_CANCELAMENTO_FATURAMENTO
+		dataType: double
+		displayFolder: USD PTAX Consolidado
+		lineageTag: b861404c-2add-43a6-82a7-d8cb247f8ca4
+		sourceLineageTag: ab79dca1-3588-435f-b741-8f74b1c80579
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: USD_PTAX_CANCELAMENTO_FATURAMENTO
+
+		annotation SummarizationSetBy = User
+
+	column USD_PTAX_CANCELAMENTO_NOTA_DESCONTO
+		dataType: double
+		displayFolder: USD PTAX Consolidado
+		lineageTag: 11377142-18ed-43c9-8fa7-6bbd1ad2e8f9
+		sourceLineageTag: 8cd6cb28-0805-422e-a93c-0ea934c7ed36
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: USD_PTAX_CANCELAMENTO_NOTA_DESCONTO
+
+		annotation SummarizationSetBy = User
+
+	column USD_PTAX_RECEITA_BRUTA_LIQUIDA_DESCONTOS
+		dataType: double
+		displayFolder: USD PTAX Consolidado
+		lineageTag: a794e133-8801-485d-b023-d910d957276d
+		sourceLineageTag: 94abdc23-cee5-4e98-a009-8dd1a6aabf31
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: USD_PTAX_RECEITA_BRUTA_LIQUIDA_DESCONTOS
+
+		annotation SummarizationSetBy = User
+
+	column USD_PTAX_RECEITA_BRUTA
+		dataType: double
+		displayFolder: USD PTAX Consolidado
+		lineageTag: e64f23fb-358a-46c3-8d91-50f464f0bd63
+		sourceLineageTag: 5038fc32-a2ae-4ea4-97d5-f5f4f628c079
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: USD_PTAX_RECEITA_BRUTA
+
+		annotation SummarizationSetBy = User
+
+	column IND_TIPO_ACORDO
+		dataType: string
+		lineageTag: f40043c4-6bba-4680-a63e-2864a68771b7
+		sourceLineageTag: 1d37ca52-31ef-4de6-9e14-0b9b11a658ac
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: IND_TIPO_ACORDO
+
+		annotation SummarizationSetBy = User
+
+	column DSC_IND_TIPO_ACORDO
+		dataType: string
+		lineageTag: 4f58e0d6-16a6-4d4a-96fb-3382b92c84a1
+		sourceLineageTag: 90e20a34-5d66-4ad1-b09f-ea6a85b959e4
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: DSC_IND_TIPO_ACORDO
+
+		annotation SummarizationSetBy = User
+
+	column GRUPO_CLIENTE
+		dataType: string
+		lineageTag: 5f65f26a-0ab9-4e67-8781-544cd49436be
+		sourceLineageTag: c6cfb90c-8f87-4857-8bd2-faff83887bfd
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: GRUPO_CLIENTE
+
+		annotation SummarizationSetBy = User
+
+	column GRUPO_OPERADOR
+		dataType: string
+		displayFolder: BRL Consolidado
+		lineageTag: 6af017d2-d17e-46fe-b1e2-848bb7c94a51
+		sourceLineageTag: cc546bbe-dacc-4773-9d83-348b7a11fb5f
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: GRUPO_OPERADOR
+
+		annotation SummarizationSetBy = User
+
+	column GRUPO_DONO_MANOBRA
+		dataType: string
+		lineageTag: e340e624-3457-42f6-9fac-701a89d32660
+		sourceLineageTag: 98d39198-5e7d-45a1-b21c-79b482ccea9c
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: GRUPO_DONO_MANOBRA
+
+		annotation SummarizationSetBy = User
+
+	column 'RL_DW_FATO_CUBO_REBOC_VOLUME.VOLUME'
+		dataType: double
+		lineageTag: 5065184a-c1ea-4f41-ba6f-7b5c008b9c1d
+		sourceLineageTag: 2addb397-8f89-4e21-b5d2-5a2f9f790475
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: RL_DW_FATO_CUBO_REBOC_VOLUME.VOLUME
+
+		annotation SummarizationSetBy = User
+
+	column 'RL_DW_FATO_CUBO_REBOC_VOLUME.VOLUME_ORIGINAL'
+		dataType: double
+		lineageTag: 332f976c-da2a-48b6-b037-78e4a85bbd05
+		sourceLineageTag: aa5f9332-73b0-4af9-90b3-edf902f3b746
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: RL_DW_FATO_CUBO_REBOC_VOLUME.VOLUME_ORIGINAL
+
+		annotation SummarizationSetBy = User
+
+	column 'RL_DW_FATO_CUBO_REBOC_VOLUME.IND_EXPURGA_MKS_OPERACIONAL'
+		dataType: string
+		lineageTag: a99250fa-2dda-41da-892e-38c8ebb5fa7e
+		sourceLineageTag: c0369fd7-141b-415a-8f82-28d585d826b1
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: RL_DW_FATO_CUBO_REBOC_VOLUME.IND_EXPURGA_MKS_OPERACIONAL
+
+		annotation SummarizationSetBy = User
+
+	column 'RL_DW_FATO_CUBO_REBOC_VOLUME.FILTRO SOMENTE VOLUME'
+		dataType: string
+		lineageTag: 08e204ab-62e3-4e95-a708-546d4e4fa3a6
+		sourceLineageTag: 0633199f-eaa0-4804-b86e-ef4221146fec
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: RL_DW_FATO_CUBO_REBOC_VOLUME.FILTRO SOMENTE VOLUME
+
+		annotation SummarizationSetBy = User
+
+	column 'RL_DW_FATO_CUBO_REBOC_MANOBRA.FILTRO SOMENTE VOLUME'
+		dataType: string
+		lineageTag: 8c18dcb5-daaf-497c-a30c-1bae1d4dd86f
+		sourceLineageTag: 0de32c3a-ca98-4804-862f-c856629a1bc2
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: RL_DW_FATO_CUBO_REBOC_MANOBRA.FILTRO SOMENTE VOLUME
+
+		annotation SummarizationSetBy = User
+
+	column 'RL_DW_FATO_CUBO_REBOC_PRECO_MEDIO.FILTRO PRECO_MEDIO'
+		dataType: string
+		lineageTag: 89bb8be2-ea07-4668-b45b-d2268d5e65f2
+		sourceLineageTag: 71e00bd0-b4b4-44d5-9d7a-82ab87a47477
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: RL_DW_FATO_CUBO_REBOC_PRECO_MEDIO.FILTRO PRECO_MEDIO
+
+		annotation SummarizationSetBy = User
+
+	column 'RL_DW_FATO_CUBO_REBOC_MANOBRA.QTD_MANOBRA'
+		dataType: double
+		lineageTag: da1832f3-dedb-47ea-8d20-5931b97184b1
+		sourceLineageTag: 8aa86b37-44be-4c9d-be83-490d89380384
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: RL_DW_FATO_CUBO_REBOC_MANOBRA.QTD_MANOBRA
+
+		annotation SummarizationSetBy = User
+
+	column 'RL_DW_FATO_CUBO_REBOC_MANOBRA.QTD_MANOBRA_ORIGINAL'
+		dataType: double
+		lineageTag: 0ab4f2d7-c3d1-4b5a-97d2-37cd72c323f9
+		sourceLineageTag: 01a1ce26-5018-46a4-86c3-fd1ed89194f5
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: RL_DW_FATO_CUBO_REBOC_MANOBRA.QTD_MANOBRA_ORIGINAL
+
+		annotation SummarizationSetBy = User
+
+	column 'RL_DW_FATO_CUBO_REBOC_PRECO_MEDIO.VOLUME'
+		dataType: double
+		lineageTag: 6cd5bf29-229b-437c-8276-6bbfeb8c298d
+		sourceLineageTag: 7f40e047-9844-4e0f-a127-930802b6c8d9
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: RL_DW_FATO_CUBO_REBOC_PRECO_MEDIO.VOLUME
+
+		annotation SummarizationSetBy = User
+
+	column 'RL_DW_FATO_CUBO_REBOC_PRECO_MEDIO.VOLUME_ORIGINAL'
+		dataType: double
+		lineageTag: 705c8c48-43ca-4a1a-8e30-69b8db9ee29e
+		sourceLineageTag: 9fcff9e1-bdcf-4006-bc5b-e729a9c2fca7
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: RL_DW_FATO_CUBO_REBOC_PRECO_MEDIO.VOLUME_ORIGINAL
+
+		annotation SummarizationSetBy = User
+
+	column Semana
+		dataType: string
+		lineageTag: 0e3f4849-3b84-4520-9ab1-f23d81fc5116
+		sourceLineageTag: 1dc1acf9-a8f0-4918-bfce-14ad118d12fe
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Semana
+
+		annotation SummarizationSetBy = User
+
+	column 'Volume Wilson Sons'
+		dataType: string
+		lineageTag: 9358f219-c4c0-405a-8076-2788488c7761
+		sourceLineageTag: 1be02a8a-1811-41a3-b318-8441f45de537
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Volume Wilson Sons
+
+		annotation SummarizationSetBy = User
+
+	column DT_OPER
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 9c36457d-a6d6-4060-8529-33546eabfe01
+		sourceLineageTag: 833d0453-4038-43ff-bbcd-677f92f24117
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: DT_OPER
+
+		annotation SummarizationSetBy = User
+
+	column NAVIO
+		dataType: string
+		lineageTag: 0b91be6f-76da-4c18-9836-884c6c9c47e6
+		sourceLineageTag: 0b68e105-339b-45a2-a8ec-9d2bf3a6b795
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: NAVIO
+
+		annotation SummarizationSetBy = User
+
+	column ANO
+		dataType: string
+		lineageTag: 700fa118-33c2-4868-9e9c-9b95d45246f2
+		sourceLineageTag: 3ff0557e-7162-4909-bb14-132c2ff10fec
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: ANO
+
+		annotation SummarizationSetBy = User
+
+	column Mês
+		dataType: string
+		lineageTag: ecd0c751-5496-4343-9580-ad5afaee9d0d
+		sourceLineageTag: 36eed816-d555-404c-9059-9735905fae1a
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Mês
+		sortByColumn: MM
+
+		annotation SummarizationSetBy = User
+
+	column ANOMES
+		dataType: string
+		lineageTag: f1c20e80-c485-405a-9c08-411ab2e7de77
+		sourceLineageTag: a6189a72-f461-4a6b-bc48-3ee994eec9d8
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: ANOMES
+
+		annotation SummarizationSetBy = User
+
+	column MM
+		dataType: string
+		lineageTag: ebbf88ec-2932-46af-bc6c-73fab570a43a
+		sourceLineageTag: f25ab578-8e33-4c88-a8ab-0d0890420735
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: MM
+
+		annotation SummarizationSetBy = User
+
+	column DONO_MANOBRA
+		dataType: string
+		lineageTag: 88c6f748-8032-492c-ad10-21dce79f1ead
+		sourceLineageTag: b3b96224-d703-4660-b3a2-53dde7e494f2
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: DONO_MANOBRA
+
+		annotation SummarizationSetBy = User
+
+	column FILTRO_COM_SEM_PETROBRAS_GUIAIBA
+		dataType: string
+		lineageTag: 28254508-75f4-4236-99ab-2c117cf734a7
+		sourceLineageTag: e8c92497-8d32-4bb1-a4ee-ae443e982fde
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: FILTRO_COM_SEM_PETROBRAS_GUIAIBA
+
+		annotation SummarizationSetBy = User
+
+	column VOLUME_MKS_OPERACIONAL_FILTRO
+		dataType: double
+		lineageTag: a2b602cc-a11d-4b2b-8b67-7bf730b0efec
+		sourceLineageTag: fcda0c51-0b62-49be-ba51-9af694adad37
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: VOLUME_MKS_OPERACIONAL_FILTRO
+
+		annotation SummarizationSetBy = User
+
+	column DONO_MANOBRA_CARTEIRA
+		dataType: string
+		lineageTag: 87a95a62-c1e8-41e4-bbce-06a5ada81e1f
+		sourceLineageTag: 6c492604-479f-4b57-b476-b1a3da340db4
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: DONO_MANOBRA_CARTEIRA
+
+		annotation SummarizationSetBy = User
+
+	column MesAno
+		dataType: string
+		lineageTag: d5ea0baa-3d75-42a5-9eb5-23242f2f3d10
+		sourceLineageTag: 06b3c2cc-ad0e-4add-b966-487f6369c0c3
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: MesAno
+		sortByColumn: 'AnoMes Competencia'
+
+		annotation SummarizationSetBy = User
+
+	column 'AnoMes Competencia'
+		dataType: string
+		lineageTag: 50e021d2-d4d4-4921-bb76-1c0cfe727d50
+		sourceLineageTag: 5ecc0aaa-9dc9-4c6a-b2aa-95f5ca6f6f43
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: AnoMes Competencia
+
+		annotation SummarizationSetBy = User
+
+	partition 'CUBOS_NOVOS - RL_DW_FATO_CUBO_REBOC' = entity
+		mode: directQuery
+		source
+			entityName: CUBOS_NOVOS - RL_DW_FATO_CUBO_REBOC
+			expressionSource: 'DirectQuery para AS – Modelo Rebocadores'
+

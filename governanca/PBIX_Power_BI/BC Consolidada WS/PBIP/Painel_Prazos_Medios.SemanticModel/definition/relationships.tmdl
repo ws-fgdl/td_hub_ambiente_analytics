@@ -1,0 +1,144 @@
+relationship 69beec72-d8cd-4b25-b534-41f385f2a68f
+	joinOnDateBehavior: datePartOnly
+	fromColumn: aws_bussola_comercial_mar.data_do_inicio_do_evento
+	toColumn: LocalDateTable_94983353-1696-4bd6-9f51-b0fb6c9a14a4.Date
+
+relationship 74e56bac-e1c6-41d4-bd41-a0cb53a1ce40
+	joinOnDateBehavior: datePartOnly
+	fromColumn: aws_bussola_comercial_mar.data_do_fim_do_evento
+	toColumn: LocalDateTable_2479ed30-55f4-467c-a99c-1e284bf18bb0.Date
+
+relationship 230f7d03-6b73-4340-a614-d43176577acc
+	joinOnDateBehavior: datePartOnly
+	fromColumn: aws_pmvpmr.data_lancamento
+	toColumn: LocalDateTable_022bc9d3-3ff4-4d05-a421-65b34e96aae9.Date
+
+relationship aef572bf-38bd-4dbb-bc14-06fde6340300
+	joinOnDateBehavior: datePartOnly
+	fromColumn: aws_pmvpmr.data_criacao
+	toColumn: LocalDateTable_28f39903-6060-4cab-8e6a-ab3056243264.Date
+
+relationship 65345c1c-9ce7-fe93-e759-89b2fd6e406a
+	isActive: false
+	fromColumn: aws_bussola_comercial_mar.competencia
+	toColumn: Dim_calendario.data
+
+relationship a1787b2a-5765-4db3-97ce-db2a69b8e2a3
+	joinOnDateBehavior: datePartOnly
+	fromColumn: aws_bussola_comercial_faina.inicio
+	toColumn: LocalDateTable_bb29949c-761c-433d-ae40-c49e0936e811.Date
+
+relationship 780a63c1-9dab-459c-8d28-501aa261e204
+	joinOnDateBehavior: datePartOnly
+	fromColumn: aws_bussola_comercial_faina.fim
+	toColumn: LocalDateTable_42046226-2dc2-4bb9-ba01-bc4611248dc1.Date
+
+relationship 9f5334ff-0744-e2f4-4871-3994b43e0f28
+	isActive: false
+	fromColumn: aws_bussola_comercial_faina.competencia
+	toColumn: Dim_calendario.data
+
+relationship e1e3d2af-e93a-12a5-8088-4da9353164cf
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: aws_bussola_comercial_faina.evento
+	toColumn: aws_bussola_comercial_mar.os
+
+relationship 04bff7d8-dcf5-4b16-9339-48504d2a9eb6
+	joinOnDateBehavior: datePartOnly
+	fromColumn: aws_bussola_comercial_faina.emissao
+	toColumn: LocalDateTable_4a2b3dab-ebbc-4f1d-99fb-20e5bd9e43b7.Date
+
+relationship 777c6099-de1b-45f3-bb97-f10691e19764
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Dim_calendario.data
+	toColumn: LocalDateTable_4a477248-958a-4035-abcd-bf6b54167435.Date
+
+relationship 889b57d7-5a76-42a1-8d28-dc74485210ab
+	joinOnDateBehavior: datePartOnly
+	fromColumn: aws_bussola_comercial_ter.data_do_inicio_do_evento
+	toColumn: LocalDateTable_5668724d-726c-418a-9595-9950cb313010.Date
+
+relationship 7fff0b6c-d5e2-402c-962a-04aa01df0e98
+	joinOnDateBehavior: datePartOnly
+	fromColumn: aws_bussola_comercial_ter.data_do_fim_do_evento
+	toColumn: LocalDateTable_806784e3-0187-4a1d-9254-62bd802367df.Date
+
+relationship 2e443f9a-5d2e-41e5-aaba-8d11f85f9822
+	joinOnDateBehavior: datePartOnly
+	fromColumn: aws_bussola_comercial_ter.competencia
+	toColumn: LocalDateTable_afa823de-b8d8-45ef-8bd1-5215eef5fc19.Date
+
+relationship 1d1cbf84-2f5c-4bfc-93e2-78124345a8dd
+	joinOnDateBehavior: datePartOnly
+	fromColumn: aws_pmvpmr.Data_Fim_Manobra
+	toColumn: LocalDateTable_8a14539e-3c6b-4b20-96e4-31893cc36cfb.Date
+
+relationship 4a16c133-200a-4f9d-8705-10c293823910
+	joinOnDateBehavior: datePartOnly
+	fromColumn: aws_pmvpmr.Data_Inicio_Manobra
+	toColumn: LocalDateTable_835adae9-5ee5-44c2-adab-e69134f1338c.Date
+
+relationship 30cc6abf-9876-6982-47f0-2167bbebd772
+	fromColumn: aws_pmvpmr.cod_cliente_sap
+	toColumn: aws_salesforce.codigo_sap
+
+relationship aba6f260-4ecc-4d3e-a570-f35d2fd88ed8
+	joinOnDateBehavior: datePartOnly
+	fromColumn: aws_bussola_comercial_mar.data_inicio_operacao
+	toColumn: LocalDateTable_f10dcb7e-e211-4468-9d49-12fe97d44234.Date
+
+relationship 886fcf1f-d6e4-4b9e-96e6-e43a3bd69a8a
+	joinOnDateBehavior: datePartOnly
+	fromColumn: aws_bussola_comercial_mar.data_fim_operacao
+	toColumn: LocalDateTable_8fe33ae8-ec52-4ab7-9b78-41ad612d424a.Date
+
+relationship 4ada2883-fca0-4ecb-94c7-2acd810964b3
+	joinOnDateBehavior: datePartOnly
+	fromColumn: aws_bussola_comercial_faina.Data_Inicio_Evento
+	toColumn: LocalDateTable_56c3adea-db0d-4de9-aef1-87ca6c635547.Date
+
+relationship 8fb025b1-30cc-4a94-a16e-7338d71c9984
+	joinOnDateBehavior: datePartOnly
+	fromColumn: aws_bussola_comercial_faina.Data_Fim_Evento
+	toColumn: LocalDateTable_dc033ae2-511d-4b15-8fa3-baa4d2649669.Date
+
+relationship 5bcac2bd-c3ea-45f5-83de-87d63a3264a8
+	joinOnDateBehavior: datePartOnly
+	fromColumn: aws_pmvpmr.data_vencimento
+	toColumn: LocalDateTable_f855fa60-0387-46a0-9855-716a2ebf66e1.Date
+
+relationship f519af0b-14c8-83fa-add9-18c9cb2b12ac
+	toCardinality: many
+	fromColumn: aws_bussola_comercial_faina.Chave_pmf
+	toColumn: aws_pmvpmr.chave_pmf
+
+relationship 73609e0d-1ed0-5d60-46c5-be4d3558b338
+	toCardinality: many
+	fromColumn: aws_bussola_comercial_ter.Chave_pmf
+	toColumn: aws_pmvpmr.chave_pmf
+
+relationship 4893fac2-ba76-50d5-d1d0-ced96a508d00
+	fromColumn: aws_pmvpmr.data_compensacao
+	toColumn: Dim_calendario.data
+
+relationship 323fc890-e540-4b88-96c1-dcdcf407b349
+	joinOnDateBehavior: datePartOnly
+	fromColumn: aws_bussola_comercial_mar.etl_updated_at
+	toColumn: LocalDateTable_08be7a13-328c-433b-944c-f8b6783bfcd0.Date
+
+relationship 84b65bda-a4d2-413c-be46-017433ff67a7
+	joinOnDateBehavior: datePartOnly
+	fromColumn: aws_salesforce.etl_updated_at
+	toColumn: LocalDateTable_e15c4e85-e332-471a-b47a-205d712bb8c2.Date
+
+relationship 4ecc5660-4139-4e0e-bbbd-379ad052859f
+	joinOnDateBehavior: datePartOnly
+	fromColumn: aws_bussola_comercial_faina.etl_updated_at
+	toColumn: LocalDateTable_e7bfbc3e-a69a-44d7-a892-1c8ae3663d7a.Date
+
+relationship d004cfcd-2556-47b0-a1a3-9519e62288d1
+	joinOnDateBehavior: datePartOnly
+	fromColumn: aws_pmvpmr.etl_updated_at
+	toColumn: LocalDateTable_d5118b82-770e-466a-9fe8-4e848f0fd782.Date
+

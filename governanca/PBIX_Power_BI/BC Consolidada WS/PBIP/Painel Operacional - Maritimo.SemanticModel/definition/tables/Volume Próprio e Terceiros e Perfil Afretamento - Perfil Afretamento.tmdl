@@ -1,0 +1,115 @@
+table 'Volume Próprio e Terceiros e Perfil Afretamento - Perfil Afretamento'
+	lineageTag: eb333ced-f710-49a0-bc0e-3c2525f30db8
+	sourceLineageTag: 4a5abe7d-d671-4e0e-97fd-b0715df75253
+
+	measure 'Perfil Afretamento' = EXTERNALMEASURE("Perfil Afretamento", DOUBLE, "DirectQuery para AS – Modelo Rebocadores")
+		formatString: #,0.0
+		lineageTag: 6f3eb545-0631-4496-befc-033c166ddf0c
+		sourceLineageTag: f27b7a0c-5dd3-491e-ae57-4509d2365083
+		dataCategory: Uncategorized
+
+	measure 'Perfil Afretamento 13' = ```
+			
+			CALCULATE(
+			    [Perfil Afretamento], 
+			    DATEDIFF(
+			        'Volume Próprio e Terceiros e Perfil Afretamento - Perfil Afretamento'[COMPETENCIA], 
+			        SELECTEDVALUE(
+			            'Volume Próprio e Terceiros e Perfil Afretamento - Competencia'[COMPETENCIA]
+			        ), 
+			        MONTH
+			    ) < 13, 
+			    DATEDIFF(
+			        'Volume Próprio e Terceiros e Perfil Afretamento - Perfil Afretamento'[COMPETENCIA], 
+			        SELECTEDVALUE(
+			            'Volume Próprio e Terceiros e Perfil Afretamento - Competencia'[COMPETENCIA]), 
+			            MONTH
+			    ) >= 0
+			)
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: c3795664-368d-4829-ab2e-96a80a6a6429
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+	column COMPETENCIA
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 21645557-921c-4e7f-b991-28735af47a4d
+		sourceLineageTag: 9bbae9b7-7745-4897-8f79-8efcdcc7c67e
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: COMPETENCIA
+
+		annotation SummarizationSetBy = User
+
+	column ANOMES
+		dataType: string
+		lineageTag: cdf0cffe-783a-48df-9ed0-210eac8d39bb
+		sourceLineageTag: 94719a3e-c01b-4ea1-a208-5d9013405178
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: ANOMES
+
+		annotation SummarizationSetBy = User
+
+	column COD_REGIONAL
+		dataType: string
+		lineageTag: 2cbd5839-5c12-4f22-b09d-766fcf801210
+		sourceLineageTag: e6bf3900-2f98-48a2-b1eb-e2b9f52f6e4c
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: COD_REGIONAL
+
+		annotation SummarizationSetBy = User
+
+	column FILIAL
+		dataType: string
+		lineageTag: 0cbef0e8-8a6a-4bc8-9db0-0204a7d3c6dd
+		sourceLineageTag: b862fa8d-8f57-49a1-b4c0-72b71c64805c
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: FILIAL
+
+		annotation SummarizationSetBy = User
+
+	column VOLUME
+		dataType: double
+		formatString: #,0
+		lineageTag: 7b7adc65-aec7-4a36-8dfc-7ce71a66a870
+		sourceLineageTag: 1872a869-123a-4d45-b946-dbf0b50013d2
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: VOLUME
+
+		annotation SummarizationSetBy = User
+
+	column TIPO_PROP_TERC
+		dataType: string
+		lineageTag: 6a9a878c-349c-4f26-ac15-e8f4b10c243a
+		sourceLineageTag: 50773308-b08d-4a01-8fa8-9bb60e5a6c96
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: TIPO_PROP_TERC
+
+		annotation SummarizationSetBy = User
+
+	column VOLUME_TERCEIRO
+		dataType: double
+		formatString: #,0
+		lineageTag: 91c7efa4-860f-42c5-a611-bf755f00a562
+		sourceLineageTag: e1e18f65-dd43-452c-ae1b-bbd2216c28a6
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: VOLUME_TERCEIRO
+
+		annotation SummarizationSetBy = User
+
+	partition 'Volume Próprio e Terceiros e Perfil Afretamento - Perfil Afretamento' = entity
+		mode: directQuery
+		source
+			entityName: Volume Próprio e Terceiros e Perfil Afretamento - Perfil Afretamento
+			expressionSource: 'DirectQuery para AS – Modelo Rebocadores'
+

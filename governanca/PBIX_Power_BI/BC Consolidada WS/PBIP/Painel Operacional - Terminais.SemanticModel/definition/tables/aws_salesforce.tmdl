@@ -1,0 +1,181 @@
+table aws_salesforce
+	lineageTag: 201feaa8-1af5-4809-abcb-acdd2a1a12bc
+
+	column id
+		dataType: string
+		lineageTag: dfb0fa64-7196-400a-9037-c4b30ec70b38
+		summarizeBy: none
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+	column parentid
+		dataType: string
+		lineageTag: d1a87fe1-e331-4cb1-b4e2-b75ef96d30bf
+		summarizeBy: none
+		sourceColumn: parentid
+
+		annotation SummarizationSetBy = Automatic
+
+	column grupo_economico
+		dataType: string
+		lineageTag: e1dba2c0-6677-4adc-a1d3-c0212f3ad2c1
+		summarizeBy: none
+		sourceColumn: grupo_economico
+
+		annotation SummarizationSetBy = Automatic
+
+	column grupo_comercial
+		dataType: string
+		lineageTag: 81c4ecae-8ff4-4184-bff2-9778ef2e082a
+		summarizeBy: none
+		sourceColumn: grupo_comercial
+
+		annotation SummarizationSetBy = Automatic
+
+	column cidade
+		dataType: string
+		lineageTag: a71d595c-c064-456f-822c-555473c874e4
+		summarizeBy: none
+		sourceColumn: cidade
+
+		annotation SummarizationSetBy = Automatic
+
+	column pais
+		dataType: string
+		lineageTag: 08e86023-9fb5-47f8-b9d7-70e9272041b4
+		summarizeBy: none
+		sourceColumn: pais
+
+		annotation SummarizationSetBy = Automatic
+
+	column codigo_postal
+		dataType: string
+		lineageTag: 6167497d-d2ea-464b-b75f-8d51e6a2f928
+		summarizeBy: none
+		sourceColumn: codigo_postal
+
+		annotation SummarizationSetBy = Automatic
+
+	column estado
+		dataType: string
+		lineageTag: 49555749-4e6a-48d3-9d42-0f6cb9dd6c58
+		summarizeBy: none
+		sourceColumn: estado
+
+		annotation SummarizationSetBy = Automatic
+
+	column endereço
+		dataType: string
+		lineageTag: 17b2ab78-8255-4bc2-a36e-3b0a649a642b
+		summarizeBy: none
+		sourceColumn: endereço
+
+		annotation SummarizationSetBy = Automatic
+
+	column razao_social
+		dataType: string
+		lineageTag: 17cc0c9b-0476-4a97-bbf6-4e7309b0f9bc
+		summarizeBy: none
+		sourceColumn: razao_social
+
+		annotation SummarizationSetBy = Automatic
+
+	column codigo_sap
+		dataType: string
+		lineageTag: 779da78a-8164-46a6-b70e-bda695a8841b
+		summarizeBy: none
+		sourceColumn: codigo_sap
+
+		annotation SummarizationSetBy = Automatic
+
+	column cnpj
+		dataType: string
+		lineageTag: 9036acc1-0941-46d7-8efd-fb00f2efbe8f
+		summarizeBy: none
+		sourceColumn: cnpj
+
+		annotation SummarizationSetBy = Automatic
+
+	column cpf
+		dataType: string
+		lineageTag: 1447f4e9-4ca2-423c-9a5e-d263d9186565
+		summarizeBy: none
+		sourceColumn: cpf
+
+		annotation SummarizationSetBy = Automatic
+
+	column duns_number
+		dataType: string
+		lineageTag: b1afe33c-37b9-4867-945c-9e8cb069c32f
+		summarizeBy: none
+		sourceColumn: duns_number
+
+		annotation SummarizationSetBy = Automatic
+
+	column pb_tipo_de_cliente = ```
+			
+			IF(
+			    LOOKUPVALUE(
+			        'dim_gsht_carteira_comercial'[ARMADOR/CLIENTE CARGA], 
+			        'dim_gsht_carteira_comercial'[CODIGO_SAP_Padronizado], 
+			        aws_salesforce[codigo_sap]
+			    ) = BLANK(), "Cliente Carga", 
+			    LOOKUPVALUE(
+			        'dim_gsht_carteira_comercial'[Armador/Cliente Carga], 
+			        'dim_gsht_carteira_comercial'[CODIGO_SAP_Padronizado], 
+			        aws_salesforce[codigo_sap]
+			    )
+			)
+			```
+		lineageTag: ca18c20c-19bd-4f0a-8290-9101a236f42a
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column tipo_cliente
+		dataType: string
+		lineageTag: 2a688e84-4c23-4367-978b-115d9d4f22be
+		summarizeBy: none
+		sourceColumn: tipo_cliente
+
+		annotation SummarizationSetBy = Automatic
+
+	column denominacao_tipo_cliente
+		dataType: string
+		lineageTag: aca678bf-0583-45f4-a3ec-dbe919a12ec4
+		summarizeBy: none
+		sourceColumn: denominacao_tipo_cliente
+
+		annotation SummarizationSetBy = Automatic
+
+	column etl_updated_at
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: f0d36ccc-a059-4a71-aae7-b24580a01e02
+		summarizeBy: none
+		sourceColumn: etl_updated_at
+
+		variation Variation
+			isDefault
+			relationship: 45eaf819-f4a9-4d62-8692-7e718f4a5412
+			defaultHierarchy: LocalDateTable_85201c9a-4214-462e-ae3d-0ffbf68d4b6c.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	partition aws_salesforce = m
+		mode: import
+		source =
+				let
+				    Fonte = PowerPlatform.Dataflows(null),
+				    Workspaces = Fonte{[Id="Workspaces"]}[Data],
+				    #"8c5cc8ba-ed75-4d39-9606-af9ead89ca36" = Workspaces{[workspaceId="8c5cc8ba-ed75-4d39-9606-af9ead89ca36"]}[Data],
+				    #"0b55ab43-a56b-4734-b2b5-b43d6c4041ec" = #"8c5cc8ba-ed75-4d39-9606-af9ead89ca36"{[dataflowId="0b55ab43-a56b-4734-b2b5-b43d6c4041ec"]}[Data],
+				    dim_salesforce = #"0b55ab43-a56b-4734-b2b5-b43d6c4041ec"{[entity="dim_salesforce",version=""]}[Data]
+				in
+				    dim_salesforce
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

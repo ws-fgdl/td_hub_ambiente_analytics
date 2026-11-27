@@ -1,0 +1,142 @@
+table aws_movimentacao_cntr
+	lineageTag: 21d1ea9c-aff2-4671-b714-5aabc46d50b0
+	sourceLineageTag: f379f6d9-9fd0-4d3a-acf7-ac8cc7747b8d
+
+	column cod_sap
+		dataType: string
+		lineageTag: 7ad9f3a7-014f-4370-8e61-bea09bc8c522
+		sourceLineageTag: d56917bf-b94e-425b-a3a4-c2b3dedd8930
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: cod_sap
+
+		annotation SummarizationSetBy = User
+
+	column mov_cntr
+		dataType: int64
+		formatString: 0
+		lineageTag: a472382f-cef1-4ac4-8a03-c1c3dabe6d37
+		sourceLineageTag: c4472337-edfd-4623-912f-8785932b06d2
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: mov_cntr
+
+		annotation SummarizationSetBy = User
+
+	column data
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 06818bb9-34a4-42d8-93c2-603e2939ccb0
+		sourceLineageTag: ca169d70-cb55-40c0-b72a-eeab4779a80a
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: data
+
+		annotation SummarizationSetBy = User
+
+	column modalidade
+		dataType: string
+		lineageTag: fa684dfb-945e-4551-9041-8c74446ab148
+		sourceLineageTag: f9d79072-30cb-41f4-aea4-5b0df07cfef3
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: modalidade
+
+		annotation SummarizationSetBy = User
+
+	column status
+		dataType: string
+		lineageTag: 4a04351e-73ff-4cf9-ad8c-867929d6afd9
+		sourceLineageTag: ecb146a0-1aa1-4459-949b-2884916c3cc2
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: status
+
+		annotation SummarizationSetBy = User
+
+	column dsc_grupo_armador
+		dataType: string
+		lineageTag: 486885ab-5786-4b5a-bcef-29683cc2e372
+		sourceLineageTag: 621ddbf4-e9b5-4a11-bced-f872b16da8c9
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: dsc_grupo_armador
+
+		annotation SummarizationSetBy = User
+
+	column emp_sap
+		dataType: string
+		lineageTag: e12ab633-62d9-4a8e-b8ee-0d85a8b29479
+		sourceLineageTag: 2559280b-f81c-4f37-bd12-ef17c82a0c64
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: emp_sap
+
+		annotation SummarizationSetBy = User
+
+	column qnt_teu
+		dataType: double
+		lineageTag: c75c6a83-ef95-4253-aa34-b1f1cc5df336
+		sourceLineageTag: 2a5b1196-3f1b-4dbc-8092-54d77b5bc8c2
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: qnt_teu
+
+		annotation SummarizationSetBy = User
+
+	column modalidade_painel
+		dataType: string
+		lineageTag: b8fdf19e-88fe-4108-8dea-5ae3bfb26816
+		sourceLineageTag: d6fde0de-74da-458d-b87a-ff116c6b860d
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: modalidade_painel
+
+		annotation SummarizationSetBy = User
+
+	column un
+		dataType: string
+		lineageTag: 5096d088-bf74-4519-858f-cf63d3f1f358
+		sourceLineageTag: 4cb39038-321d-4a61-bfd4-aa7b32289786
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: un
+
+		annotation SummarizationSetBy = User
+
+	column operacao_por_navio
+		dataType: string
+		lineageTag: 6776cb32-ec0e-49d9-abb5-92b34f88114c
+		sourceLineageTag: c382024f-8ad2-475d-8371-d421de9de346
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: operacao_por_navio
+
+		annotation SummarizationSetBy = User
+
+	column linha_maritima
+		dataType: string
+		lineageTag: ade574b1-e77a-480e-9ec3-462353048b90
+		sourceLineageTag: e492a1d3-6ff7-47a3-937b-d678c1194c9d
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: linha_maritima
+
+		annotation SummarizationSetBy = User
+
+	column tipo
+		dataType: string
+		lineageTag: b8d4cae4-677e-48c6-8f91-db6a82b115ee
+		sourceLineageTag: 11d28a2f-505f-486f-b4c2-268ea0162784
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: tipo
+
+		annotation SummarizationSetBy = User
+
+	partition aws_movimentacao_cntr = entity
+		mode: directQuery
+		source
+			entityName: aws_movimentacao_cntr
+			expressionSource: 'DirectQuery para AS – MS_Bussola_Comercial_Consolidada'
+

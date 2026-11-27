@@ -1,0 +1,30 @@
+table aws_index_ipca_igpm_inpc_dolar
+	lineageTag: 8f1a1c20-5ba4-4789-a8bf-2a70b3e57d9c
+	sourceLineageTag: 1beb390b-1e21-4d47-abbd-1f8f38dde0cd
+
+	column AnoMes
+		dataType: string
+		lineageTag: 608a3178-53ef-47ba-ad48-ee1e49e25416
+		sourceLineageTag: 07d67039-24bc-4a78-ab84-d3748ee4e64c
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: AnoMes
+
+		annotation SummarizationSetBy = User
+
+	column Media_Dolar
+		dataType: double
+		lineageTag: 81cb34ce-9107-4822-b2db-7a02574ab9ba
+		sourceLineageTag: c9507289-9da9-4fc0-886f-a0b8ff38e6b6
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Media_Dolar
+
+		annotation SummarizationSetBy = User
+
+	partition aws_index_ipca_igpm_inpc_dolar = entity
+		mode: directQuery
+		source
+			entityName: aws_index_ipca_igpm_inpc_dolar
+			expressionSource: 'DirectQuery para AS – MS_Bussola_Comercial_Consolidada'
+

@@ -1,0 +1,43 @@
+table FLAG_MOEDA
+	lineageTag: e41ea3a7-f3d7-4ca8-b53a-db56cb668f75
+	sourceLineageTag: 938b0f54-385c-43a5-9962-2108912b704a
+
+	measure Faturamento_Dinamico = EXTERNALMEASURE("Faturamento_Dinamico", DOUBLE, "DirectQuery para AS – MS_Bussola_Comercial_Consolidada")
+		formatString: #,0
+		lineageTag: 7cab56b4-033a-4ede-85da-54be49a1b805
+		sourceLineageTag: bb21c7ef-97d9-4e91-b0c9-f36b33c38933
+		dataCategory: Uncategorized
+
+	measure Ticket_Medio_Consolidado = EXTERNALMEASURE("Ticket_Medio_Consolidado", DOUBLE, "DirectQuery para AS – MS_Bussola_Comercial_Consolidada")
+		formatString: #,0
+		lineageTag: 0959e095-b8c7-4028-91dc-5c07470d5b28
+		sourceLineageTag: 0ba7675b-7537-4564-b264-64569cdb6327
+		dataCategory: Uncategorized
+
+	column Moeda
+		dataType: string
+		lineageTag: 7ce300b1-fd44-4ff7-aef9-ae9a7f27639f
+		sourceLineageTag: 38028b48-94f3-44d5-9232-b2d053800594
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Moeda
+
+		annotation SummarizationSetBy = User
+
+	column Ordem
+		dataType: int64
+		formatString: 0
+		lineageTag: 64514d6b-bcd0-46bc-ac6d-84e0593325a2
+		sourceLineageTag: 568b639f-a838-4390-bbf2-1c798c7a2f58
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Ordem
+
+		annotation SummarizationSetBy = User
+
+	partition FLAG_MOEDA = entity
+		mode: directQuery
+		source
+			entityName: FLAG_MOEDA
+			expressionSource: 'DirectQuery para AS – MS_Bussola_Comercial_Consolidada'
+

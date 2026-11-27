@@ -1,0 +1,421 @@
+table 'Volume Próprio e Terceiros e Perfil Afretamento - Volume'
+	lineageTag: 1e2d9787-b6a0-493a-b13a-738f4b623480
+	sourceLineageTag: 2d7f0bbf-aaf8-4384-b4fb-b161533b7764
+
+	measure 'Var Volume' = EXTERNALMEASURE("Var Volume", DOUBLE, "DirectQuery para AS – Modelo Rebocadores")
+		lineageTag: ce75baf8-98ad-4a73-a261-1bd99061389e
+		sourceLineageTag: 5be1bb04-4bea-4784-89a2-fdcf729e9a8c
+		dataCategory: Uncategorized
+
+	measure 'Volume Proprio e Terceiros' =
+			
+			VAR vCompetenciaSelecionada = SELECTEDVALUE('Volume Próprio e Terceiros e Perfil Afretamento - Competencia'[COMPETENCIA])
+			
+			RETURN
+			CALCULATE(
+			    SUM('Volume Próprio e Terceiros e Perfil Afretamento - Volume'[VOLUME]),
+			    REMOVEFILTERS('Volume Próprio e Terceiros e Perfil Afretamento - Competencia'),
+			    KEEPFILTERS(
+			        FILTER(
+			            ALL('Volume Próprio e Terceiros e Perfil Afretamento - Volume'),
+			            DATEDIFF('Volume Próprio e Terceiros e Perfil Afretamento - Volume'[COMPETENCIA], vCompetenciaSelecionada, MONTH) < 13 &&
+			            DATEDIFF('Volume Próprio e Terceiros e Perfil Afretamento - Volume'[COMPETENCIA], vCompetenciaSelecionada, MONTH) >= 0
+			        )
+			    )
+			)
+		lineageTag: 37dff22b-5f53-4969-8f01-9daea76133e5
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Volume Proprio e Terceiros Mês' =
+			
+			VAR vCompetenciaSelecionada = SELECTEDVALUE('Volume Próprio e Terceiros e Perfil Afretamento - Competencia'[COMPETENCIA])
+			
+			RETURN
+			CALCULATE(
+			    SUM('Volume Próprio e Terceiros e Perfil Afretamento - Volume'[VOLUME]),
+			    'Volume Próprio e Terceiros e Perfil Afretamento - Volume'[COMPETENCIA] = vCompetenciaSelecionada
+			)
+			
+			
+			
+			
+			// calculate(sum('Volume Próprio e Terceiros e Perfil Afretamento - Volume'[VOLUME]), DATEDIFF('Volume Próprio e Terceiros e Perfil Afretamento - Volume'[COMPETENCIA], selectedvalue('Volume Próprio e Terceiros e Perfil Afretamento - Competencia'[COMPETENCIA]), MONTH) = 0)
+		lineageTag: dcbd219c-076d-47ca-94e7-e58362609c29
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Volume Proprio e Terceiros Mês Orçado' = ```
+			
+			CALCULATE(
+			    SUM('Volume Próprio e Terceiros e Perfil Afretamento - Volume'[VOLUME]), 
+			    'Volume Próprio e Terceiros e Perfil Afretamento - Volume'[DSC_TIPO] = "ORÇADO"
+			)
+			
+			
+			// CALCULATE(
+			//     SUM('Volume Próprio e Terceiros e Perfil Afretamento - Volume'[VOLUME]), 
+			//     DATEDIFF(
+			//         '_Tempo'[#Ano/Mês], 
+			//         SELECTEDVALUE(
+			//             '_Tempo'[#Ano/Mês]), 
+			//             MONTH
+			//         ) = 0 , 
+			//         'Volume Próprio e Terceiros e Perfil Afretamento - Volume'[DSC_TIPO] = "ORÇADO"
+			//     )
+			```
+		lineageTag: 07f7c4a9-c6c5-429a-9095-bf62424dd6be
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Volume Proprio e Terceiros Mês Realizado' = ```
+			
+			CALCULATE(
+			    SUM('Volume Próprio e Terceiros e Perfil Afretamento - Volume'[VOLUME]), 
+			    'Volume Próprio e Terceiros e Perfil Afretamento - Volume'[DSC_TIPO] = "REALIZADO"
+			)
+			// CALCULATE(
+			//     SUM('Volume Próprio e Terceiros e Perfil Afretamento - Volume'[VOLUME]), 
+			//     DATEDIFF(
+			//         '_Tempo'[#Ano/Mês], 
+			//         SELECTEDVALUE(
+			//             '_Tempo'[#Ano/Mês]), 
+			//             MONTH
+			//         ) = 0 , 
+			//         'Volume Próprio e Terceiros e Perfil Afretamento - Volume'[DSC_TIPO] = "REALIZADO"
+			//     )
+			```
+		lineageTag: 2ef81d7e-ef19-4382-90fc-ba6496f6b596
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Volume Proprio e Terceiros YTD' = calculate(sum('Volume Próprio e Terceiros e Perfil Afretamento - Volume'[VOLUME]), DATEDIFF('Volume Próprio e Terceiros e Perfil Afretamento - Volume'[COMPETENCIA], selectedvalue('Volume Próprio e Terceiros e Perfil Afretamento - Competencia'[COMPETENCIA]), MONTH) < 13, DATEDIFF('Volume Próprio e Terceiros e Perfil Afretamento - Volume'[COMPETENCIA], selectedvalue('Volume Próprio e Terceiros e Perfil Afretamento - Competencia'[COMPETENCIA]), MONTH) >= 0, YEAR('Volume Próprio e Terceiros e Perfil Afretamento - Volume'[COMPETENCIA]) = YEAR(selectedvalue('Volume Próprio e Terceiros e Perfil Afretamento - Competencia'[COMPETENCIA])))
+		lineageTag: 4de2ebae-11fd-40ab-b0c2-789c5a6667f5
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Volume Proprio e Terceiros YTD Orçado' = ```
+			
+			// 1. Pega o valor selecionado (ex: "201705")
+			VAR vMaxData = MAX('_Tempo'[#Ano/Mês]) 
+			
+			// 2. Extrai os 4 primeiros caracteres para descobrir o Ano (ex: "2017")
+			VAR vAnoSelecionado = LEFT(vMaxData, 4)
+			
+			RETURN
+			CALCULATE(
+			    SUM('Volume Próprio e Terceiros e Perfil Afretamento - Volume'[VOLUME]),
+			    
+			    // Remove os filtros atuais da tabela calendário
+			    REMOVEFILTERS('_Tempo'),
+			    
+			    // 3. Pega todos os meses onde os 4 primeiros caracteres (Ano) são iguais ao ano atual
+			    LEFT('_Tempo'[#Ano/Mês], 4) = vAnoSelecionado,
+			    
+			    // 4. Garante que não vai somar meses além do selecionado
+			    '_Tempo'[#Ano/Mês] <= vMaxData,
+			    
+			    // Filtro da fato
+			    'Volume Próprio e Terceiros e Perfil Afretamento - Volume'[DSC_TIPO] = "ORÇADO"
+			)
+			```
+		formatString: 0
+		lineageTag: 967f8cb1-05c5-473f-bb8d-c8a8552419d0
+
+		changedProperty = Name
+
+	measure 'Volume Proprio e Terceiros YTD Realizado' = ```
+			
+			// 1. Pega o valor selecionado (ex: "201705")
+			VAR vMaxData = MAX('_Tempo'[#Ano/Mês]) 
+			
+			// 2. Extrai os 4 primeiros caracteres para descobrir o Ano (ex: "2017")
+			VAR vAnoSelecionado = LEFT(vMaxData, 4)
+			
+			RETURN
+			CALCULATE(
+			    SUM('Volume Próprio e Terceiros e Perfil Afretamento - Volume'[VOLUME]),
+			    
+			    // Remove os filtros atuais da tabela calendário
+			    REMOVEFILTERS('_Tempo'),
+			    
+			    // 3. Pega todos os meses onde os 4 primeiros caracteres (Ano) são iguais ao ano atual
+			    LEFT('_Tempo'[#Ano/Mês], 4) = vAnoSelecionado,
+			    
+			    // 4. Garante que não vai somar meses além do selecionado
+			    '_Tempo'[#Ano/Mês] <= vMaxData,
+			    
+			    // Filtro da fato
+			    'Volume Próprio e Terceiros e Perfil Afretamento - Volume'[DSC_TIPO] = "REALIZADO"
+			)
+			```
+		lineageTag: 52a283be-6df2-4935-a3f8-db0adb78632a
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Var Volume Mês' =
+			
+			DIVIDE(
+			    CALCULATE(
+			        SUM('Volume Próprio e Terceiros e Perfil Afretamento - Volume'[VOLUME]),
+			        'Volume Próprio e Terceiros e Perfil Afretamento - Volume'[DSC_TIPO] = "REALIZADO"
+			    ),
+			    CALCULATE(
+			        SUM('Volume Próprio e Terceiros e Perfil Afretamento - Volume'[VOLUME]),
+			        'Volume Próprio e Terceiros e Perfil Afretamento - Volume'[DSC_TIPO] <> "REALIZADO"
+			    )
+			) - 1
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 2fa83e2d-f00c-46ed-abe2-7e659942ce04
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+	measure 'Var Volume YTD' = ```
+			
+			DIVIDE(
+			    [Volume Proprio e Terceiros YTD Realizado], 
+			    [Volume Proprio e Terceiros YTD Orçado]
+			) - 1
+			
+			
+			// VAR vCompetenciaSelecionada = SELECTEDVALUE('Volume Próprio e Terceiros e Perfil Afretamento - Competencia'[COMPETENCIA])
+			// VAR vAnoSelecionado = YEAR(vCompetenciaSelecionada)
+			
+			// VAR vNumeradorYTD = 
+			//     CALCULATE(
+			//         SUM('Volume Próprio e Terceiros e Perfil Afretamento - Volume'[VOLUME]),
+			//         REMOVEFILTERS('Volume Próprio e Terceiros e Perfil Afretamento - Competencia'),
+			//         YEAR('Volume Próprio e Terceiros e Perfil Afretamento - Volume'[COMPETENCIA]) = vAnoSelecionado,
+			//         'Volume Próprio e Terceiros e Perfil Afretamento - Volume'[COMPETENCIA] <= vCompetenciaSelecionada,
+			//         'Volume Próprio e Terceiros e Perfil Afretamento - Volume'[DSC_TIPO] = "REALIZADO"
+			//     )
+			
+			// VAR vDenominadorYTD = 
+			//     CALCULATE(
+			//         SUM('Volume Próprio e Terceiros e Perfil Afretamento - Volume'[VOLUME]),
+			//         REMOVEFILTERS('Volume Próprio e Terceiros e Perfil Afretamento - Competencia'),
+			//         YEAR('Volume Próprio e Terceiros e Perfil Afretamento - Volume'[COMPETENCIA]) = vAnoSelecionado,
+			//         'Volume Próprio e Terceiros e Perfil Afretamento - Volume'[COMPETENCIA] <= vCompetenciaSelecionada,
+			//         'Volume Próprio e Terceiros e Perfil Afretamento - Volume'[DSC_TIPO] <> "REALIZADO"
+			//     )
+			
+			// RETURN
+			// DIVIDE(vNumeradorYTD, vDenominadorYTD) - 1
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: d14a23cd-82f1-4216-860e-b16fd3a1a1d1
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+	measure _VolumeProprioTerceiro_MesAtual = ```
+			
+			VAR DataSelecionada = MAX('Volume Próprio e Terceiros e Perfil Afretamento - Competencia'[COMPETENCIA_ANOMES])
+			VAR AnoMax = YEAR(DataSelecionada)
+			VAR MesMax = MONTH(DataSelecionada)
+			
+			RETURN
+			CALCULATE(
+			    [Volume Proprio e Terceiros], 
+			    -- Mudamos para ALL para garantir que NENHUMA coluna desta tabela de competência bloqueie o cálculo
+			    ALL('Volume Próprio e Terceiros e Perfil Afretamento - Competencia'),
+			    YEAR('Volume Próprio e Terceiros e Perfil Afretamento - Competencia'[COMPETENCIA_ANOMES]) = AnoMax,
+			    MONTH('Volume Próprio e Terceiros e Perfil Afretamento - Competencia'[COMPETENCIA_ANOMES]) = MesMax
+			)
+			
+			
+			// VAR DataSelecionada = 
+			// SELECTEDVALUE(
+			//     'Volume Próprio e Terceiros e Perfil Afretamento - Competencia'[COMPETENCIA_ANOMES], 
+			//     MAX('Volume Próprio e Terceiros e Perfil Afretamento - Volume'[COMPETENCIA])
+			// )
+			
+			// VAR AnoMax = YEAR(DataSelecionada)
+			// VAR MesMax = MONTH(DataSelecionada)
+			
+			// RETURN
+			// CALCULATE(
+			//     [Volume Proprio e Terceiros], 
+			//     REMOVEFILTERS('Volume Próprio e Terceiros e Perfil Afretamento - Competencia'[COMPETENCIA_ANOMES]),
+			//     YEAR('Volume Próprio e Terceiros e Perfil Afretamento - Competencia'[COMPETENCIA_ANOMES]) = AnoMax,
+			//     MONTH('Volume Próprio e Terceiros e Perfil Afretamento - Competencia'[COMPETENCIA_ANOMES]) = MesMax
+			// )
+			
+			
+			```
+		lineageTag: 0d200798-7a1f-4188-9951-435841de253e
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _VolumeProprioTerceiro_MesAnterior = ```
+			
+			VAR DataSelecionada = MAX('Volume Próprio e Terceiros e Perfil Afretamento - Competencia'[COMPETENCIA_ANOMES])
+			
+			-- Extraímos o Ano e Mês atuais (sabemos que isso funciona no seu modelo)
+			VAR AnoAtual = YEAR(DataSelecionada)
+			VAR MesAtual = MONTH(DataSelecionada)
+			
+			-- Calculamos o mês e ano anterior matematicamente
+			-- Se o mês for Janeiro (1), volta para Dezembro (12) e subtrai 1 do ano. 
+			-- Caso contrário, só subtrai 1 do mês.
+			VAR MesAnterior = IF(MesAtual = 1, 12, MesAtual - 1)
+			VAR AnoAnterior = IF(MesAtual = 1, AnoAtual - 1, AnoAtual)
+			
+			RETURN
+			CALCULATE(
+			    [Volume Proprio e Terceiros], 
+			    -- Limpa a tabela de competência
+			    ALL('Volume Próprio e Terceiros e Perfil Afretamento - Competencia'),
+			    -- Filtra usando a mesma lógica que dá certo na sua medida de Mês Atual
+			    YEAR('Volume Próprio e Terceiros e Perfil Afretamento - Competencia'[COMPETENCIA_ANOMES]) = AnoAnterior,
+			    MONTH('Volume Próprio e Terceiros e Perfil Afretamento - Competencia'[COMPETENCIA_ANOMES]) = MesAnterior
+			)
+			
+			// VAR DataSelecionada = 
+			// SELECTEDVALUE(
+			//     'Volume Próprio e Terceiros e Perfil Afretamento - Competencia'[COMPETENCIA_ANOMES], 
+			//     MAX('Volume Próprio e Terceiros e Perfil Afretamento - Volume'[COMPETENCIA])
+			// )
+			// VAR DataMesAnterior = EOMONTH(DataSelecionada, -1)
+			
+			// VAR AnoAnterior = YEAR(DataMesAnterior)
+			// VAR MesAnterior = MONTH(DataMesAnterior)
+			
+			// RETURN
+			// CALCULATE(
+			//     [Volume Proprio e Terceiros], 
+			//     REMOVEFILTERS('Volume Próprio e Terceiros e Perfil Afretamento - Competencia'[COMPETENCIA_ANOMES]),
+			//     YEAR('Volume Próprio e Terceiros e Perfil Afretamento - Competencia'[COMPETENCIA_ANOMES]) = AnoAnterior,
+			//     MONTH('Volume Próprio e Terceiros e Perfil Afretamento - Competencia'[COMPETENCIA_ANOMES]) = MesAnterior
+			// )
+			```
+		formatString: 0
+		lineageTag: bf67e9e3-99d8-48c8-aa06-254d76eaa5d4
+
+		changedProperty = Name
+
+	column TIPO
+		dataType: string
+		lineageTag: 16c1e6d9-120b-4941-856e-10de25703a59
+		sourceLineageTag: 553d6ff7-70a9-4801-9961-c52bad6bfd65
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: TIPO
+
+		annotation SummarizationSetBy = User
+
+	column FILIAL
+		dataType: string
+		lineageTag: 07ccddcd-2581-460f-af29-57328792e185
+		sourceLineageTag: 23f506c9-4022-4f14-8a62-9a72acb82935
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: FILIAL
+
+		annotation SummarizationSetBy = User
+
+	column COMPETENCIA
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: a7ceaae3-e966-4b35-9dfa-bbecd75d891d
+		sourceLineageTag: 39272a56-2193-4984-a574-6b9e47c79957
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: COMPETENCIA
+
+		annotation SummarizationSetBy = User
+
+	column VOLUME
+		dataType: double
+		lineageTag: 617ff07b-d797-4eb3-a0e5-23dc6f89c5a7
+		sourceLineageTag: 23a4915e-345a-41d9-87e0-a5bbd6329338
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: VOLUME
+
+		annotation SummarizationSetBy = User
+
+	column ANOMES
+		dataType: string
+		lineageTag: 77dda349-adda-4a88-bade-68b296cbfb6d
+		sourceLineageTag: b6dd4e1e-88e7-4d82-bc7b-c61b9545c8f7
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: ANOMES
+
+		annotation SummarizationSetBy = User
+
+	column ANO
+		dataType: string
+		lineageTag: 60e5685f-22dc-448a-be66-4dd1e13449ee
+		sourceLineageTag: 161da1bd-6569-4e5a-9acb-5fb3b8d2c6e4
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: ANO
+
+		annotation SummarizationSetBy = User
+
+	column DSC_TIPO
+		dataType: string
+		lineageTag: 5f1cdd69-1bcf-4c9d-a68d-9bd987dca15f
+		sourceLineageTag: 12359a2e-0388-496c-b1c4-59097c63e473
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: DSC_TIPO
+
+		annotation SummarizationSetBy = User
+
+	column DSC_PROP_TERC
+		dataType: string
+		lineageTag: b21aa4d2-64ad-4331-bf81-a473c159afaf
+		sourceLineageTag: 2a07e523-2299-496a-8d9a-1cbb0e3a3b08
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: DSC_PROP_TERC
+
+		annotation SummarizationSetBy = User
+
+	column TIPO_PROP_TERC
+		dataType: string
+		lineageTag: bd20eab5-0646-456c-a42d-b5408a25f021
+		sourceLineageTag: 2603db35-7a93-4fcc-a260-21eed8de4e9b
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: TIPO_PROP_TERC
+
+		annotation SummarizationSetBy = User
+
+	column FILIAL_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: 593699cc-0de4-43fc-b6e4-d59186197bb9
+		sourceLineageTag: 336bb822-339f-452d-bcfd-5a03863bcc57
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: FILIAL_ID
+
+		annotation SummarizationSetBy = User
+
+	partition 'Volume Próprio e Terceiros e Perfil Afretamento - Volume' = entity
+		mode: directQuery
+		source
+			entityName: Volume Próprio e Terceiros e Perfil Afretamento - Volume
+			expressionSource: 'DirectQuery para AS – Modelo Rebocadores'
+

@@ -1,0 +1,254 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "5b8cd6976e0ad1c3eded",
+  "displayName": " Prazos Médios",
+  "displayOption": "FitToWidth",
+  "height": 3200,
+  "width": 1550,
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "4e863f8a5392b7ed80b3",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "aws_pmvpmr"
+              }
+            },
+            "Property": "Data_Fim_Manobra"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "a",
+              "Entity": "aws_pmvpmr",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Not": {
+                  "Expression": {
+                    "In": {
+                      "Expressions": [
+                        {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Source": "a"
+                              }
+                            },
+                            "Property": "Data_Fim_Manobra"
+                          }
+                        }
+                      ],
+                      "Values": [
+                        [
+                          {
+                            "Literal": {
+                              "Value": "null"
+                            }
+                          }
+                        ]
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User",
+        "objects": {
+          "general": [
+            {
+              "properties": {
+                "isInvertedSelectionMode": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "true"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "af856dee31da6858247b",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "aws_pmvpmr"
+              }
+            },
+            "Property": "Data_Inicio_Manobra"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "a",
+              "Entity": "aws_pmvpmr",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Not": {
+                  "Expression": {
+                    "In": {
+                      "Expressions": [
+                        {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Source": "a"
+                              }
+                            },
+                            "Property": "Data_Inicio_Manobra"
+                          }
+                        }
+                      ],
+                      "Values": [
+                        [
+                          {
+                            "Literal": {
+                              "Value": "null"
+                            }
+                          }
+                        ]
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User",
+        "objects": {
+          "general": [
+            {
+              "properties": {
+                "isInvertedSelectionMode": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "true"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "718c0059d1ed078600b2",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "aws_pmvpmr"
+              }
+            },
+            "Property": "cod_cliente_sap"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      }
+    ]
+  },
+  "objects": {
+    "background": [
+      {
+        "properties": {
+          "color": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#001C43'"
+                  }
+                }
+              }
+            }
+          },
+          "transparency": {
+            "expr": {
+              "Literal": {
+                "Value": "0D"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "outspacePane": [
+      {
+        "properties": {
+          "width": {
+            "expr": {
+              "Literal": {
+                "Value": "322L"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "visualInteractions": [
+    {
+      "source": "310f8accc532852dad77",
+      "target": "d6509d09040b8b498df4",
+      "type": "DataFilter"
+    },
+    {
+      "source": "310f8accc532852dad77",
+      "target": "525dbbc5dc607a2cdb4c",
+      "type": "DataFilter"
+    },
+    {
+      "source": "494e48b5d6b388f7717c",
+      "target": "d6509d09040b8b498df4",
+      "type": "DataFilter"
+    },
+    {
+      "source": "d6509d09040b8b498df4",
+      "target": "494e48b5d6b388f7717c",
+      "type": "DataFilter"
+    },
+    {
+      "source": "310f8accc532852dad77",
+      "target": "494e48b5d6b388f7717c",
+      "type": "DataFilter"
+    },
+    {
+      "source": "2d87c180d0f3ec53f09e",
+      "target": "494e48b5d6b388f7717c",
+      "type": "DataFilter"
+    },
+    {
+      "source": "2d87c180d0f3ec53f09e",
+      "target": "525dbbc5dc607a2cdb4c",
+      "type": "DataFilter"
+    },
+    {
+      "source": "d6509d09040b8b498df4",
+      "target": "525dbbc5dc607a2cdb4c",
+      "type": "DataFilter"
+    }
+  ]
+}

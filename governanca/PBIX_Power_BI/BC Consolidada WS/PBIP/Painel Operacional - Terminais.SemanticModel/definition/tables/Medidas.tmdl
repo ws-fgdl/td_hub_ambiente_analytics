@@ -1,0 +1,548 @@
+table Medidas
+	lineageTag: f832a188-1886-4f40-b075-367b102c6128
+
+	measure 'Acumulado qntd navio MTD' =
+			
+			
+			VAR vUltimoDiaContexto = MAX(dim_calendario[data])
+			VAR vAcumulado =
+			CALCULATE(
+			    DISTINCTCOUNT(aws_movimentacao_cntr[operacao_por_navio]),
+			        ALL(dim_calendario),
+			        dim_calendario[data] <= vUltimoDiaContexto
+			    )
+			
+			RETURN
+			vAcumulado
+		formatString: 0
+		lineageTag: c328018f-4625-417e-b93b-67c8dfe6f87e
+
+	measure 'Acumulado Vol cntnr MTD' = ```
+			
+			
+			VAR vUltimoDiaContexto = MAX(dim_calendario[data])
+			VAR vAcumulado =
+			CALCULATE(
+			    [Volume de Container],
+			        ALL(dim_calendario),
+			        dim_calendario[data] <= vUltimoDiaContexto
+			    )
+			
+			RETURN
+			vAcumulado
+			
+			```
+		lineageTag: f0ef45f3-8e99-4afc-9c3d-ec67c7718d91
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure blank = BLANK()
+		formatString: 0
+		lineageTag: 6c4f8924-0709-4eb0-be1f-e5d4003a96fd
+
+	measure 'Consignação Média' = ```
+			
+			
+			    [Volume de Container] / DISTINCTCOUNT(aws_movimentacao_cntr[operacao_por_navio])
+			    
+			  
+			```
+		lineageTag: 315b4e42-b943-4ed6-83fc-0bc2c916890f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Consignação Média Acumulada' = ```
+			
+			 
+			VAR vUltimaData = CALCULATE( 
+			    MAX(dim_calendario[data]), 
+			    ALLSELECTED(dim_calendario)  // Para responder aos filtros visuais aplicados
+			)
+			VAR vUltimoMesContexto = MONTH(MAXX(ALL(dim_calendario),dim_calendario[data]))
+			VAR vUltimoMesContexto2 = MONTH(vUltimaData)
+			VAR vUltimoAno = YEAR(vUltimaData)
+			
+			RETURN
+			 CALCULATE(
+			    ([Acumulado Vol cntnr MTD] / [Acumulado qntd navio MTD]),
+			    
+			    // Filtro para pegar os últimos três anos, utilizando VALUES para garantir valores únicos por ano
+			    FILTER(
+			        dim_calendario, 
+			        dim_calendario[Ano_calendario] IN VALUES(dim_calendario[Ano_calendario]) &&
+			        dim_calendario[Ano_calendario] IN {vUltimoAno, vUltimoAno-1, vUltimoAno-2}
+			    ))
+			    // Filtro para pegar apenas os dias até o último dia do mês
+			
+			
+			
+			
+			
+			
+			```
+		lineageTag: 8a8298f8-8bf3-4673-ab99-18ff24bd8c91
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure data0 =
+			
+			MAXX(ALL(aws_movimentacao_cntr), aws_movimentacao_cntr[data])
+		formatString: Short Date
+		lineageTag: 7e82f267-6d70-438f-84e7-596a84babff5
+
+	measure FiltroTresAnos = ```
+			
+			VAR DataMaxima = CALCULATE(MAX(aws_movimentacao_cntr[data]), ALL(dim_calendario))
+			VAR AnoAtual = YEAR(DataMaxima)
+			VAR AnoDaLinha = MAX(dim_calendario[ano_calendario]) -- Ou sua coluna de ano correspondente
+			
+			RETURN
+			IF(
+			    AnoDaLinha >= AnoAtual - 2 && AnoDaLinha <= AnoAtual, 
+			    1, 
+			    0
+			)
+			```
+		formatString: 0
+		lineageTag: 8a37c590-1e7f-4c66-a8ba-8bedcbbd5001
+
+	measure 'Navio Vol YTM 2024' =
+			
+			CALCULATE(
+			    DISTINCTCOUNT(aws_movimentacao_cntr[operacao_por_navio]),
+			    DATESYTD(dim_calendario[data])
+			)
+		formatString: 0
+		lineageTag: 3b7f309b-eb9d-4551-a416-51b7ea10a29a
+
+	measure 'Qntd navio_ultimo_mes_2023' =
+			
+			VAR vUltimaData = MAX(dim_calendario[data])
+			VAR vUltimoAno = YEAR(vUltimaData)-1
+			VAR vUltimoMes = MONTH(vUltimaData)
+			VAR vUltimoDia = DAY(vUltimaData)-1
+			
+			RETURN
+			    CALCULATE(
+			        DISTINCTCOUNT(aws_movimentacao_cntr[operacao_por_navio]),
+			        YEAR(dim_calendario[data]) = vUltimoAno &&
+			        MONTH(dim_calendario[data]) = vUltimoMes &&
+			        DAY(dim_calendario[data]) <= vUltimoDia
+			    )
+		formatString: 0
+		lineageTag: 07a8eb8c-ffee-497a-a484-f86993c16454
+
+	measure 'Navio YTM 2023' =
+			
+			VAR vUltimaData = MAX(dim_calendario[data])
+			VAR vUltimoAno = YEAR(vUltimaData) - 1
+			VAR vUltimoDia = DAY(vUltimaData) - 1
+			VAR vUltimoMes = MONTH(vUltimaData)
+			RETURN
+			CALCULATE(
+			    DISTINCTCOUNT(aws_movimentacao_cntr[operacao_por_navio]),
+			    FILTER(
+			        ALL('dim_calendario'),
+			        'dim_calendario'[ano_calendario] = vUltimoAno &&
+			        'dim_calendario'[data] <= DATE(vUltimoAno, vUltimoMes, vUltimoDia)
+			    )
+			)
+		formatString: 0
+		lineageTag: e0d1c8ff-03c5-4870-a645-834e5584f294
+
+	measure 'Qntd navio_ultimo_mes_2024' =
+			
+			VAR vUltimaData = MAX(dim_calendario[data])
+			VAR vUltimoAno = YEAR(vUltimaData)
+			VAR vUltimoMes = MONTH(vUltimaData)
+			VAR vUltimoDia = DAY(vUltimaData)
+			
+			RETURN
+			    CALCULATE(
+			        DISTINCTCOUNT(aws_movimentacao_cntr[operacao_por_navio]),
+			        YEAR(dim_calendario[data]) = vUltimoAno &&
+			        MONTH(dim_calendario[data]) = vUltimoMes &&
+			        DAY(dim_calendario[data]) <= vUltimoDia
+			    )
+		formatString: 0
+		lineageTag: 8c8a9f5f-5236-42c7-bf3b-832777799fd2
+
+	measure 'Teus Contagem diária' = ```
+			
+			VAR vUltimaData = CALCULATE( 
+			    MAX(dim_calendario[data]), 
+			    ALLSELECTED(dim_calendario)  // Para responder aos filtros visuais aplicados
+			)
+			VAR vUltimoMesContexto = MONTH(MAXX(ALL(dim_calendario),dim_calendario[data]))
+			VAR vUltimoMesContexto2 = MONTH(vUltimaData)
+			VAR vUltimoAno = YEAR(vUltimaData)
+			
+			RETURN
+			CALCULATE(
+			    [Vol TEU],
+			    // Filtro para pegar o volume apenas para o último mês
+			    FILTER(
+			        dim_calendario, 
+			        dim_calendario[numero_mes] = vUltimoMesContexto2
+			    ),
+			    // Filtro para pegar os últimos três anos, utilizando VALUES para garantir valores únicos por ano
+			    FILTER(
+			        dim_calendario, 
+			        dim_calendario[ano_calendario] IN VALUES(dim_calendario[ano_calendario]) &&
+			        dim_calendario[ano_calendario] IN {vUltimoAno, vUltimoAno-1, vUltimoAno-2}
+			    ),
+			    // Filtro para pegar apenas os dias até o último dia do mês
+			    FILTER(
+			        dim_calendario, 
+			        IF(
+			            dim_calendario[numero_mes] = vUltimoMesContexto,
+			            DAY(dim_calendario[data]) <= DAY(vUltimaData) - 1,
+			            TRUE()
+			        )
+			    )
+			)
+			```
+		lineageTag: 1a5fa467-d7ac-43a6-a4f9-e16630db8a00
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Teus_ultimo_Mes_AnoAnterior = ```
+			
+			VAR vUltimaData = MAX(dim_calendario[data])
+			VAR vUltimoAno = YEAR(vUltimaData) - 1
+			VAR vUltimoMes = MONTH(vUltimaData)
+			// Adicionado o "- 1" abaixo para alinhar com a outra medida
+			VAR vUltimoDia = DAY(vUltimaData) - 1 
+			
+			RETURN
+			    CALCULATE(
+			        [Vol TEU],
+			        FILTER(
+			            ALL(dim_calendario),
+			            YEAR(dim_calendario[data]) = vUltimoAno &&
+			            MONTH(dim_calendario[data]) = vUltimoMes &&
+			            DAY(dim_calendario[data]) <= vUltimoDia
+			        )
+			    )
+			```
+		lineageTag: 97703dc8-6b27-432b-a6b8-82c1957a044a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Teus_ultimo_Mes_AnoAtual =
+			
+			VAR vUltimaData = MAX(dim_calendario[data])
+			VAR vUltimoAno = YEAR(vUltimaData)
+			VAR vUltimoMes = MONTH(vUltimaData)
+			VAR vUltimoDia = DAY(vUltimaData)
+			
+			RETURN
+			    CALCULATE(
+			        [Vol TEU],
+			        YEAR(dim_calendario[data]) = vUltimoAno &&
+			        MONTH(dim_calendario[data]) = vUltimoMes &&
+			        DAY(dim_calendario[data]) <= vUltimoDia
+			    )
+		lineageTag: a890e786-b2e8-46c0-be77-4bf4ea07ed08
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Δ YTM navio' = DIVIDE(([Navio Vol YTM 2024] - [Navio YTM 2023]),[Navio YTM 2023])
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: b3b8775c-ee71-4b5e-b011-c9d1eab50633
+
+	measure 'Δ YTM' = IFERROR(DIVIDE(([Vol_YTM_AnoAtual] - [Vol_YTM_AnoAnterior]),[Vol_YTM_AnoAnterior]), "0%")
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 1c9b2e24-25e0-4f5d-912d-55c6a82e99dd
+
+	measure 'Δ ultimo_mes navio' = DIVIDE(([Qntd navio_ultimo_mes_2024] - [Qntd navio_ultimo_mes_2023]),[Qntd navio_ultimo_mes_2023])
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 251e930f-bc4c-408c-ae08-b6907c6185eb
+
+	measure 'Δ ultimo_mes' = DIVIDE(([Teus_ultimo_Mes_AnoAtual] - [Teus_ultimo_Mes_AnoAnterior]),[Teus_ultimo_Mes_AnoAnterior])
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 7d2d0335-d742-4c71-aaea-3153024201a0
+
+	measure 'Volume de Container' = ```
+			
+			ROUND(
+			    SUM(aws_movimentacao_cntr[mov_cntr]),
+			    0
+			    )
+			
+			```
+		formatString: #,0
+		lineageTag: 71a564d5-e1c6-48a0-a792-377d294c3adc
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure Vol_YTM_AnoAtual = ```
+			
+			VAR vUltimaData = MAX('dim_calendario'[data]) // Última data presente na base
+			RETURN
+			CALCULATE(
+			    [Vol TEU],
+			    FILTER(
+			        ALL('dim_calendario'),
+			        'dim_calendario'[ano_calendario] = YEAR(vUltimaData) && // Filtro para o ano anterior
+			        'dim_calendario'[data] <= DATE(YEAR(vUltimaData), 
+			        MONTH(vUltimaData), 
+			        DAY(vUltimaData)) // Filtro para o dia correspondente ao último dia presente na base, mas no ano anterior
+			    )
+			)
+			```
+		lineageTag: 8bc0fb5d-e94f-4ce7-8463-0cc28ba52630
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Vol_YTM_AnoAnterior = ```
+			
+			VAR vUltimaData = MAX('dim_calendario'[data]) // Última data presente na base
+			RETURN
+			CALCULATE(
+			    [Vol TEU],
+			    FILTER(
+			        ALL('dim_calendario'),
+			        'dim_calendario'[ano_calendario] = YEAR(vUltimaData) - 1 && // Filtro para o ano anterior
+			        'dim_calendario'[data] <= DATE(YEAR(vUltimaData) - 1, 
+			        MONTH(vUltimaData), 
+			        DAY(vUltimaData)) // Filtro para o dia correspondente ao último dia presente na base, mas no ano anterior
+			    )
+			)
+			
+			```
+		lineageTag: c6739534-5968-4311-b2af-80f9f42df465
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Vol TEU' = ```
+			SUM(aws_movimentacao_cntr[qnt_teu])
+			
+			```
+		lineageTag: a9685b08-1ed2-4334-b123-82df97a23cef
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Legenda_Linha = "LINHA MARITIMA"
+		displayFolder: Titulo
+		lineageTag: ab9b9739-f094-4cb0-a65d-4244cb7a5d33
+
+	measure Legenda_Linha_eng = "MARITIME LINE"
+		displayFolder: Titulo
+		lineageTag: 5182edf2-1b90-4a9e-96a5-3c2ab2e8c9b2
+
+	measure Legenda_MesAnoAnterior = UPPER(FORMAT(EDATE(MAX(dim_calendario[data]), -12), "MMM/YY"))
+		displayFolder: Titulo
+		lineageTag: f93f2b9c-3adb-4156-9b75-2c63c3876dd7
+
+	measure Legenda_MesAnoAnterior_eng = UPPER(FORMAT(EDATE(MAX(dim_calendario[data]), -12), "MMM/YY", "en-US"))
+		displayFolder: Titulo
+		lineageTag: 715323a9-7751-4ae6-b5e9-27e143202c75
+
+	measure Legenda_MesAnoAtual = UPPER(FORMAT(MAX(dim_calendario[data]), "MMM/YY"))
+		displayFolder: Titulo
+		lineageTag: c835ce05-9e96-460a-9b88-f2e84777e3c8
+
+	measure Legenda_MesAnoAtual_eng = ```
+			UPPER(FORMAT(MAX(dim_calendario[data]), "MMM/YY", "en-US"))
+			
+			```
+		displayFolder: Titulo
+		lineageTag: 00c75433-488e-42f9-a38f-0886d79fea55
+
+	measure Legenda_Modalidade = ```
+			"MODALIDADE" 
+			```
+		displayFolder: Titulo
+		lineageTag: f3aa2c92-44b2-42b5-8fa6-a68ff009d529
+
+	measure Legenda_Modalidade_eng = ```
+			"MODALITY" 
+			```
+		displayFolder: Titulo
+		lineageTag: 4a8cf684-07ea-4eae-bebc-2219ee6e0848
+
+	measure Legenda_YTM = "YTM"
+		displayFolder: Titulo
+		lineageTag: 5f1397a6-0390-4eed-b2e3-6234274041ec
+
+	measure Legenda_YTM-1 = "YTM-1"
+		displayFolder: Titulo
+		lineageTag: 8ef95938-5833-4432-90fb-34970074502a
+
+	measure 'Legenda_Δ YTM(%)' = "Δ YTM(%)"
+		displayFolder: Titulo
+		lineageTag: 02038c90-332b-4db6-8ba6-e56bff510c11
+
+	measure Legenda_Δ(%) = "Δ(%)"
+		displayFolder: Titulo
+		lineageTag: d6f717e4-b881-4a93-a457-7fe4242a8255
+
+	column data
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 2831234d-b76a-44ea-ab38-4b1aacb4edf9
+		summarizeBy: none
+		sourceColumn: data
+
+		variation Variation
+			isDefault
+			relationship: 675d594c-725d-40b6-ad59-f232c780d430
+			defaultHierarchy: LocalDateTable_5639f38f-c8d7-4a49-8127-0ef6a7c31448.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column ano_calendario
+		dataType: int64
+		formatString: 0
+		lineageTag: 53500f03-66ac-4388-a569-3351ad68048d
+		summarizeBy: sum
+		sourceColumn: ano_calendario
+
+		annotation SummarizationSetBy = Automatic
+
+	column mes_ano
+		dataType: string
+		lineageTag: b34c096b-9976-470c-bfe1-fbb6e59f424f
+		summarizeBy: none
+		sourceColumn: mes_ano
+
+		annotation SummarizationSetBy = Automatic
+
+	column nome_mes_pt
+		dataType: string
+		lineageTag: 3febade0-84e6-41d5-add1-ae914197ac7e
+		summarizeBy: none
+		sourceColumn: nome_mes_pt
+
+		annotation SummarizationSetBy = Automatic
+
+	column nome_mes_ing
+		dataType: string
+		lineageTag: 3528ed29-450f-45f2-8d1e-c0dd06750864
+		summarizeBy: none
+		sourceColumn: nome_mes_ing
+
+		annotation SummarizationSetBy = Automatic
+
+	column numero_mes
+		dataType: int64
+		formatString: 0
+		lineageTag: 9e9d9731-f4d0-4492-b2f5-764f326b23ba
+		summarizeBy: sum
+		sourceColumn: numero_mes
+
+		annotation SummarizationSetBy = Automatic
+
+	column dia_semana_pt
+		dataType: string
+		lineageTag: 6641c42c-c06f-42d7-9754-9596b8e15a17
+		summarizeBy: none
+		sourceColumn: dia_semana_pt
+
+		annotation SummarizationSetBy = Automatic
+
+	column dia_semana_ing
+		dataType: string
+		lineageTag: c33b962a-a905-46b5-b088-7c2d5a3db297
+		summarizeBy: none
+		sourceColumn: dia_semana_ing
+
+		annotation SummarizationSetBy = Automatic
+
+	column trimestre
+		dataType: int64
+		formatString: 0
+		lineageTag: b6a4716e-877d-4d65-9cd9-21cb888d1296
+		summarizeBy: sum
+		sourceColumn: trimestre
+
+		annotation SummarizationSetBy = Automatic
+
+	column dia_util
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: e24f80c8-1ae5-4c22-ae94-5e1ef34ae56a
+		summarizeBy: none
+		sourceColumn: dia_util
+
+		annotation SummarizationSetBy = Automatic
+
+	column nome_mes_abrevado_pt
+		dataType: string
+		lineageTag: ca6e4070-ead5-48f7-ad3e-02a79bf7e036
+		summarizeBy: none
+		sourceColumn: nome_mes_abrevado_pt
+
+		annotation SummarizationSetBy = Automatic
+
+	column nome_mes_abreviado_ing
+		dataType: string
+		lineageTag: 2048e35f-59ed-4b1e-aff7-de7dc359b5e6
+		summarizeBy: none
+		sourceColumn: nome_mes_abreviado_ing
+
+		annotation SummarizationSetBy = Automatic
+
+	column eh_ate_mes_anterior
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 98c6208e-03fe-49de-b8e6-f15abb0958d6
+		summarizeBy: none
+		sourceColumn: eh_ate_mes_anterior
+
+		annotation SummarizationSetBy = Automatic
+
+	column dia_invertido
+		dataType: int64
+		formatString: 0
+		lineageTag: 16a4d882-feda-4597-98be-8771693e380e
+		summarizeBy: sum
+		sourceColumn: dia_invertido
+
+		annotation SummarizationSetBy = Automatic
+
+	column dia_do_mes
+		dataType: int64
+		formatString: 0
+		lineageTag: d86e72de-a88a-440c-aeac-0447a669fb20
+		summarizeBy: sum
+		sourceColumn: dia_do_mes
+
+		annotation SummarizationSetBy = Automatic
+
+	column semana_do_ano
+		dataType: int64
+		formatString: 0
+		lineageTag: 1de8323a-604b-4088-9c5d-96d47382ee5f
+		summarizeBy: sum
+		sourceColumn: semana_do_ano
+
+		annotation SummarizationSetBy = Automatic
+
+	column ano_semana
+		dataType: string
+		lineageTag: c05cf770-caee-457b-8e45-2267c3200dba
+		summarizeBy: none
+		sourceColumn: ano_semana
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Medidas = m
+		mode: import
+		source =
+				let
+				    Fonte = PowerPlatform.Dataflows(null),
+				    Workspaces = Fonte{[Id="Workspaces"]}[Data],
+				    #"8c5cc8ba-ed75-4d39-9606-af9ead89ca36" = Workspaces{[workspaceId="8c5cc8ba-ed75-4d39-9606-af9ead89ca36"]}[Data],
+				    #"e4b7fa7c-8c0b-454a-96d9-23c7b2f411ae" = #"8c5cc8ba-ed75-4d39-9606-af9ead89ca36"{[dataflowId="e4b7fa7c-8c0b-454a-96d9-23c7b2f411ae"]}[Data],
+				    Dim_calendario_ = #"e4b7fa7c-8c0b-454a-96d9-23c7b2f411ae"{[entity="Dim_calendario",version=""]}[Data]
+				in
+				    Dim_calendario_
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navegação
+

@@ -1,0 +1,31 @@
+table 'Volume Próprio e Terceiros e Perfil Afretamento - Prop_Terc'
+	lineageTag: 33e021fc-3c89-4929-ac53-d5261a294726
+	sourceLineageTag: 0a183e39-8a9f-4714-854b-780757e79d85
+
+	column TIPO_PROP_TERC
+		dataType: string
+		isNullable: false
+		lineageTag: b03ca8a9-dd3e-4bba-98e7-2298a4df2825
+		sourceLineageTag: 06964767-9e77-462f-9b0c-b84db589acd1
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: TIPO_PROP_TERC
+
+		annotation SummarizationSetBy = User
+
+	column TIPO
+		dataType: string
+		lineageTag: 3a14818c-3c6f-4d44-a03f-88ef9ba6fd0b
+		sourceLineageTag: cee0c6da-8a1f-47b6-a0ce-dbc301578eeb
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: TIPO
+
+		annotation SummarizationSetBy = User
+
+	partition 'Volume Próprio e Terceiros e Perfil Afretamento - Prop_Terc' = entity
+		mode: directQuery
+		source
+			entityName: Volume Próprio e Terceiros e Perfil Afretamento - Prop_Terc
+			expressionSource: 'DirectQuery para AS – Modelo Rebocadores'
+

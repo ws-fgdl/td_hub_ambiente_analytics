@@ -1,0 +1,193 @@
+table Medidas_PMF
+	lineageTag: 621a808c-1612-4c4b-9bbf-0066ccfeacd0
+
+	measure PMF_Ponderado = ```
+			
+			// 1. Armazena o valor total (Soma de todos os faturamentos no contexto atual)
+			VAR Denominador = SUM(aws_pmvpmr[valor])
+			
+			RETURN
+			    IF(
+			        // 2. VERIFICAÇÃO DE SEGURANÇA:
+			        // Se o valor total for "zero" (menor que 1 centavo), retorna 0 para evitar erros.
+			        ABS(Denominador) < 0.01, 
+			        0, 
+			        // 3. CÁLCULO DA MÉDIA PONDERADA:
+			        DIVIDE(
+			            SUMX(
+			                aws_pmvpmr,
+			                // A) Calcula a diferença de dias para CADA linha
+			                DATEDIFF(
+			                    aws_pmvpmr[Data_Fim_Manobra], 
+			                    aws_pmvpmr[data_lancamento], 
+			                    DAY
+			                ) 
+			                // B) Multiplica os dias pelo valor daquela linha (cria o peso)
+			                * aws_pmvpmr[valor]
+			            ),
+			            // C) Divide a soma de todos os "pesos" pelo valor total (Denominador)
+			            Denominador
+			        )
+			    )
+			```
+		lineageTag: ad312286-84d6-4584-b9ef-0a00cd9d7b88
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure PMR_Ponderado = ```
+			
+			DIVIDE(
+			    // 1. Numerador: Soma a coluna de "Peso", que é o Prazo de Recebimento já multiplicado pelo Valor
+			    SUM('aws_pmvpmr'[pond_prazo_recebimento]), 
+			    
+			    // 2. Denominador: Soma o valor total das operações para extrair a média ponderada
+			    SUM('aws_pmvpmr'[valor])
+			)
+			```
+		lineageTag: 6c5b2dd9-a371-4bc5-9c0d-c18f2185ac3d
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Ciclo_Ponderado = ```
+			
+			    [PMO_Ponderado] + 
+			    [PMF_Ponderado] + 
+			    [PMV_Ponderado] +
+			    [PMI_Ponderado]
+			```
+		lineageTag: 72c5b8e8-9f65-4b5e-92b9-b497c4a690df
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure PMF_AVG = ```
+			
+			AVERAGEX(
+			    aws_pmvpmr,
+			    DATEDIFF(
+			        aws_pmvpmr[Data_Fim_Manobra], 
+			        aws_pmvpmr[data_lancamento], 
+			        DAY
+			    )
+			)
+			```
+		lineageTag: 3bb7a65f-3988-46b9-98b0-56be757c63a4
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure PMO_AVG = ```
+			
+			AVERAGEX(
+			    aws_pmvpmr,
+			    DATEDIFF(
+			        aws_pmvpmr[Data_Inicio_Manobra], 
+			        aws_pmvpmr[Data_Fim_Manobra], 
+			        DAY
+			    )
+			)
+			```
+		lineageTag: 58876950-5780-4e72-a85b-605fb92c06af
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure PMR_AVG = AVERAGE(aws_pmvpmr[dias_prazo_recebimento])
+		lineageTag: a980c937-a864-4b7e-96e9-f6d4c47750d9
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure DSO_Operacional = [PMO_AVG] + [PMF_Ponderado] + [PMR_Ponderado]
+		lineageTag: 4afa236a-2ae2-432f-abfe-3a3ca7ab7bfc
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure PMV_AVG = AVERAGE(aws_pmvpmr[dias_prazo_vencimento])
+		lineageTag: 48ec3d14-0f39-479e-adf4-ae2375d8d3e5
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure PMV_Ponderado = ```
+			
+			DIVIDE(
+			    // 1. Numerador: Soma a coluna onde o prazo já foi multiplicado pelo valor (Peso Total)
+			    SUM('aws_pmvpmr'[pond_prazo_vencimento]), 
+			    
+			    // 2. Denominador: Soma o valor financeiro total (Base de Ponderação)
+			    SUM('aws_pmvpmr'[valor])
+			)
+			```
+		lineageTag: 521378ae-2e83-4a25-b77c-3ba85a8417a3
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure PMI_AVG = AVERAGE(aws_pmvpmr[dias_prazo_inadimplencia])
+		lineageTag: c5a9b0a7-fc89-475f-9d6a-bae75ee50be6
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure PMI_Ponderado = ```
+			
+			DIVIDE(
+			    // 1. Numerador: Soma o "estoque de atraso" (Dias de atraso acumulados * Valor do título)
+			    SUM('aws_pmvpmr'[pond_prazo_inadimplencia]), 
+			    
+			    // 2. Denominador: Soma o valor total da base (títulos vencidos ou base total de faturamento)
+			    SUM('aws_pmvpmr'[valor])
+			)
+			```
+		lineageTag: a1860024-03ee-4270-8951-9b34d28a1ffb
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure PMO_Ponderado = ```
+			
+			// 1. Armazena o valor total envolvido para servir de base para a média
+			VAR Denominador = SUM(aws_pmvpmr[valor])
+			
+			RETURN
+			    IF(
+			        // 2. SEGURANÇA: Se a soma dos valores for irrelevante (quase zero), retorna 0
+			        ABS(Denominador) < 0.01, 
+			        0, 
+			        // 3. CÁLCULO DO PRAZO OPERACIONAL PONDERADO
+			        DIVIDE(
+			            SUMX(
+			                aws_pmvpmr,
+			                // A) Calcula a duração da manobra (Data Fim - Data Início)
+			                DATEDIFF(
+			                    aws_pmvpmr[Data_Inicio_Manobra], 
+			                    aws_pmvpmr[Data_Fim_Manobra], 
+			                    DAY
+			                ) 
+			                // B) Multiplica o tempo de execução pelo valor da operação (Peso Financeiro)
+			                * aws_pmvpmr[valor]
+			            ),
+			            // C) Divide o total de "dias-valor" pelo valor total
+			            Denominador
+			        )
+			    )
+			```
+		lineageTag: 152a6400-0d9b-4462-8419-a32c2a95ffb4
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure DataRecente = ```
+			
+			CALCULATE(
+			    MAX('aws_pmvpmr'[data_lancamento]), 
+			    ALL('aws_pmvpmr')
+			)
+			```
+		formatString: Short Date
+		lineageTag: 3d8b20f9-95b5-4252-8937-e8077e161606
+
+	partition Medidas_PMF = m
+		mode: import
+		source =
+				let
+				    Fonte = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [#"Coluna 1" = _t]),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(Fonte,{{"Coluna 1", type text}}),
+				    #"Colunas Removidas" = Table.RemoveColumns(#"Tipo Alterado",{"Coluna 1"})
+				in
+				    #"Colunas Removidas"
+
+	annotation PBI_ResultType = Table
+

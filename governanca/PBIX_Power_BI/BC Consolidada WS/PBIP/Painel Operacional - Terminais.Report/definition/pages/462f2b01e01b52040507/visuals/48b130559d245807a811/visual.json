@@ -1,0 +1,85 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "name": "48b130559d245807a811",
+  "position": {
+    "x": 60.883797054009825,
+    "y": 801.63666121112931,
+    "z": 9000,
+    "height": 107.81505728314239,
+    "width": 875.20458265139121,
+    "tabOrder": 9000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "1) The daily update occurs at 12:00 PM, providing preliminary data until the monthly closing on the 11th day of the following month;",
+                    "textStyle": {
+                      "fontFamily": "Arial",
+                      "color": "#ffffff"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "2) During the preliminary period, there will be a daily historical update retroactive to the 1st day of the current month;",
+                    "textStyle": {
+                      "fontFamily": "Arial",
+                      "color": "#ffffff"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "3) This retroactivity is due to the container count, which is based on the start date of operations and may change numbers from previous days;",
+                    "textStyle": {
+                      "fontFamily": "Arial",
+                      "color": "#ffffff"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "4) Empty cells indicate that no data was collected on those days, whether in TEUs or schedules.",
+                    "textStyle": {
+                      "fontFamily": "Arial",
+                      "color": "#ffffff"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "100D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

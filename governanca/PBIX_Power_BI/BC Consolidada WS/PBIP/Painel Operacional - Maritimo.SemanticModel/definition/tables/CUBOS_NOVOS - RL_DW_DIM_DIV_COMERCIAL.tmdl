@@ -1,0 +1,42 @@
+table 'CUBOS_NOVOS - RL_DW_DIM_DIV_COMERCIAL'
+	lineageTag: a3921441-c2ca-48cf-9a66-57c2c6355db2
+	sourceLineageTag: 82f7ff8d-92e0-49be-8718-f46c7be6da23
+
+	column DIV_COMERCIAL_SEQ_ID
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		lineageTag: fc5807fe-c749-4a3c-a081-2d1905620347
+		sourceLineageTag: d614251e-9736-4ae0-ac0c-6e1a4a003f60
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: DIV_COMERCIAL_SEQ_ID
+
+		annotation SummarizationSetBy = User
+
+	column DIV_COMERCIAL_ID
+		dataType: string
+		lineageTag: 2d400852-82f0-4b08-b5ae-21c2e65d015e
+		sourceLineageTag: cbddff74-1295-492d-a131-46a23c0b2c9f
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: DIV_COMERCIAL_ID
+
+		annotation SummarizationSetBy = User
+
+	column DIV_COMERCIAL
+		dataType: string
+		lineageTag: dc5cfbc6-6db3-4f6a-a38d-68bd88f59bf8
+		sourceLineageTag: 7b349caa-b399-464b-861c-73bc65bbf907
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: DIV_COMERCIAL
+
+		annotation SummarizationSetBy = User
+
+	partition 'CUBOS_NOVOS - RL_DW_DIM_DIV_COMERCIAL' = entity
+		mode: directQuery
+		source
+			entityName: CUBOS_NOVOS - RL_DW_DIM_DIV_COMERCIAL
+			expressionSource: 'DirectQuery para AS – Modelo Rebocadores'
+
