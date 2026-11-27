@@ -1,0 +1,357 @@
+table Medidas_BaseMovimentacao
+	lineageTag: 3e93e827-06e9-40b4-9b56-07eb2f7dfb9a
+
+	measure FaturamentoTIF_BaseMovimentacao =
+			
+			SUM(
+			    aws_movimentacao_portuaria[valor_tif]
+			)
+		lineageTag: ae2294ed-91ce-49a6-9fa6-f37150634bd0
+
+		formatStringDefinition = ```
+				VAR Valor = SELECTEDMEASURE()
+				VAR ValorAbs = ABS(Valor) -- Analisamos o "tamanho" do número independente do sinal
+				
+				RETURN
+				    SWITCH( TRUE(),
+				        ValorAbs >= 1000000000, 
+				            "#,##0,,,.0 ""B"";-" & "#,##0,,,.0 ""B""",
+				        
+				        ValorAbs >= 1000000,    
+				            "#,##0,,.0 ""M"";-" & "#,##0,,.0 ""M""",
+				        
+				        ValorAbs >= 1000,       
+				            "#,##0,.0 ""K"";-" & "#,##0,.0 ""K""",
+				        
+				        -- Para valores entre -999 e 999
+				        "#,##0;-" & "#,##0"
+				    )
+				```
+
+	measure RankingHistorico_PorDono_BaseMovimentacao =
+			
+			RANKX(
+			    ALL(
+			        Dim_DonoManobra[Dono_Demais]
+			    ),
+			    [FaturamentoTIF_BaseMovimentacao]
+			)
+		formatString: 0
+		lineageTag: 46e59683-f38e-4db8-a618-7541e0ff1d5d
+
+	measure PrecoMedio_Concorrente =
+			
+			DIVIDE(
+			    [FaturamentoTIF_BaseMovimentacao],
+			    [VolumeManobra_BaseMovimentacao],
+			    0
+			)
+		lineageTag: ea6e09db-fafd-4947-a886-7d0abc61a5c9
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure FaturamentoTIF_YTM_BaseMovimentacao = ```
+			
+			VAR vUltimoAno = YEAR(MAX(aws_bussola_comercial_mar[competencia]))
+			VAR vUltimoMesContexto = MONTH(MAXX(ALL(aws_bussola_comercial_mar), aws_bussola_comercial_mar[competencia]))-1
+			VAR vDia = DAY(MAXX(ALL(aws_bussola_comercial_mar), aws_bussola_comercial_mar[competencia]))
+			
+			RETURN
+			    CALCULATE(
+			        [FaturamentoTIF_BaseMovimentacao],
+			        FILTER(
+			            Dim_calendario,
+			            Dim_calendario[data] <= DATE(vUltimoAno,vUltimoMesContexto,vDia)
+			        )
+			    )
+			
+			```
+		lineageTag: dccb650f-8acb-4376-9e57-c2a130c69736
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure %Variacao_FaturamentoTIF_YTM_BaseMovimentacao = ```
+			
+			VAR AnoAtual = MAX(Dim_calendario[ano_calendario])
+			VAR PrimeiroAnoSelecionado =
+			    CALCULATE(
+			        MIN(Dim_calendario[ano_calendario]),
+			        ALLSELECTED(Dim_calendario)
+			    )
+			VAR FatAtual = [FaturamentoTIF_YTM_BaseMovimentacao]
+			VAR FatAnterior =
+			    IF(
+			        AnoAtual > PrimeiroAnoSelecionado,
+			        CALCULATE(
+			            [FaturamentoTIF_YTM_BaseMovimentacao],
+			            FILTER(
+			                ALL(Dim_calendario),
+			                Dim_calendario[ano_calendario] = AnoAtual - 1
+			            )
+			        )
+			    )
+			RETURN
+			    IF(
+			        ISBLANK(FatAnterior) || ISBLANK(FatAtual),
+			        BLANK(),
+			        DIVIDE(FatAtual - FatAnterior, FatAnterior, 0)
+			    )
+			
+			```
+		lineageTag: 3035db55-8cdd-43e9-9e51-361d3f9b88c7
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure FaturamentoTIF_YTM_CY_BaseMovimentacao =
+			
+			CALCULATE(
+			    [FaturamentoTIF_YTM_BaseMovimentacao],
+			    Dim_calendario[ano_calendario] = MAX(Dim_calendario[ano_calendario])
+			)
+		lineageTag: d877a9e9-843b-471d-9bfb-8121ee17812b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure FaturamentoTIF_YTM_PY_BaseMovimentacao =
+			
+			CALCULATE(
+			    [FaturamentoTIF_YTM_BaseMovimentacao],
+			    FILTER(
+			        ALL(Dim_calendario),
+			        Dim_calendario[ano_calendario] = MAX(Dim_calendario[ano_calendario]) - 1
+			    )
+			)
+		lineageTag: 1e575b5f-abe2-41ca-93e2-2857d80c7c7d
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Δ_FaturamentoTIF_YTM_BaseMovimentacao = ```
+			
+			IF(
+			    ISBLANK([FaturamentoTIF_YTM_CY_BaseMovimentacao]) || ISBLANK([FaturamentoTIF_YTM_PY_BaseMovimentacao]),
+			    BLANK(),
+			    DIVIDE([FaturamentoTIF_YTM_CY_BaseMovimentacao] - [FaturamentoTIF_YTM_PY_BaseMovimentacao], [FaturamentoTIF_YTM_PY_BaseMovimentacao], BLANK())
+			)
+			
+			```
+		lineageTag: 7e6e2b24-f960-4ef0-b664-ec00e3b78e95
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure PrecoMedio_YTM_BaseMovimentacao =
+			
+			VAR vUltimoAno = YEAR(MAX(aws_movimentacao_portuaria[competencia]))
+			VAR vUltimoMesContexto = MONTH(MAXX(ALL(aws_movimentacao_portuaria), aws_movimentacao_portuaria[competencia]))
+			VAR vDia = DAY(MAXX(ALL(aws_movimentacao_portuaria), aws_movimentacao_portuaria[competencia]))
+			
+			RETURN
+			    CALCULATE(
+			        [PrecoMedio_Concorrente],
+			        FILTER(
+			            Dim_calendario,
+			            Dim_calendario[data] <= DATE(vUltimoAno,vUltimoMesContexto,vDia)
+			        )
+			    )
+		lineageTag: f4fe2fe0-0569-4a1a-a5f8-32efbb7fd7e2
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure %FaturamentoTIF_BaseMovimentacao =
+			
+			DIVIDE(
+			    [FaturamentoTIF_BaseMovimentacao],
+			    CALCULATE(
+			        [FaturamentoTIF_BaseMovimentacao],
+			        ALLSELECTED( Dim_DonoManobra[Dono_Demais] ),
+			        ALLSELECTED( 'Dim_Operador'[Operador_Demais] )
+			    ),
+			    ""
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 2a355cb3-2e21-4dd4-afa5-e8da502ca3ec
+
+	measure %VolumeManobra_porOperador_BaseMovimentacao =
+			
+			DIVIDE(
+			    [VolumeManobra_BaseMovimentacao],
+			    CALCULATE(
+			        [VolumeManobra_BaseMovimentacao],
+			        ALL(Dim_Operador[Operador_Demais])
+			    ),
+			    0
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 8e0348f0-3ed9-4866-bb95-a3e27174a4d7
+
+	measure Eficiencia_Operacional_BaseMovimentacao =
+			
+			DIVIDE(
+			    ([VolumeManobra_BaseMovimentacao] - [VolumeManobra_Afretado_BaseMovimentacao]),
+			    [VolumeManobra_BaseMovimentacao],
+			    0
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: d150a1cb-e560-4956-8b15-d837376cc744
+
+	measure VolumeManobra_BaseMovimentacao =
+			
+			SUM(
+			    aws_movimentacao_portuaria[volume]
+			)
+		lineageTag: 88a77119-c5a5-4474-9c97-fc350ab9116b
+
+		formatStringDefinition =
+				VAR Valor = SELECTEDMEASURE()
+				VAR ValorAbs = ABS(Valor) -- Pega o valor sem o sinal para a comparação
+				RETURN
+				    SWITCH( TRUE(),
+				        ValorAbs >= 1000000000, "#,##0,,,.0 ""B"";-#,##0,,,.0 ""B""",
+				        ValorAbs >= 1000000,    "#,##0,,.0 ""M"";-#,##0,,.0 ""M""",
+				        ValorAbs >= 1000,       "#,##0,.0 ""K"";-#,##0,.0 ""K""",
+				        "#,##0;-#,##0" -- Para valores menores que 1000
+				    )
+
+	measure Escala_BaseMovimentacao = DISTINCTCOUNT(aws_movimentacao_portuaria[portcall_calculado])
+		lineageTag: 34d4ceaf-2bc2-4c8f-9db0-d5e2e82afde8
+
+		formatStringDefinition =
+				VAR Valor = SELECTEDMEASURE()
+				VAR ValorAbs = ABS(Valor) -- Pega o valor sem o sinal para a comparação
+				RETURN
+				    SWITCH( TRUE(),
+				        ValorAbs >= 1000000000, "#,##0,,,.0 ""B"";-#,##0,,,.0 ""B""",
+				        ValorAbs >= 1000000,    "#,##0,,.0 ""M"";-#,##0,,.0 ""M""",
+				        ValorAbs >= 1000,       "#,##0,.0 ""K"";-#,##0,.0 ""K""",
+				        "#,##0;-#,##0" -- Para valores menores que 1000
+				    )
+
+	measure VolumeManobra_Afretado_BaseMovimentacao =
+			
+			CALCULATE(
+			    [VolumeManobra_BaseMovimentacao],
+			    aws_movimentacao_portuaria[Afretamento_Ajustado]="S"
+			)
+		lineageTag: 58a18feb-3004-4ed7-a80c-0add40c68269
+
+		formatStringDefinition =
+				VAR Valor = SELECTEDMEASURE()
+				VAR ValorAbs = ABS(Valor) -- Pega o valor sem o sinal para a comparação
+				RETURN
+				    SWITCH( TRUE(),
+				        ValorAbs >= 1000000000, "#,##0,,,.0 ""B"";-#,##0,,,.0 ""B""",
+				        ValorAbs >= 1000000,    "#,##0,,.0 ""M"";-#,##0,,.0 ""M""",
+				        ValorAbs >= 1000,       "#,##0,.0 ""K"";-#,##0,.0 ""K""",
+				        "#,##0;-#,##0" -- Para valores menores que 1000
+				    )
+
+	measure %TIF_Afretamento_BaseMovimentacao =
+			
+			[FaturamentoTIF_BaseMovimentacao]
+			/ CALCULATE(
+			    [FaturamentoTIF_BaseMovimentacao],
+			    ALL(
+			        aws_movimentacao_portuaria[dono]
+			    ),
+			    ALL
+			    (aws_movimentacao_portuaria[operador]
+			    )
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 3757da45-961c-43f6-b173-b8d29a5d6c07
+
+	measure FaturamentoTIF_Arvore_BaseMovimentacao =
+			
+			sum(
+			    aws_movimentacao_portuaria[valor_tif]
+			)
+		lineageTag: e5afbe15-ee0c-4d57-ad58-47043cfcc4f4
+
+		formatStringDefinition = ```
+				-- 1. CÁLCULO DA PORCENTAGEM (Sua lógica de hierarquia)
+				VAR vValorAtual = SELECTEDMEASURE()
+				
+				VAR vValorTotal = 
+				    SWITCH( TRUE(),
+				        ISINSCOPE(Dim_Operador[Operador_Demais]), 
+				        CALCULATE(SELECTEDMEASURE(), ALLSELECTED(Dim_Operador[Operador_Demais])),
+				
+				        ISINSCOPE(Dim_DonoManobra[Dono_Demais]), 
+				        CALCULATE(SELECTEDMEASURE(), ALLSELECTED(Dim_DonoManobra[Dono_Demais])),
+				
+				        CALCULATE(SELECTEDMEASURE(), ALLSELECTED())
+				    )
+				
+				VAR vPerc = DIVIDE(vValorAtual, vValorTotal)
+				VAR vPercTexto = " (" & FORMAT(vPerc, "0.00%") & ")" -- Ex: " (12.50%)"
+				
+				-- 2. LÓGICA DE ESCALA (K, M, B) E NEGATIVOS
+				VAR vValorAbs = ABS(vValorAtual)
+				
+				RETURN
+				    SWITCH( TRUE(),
+				        vValorAbs >= 1000000000, 
+				            "$ #,##0,,,.0 ""B" & vPercTexto & """;-$ #,##0,,,.0 ""B" & vPercTexto & """",        
+				        vValorAbs >= 1000000,    
+				            "$ #,##0,,.0 ""M" & vPercTexto & """;-$ #,##0,,.0 ""M" & vPercTexto & """",        
+				        vValorAbs >= 1000,       
+				            "$ #,##0,.0 ""K" & vPercTexto & """;-$ #,##0,.0 ""K" & vPercTexto & """",        
+				        -- Para valores menores que 1000
+				        "$ #,##0""" & vPercTexto & """;-$ #,##0""" & vPercTexto & """"
+				    )
+				```
+
+	measure %_tug_fleet =
+			
+			DIVIDE(
+			    COUNTROWS(
+			        Fleet_Position_COR),
+			        CALCULATE(COUNTROWS(
+			            Fleet_Position_COR
+			        ),
+			        ALL(
+			            Dim_Operador
+			        )
+			    )
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: b0e08ac9-2e97-4b24-bd6e-37a60fa0d36e
+
+	measure Escala_BaseMovimentacao_YTD =
+			
+			CALCULATE(
+			    [Escala_BaseMovimentacao],
+			    DATESYTD(Dim_calendario[data])
+			)
+		formatString: 0
+		lineageTag: cb2a61ed-56f5-47af-98b5-3cbb327f0a19
+
+	measure Escala_BaseMovimentacao_PY =
+			
+			CALCULATE(
+			    [Escala_BaseMovimentacao],
+			    SAMEPERIODLASTYEAR(Dim_calendario[data])
+			)
+		formatString: 0
+		lineageTag: 677cfa68-6365-4fc9-b7a1-b83123eb48f4
+
+	measure Escala_BaseMovimentacao_PYYTD =
+			
+			CALCULATE(
+			    [Escala_BaseMovimentacao_YTD],
+			    SAMEPERIODLASTYEAR(Dim_calendario[data])
+			)
+		formatString: 0
+		lineageTag: 97d56706-8a3a-4c9e-8675-7505e274f193
+
+	partition Medidas_BaseMovimentacao = m
+		mode: import
+		source =
+				let
+				    Fonte = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [#"Coluna 1" = _t]),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(Fonte,{{"Coluna 1", type text}}),
+				    #"Colunas Removidas" = Table.RemoveColumns(#"Tipo Alterado",{"Coluna 1"})
+				in
+				    #"Colunas Removidas"
+
+	annotation PBI_ResultType = Table
+

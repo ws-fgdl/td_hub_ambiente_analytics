@@ -1,0 +1,219 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "name": "9487051b694e52d0b700",
+  "position": {
+    "x": 33.251231527093594,
+    "y": 176.89655172413794,
+    "z": 1000,
+    "height": 824.6305418719212,
+    "width": 1013.4975369458127,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "aws_pmvpmr"
+                    }
+                  },
+                  "Property": "data_lancamento"
+                }
+              },
+              "queryRef": "aws_pmvpmr.data_lancamento",
+              "nativeQueryRef": "data_lancamento"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "aws_pmvpmr"
+                    }
+                  },
+                  "Property": "data_vencimento"
+                }
+              },
+              "queryRef": "aws_pmvpmr.data_vencimento",
+              "nativeQueryRef": "data_vencimento"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidas_PmvPmr"
+                    }
+                  },
+                  "Property": "PMV"
+                }
+              },
+              "queryRef": "Medidas_PmvPmr.PMV",
+              "nativeQueryRef": "PMV"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidas_PmvPmr"
+                    }
+                  },
+                  "Property": "PMV_Ponderado"
+                }
+              },
+              "queryRef": "Medidas_PmvPmr.PMV_Ponderado",
+              "nativeQueryRef": "PMV_Ponderado"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "aws_pmvpmr"
+                    }
+                  },
+                  "Property": "dias_prazo_vencimento"
+                }
+              },
+              "queryRef": "aws_pmvpmr.dias_prazo_vencimento",
+              "nativeQueryRef": "dias_prazo_vencimento"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidas_PmvPmr"
+                    }
+                  },
+                  "Property": "Total_Invoice"
+                }
+              },
+              "queryRef": "Medidas_PmvPmr.Total_Invoice",
+              "nativeQueryRef": "Total_Invoice"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "aws_pmvpmr"
+                    }
+                  },
+                  "Property": "num_nf"
+                }
+              },
+              "queryRef": "aws_pmvpmr.num_nf",
+              "nativeQueryRef": "num_nf"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Medidas_PmvPmr"
+                  }
+                },
+                "Property": "PMV"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "values": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "12D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "12D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "28915e6e57a0ad924ff0",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Medidas_PmvPmr"
+              }
+            },
+            "Property": "PMV"
+          }
+        },
+        "type": "Advanced",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "m",
+              "Entity": "Medidas_PmvPmr",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Comparison": {
+                  "ComparisonKind": 3,
+                  "Left": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Source": "m"
+                        }
+                      },
+                      "Property": "PMV"
+                    }
+                  },
+                  "Right": {
+                    "Literal": {
+                      "Value": "0L"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

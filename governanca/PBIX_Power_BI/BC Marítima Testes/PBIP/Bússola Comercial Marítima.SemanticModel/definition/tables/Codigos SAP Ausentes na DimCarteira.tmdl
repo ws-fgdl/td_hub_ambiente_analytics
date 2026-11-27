@@ -1,0 +1,46 @@
+table 'Codigos SAP Ausentes na DimCarteira'
+	lineageTag: 01df8cf7-d953-4c97-98c4-d62af664e5f6
+
+	column cod_cliente_sap
+		lineageTag: 45f49df8-5cc3-4549-bde8-bae1b9b64b57
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: aws_aging[cod_cliente_sap]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Existe no Salesforce' =
+			
+			VAR CodigoAtual = 'Codigos SAP Ausentes na DimCarteira'[cod_cliente_sap] // Pega o código da linha atual da tabela calculada
+			VAR Existe =
+			    NOT ISEMPTY (
+			        FILTER (
+			            aws_salesforce, // Procura na tabela Salesforce
+			            aws_salesforce[codigo_sap] = CodigoAtual // Onde o Código SAP seja igual ao código atual
+			        )
+			    )
+			    // Alternativa usando CONTAINS (geralmente mais clara para checagem de existência):
+			    // CONTAINS(
+			    //      'salesforce (2)',                  -- Tabela onde procurar
+			    //      'salesforce (2)'[Codigo SAP],      -- Coluna onde procurar
+			    //      CodigoAtual                       -- Valor a ser procurado
+			    // )
+			RETURN
+			    IF(Existe, "Sim", "Nao") // Retorna "Sim" se Existe for TRUE, e "Nao" se for FALSE
+		lineageTag: 5f6df359-24f2-4f28-af84-c26ee900292e
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Codigos SAP Ausentes na DimCarteira' = calculated
+		mode: import
+		source =
+				
+				VAR CodigosAging = VALUES(aws_aging[cod_cliente_sap]) // Lista distinta de códigos da Aging
+				VAR CodigosDimCarteira = VALUES(Dim_carteira_comercial_consolidado[CODIGO_SAP]) // Lista distinta de códigos da Dim
+				VAR CodigosAusentes = EXCEPT(CodigosAging, CodigosDimCarteira) // Códigos que estão em Aging mas NÃO em DimCarteira
+				RETURN
+				    CodigosAusentes
+
+	annotation PBI_Id = f540e83a83344c07861ae3dabde251c8
+

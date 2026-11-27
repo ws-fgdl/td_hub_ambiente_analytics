@@ -1,0 +1,74 @@
+table aws_index_cpi
+	lineageTag: 9f625b98-a6a7-469b-902c-95e881b51466
+
+	measure CPI_Acumulado = ```
+			
+			TOTALYTD(
+			    [CPI_Mensal], 
+			    Dim_calendario[data]
+			)
+			
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 5380b80d-4419-471f-999a-9c89586d73ec
+
+	measure CPI_Mensal = SUM(aws_index_cpi[variacao_percentual])
+		lineageTag: 9c8ebed6-81dc-4c05-8814-eda29bcbb2b6
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column date
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 5db231fc-10b6-4e8f-bcfd-d57598211445
+		summarizeBy: none
+		sourceColumn: date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column value
+		dataType: double
+		lineageTag: fa94acb1-97c4-40d6-920d-f31303656d1e
+		summarizeBy: sum
+		sourceColumn: value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column variacao_percentual
+		dataType: double
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: b39856e4-80a0-4760-9dd2-031207165621
+		summarizeBy: sum
+		sourceColumn: variacao_percentual
+
+		annotation SummarizationSetBy = Automatic
+
+	column etl_updated_at
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: c2c2b907-e0a0-4497-a209-641e6cc933f1
+		summarizeBy: none
+		sourceColumn: etl_updated_at
+
+		annotation SummarizationSetBy = Automatic
+
+	partition aws_index_cpi = m
+		mode: import
+		source =
+				let
+				    Fonte = PowerPlatform.Dataflows(null),
+				    Workspaces = Fonte{[Id="Workspaces"]}[Data],
+				    #"8c5cc8ba-ed75-4d39-9606-af9ead89ca36" = Workspaces{[workspaceId="8c5cc8ba-ed75-4d39-9606-af9ead89ca36"]}[Data],
+				    #"585ee40e-908c-45c1-ab03-499c029200c4" = #"8c5cc8ba-ed75-4d39-9606-af9ead89ca36"{[dataflowId="585ee40e-908c-45c1-ab03-499c029200c4"]}[Data],
+				    fct_cpi = #"585ee40e-908c-45c1-ab03-499c029200c4"{[entity="fct_cpi",version=""]}[Data]
+				in
+				    fct_cpi
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

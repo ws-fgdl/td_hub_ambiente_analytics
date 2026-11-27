@@ -1,0 +1,161 @@
+table Medidas_Remuneracao
+	lineageTag: 25c0a0ba-69b9-427a-a487-e640e5ff9e6d
+
+	measure Remuneracao_Hora_ComDeslocamento_BaseBC = ```
+			
+			DIVIDE(
+			    Flag_faturamento[Flag_Faturamento_BaseBC], 
+			    [TempoDeServico_ComDesloc], 
+			    0
+			)
+			```
+		lineageTag: 447150b1-93dc-4896-ae84-b401c6d2b539
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Remuneracao_Hora_SemDeslocamento_BaseBC = ```
+			
+			DIVIDE(
+			    Flag_faturamento[Flag_Faturamento_BaseBC], 
+			    [TempoDeServico_SemDesloc], 
+			    0
+			)
+			```
+		lineageTag: 44c738be-5592-4f35-bfa9-f2baef4a55e9
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Remuneracao_x_TempoMedio_ComDeslocamento_BaseBC =
+			
+			[Remuneracao_Hora_ComDeslocamento_BaseBC] * [Media_TempoDeServico_ComDesloc_BaseBC]
+		lineageTag: 799ce9f3-f6e4-4521-bbee-eb0882f3039b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Remuneracao_x_TempoMedio_SemDeslocamento_BaseBC =
+			
+			[Remuneracao_Hora_SemDeslocamento_BaseBC] * [Media_TempoDeServico_SemDesloc_BaseBC]
+		lineageTag: 62e138fd-ad5c-4cae-abb5-77fd974cc845
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Remuneracao_Hora_ComDeslocamento_geral_BaseBC = ```
+			
+			DIVIDE(
+			    Flag_faturamento[Flag_Faturamento_BaseBC], 
+			    [TempoDeServico_ComDesloc_View_TempoMedio], 
+			    0
+			)
+			```
+		lineageTag: 6b490072-b1bf-407b-b362-925aa9e66abc
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Remuneracao_Hora_SemDeslocamento_geral_BaseBC = ```
+			
+			DIVIDE(
+			    Flag_faturamento[Flag_Faturamento_BaseBC], 
+			    [TempoDeServico_SemDesloc_View_TempoMedio], 
+			    0
+			)
+			```
+		lineageTag: 32d3304d-3145-46f9-aa5d-7748c218eda7
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure *remunr_hora_BaseBC =
+			
+			DIVIDE(
+			    Medidas_TempoDeServico[TempoDeServico_ComDesloc],
+			    [PrecoMedio_BaseBC],
+			    0
+			)
+		lineageTag: aa97ae1c-bf27-4cc2-b852-8e76c17035d6
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure *REMUNERACAO_HORA_SEM_DESLOC_BaseBC =
+			
+			DIVIDE(
+			    [PrecoMedio_BaseBC],
+			    [TempoMedioServico_PorRebocador_SemDeslocamento_ComArredondamento_BaseBC],
+			    0
+			)
+		lineageTag: 05cbdab9-09aa-49e5-b0ac-bbc864fd8b44
+
+		formatStringDefinition = ```
+				VAR Valor = SELECTEDMEASURE()
+				VAR ValorAbs = ABS(Valor) -- Analisamos o "tamanho" do número independente do sinal
+				VAR Selecao = SELECTEDVALUE(Flag_faturamento[Faturamento])
+				VAR Prefixo = IF(Selecao = "R$", "R$ ", "$ ")
+				
+				RETURN
+				    SWITCH( TRUE(),
+				        ValorAbs >= 1000000000, 
+				            Prefixo & "#,##0,,,.0 ""B"";-" & Prefixo & "#,##0,,,.0 ""B""",
+				        
+				        ValorAbs >= 1000000,    
+				            Prefixo & "#,##0,,.0 ""M"";-" & Prefixo & "#,##0,,.0 ""M""",
+				        
+				        ValorAbs >= 1000,       
+				            Prefixo & "#,##0,.0 ""K"";-" & Prefixo & "#,##0,.0 ""K""",
+				        
+				        -- Para valores entre -999 e 999
+				        Prefixo & "#,##0;-" & Prefixo & "#,##0"
+				    )
+				```
+
+	measure *REMUNERACAO_HORA_COM_DESLOC_BaseBC =
+			
+			DIVIDE(
+			    [PrecoMedio_BaseBC],
+			    [TempoMedioServico_PorRebocador_ComDeslocamento_ComArredondamento_BaseBC],
+			    0
+			)
+		lineageTag: 4eb6b44a-93ba-4956-a248-93751e6a842e
+
+		formatStringDefinition = ```
+				VAR Valor = SELECTEDMEASURE()
+				VAR ValorAbs = ABS(Valor) -- Analisamos o "tamanho" do número independente do sinal
+				VAR Selecao = SELECTEDVALUE(Flag_faturamento[Faturamento])
+				VAR Prefixo = IF(Selecao = "R$", "R$ ", "$ ")
+				
+				RETURN
+				    SWITCH( TRUE(),
+				        ValorAbs >= 1000000000, 
+				            Prefixo & "#,##0,,,.0 ""B"";-" & Prefixo & "#,##0,,,.0 ""B""",
+				        
+				        ValorAbs >= 1000000,    
+				            Prefixo & "#,##0,,.0 ""M"";-" & Prefixo & "#,##0,,.0 ""M""",
+				        
+				        ValorAbs >= 1000,       
+				            Prefixo & "#,##0,.0 ""K"";-" & Prefixo & "#,##0,.0 ""K""",
+				        
+				        -- Para valores entre -999 e 999
+				        Prefixo & "#,##0;-" & Prefixo & "#,##0"
+				    )
+				```
+
+	measure *REMUNERACAO_HORA_SO_DESLOC_BaseBC =
+			
+			DIVIDE(
+			    [PrecoMedio_BaseBC],
+			    [TempoMedioServico_PorRebocador_SoDeslocamento_ComArredondamento_BaseBC],
+			    0
+			)
+		lineageTag: 3ac44149-f269-4f3d-b052-422e4074932a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition Medidas_Remuneracao = m
+		mode: import
+		source =
+				let
+				    Fonte = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [#"Coluna 1" = _t]),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(Fonte,{{"Coluna 1", type text}}),
+				    #"Colunas Removidas" = Table.RemoveColumns(#"Tipo Alterado",{"Coluna 1"})
+				in
+				    #"Colunas Removidas"
+
+	annotation PBI_ResultType = Table
+

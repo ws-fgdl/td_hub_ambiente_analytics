@@ -1,0 +1,48 @@
+table Selecionar_PrecoMedio_Faturamento_BaseBC
+	lineageTag: 85b02f9a-8489-45b3-9573-16bdc8e08abf
+
+	column Selecionar_PrecoMedio_Faturamento
+		lineageTag: 16723f26-ddaa-4a17-96be-d0937a2c6e28
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'Selecionar_PrecoMedio_Faturamento Pedido'
+
+		relatedColumnDetails
+			groupByColumn: 'Selecionar_PrecoMedio_Faturamento Campos'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Selecionar_PrecoMedio_Faturamento Campos'
+		isHidden
+		lineageTag: c3e2b498-0e8b-421c-8e0b-211eb52e375b
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'Selecionar_PrecoMedio_Faturamento Pedido'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Selecionar_PrecoMedio_Faturamento Pedido'
+		isHidden
+		formatString: 0
+		lineageTag: f3a0bf29-2db9-45bf-8acb-6789156dc57f
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Selecionar_PrecoMedio_Faturamento_BaseBC = calculated
+		mode: import
+		source =
+				{
+				    ("Avg Price", NAMEOF([PrecoMedio_BaseBC]), 0),
+				    ("Revenue", NAMEOF([Flag_Faturamento_BaseBC]), 1)
+				}
+
+	annotation PBI_Id = 0e1fdf92006144c28876a7d5191f488d
+

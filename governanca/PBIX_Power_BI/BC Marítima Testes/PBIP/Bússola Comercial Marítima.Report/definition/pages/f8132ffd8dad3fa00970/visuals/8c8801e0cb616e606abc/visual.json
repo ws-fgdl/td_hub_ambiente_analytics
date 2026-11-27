@@ -1,0 +1,75 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "8c8801e0cb616e606abc",
+  "position": {
+    "x": 992,
+    "y": 16,
+    "z": 0,
+    "height": 480.00000000000006,
+    "width": 912,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "treemap",
+    "query": {
+      "queryState": {
+        "Group": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "aws_bussola_comercial_mar"
+                    }
+                  },
+                  "Property": "tipo_doc"
+                }
+              },
+              "queryRef": "aws_bussola_comercial_mar.tipo_doc",
+              "nativeQueryRef": "tipo_doc",
+              "active": true
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "aws_bussola_comercial_mar"
+                    }
+                  },
+                  "Property": "Qtd_OS_Acordo_Em_Branco_Unicas_V2"
+                }
+              },
+              "queryRef": "aws_bussola_comercial_mar.Qtd_OS_Acordo_Em_Branco_Unicas_V2",
+              "nativeQueryRef": "Qtd_OS_Acordo_Em_Branco_Unicas_V2"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "aws_bussola_comercial_mar"
+                  }
+                },
+                "Property": "Qtd_OS_Acordo_Em_Branco_Unicas_V2"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

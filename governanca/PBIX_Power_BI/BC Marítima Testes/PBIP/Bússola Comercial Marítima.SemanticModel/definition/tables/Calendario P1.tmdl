@@ -1,0 +1,53 @@
+table 'Calendario P1'
+	lineageTag: 0bb36b72-a449-44fd-a04d-c8aa3605021d
+
+	column Mês
+		lineageTag: 6f44829d-cd00-4e7b-8f8c-872868a22778
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Mês]
+		sortByColumn: 'Numro Mês'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Numro Mês'
+		formatString: 0
+		lineageTag: 2f543aa9-b843-4ae3-9aec-43f31389ed49
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Numro Mês]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Data
+		formatString: General Date
+		lineageTag: d3654c7a-8c8f-405d-8d5c-e775dfdec91a
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Data]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ano
+		formatString: 0
+		lineageTag: 50d985ed-7701-4c9e-95da-a2f301bc13ee
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Ano]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Calendario P1' = calculated
+		mode: import
+		source =
+				-- TABELA UTILIZADA PARA FILTRO DA VIEW ADJUSTMENT EFFECT
+				SELECTCOLUMNS(
+				    Dim_calendario,
+				    "Data", Dim_calendario[data],
+				    "Ano", Dim_calendario[ano_calendario],
+				    "Mês", Dim_calendario[nome_mes_abreviado_ing],
+				    "Numro Mês", Dim_calendario[numero_mes]
+				)
+
+	annotation PBI_Id = 096b9c59934a414cae14d7469e0970f2
+

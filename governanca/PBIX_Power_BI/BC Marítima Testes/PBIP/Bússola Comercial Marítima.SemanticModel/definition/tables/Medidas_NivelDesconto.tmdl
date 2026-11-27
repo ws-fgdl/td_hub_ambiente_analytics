@@ -1,0 +1,105 @@
+table Medidas_NivelDesconto
+	lineageTag: c56b786e-69c7-496c-8ea6-591fbf617e03
+
+	measure DescontoTIF_BaseFaina =
+			
+			VAR ValorReferencia = [FaturamentoUSD_Ref_BaseFaina]
+			VAR ValorFaturado = [Flag_Faturamento_BaseFaina]
+			RETURN
+			    IF(
+			        NOT ISBLANK(ValorReferencia), -- Apenas calcula se existir um valor de referência
+			        ValorFaturado - ValorReferencia,
+			        BLANK() -- Se não houver referência, o resultado fica em branco
+			    )
+		lineageTag: 7f63e8e1-01cf-438c-b939-e5f2616bf742
+
+		formatStringDefinition = ```
+				VAR Valor = SELECTEDMEASURE()
+				VAR ValorAbs = ABS(Valor) -- Analisamos o "tamanho" do número independente do sinal
+				VAR Selecao = SELECTEDVALUE(Flag_faturamento[Faturamento])
+				VAR Prefixo = IF(Selecao = "R$", "R$ ", "$ ")
+				
+				RETURN
+				    SWITCH( TRUE(),
+				        ValorAbs >= 1000000000, 
+				            Prefixo & "#,##0,,,.0 ""B"";-" & Prefixo & "#,##0,,,.0 ""B""",
+				        
+				        ValorAbs >= 1000000,    
+				            Prefixo & "#,##0,,.0 ""M"";-" & Prefixo & "#,##0,,.0 ""M""",
+				        
+				        ValorAbs >= 1000,       
+				            Prefixo & "#,##0,.0 ""K"";-" & Prefixo & "#,##0,.0 ""K""",
+				        
+				        -- Para valores entre -999 e 999
+				        Prefixo & "#,##0;-" & Prefixo & "#,##0"
+				    )
+				```
+
+	measure %Desconto_Ref_BaseFaina =
+			
+			DIVIDE(
+			    [DescontoTIF_BaseFaina],
+			    [FaturamentoUSD_Ref_BaseFaina],
+			    0
+			    )
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 92439493-b444-4277-bb90-816adb026a73
+
+	measure Media_Desconto_Ref_BaseFaina = ```
+			
+			// VAR ValorReferencia = AVERAGE(aws_bussola_comercial_faina[val_tab_ref])
+			// VAR ValorFaturado = AVERAGE(aws_bussola_comercial_faina[valor_ptax])
+			// RETURN
+			//     IF(
+			//         NOT ISBLANK(ValorReferencia), -- Apenas calcula se existir um valor de referência
+			//         ValorFaturado - ValorReferencia,
+			//         BLANK() -- Se não houver referência, o resultado fica em branco
+			//     )
+			    VAR Avg_Discount = 
+			        AVERAGEX(
+			            'aws_bussola_comercial_faina',
+			            'aws_bussola_comercial_faina'[val_tab_ref] - 'aws_bussola_comercial_faina'[valor_ptax]
+			        )
+			RETURN
+			    IF(
+			        NOT ISBLANK( CALCULATE( SUM('aws_bussola_comercial_faina'[val_tab_ref]) ) ),
+			        -Avg_Discount,
+			        BLANK()
+			    )
+			```
+		lineageTag: e692df71-7a03-420c-aeb4-539b91077c35
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '$ Delta Impacto' =
+			
+			VAR FaturamentoReal = [Faturamento_faina_TipoData]
+			VAR FaturamentoSimulado = [Novo Faturamento Simulado Total]
+			VAR Diferenca = FaturamentoSimulado - FaturamentoReal
+			
+			RETURN
+			    IF(
+			        -- Se o cliente operou lá E houve uma diferença real (maior que 1 dólar)
+			        NOT ISBLANK(FaturamentoReal) && ABS(Diferenca) > 1,
+			        Diferenca,
+			        -- Caso contrário, retorna Vazio (e a filial some do gráfico)
+			        BLANK()
+			    )
+		lineageTag: 6819735a-a557-442a-9586-cc4a49de3459
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition Medidas_NivelDesconto = m
+		mode: import
+		source =
+				let
+				    Fonte = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [#"Coluna 1" = _t]),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(Fonte,{{"Coluna 1", type text}}),
+				    #"Colunas Removidas" = Table.RemoveColumns(#"Tipo Alterado",{"Coluna 1"})
+				in
+				    #"Colunas Removidas"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navegação
+

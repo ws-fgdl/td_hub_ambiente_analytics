@@ -1,0 +1,397 @@
+table aws_bussola_comercial_faina
+	lineageTag: 7a3dcdd3-fa32-47bc-ab4e-1b2797f2b1e7
+
+	column evento
+		dataType: int64
+		lineageTag: 35176b2b-0a8b-43b1-a6eb-22a2a8705814
+		summarizeBy: none
+		sourceColumn: evento
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column tipo
+		dataType: string
+		lineageTag: 0b8c039d-cc5c-459e-b166-d46d47ab1e4b
+		summarizeBy: none
+		sourceColumn: tipo
+
+		annotation SummarizationSetBy = Automatic
+
+	column filial
+		dataType: string
+		lineageTag: b9b59fed-7ae1-4260-8e9d-f743ea6a2a9f
+		summarizeBy: none
+		sourceColumn: filial
+
+		annotation SummarizationSetBy = Automatic
+
+	column navio
+		dataType: string
+		lineageTag: 3348db2f-3ca2-4952-aecc-3751b8d08519
+		summarizeBy: none
+		sourceColumn: navio
+
+		annotation SummarizationSetBy = Automatic
+
+	column dwt
+		dataType: double
+		formatString: 0
+		lineageTag: b21b5dc9-ff60-490b-9a77-ab1074b6e877
+		summarizeBy: sum
+		sourceColumn: dwt
+
+		annotation SummarizationSetBy = Automatic
+
+	column cliente
+		dataType: string
+		lineageTag: 32d71819-ba6b-4e06-83b1-4868ac0d609a
+		summarizeBy: none
+		sourceColumn: cliente
+
+		annotation SummarizationSetBy = Automatic
+
+	column cliente_sap
+		dataType: string
+		lineageTag: e0d549cd-b9ab-4915-a717-558231a0c017
+		summarizeBy: none
+		sourceColumn: cliente_sap
+
+		annotation SummarizationSetBy = Automatic
+
+	column porto
+		dataType: string
+		lineageTag: 263865b7-1afc-41df-8dd6-38336528ec96
+		summarizeBy: none
+		sourceColumn: porto
+
+		annotation SummarizationSetBy = Automatic
+
+	column local_porto
+		dataType: string
+		lineageTag: f4803784-33fc-4e28-811c-b8ab9993b283
+		summarizeBy: none
+		sourceColumn: local_porto
+
+		annotation SummarizationSetBy = Automatic
+
+	column divisao
+		dataType: string
+		lineageTag: 5437c46d-d9fe-4fa6-84a8-76629b2563af
+		summarizeBy: none
+		sourceColumn: divisao
+
+		annotation SummarizationSetBy = Automatic
+
+	column manobra
+		dataType: string
+		lineageTag: 7e45da46-3da0-456b-b671-64f60a620b6e
+		summarizeBy: none
+		sourceColumn: manobra
+
+		annotation SummarizationSetBy = Automatic
+
+	column faina
+		dataType: string
+		lineageTag: 18c01c74-c602-404c-b997-129279dad4ee
+		summarizeBy: none
+		sourceColumn: faina
+
+		annotation SummarizationSetBy = Automatic
+
+	column competencia
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: b6e06bff-dca7-491e-87d1-2defc3ce47e6
+		summarizeBy: none
+		sourceColumn: competencia
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column inicio
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 663a414f-65e2-4e04-b418-b884850d6edf
+		summarizeBy: none
+		sourceColumn: inicio
+
+		annotation SummarizationSetBy = Automatic
+
+	column fim
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 8b8e676a-ff5d-48a9-a095-da774888f6fc
+		summarizeBy: none
+		sourceColumn: fim
+
+		annotation SummarizationSetBy = Automatic
+
+	column mercadoria
+		dataType: string
+		lineageTag: b372e272-ded6-4a83-b033-40241229d59b
+		summarizeBy: none
+		sourceColumn: mercadoria
+
+		annotation SummarizationSetBy = Automatic
+
+	column categoria
+		dataType: string
+		lineageTag: 36ee6921-c8fb-420b-b42a-5ee556dc1bc2
+		summarizeBy: none
+		sourceColumn: categoria
+
+		annotation SummarizationSetBy = Automatic
+
+	column faixa_dwt
+		dataType: string
+		lineageTag: a06f8c2e-7a97-4d02-9694-7a2eceaabd4e
+		summarizeBy: none
+		sourceColumn: faixa_dwt
+
+		annotation SummarizationSetBy = Automatic
+
+	column especial
+		dataType: string
+		lineageTag: cb83ec82-edff-4f44-b5f3-d461ff7efa20
+		summarizeBy: none
+		sourceColumn: especial
+
+		annotation SummarizationSetBy = Automatic
+
+	column val_tab_ref
+		dataType: double
+		lineageTag: e0194106-c69e-4b40-938f-24477861268c
+		summarizeBy: sum
+		sourceColumn: val_tab_ref
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column tcp
+		dataType: string
+		lineageTag: b9b9637c-bb66-4d0e-8855-23a719077bdb
+		summarizeBy: none
+		sourceColumn: tcp
+
+		annotation SummarizationSetBy = Automatic
+
+	column vendedor
+		dataType: string
+		lineageTag: 815e8fa2-208f-4cdd-9523-40e620c1b1cc
+		summarizeBy: none
+		sourceColumn: vendedor
+
+		annotation SummarizationSetBy = Automatic
+
+	column emissao
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 1c79d70c-eeb0-4703-adb3-3a6876666b4f
+		summarizeBy: none
+		sourceColumn: emissao
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column num_doc_sap
+		dataType: string
+		lineageTag: 063b599c-0aea-46ea-8a70-83e3ec550692
+		summarizeBy: none
+		sourceColumn: num_doc_sap
+
+		annotation SummarizationSetBy = Automatic
+
+	column dono
+		dataType: string
+		lineageTag: 6158cb12-44ae-4493-89b9-bbcd664b818b
+		summarizeBy: none
+		sourceColumn: dono
+
+		annotation SummarizationSetBy = Automatic
+
+	column valor_real
+		dataType: double
+		lineageTag: 1c374cc2-bd13-47da-963e-6f4213025fc4
+		summarizeBy: sum
+		sourceColumn: valor_real
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column valor_ptax
+		dataType: double
+		lineageTag: 5d5eaf9f-46ca-44c8-add7-2a49ab7014a4
+		summarizeBy: sum
+		sourceColumn: valor_ptax
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column valor_fmr
+		dataType: double
+		lineageTag: dfdbf195-84d7-4a07-9006-a81340484e77
+		summarizeBy: sum
+		sourceColumn: valor_fmr
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column data_do_inicio_do_evento =
+			
+			CALCULATE(
+			    MIN('aws_bussola_comercial_mar'[data_do_inicio_do_evento]),
+			    -- Remove todos os filtros da tabela Fainas
+			    ALL('aws_bussola_comercial_mar'),
+			    -- Aplica o filtro da chave, mantendo qualquer filtro externo (opcional)
+			    KEEPFILTERS(
+			        FILTER(
+			            ALL('aws_bussola_comercial_mar'[os]),
+			            'aws_bussola_comercial_mar'[os] = 'aws_bussola_comercial_faina'[evento]
+			        )
+			    )
+			)
+		formatString: General Date
+		lineageTag: edca08dc-dc38-427b-bdc3-4a5006fd1fd6
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column data_do_fim_do_evento =
+			
+			CALCULATE(
+			    MAX('aws_bussola_comercial_mar'[data_do_fim_do_evento]),
+			    -- Remove todos os filtros da tabela Fainas
+			    ALL('aws_bussola_comercial_mar'),
+			    -- Aplica o filtro da chave, mantendo qualquer filtro externo (opcional)
+			    KEEPFILTERS(
+			        FILTER(
+			            ALL('aws_bussola_comercial_mar'[os]),
+			            'aws_bussola_comercial_mar'[os] = 'aws_bussola_comercial_faina'[evento]
+			        )
+			    )
+			)
+		formatString: General Date
+		lineageTag: cb534e6a-254c-4240-9439-b139e331f88f
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column linha_navegacao
+		dataType: string
+		lineageTag: f4271ff0-3462-4eea-95a2-9ce5e1ceea75
+		summarizeBy: none
+		sourceColumn: linha_navegacao
+
+		annotation SummarizationSetBy = Automatic
+
+	column ind_precific
+		dataType: string
+		lineageTag: eb4146e7-1e69-4153-82a5-4d2e5bc5b95e
+		summarizeBy: none
+		sourceColumn: ind_precific
+
+		annotation SummarizationSetBy = Automatic
+
+	column acordo_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 0174c820-0e72-41fc-a9cc-b58dcc9864e2
+		summarizeBy: sum
+		sourceColumn: acordo_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column num_versao
+		dataType: int64
+		formatString: 0
+		lineageTag: ff90fdc5-a04a-4ad0-80dc-853789cff796
+		summarizeBy: sum
+		sourceColumn: num_versao
+
+		annotation SummarizationSetBy = Automatic
+
+	column versao_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 55b62870-f1a8-4e9a-bc25-666c7059f7aa
+		summarizeBy: sum
+		sourceColumn: versao_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column cod_port_call
+		dataType: string
+		lineageTag: 8520a037-5c2d-46db-9b39-0424ce7ed6f5
+		summarizeBy: none
+		sourceColumn: cod_port_call
+
+		annotation SummarizationSetBy = Automatic
+
+	column qtde_reboc
+		dataType: int64
+		formatString: 0
+		lineageTag: e573bf24-ee49-4b87-9b59-d25989772066
+		summarizeBy: sum
+		sourceColumn: qtde_reboc
+
+		annotation SummarizationSetBy = Automatic
+
+	column ID_Documento_SAP = YEAR(aws_bussola_comercial_faina[emissao]) & aws_bussola_comercial_faina[num_doc_sap]
+		lineageTag: 1fd429e5-545a-47d1-9e81-2a63f28c1f07
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column FAIXA_DWT_2025
+		dataType: string
+		lineageTag: 034da331-e430-4dd3-921c-93eac6e6630a
+		summarizeBy: none
+		sourceColumn: FAIXA_DWT_2025
+		sortByColumn: FAIXA_DWT_2025_ORDENAR
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column FAIXA_DWT_2025_ORDENAR
+		dataType: int64
+		formatString: 0
+		lineageTag: 78eb8b01-30cb-4584-9dd4-b9b13c07574c
+		summarizeBy: sum
+		sourceColumn: FAIXA_DWT_2025_ORDENAR
+
+		annotation SummarizationSetBy = Automatic
+
+	column etl_updated_at
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 1ff37357-ac43-424a-b935-2816f6d73eba
+		summarizeBy: none
+		sourceColumn: etl_updated_at
+
+		annotation SummarizationSetBy = Automatic
+
+	partition aws_bussola_comercial_faina = m
+		mode: import
+		source =
+				let
+				    Fonte = PowerPlatform.Dataflows(null),
+				    Workspaces = Fonte{[Id="Workspaces"]}[Data],
+				    #"8c5cc8ba-ed75-4d39-9606-af9ead89ca36" = Workspaces{[workspaceId="8c5cc8ba-ed75-4d39-9606-af9ead89ca36"]}[Data],
+				    #"fbff76ce-03eb-4948-9dfa-c23dbbadbf0f" = #"8c5cc8ba-ed75-4d39-9606-af9ead89ca36"{[dataflowId="fbff76ce-03eb-4948-9dfa-c23dbbadbf0f"]}[Data],
+				    fct_bc_mar_faina = #"fbff76ce-03eb-4948-9dfa-c23dbbadbf0f"{[entity="fct_bc_mar_faina",version=""]}[Data]
+				in
+				    fct_bc_mar_faina
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

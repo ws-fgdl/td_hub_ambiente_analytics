@@ -1,0 +1,97 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "a331c2f49fb7f4ba376c",
+  "position": {
+    "x": 35.5049786628734,
+    "y": 527.11237553342812,
+    "z": 1000,
+    "height": 505,
+    "width": 1620,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "aws_movimentacao_portuaria"
+                    }
+                  },
+                  "Property": "manobra"
+                }
+              },
+              "queryRef": "aws_movimentacao_portuaria.manobra",
+              "nativeQueryRef": "manobra"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "aws_movimentacao_portuaria"
+                    }
+                  },
+                  "Property": "valor_tif"
+                }
+              },
+              "queryRef": "aws_movimentacao_portuaria.valor_tif",
+              "nativeQueryRef": "valor_tif"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "aws_movimentacao_portuaria"
+                    }
+                  },
+                  "Property": "volume"
+                }
+              },
+              "queryRef": "aws_movimentacao_portuaria.volume",
+              "nativeQueryRef": "volume"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "aws_movimentacao_portuaria"
+                    }
+                  },
+                  "Property": "competencia"
+                }
+              },
+              "queryRef": "aws_movimentacao_portuaria.competencia",
+              "nativeQueryRef": "competencia"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "aws_movimentacao_portuaria"
+                  }
+                },
+                "Property": "competencia"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

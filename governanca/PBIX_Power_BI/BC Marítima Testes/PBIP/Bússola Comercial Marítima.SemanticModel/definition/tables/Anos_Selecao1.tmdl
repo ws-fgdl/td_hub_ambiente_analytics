@@ -1,0 +1,41 @@
+table Anos_Selecao1
+	lineageTag: 63339f63-4c79-4a1d-814b-debece1d4bbf
+
+	column Ano
+		formatString: 0
+		lineageTag: b5d2371f-55c9-44b4-8278-8d4aa045926a
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Ano]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Mes
+		lineageTag: ea166ec8-057d-4de8-a6ff-073a842475c7
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Mes]
+		sortByColumn: NumMes
+
+		annotation SummarizationSetBy = Automatic
+
+	column NumMes
+		formatString: 0
+		lineageTag: 4c5f64fc-4461-452b-b18e-eb3934c40da0
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [NumMes]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Anos_Selecao1 = calculated
+		mode: import
+		source =
+				-- TABELA UTILIZADA PARA FILTRO DA VIEW EFEITO REAJUSTE
+				SELECTCOLUMNS(
+				    DISTINCT('aws_bussola_comercial_mar'[competencia]),
+				    "Ano", YEAR([competencia]),"Mes",FORMAT([competencia],"mmmm","en-us"),"NumMes",MONTH([competencia])
+				)
+
+	annotation PBI_Id = ee9429a3c3c44343ac03ff198ff2b95c
+

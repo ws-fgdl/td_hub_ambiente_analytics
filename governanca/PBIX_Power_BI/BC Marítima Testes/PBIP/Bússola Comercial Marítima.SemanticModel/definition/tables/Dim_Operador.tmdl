@@ -1,0 +1,213 @@
+table Dim_Operador
+	lineageTag: 3fca9800-6f30-4ac4-b087-e612e83f33e3
+
+	measure Cor_Operador_Demais =
+			
+			SWITCH(
+			    SELECTEDVALUE('Dim_Operador'[Operador_Demais]),
+			    "WS", "#118DFF",
+			    "SVITZER", "#893395",
+			    "SAAM", "#E8D166",
+			    "SULNORTE", "#999999",
+			    "CAMORIM", "#D64550",
+			    "VALE", "#73361C",
+			    "DEMAIS", "#001C43",
+			    -- Cor Padrão (Caso apareça outra categoria)
+			    "#708090"
+			)
+		lineageTag: 34d72fac-049b-4abd-866b-ce5459574e75
+
+	column operador
+		lineageTag: 3ebdb493-1f4a-4cc2-81a4-e8ba01fc3446
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: aws_bussola_comercial_mar[operador]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Operador_Padronizado = ```
+			
+			VAR OperadorPrincipal = 'Dim_Operador'[operador]
+			RETURN
+			SWITCH (
+			    TRUE(),
+			    ISBLANK(OperadorPrincipal) || OperadorPrincipal = "", BLANK(),
+			
+			    OperadorPrincipal IN {
+			        "ALIANCA NAVEGACAO E LOGISTICA LTDA."
+			    }, "ALIANCA",
+			
+			    OperadorPrincipal IN {
+			        "BIG MAR REBOCADORES S/A", "BIG_MAR"
+			    }, "BIGMAR",
+			
+			    OperadorPrincipal IN {
+			        "BRASIMAR SERVICOS MARITIMOS LTDA"
+			    }, "BRASIMAR",
+			
+			    OperadorPrincipal IN {
+			        "CAMORIM SERVICOS MARITIMOS LTDA", "CAMORIM SERVICOS MARITIMOS SA"
+			    }, "CAMORIM",
+			
+			    OperadorPrincipal IN {
+			        "CONSORCIO DE REBOCADORES BAIA DE SAO MARCOS", 
+			        "CONSORCIO DE REBOCADORES DA BAIA", "CRBSM"
+			    }, "CONSORCIO",
+			
+			    OperadorPrincipal IN {
+			        "COSTA BRASILEIRA APOIO PORTUARIOE MARITIMO LTDA -"
+			    }, "COSTA",
+			
+			    OperadorPrincipal IN {
+			        "DIALCAR ESTALEIRO E SERVICOSMARITIMOS LTDA"
+			    }, "DIALCAR",
+			
+			    OperadorPrincipal IN {
+			        "F ANDREIS E CIA LTDA"
+			    }, "FANDREIS",
+			
+			    OperadorPrincipal IN {
+			        "MARFORT SERVICOS MARITIMOS LTDA"
+			    }, "MARFORT",
+			
+			    OperadorPrincipal IN {
+			        "MARTIN LEME SERVICOS LTDA"
+			    }, "MARTIN",
+			
+			    OperadorPrincipal IN {
+			        "NAVEGACAO AMANDIO ROCHA LTDA"
+			    }, "AMANDIOROCHA",
+			
+			    OperadorPrincipal IN {
+			        "NAVEGACAO VALE DO RIO DOCE   S/A - DOCENAVE", "VALE S.A."
+			    }, "VALE",
+			
+			    OperadorPrincipal IN {
+			        "NAVEMAR TRANSPORTES E COMERCIO MARITIMO LTDA"
+			    }, "NAVEMAR",
+			
+			    OperadorPrincipal IN {
+			        "OCIDENTAL TRANSPORTES E NAVEGACAO LTDA"
+			    }, "OCIDENTAL",
+			
+			    OperadorPrincipal IN {
+			        "SAAM TOWAGE BRASIL S.A.", "STARNAV SERVICOS MARITIMOS LTDA.",
+			        "TUGBRASIL APOIO PORTUARIO SA", "TUGBRASIL", "SAAM TOWAGE BRASIL"
+			    }, "SAAM",
+			
+			    OperadorPrincipal IN {
+			        "SAGA REBOCADORES & SERVICOS MARITIMOS LTDA"
+			    }, "SAGA",
+			
+			    OperadorPrincipal IN {
+			        "SAMARCO MINERACAO S.A.", "SAMARCO MINERACAO S/A",
+			        "SAMARCO MINERACAO SA"
+			    }, "SAMARCO",
+			
+			    OperadorPrincipal IN {
+			        "SAVEIROS CAMUYRANO SERVICOSMARITIMOS S/A", "WILSON SONS OFFSHORE S A",
+			        "WILSON SONS SERVICOS MARITIMOS LTDA"
+			    }, "WS",
+			
+			    OperadorPrincipal IN {
+			        "SEAPORT SERVICOS MARITIMOS LTDA ME"
+			    }, "SEAPORT",
+			
+			    OperadorPrincipal IN {
+			        "SOBRARE SERVEMar LTDA"
+			    }, "SOBRARE",
+			
+			    OperadorPrincipal IN {
+			        "SVITZER BRASIL SERVICOS MARITIMOS LTDA", "SVITZER OCEAN TOWAGE", "SVITZER BRASIL SERVICOS MARITIMOS L LTDA."
+			    }, "SVITZER",
+			
+			    OperadorPrincipal IN {
+			        "SULNORTE SERVICOS MARITIMOS LTDA"
+			    }, "SULNORTE",
+			
+			    OperadorPrincipal IN {
+			        "TRANSHIP TRANSPORTES MARITIMOS LTDA"
+			    }, "TRANSHIP",
+			
+			    OperadorPrincipal IN {
+			        "ZPORT OPERADPRES PORTUARIOS LTD"
+			    }, "ZPORT",
+			
+			    OperadorPrincipal IN {
+			        "RIO_GRANDE_MARITIMA"
+			    }, "RGMARITIMA",
+			
+			    OperadorPrincipal IN {
+			        "TRANS_VIGO"
+			    }, "TRANSVIGO",
+			
+			    OperadorPrincipal 
+			)
+			```
+		lineageTag: 5eb2a5e4-afa3-446d-a42c-fc103080375c
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Operador_Demais =
+			
+			VAR OperadorPrincipal = 'Dim_Operador'[Operador_Padronizado]
+			
+			RETURN
+			SWITCH (
+			    TRUE(),
+			    ISBLANK(OperadorPrincipal), BLANK(),
+			    OperadorPrincipal IN {
+			        "ALIANCA",
+			        "AMANDIOROCHA",
+			        "BRASIMAR",
+			        "BIGMAR",
+			        "COSTA",
+			        "DIALCAR",
+			        "DOCENAVE",
+			        "FANDREIS",
+			        "MARCMAR",
+			        "MARFORT",
+			        "MARTIN",
+			        "NAVEMAR",
+			        "OCIDENTAL",
+			        "RGMARITIMA",
+			        "SAGA",
+			        "SEAPORT",
+			        "SOBRARE",
+			        "TRANSHIP",
+			        "TRANSVIGO",
+			        "ZPORT",
+			        "CONSORCIO",
+			        "SAMARCO",
+			        "CHIBATÃO",
+			        "HERMASA",
+			        "J F OLIVEIRA",
+			        "SAGA REBOCADORES",
+			        "ANTONIO CARLOS",
+			        "NATAL TUG",
+			        "EAGLE SERV MARITIMOS",
+			        "AMANDIO ROCHA"
+			    },
+			    "DEMAIS",
+			    OperadorPrincipal
+			)
+		lineageTag: 67d8c213-724e-445e-b18d-b5bedb8f7934
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_Operador = calculated
+		mode: import
+		source =
+				
+				DISTINCT (
+				    UNION (
+				        VALUES ( 'aws_bussola_comercial_mar'[operador] ),
+				        VALUES ( 'aws_movimentacao_portuaria'[operador] ),
+				        VALUES ( 'Fleet_Position_COR'[Tug Operator])
+				    )
+				)
+
+	annotation PBI_Id = b5dd324a44c34e97882b39ea51094675
+

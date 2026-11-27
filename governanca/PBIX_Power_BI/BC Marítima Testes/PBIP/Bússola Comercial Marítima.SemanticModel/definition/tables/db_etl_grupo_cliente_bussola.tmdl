@@ -1,0 +1,113 @@
+table db_etl_grupo_cliente_bussola
+	lineageTag: c56e83a4-390c-43cd-9d7f-c5fe02787c6b
+
+	column ORIGEM_ID
+		dataType: double
+		formatString: 0
+		lineageTag: 6eb3514c-486c-4a00-b8dc-1f2ee5178f68
+		summarizeBy: none
+		sourceColumn: ORIGEM_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column GRUPO_ACORDO_CONDICAO
+		dataType: string
+		lineageTag: d72e6838-457f-4c07-8eb8-1f793ce7fad3
+		summarizeBy: none
+		sourceColumn: GRUPO_ACORDO_CONDICAO
+
+		annotation SummarizationSetBy = Automatic
+
+	column GRUPO_TOMADOR_CONDICAO
+		dataType: string
+		lineageTag: 3039ea94-f6e9-4d29-bc85-7a761d9f5860
+		summarizeBy: none
+		sourceColumn: GRUPO_TOMADOR_CONDICAO
+
+		annotation SummarizationSetBy = Automatic
+
+	column GRUPO_PAGADOR_CONDICAO
+		dataType: string
+		lineageTag: 35e964ca-7a43-48d6-a68a-70c8039840e1
+		summarizeBy: none
+		sourceColumn: GRUPO_PAGADOR_CONDICAO
+
+		annotation SummarizationSetBy = Automatic
+
+	column GRUPO_CLIENTE_CONDICAO
+		dataType: string
+		lineageTag: e4402d55-76ed-48f4-9f22-76aa05f18f5f
+		summarizeBy: none
+		sourceColumn: GRUPO_CLIENTE_CONDICAO
+
+		annotation SummarizationSetBy = Automatic
+
+	column GRUPO_CLIENTE =
+			// Peagdos dados da bussola 'bussola e movport' e com a agencia da movport
+			// Guardamos os valores em variáveis para a linha atual
+			VAR vCliente = 'db_etl_grupo_cliente_bussola'[GRUPO_CLIENTE_CONDICAO]
+			VAR vPagador = 'db_etl_grupo_cliente_bussola'[GRUPO_PAGADOR_CONDICAO]
+			VAR vAgencia = LOOKUPVALUE('Dim_Agencia_Movport'[AGENCIA], 'Dim_Agencia_Movport'[ORIGEM_ID], 'db_etl_grupo_cliente_bussola'[ORIGEM_ID])
+			
+			// Fazemos o teste lógico à prova de falhas
+			RETURN
+			IF(vCliente <> BLANK() && vCliente <> "", vCliente,
+			    IF(vPagador <> BLANK() && vPagador <> "", vPagador,
+			        vAgencia
+			    )
+			)
+		lineageTag: 972d6a00-409b-43e3-bc55-bdef7c08c046
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column GRUPO_PAGADOR_TRATADO = ```
+			
+			VAR vPagador = 'db_etl_grupo_cliente_bussola'[GRUPO_PAGADOR_CONDICAO]
+			VAR vAgencia = LOOKUPVALUE('Dim_Agencia_Movport'[AGENCIA], 'Dim_Agencia_Movport'[ORIGEM_ID], 'db_etl_grupo_cliente_bussola'[ORIGEM_ID])
+			
+			RETURN
+			IF(
+			    vPagador <> BLANK() && vPagador <> "", 
+			    vPagador, 
+			    vAgencia
+			)
+			```
+		lineageTag: 7a0dc55b-a9a5-48ec-b985-1f086991c0f7
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column GRUPO_TOMADOR_TRATADO = ```
+			
+			VAR vTomador = 'db_etl_grupo_cliente_bussola'[GRUPO_TOMADOR_CONDICAO]
+			VAR vAgencia = LOOKUPVALUE('Dim_Agencia_Movport'[AGENCIA], 'Dim_Agencia_Movport'[ORIGEM_ID], 'db_etl_grupo_cliente_bussola'[ORIGEM_ID])
+			
+			RETURN
+			IF(
+			    vTomador <> BLANK() && vTomador <> "", 
+			    vTomador, 
+			    vAgencia
+			)
+			```
+		lineageTag: 96d418b7-c387-462b-a475-8be43e0628e6
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition db_etl_grupo_cliente_bussola = m
+		mode: import
+		source =
+				let
+				    Fonte = PowerPlatform.Dataflows(null),
+				    Workspaces = Fonte{[Id="Workspaces"]}[Data],
+				    #"8c5cc8ba-ed75-4d39-9606-af9ead89ca36" = Workspaces{[workspaceId="8c5cc8ba-ed75-4d39-9606-af9ead89ca36"]}[Data],
+				    #"1909dec2-74a4-4b3a-ae74-a02146aa5ddc" = #"8c5cc8ba-ed75-4d39-9606-af9ead89ca36"{[dataflowId="1909dec2-74a4-4b3a-ae74-a02146aa5ddc"]}[Data],
+				    db_etl_grupo_cliente_bussola_ = #"1909dec2-74a4-4b3a-ae74-a02146aa5ddc"{[entity="db_etl_grupo_cliente_bussola",version=""]}[Data]
+				in
+				    db_etl_grupo_cliente_bussola_
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

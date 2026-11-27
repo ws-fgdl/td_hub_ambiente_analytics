@@ -1,0 +1,25 @@
+table Dim_Divisao
+	lineageTag: f0aefd31-92af-4bd2-8b8a-494225324e72
+
+	column divisao
+		lineageTag: 2d30039e-a913-44ea-a328-01837cc108d6
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: aws_bussola_comercial_mar[divisao]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_Divisao = calculated
+		mode: import
+		source =
+				
+				DISTINCT (
+				    UNION (
+				        VALUES(aws_bussola_comercial_mar[divisao]),
+				        VALUES(aws_movimentacao_portuaria[div_comercial]),
+				        VALUES(aws_bussola_comercial_faina[divisao])
+				    )
+				)
+
+	annotation PBI_Id = fbb69479c21f45d0bca565b17004ff15
+

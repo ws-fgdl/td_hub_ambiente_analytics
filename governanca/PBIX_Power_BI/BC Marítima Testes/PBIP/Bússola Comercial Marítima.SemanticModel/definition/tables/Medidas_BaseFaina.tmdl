@@ -1,0 +1,214 @@
+table Medidas_BaseFaina
+	lineageTag: f9c9bf45-6dc1-4106-b1a8-28ebae96f018
+
+	measure Escala_YTD_BseFaina =
+			
+			CALCULATE(
+			    [Escala_BaseFaina],
+			    DATESYTD('Dim_calendario'[data])
+			)
+			// VAR DataMax = MAX('Dim_calendario'[data])
+			// VAR AnoAtual = YEAR(DataMax)
+			
+			// RETURN
+			// CALCULATE(
+			//     [Escala_BaseFaina],
+			//     FILTER(
+			//         ALL('Dim_calendario'),
+			//         'Dim_calendario'[ano_calendario] = AnoAtual &&
+			//         'Dim_calendario'[data] <= DataMax
+			//     )
+			// )
+		formatString: 0
+		lineageTag: 8f4f8efd-2c0c-46fe-8e95-2a2fcfd57069
+
+	measure Faturamento_YTD_BaseFaina =
+			
+			VAR DataMax = MAX('Dim_calendario'[data])
+			VAR AnoAtual = YEAR(DataMax)
+			
+			RETURN
+			CALCULATE(
+			    [Flag_Faturamento_BaseFaina],
+			    FILTER(
+			        ALL('Dim_calendario'),
+			        'Dim_calendario'[ano_calendario] = AnoAtual &&
+			        'Dim_calendario'[data] <= DataMax
+			    )
+			)
+		lineageTag: 5da5c1d7-6762-4e60-885d-03142a01b684
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure PrecoMedio_YTD_BaseFaina =
+			
+			CALCULATE(
+			    [PrecoMedio_BaseFaina],
+			    DATESYTD('Dim_calendario'[data])
+			)
+			
+			// VAR DataMax = MAX('Dim_calendario'[data])
+			// VAR AnoAtual = YEAR(DataMax)
+			
+			// RETURN
+			// CALCULATE(
+			//     [PrecoMedio_ComFlagFaturamento],
+			//     FILTER(
+			//         ALL('Dim_calendario'),
+			//         'Dim_calendario'[ano_calendario] = AnoAtual &&
+			//         'Dim_calendario'[data] <= DataMax
+			//     )
+			// )
+		lineageTag: 990ecd64-d98c-4835-ae2e-e575343a31bb
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure ValorContrato_YTD_BaseFaina =
+			
+			DIVIDE(
+			    [Faturamento_YTD_BaseFaina],
+			    [Escala_YTD_BseFaina],
+			    0
+			)
+		lineageTag: fe9ca128-43cc-4453-baee-f7a2630882c7
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure VolumeManobra_YTD_BaseFaina =
+			
+			CALCULATE(
+			    [VolumeManobra_Basefaina],
+			    DATESYTD('Dim_calendario'[data])
+			)
+		formatString: 0
+		lineageTag: 18be3b64-9020-4564-89cd-1b5f6cc65f09
+
+	measure PrecoMedio_BaseFaina =
+			
+			DIVIDE(
+			    Flag_faturamento[Flag_Faturamento_BaseFaina],
+			    [VolumeManobra_Basefaina],
+			    0
+			)
+		lineageTag: c0321625-7246-46ee-a271-fe941e851493
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure VolumeManobra_Basefaina = SUM(aws_bussola_comercial_faina[qtde_reboc])
+		formatString: 0
+		lineageTag: e888f751-5383-46b5-aa71-35a102427cf4
+
+	measure %Ocorrencias_BaseFainas =
+			
+			DIVIDE(
+			    COUNTROWS(
+			        aws_bussola_comercial_faina
+			    ),
+			    CALCULATE(
+			        COUNTROWS(
+			            aws_bussola_comercial_faina
+			        ),
+			        ALL(
+			            Dim_Faina)
+			        )
+			    )
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 306810c8-0b1f-4289-80fa-7180fbd2bdd8
+
+	measure FaturamentoBRL_BaseFaina =
+			
+			SUM(
+			    aws_bussola_comercial_faina[valor_real]
+			    )
+		lineageTag: 5d6214aa-e3de-46cf-bbf8-9f913b416e2a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure FaturamentoUSD_BaseFaina =
+			
+			SUM(
+			    aws_bussola_comercial_faina[valor_fmr]
+			    )
+		lineageTag: 24944097-424b-41e9-9e20-39ddf4050b46
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Escala_BaseFaina =
+			
+			CALCULATE(
+			    DISTINCTCOUNT(aws_bussola_comercial_faina[evento]),
+			    Dim_Servico[Servico_Padronizado] = "MANOBRA DE ATRACACAO"
+			)
+		formatString: 0
+		lineageTag: 7f84e601-0177-4570-a0ac-90de609f2423
+
+	measure FaturamentoUSD_Ref_BaseFaina = SUM(aws_bussola_comercial_faina[val_tab_ref])
+		lineageTag: 4b6380e7-28f5-44cb-a5f5-f4d151d0ffc0
+
+		formatStringDefinition = ```
+				VAR Valor = SELECTEDMEASURE()
+				VAR ValorAbs = ABS(Valor) -- Analisamos o "tamanho" do número independente do sinal
+				VAR Selecao = SELECTEDVALUE(Flag_faturamento[Faturamento])
+				VAR Prefixo = IF(Selecao = "R$", "R$ ", "$ ")
+				
+				RETURN
+				    SWITCH( TRUE(),
+				        ValorAbs >= 1000000000, 
+				            Prefixo & "#,##0,,,.0 ""B"";-" & Prefixo & "#,##0,,,.0 ""B""",
+				        
+				        ValorAbs >= 1000000,    
+				            Prefixo & "#,##0,,.0 ""M"";-" & Prefixo & "#,##0,,.0 ""M""",
+				        
+				        ValorAbs >= 1000,       
+				            Prefixo & "#,##0,.0 ""K"";-" & Prefixo & "#,##0,.0 ""K""",
+				        
+				        -- Para valores entre -999 e 999
+				        Prefixo & "#,##0;-" & Prefixo & "#,##0"
+				    )
+				```
+
+	measure Avg_Tugs_YTD =
+			
+			DIVIDE(
+			    [VolumeManobra_YTD_BaseFaina],
+			    [Escala_YTD_BseFaina],
+			    0
+			)
+		lineageTag: 332f0843-9f14-4ef0-a001-cc957b2c209d
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure FaturamentoUSD_Sort_MSC_BaseBC = ```
+			
+			VAR FaturamentoReal = [Faturamento_YTD_BaseFaina] // Use a sua medida de Faturamento aqui
+			VAR ClienteAtual = SELECTEDVALUE(Dim_Cliente[Grupo Econômico]) // Coloque a coluna de nome do cliente aqui
+			VAR EhMSC = CONTAINSSTRING(UPPER(ClienteAtual), "MSC")
+			
+			RETURN
+			IF(
+			    EhMSC, 
+			    FaturamentoReal + 999999999999, // Adiciona trilhões para garantir o 1º lugar
+			    FaturamentoReal // Para os outros, mantém o valor normal
+			)
+			```
+		lineageTag: f1095dd5-2330-4891-9449-64521337cae7
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure FaturamentoPTAX_BaseFaina = SUM(aws_bussola_comercial_faina[valor_ptax])
+		lineageTag: 4fcd8b78-2476-49d3-b293-9a3a908ce7d0
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition Medidas_BaseFaina = m
+		mode: import
+		source =
+				let
+				    Fonte = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [#"Coluna 1" = _t]),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(Fonte,{{"Coluna 1", type text}}),
+				    #"Colunas Removidas" = Table.RemoveColumns(#"Tipo Alterado",{"Coluna 1"})
+				in
+				    #"Colunas Removidas"
+
+	annotation PBI_ResultType = Table
+

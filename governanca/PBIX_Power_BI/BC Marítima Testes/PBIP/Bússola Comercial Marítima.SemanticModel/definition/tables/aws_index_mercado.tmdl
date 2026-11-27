@@ -1,0 +1,72 @@
+table aws_index_mercado
+	lineageTag: a584db13-bd59-4893-bc27-4d99d5a2b67b
+
+	measure IPCA_Acumulado = ```
+			
+			TOTALYTD(
+			    [IPCA_Mensal], 
+			    Dim_calendario[data]
+			)
+			
+			```
+		lineageTag: ba2101cb-2e03-4c28-baea-e68aa82a4480
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure IPCA_Mensal = ```
+			
+			CALCULATE(
+			    SUM(aws_index_mercado[valor]),
+			    aws_index_mercado[tipo] = "IPCA"
+			)
+			
+			```
+		lineageTag: b0def0f4-4e4e-4e9b-84e2-ece99449d743
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column data
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: db1c3eab-aac2-425a-b01e-ce4888f736e2
+		summarizeBy: none
+		sourceColumn: data
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column tipo
+		dataType: string
+		lineageTag: 6e0b7774-7939-42c8-a202-bbad41f77b33
+		summarizeBy: none
+		sourceColumn: tipo
+
+		annotation SummarizationSetBy = Automatic
+
+	column valor
+		dataType: double
+		lineageTag: a59fa046-d880-4f05-b1ac-581760419048
+		summarizeBy: sum
+		sourceColumn: valor
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition aws_index_mercado = m
+		mode: import
+		source =
+				let
+				    Fonte = PowerPlatform.Dataflows(null),
+				    Workspaces = Fonte{[Id="Workspaces"]}[Data],
+				    #"8c5cc8ba-ed75-4d39-9606-af9ead89ca36" = Workspaces{[workspaceId="8c5cc8ba-ed75-4d39-9606-af9ead89ca36"]}[Data],
+				    #"a130ee2d-a61d-4324-a599-6b87f1193a9f" = #"8c5cc8ba-ed75-4d39-9606-af9ead89ca36"{[dataflowId="a130ee2d-a61d-4324-a599-6b87f1193a9f"]}[Data],
+				    fct_ipca_igpm_inpc_dolar = #"a130ee2d-a61d-4324-a599-6b87f1193a9f"{[entity="fct_ipca_igpm_inpc_dolar",version=""]}[Data]
+				in
+				    fct_ipca_igpm_inpc_dolar
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,146 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "607167ee8d95dfdfc263",
+  "position": {
+    "x": 13.75,
+    "y": 1427.5,
+    "z": 3000,
+    "height": 295,
+    "width": 1867.5,
+    "tabOrder": 3000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "aws_movimentacao_portuaria"
+                    }
+                  },
+                  "Property": "origem_id"
+                }
+              },
+              "queryRef": "aws_movimentacao_portuaria.origem_id",
+              "nativeQueryRef": "origem_id"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "aws_movimentacao_portuaria"
+                    }
+                  },
+                  "Property": "agencia"
+                }
+              },
+              "queryRef": "aws_movimentacao_portuaria.agencia",
+              "nativeQueryRef": "agencia"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "aws_movimentacao_portuaria"
+                    }
+                  },
+                  "Property": "navio"
+                }
+              },
+              "queryRef": "aws_movimentacao_portuaria.navio",
+              "nativeQueryRef": "navio"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "aws_movimentacao_portuaria"
+                    }
+                  },
+                  "Property": "competencia"
+                }
+              },
+              "queryRef": "aws_movimentacao_portuaria.competencia",
+              "nativeQueryRef": "competencia"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "aws_movimentacao_portuaria"
+                    }
+                  },
+                  "Property": "tomador"
+                }
+              },
+              "queryRef": "aws_movimentacao_portuaria.tomador",
+              "nativeQueryRef": "tomador"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "9778151a577677928180",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "aws_movimentacao_portuaria"
+              }
+            },
+            "Property": "origem_id"
+          }
+        },
+        "type": "Advanced",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "a",
+              "Entity": "aws_movimentacao_portuaria",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Comparison": {
+                  "ComparisonKind": 0,
+                  "Left": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Source": "a"
+                        }
+                      },
+                      "Property": "origem_id"
+                    }
+                  },
+                  "Right": {
+                    "Literal": {
+                      "Value": "626337L"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

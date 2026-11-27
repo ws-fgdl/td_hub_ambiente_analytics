@@ -1,0 +1,2431 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmark/2.1.0/schema.json",
+  "displayName": "Service Duration (without Mob)",
+  "name": "7b8f0ee26cceacfca5ed",
+  "options": {
+    "targetVisualNames": [
+      "8b34ae6703ae0150812e",
+      "2da307fe640d15021607",
+      "2be1600b835f079dd227",
+      "6f98bd8bcbe037a66fca",
+      "9e0bbcdb6a06fef0c55d",
+      "b4d325e152a444f5c5cd",
+      "4052e37375c1309ec67f",
+      "b039b3e90c04324244ee",
+      "8b61c8af85b63c254c04",
+      "e7c1357999efe1cc1526",
+      "8b52584de0ab204278c4",
+      "2a263e382e962a8f3445",
+      "04e3b2a0a6ad1dda9552",
+      "f1f728dc12d0364b299e",
+      "94f87060dc098fe88780"
+    ]
+  },
+  "explorationState": {
+    "version": "1.3",
+    "activeSection": "bec947048d49f276651e",
+    "sections": {
+      "bec947048d49f276651e": {
+        "filters": {
+          "byExpr": [
+            {
+              "name": "37fc1e3e8844713a5a90",
+              "type": "Categorical",
+              "expression": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "aws_bussola_comercial_mar"
+                    }
+                  },
+                  "Property": "manobra_especial"
+                }
+              },
+              "howCreated": 1
+            },
+            {
+              "name": "b537ace0a9358c25375b",
+              "type": "Categorical",
+              "filter": {
+                "Version": 2,
+                "From": [
+                  {
+                    "Name": "d",
+                    "Entity": "Dim_calendario",
+                    "Type": 0
+                  }
+                ],
+                "Where": [
+                  {
+                    "Condition": {
+                      "In": {
+                        "Expressions": [
+                          {
+                            "Column": {
+                              "Expression": {
+                                "SourceRef": {
+                                  "Source": "d"
+                                }
+                              },
+                              "Property": "eh_ate_mes_anterior"
+                            }
+                          }
+                        ],
+                        "Values": [
+                          [
+                            {
+                              "Literal": {
+                                "Value": "true"
+                              }
+                            }
+                          ]
+                        ]
+                      }
+                    }
+                  }
+                ]
+              },
+              "expression": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Dim_calendario"
+                    }
+                  },
+                  "Property": "eh_ate_mes_anterior"
+                }
+              },
+              "howCreated": 1
+            },
+            {
+              "name": "28673109f91d01e3fd3e",
+              "type": "Categorical",
+              "filter": {
+                "Version": 2,
+                "From": [
+                  {
+                    "Name": "d",
+                    "Entity": "Dim_Filial",
+                    "Type": 0
+                  }
+                ],
+                "Where": [
+                  {
+                    "Condition": {
+                      "Not": {
+                        "Expression": {
+                          "In": {
+                            "Expressions": [
+                              {
+                                "Column": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Source": "d"
+                                    }
+                                  },
+                                  "Property": "Filial_agrupado"
+                                }
+                              }
+                            ],
+                            "Values": [
+                              [
+                                {
+                                  "Literal": {
+                                    "Value": "'MATRIZ'"
+                                  }
+                                }
+                              ]
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              },
+              "expression": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Dim_Filial"
+                    }
+                  },
+                  "Property": "Filial_agrupado"
+                }
+              },
+              "howCreated": 1
+            },
+            {
+              "name": "037f35760cc26d226870",
+              "type": "Categorical",
+              "filter": {
+                "Version": 2,
+                "From": [
+                  {
+                    "Name": "d",
+                    "Entity": "Dim_Cliente",
+                    "Type": 0
+                  }
+                ],
+                "Where": [
+                  {
+                    "Condition": {
+                      "Not": {
+                        "Expression": {
+                          "In": {
+                            "Expressions": [
+                              {
+                                "Column": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Source": "d"
+                                    }
+                                  },
+                                  "Property": "Grupo Econômico"
+                                }
+                              }
+                            ],
+                            "Values": [
+                              [
+                                {
+                                  "Literal": {
+                                    "Value": "null"
+                                  }
+                                }
+                              ]
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              },
+              "expression": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Dim_Cliente"
+                    }
+                  },
+                  "Property": "Grupo Econômico"
+                }
+              },
+              "howCreated": 1
+            },
+            {
+              "name": "0627f1ecd90113eb60e8",
+              "type": "RelativeDate",
+              "filter": {
+                "Version": 2,
+                "From": [
+                  {
+                    "Name": "d",
+                    "Entity": "Dim_calendario",
+                    "Type": 0
+                  }
+                ],
+                "Where": [
+                  {
+                    "Condition": {
+                      "Between": {
+                        "Expression": {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Source": "d"
+                              }
+                            },
+                            "Property": "data"
+                          }
+                        },
+                        "LowerBound": {
+                          "DateSpan": {
+                            "Expression": {
+                              "DateAdd": {
+                                "Expression": {
+                                  "DateAdd": {
+                                    "Expression": {
+                                      "Now": {}
+                                    },
+                                    "Amount": 1,
+                                    "TimeUnit": 0
+                                  }
+                                },
+                                "Amount": -100,
+                                "TimeUnit": 3
+                              }
+                            },
+                            "TimeUnit": 0
+                          }
+                        },
+                        "UpperBound": {
+                          "DateSpan": {
+                            "Expression": {
+                              "Now": {}
+                            },
+                            "TimeUnit": 0
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              },
+              "expression": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Dim_calendario"
+                    }
+                  },
+                  "Property": "data"
+                }
+              },
+              "howCreated": 1
+            }
+          ]
+        },
+        "visualContainers": {
+          "13f09134184ca02c2ef2": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "0672e81cd08cb6946518",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Medidas_DRE"
+                        }
+                      },
+                      "Property": "Soma_Custo_Ebitda"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "cardVisual",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Medidas_DRE"
+                        }
+                      },
+                      "Property": "Soma_Custo_Ebitda"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "24b14c67601a77e91630": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "28fa86003c1a361026df": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "01260ef930cfcfeb12e6",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Medidas_DRE"
+                        }
+                      },
+                      "Property": "Margem_TempoSemDesloc_%"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "cardVisual",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Medidas_DRE"
+                        }
+                      },
+                      "Property": "Margem_TempoSemDesloc_%"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "399b533d5b23c8648d79": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "ba64676f3e395b03dd89",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Medidas_BaseBC."
+                        }
+                      },
+                      "Property": "PrecoMedio_BaseBC"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "cardVisual",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Medidas_BaseBC."
+                        }
+                      },
+                      "Property": "PrecoMedio_BaseBC"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "3d80cdee43d80ec187b9": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "e6b2dd7dec7a3df2253d",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "aws_bussola_comercial_mar"
+                        }
+                      },
+                      "Property": "categoria"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "00daa7f8cbb918cd3f69",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "db_rl_lineup_merc"
+                        }
+                      },
+                      "Property": "DSC_CATEG_INGLES"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "d5952433ece7d1350454",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Medidas_DRE"
+                        }
+                      },
+                      "Property": "Margem_TempoSemDesloc_%"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "eda7018ebc6f2ae4169f",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Medidas_BaseBC."
+                        }
+                      },
+                      "Property": "FaturamentoUSD_BaseBC"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "pivotTable",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Medidas_BaseBC."
+                        }
+                      },
+                      "Property": "FaturamentoUSD_BaseBC"
+                    }
+                  }
+                }
+              ],
+              "activeProjections": {
+                "Rows": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "db_rl_lineup_merc"
+                        }
+                      },
+                      "Property": "DSC_CATEG_INGLES"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "4e1d18b213a537830a29": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "041d0d076c5949ab08e7",
+                  "type": "Advanced",
+                  "filter": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "m",
+                        "Entity": "Medidas_BaseBC.",
+                        "Type": 0
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "Not": {
+                            "Expression": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Measure": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Source": "m"
+                                      }
+                                    },
+                                    "Property": "PrecoMedio_BaseBC"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "null"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Medidas_BaseBC."
+                        }
+                      },
+                      "Property": "PrecoMedio_BaseBC"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "f96bbbb12464d454acc0",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Dim_calendario"
+                        }
+                      },
+                      "Property": "ano_calendario"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "112bca1f513b04b697a0",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Flag_faturamento"
+                        }
+                      },
+                      "Property": "Flag_Faturamento_BaseBC"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "8c83975490ee5994da27",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Medidas_DRE"
+                        }
+                      },
+                      "Property": "Margem_TempoSemDesloc_%"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "lineStackedColumnComboChart",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 1,
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Dim_calendario"
+                        }
+                      },
+                      "Property": "ano_calendario"
+                    }
+                  }
+                }
+              ],
+              "activeProjections": {
+                "Category": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Dim_calendario"
+                        }
+                      },
+                      "Property": "ano_calendario"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "4e899f743be418a898a6": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "31fc5dd26edda781c2c4",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Medidas_TempoDeServico"
+                        }
+                      },
+                      "Property": "TempoMedioServico_PorRebocador_ComDeslocamento_Formatada_SemArredondamento_BaseBC"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "9f8fc108b050bbd044e2",
+                  "type": "Advanced",
+                  "filter": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "a",
+                        "Entity": "aws_bussola_comercial_mar",
+                        "Type": 0
+                      },
+                      {
+                        "Name": "m",
+                        "Entity": "Medidas_BaseBC.",
+                        "Type": 0
+                      },
+                      {
+                        "Name": "m1",
+                        "Entity": "Medidas_BaseBC.",
+                        "Type": 0
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "Not": {
+                            "Expression": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Measure": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Source": "m1"
+                                      }
+                                    },
+                                    "Property": "PrecoMedio_BaseBC"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "null"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Medidas_BaseBC."
+                        }
+                      },
+                      "Property": "PrecoMedio_BaseBC"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "bbee53a98eea8da78a70",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Medidas_DRE"
+                        }
+                      },
+                      "Property": "Preco_Liquido_Volume"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "34f1b53b3642e31e987a",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "aws_dre_reb"
+                        }
+                      },
+                      "Property": "Rateio_Custo_VolumeFixo_GrupoEcon"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "1bddd77021a4ddd30506",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "aws_dre_reb"
+                        }
+                      },
+                      "Property": "Resultado_View_VolumeFixo_GrupoEcono"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "f7d5798572e8354c1ec3",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "aws_dre_reb"
+                        }
+                      },
+                      "Property": "Status_Resultado_VolFixo_vs_MediaTotal"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "df80317b798cd3260ed0",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "aws_dre_reb"
+                        }
+                      },
+                      "Property": "Margem_VolumeFixo_GrupoEcon"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "2c578c885e7b958e3200",
+                  "type": "Advanced",
+                  "expression": {
+                    "Aggregation": {
+                      "Expression": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "aws_bussola_comercial_mar"
+                            }
+                          },
+                          "Property": "valor_faturado_usd"
+                        }
+                      },
+                      "Function": 0
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "6724a329058f14cf5b71",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Medidas_BaseBC."
+                        }
+                      },
+                      "Property": "VolumeManobra_BaseBC"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "02ec225179fdd7c617c1",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "aws_bussola_comercial_mar"
+                        }
+                      },
+                      "Property": "Cod_SAP_PossuiNaBussola__"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "b0e8e3a3704b3ad5a955",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Dim_Cliente"
+                        }
+                      },
+                      "Property": "Grupo Econômico"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "c50eb78c814076628cef",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Medidas_TempoDeServico"
+                        }
+                      },
+                      "Property": "TempoMedioServico_PorRebocador_SemDeslocamento_Formatada_SemArredondamento_BaseBC"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "a1e529b57d66dd83683c",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Medidas_DRE"
+                        }
+                      },
+                      "Property": "Custo_Medio_TempoSemDesloc"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "99d65eedb8a822ee285c",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Medidas_DRE"
+                        }
+                      },
+                      "Property": "Resultado_Por_Manobra_TempoSemDesloc"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "014d0b6b20fb50d82f04",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Medidas_DRE"
+                        }
+                      },
+                      "Property": "Sinal_Resultado_SemDesloc"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "fa7af3aba5d5c0c6feee",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Medidas_DRE"
+                        }
+                      },
+                      "Property": "Margem_TempoSemDesloc_%"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "c881a39be1c221d1c8ab",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Flag_faturamento"
+                        }
+                      },
+                      "Property": "Flag_Faturamento_BaseBC"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "tableEx",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Flag_faturamento"
+                        }
+                      },
+                      "Property": "Flag_Faturamento_BaseBC"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "63945955031fb9249bd3": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "6069ad6f3474d899af45",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Medidas_DRE"
+                        }
+                      },
+                      "Property": "Receita_Liquida"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "cardVisual",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Medidas_DRE"
+                        }
+                      },
+                      "Property": "Receita_Liquida"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "7c2fe167babf9f51b51e": {
+            "singleVisual": {
+              "visualType": "bookmarkNavigator",
+              "objects": {}
+            }
+          },
+          "d7ffb706051842775490": {
+            "singleVisual": {
+              "visualType": "image",
+              "objects": {}
+            }
+          },
+          "ea54e962eef70269d9de": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "e963ddfec7ec715a5f99",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Medidas_BaseBC."
+                        }
+                      },
+                      "Property": "PrecoMedio_BaseBC"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "b29f115b803ac52e9e30",
+                  "type": "Advanced",
+                  "filter": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "m",
+                        "Entity": "Medidas_BaseBC.",
+                        "Type": 0
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "Not": {
+                            "Expression": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Measure": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Source": "m"
+                                      }
+                                    },
+                                    "Property": "PrecoMedio_BaseBC"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "null"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Medidas_BaseBC."
+                        }
+                      },
+                      "Property": "PrecoMedio_BaseBC"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "71f89e90bd61b599ab4e",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Dim_Filial"
+                        }
+                      },
+                      "Property": "Filial_agrupado"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "1e5fda829c8183172475",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Flag_faturamento"
+                        }
+                      },
+                      "Property": "Flag_Faturamento_BaseBC"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "e74413a8b63c805e8e4a",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Medidas_DRE"
+                        }
+                      },
+                      "Property": "Margem_TempoSemDesloc_%"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "barChart",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Flag_faturamento"
+                        }
+                      },
+                      "Property": "Flag_Faturamento_BaseBC"
+                    }
+                  }
+                }
+              ],
+              "activeProjections": {
+                "Category": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Dim_Filial"
+                        }
+                      },
+                      "Property": "Filial_agrupado"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "ee93db4d36efc450e80c": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "fff792d84ec02b1fc9d2": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "f28e96f7b658d28e688a",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Medidas_BaseBC."
+                        }
+                      },
+                      "Property": "VolumeManobra_BaseBC"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "cardVisual",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Medidas_BaseBC."
+                        }
+                      },
+                      "Property": "VolumeManobra_BaseBC"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "8b34ae6703ae0150812e": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "ccf2028db717730cc218",
+                  "type": "Categorical",
+                  "filter": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "d",
+                        "Entity": "Dim_Linha_DRE",
+                        "Type": 0
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "Not": {
+                            "Expression": {
+                              "In": {
+                                "Expressions": [
+                                  {
+                                    "Column": {
+                                      "Expression": {
+                                        "SourceRef": {
+                                          "Source": "d"
+                                        }
+                                      },
+                                      "Property": "linha_dre_agrupada_eng"
+                                    }
+                                  }
+                                ],
+                                "Values": [
+                                  [
+                                    {
+                                      "Literal": {
+                                        "Value": "'Revenue'"
+                                      }
+                                    }
+                                  ]
+                                ]
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Dim_Linha_DRE"
+                        }
+                      },
+                      "Property": "linha_dre_agrupada_eng"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "general": [
+                    {
+                      "properties": {
+                        "filter": {
+                          "filter": {
+                            "Version": 2,
+                            "From": [
+                              {
+                                "Name": "d",
+                                "Entity": "Dim_Linha_DRE",
+                                "Type": 0
+                              }
+                            ],
+                            "Where": [
+                              {
+                                "Condition": {
+                                  "In": {
+                                    "Expressions": [
+                                      {
+                                        "Column": {
+                                          "Expression": {
+                                            "SourceRef": {
+                                              "Source": "d"
+                                            }
+                                          },
+                                          "Property": "linha_dre_agrupada_eng"
+                                        }
+                                      }
+                                    ],
+                                    "Values": [
+                                      [
+                                        {
+                                          "Literal": {
+                                            "Value": "'Operating Costs'"
+                                          }
+                                        }
+                                      ]
+                                    ]
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  ],
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Basic'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Dim_Linha_DRE"
+                        }
+                      },
+                      "Property": "linha_dre_agrupada_eng"
+                    }
+                  }
+                ]
+              },
+              "expansionStates": [
+                {
+                  "roles": [
+                    "Values"
+                  ],
+                  "levels": [
+                    {
+                      "queryRefs": [
+                        "Dim_Linha_DRE.linha_dre_agrupada_eng"
+                      ],
+                      "isCollapsed": true,
+                      "identityKeys": [
+                        {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Entity": "Dim_Linha_DRE"
+                              }
+                            },
+                            "Property": "linha_dre_agrupada_eng"
+                          }
+                        }
+                      ],
+                      "isPinned": true
+                    }
+                  ],
+                  "root": {
+                    "identityValues": [],
+                    "children": [
+                      {
+                        "identityValues": [
+                          {
+                            "Literal": {
+                              "Value": "'Operating Costs'"
+                            }
+                          }
+                        ],
+                        "isToggled": true
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          "2da307fe640d15021607": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "c5e71a0d83969bd4b302",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "db_rl_lineup_merc"
+                        }
+                      },
+                      "Property": "DSC_MERC_INGLES"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "db_rl_lineup_merc"
+                        }
+                      },
+                      "Property": "DSC_MERC_INGLES"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "2be1600b835f079dd227": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "e111a866e05c2277408b",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Dim_Filial"
+                        }
+                      },
+                      "Property": "Filial_agrupado"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "542e2ca21dc63b855e5b",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Medidas_BaseBC."
+                        }
+                      },
+                      "Property": "PrecoMedio_BaseBC"
+                    }
+                  },
+                  "howCreated": 1
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Dim_Filial"
+                        }
+                      },
+                      "Property": "Filial_agrupado"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "6f98bd8bcbe037a66fca": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "187bb22729a62dca9696",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "aws_bussola_comercial_mar"
+                        }
+                      },
+                      "Property": "manobra_especial"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "aws_bussola_comercial_mar"
+                        }
+                      },
+                      "Property": "manobra_especial"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "9e0bbcdb6a06fef0c55d": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "8a847570a54babe34150",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "db_rl_lineup_merc"
+                        }
+                      },
+                      "Property": "DSC_CATEG_INGLES"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "db_rl_lineup_merc"
+                        }
+                      },
+                      "Property": "DSC_CATEG_INGLES"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "b4d325e152a444f5c5cd": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "1768e6c3da5e2a970302",
+                  "type": "Categorical",
+                  "filter": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "a",
+                        "Entity": "aws_bussola_comercial_mar",
+                        "Type": 0
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "Not": {
+                            "Expression": {
+                              "In": {
+                                "Expressions": [
+                                  {
+                                    "Column": {
+                                      "Expression": {
+                                        "SourceRef": {
+                                          "Source": "a"
+                                        }
+                                      },
+                                      "Property": "faixa_dwt_2025"
+                                    }
+                                  }
+                                ],
+                                "Values": [
+                                  [
+                                    {
+                                      "Literal": {
+                                        "Value": "'Não Informado'"
+                                      }
+                                    }
+                                  ]
+                                ]
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "aws_bussola_comercial_mar"
+                        }
+                      },
+                      "Property": "faixa_dwt_2025"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "aws_bussola_comercial_mar"
+                        }
+                      },
+                      "Property": "faixa_dwt_2025"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "4052e37375c1309ec67f": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "ee264ff33a3ca051908c",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Dim_Faina"
+                        }
+                      },
+                      "Property": "Faina_ENG_Group"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "22708967f59f3f1018e1",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Dim_Faina"
+                        }
+                      },
+                      "Property": "Faina_ENG"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Dim_Faina"
+                        }
+                      },
+                      "Property": "Faina_ENG_Group"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "b039b3e90c04324244ee": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "72eaecf9b7392cacda0a",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Medidas_BaseBC."
+                        }
+                      },
+                      "Property": "PrecoMedio_BaseBC"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "04484f9d915320880e68",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "db_etl_grupo_cliente_bussola"
+                        }
+                      },
+                      "Property": "GRUPO_CLIENTE"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "db_etl_grupo_cliente_bussola"
+                        }
+                      },
+                      "Property": "GRUPO_CLIENTE"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "8b61c8af85b63c254c04": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "e7c1357999efe1cc1526": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "1f71e5006ad95c2813cc",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Dim_Divisao"
+                        }
+                      },
+                      "Property": "divisao"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "cf249e51cbec4d96981e",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Medidas_BaseBC."
+                        }
+                      },
+                      "Property": "PrecoMedio_BaseBC"
+                    }
+                  },
+                  "howCreated": 1
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Dim_Divisao"
+                        }
+                      },
+                      "Property": "divisao"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "8b52584de0ab204278c4": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "992cb4cac3d471dbf22a",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Dim_calendario"
+                        }
+                      },
+                      "Property": "data"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Between'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Dim_calendario"
+                        }
+                      },
+                      "Property": "data"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "2a263e382e962a8f3445": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "bf5532fce1a945b73214",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Medidas_BaseBC."
+                        }
+                      },
+                      "Property": "PrecoMedio_BaseBC"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "b88385df236c01abb466",
+                  "type": "Categorical",
+                  "filter": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "g",
+                        "Entity": "Grupo de cálculo",
+                        "Type": 0
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "Not": {
+                            "Expression": {
+                              "In": {
+                                "Expressions": [
+                                  {
+                                    "Column": {
+                                      "Expression": {
+                                        "SourceRef": {
+                                          "Source": "g"
+                                        }
+                                      },
+                                      "Property": "Coluna do grupo de cálculo"
+                                    }
+                                  }
+                                ],
+                                "Values": [
+                                  [
+                                    {
+                                      "Literal": {
+                                        "Value": "'Previous Year'"
+                                      }
+                                    }
+                                  ]
+                                ]
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Grupo de cálculo"
+                        }
+                      },
+                      "Property": "Coluna do grupo de cálculo"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "general": [
+                    {
+                      "properties": {
+                        "filter": {
+                          "filter": {
+                            "Version": 2,
+                            "From": [
+                              {
+                                "Name": "g",
+                                "Entity": "Grupo de cálculo",
+                                "Type": 0
+                              }
+                            ],
+                            "Where": [
+                              {
+                                "Condition": {
+                                  "In": {
+                                    "Expressions": [
+                                      {
+                                        "Column": {
+                                          "Expression": {
+                                            "SourceRef": {
+                                              "Source": "g"
+                                            }
+                                          },
+                                          "Property": "Coluna do grupo de cálculo"
+                                        }
+                                      }
+                                    ],
+                                    "Values": [
+                                      [
+                                        {
+                                          "Literal": {
+                                            "Value": "'All Periods'"
+                                          }
+                                        }
+                                      ]
+                                    ]
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  ],
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Basic'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ],
+                  "selection": [
+                    {
+                      "properties": {
+                        "strictSingleSelect": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "true"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Grupo de cálculo"
+                        }
+                      },
+                      "Property": "Coluna do grupo de cálculo"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "04e3b2a0a6ad1dda9552": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "cf249e51cbec4d96981e",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Medidas_BaseBC."
+                        }
+                      },
+                      "Property": "PrecoMedio_BaseBC"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "c9922b2e7aa67913b08d",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "aws_bussola_comercial_mar"
+                        }
+                      },
+                      "Property": "porto"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "aws_bussola_comercial_mar"
+                        }
+                      },
+                      "Property": "porto"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "f1f728dc12d0364b299e": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "72eaecf9b7392cacda0a",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Medidas_BaseBC."
+                        }
+                      },
+                      "Property": "PrecoMedio_BaseBC"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "c96e7c4059dfcceb1b40",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "db_etl_grupo_cliente_bussola"
+                        }
+                      },
+                      "Property": "GRUPO_PAGADOR_TRATADO"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "db_etl_grupo_cliente_bussola"
+                        }
+                      },
+                      "Property": "GRUPO_PAGADOR_TRATADO"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "94f87060dc098fe88780": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "72eaecf9b7392cacda0a",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Medidas_BaseBC."
+                        }
+                      },
+                      "Property": "PrecoMedio_BaseBC"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "565ac0b7d4f7841e2228",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "db_etl_grupo_cliente_bussola"
+                        }
+                      },
+                      "Property": "GRUPO_TOMADOR_TRATADO"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "db_etl_grupo_cliente_bussola"
+                        }
+                      },
+                      "Property": "GRUPO_TOMADOR_TRATADO"
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "objects": {
+      "merge": {
+        "outspacePane": [
+          {
+            "properties": {
+              "expanded": {
+                "expr": {
+                  "Literal": {
+                    "Value": "false"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,192 @@
+table Dim_Faina
+	lineageTag: 27f5a93d-2fa3-4eb7-ae79-b51a6bd1aac1
+
+	measure Cor_Faina_ENG = ```
+			
+			SWITCH(
+			    SELECTEDVALUE('Dim_Faina'[Faina_ENG]),
+			    
+			    // --- FAINAS PRINCIPAIS (Cores fortes do seu Tema) ---
+			    "Berthing", "#00205B",              // Azul Escuro
+			    "Unberthing", "#00B0F0",            // Azul Claro
+			    "Mooring", "#FFC000",               // Amarelo
+			    "Unmooring", "#7030A0",             // Roxo
+			    "Escort Tug", "#F4B183",            // Salmão
+			    "Docking", "#D24996",               // Rosa
+			    "Ocean Towing", "#C0504D",          // Vermelho
+			    
+			    // --- FAINAS SECUNDÁRIAS (Diferenciadas com tons suaves/pastéis) ---
+			    
+			    // Movimentações e Manobras (Tons de verde e azul suaves)
+			    "Berthing (Shifting)", "#88A5B5",   // Azul Metálico
+			    "Unberthing (Shifting)", "#A4C1D1", // Azul Gelo
+			    "Turning Maneuver", "#8EB39B",      // Verde Sálvia
+			    "Bridge Passage", "#B4C9B9",        // Verde Musgo Claro
+			    
+			    // Dismissals e Esperas (Tons quentes e terrosos suaves)
+			    "Bad Weather Dismissal", "#D9A098", // Rosé Queimado
+			    "Operacional Dismissal", "#C28F83", // Cobre Suave
+			    "Tug Dismissal Pilot", "#D9C2A3",   // Bege Escuro
+			    "Tug Dismissal WS", "#E6D4B8",      // Areia
+			    "Stand By", "#B8B89F",              // Oliva Claro
+			    
+			    // Assistências e Outros (Tons de roxo e marrom suaves)
+			    "Mob/Demob", "#A698B5",             // Lavanda Acinzentado
+			    "Special Assistance", "#B5A398",    // Marrom Rosado
+			    "Pulling Along the Quay", "#9E9E9E",// Cinza Escuro
+			    "Push Against The Quay", "#C2C2C2", // Cinza Claro
+			    
+			    // Cor padrão de segurança caso entre um nome novo
+			    "#000000"                           // Preto (Fácil de notar que faltou mapear)
+			)
+			```
+		lineageTag: d9fa3d92-5737-45af-8689-2540fb8b48fe
+
+	column faina
+		lineageTag: 51928822-ded4-4aba-ab9b-5b0125f24275
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: aws_bussola_comercial_faina[faina]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Faina_Padronizada =
+			
+			VAR FainaAtual = 'Dim_Faina'[faina]
+			RETURN
+			SWITCH (
+			    TRUE(),
+			    ISBLANK(FainaAtual) || FainaAtual = "", BLANK(),
+			    FainaAtual IN {
+			        "Acompanhamento", "Acompanhamento com Cabo Passad", "Acompanhamento sem Cabo Passado",
+			        "Escoteiro", "Escort Tug", "Escoteiro Maior 5 Milhas"
+			    }, "Escort Tug",
+			    FainaAtual IN {
+			        "Aguardando Ordens", "Disposicao", "Hora de Espera H. Excedente"
+			    }, "Aguardando Ordens",
+			    FainaAtual IN {
+			        "Desatracacao de Docagem", "Docagem", "Entrada Dique", "Saída Dique"
+			    }, "Docagem",
+			    FainaAtual IN {
+			        "Afretamento por Manobra", "Embarcacao", "Embarcacao com FIFI"
+			    }, "Afretamento por Tempo",
+			    FainaAtual IN {
+			        "Fundeio", "Giro", "Manobra de Giro", "Movimento ao Largo"
+			    }, "Giro",
+			    FainaAtual IN {
+			        "DEMOB", "MOB", "Mob/Demob"
+			    }, "Mob/Demob",
+			    FainaAtual IN {
+			        "Manobra com Passagem Ponte", "Passagem de Ponte"
+			    }, "Passagem de Ponte",
+			    FainaAtual IN {
+			        "Empurrar no Costado", "Seguranca"
+			    }, "Empurrar no Costado",
+			    FainaAtual IN {
+			        "Assistencia Especial", "MUDANCA FUNDEADOURO"
+			    }, "Assistencia Especial",
+			    FainaAtual
+			)
+		lineageTag: b5e38f8e-21e1-4295-b777-a6b4be0c128a
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Faina_ENG =
+			
+			VAR FainaPadronizada = 'Dim_Faina'[Faina_Padronizada]
+			RETURN
+			SWITCH (
+			    TRUE(),
+			    ISBLANK(FainaPadronizada) || FainaPadronizada = "", BLANK(),
+			    FainaPadronizada = "Aguardando Ordens", "Waiting Time",
+			    FainaPadronizada = "Docagem", "Docking",
+			    FainaPadronizada = "Escort Tug", "Escort Tug",
+			    FainaPadronizada = "Giro", "Turning Maneuver",
+			    FainaPadronizada = "Mob/Demob", "Mob/Demob",
+			    FainaPadronizada = "Passagem de Ponte", "Bridge Passage",
+			    FainaPadronizada = "Empurrar no Costado", "Push Against The Quay",
+			    FainaPadronizada = "Assistencia Especial", "Special Assistance",
+			    FainaPadronizada = "Afretamento por Tempo", "Time Charter",
+			    FainaPadronizada = "Afretamento a Casco Nu", "Bare Boat Charter",
+			    FainaPadronizada = "Apoio Sinalização Náutica", "Nautical Signaling Support",
+			    FainaPadronizada = "Atracacao", "Berthing",
+			    FainaPadronizada = "Auxilio na Desamarracao", "Unmooring",
+			    FainaPadronizada = "Combate a Incendio", "Fire Fighting Assistance",
+			    FainaPadronizada = "Desatracacao", "Unberthing",
+			    FainaPadronizada = "Desencalhe de Navios", "Refloating Assistance",
+			    FainaPadronizada = "Mau tempo - Desistencia", "Bad Weather Dismissal",
+			    FainaPadronizada = "Mudanca Atracacao", "Berthing (Shifting)",
+			    FainaPadronizada = "Mudanca Desatracacao", "Unberthing (Shifting)",
+			    FainaPadronizada = "Operacional - Desistencia", "Operacional Dismissal",
+			    FainaPadronizada = "Puxada ao Longo do Cais", "Pulling Along the Quay",
+			    FainaPadronizada = "Rebocador Dispensado Pratico/Terminal", "Tug Dismissal Pilot",
+			    FainaPadronizada = "Rebocador Dispensado WS", "Tug Dismissal WS",
+			    FainaPadronizada = "Reboque", "Ocean Towing",
+			    FainaPadronizada = "Servico e Dotacao de Tripulacao", "Crewing",
+			    FainaPadronizada = "Stand By", "Stand By",
+			    FainaPadronizada = "Teste de Guincho", "Winch Test",
+			    FainaPadronizada IN { "Amarracao", "Auxilio na Amarracao" }, "Mooring",
+			    FainaPadronizada = "Rebocador Dispensado Pratico/Terminal/Concorrente", "Tug Dismissal Pilot",
+			    FainaPadronizada
+			)
+		lineageTag: 85baa2c4-6efa-4110-aae7-43db80237535
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Faina_ENG_Group =
+			
+			VAR FainaPadronizada = 'Dim_Faina'[Faina_Padronizada]
+			RETURN
+			SWITCH (
+			    TRUE(),
+			    ISBLANK(FainaPadronizada) || FainaPadronizada = "", BLANK(),
+			    FainaPadronizada = "Aguardando Ordens", "Waiting Time",
+			    FainaPadronizada = "Docagem", "Docking",
+			    FainaPadronizada = "Escort Tug", "Escort Tug",
+			    FainaPadronizada = "Giro", "Turning Maneuver",
+			    FainaPadronizada = "Mob/Demob", "Mob/Demob",
+			    FainaPadronizada = "Passagem de Ponte", "Bridge Passage",
+			    FainaPadronizada = "Empurrar no Costado", "Push Against The Quay",
+			    FainaPadronizada = "Assistencia Especial", "Special Assistance",
+			    FainaPadronizada = "Afretamento por Tempo", "Time Charter",
+			    FainaPadronizada = "Afretamento a Casco Nu", "Bare Boat Charter",
+			    FainaPadronizada = "Apoio Sinalização Náutica", "Nautical Signaling Support",
+			    FainaPadronizada = "Atracacao", "In/Out",
+			    FainaPadronizada = "Auxilio na Desamarracao", "Unmooring",
+			    FainaPadronizada = "Combate a Incendio", "Fire Fighting Assistance",
+			    FainaPadronizada = "Desatracacao", "In/Out",
+			    FainaPadronizada = "Desencalhe de Navios", "Refloating Assistance",
+			    FainaPadronizada = "Mau tempo - Desistencia", "Dismissal",
+			    FainaPadronizada = "Mudanca Atracacao", "Shifting",
+			    FainaPadronizada = "Mudanca Desatracacao", "Shifting",
+			    FainaPadronizada = "Operacional - Desistencia", "Dismissal",
+			    FainaPadronizada = "Puxada ao Longo do Cais", "Pulling Along the Quay",
+			    FainaPadronizada = "Rebocador Dispensado Pratico/Terminal", "Dismissal",
+			    FainaPadronizada = "Rebocador Dispensado WS", "Tug Dismissal WS",
+			    FainaPadronizada = "Reboque", "Ocean Towing",
+			    FainaPadronizada = "Servico e Dotacao de Tripulacao", "Crewing",
+			    FainaPadronizada = "Stand By", "Stand By",
+			    FainaPadronizada = "Teste de Guincho", "Winch Test",
+			    FainaPadronizada IN { "Amarracao", "Auxilio na Amarracao" }, "Mooring",
+			    FainaPadronizada = "Rebocador Dispensado Pratico/Terminal/Concorrente", "Dismissal",
+			    FainaPadronizada
+			)
+		lineageTag: b2b63d31-27f3-4a68-a350-7aec80907ec7
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_Faina = calculated
+		mode: import
+		source = ```
+				
+				DISTINCT (
+				    VALUES(aws_bussola_comercial_faina[faina])
+				)
+				
+				```
+
+	annotation PBI_Id = 4107f30715cd4d57b29141b703bfe3a4
+

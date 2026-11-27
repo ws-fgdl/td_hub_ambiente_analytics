@@ -1,0 +1,61 @@
+table 'Grupo de cálculo'
+	lineageTag: 43e56731-c80d-4c66-b29b-198ede044362
+
+	calculationGroup
+
+		calculationItem 'Last 12 Months' =
+				
+				VAR DataMax = CALCULATE(MAX(Dim_calendario[data]), ALLSELECTED(Dim_calendario))
+				RETURN
+				CALCULATE(
+				    SELECTEDMEASURE(),
+				    KEEPFILTERS( DATESINPERIOD(Dim_calendario[data], DataMax, -12, MONTH) )
+				)
+
+		calculationItem 'Last 24 Months' =
+				
+				VAR DataMax = CALCULATE(MAX(Dim_calendario[data]), ALLSELECTED(Dim_calendario))
+				RETURN
+				CALCULATE(
+				    SELECTEDMEASURE(),
+				    KEEPFILTERS( DATESINPERIOD(Dim_calendario[data], DataMax, -24, MONTH) )
+				)
+
+		calculationItem 'Current Year' =
+				
+				VAR AnoMax = CALCULATE(MAX(Dim_calendario[ano_calendario]), ALLSELECTED(Dim_calendario))
+				RETURN
+				CALCULATE(
+				    SELECTEDMEASURE(),
+				    KEEPFILTERS( Dim_calendario[ano_calendario] = AnoMax )
+				)
+
+		calculationItem 'Previous Year' =
+				
+				VAR AnoMax = CALCULATE(MAX(Dim_calendario[ano_calendario]), ALLSELECTED(Dim_calendario))
+				RETURN
+				CALCULATE(
+				    SELECTEDMEASURE(),
+				    KEEPFILTERS( Dim_calendario[ano_calendario] = AnoMax - 1 )
+				)
+
+		calculationItem 'All Periods' = SELECTEDMEASURE()
+
+	column 'Coluna do grupo de cálculo'
+		dataType: string
+		lineageTag: e3fa10c1-7e04-43c7-ad2c-c84df3fdcf9a
+		summarizeBy: none
+		sourceColumn: Name
+		sortByColumn: Ordinal
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ordinal
+		dataType: int64
+		formatString: 0
+		lineageTag: 27fca7d3-26ed-4a06-84f1-e7b22187fdee
+		summarizeBy: sum
+		sourceColumn: Ordinal
+
+		annotation SummarizationSetBy = Automatic
+

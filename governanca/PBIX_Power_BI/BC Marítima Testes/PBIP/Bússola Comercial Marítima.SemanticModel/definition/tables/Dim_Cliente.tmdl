@@ -1,0 +1,108 @@
+table Dim_Cliente
+	lineageTag: 50446daf-4e2b-4040-8f53-57dd21df4f4c
+
+	column 'Cód SAP'
+		dataType: string
+		lineageTag: 16720df1-25dc-4933-9322-e58308a57205
+		summarizeBy: none
+		sourceColumn: Cód SAP
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Grupo Econômico'
+		dataType: string
+		lineageTag: 8e078a3c-e185-4000-ab64-1cd26c45ed9f
+		summarizeBy: none
+		sourceColumn: Grupo Econômico
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_Cliente = m
+		mode: import
+		source = ```
+				let
+				    // --- ETAPA 1: SELECIONAR E PADRONIZAR AS COLUNAS DAS 4 TABELAS ---
+				
+				    // 1. Bussola
+				    Fonte_Bussola = Table.SelectColumns(aws_bussola_comercial_mar, {"cliente_sap"}), 
+				    Padrao_Bussola = Table.RenameColumns(Fonte_Bussola, {Table.ColumnNames(Fonte_Bussola){0}, "Cód SAP"}),
+				
+				    // 2. Faina
+				    Fonte_Faina = Table.SelectColumns(aws_bussola_comercial_faina, {"cliente_sap"}), 
+				    Padrao_Faina = Table.RenameColumns(Fonte_Faina, {Table.ColumnNames(Fonte_Faina){0}, "Cód SAP"}),
+				
+				    // 3. Aging
+				    Fonte_Aging = Table.SelectColumns(aws_aging, {"cod_cliente_sap"}), 
+				    Padrao_Aging = Table.RenameColumns(Fonte_Aging, {Table.ColumnNames(Fonte_Aging){0}, "Cód SAP"}),
+				
+				    // 4. PMVPMR
+				    Fonte_PMVPMR = Table.SelectColumns(aws_pmvpmr, {"cod_cliente_sap"}), 
+				    Padrao_PMVPMR = Table.RenameColumns(Fonte_PMVPMR, {Table.ColumnNames(Fonte_PMVPMR){0}, "Cód SAP"}),
+				
+				    // --- ETAPA 2: JUNTAR TUDO E CRIAR LISTA ÚNICA DE CLIENTES ---
+				    Uniao_Tabelas = Table.Combine({Padrao_Bussola, Padrao_Faina, Padrao_Aging, Padrao_PMVPMR}),
+				    
+				    // FAXINA 1: Transforma em texto, remove espaços ocultos e deixa maiúsculo
+				    Tipo_Texto_Base = Table.TransformColumnTypes(Uniao_Tabelas,{{"Cód SAP", type text}}),
+				    Limpa_Base = Table.TransformColumns(Tipo_Texto_Base,{{"Cód SAP", each Text.Upper(Text.Trim(Text.From(_))), type text}}),
+				    
+				    Filtra_Vazios = Table.SelectRows(Limpa_Base, each [#"Cód SAP"] <> null and [#"Cód SAP"] <> ""),
+				    Lista_Unica = Table.Distinct(Filtra_Vazios),
+				
+				    // --- ETAPA 3: PREPARAR AS TABELAS DE CONSULTA ---
+				
+				    // 3.1 Planilha (Simples: Remove duplicatas pelo ID)
+				    Planilha_Origem = Gsht_Clientes_ContasReceber,
+				    // FAXINA 2: Limpa a chave da Planilha
+				    Tipo_Texto_Planilha = Table.TransformColumnTypes(Planilha_Origem,{{"Cód SAP", type text}}),
+				    Limpa_Planilha = Table.TransformColumns(Tipo_Texto_Planilha,{{"Cód SAP", each Text.Upper(Text.Trim(Text.From(_))), type text}}),
+				    Planilha_Unica = Table.Distinct(Limpa_Planilha, {"Cód SAP"}),
+				
+				    // 3.2 Salesforce (O TRATAMENTO AVANÇADO ESTÁ AQUI)
+				    Salesforce_Origem = aws_salesforce,
+				    // FAXINA 3: Limpa a chave do Salesforce
+				    Tipo_Texto_SF = Table.TransformColumnTypes(Salesforce_Origem,{{"codigo_sap", type text}}),
+				    Limpa_SF = Table.TransformColumns(Tipo_Texto_SF,{{"codigo_sap", each Text.Upper(Text.Trim(Text.From(_))), type text}}),
+				    
+				    // A. Remove quem não tem ID
+				    SF_Sem_Cod_Nulo = Table.SelectRows(Limpa_SF, each [#"codigo_sap"] <> null and [#"codigo_sap"] <> ""),
+				    
+				    // B. Remove linhas que são INÚTEIS
+				    SF_Uteis = Table.SelectRows(SF_Sem_Cod_Nulo, each ([grupo_economico] <> null and [grupo_economico] <> "") or ([razao_social] <> null and [razao_social] <> "")),
+				
+				    // C. Classifica para garantir que, se houver duplicata, a "mais preenchida" fique no topo
+				    SF_Ordenado = Table.Sort(SF_Uteis, {{"grupo_economico", Order.Descending}, {"razao_social", Order.Descending}}),
+				
+				    // D. O SEGREDO: BUFFER.
+				    SF_Buffer = Table.Buffer(SF_Ordenado),
+				
+				    // E. Agora sim, removemos duplicatas mantendo a primeira linha
+				    Salesforce_Unico = Table.Distinct(SF_Buffer, {"codigo_sap"}),
+				
+				    // --- ETAPA 4: CRUZAMENTOS (MERGES) ---
+				
+				    // 1. Prioridade 1: Planilha
+				    Merge_Clientes = Table.NestedJoin(Lista_Unica, {"Cód SAP"}, Planilha_Unica, {"Cód SAP"}, "RelacaoClientes", JoinKind.LeftOuter),
+				    Expand_Clientes = Table.ExpandTableColumn(Merge_Clientes, "RelacaoClientes", {"Grupo_Ajuste"}, {"Grupo_Prioridade"}),
+				
+				    // 2. Prioridade 2 e 3: Salesforce Tratado
+				    Merge_Salesforce = Table.NestedJoin(Expand_Clientes, {"Cód SAP"}, Salesforce_Unico, {"codigo_sap"}, "SalesforceBase", JoinKind.LeftOuter),
+				    Expand_Salesforce = Table.ExpandTableColumn(Merge_Salesforce, "SalesforceBase", {"grupo_economico", "razao_social"}, {"Grupo_Fallback", "RazaoSocial_Fallback"}),
+				
+				    // --- ETAPA 5: LÓGICA FINAL ---
+				    Adiciona_Grupo_Final = Table.AddColumn(Expand_Salesforce, "Grupo Econômico", each 
+				        if [Grupo_Prioridade] <> null and [Grupo_Prioridade] <> "" then [Grupo_Prioridade]            
+				        else if [Grupo_Fallback] <> null and [Grupo_Fallback] <> "" then [Grupo_Fallback]             
+				        else if [RazaoSocial_Fallback] <> null and [RazaoSocial_Fallback] <> "" then [RazaoSocial_Fallback] 
+				        else "Sem Grupo"                                                                                
+				    ),
+				
+				    Colunas_Finais = Table.RemoveColumns(Adiciona_Grupo_Final,{"Grupo_Prioridade", "Grupo_Fallback", "RazaoSocial_Fallback"})
+				in
+				    Colunas_Finais
+				```
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Exception
+

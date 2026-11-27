@@ -1,0 +1,51 @@
+table SelecaoInflacionado
+	lineageTag: 5bcbb6b5-49e3-4bde-8f28-b7719cd07c89
+
+	measure Valor_Inflacionado_CPI = ```
+			
+			IF(
+			    SELECTEDVALUE(SelecaoInflacionado[Tipo]) = "Preço Médio", 
+			    [PrecoMedio_Inflacionado_CPI], 
+			    [Faturamento_Inflacionado_CPI]
+			)
+			```
+		lineageTag: 20b50165-b558-41a7-bc38-6c4ef5bdd1f8
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Valor_Real = ```
+			
+			IF(
+			    SELECTEDVALUE(SelecaoInflacionado[Tipo]) = "Preço Médio", 
+			    [PrecoMedio_BaseBC], 
+			    [FaturamentoUSD_BaseBC]
+			)
+			```
+		lineageTag: d4ab15c0-7819-44a7-aa71-4147bdb9135d
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Tipo
+		lineageTag: 8c3a2093-00b6-4f73-8687-d25cbc8a4202
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Tipo]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition SelecaoInflacionado = calculated
+		mode: import
+		source = ```
+				
+				DATATABLE(
+				    "Tipo", STRING,
+				    {
+				        {"Preço Médio"},
+				        {"Faturamento"}
+				    }
+				)
+				
+				```
+
+	annotation PBI_Id = dadc1d100eca4d4a9130496f1589d489
+

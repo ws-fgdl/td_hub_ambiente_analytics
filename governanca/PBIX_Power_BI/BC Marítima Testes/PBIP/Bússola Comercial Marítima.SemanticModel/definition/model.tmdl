@@ -1,0 +1,80 @@
+model Model
+	culture: pt-BR
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	discourageImplicitMeasures
+	sourceQueryCulture: pt-BR
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["aws_pmvpmr","aws_salesforce","Dim_carteira_comercial_consolidado","aws_bussola_comercial_mar","Eventos_relevatn","aws_aging","Medidas_Desempenho","Consulta1","Titulo_Dinamico","Medidas_Comparative","aws_dre_reb","Dim_calendario","aws_index_cpi","Medidas_DRE_TEST","Dim_estab_sap","Medidas_TempoDeServico","Medidas_Remuneracao","Medidas EfeitoReajuste","Medidas_BaseMovimentacao","aws_index_mercado","Medidas_NivelDesconto","aws_bussola_comercial_faina","Medidas_BaseBC.","aws_movimentacao_portuaria","Fleet_Position_COR","Mapa_FleetPosition","Gsht_Clientes_ContasReceber","Dim_Cliente","Medidas_DRE","Medidas_BaseFaina","Medidas_PmvPmr","Medidas_Aging","db_rl_lineup_merc","db_etl_grupo_cliente_bussola","Dim_Agencia_Movport"]
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+annotation PBI_ProTooling = ["DevMode","DaxQueryView_Desktop","TMDL-Extension"]
+
+ref table TabelaComparativa1
+ref table TabelaComparativa2
+ref table aws_pmvpmr
+ref table aws_salesforce
+ref table Flag_faturamento
+ref table aws_bussola_comercial_mar
+ref table Dim_carteira_comercial_consolidado
+ref table Eventos_relevatn
+ref table aws_aging
+ref table Medidas_Desempenho
+ref table Select_Displacement
+ref table Titulo_Dinamico
+ref table SelecaoInflacionado
+ref table Painel_CAR
+ref table Medidas_Comparative
+ref table aws_dre_reb
+ref table Dim_Filial
+ref table Clientes_Somente_BC
+ref table Dim_calendario
+ref table aws_index_cpi
+ref table Anos_Selecao1
+ref table Anos_Selecao2
+ref table Clientes_Somente_SF
+ref table Dim_estab_sap
+ref table 'Codigos SAP Ausentes na DimCarteira'
+ref table Dim_Linha_DRE
+ref table Medidas_TempoDeServico
+ref table Medidas_Remuneracao
+ref table 'Medidas EfeitoReajuste'
+ref table Medidas_BaseMovimentacao
+ref table aws_index_mercado
+ref table Selecionar_Indice
+ref table Selecionar_PrecoMedio_Faturamento_BaseBC
+ref table 'Calendario P1'
+ref table 'Calendario P2'
+ref table Medidas_NivelDesconto
+ref table aws_bussola_comercial_faina
+ref table Dim_Faina
+ref table 'Medidas_BaseBC.'
+ref table Tabela_Cenarios
+ref table Selecao_ShareConcorrente
+ref table Parâmetro_Manoeuvre
+ref table aws_movimentacao_portuaria
+ref table Fleet_Position_COR
+ref table Mapa_FleetPosition
+ref table Dim_DonoManobra
+ref table Dim_Operador
+ref table Dim_Servico
+ref table Dim_Divisao
+ref table 'Grupo de cálculo'
+ref table Gsht_Clientes_ContasReceber
+ref table pVolume
+ref table dim_grupo
+ref table Dim_Cliente
+ref table dim_ID_Documento_SAP
+ref table Medidas_DRE
+ref table Medidas_BaseFaina
+ref table Medidas_PmvPmr
+ref table Medidas_Aging
+ref table db_rl_lineup_merc
+ref table db_etl_grupo_cliente_bussola
+ref table Dim_Agencia_Movport
+
+ref cultureInfo pt-BR
+

@@ -1,0 +1,31 @@
+table Tabela_Cenarios
+	lineageTag: 152b8c20-f452-4d92-9488-8621238ec4d4
+
+	column divisao
+		lineageTag: 98f0ea62-8c2f-4177-8355-78665210d086
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: aws_bussola_comercial_faina[divisao]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Filial_agrupado
+		lineageTag: 60ff3bb6-d49f-4eea-b9c3-502692c7b1ab
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Dim_Filial[Filial_agrupado]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Tabela_Cenarios = calculated
+		mode: import
+		source =
+				
+				SUMMARIZE(
+				    'aws_bussola_comercial_faina',
+				    'Dim_Filial'[Filial_agrupado],
+				    'aws_bussola_comercial_faina'[divisao]
+				)
+
+	annotation PBI_Id = 38b482c1185842dc879feb2a91234244
+

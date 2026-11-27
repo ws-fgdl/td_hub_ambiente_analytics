@@ -1,0 +1,62 @@
+table Painel_CAR
+	lineageTag: 89583bb2-7f6c-4e6a-ba09-bb10817a8608
+
+	measure Total_Vencidos = ```
+			
+			SWITCH(
+			    SELECTEDVALUE(
+			        Painel_CAR[Range]
+			    ),
+			    "Up 5 Days", [up_5_days],
+			    "6 to 15 Days", [6_to_15_days],
+			    "16 to 30 Days", [16_to_30_days],
+			    "31 to 90 Days", [31_to_90_days],
+			    "91 to 180 Days", [91_to_180_days],
+			    "+180 Days", [180+_days],
+			    BLANK()
+			)
+			
+			```
+		lineageTag: 17cfcbad-b038-4853-9c63-dc81d8fbe54d
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Range
+		lineageTag: f1ef7736-bdd5-49d2-85bf-a6dd181caad3
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Range]
+		sortByColumn: Order
+
+		annotation SummarizationSetBy = Automatic
+
+	column Order
+		formatString: 0
+		lineageTag: 9d7c2e28-9803-46ab-9031-a4fd3ad4f439
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Order]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Painel_CAR = calculated
+		mode: import
+		source = ```
+				
+				DATATABLE(
+				    "Range", STRING,
+				    "Order", INTEGER,
+				    {
+				        {"Up 5 Days", 1},
+				        {"6 to 15 Days", 2},
+				        {"16 to 30 Days", 3},
+				        {"31 to 90 Days", 4},
+				        {"91 to 180 Days", 5},
+				        {"+180 Days", 6}
+				    }
+				)
+				
+				```
+
+	annotation PBI_Id = 1278df58289d4357b03e3152c533a4da
+

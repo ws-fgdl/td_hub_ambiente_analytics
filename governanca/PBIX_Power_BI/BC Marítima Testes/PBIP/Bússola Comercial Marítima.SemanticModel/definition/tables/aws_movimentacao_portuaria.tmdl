@@ -1,0 +1,397 @@
+table aws_movimentacao_portuaria
+	lineageTag: 91efb2e5-6b3e-4a25-b812-4001d757bd20
+
+	measure PrecoMedio_TESTE =
+			
+			DIVIDE(
+			    [FaturamentoTIF_TESTE],
+			    [VolumeTIF_TESTE],
+			    0
+			)
+		lineageTag: 78138b93-b63e-4aab-ae89-b134c0cdf42c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure FaturamentoTIF_TESTE = SUM(aws_movimentacao_portuaria[Valor_Faturado_tif])
+		lineageTag: b74d5e65-f5fe-4bc0-b60e-6f0bf81836be
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure VolumeTIF_TESTE = SUM(aws_movimentacao_portuaria[Volume])
+		formatString: 0
+		lineageTag: 5a13b126-18a2-4c32-a463-8ca69a9cfaeb
+
+	measure RankingHistoricoTIF_TESTE =
+			
+			RANKX(
+			    ALL(
+			        aws_movimentacao_portuaria[DONA]
+			    ),
+			    [FaturamentoTIF_TESTE]
+			)
+		formatString: 0
+		lineageTag: ac32d04c-6510-41cd-ae5a-42ad72a6fdd2
+
+	column competencia
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: f2129288-4dbe-45c0-9258-605d2869cdb2
+		summarizeBy: none
+		sourceColumn: competencia
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column origem
+		dataType: string
+		lineageTag: 1d01bc49-6424-4ca7-af9d-89bf3539075a
+		summarizeBy: none
+		sourceColumn: origem
+
+		annotation SummarizationSetBy = Automatic
+
+	column origem_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 421e3bbb-dbbf-4137-a74b-058f2dd74c7c
+		summarizeBy: none
+		sourceColumn: origem_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column data_manobra
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: a504142c-94eb-4f59-b641-27bba3330c3a
+		summarizeBy: none
+		sourceColumn: data_manobra
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column hora_inicio
+		dataType: string
+		lineageTag: 8583354a-7fd3-41c8-b392-29e589151275
+		summarizeBy: none
+		sourceColumn: hora_inicio
+
+		annotation SummarizationSetBy = Automatic
+
+	column hora_fim
+		dataType: string
+		lineageTag: 04efac1b-52ff-4bd8-b2bc-8407728e9332
+		summarizeBy: none
+		sourceColumn: hora_fim
+
+		annotation SummarizationSetBy = Automatic
+
+	column data_inicio
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: cd5286d4-87f5-42e8-8c6c-e3fcb8679bd1
+		summarizeBy: none
+		sourceColumn: data_inicio
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column data_fim
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: d3863579-ff06-4969-a178-eb6d665552d2
+		summarizeBy: none
+		sourceColumn: data_fim
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column manobra
+		dataType: string
+		lineageTag: f788837d-aa83-4a71-9705-bef684270482
+		summarizeBy: none
+		sourceColumn: manobra
+
+		annotation SummarizationSetBy = Automatic
+
+	column div_comercial
+		dataType: string
+		lineageTag: 4e5073ef-910c-4687-85dd-7cc542fd2cdb
+		summarizeBy: none
+		sourceColumn: div_comercial
+
+		annotation SummarizationSetBy = Automatic
+
+	column filial
+		dataType: string
+		lineageTag: a4ba8272-f4e9-43be-a5e6-c38ccdaa5302
+		summarizeBy: none
+		sourceColumn: filial
+
+		annotation SummarizationSetBy = Automatic
+
+	column porto
+		dataType: string
+		lineageTag: a959f35e-d33d-40b5-ae39-a2b3ee9615e5
+		summarizeBy: none
+		sourceColumn: porto
+
+		annotation SummarizationSetBy = Automatic
+
+	column local_porto
+		dataType: string
+		lineageTag: 0adbf6d2-42ea-42a5-bd79-d30d936b2087
+		summarizeBy: none
+		sourceColumn: local_porto
+
+		annotation SummarizationSetBy = Automatic
+
+	column navio
+		dataType: string
+		lineageTag: d64726ef-6ce3-4795-8935-f60a9d154712
+		summarizeBy: none
+		sourceColumn: navio
+
+		annotation SummarizationSetBy = Automatic
+
+	column dwt
+		dataType: int64
+		formatString: 0
+		lineageTag: b5e9160d-5f7a-4edc-bd7e-54b5f1e2949c
+		summarizeBy: sum
+		sourceColumn: dwt
+
+		annotation SummarizationSetBy = Automatic
+
+	column faixa_dwt
+		dataType: string
+		lineageTag: 96ac7940-236b-4a3d-a141-282e2ec391a4
+		summarizeBy: none
+		sourceColumn: faixa_dwt
+
+		annotation SummarizationSetBy = Automatic
+
+	column tipo
+		dataType: string
+		lineageTag: 56664fc5-cd76-4e9f-b2d7-ac2d8e8f1349
+		summarizeBy: none
+		sourceColumn: tipo
+
+		annotation SummarizationSetBy = Automatic
+
+	column agencia
+		dataType: string
+		lineageTag: 1963b338-9b88-4eed-bbf7-9d6b1d5683b0
+		summarizeBy: none
+		sourceColumn: agencia
+
+		annotation SummarizationSetBy = Automatic
+
+	column tomador
+		dataType: string
+		lineageTag: 5ed5c8f0-3062-4ef6-a35f-8e69f4dabb76
+		summarizeBy: none
+		sourceColumn: tomador
+
+		annotation SummarizationSetBy = Automatic
+
+	column pagador
+		dataType: string
+		lineageTag: 9c4be26d-6a22-498d-b7ac-7efbe285f4e8
+		summarizeBy: none
+		sourceColumn: pagador
+
+		annotation SummarizationSetBy = Automatic
+
+	column mercadoria
+		dataType: string
+		lineageTag: 5617c54a-5903-4b5c-a01d-f5d387510feb
+		summarizeBy: none
+		sourceColumn: mercadoria
+
+		annotation SummarizationSetBy = Automatic
+
+	column propria
+		dataType: string
+		lineageTag: 6a7d65e7-de5c-402e-92a1-3be37d87a5d6
+		summarizeBy: none
+		sourceColumn: propria
+
+		annotation SummarizationSetBy = Automatic
+
+	column afretamento
+		dataType: string
+		lineageTag: e176e7bc-8d83-4b70-a988-4afcc6662c38
+		summarizeBy: none
+		sourceColumn: afretamento
+
+		annotation SummarizationSetBy = Automatic
+
+	column especial
+		dataType: string
+		lineageTag: f75d89af-d7b5-4e1d-aeb3-b0137733d8b5
+		summarizeBy: none
+		sourceColumn: especial
+
+		annotation SummarizationSetBy = Automatic
+
+	column compartilhada
+		dataType: string
+		lineageTag: 9087cab8-efd8-4ec2-9aeb-26709dcc9343
+		summarizeBy: none
+		sourceColumn: compartilhada
+
+		annotation SummarizationSetBy = Automatic
+
+	column msg_erro
+		dataType: string
+		lineageTag: 7f8735f4-234a-45ba-8e90-155eaaf1dc12
+		summarizeBy: none
+		sourceColumn: msg_erro
+
+		annotation SummarizationSetBy = Automatic
+
+	column operador
+		dataType: string
+		lineageTag: c2a283fc-c4a4-4676-8512-1e24fca74ed5
+		summarizeBy: none
+		sourceColumn: operador
+
+		annotation SummarizationSetBy = Automatic
+
+	column volume
+		dataType: double
+		lineageTag: a7006ee2-d4c6-4117-9a03-5afc0ef7715f
+		summarizeBy: sum
+		sourceColumn: volume
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column valor_faturado
+		dataType: double
+		lineageTag: 5dbc9797-f4a2-4a5d-82e9-c492b57a3c44
+		summarizeBy: sum
+		sourceColumn: valor_faturado
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column valor_tif
+		dataType: double
+		lineageTag: 853e74e4-c632-4357-8da6-503270de7009
+		summarizeBy: sum
+		sourceColumn: valor_tif
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Afretamento_Ajustado =
+			
+			VAR DonoPadronizado = RELATED( Dim_DonoManobra[Dono_Padronizado] )
+			VAR OperadorPadronizado = RELATED( dim_operador[operador_padronizado] )
+			
+			// Limpa a coluna [compartilhada] para evitar erros com "s" minúsculo ou espaços
+			VAR CompartilhadaLimpa = UPPER( TRIM( aws_movimentacao_portuaria[compartilhada] ) )
+			
+			RETURN
+			IF(
+			    AND(
+			        OperadorPadronizado <> DonoPadronizado,
+			        CompartilhadaLimpa <> "S"
+			    ),
+			    "S",
+			    "N"
+			)
+		lineageTag: e2291cf0-51cf-4ade-8182-ed03b47db862
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Localizador = aws_movimentacao_portuaria[navio]&aws_movimentacao_portuaria[data_manobra]
+		lineageTag: 188d65c9-0f5c-475e-a7b8-d6ec7e08f184
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Tomador_Ajustada = IF(aws_movimentacao_portuaria[tomador]="",aws_movimentacao_portuaria[pagador],aws_movimentacao_portuaria[tomador])
+		lineageTag: 7a38cca5-d45a-4407-aa2a-f882e42af956
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column dono
+		dataType: string
+		lineageTag: e3308f66-604d-4e52-b075-e972240db21f
+		summarizeBy: none
+		sourceColumn: dono
+
+		annotation SummarizationSetBy = Automatic
+
+	column categoria
+		dataType: string
+		lineageTag: 561160f0-9bfd-4974-a5c0-c72f71bd2261
+		summarizeBy: none
+		sourceColumn: categoria
+
+		annotation SummarizationSetBy = Automatic
+
+	column portcall_calculado
+		dataType: string
+		lineageTag: 4a7369bb-56b9-4d4b-8a2e-ba6699487b33
+		summarizeBy: none
+		sourceColumn: portcall_calculado
+
+		annotation SummarizationSetBy = Automatic
+
+	column faixa_dwt_2025
+		dataType: string
+		lineageTag: f1fb4580-418f-4152-b5e7-29b919e6d1ca
+		summarizeBy: none
+		sourceColumn: faixa_dwt_2025
+		sortByColumn: faixa_dwt_2025_ordenar
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column faixa_dwt_2025_ordenar
+		dataType: int64
+		formatString: 0
+		lineageTag: edb4f705-688e-4315-8ad8-4715937da03e
+		summarizeBy: sum
+		sourceColumn: faixa_dwt_2025_ordenar
+
+		annotation SummarizationSetBy = Automatic
+
+	column etl_updated_at
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 45f82292-e721-4369-973a-43c671984ad6
+		summarizeBy: none
+		sourceColumn: etl_updated_at
+
+		annotation SummarizationSetBy = Automatic
+
+	partition aws_movimentacao_portuaria = m
+		mode: import
+		source =
+				let
+				    Fonte = PowerPlatform.Dataflows(null),
+				    Workspaces = Fonte{[Id="Workspaces"]}[Data],
+				    #"8c5cc8ba-ed75-4d39-9606-af9ead89ca36" = Workspaces{[workspaceId="8c5cc8ba-ed75-4d39-9606-af9ead89ca36"]}[Data],
+				    #"969684c6-35fd-4de1-8553-c708e05f0fd5" = #"8c5cc8ba-ed75-4d39-9606-af9ead89ca36"{[dataflowId="969684c6-35fd-4de1-8553-c708e05f0fd5"]}[Data],
+				    fct_bc_mar_movprt_ = #"969684c6-35fd-4de1-8553-c708e05f0fd5"{[entity="fct_bc_mar_movprt",version=""]}[Data]
+				in
+				    fct_bc_mar_movprt_
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

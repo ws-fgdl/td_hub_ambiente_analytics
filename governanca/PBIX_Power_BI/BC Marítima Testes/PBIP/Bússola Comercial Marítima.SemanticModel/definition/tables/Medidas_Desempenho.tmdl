@@ -1,0 +1,367 @@
+table Medidas_Desempenho
+	lineageTag: 342da163-0b96-4b3f-8287-ea517e33842a
+
+	measure PrecoMedio_Inflacionado_IPCA_Anual = ```
+			
+			VAR AnoAtual = MAX(Dim_calendario[ano_calendario])
+			VAR AnoPrimeiraVenda = 
+			    CALCULATE(
+			        MIN(Dim_calendario[ano_calendario]),
+			        FILTER(
+			            ALLSELECTED(Dim_calendario),
+			            [PrecoMedio_BaseBC] > 0
+			        )
+			    )
+			VAR PrecoBase_AnoInicial = 
+			    CALCULATE(
+			        [PrecoMedio_BaseBC],
+			        Dim_calendario[ano_calendario] = AnoPrimeiraVenda,
+			        ALL(Dim_calendario)
+			    )
+			VAR FatorAcumulado = 
+			    IF(
+			        AnoAtual < AnoPrimeiraVenda,
+			        BLANK(),
+			        IF(
+			            AnoAtual == AnoPrimeiraVenda,
+			            1,
+			            PRODUCTX(
+			                FILTER(
+			                    CALCULATETABLE(
+			                        VALUES(Dim_calendario[ano_calendario]), 
+			                        ALLSELECTED(Dim_calendario)
+			                    ),
+			                    Dim_calendario[ano_calendario] > AnoPrimeiraVenda && 
+			                    Dim_calendario[ano_calendario] <= AnoAtual
+			                ),
+			                CALCULATE(
+			                    (1 + [IPCA_Mensal]),
+			                    ALLEXCEPT(Dim_calendario, Dim_calendario[ano_calendario])
+			                )
+			            )
+			        )
+			    )
+			RETURN
+			    IF(NOT(ISBLANK(AnoPrimeiraVenda)), PrecoBase_AnoInicial * FatorAcumulado)
+			```
+		lineageTag: c26a89c9-2442-4cbc-93fd-3e05c02a3619
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure PrecoMedio_Inflacionado_IPCA_Mensal = ```
+			
+			VAR DataAtual = MAX(Dim_calendario[data])
+			VAR DataInicioContexto = 
+			    CALCULATE(
+			        MIN(Dim_calendario[data]),
+			        FILTER(
+			            ALLSELECTED(Dim_calendario),
+			            NOT(ISBLANK([PrecoMedio_BaseBC])) && [PrecoMedio_BaseBC] > 0
+			        )
+			    )
+			VAR PrecoInicial = 
+			    CALCULATE(
+			        [PrecoMedio_BaseBC],
+			        Dim_calendario[data] = DataInicioContexto
+			    )
+			VAR FatorAcumulado = 
+			    IF(
+			        DataAtual < DataInicioContexto,
+			        BLANK(),
+			        IF(
+			            DataAtual = DataInicioContexto,
+			            1,
+			            PRODUCTX(
+			                FILTER(
+			                    SUMMARIZE(ALLSELECTED(Dim_calendario), Dim_calendario[ano_calendario], Dim_calendario[numero_mes], Dim_calendario[data]), 
+			                    Dim_calendario[data] > DataInicioContexto && 
+			                    Dim_calendario[data] <= DataAtual
+			                ),
+			                (1 + [IPCA_Mensal])
+			            )
+			        )
+			    )
+			RETURN
+			    IF(NOT(ISBLANK(DataInicioContexto)), PrecoInicial * FatorAcumulado)
+			```
+		lineageTag: 848e248e-0fc4-4e73-b10a-b604ac5c93b0
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure PrecoMedio_Inflacionado_Dinamico_IPCA = ```
+			
+			IF(
+			    ISINSCOPE(Dim_calendario[numero_mes]), 
+			    [PrecoMedio_Inflacionado_IPCA_Mensal],
+			    [PrecoMedio_Inflacionado_IPCA_Anual]
+			)
+			```
+		lineageTag: 934003f1-3aec-44cb-88cd-d00e1b18a55d
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Percentual_Diferenca_Inflacionado_CPI = ```
+			
+			VAR PrecoAtual = [PrecoMedio_BaseBC]
+			VAR PrecoInflacionado = [PrecoMedio_Inflacionado_Dinamico_CPI]
+			
+			RETURN 
+			IF(
+			    PrecoInflacionado <> 0,
+			    DIVIDE(PrecoAtual - PrecoInflacionado, PrecoInflacionado, 0),
+			    BLANK()
+			)
+			
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: d1f09a00-7ff6-4186-a893-9b8742a99bcc
+
+	measure Percentual_Diferenca_Inflacionado_IPCA = ```
+			
+			VAR PrecoAtual = [PrecoMedio_BaseBC]
+			VAR PrecoInflacionado = [PrecoMedio_Inflacionado_Dinamico_IPCA]
+			
+			RETURN 
+			IF(
+			    PrecoInflacionado <> 0,
+			    DIVIDE(PrecoAtual - PrecoInflacionado, PrecoInflacionado, 0),
+			    BLANK()
+			)
+			
+			```
+		lineageTag: 18a95a0e-8044-49e2-9e7b-90d74f13016f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure PrecoMedio_Inflacionado_CPI_Mensal = ```
+			
+			VAR DataAtual = MAX(Dim_calendario[data])
+			VAR DataInicioContexto = 
+			    CALCULATE(
+			        MIN(Dim_calendario[data]),
+			        FILTER(
+			            ALLSELECTED(Dim_calendario),
+			            NOT(ISBLANK([PrecoMedio_BaseBC])) && [PrecoMedio_BaseBC] > 0
+			        )
+			    )
+			VAR PrecoInicial = 
+			    CALCULATE(
+			        [PrecoMedio_BaseBC],
+			        Dim_calendario[data] = DataInicioContexto
+			    )
+			VAR FatorAcumulado = 
+			    IF(
+			        DataAtual < DataInicioContexto,
+			        BLANK(),
+			        IF(
+			            DataAtual = DataInicioContexto,
+			            1,
+			            PRODUCTX(
+			                FILTER(
+			                    SUMMARIZE(ALLSELECTED(Dim_calendario), Dim_calendario[ano_calendario], Dim_calendario[numero_mes], Dim_calendario[data]), 
+			                    Dim_calendario[data] > DataInicioContexto && 
+			                    Dim_calendario[data] <= DataAtual
+			                ),
+			                (1 + [CPI_Mensal])
+			            )
+			        )
+			    )
+			RETURN
+			    IF(NOT(ISBLANK(DataInicioContexto)), PrecoInicial * FatorAcumulado)
+			```
+		lineageTag: 769e7e63-9317-4c23-b970-a65c79c1d509
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure PrecoMedio_Inflacionado_CPI_Anual = ```
+			
+			VAR AnoAtual = MAX(Dim_calendario[ano_calendario])
+			VAR AnoPrimeiraVenda = 
+			    CALCULATE(
+			        MIN(Dim_calendario[ano_calendario]),
+			        FILTER(
+			            ALLSELECTED(Dim_calendario),
+			            [PrecoMedio_BaseBC] > 0
+			        )
+			    )
+			VAR PrecoBase_AnoInicial = 
+			    CALCULATE(
+			        [PrecoMedio_BaseBC],
+			        Dim_calendario[ano_calendario] = AnoPrimeiraVenda,
+			        ALL(Dim_calendario)
+			    )
+			VAR FatorAcumulado = 
+			    IF(
+			        AnoAtual < AnoPrimeiraVenda,
+			        BLANK(),
+			        IF(
+			            AnoAtual == AnoPrimeiraVenda,
+			            1,
+			            PRODUCTX(
+			                FILTER(
+			                    CALCULATETABLE(
+			                        VALUES(Dim_calendario[ano_calendario]), 
+			                        ALLSELECTED(Dim_calendario)
+			                    ),
+			                    Dim_calendario[ano_calendario] > AnoPrimeiraVenda && 
+			                    Dim_calendario[ano_calendario] <= AnoAtual
+			                ),
+			                CALCULATE(
+			                    (1 + [CPI_Mensal]),
+			                    ALLEXCEPT(Dim_calendario, Dim_calendario[ano_calendario])
+			                )
+			            )
+			        )
+			    )
+			RETURN
+			    IF(NOT(ISBLANK(AnoPrimeiraVenda)), PrecoBase_AnoInicial * FatorAcumulado)
+			```
+		lineageTag: 3c0de331-b422-437c-ad8b-3411eed4f075
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure PrecoMedio_Inflacionado_Dinamico_CPI = ```
+			
+			IF(
+			    ISINSCOPE(Dim_calendario[numero_mes]), 
+			    [PrecoMedio_Inflacionado_CPI_Mensal],
+			    [PrecoMedio_Inflacionado_CPI_Anual]
+			)
+			```
+		lineageTag: 494c82e5-e321-49b4-a73f-188cf59b0cff
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Indice_CPI60_IPCA40 = ([CPI_Mensal] * 0.60) + ([IPCA_Mensal] * 0.40)
+		lineageTag: 903b3816-c9c5-4270-b855-a6e4132271bd
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure PrecoMedio_Inflacionado_CPI60_IPCA40_Anual = ```
+			
+			VAR AnoAtual = MAX(Dim_calendario[ano_calendario])
+			VAR AnoPrimeiraVenda = 
+			    CALCULATE(
+			        MIN(Dim_calendario[ano_calendario]),
+			        FILTER(
+			            ALLSELECTED(Dim_calendario),
+			            [PrecoMedio_BaseBC] > 0
+			        )
+			    )
+			VAR PrecoBase_AnoInicial = 
+			    CALCULATE(
+			        [PrecoMedio_BaseBC],
+			        Dim_calendario[ano_calendario] = AnoPrimeiraVenda,
+			        ALL(Dim_calendario)
+			    )
+			VAR FatorAcumulado = 
+			    IF(
+			        AnoAtual < AnoPrimeiraVenda,
+			        BLANK(),
+			        IF(
+			            AnoAtual == AnoPrimeiraVenda,
+			            1,
+			            PRODUCTX(
+			                FILTER(
+			                    CALCULATETABLE(
+			                        VALUES(Dim_calendario[ano_calendario]), 
+			                        ALLSELECTED(Dim_calendario)
+			                    ),
+			                    Dim_calendario[ano_calendario] > AnoPrimeiraVenda && 
+			                    Dim_calendario[ano_calendario] <= AnoAtual
+			                ),
+			                CALCULATE(
+			                    (1 + [Indice_CPI60_IPCA40]),
+			                    ALLEXCEPT(Dim_calendario, Dim_calendario[ano_calendario])
+			                )
+			            )
+			        )
+			    )
+			RETURN
+			    IF(NOT(ISBLANK(AnoPrimeiraVenda)), PrecoBase_AnoInicial * FatorAcumulado)
+			```
+		lineageTag: ceb3c4b8-35c9-462a-99fc-2e71cf916ba8
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure PrecoMedio_Inflacionado_CPI60_IPCA40_Mensal = ```
+			
+			VAR DataAtual = MAX(Dim_calendario[data])
+			VAR DataInicioContexto = 
+			    CALCULATE(
+			        MIN(Dim_calendario[data]),
+			        FILTER(
+			            ALLSELECTED(Dim_calendario),
+			            NOT(ISBLANK([PrecoMedio_BaseBC])) && [PrecoMedio_BaseBC] > 0
+			        )
+			    )
+			VAR PrecoInicial = 
+			    CALCULATE(
+			        [PrecoMedio_BaseBC],
+			        Dim_calendario[data] = DataInicioContexto
+			    )
+			VAR FatorAcumulado = 
+			    IF(
+			        DataAtual < DataInicioContexto,
+			        BLANK(),
+			        IF(
+			            DataAtual = DataInicioContexto,
+			            1,
+			            PRODUCTX(
+			                FILTER(
+			                    SUMMARIZE(ALLSELECTED(Dim_calendario), Dim_calendario[ano_calendario], Dim_calendario[numero_mes], Dim_calendario[data]), 
+			                    Dim_calendario[data] > DataInicioContexto && 
+			                    Dim_calendario[data] <= DataAtual
+			                ),
+			                (1 + [Indice_CPI60_IPCA40])
+			            )
+			        )
+			    )
+			RETURN
+			    IF(NOT(ISBLANK(DataInicioContexto)), PrecoInicial * FatorAcumulado)
+			```
+		lineageTag: 3bb867c9-7863-4503-8ed1-00864612ac42
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure PrecoMedio_Inflacionado_Dinamico_CPI60_IPCA40 = ```
+			
+			IF(
+			    ISINSCOPE(Dim_calendario[numero_mes]), 
+			    [PrecoMedio_Inflacionado_CPI60_IPCA40_Mensal],
+			    [PrecoMedio_Inflacionado_CPI60_IPCA40_Anual]
+			)
+			```
+		lineageTag: 976a10bd-83f2-48a2-873b-97b41f7552d6
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Percentual_Diferenca_Inflacionado_CPI60_IPCA40 = ```
+			
+			VAR PrecoAtual = [PrecoMedio_BaseBC]
+			VAR PrecoInflacionado = [PrecoMedio_Inflacionado_Dinamico_CPI60_IPCA40]
+			
+			RETURN 
+			IF(
+			    PrecoInflacionado <> 0,
+			    DIVIDE(PrecoAtual - PrecoInflacionado, PrecoInflacionado, 0),
+			    BLANK()
+			)
+			
+			```
+		lineageTag: eec759c5-61a1-47c2-9b0d-e1c8c93e19cd
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition Medidas_Desempenho = m
+		mode: import
+		source =
+				let
+				    Fonte = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [#"Coluna 1" = _t]),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(Fonte,{{"Coluna 1", type text}}),
+				    #"Colunas Removidas" = Table.RemoveColumns(#"Tipo Alterado",{"Coluna 1"})
+				in
+				    #"Colunas Removidas"
+
+	annotation PBI_ResultType = Table
+

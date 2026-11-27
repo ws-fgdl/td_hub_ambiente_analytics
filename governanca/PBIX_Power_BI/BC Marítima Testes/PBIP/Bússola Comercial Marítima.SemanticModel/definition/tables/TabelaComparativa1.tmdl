@@ -1,0 +1,30 @@
+table TabelaComparativa1
+	lineageTag: 46a23ebd-28dc-4805-82ec-d4e40b34e1d6
+
+	measure Grupo_1 = SELECTEDVALUE(TabelaComparativa1[Grupo Econômico])
+		lineageTag: 97c3b493-544b-472b-b6dc-70fb5053d2c1
+
+	column 'Grupo Econômico'
+		lineageTag: 6b24add3-75f5-44e4-a7df-13b44e9169f7
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Dim_Cliente[Grupo Econômico]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition TabelaComparativa1 = calculated
+		mode: import
+		source = ```
+				
+				SUMMARIZE(
+				    FILTER(
+				        aws_bussola_comercial_mar, 
+				        aws_bussola_comercial_mar[manobra_especial] = "NAO" &&
+				        NOT(ISBLANK([PrecoMedio_BaseBC]))
+				    ),
+				    Dim_Cliente[Grupo Econômico]
+				)
+				```
+
+	annotation PBI_Id = 6a77cdeeb1de4948af0bdd64abdde570
+

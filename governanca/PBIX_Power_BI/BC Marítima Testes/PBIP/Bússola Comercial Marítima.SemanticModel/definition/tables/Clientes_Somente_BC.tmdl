@@ -1,0 +1,39 @@
+table Clientes_Somente_BC
+	lineageTag: ef8ed191-27b7-43af-ab0a-1e7f0a2d5c74
+
+	column cliente_sap
+		lineageTag: c8f44d3d-c401-4699-9f1a-d6626e579920
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: aws_bussola_comercial_mar[cliente_sap]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cliente
+		lineageTag: a37ae834-ce6d-48f1-a90d-3974c34e8fc8
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Cliente]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Clientes_Somente_BC = calculated
+		mode: import
+		source = ```
+				
+				FILTER(
+				    ADDCOLUMNS(
+				        VALUES(aws_bussola_comercial_mar[cliente_sap]),
+				        "Cliente", 
+				        CALCULATE(
+				            MAX(aws_bussola_comercial_mar[cliente])
+				        )
+				    ),
+				    NOT aws_bussola_comercial_mar[cliente_sap] 
+				        IN VALUES(Dim_carteira_comercial_consolidado[CODIGO_SAP])
+				)
+				
+				```
+
+	annotation PBI_Id = 37c43baeef1143898c6834298e0891b1
+

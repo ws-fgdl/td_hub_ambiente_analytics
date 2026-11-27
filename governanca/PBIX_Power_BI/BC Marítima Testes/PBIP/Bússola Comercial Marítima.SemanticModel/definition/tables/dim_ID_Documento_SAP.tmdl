@@ -1,0 +1,64 @@
+table dim_ID_Documento_SAP
+	lineageTag: ddb3d4dc-887c-4d9e-9bd9-519f22a00d33
+
+	measure val_montante_transacao2 = ```
+			
+			CALCULATE(
+			    SUM(aws_aging[val_montante_transacao]),
+			    
+			    // Apenas o cruzamento para não duplicar os navios
+			    CROSSFILTER(
+			        aws_bussola_comercial_faina[ID_Documento_SAP], 
+			        dim_ID_Documento_SAP[ID_Documento_SAP], 
+			        BOTH
+			    )
+			)
+			```
+		lineageTag: 784c0de9-335f-4820-b1b9-dcdfb6183c76
+
+		formatStringDefinition = ```
+				VAR Valor = SELECTEDMEASURE()
+				VAR ValorAbs = ABS(Valor) -- Analisamos o "tamanho" do número independente do sinal
+				
+				-- Captura a moeda no contexto atual da tabela aws_aging
+				VAR MoedaAtual = SELECTEDVALUE(aws_aging[tip_moeda])
+				
+				-- Define o prefixo com base no valor da coluna. 
+				-- O terceiro argumento (branco ou "R$ ") é o padrão caso haja múltiplas moedas no mesmo contexto (ex: linha de Total)
+				VAR Prefixo = 
+				    SWITCH( TRUE(),
+				        MoedaAtual = "BRL", "R$ ",
+				        MoedaAtual = "USD", "$ ",
+				        "R$ " -- Valor padrão para os totais ou quando não houver filtro claro
+				    )
+				
+				RETURN
+				    SWITCH( TRUE(),
+				        ValorAbs >= 1000000000, 
+				            Prefixo & "#,##0,,,.0 ""B"";-" & Prefixo & "#,##0,,,.0 ""B""",
+				        
+				        ValorAbs >= 1000000,    
+				            Prefixo & "#,##0,,.0 ""M"";-" & Prefixo & "#,##0,,.0 ""M""",
+				        
+				        ValorAbs >= 1000,       
+				            Prefixo & "#,##0,.0 ""K"";-" & Prefixo & "#,##0,.0 ""K""",
+				        
+				        -- Para valores menores
+				        Prefixo & "#,##0.00;-" & Prefixo & "#,##0.00"
+				    )
+				```
+
+	column ID_Documento_SAP
+		lineageTag: 9b771f97-95ab-46ad-9267-ad14a89bcb5c
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: aws_aging[ID_Documento_SAP]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_ID_Documento_SAP = calculated
+		mode: import
+		source = DISTINCT(aws_aging[ID_Documento_SAP])
+
+	annotation PBI_Id = 72e9a375371f4eed802c13c48a2955ad
+

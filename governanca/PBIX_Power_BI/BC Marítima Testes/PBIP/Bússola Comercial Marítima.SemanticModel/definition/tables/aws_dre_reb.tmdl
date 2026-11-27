@@ -1,0 +1,1556 @@
+table aws_dre_reb
+	lineageTag: e3909fb6-d7ac-4966-a459-12b75f674807
+
+	measure Media_Tempo_Servico_Cliente =
+			
+			AVERAGE(
+			    aws_bussola_comercial_mar[Duracao_Servico]
+			    )
+		displayFolder: Medidas_Rateio
+		lineageTag: ff6bbf39-6b98-44c5-a349-6bef9b70f37e
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure TempoServico_GrupoEcono_ComDeslocamento =
+			
+			CALCULATE(
+			    Medidas_TempoDeServico[TempoDeServico_ComDesloc],
+			        ALL(
+			            Dim_Cliente[Grupo Econômico]
+			            ) // Remove o filtro de cliente, mantendo o filtro de filial
+			)
+		formatString: 0
+		displayFolder: View_Tempo\TempoServico
+		lineageTag: 43625c0e-c779-4e66-9d08-c2beeb35c698
+
+	measure Tempo_Total_Servico_Todos_Clientes_Filial =
+			
+			CALCULATE(
+			    SUM(
+			        aws_bussola_comercial_mar[Duracao_Servico]
+			        ),
+			        ALL(
+			            aws_bussola_comercial_mar[cliente]
+			            ) // Remove o filtro de cliente, mantendo o filtro de filial
+			)
+		formatString: 0
+		displayFolder: Medidas_Rateio
+		lineageTag: 0bc62589-7258-4aed-9380-e31d59d06438
+
+	measure Rateio_CustoTempo_GrupoEcon_ComDeslocamento =
+			
+			VAR varTempoCliente = [TempoDeServico_ComDesloc]
+			VAR varTempoTotalFilial = [TempoServico_GrupoEcono_ComDeslocamento]
+			VAR varRealizadoTotalFilialContexto = [Soma_Custo_Ebitda] // Esta medida já considera o filtro de filial
+			RETURN
+			IF(
+			    NOT ISBLANK(varTempoTotalFilial) && varTempoTotalFilial <> 0, // Evita divisão por zero ou blank
+			    (varTempoCliente / varTempoTotalFilial) * varRealizadoTotalFilialContexto,
+			    0 // Ou BLANK() se preferir não mostrar zero
+			)
+		displayFolder: View_Tempo\Rateio
+		lineageTag: f64d2116-7430-458d-a356-77d58b7eb9f9
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Rateio_Realizado_Dolar_Cliente =
+			
+			VAR varTempoCliente = [TempoDeServico_ComDesloc]
+			VAR varTempoTotalFilial = [Tempo_Total_Servico_Todos_Clientes_Filial]
+			VAR varRealizadoTotalFilialContexto = [Total_Custo_DRE] // Esta medida já considera o filtro de filial
+			RETURN
+			IF(
+			    NOT ISBLANK(varTempoTotalFilial) && varTempoTotalFilial <> 0, // Evita divisão por zero ou blank
+			    (varTempoCliente / varTempoTotalFilial) * varRealizadoTotalFilialContexto,
+			    0 // Ou BLANK() se preferir não mostrar zero
+			)
+		displayFolder: Medidas_Rateio
+		lineageTag: 7de18447-735c-4b25-978f-310779b520dc
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Total_Custo_DRE =
+			
+			SUM(
+			    aws_dre_reb[realizado_dolar]
+			)
+		displayFolder: Medidas_Rateio
+		lineageTag: c0927320-0169-4b04-b132-af99a352dfcb
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Rateio_Custo_Linha_DRE_por_Cliente =
+			
+			// Esta medida espera estar num contexto onde aws_dre_reb[linhe_dre] e aws_bussola_comercial_mar[cliente] estão presentes
+			// ou filtrados.
+			VAR CustoDaLinhaDREnoContexto = [Total_Custo_DRE] // [Custo DRE] = SUM(aws_dre_reb[realizado_dolar]), já filtrado pela linhe_dre do contexto.
+			VAR ProporcaoTempoClienteNaFilial =
+			    DIVIDE(
+			        [TempoDeServico_ComDesloc], // Medida já existente
+			        [Tempo_Total_Servico_Todos_Clientes_Filial] // Medida já existente
+			    )
+			RETURN
+			IF(
+			    NOT ISBLANK(ProporcaoTempoClienteNaFilial) && ProporcaoTempoClienteNaFilial > 0,
+			    ProporcaoTempoClienteNaFilial * CustoDaLinhaDREnoContexto,
+			    0
+			)
+		displayFolder: Medidas_Rateio
+		lineageTag: 482212ff-1ea0-4e3e-a569-fb5e98336d6a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Custo_DRE_Periodo_Anterior_MoM = ```
+			
+			CALCULATE(
+			    [Total_Custo_DRE], 
+			    DATEADD(
+			        Dim_calendario[data], 
+			        -1, 
+			        MONTH
+			    )
+			)
+			
+			```
+		displayFolder: Medidas_Rateio
+		lineageTag: 13883775-35f7-4cb5-be7e-7fe1867f4c58
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Custo_DRE_Periodo_Anterior_YoY = ```
+			
+			CALCULATE(
+			    [Total_Custo_DRE], 
+			    SAMEPERIODLASTYEAR(
+			        Dim_calendario[data]
+			    )
+			)
+			
+			```
+		displayFolder: Medidas_Rateio
+		lineageTag: 159fd247-54b7-40aa-a8ca-b96a1f39f0d0
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Resultado_Receita_Preco = [Preco_Liquido_Volume] - [Rateio_CustoTempo_GrupoEcon_ComDeslocamento]
+		displayFolder: Receita_Preco
+		lineageTag: 1bb7f01c-5093-4445-b70a-f11d11b69b1f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Total_Rateio_CustoxVolume =
+			
+			DIVIDE(
+			    CALCULATE(
+			        SUM(aws_dre_reb[realizado_dolar]),
+			        aws_dre_reb[linha_agrupadas] <> "Receita Líquida" &&
+			        aws_dre_reb[linha_agrupadas] <> "Receita Bruta (após descontos)" &&
+			        aws_dre_reb[linha_agrupadas] <> "Impostos Efetivos"
+			    ),
+			    CALCULATE(
+			        SUM(aws_bussola_comercial_mar[volume])
+			    ),
+			    0
+			)
+		lineageTag: 6517c169-c2ac-4c6d-bd7f-466c52453665
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Resultado_View_VolumeFixo_GrupoEcono =
+			
+			[Preco_Liquido_Volume] + [Rateio_Custo_VolumeFixo_GrupoEcon]
+		displayFolder: View_VolumeFixo\Resultado
+		lineageTag: 028771ad-66d2-4f2e-8bf5-a7455820ab83
+
+		formatStringDefinition =
+				VAR Valor = SELECTEDMEASURE()
+				VAR ValorAbs = ABS(Valor) -- Pega o valor sem o sinal para a comparação
+				RETURN
+				    SWITCH( TRUE(),
+				        ValorAbs >= 1000000000, "$ #,##0,,,.0 ""B"";-$ #,##0,,,.0 ""B""",
+				        ValorAbs >= 1000000,    "$ #,##0,,.0 ""M"";-$ #,##0,,.0 ""M""",
+				        ValorAbs >= 1000,       "$ #,##0,.0 ""K"";-$ #,##0,.0 ""K""",
+				        "$ #,##0;-$ #,##0" -- Para valores menores que 1000
+				    )
+
+	measure Margem_VolumeFixo_GrupoEcon =
+			
+			DIVIDE(
+			    [Resultado_View_VolumeFixo_GrupoEcono],
+			    [Preco_Liquido_Volume],
+			    0
+			)
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: View_VolumeFixo\Margem
+		lineageTag: e4cc717b-77c1-4767-871f-f5d3ed99ef19
+
+	measure Preco_Liquido_Tempo =
+			
+			DIVIDE(
+			    [Receita_Liquida],
+			    [TempoDeServico_ComDesloc],
+			    0
+			)
+		displayFolder: Receita_Preco
+		lineageTag: 3b618a8b-4b7d-447c-8efe-5aa116f1ca58
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Rateio_CustoVolume_GrupoEcon =
+			
+			DIVIDE(
+			    [Rateio_CustoTempo_GrupoEcon_ComDeslocamento],
+			    [VolumeManobra_BaseBC],
+			    0
+			)
+		displayFolder: View_Volume\Rateio
+		lineageTag: 7547c4eb-6895-47b9-b08f-a5f201c99a41
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Resultado_View_Volume_GrupoEcon =
+			
+			[Preco_Liquido_Volume] + [Rateio_CustoVolume_GrupoEcon]
+		displayFolder: View_Volume\Resultado
+		lineageTag: b51cb456-fb55-416d-b4da-2367f83ffc15
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Rateio_Custo_VolumeFixo_GrupoEcon =
+			
+			DIVIDE(
+			    [Soma_Custo_Ebitda], // Numerador: Custo do serviço selecionado (ou todos os custos se nenhum serviço selecionado)
+			    CALCULATE(
+			        [VolumeManobra_BaseBC],
+			        ALL(Dim_Cliente[Grupo Econômico]) // Denominador: Volume total, ignorando o filtro de Grupo Econômico
+			    ),
+			    0
+			)
+		displayFolder: View_VolumeFIxo\Rateio
+		lineageTag: 02ba12f5-5f16-4104-87fa-017c95c5465a
+
+		formatStringDefinition =
+				VAR Valor = SELECTEDMEASURE()
+				VAR ValorAbs = ABS(Valor) -- Pega o valor sem o sinal para a comparação
+				RETURN
+				    SWITCH( TRUE(),
+				        ValorAbs >= 1000000000, "$ #,##0,,,.0 ""B"";-$ #,##0,,,.0 ""B""",
+				        ValorAbs >= 1000000,    "$ #,##0,,.0 ""M"";-$ #,##0,,.0 ""M""",
+				        ValorAbs >= 1000,       "$ #,##0,.0 ""K"";-$ #,##0,.0 ""K""",
+				        "$ #,##0;-$ #,##0" -- Para valores menores que 1000
+				    )
+
+	measure Margem_Tempo_GrupoEcon_ComDeslocamento =
+			
+			DIVIDE(
+			    [Resultado_View_Tempo_GrupoEcon_ComDeslocamento],
+			    [Preco_Liquido_Volume],
+			    0
+			)
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: View_Tempo\Margem
+		lineageTag: a3b07346-b988-4ba5-ac0b-06195b24b49a
+
+	measure Margem_Volume_GrupoEcon =
+			
+			DIVIDE(
+			    [Resultado_View_Volume_GrupoEcon],
+			    [Preco_Liquido_Volume],
+			    0
+			)
+		displayFolder: View_Volume\Margem
+		lineageTag: 3a3bc832-1a5f-40e1-bb3a-ac7011b23ace
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Resultado_View_Tempo_GrupoEcon_ComDeslocamento =
+			
+			[Preco_Liquido_Volume] + [Rateio_Custo_x_TempoMedio_GrupoEcon_ComDesloc]
+		displayFolder: View_Tempo\Resultado
+		lineageTag: 703ecbfc-01ba-4a6b-8031-4108f89e6d7b
+
+		formatStringDefinition =
+				VAR Valor = SELECTEDMEASURE()
+				VAR ValorAbs = ABS(Valor) -- Pega o valor sem o sinal para a comparação
+				RETURN
+				    SWITCH( TRUE(),
+				        ValorAbs >= 1000000000, "$ #,##0,,,.0 ""B"";-$ #,##0,,,.0 ""B""",
+				        ValorAbs >= 1000000,    "$ #,##0,,.0 ""M"";-$ #,##0,,.0 ""M""",
+				        ValorAbs >= 1000,       "$ #,##0,.0 ""K"";-$ #,##0,.0 ""K""",
+				        "$ #,##0;-$ #,##0" -- Para valores menores que 1000
+				    )
+
+	measure TempoServico_GrupoEcon_MF = ```
+			// Média no total da tabela 
+			VAR MediaHorasNoTotal =
+			    AVERAGEX(
+			        VALUES(aws_salesforce[Grupo_Economico_DimCarteira]), // Itera sobre cada Grupo Econômico
+			        [TempoDeServico_ComDesloc]             // Calcula a duração em horas para cada um
+			    )                                              // E depois tira a média dessas durações
+			VAR TotalMinutosParaFormatar =
+			    IF(
+			        HASONEVALUE(aws_salesforce[Grupo_Economico_DimCarteira]),
+			        [TempoDeServico_ComDesloc] * 60, // Para linhas de detalhe, usa a duração original
+			        MediaHorasNoTotal * 60                // Para a linha de total, usa a média das horas calculada
+			    )
+			VAR HorasInteiras = TRUNC(TotalMinutosParaFormatar / 60)
+			VAR MinutosRestantes = ROUND(MOD(TotalMinutosParaFormatar, 60), 0)
+			RETURN
+			IF(
+			    NOT ISBLANK(TotalMinutosParaFormatar), // Adicionado para evitar erro se o resultado for BLANK
+			    FORMAT(HorasInteiras, "0") & "h " & FORMAT(MinutosRestantes, "00") & "min",
+			    BLANK() // Ou "0h 00min" ou o que preferir se for BLANK
+			)
+			```
+		displayFolder: View_Tempo\TempoServico
+		lineageTag: 33697d0e-2b4a-4916-98a0-d532210daed2
+
+	measure Receita_Hora_GrupoMediaNoTotal =
+			
+			IF(
+			    HASONEVALUE(aws_salesforce[Grupo_Economico_DimCarteira]), // Verifica se está em uma linha de detalhe de Grupo Econômico
+			    [Remuneracao_Hora_ComDeslocamento_BaseBC],         // Se sim, usa o cálculo original da Receita/Hora
+			    AVERAGEX(                                       // Se não (ou seja, está na linha de Total)
+			        VALUES(aws_salesforce[Grupo_Economico_DimCarteira]),  // Itera sobre cada Grupo Econômico distinto
+			        [Remuneracao_Hora_ComDeslocamento_BaseBC]      // Calcula a Receita/Hora para cada grupo e depois tira a média
+			    )
+			)
+		displayFolder: View_Tempo
+		lineageTag: e2f2ea79-d9d4-425e-b8d1-adc3569ab42c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Preco_Liquido_Tempo_GrupoMediaNoTotal =
+			
+			IF(
+			    HASONEVALUE(aws_salesforce[Grupo_Economico_DimCarteira]), // Verifica se está em uma linha de detalhe de Grupo Econômico
+			    [Preco_Liquido_Tempo],         // Se sim, usa o cálculo original da Receita/Hora
+			    AVERAGEX(                                       // Se não (ou seja, está na linha de Total)
+			        VALUES(aws_salesforce[Grupo_Economico_DimCarteira]),  // Itera sobre cada Grupo Econômico distinto
+			        [Preco_Liquido_Tempo]      // Calcula a Receita/Hora para cada grupo e depois tira a média
+			    )
+			)
+		displayFolder: Receita_Preco
+		lineageTag: 5a97fe12-321c-45ec-a507-28f2c96977e5
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Rateio_CustoTempo_GrupoEcon_MF = ```
+			//Mostra a média na linha total de cada coluna
+			IF(
+			    HASONEVALUE(aws_salesforce[Grupo_Economico_DimCarteira]), // Verifica se está em uma linha de detalhe de Grupo Econômico
+			    [Rateio_CustoTempo_GrupoEcon_ComDeslocamento],                           // Se sim, usa o cálculo original 
+			    AVERAGEX(                                         // Se não (ou seja, está na linha de Total)
+			        VALUES(aws_salesforce[Grupo_Economico_DimCarteira]),    // Itera sobre cada Grupo Econômico distinto
+			        [Rateio_CustoTempo_GrupoEcon_ComDeslocamento]                        // Calcula o Preço Líquido para cada grupo e depois tira a média
+			    )
+			)
+			```
+		displayFolder: View_Tempo\Rateio
+		lineageTag: ad6139e0-ab8b-4bf9-8257-47088ed6228a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Resultado_View_Tempo_GrupoEcon_MF =
+			
+			IF(
+			    HASONEVALUE(aws_salesforce[Grupo_Economico_DimCarteira]), // Verifica se está em uma linha de detalhe de Grupo Econômico
+			    [Resultado_View_Tempo_GrupoEcon_ComDeslocamento],         // Se sim, usa o cálculo original da Receita/Hora
+			    AVERAGEX(                                       // Se não (ou seja, está na linha de Total)
+			        VALUES(aws_salesforce[Grupo_Economico_DimCarteira]),  // Itera sobre cada Grupo Econômico distinto
+			        [Resultado_View_Tempo_GrupoEcon_ComDeslocamento]      // Calcula a Receita/Hora para cada grupo e depois tira a média
+			    )
+			)
+		displayFolder: View_Tempo\Resultado
+		lineageTag: a9d155ce-9572-4990-837f-b1df63dd2a5d
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Margem_Tempo_GrupoEcon_MF =
+			
+			IF(
+			    HASONEVALUE(aws_salesforce[Grupo_Economico_DimCarteira]), // Verifica se está em uma linha de detalhe de Grupo Econômico
+			    [Margem_Tempo_GrupoEcon_ComDeslocamento],         // Se sim, usa o cálculo original da Receita/Hora
+			    AVERAGEX(                                       // Se não (ou seja, está na linha de Total)
+			        VALUES(aws_salesforce[Grupo_Economico_DimCarteira]),  // Itera sobre cada Grupo Econômico distinto
+			        [Margem_Tempo_GrupoEcon_ComDeslocamento]      // Calcula a Receita/Hora para cada grupo e depois tira a média
+			    )
+			)
+		displayFolder: View_Tempo\Margem
+		lineageTag: 1ad242bf-b981-45c5-9311-88622f2d4c1f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Margem_Tempo_Categoria_MF =
+			
+			IF(
+			    HASONEVALUE(aws_bussola_comercial_mar[categoria]), // Verifica se está em uma linha de detalhe de Grupo Econômico
+			    [Margem_Tempo_Categoria_ComDeslocamento],         // Se sim, usa o cálculo original da Receita/Hora
+			    AVERAGEX(                                       // Se não (ou seja, está na linha de Total)
+			        VALUES(aws_bussola_comercial_mar[categoria]),  // Itera sobre cada Grupo Econômico distinto
+			        [Margem_Tempo_Categoria_ComDeslocamento]      // Calcula a Receita/Hora para cada grupo e depois tira a média
+			    )
+			)
+		displayFolder: View_Tempo\Margem
+		lineageTag: 6155cb68-2408-4ce1-acad-de47247a1aa9
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Preco_Liquido_Tempo_FilialMediaNoTotal =
+			
+			IF(
+			    HASONEVALUE(Dim_Filial[Filial_Agrupada]), // Verifica se está em uma linha de detalhe de Grupo Econômico
+			    [Preco_Liquido_Tempo],         // Se sim, usa o cálculo original da Receita/Hora
+			    AVERAGEX(                                       // Se não (ou seja, está na linha de Total)
+			        VALUES(Dim_Filial[Filial_Agrupada]),  // Itera sobre cada Grupo Econômico distinto
+			        [Preco_Liquido_Tempo]      // Calcula a Receita/Hora para cada grupo e depois tira a média
+			    )
+			)
+		displayFolder: Receita_Preco
+		lineageTag: 8d1c7433-33c3-4ff5-a763-ac1c6e8d36b1
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Resultado_View_Tempo_FilialMediaNoFinal =
+			
+			IF(
+			    HASONEVALUE(Dim_Filial[Filial_Agrupada]), // Verifica se está em uma linha de detalhe de Grupo Econômico
+			    [Resultado_View_Tempo_Filial],         // Se sim, usa o cálculo original da Receita/Hora
+			    AVERAGEX(                                       // Se não (ou seja, está na linha de Total)
+			        VALUES(Dim_Filial[Filial_Agrupada]),  // Itera sobre cada Grupo Econômico distinto
+			        [Resultado_View_Tempo_Filial]      // Calcula a Receita/Hora para cada grupo e depois tira a média
+			    )
+			)
+		displayFolder: View_Tempo\Resultado
+		lineageTag: 3e1dd2f0-078f-40b5-83da-930498010ed9
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Margem_Tempo_Filial_MF =
+			
+			IF(
+			    HASONEVALUE(Dim_Filial[Filial_Agrupada]), // Verifica se está em uma linha de detalhe de Grupo Econômico
+			    [Margem_Tempo_Filial],         // Se sim, usa o cálculo original da Receita/Hora
+			    AVERAGEX(                                       // Se não (ou seja, está na linha de Total)
+			        VALUES(Dim_Filial[Filial_Agrupada]),  // Itera sobre cada Grupo Econômico distinto
+			        [Margem_Tempo_Filial]      // Calcula a Receita/Hora para cada grupo e depois tira a média
+			    )
+			)
+		displayFolder: View_Tempo\Margem
+		lineageTag: 9642f2fa-c08b-4bd4-ba54-b724e525d31e
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Resultado_View_Volume_GrupoEcon_MF =
+			
+			IF(
+			    HASONEVALUE(aws_salesforce[Grupo_Economico_DimCarteira]), // Verifica se está em uma linha de detalhe de Grupo Econômico
+			    [Resultado_View_Volume_GrupoEcon],         // Se sim, usa o cálculo original da Receita/Hora
+			    AVERAGEX(                                       // Se não (ou seja, está na linha de Total)
+			        VALUES(aws_salesforce[Grupo_Economico_DimCarteira]),  // Itera sobre cada Grupo Econômico distinto
+			        [Resultado_View_Volume_GrupoEcon]      // Calcula a Receita/Hora para cada grupo e depois tira a média
+			    )
+			)
+		displayFolder: View_Volume\Resultado
+		lineageTag: 8f33cf57-d369-4d8f-88b2-ff772d95b489
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Margem_Volume_GrupoEcon_MF =
+			
+			IF(
+			    HASONEVALUE(aws_salesforce[Grupo_Economico_DimCarteira]), // Verifica se está em uma linha de detalhe de Grupo Econômico
+			    [Margem_Volume_GrupoEcon],         // Se sim, usa o cálculo original da Receita/Hora
+			    AVERAGEX(                                       // Se não (ou seja, está na linha de Total)
+			        VALUES(aws_salesforce[Grupo_Economico_DimCarteira]),  // Itera sobre cada Grupo Econômico distinto
+			        [Margem_Volume_GrupoEcon]      // Calcula a Receita/Hora para cada grupo e depois tira a média
+			    )
+			)
+		displayFolder: View_Volume\Margem
+		lineageTag: 28fc9008-fcd8-448c-a7b9-0ea82ad68134
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Rateio_CustoVolume_GrupoEcon_MF =
+			//Mostra a média na linha total de cada coluna
+			IF(
+			    HASONEVALUE(aws_salesforce[Grupo_Economico_DimCarteira]), // Verifica se está em uma linha de detalhe de Grupo Econômico
+			    [Rateio_CustoVolume_GrupoEcon],                           // Se sim, usa o cálculo original do Preço Líquido
+			    AVERAGEX(                                         // Se não (ou seja, está na linha de Total)
+			        VALUES(aws_salesforce[Grupo_Economico_DimCarteira]),    // Itera sobre cada Grupo Econômico distinto
+			        [Rateio_CustoVolume_GrupoEcon]                        // Calcula o Preço Líquido para cada grupo e depois tira a média
+			    )
+			)
+		displayFolder: View_Volume\Rateio
+		lineageTag: f2f61ba5-16bb-43e5-b73a-4989da286db9
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Preco_Liquido_Volume_GrupoMediaNoTotal =
+			
+			IF(
+			    HASONEVALUE(aws_salesforce[Grupo_Economico_DimCarteira]), // Verifica se está em uma linha de detalhe de Grupo Econômico
+			    [Preco_Liquido_Volume],         // Se sim, usa o cálculo original da Receita/Hora
+			    AVERAGEX(                                       // Se não (ou seja, está na linha de Total)
+			        VALUES(aws_salesforce[Grupo_Economico_DimCarteira]),  // Itera sobre cada Grupo Econômico distinto
+			        [Preco_Liquido_Volume]      // Calcula a Receita/Hora para cada grupo e depois tira a média
+			    )
+			)
+		displayFolder: Receita_Preco
+		lineageTag: 7db46e3e-0de9-469e-8efb-989e206761fe
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Status_Resultado_Vol_vs_MediaTotal =
+			
+			-- 1. Pega o resultado para o cliente da linha atual
+			VAR ResultadoClienteAtual = [Resultado_View_Volume_GrupoEcon]
+			
+			-- 2. Calcula o resultado para o TOTAL GERAL de todos os clientes visíveis na matriz
+			VAR ResultadoTotalGeral =
+			    CALCULATE(
+			        [Resultado_View_Volume_GrupoEcon],
+			        ALLSELECTED(Dim_Cliente[Grupo Econômico])
+			    )
+			RETURN
+			-- 3. Compara o resultado do cliente com o resultado do total geral
+			IF(
+			    NOT ISBLANK(ResultadoClienteAtual),
+			    SWITCH(
+			        TRUE(),
+			        ResultadoClienteAtual > ResultadoTotalGeral, "▲", // Acima do Resultado Total
+			        ResultadoClienteAtual < ResultadoTotalGeral, "▼", // Abaixo do Resultado Total
+			        "▬"  // Exatamente igual ao Resultado Total
+			    )
+			)
+		displayFolder: Receita_Preco
+		lineageTag: 84c310a8-5c5f-4711-a71c-810db3a16160
+
+	measure Cor_Status_Vol =
+			
+			-- 1. Pega o resultado para o cliente da linha atual
+			VAR ResultadoClienteAtual = [Resultado_View_Volume_GrupoEcon]
+			
+			-- 2. Calcula o resultado para o TOTAL GERAL (média ponderada)
+			VAR ResultadoTotalGeral =
+			    CALCULATE(
+			        [Resultado_View_Volume_GrupoEcon],
+			        ALLSELECTED(Dim_Cliente[Grupo Econômico])
+			    )
+			RETURN
+			-- 3. Compara o cliente com o total geral e retorna a cor correspondente
+			IF(
+			    NOT ISBLANK(ResultadoClienteAtual),
+			    SWITCH(
+			        TRUE(),
+			        ResultadoClienteAtual > ResultadoTotalGeral, "#118D57", // Verde para "Acima do Total"
+			        ResultadoClienteAtual < ResultadoTotalGeral, "#D93644", // Vermelho para "Abaixo do Total"
+			        "#DAA520"  // Amarelo para "Exatamente igual ao Total"
+			    )
+			)
+		displayFolder: Receita_Preco
+		lineageTag: 398cd019-06de-4910-8a70-c3bf71d2cce3
+
+	measure Resultado_View_Volume_CategoriaMediaNoFinal =
+			
+			IF(
+			    HASONEVALUE(aws_bussola_comercial_mar[categoria]), // Verifica se está em uma linha de detalhe de Grupo Econômico
+			    [Resultado_View_Volume_GrupoEcon],         // Se sim, usa o cálculo original da Receita/Hora
+			    AVERAGEX(                                       // Se não (ou seja, está na linha de Total)
+			        VALUES(aws_bussola_comercial_mar[categoria]),  // Itera sobre cada Grupo Econômico distinto
+			        [Resultado_View_Volume_GrupoEcon]      // Calcula a Receita/Hora para cada grupo e depois tira a média
+			    )
+			)
+		displayFolder: Receita_Preco
+		lineageTag: 4d7de9d5-caee-4f44-84f9-d64d1dc062a8
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Rateio_Custo_VolumeFixo_GrupoEcon_MF =
+			//Mostra a média na linha total de cada coluna
+			IF(
+			    HASONEVALUE(aws_salesforce[Grupo_Economico_DimCarteira]), // Verifica se está em uma linha de detalhe de Grupo Econômico
+			    [Rateio_Custo_VolumeFixo_GrupoEcon],                           // Se sim, usa o cálculo original do Preço Líquido
+			    AVERAGEX(                                         // Se não (ou seja, está na linha de Total)
+			        VALUES(aws_salesforce[Grupo_Economico_DimCarteira]),    // Itera sobre cada Grupo Econômico distinto
+			        [Rateio_Custo_VolumeFixo_GrupoEcon]                        // Calcula o Preço Líquido para cada grupo e depois tira a média
+			    )
+			)
+		displayFolder: View_VolumeFixo\Rateio
+		lineageTag: ee2b15c5-f2e7-4c36-a900-e2fa1b9d61de
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Resultado_View_VolumeFixo_GrupoEcono_MF = ```
+			// média no final da tabela  
+			IF(
+			    HASONEVALUE(aws_salesforce[Grupo_Economico_DimCarteira]), // Verifica se está em uma linha de detalhe de Grupo Econômico
+			    [Resultado_View_VolumeFixo_GrupoEcono],         // Se sim, usa o cálculo original 
+			    AVERAGEX(                                       // Se não (ou seja, está na linha de Total)
+			        VALUES(aws_salesforce[Grupo_Economico_DimCarteira]),  // Itera sobre cada Grupo Econômico distinto
+			        [Resultado_View_VolumeFixo_GrupoEcono]      // Calcula a Receita/Hora para cada grupo e depois tira a média
+			    )
+			)
+			```
+		displayFolder: View_VolumeFixo\Resultado
+		lineageTag: b7ab3dc2-97de-4cf3-840f-ce5fc34458af
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Status_Resultado_VolFixo_vs_MediaTotal =
+			
+			-- 1. Pega o resultado para o cliente da linha atual
+			VAR ResultadoClienteAtual = [Resultado_View_VolumeFixo_GrupoEcono]
+			
+			-- 2. Calcula o resultado para o TOTAL GERAL de todos os clientes visíveis na matriz
+			VAR ResultadoTotalGeral =
+			    CALCULATE(
+			        [Resultado_View_VolumeFixo_GrupoEcono],
+			        ALLSELECTED(Dim_Cliente[Grupo Econômico])
+			    )
+			RETURN
+			-- 3. Compara o resultado do cliente com o resultado do total geral
+			IF(
+			    NOT ISBLANK(ResultadoClienteAtual),
+			    SWITCH(
+			        TRUE(),
+			        ResultadoClienteAtual > ResultadoTotalGeral, "▲", // Acima do Resultado Total
+			        ResultadoClienteAtual < ResultadoTotalGeral, "▼", // Abaixo do Resultado Total
+			        "▬"  // Exatamente igual ao Resultado Total
+			    )
+			)
+		displayFolder: Receita_Preco
+		lineageTag: 280d7e26-9eea-422f-a7ba-2078a461d0e1
+
+	measure Cor_Status_VolFixo =
+			
+			-- 1. Pega o resultado para o cliente da linha atual
+			VAR ResultadoClienteAtual = [Resultado_View_VolumeFixo_GrupoEcono]
+			
+			-- 2. Calcula o resultado para o TOTAL GERAL (média ponderada)
+			VAR ResultadoTotalGeral =
+			    CALCULATE(
+			        [Resultado_View_VolumeFixo_GrupoEcono],
+			        ALLSELECTED(Dim_Cliente[Grupo Econômico])
+			    )
+			RETURN
+			-- 3. Compara o cliente com o total geral e retorna a cor correspondente
+			IF(
+			    NOT ISBLANK(ResultadoClienteAtual),
+			    SWITCH(
+			        TRUE(),
+			        ResultadoClienteAtual > ResultadoTotalGeral, "#118D57", // Verde para "Acima do Total"
+			        ResultadoClienteAtual < ResultadoTotalGeral, "#D93644", // Vermelho para "Abaixo do Total"
+			        "#DAA520"  // Amarelo para "Exatamente igual ao Total"
+			    )
+			)
+		displayFolder: Receita_Preco
+		lineageTag: ec1c199e-f5f8-435c-9dbc-12f2a19f8972
+
+	measure Margem_VolumeFixo_GrupoEcon_MF = ```
+			// Mostra a média no Total da matriz 
+			IF(
+			    HASONEVALUE(aws_salesforce[Grupo_Economico_DimCarteira]), // Verifica se está em uma linha de detalhe de Grupo Econômico
+			    [Margem_VolumeFixo_GrupoEcon],         // Se sim, usa o cálculo original
+			    AVERAGEX(                                       // Se não (ou seja, está na linha de Total)
+			        VALUES(aws_salesforce[Grupo_Economico_DimCarteira]),  // Itera sobre cada Grupo Econômico distinto
+			        [Margem_VolumeFixo_GrupoEcon]      // Calcula a Receita/Hora para cada grupo e depois tira a média
+			    )
+			)
+			```
+		displayFolder: View_VolumeFixo\Margem
+		lineageTag: b5a68a46-bacd-42d6-951d-812152f7ecae
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Status_Resultado_Tempo_vs_MediaTotal_ComDeslocamento =
+			
+			-- 1. Pega o resultado para o cliente da linha atual
+			VAR ResultadoClienteAtual = [Resultado_View_Tempo_GrupoEcon_ComDeslocamento]
+			
+			-- 2. Calcula o resultado para o TOTAL GERAL de todos os clientes visíveis na matriz
+			VAR ResultadoTotalGeral =
+			    CALCULATE(
+			        [Resultado_View_Tempo_GrupoEcon_ComDeslocamento],
+			        ALLSELECTED(Dim_Cliente[Grupo Econômico])
+			    )
+			RETURN
+			-- 3. Compara o resultado do cliente com o resultado do total geral
+			IF(
+			    NOT ISBLANK(ResultadoClienteAtual),
+			    SWITCH(
+			        TRUE(),
+			        ResultadoClienteAtual > ResultadoTotalGeral, "▲", // Acima do Resultado Total
+			        ResultadoClienteAtual < ResultadoTotalGeral, "▼", // Abaixo do Resultado Total
+			        "▬"  // Exatamente igual ao Resultado Total
+			    )
+			)
+		displayFolder: View_Tempo
+		lineageTag: c4aec9f3-7053-463f-9a6d-910f7572713d
+
+	measure Cor_Status_Tempo_ComDeslocamento =
+			
+			-- 1. Pega o resultado para o cliente da linha atual
+			VAR ResultadoClienteAtual = [Resultado_View_Tempo_GrupoEcon_ComDeslocamento]
+			
+			-- 2. Calcula o resultado para o TOTAL GERAL (média ponderada)
+			VAR ResultadoTotalGeral =
+			    CALCULATE(
+			        [Resultado_View_Tempo_GrupoEcon_ComDeslocamento],
+			        ALLSELECTED(Dim_Cliente[Grupo Econômico])
+			    )
+			RETURN
+			-- 3. Compara o cliente com o total geral e retorna a cor correspondente
+			IF(
+			    NOT ISBLANK(ResultadoClienteAtual),
+			    SWITCH(
+			        TRUE(),
+			        ResultadoClienteAtual > ResultadoTotalGeral, "#118D57", // Verde para "Acima do Total"
+			        ResultadoClienteAtual < ResultadoTotalGeral, "#D93644", // Vermelho para "Abaixo do Total"
+			        "#DAA520"  // Amarelo para "Exatamente igual ao Total"
+			    )
+			)
+		displayFolder: View_Tempo
+		lineageTag: dc289dfd-3c39-4703-ad56-3e0c26ce49aa
+
+	measure Resultado_View_Tempo_Categoria_MF =
+			
+			IF(
+			    HASONEVALUE(aws_bussola_comercial_mar[categoria]), // Verifica se está em uma linha de detalhe de Grupo Econômico
+			    [Resultado_View_Tempo_Categoria_ComDeslocamento],         // Se sim, usa o cálculo original da Receita/Hora
+			    AVERAGEX(                                       // Se não (ou seja, está na linha de Total)
+			        VALUES(aws_bussola_comercial_mar[categoria]),  // Itera sobre cada Grupo Econômico distinto
+			        [Resultado_View_Tempo_Categoria_ComDeslocamento]      // Calcula a Receita/Hora para cada grupo e depois tira a média
+			    )
+			)
+		displayFolder: View_Tempo\Resultado
+		lineageTag: d685c705-c70b-4ea1-b7b1-b2cc482246c0
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Margem_VolumeFixo_CategoriaMediaNoTotal =
+			
+			IF(
+			    HASONEVALUE(aws_bussola_comercial_mar[categoria]), // Verifica se está em uma linha de detalhe de Grupo Econômico
+			    [Margem_VolumeFixo_GrupoEcon],         // Se sim, usa o cálculo original da Receita/Hora
+			    AVERAGEX(                                       // Se não (ou seja, está na linha de Total)
+			        VALUES(aws_bussola_comercial_mar[categoria]),  // Itera sobre cada Grupo Econômico distinto
+			        [Margem_VolumeFixo_GrupoEcon]      // Calcula a Receita/Hora para cada grupo e depois tira a média
+			    )
+			)
+		displayFolder: View_VolumeFixo\Margem
+		lineageTag: 05d8b231-aacc-422e-a554-335ae8120f02
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Margem_Volume_CategoriaMediaNoTotal =
+			
+			IF(
+			    HASONEVALUE(aws_bussola_comercial_mar[categoria]), // Verifica se está em uma linha de detalhe de Grupo Econômico
+			    [Margem_Volume_Categoria],         // Se sim, usa o cálculo original da Receita/Hora
+			    AVERAGEX(                                       // Se não (ou seja, está na linha de Total)
+			        VALUES(aws_bussola_comercial_mar[categoria]),  // Itera sobre cada Grupo Econômico distinto
+			        [Margem_Volume_Categoria]      // Calcula a Receita/Hora para cada grupo e depois tira a média
+			    )
+			)
+		displayFolder: View_Volume\Margem
+		lineageTag: ab5be1db-56ac-4c12-bd62-c8267abc1cea
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Resultado_View_Volume_Categoria =
+			
+			[Preco_Liquido_Volume] + [Rateio_CustoVolume_Categoria]
+		displayFolder: Receita_Preco
+		lineageTag: b9ae2956-78ff-4527-ac80-b5e9d4f38b8a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Rateio_CustoVolume_Categoria =
+			
+			DIVIDE(
+			    [Rateio_CustoTempo_Categoria_ComDeslocamento],
+			    [VolumeManobra_BaseBC],
+			    0
+			)
+		displayFolder: View_Volume\Rateio
+		lineageTag: 3d99f7ac-91b0-4b78-9224-0378cc080042
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Rateio_CustoTempo_Categoria_ComDeslocamento =
+			
+			VAR varTempoCliente = [TempoDeServico_ComDesloc]
+			VAR varTempoTotalFilial = [TempoServico_Categoria_ComDeslocamento]
+			VAR varRealizadoTotalFilialContexto = [Soma_Custo_Ebitda] // Esta medida já considera o filtro de filial
+			RETURN
+			IF(
+			    NOT ISBLANK(varTempoTotalFilial) && varTempoTotalFilial <> 0, // Evita divisão por zero ou blank
+			    (varTempoCliente / varTempoTotalFilial) * varRealizadoTotalFilialContexto,
+			    0 // Ou BLANK() se preferir não mostrar zero
+			)
+		displayFolder: View_Tempo\Rateio
+		lineageTag: 1a62cf8b-7954-4616-998b-a43447398d19
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Tempo_Total_Servico_Todos_Categoria =
+			
+			CALCULATE(
+			    SUM(
+			        aws_bussola_comercial_mar[Duracao_Servico]
+			        ),
+			        ALL(
+			            aws_bussola_comercial_mar[categoria]
+			            ) // Remove o filtro de cliente, mantendo o filtro de filial
+			)
+		displayFolder: Medidas_Rateio
+		lineageTag: 5b35afec-4312-492e-9ba1-c1454138cca8
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Margem_Volume_Categoria =
+			
+			DIVIDE(
+			    [Resultado_View_Volume_Categoria],
+			    [Preco_Liquido_Volume],
+			    0
+			)
+		displayFolder: View_Volume\Margem
+		lineageTag: 2f632de7-a0f5-45f7-ac12-4cb88d3bae99
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Resultado_View_Volume_Filial =
+			
+			[Preco_Liquido_Volume] + [Rateio_CustoVolume_Filial]
+		displayFolder: View_Volume\Resultado
+		lineageTag: 0946f5c9-afa3-46f1-a2d3-93d7688b2556
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Rateio_CustoVolume_Filial =
+			
+			DIVIDE(
+			    [Rateio_CustoTempo_Filial],
+			    [VolumeManobra_BaseBC],
+			    0
+			)
+		displayFolder: View_Volume\Rateio
+		lineageTag: 7834b164-d506-42be-99dc-710da04a547c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Tempo_Total_Servico_Filial =
+			
+			CALCULATE(
+			    SUM(
+			        aws_bussola_comercial_mar[Duracao_Servico]
+			        ),
+			        ALL(
+			            Dim_Filial[Filial_Agrupada]
+			            ) // Remove o filtro de cliente, mantendo o filtro de filial
+			)
+		displayFolder: Medidas_Rateio
+		lineageTag: b58224b3-0f51-49ed-a852-2d4c2b52b9e6
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Rateio_CustoTempo_Filial =
+			
+			VAR varTempoCliente = [TempoDeServico_ComDesloc]
+			VAR varTempoTotalFilial = [TempoServico_Filial]
+			VAR varRealizadoTotalFilialContexto = [Soma_Custo_Ebitda] // Esta medida já considera o filtro de filial
+			RETURN
+			IF(
+			    NOT ISBLANK(varTempoTotalFilial) && varTempoTotalFilial <> 0, // Evita divisão por zero ou blank
+			    (varTempoCliente / varTempoTotalFilial) * varRealizadoTotalFilialContexto,
+			    0 // Ou BLANK() se preferir não mostrar zero
+			)
+		displayFolder: View_Tempo\Rateio
+		lineageTag: a8c646f3-8edf-4dde-877a-7d808acddbc9
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Margem_Volume_Filial =
+			
+			DIVIDE(
+			    [Resultado_View_Volume_Filial],
+			    [Preco_Liquido_Volume],
+			    0
+			)
+		displayFolder: View_Volume\Margem
+		lineageTag: 90c1e217-26ec-454a-bf3d-f34450e915c1
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Margem_VolumeFixo_Categoria =
+			
+			DIVIDE(
+			    [Resultado_View_VolumeFixo_Categoria],
+			    [Preco_Liquido_Volume],
+			    0
+			)
+		displayFolder: View_VolumeFixo\Margem
+		lineageTag: 5720a589-0bf9-450f-854f-3f719a365e3b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Resultado_View_VolumeFixo_Categoria =
+			
+			[Preco_Liquido_Volume] + [Rateio_Custo_VolumeFixo_Categoria]
+		displayFolder: View_VolumeFixo\Resultado
+		lineageTag: 6980ec71-1320-4f06-abd6-b0cd7c85edd8
+
+	measure Rateio_Custo_VolumeFixo_Categoria =
+			
+			DIVIDE(
+			    [Soma_Custo_Ebitda], // Numerador: Custo do serviço selecionado (ou todos os custos se nenhum serviço selecionado)
+			    CALCULATE(
+			        [VolumeManobra_BaseBC],
+			        ALL(Dim_Categoria) // Denominador: Volume total, ignorando o filtro de Categoria
+			    ),
+			    0
+			)
+		displayFolder: View_VolumeFixo\Rateio
+		lineageTag: 9db8f1ab-3ab3-47d4-b37f-0341f98c6e71
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Resultado_View_VolumeFixo_Filial =
+			
+			[Preco_Liquido_Volume] + [Rateio_Custo_VolumeFixo_Filial]
+		displayFolder: View_VolumeFixo\Resultado
+		lineageTag: d7e2782e-5aa5-4036-806b-4148331c7836
+
+	measure Rateio_Custo_VolumeFixo_Filial =
+			
+			DIVIDE(
+			    [Soma_Custo_Ebitda], // Numerador: Custo do serviço selecionado (ou todos os custos se nenhum serviço selecionado)
+			    CALCULATE(
+			        [Volume_Manobra],
+			        ALL(Dim_Filial[Filial_Agrupada]) // Denominador: Volume total, ignorando o filtro de Filial
+			    ),
+			    0
+			)
+		displayFolder: View_VolumeFixo\Rateio
+		lineageTag: bd8147ce-71e5-420e-91c3-81eddae8c34d
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure TempoServico_Filial =
+			
+			CALCULATE(
+			    SUM(
+			        aws_bussola_comercial_mar[Duracao_Servico]
+			        ),
+			        ALL(
+			            Dim_Filial[agrupamento_filial]
+			            ) // Remove o filtro de cliente, mantendo o filtro de filial
+			)
+		displayFolder: View_Tempo\TempoServico
+		lineageTag: 9577db72-22c9-4de7-99aa-994024c25c81
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure TempoServico_Categoria_ComDeslocamento =
+			
+			CALCULATE(
+			    Medidas_TempoDeServico[TempoDeServico_ComDesloc],
+			    ALL(Dim_Categoria) // Remove o filtro de cliente, mantendo o filtro de filial
+			)
+		displayFolder: View_Tempo\TempoServico
+		lineageTag: 6984a82c-f4db-445c-87c6-1457b2b23489
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Resultado_View_Tempo_Filial =
+			
+			[Preco_Liquido_Tempo2] + [Rateio_CustoTempo_Filial]
+		displayFolder: View_Tempo\Resultado
+		lineageTag: ac3e616b-6b75-4a49-8f91-200524f3dbe9
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Resultado_View_Tempo_Categoria_ComDeslocamento =
+			
+			[Preco_Liquido_Volume] + [Rateio_Custo_x_TempoMedio_Categoria_ComDeslocamento]
+		displayFolder: View_Tempo\Resultado
+		lineageTag: 79d762ac-56b4-4132-b235-b82eb2734ca0
+
+	measure Margem_Tempo_Filial =
+			
+			DIVIDE(
+			    [Resultado_View_Tempo_Filial],
+			    [Preco_Liquido_Tempo2],
+			    0
+			)
+		displayFolder: View_Tempo\Margem
+		lineageTag: a47803ae-f27f-4c4c-9d0f-52f411d5ee96
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Margem_Tempo_Categoria_ComDeslocamento =
+			
+			DIVIDE(
+			    [Resultado_View_Tempo_Categoria_ComDeslocamento],
+			    [Preco_Liquido_Volume],
+			    0
+			)
+		displayFolder: View_Tempo\Margem
+		lineageTag: 74b87fde-51e0-46b5-8273-a7edc6e5745b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Margem_VolumeFixo_Filial =
+			
+			DIVIDE(
+			    [Resultado_View_VolumeFixo_Filial],
+			    [Preco_Liquido_Volume],
+			    0
+			)
+		displayFolder: View_VolumeFixo\Margem
+		lineageTag: b12e43e4-134b-4970-a7ee-623fb63f2711
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Rateio_Custo_por_Hora_GrupoEcon_ComDeslocamento =
+			
+			DIVIDE(
+			    [Rateio_CustoTempo_GrupoEcon_ComDeslocamento],     // Este já é o Custo Alocado
+			    [TempoDeServico_ComDesloc], // Esta deve ser a Duração do Cliente
+			    0
+			)
+		displayFolder: View_Tempo\Rateio
+		lineageTag: b2034214-f550-4bda-8e77-361315b9d0ae
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Preco_Liquido_Tempo2 =
+			
+			[Preco_Liquido_Tempo] * [Media_TempoDeServico_ComDesloc_BaseBC]
+		displayFolder: Receita_Preco
+		lineageTag: acc7a9de-11b4-41de-9f37-d6747d81bfa8
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Rateio_Custo_x_TempoMedio_GrupoEcon =
+			
+			[Rateio_Custo_por_Hora_GrupoEcon_ComDeslocamento] * [TempoMedioServico_PorRebocador_ComDeslocamento_ComArredondamento_BaseBC]
+		displayFolder: View_Tempo\Rateio
+		lineageTag: fa0940e0-d5dc-444d-a456-7def059d396c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Rateio_Custo_por_Hora_Categoria_ComDeslocamento =
+			
+			DIVIDE(
+			    [Rateio_CustoTempo_Categoria_ComDeslocamento],     // Este já é o Custo Alocado
+			    [TempoDeServico_ComDesloc], // Esta deve ser a Duração do Cliente
+			    0
+			)
+		displayFolder: View_Tempo\Rateio
+		lineageTag: 3925f19b-2e35-44f1-b4e6-69287f72d6e1
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Rateio_Custo_x_TempoMedio_Categoria_ComDeslocamento =
+			
+			[Rateio_Custo_por_Hora_Categoria_ComDeslocamento] * [TempoMedioServico_PorRebocador_ComDeslocamento_SemArredondamento_BaseBC]
+		displayFolder: View_Tempo\Rateio
+		lineageTag: b87f38b5-38d4-4396-b692-85d5ea28505a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure *Rateio_Custo_TEMPO_GrupoEcon =
+			
+			DIVIDE(
+			    [Soma_Custo_Ebitda], // Numerador: Custo do serviço selecionado (ou todos os custos se nenhum serviço selecionado)
+			    CALCULATE(
+			        [TempoServico_GrupoEcono_ComDeslocamento],
+			        ALL(aws_salesforce[Grupo_Economico_DimCarteira]) // Denominador: Volume total, ignorando o filtro de Grupo Econômico
+			    ),
+			    0
+			)
+		displayFolder: View_Tempo
+		lineageTag: 8d1d6981-3cd6-4721-a38f-b32a1efe0198
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure ^rateio_tempoMedio =
+			
+			[*Rateio_Custo_TEMPO_GrupoEcon] * [TempoMedioServico_PorRebocador_ComDeslocamento_ComArredondamento_BaseBC]
+		displayFolder: View_Tempo\Rateio
+		lineageTag: 33767913-1e88-4ecb-8f44-10762fac33f2
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Rateio_Custo_x_TempoMedio_GrupoEcon_ComDesloc = ```
+			
+			[Rateio_Custo_por_Hora_GrupoEcon_ComDeslocamento] * [TempoMedioServico_PorRebocador_ComDeslocamento_SemArredondamento_BaseBC]
+			
+			```
+		displayFolder: View_Tempo\Rateio
+		lineageTag: 59e9d347-df9e-4aad-81eb-2c6a27fad9fb
+
+		formatStringDefinition =
+				VAR Valor = SELECTEDMEASURE()
+				VAR ValorAbs = ABS(Valor) -- Pega o valor sem o sinal para a comparação
+				RETURN
+				    SWITCH( TRUE(),
+				        ValorAbs >= 1000000000, "$ #,##0,,,.0 ""B"";-$ #,##0,,,.0 ""B""",
+				        ValorAbs >= 1000000,    "$ #,##0,,.0 ""M"";-$ #,##0,,.0 ""M""",
+				        ValorAbs >= 1000,       "$ #,##0,.0 ""K"";-$ #,##0,.0 ""K""",
+				        "$ #,##0;-$ #,##0" -- Para valores menores que 1000
+				    )
+
+	measure _DeveExibirLinha =
+			
+			NOT(
+			    ISBLANK([PrecoMedio_BaseBC]) || [PrecoMedio_BaseBC] = 0
+			    )
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 6f74fe2f-b51f-433d-b27f-715d9812a3e5
+
+	measure '(Display) TempoServico_ComDeslocamento' =
+			
+			IF(
+			    [_DeveExibirLinha], -- Se for TRUE...
+			    [TempoMedioServico_PorRebocador_ComDeslocamento_Formatada_SemArredondamento_BaseBC],        -- ...então mostre o resultado da medida original
+			    BLANK()             -- ...senão, retorne BLANK()
+			)
+		lineageTag: b5a98b1e-0d4c-46eb-a166-309578cd8596
+
+	measure '(Display) PrecoMedio' =
+			
+			IF(
+			    [_DeveExibirLinha], -- Se for TRUE...
+			    [PrecoMedio_BaseBC],        -- ...então mostre o resultado da medida original
+			    BLANK()             -- ...senão, retorne BLANK()
+			)
+		lineageTag: 5aa1ec40-b3c0-4410-9ffe-bd687ad85f54
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '(Display) Resultado' =
+			
+			IF(
+			    [_DeveExibirLinha], -- Se for TRUE...
+			    [Resultado_View_VolumeFixo_GrupoEcono],        -- ...então mostre o resultado da medida original
+			    BLANK()             -- ...senão, retorne BLANK()
+			)
+		lineageTag: b75b99c2-4b30-497b-94fc-09d08b51d881
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '_Filtro Ocultar Brancos' =
+			
+			IF(
+			    NOT(ISBLANK([PrecoMedio_BaseBC]) || [PrecoMedio_BaseBC] = 0),
+			    1,
+			    BLANK() -- Usar BLANK() é um pouco mais eficiente para filtros
+			)
+		formatString: 0
+		lineageTag: 38253691-2ea7-4366-ae4c-15fe36b29270
+
+	measure Rateio_Custo_x_TempoMedio_GrupoEcon_SemDesloc = ```
+			
+			[Rateio_Custo_por_Hora_GrupoEcon_SemDeslocamento] * [TempoMedioServico_PorRebocador_SemDeslocamento_SemArredondamento_BaseBC]
+			
+			```
+		displayFolder: View_Tempo\Rateio
+		lineageTag: d9e0c7ba-b3d8-40b0-86e0-9544c14263f6
+
+		formatStringDefinition =
+				VAR Valor = SELECTEDMEASURE()
+				VAR ValorAbs = ABS(Valor) -- Pega o valor sem o sinal para a comparação
+				RETURN
+				    SWITCH( TRUE(),
+				        ValorAbs >= 1000000000, "$ #,##0,,,.0 ""B"";-$ #,##0,,,.0 ""B""",
+				        ValorAbs >= 1000000,    "$ #,##0,,.0 ""M"";-$ #,##0,,.0 ""M""",
+				        ValorAbs >= 1000,       "$ #,##0,.0 ""K"";-$ #,##0,.0 ""K""",
+				        "$ #,##0;-$ #,##0" -- Para valores menores que 1000
+				    )
+
+	measure Rateio_Custo_por_Hora_GrupoEcon_SemDeslocamento =
+			
+			DIVIDE(
+			    [Rateio_CustoTempo_GrupoEcon_SemDeslocamento],     // Este já é o Custo Alocado
+			    [TempoDeServico_SemDesloc], // Esta deve ser a Duração do Cliente
+			    0
+			)
+		displayFolder: View_Tempo\Rateio
+		lineageTag: 481bf313-f7c1-47fa-9cd2-cd4a27bc50e7
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure TempoServico_GrupoEcono_SemDeslocamento =
+			
+			CALCULATE(
+			    Medidas_TempoDeServico[TempoDeServico_SemDesloc],
+			        ALL(
+			            Dim_Cliente[Grupo Econômico]
+			            ) // Remove o filtro de cliente, mantendo o filtro de filial
+			)
+		displayFolder: View_Tempo\TempoServico
+		lineageTag: 595efa6f-fda4-45b3-830d-58a52cf04ed2
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Rateio_CustoTempo_GrupoEcon_SemDeslocamento =
+			
+			VAR varTempoCliente = [TempoDeServico_SemDesloc]
+			VAR varTempoTotalFilial = [TempoServico_GrupoEcono_SemDeslocamento]
+			VAR varRealizadoTotalFilialContexto = [Soma_Custo_Ebitda] // Esta medida já considera o filtro de filial
+			RETURN
+			IF(
+			    NOT ISBLANK(varTempoTotalFilial) && varTempoTotalFilial <> 0, // Evita divisão por zero ou blank
+			    (varTempoCliente / varTempoTotalFilial) * varRealizadoTotalFilialContexto,
+			    0 // Ou BLANK() se preferir não mostrar zero
+			)
+		displayFolder: View_Tempo\Rateio
+		lineageTag: d964474e-86b3-48fc-9504-37414386a60a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Resultado_View_Tempo_GrupoEcon_SemDeslocamento =
+			
+			[Preco_Liquido_Volume] + [Rateio_Custo_x_TempoMedio_GrupoEcon_SemDesloc]
+		displayFolder: View_Tempo\Resultado
+		lineageTag: 0e20059d-72b0-4d91-a7a9-5948667be2d2
+
+		formatStringDefinition =
+				VAR Valor = SELECTEDMEASURE()
+				VAR ValorAbs = ABS(Valor) -- Pega o valor sem o sinal para a comparação
+				RETURN
+				    SWITCH( TRUE(),
+				        ValorAbs >= 1000000000, "$ #,##0,,,.0 ""B"";-$ #,##0,,,.0 ""B""",
+				        ValorAbs >= 1000000,    "$ #,##0,,.0 ""M"";-$ #,##0,,.0 ""M""",
+				        ValorAbs >= 1000,       "$ #,##0,.0 ""K"";-$ #,##0,.0 ""K""",
+				        "$ #,##0;-$ #,##0" -- Para valores menores que 1000
+				    )
+
+	measure Margem_Tempo_GrupoEcon_SemDeslocamento =
+			
+			DIVIDE(
+			    [Resultado_View_Tempo_GrupoEcon_SemDeslocamento],
+			    [Preco_Liquido_Volume],
+			    0
+			)
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: View_Tempo\Margem
+		lineageTag: 4248a468-e8f3-4dfa-b377-d627231bf3aa
+
+	measure Resultado_View_Tempo_Categoria_SemDeslocamento =
+			
+			[Preco_Liquido_Volume] + [Rateio_Custo_x_TempoMedio_Categoria_SemDeslocamento]
+		displayFolder: View_Tempo\Resultado
+		lineageTag: 60f3204c-6a39-40da-ab82-f4a6d655ac11
+
+	measure TempoServico_Categoria_SemDeslocamento =
+			
+			CALCULATE(
+			    Medidas_TempoDeServico[TempoDeServico_SemDesloc],
+			    ALL(Dim_Categoria) // Remove o filtro de cliente, mantendo o filtro de filial
+			)
+		displayFolder: View_Tempo\TempoServico
+		lineageTag: 214cb90f-f259-4a83-bbeb-d2e2b46ca528
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Margem_Tempo_Categoria_SemDeslocamento =
+			
+			DIVIDE(
+			    [Resultado_View_Tempo_Categoria_SemDeslocamento],
+			    [Preco_Liquido_Volume],
+			    0
+			)
+		displayFolder: View_Tempo\Margem
+		lineageTag: 5bd1ddf6-a58c-4343-b601-959fc4d3efee
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Rateio_Custo_x_TempoMedio_Categoria_SemDeslocamento =
+			
+			[Rateio_Custo_por_Hora_Categoria_SemDeslocamento] * [TempoMedioServico_PorRebocador_SemDeslocamento_SemArredondamento_BaseBC]
+		displayFolder: View_Tempo\Rateio
+		lineageTag: 3014c2a2-f1a3-4f83-a306-0df539789c3c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Rateio_Custo_por_Hora_Categoria_SemDeslocamento =
+			
+			DIVIDE(
+			    [Rateio_CustoTempo_Categoria_SemDeslocamento],     // Este já é o Custo Alocado
+			    [TempoDeServico_SemDesloc], // Esta deve ser a Duração do Cliente
+			    0
+			)
+		displayFolder: View_Tempo\Rateio
+		lineageTag: 664605aa-f2bf-411b-885c-601ccc4af833
+
+	measure Rateio_CustoTempo_Categoria_SemDeslocamento =
+			
+			VAR varTempoCliente = [TempoDeServico_SemDesloc]
+			VAR varTempoTotalFilial = [TempoServico_Categoria_SemDeslocamento]
+			VAR varRealizadoTotalFilialContexto = [Soma_Custo_Ebitda] // Esta medida já considera o filtro de filial
+			RETURN
+			IF(
+			    NOT ISBLANK(varTempoTotalFilial) && varTempoTotalFilial <> 0, // Evita divisão por zero ou blank
+			    (varTempoCliente / varTempoTotalFilial) * varRealizadoTotalFilialContexto,
+			    0 // Ou BLANK() se preferir não mostrar zero
+			)
+		displayFolder: View_Tempo\Rateio
+		lineageTag: ce34f713-9c2f-4856-b9a3-14c08db3071f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Status_Resultado_Tempo_vs_MediaTotal_SemDeslocamento =
+			
+			-- 1. Pega o resultado para o cliente da linha atual
+			VAR ResultadoClienteAtual = [Resultado_View_Tempo_GrupoEcon_SemDeslocamento]
+			
+			-- 2. Calcula o resultado para o TOTAL GERAL de todos os clientes visíveis na matriz
+			VAR ResultadoTotalGeral =
+			    CALCULATE(
+			        [Resultado_View_Tempo_GrupoEcon_SemDeslocamento],
+			        ALLSELECTED(Dim_Cliente[Grupo Econômico])
+			    )
+			RETURN
+			-- 3. Compara o resultado do cliente com o resultado do total geral
+			IF(
+			    NOT ISBLANK(ResultadoClienteAtual),
+			    SWITCH(
+			        TRUE(),
+			        ResultadoClienteAtual > ResultadoTotalGeral, "▲", // Acima do Resultado Total
+			        ResultadoClienteAtual < ResultadoTotalGeral, "▼", // Abaixo do Resultado Total
+			        "▬"  // Exatamente igual ao Resultado Total
+			    )
+			)
+		lineageTag: 72b767ce-3da1-4b6e-8dd8-3087c4418606
+
+	measure Cor_Status_Tempo_SemDeslocamento =
+			
+			-- 1. Pega o resultado para o cliente da linha atual
+			VAR ResultadoClienteAtual = [Resultado_View_Tempo_GrupoEcon_SemDeslocamento]
+			
+			-- 2. Calcula o resultado para o TOTAL GERAL (média ponderada)
+			VAR ResultadoTotalGeral =
+			    CALCULATE(
+			        [Resultado_View_Tempo_GrupoEcon_SemDeslocamento],
+			        ALLSELECTED(Dim_Cliente[Grupo Econômico])
+			    )
+			RETURN
+			-- 3. Compara o cliente com o total geral e retorna a cor correspondente
+			IF(
+			    NOT ISBLANK(ResultadoClienteAtual),
+			    SWITCH(
+			        TRUE(),
+			        ResultadoClienteAtual > ResultadoTotalGeral, "#118D57", // Verde para "Acima do Total"
+			        ResultadoClienteAtual < ResultadoTotalGeral, "#D93644", // Vermelho para "Abaixo do Total"
+			        "#DAA520"  // Amarelo para "Exatamente igual ao Total"
+			    )
+			)
+		displayFolder: View_Tempo
+		lineageTag: 892528f1-2579-4e4e-8332-0b937b9732c9
+
+	measure @@@@Rateio_Custo_por_Hora_GrupoEcon_SemDeslocamento =
+			
+			DIVIDE(
+			    [@@@@@@Rateio_CustoTempo_GrupoEcon_SemDeslocamento],     // Este já é o Custo Alocado
+			    [TempoDeServico_SemDesloc], // Esta deve ser a Duração do Cliente
+			    0
+			)
+		displayFolder: View_Tempo\Rateio
+		lineageTag: e8fd6b70-f006-4def-be6f-04761f9d3b41
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure @@@@@@Rateio_CustoTempo_GrupoEcon_SemDeslocamento =
+			
+			VAR varTempoCliente = [TempoMedioServico_PorRebocador_SemDeslocamento_SemArredondamento_BaseBC]
+			VAR varTempoTotalFilial = [@@@@@@TempoServico_GrupoEcono_SemDeslocamento]
+			VAR varRealizadoTotalFilialContexto = [Soma_Custo_Ebitda] // Esta medida já considera o filtro de filial
+			RETURN
+			IF(
+			    NOT ISBLANK(varTempoTotalFilial) && varTempoTotalFilial <> 0, // Evita divisão por zero ou blank
+			    (varTempoCliente / varTempoTotalFilial) * varRealizadoTotalFilialContexto,
+			    0 // Ou BLANK() se preferir não mostrar zero
+			)
+		displayFolder: View_Tempo\Rateio
+		lineageTag: 860b2562-d775-4637-aec5-8facd906690b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure @@@@@@TempoServico_GrupoEcono_SemDeslocamento =
+			
+			CALCULATE(
+			    [TempoMedioServico_PorRebocador_SemDeslocamento_SemArredondamento_BaseBC],
+			        ALL(
+			            Dim_Cliente[Grupo Econômico]
+			            ) // Remove o filtro de cliente, mantendo o filtro de filial
+			)
+		displayFolder: View_Tempo\TempoServico
+		lineageTag: 09794f8a-bbeb-4e55-b5d6-228a7bc300be
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure imposto_dre =
+			
+			CALCULATE(
+			    SUM(aws_dre_reb[realizado_dolar]),
+			    aws_dre_reb[linha_dre] = "Impostos Efetivos"
+			)
+		displayFolder: Receita_Preco
+		lineageTag: de88c6a1-1a63-4d3b-b2a8-b1258c28688c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure **Validar_ReceitaLiqueida =
+			
+			SUM(aws_bussola_comercial_faina[valor_fmr]) + [imposto_dre]
+		lineageTag: bb8aef0f-3f72-4d5e-b3b8-4023bbac7d58
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure *dre_sum = SUM(aws_dre_reb[realizado_dolar])
+		lineageTag: 7e966899-31c0-4f4a-acc0-44d9516364f9
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column competencia
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 4d0defcf-630d-454a-a3dc-a4dc5587b1e0
+		summarizeBy: none
+		sourceColumn: competencia
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column filial
+		dataType: string
+		lineageTag: 11b50e40-a03c-4e0d-9150-23939286de6e
+		summarizeBy: none
+		sourceColumn: filial
+
+		annotation SummarizationSetBy = Automatic
+
+	column linha_dre
+		dataType: string
+		lineageTag: 5aae8f19-21cb-43e1-9cda-7189829de573
+		summarizeBy: none
+		sourceColumn: linha_dre
+
+		annotation SummarizationSetBy = Automatic
+
+	column orcado_dolar
+		dataType: int64
+		formatString: 0
+		lineageTag: 4d2705e2-a788-439a-9db2-d9527dda30a8
+		summarizeBy: sum
+		sourceColumn: orcado_dolar
+
+		annotation SummarizationSetBy = Automatic
+
+	column realizado_dolar
+		dataType: double
+		formatString: 0
+		lineageTag: 20b8aacc-03e6-436a-b1ab-16faa36f3893
+		summarizeBy: sum
+		sourceColumn: realizado_dolar
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	column orcado_real
+		dataType: int64
+		formatString: 0
+		lineageTag: 940defed-8063-4a79-99b0-4eee4d580dda
+		summarizeBy: sum
+		sourceColumn: orcado_real
+
+		annotation SummarizationSetBy = Automatic
+
+	column realizado_real
+		dataType: int64
+		formatString: 0
+		lineageTag: b20efe69-73cd-4d5e-97a5-0b7b5a60fc61
+		summarizeBy: sum
+		sourceColumn: realizado_real
+
+		annotation SummarizationSetBy = Automatic
+
+	column linha_agrupadas_ENG =
+			
+			SWITCH (
+			    aws_dre_reb[linha_agrupadas],
+			    "Combustível", "Fuel",
+			    "Crédito sobre Depreciação", "Depreciation Credit",
+			    "Outras Despesas", "Other Expenses",
+			    "Descontos Concedidos", "Discounts Granted",
+			    "Sinistro", "Loss / Claim",
+			    "Receita Líquida", "Net Revenue",
+			    "Receita Bruta (após descontos)", "Gross Revenue (after discounts)",
+			    "Afretamento", "Chartering",
+			    "Impostos Efetivos", "Effective Taxes",
+			    aws_dre_reb[linha_agrupadas]
+			)
+		lineageTag: 488504c8-460a-47f2-8053-91144b2b9ed0
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column linha_agrupadas =
+			
+			SWITCH (
+			    aws_dre_reb[linha_dre],
+			    "Custos de Pessoal (Tripulação e Manutenção)", "Running Costs",
+			    "Depreciação e Amortização - Efeito Ebitda", "Outras Despesas",
+			    "Depreciação e Amortização - Efeito Lair", "Outras Despesas",
+			    "Despesas de Pessoal Terra", "Outras Despesas",
+			    "Lubrificantes", "Running Costs",
+			    "Manutenção", "Running Costs",
+			    "Material de Operações", "Running Costs",
+			    "Outras Despesas Margem 2", "Outras Despesas",
+			    "Outras Despesas Margem 3", "Outras Despesas",
+			    "Outros Custos Margem 1", "Running Costs",
+			    "Resultado Financeiro e Correção Monetária", "Outras Despesas",
+			    "Resultados Financeiros - Efeito Lair", "Outras Despesas",
+			    "Seguro", "Running Costs",
+			    "Crédito sobre Depreciação", "Outras Despesas",
+			    aws_dre_reb[linha_dre] // Valor padrão se não houver correspondência (retorna o valor original)
+			)
+		lineageTag: c2f2ced9-9839-401e-a9b9-a5068dfb601a
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column etl_updated_at
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 1be59ead-aed3-40ce-8cf7-0ea59c882a1d
+		summarizeBy: none
+		sourceColumn: etl_updated_at
+
+		annotation SummarizationSetBy = Automatic
+
+	partition aws_dre_reb = m
+		mode: import
+		source =
+				let
+				    Fonte = PowerPlatform.Dataflows(null),
+				    Workspaces = Fonte{[Id="Workspaces"]}[Data],
+				    #"8c5cc8ba-ed75-4d39-9606-af9ead89ca36" = Workspaces{[workspaceId="8c5cc8ba-ed75-4d39-9606-af9ead89ca36"]}[Data],
+				    #"84e83423-31c1-4a23-9fa1-3c5b4c20ed54" = #"8c5cc8ba-ed75-4d39-9606-af9ead89ca36"{[dataflowId="84e83423-31c1-4a23-9fa1-3c5b4c20ed54"]}[Data],
+				    fct_bc_mar_dre = #"84e83423-31c1-4a23-9fa1-3c5b4c20ed54"{[entity="fct_bc_mar_dre",version=""]}[Data]
+				in
+				    fct_bc_mar_dre
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

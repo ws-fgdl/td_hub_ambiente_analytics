@@ -1,0 +1,94 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "d811f502926982194786",
+  "position": {
+    "x": 9.5590327169274545,
+    "y": 0,
+    "z": 0,
+    "height": 505.26315789473682,
+    "width": 1619.5732574679944,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Dim_Servico"
+                    }
+                  },
+                  "Property": "Servico_com_TCP_HIDROVIAS"
+                }
+              },
+              "queryRef": "Dim_Servico.Servico_com_TCP_HIDROVIAS",
+              "nativeQueryRef": "Servico_com_TCP_HIDROVIAS"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Dim_Servico"
+                    }
+                  },
+                  "Property": "Servico_Padronizado"
+                }
+              },
+              "queryRef": "Dim_Servico.Servico_Padronizado",
+              "nativeQueryRef": "Servico_Padronizado"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Dim_Servico"
+                    }
+                  },
+                  "Property": "Servico_Eng"
+                }
+              },
+              "queryRef": "Dim_Servico.Servico_Eng",
+              "nativeQueryRef": "Servico_Eng"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Dim_Servico"
+                    }
+                  },
+                  "Property": "Servico_agrupado_eng"
+                }
+              },
+              "queryRef": "Dim_Servico.Servico_agrupado_eng",
+              "nativeQueryRef": "Servico_agrupado_eng"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Dim_Servico"
+                    }
+                  },
+                  "Property": "Servico_agrupado"
+                }
+              },
+              "queryRef": "Dim_Servico.Servico_agrupado",
+              "nativeQueryRef": "Servico_agrupado"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

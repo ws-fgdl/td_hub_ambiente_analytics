@@ -1,0 +1,63 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "83721cc047e38863db35",
+  "position": {
+    "x": 14.27840327533265,
+    "y": 639.35516888433972,
+    "z": 6000,
+    "height": 80.910951893551683,
+    "width": 709.16069600818832,
+    "tabOrder": 7000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "* The Inflated Average Price starts from the Average Price of the first selected year. From that point onwards, the CPI index is applied cumulatively year by year, reflecting the impact of inflation over time.",
+                    "textStyle": {
+                      "fontSize": "10.5pt",
+                      "color": "#071d43"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "** In the first year, both values are equal, as it serves as the baseline for comparison with the following years.",
+                    "textStyle": {
+                      "fontSize": "10.5pt",
+                      "color": "#071d43"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "100D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

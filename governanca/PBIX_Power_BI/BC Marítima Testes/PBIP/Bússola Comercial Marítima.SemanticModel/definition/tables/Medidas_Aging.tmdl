@@ -1,0 +1,357 @@
+table Medidas_Aging
+	lineageTag: 848fac6c-89b7-46b6-850f-22be40439913
+
+	measure val_montante_transacao_vencido =
+			
+			CALCULATE(
+			    SUM(aws_aging[val_montante_transacao]),
+			    aws_aging[DIAS_ATRASO] > 0
+			)
+		lineageTag: bc1cdd34-a65a-4081-a1f0-a9669b02a4e3
+
+		formatStringDefinition = ```
+				VAR Valor = SELECTEDMEASURE()
+				VAR ValorAbs = ABS(Valor) -- Analisamos o "tamanho" do número independente do sinal
+				
+				-- Captura a moeda no contexto atual da tabela aws_aging
+				VAR MoedaAtual = SELECTEDVALUE(aws_aging[tip_moeda])
+				
+				-- Define o prefixo com base no valor da coluna. 
+				-- O terceiro argumento (branco ou "R$ ") é o padrão caso haja múltiplas moedas no mesmo contexto (ex: linha de Total)
+				VAR Prefixo = 
+				    SWITCH( TRUE(),
+				        MoedaAtual = "BRL", "R$ ",
+				        MoedaAtual = "USD", "$ ",
+				        "R$ " -- Valor padrão para os totais ou quando não houver filtro claro
+				    )
+				
+				RETURN
+				    SWITCH( TRUE(),
+				        ValorAbs >= 1000000000, 
+				            Prefixo & "#,##0,,,.0 ""B"";-" & Prefixo & "#,##0,,,.0 ""B""",
+				        
+				        ValorAbs >= 1000000,    
+				            Prefixo & "#,##0,,.0 ""M"";-" & Prefixo & "#,##0,,.0 ""M""",
+				        
+				        ValorAbs >= 1000,       
+				            Prefixo & "#,##0,.0 ""K"";-" & Prefixo & "#,##0,.0 ""K""",
+				        
+				        -- Para valores menores
+				        Prefixo & "#,##0.00;-" & Prefixo & "#,##0.00"
+				    )
+				```
+
+	measure val_montante_transacao = SUM(aws_aging[val_montante_transacao])
+		lineageTag: 35305e10-e946-4bd0-8772-de22a19b07d6
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure val_montante_interno_brl_vencido = ```
+			
+			VAR DataReferencia = 
+			    CALCULATE(
+			        MAX(aws_aging[dat_incl_reg]), 
+			        REMOVEFILTERS(aws_aging)
+			    )
+			RETURN
+			CALCULATE(
+			    SUM(aws_aging[val_montante_interno]),
+			    FILTER(
+			        aws_aging,
+			        DATEDIFF(aws_aging[dat_vencimento], DataReferencia, DAY) >= 1
+			    )
+			)
+			```
+		lineageTag: 658d20aa-3149-4145-b9fd-1c2907e17f95
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure val_montante_interno_brl = SUM(aws_aging[val_montante_interno])
+		lineageTag: 33ef2da9-9ad3-44d5-9e74-15fb2a54b061
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure DateRecente_ref = ```
+			
+			CALCULATE(
+			        MAX(aws_aging[dat_incl_reg]), 
+			        REMOVEFILTERS(aws_aging)
+			    )
+			```
+		formatString: General Date
+		lineageTag: 09e1eece-cdb2-4d86-814d-f6fd032742a9
+
+	measure up_5_days = ```
+			
+			CALCULATE(
+			    SUM(aws_aging[val_montante_transacao]),
+			    aws_aging[DIAS_ATRASO] >= 1,
+			    aws_aging[DIAS_ATRASO] <= 5
+			)
+			
+			// VAR DataReferencia = 
+			//     CALCULATE(
+			//         MAX(aws_aging[dat_incl_reg]), 
+			//         REMOVEFILTERS(aws_aging)
+			//     )
+			// RETURN
+			// CALCULATE(
+			//     SUM(aws_aging[val_montante_transacao]),
+			//     FILTER(
+			//         aws_aging,
+			//         VAR Dias = DATEDIFF(aws_aging[dat_vencimento], DataReferencia, DAY)
+			//         RETURN Dias >= 1 && Dias <= 5
+			//     )
+			// )
+			```
+		displayFolder: Faixa_Vencimento
+		lineageTag: 8a477684-f31c-480a-b281-af2645461475
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 91_to_180_days = ```
+			
+			CALCULATE(
+			    SUM(aws_aging[val_montante_transacao]),
+			    aws_aging[DIAS_ATRASO] >= 91,
+			    aws_aging[DIAS_ATRASO] <= 180
+			)
+			
+			// VAR DataReferencia = 
+			//     CALCULATE(
+			//         MAX(aws_aging[dat_incl_reg]), 
+			//         REMOVEFILTERS(aws_aging)
+			//     )
+			// RETURN
+			// CALCULATE(
+			//     SUM(aws_aging[val_montante_transacao]),
+			//     FILTER(
+			//         aws_aging,
+			//         VAR Dias = DATEDIFF(aws_aging[dat_vencimento], DataReferencia, DAY)
+			//         RETURN Dias >= 91 && Dias <= 180
+			//     )
+			// )
+			```
+		displayFolder: Faixa_Vencimento
+		lineageTag: 1d2aebbc-4fe1-47f2-9c25-35517bbedf82
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 6_to_15_days = ```
+			
+			CALCULATE(
+			    SUM(aws_aging[val_montante_transacao]),
+			    aws_aging[DIAS_ATRASO] >= 6,
+			    aws_aging[DIAS_ATRASO] <= 15
+			)
+			
+			// VAR DataReferencia = 
+			//     CALCULATE(
+			//         MAX(aws_aging[dat_incl_reg]), 
+			//         REMOVEFILTERS(aws_aging)
+			//     )
+			// RETURN
+			// CALCULATE(
+			//     SUM(aws_aging[val_montante_transacao]),
+			//     FILTER(
+			//         aws_aging,
+			//         VAR Dias = DATEDIFF(aws_aging[dat_vencimento], DataReferencia, DAY)
+			//         RETURN Dias >= 6 && Dias <= 15
+			//     )
+			// )
+			```
+		displayFolder: Faixa_Vencimento
+		lineageTag: 0c938781-fd7d-465f-9f65-d4823f63966c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 31_to_90_days = ```
+			
+			CALCULATE(
+			    SUM(aws_aging[val_montante_transacao]),
+			    aws_aging[DIAS_ATRASO] >= 31,
+			    aws_aging[DIAS_ATRASO] <= 90
+			)
+			
+			// VAR DataReferencia = 
+			//     CALCULATE(
+			//         MAX(aws_aging[dat_incl_reg]), 
+			//         REMOVEFILTERS(aws_aging)
+			//     )
+			// RETURN
+			// CALCULATE(
+			//     SUM(aws_aging[val_montante_transacao]),
+			//     FILTER(
+			//         aws_aging,
+			//         VAR Dias = DATEDIFF(aws_aging[dat_vencimento], DataReferencia, DAY)
+			//         RETURN Dias >= 31 && Dias <= 90
+			//     )
+			// )
+			```
+		displayFolder: Faixa_Vencimento
+		lineageTag: 29fafc76-4df9-4465-a8e1-82d9b44450c7
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 180+_days = ```
+			
+			CALCULATE(
+			    SUM(aws_aging[val_montante_transacao]),
+			    aws_aging[DIAS_ATRASO] > 180
+			)
+			
+			// VAR DataReferencia = 
+			//     CALCULATE(
+			//         MAX(aws_aging[dat_incl_reg]), 
+			//         REMOVEFILTERS(aws_aging)
+			//     )
+			// RETURN
+			// CALCULATE(
+			//     SUM(aws_aging[val_montante_transacao]),
+			//     FILTER(
+			//         aws_aging,
+			//         VAR Dias = DATEDIFF(aws_aging[dat_vencimento], DataReferencia, DAY)
+			//         RETURN Dias > 180
+			//     )
+			// )
+			```
+		displayFolder: Faixa_Vencimento
+		lineageTag: 165cd9c7-7fda-4e6a-8f66-bdccc0fb1510
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 16_to_30_days = ```
+			
+			CALCULATE(
+			    SUM(aws_aging[val_montante_transacao]),
+			    aws_aging[DIAS_ATRASO] >= 16,
+			    aws_aging[DIAS_ATRASO] <= 30
+			)
+			
+			// VAR DataReferencia = 
+			//     CALCULATE(
+			//         MAX(aws_aging[dat_incl_reg]), 
+			//         REMOVEFILTERS(aws_aging)
+			//     )
+			// RETURN
+			// CALCULATE(
+			//     SUM(aws_aging[val_montante_transacao]),
+			//     FILTER(
+			//         aws_aging,
+			//         VAR Dias = DATEDIFF(aws_aging[dat_vencimento], DataReferencia, DAY)
+			//         RETURN Dias >= 16 && Dias <= 30
+			//     )
+			// )
+			```
+		displayFolder: Faixa_Vencimento
+		lineageTag: 158e9b48-078b-47e6-8397-2fd451727acb
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure %_CAR_sobre_Fat = ```
+			
+			VAR Acumulado12Meses = 
+			    CALCULATE(
+			        [FaturamentoBRL_BaseBC],
+			        ALL(aws_bussola_comercial_mar[competencia]),
+			        DATESINPERIOD(
+			            aws_bussola_comercial_mar[competencia],
+			            LASTDATE(aws_bussola_comercial_mar[competencia]),
+			            -12,
+			            MONTH
+			        )
+			    )   
+			RETURN
+			    // 1. Verifica se a medida de vencidos está vazia. Se sim, retorna vazio e esconde a linha.
+			    IF(
+			        ISBLANK([val_montante_transacao_vencido]),
+			        BLANK(),
+			        
+			        // 2. Se houver dívida, faz a divisão. Se o faturamento for zero, retorna 0 (0,00%).
+			        DIVIDE(
+			            [val_montante_transacao_vencido], 
+			            Acumulado12Meses, 
+			            0
+			        )
+			    )
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Faixa_Vencimento
+		lineageTag: 058af8a8-dc1e-44af-8b83-e4d9f563c1ae
+
+	measure Total_Invoice_Atraso =
+			
+			CALCULATE(
+			    DISTINCTCOUNT(aws_aging[num_referencia]),
+			    aws_aging[DIAS_ATRASO] > 0 // Garante que só vai contar o que já passou da data de vencimento
+			
+			)
+		formatString: 0
+		lineageTag: fb249823-8e77-4b8e-9b9c-859c592e1f6b
+
+	measure Valor_LateFee =
+			
+			SUMX(
+			    // Aplica a regra apenas se o atraso for maior que o gap de 6 dias
+			    FILTER(aws_aging, aws_aging[DIAS_ATRASO] > 6),
+			    IF(
+			        aws_aging[DIAS_ATRASO] <= 30,
+			        aws_aging[val_montante_transacao] * 0.01, // 1% para atrasos até 30 dias
+			        aws_aging[val_montante_transacao] * 0.02  // 2% para atrasos a partir de 31 dias
+			    )
+			)
+		lineageTag: 5405d3bb-c711-4511-91a3-1ddd6a37e6a7
+
+		formatStringDefinition = ```
+				VAR Valor = SELECTEDMEASURE()
+				VAR ValorAbs = ABS(Valor) -- Analisamos o "tamanho" do número independente do sinal
+				
+				-- Captura a moeda no contexto atual da tabela aws_aging
+				VAR MoedaAtual = SELECTEDVALUE(aws_aging[tip_moeda])
+				
+				-- Define o prefixo com base no valor da coluna. 
+				-- O terceiro argumento (branco ou "R$ ") é o padrão caso haja múltiplas moedas no mesmo contexto (ex: linha de Total)
+				VAR Prefixo = 
+				    SWITCH( TRUE(),
+				        MoedaAtual = "BRL", "R$ ",
+				        MoedaAtual = "USD", "$ ",
+				        "R$ " -- Valor padrão para os totais ou quando não houver filtro claro
+				    )
+				
+				RETURN
+				    SWITCH( TRUE(),
+				        ValorAbs >= 1000000000, 
+				            Prefixo & "#,##0,,,.0 ""B"";-" & Prefixo & "#,##0,,,.0 ""B""",
+				        
+				        ValorAbs >= 1000000,    
+				            Prefixo & "#,##0,,.0 ""M"";-" & Prefixo & "#,##0,,.0 ""M""",
+				        
+				        ValorAbs >= 1000,       
+				            Prefixo & "#,##0,.0 ""K"";-" & Prefixo & "#,##0,.0 ""K""",
+				        
+				        -- Para valores menores
+				        Prefixo & "#,##0.00;-" & Prefixo & "#,##0.00"
+				    )
+				```
+
+	measure PMO_Media_Dias_Atraso =
+			
+			CALCULATE(
+			    AVERAGE(aws_aging[DIAS_ATRASO]),
+			    aws_aging[DIAS_ATRASO] > 0
+			)
+		formatString: 0
+		lineageTag: e3c5ab69-1167-4f6a-b258-7becad8c4afd
+
+	partition Medidas_Aging = m
+		mode: import
+		source =
+				let
+				    Fonte = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [#"Coluna 1" = _t]),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(Fonte,{{"Coluna 1", type text}}),
+				    #"Colunas Removidas" = Table.RemoveColumns(#"Tipo Alterado",{"Coluna 1"})
+				in
+				    #"Colunas Removidas"
+
+	annotation PBI_ResultType = Table
+

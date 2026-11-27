@@ -1,0 +1,36 @@
+table Dim_Agencia_Movport
+	lineageTag: 826861d1-d91b-40fb-8f84-f50bad028b14
+
+	column origem_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 30be0952-ec9a-4142-b631-8b9e686d1e59
+		summarizeBy: sum
+		sourceColumn: origem_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column AGENCIA
+		dataType: string
+		lineageTag: 508e13bf-0fc4-49bd-b68d-fad09f94cef6
+		summarizeBy: none
+		sourceColumn: AGENCIA
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_Agencia_Movport = m
+		mode: import
+		source =
+				let
+				    Fonte = aws_movimentacao_portuaria,
+				    #"Linhas Filtradas" = Table.SelectRows(Fonte, each Text.Contains([origem], "OS")),
+				    #"Outras Colunas Removidas" = Table.SelectColumns(#"Linhas Filtradas",{"agencia", "origem_id"}),
+				    #"Linhas Agrupadas" = Table.Group(#"Outras Colunas Removidas", {"origem_id"}, {{"AGENCIA", each List.Max([agencia]), type nullable text}}),
+				    #"Linhas Filtradas1" = Table.SelectRows(#"Linhas Agrupadas", each [origem_id] <> null and [origem_id] <> "")
+				in
+				    #"Linhas Filtradas1"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+
