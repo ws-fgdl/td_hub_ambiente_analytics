@@ -1,0 +1,217 @@
+table Medidas_Comparative
+	lineageTag: fdae6b78-3de0-4663-a7e8-5a2634bc4b4a
+
+	measure Faturamento_comparativo_BaseBC =
+			
+			VAR v1 = SELECTEDVALUE(TabelaComparativa1[Grupo Econômico])
+			VAR v2 = SELECTEDVALUE(TabelaComparativa2[Grupo Econômico])
+			RETURN
+			CALCULATE(
+			    [Flag_Faturamento_BaseBC], --[Faturamento_TipoData],
+			    KEEPFILTERS(Dim_Cliente[Grupo Econômico] IN {v1,v2}))
+		lineageTag: d94026b3-d97a-4cc9-beb1-9807b0773e19
+
+		formatStringDefinition = ```
+				VAR Valor = SELECTEDMEASURE()
+				VAR ValorAbs = ABS(Valor) -- Analisamos o "tamanho" do número independente do sinal
+				VAR Selecao = SELECTEDVALUE(Flag_faturamento[Faturamento])
+				VAR Prefixo = IF(Selecao = "R$", "R$ ", "$ ")
+				
+				RETURN
+				    SWITCH( TRUE(),
+				        ValorAbs >= 1000000000, 
+				            Prefixo & "#,##0,,,.0 ""B"";-" & Prefixo & "#,##0,,,.0 ""B""",
+				        
+				        ValorAbs >= 1000000,    
+				            Prefixo & "#,##0,,.0 ""M"";-" & Prefixo & "#,##0,,.0 ""M""",
+				        
+				        ValorAbs >= 1000,       
+				            Prefixo & "#,##0,.0 ""K"";-" & Prefixo & "#,##0,.0 ""K""",
+				        
+				        -- Para valores entre -999 e 999
+				        Prefixo & "#,##0;-" & Prefixo & "#,##0"
+				    )
+				```
+
+	measure PrecoMedio_Comparativo =
+			
+			VAR v1 = SELECTEDVALUE(TabelaComparativa1[Grupo Econômico])
+			VAR v2 = SELECTEDVALUE(TabelaComparativa2[Grupo Econômico])
+			RETURN
+			CALCULATE(
+			    [PrecoMedio_BaseBC], --[PrecoMedio_TipoData],
+			    KEEPFILTERS(Dim_Cliente[Grupo Econômico] IN {v1,v2}))
+		lineageTag: a5dee8c9-3e01-40d4-98e5-7016b58cc0ef
+
+		formatStringDefinition = ```
+				VAR Valor = SELECTEDMEASURE()
+				VAR ValorAbs = ABS(Valor) -- Analisamos o "tamanho" do número independente do sinal
+				VAR Selecao = SELECTEDVALUE(Flag_faturamento[Faturamento])
+				VAR Prefixo = IF(Selecao = "R$", "R$ ", "$ ")
+				
+				RETURN
+				    SWITCH( TRUE(),
+				        ValorAbs >= 1000000000, 
+				            Prefixo & "#,##0,,,.0 ""B"";-" & Prefixo & "#,##0,,,.0 ""B""",
+				        
+				        ValorAbs >= 1000000,    
+				            Prefixo & "#,##0,,.0 ""M"";-" & Prefixo & "#,##0,,.0 ""M""",
+				        
+				        ValorAbs >= 1000,       
+				            Prefixo & "#,##0,.0 ""K"";-" & Prefixo & "#,##0,.0 ""K""",
+				        
+				        -- Para valores entre -999 e 999
+				        Prefixo & "#,##0;-" & Prefixo & "#,##0"
+				    )
+				```
+
+	measure Volume_Comparativo =
+			
+			VAR v1 = SELECTEDVALUE(TabelaComparativa1[Grupo Econômico])
+			VAR v2 = SELECTEDVALUE(TabelaComparativa2[Grupo Econômico])
+			RETURN
+			CALCULATE(
+			    [Flag_Volume_BaseBC], --[Escala_TipoData],
+			    KEEPFILTERS(Dim_Cliente[Grupo Econômico] IN {v1,v2}))
+		lineageTag: 97e13e08-24df-4c8b-8c6e-1b19229da617
+
+		formatStringDefinition =
+				VAR Valor = SELECTEDMEASURE()
+				VAR ValorAbs = ABS(Valor) -- Pega o valor sem o sinal para a comparação
+				RETURN
+				    SWITCH( TRUE(),
+				        ValorAbs >= 1000000000, "#,##0,,,.0 ""B"";-#,##0,,,.0 ""B""",
+				        ValorAbs >= 1000000,    "#,##0,,.0 ""M"";-#,##0,,.0 ""M""",
+				        ValorAbs >= 1000,       "#,##0,.0 ""K"";-#,##0,.0 ""K""",
+				        "#,##0;-#,##0" -- Para valores menores que 1000
+				    )
+
+	measure Volume_Ano_Anterior = ```
+			
+			CALCULATE(
+			    [Volume_Comparativo], 
+			    PARALLELPERIOD('Dim_calendario'[data], -1, YEAR)
+			)
+			
+			```
+		lineageTag: 3a1964ff-f635-444b-9e1c-c9331b2fbbc3
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Rótulo_com_Indicador_(vs Ano Anterior)' = ```
+			
+			VAR Indicador = 
+			    IF(
+			        ISBLANK([Volume_Ano_Anterior]), 
+			        BLANK(), 
+			        DIVIDE([Volume_Comparativo], [Volume_Ano_Anterior]) - 1
+			    )
+			RETURN
+			    IF(
+			        ISBLANK(Indicador), 
+			        BLANK(),  // Retorna em branco quando não há ano anterior
+			        SWITCH(
+			            TRUE(),
+			            Indicador <= 0, FORMAT(Indicador, "0% ⮟"),
+			            Indicador > 0, FORMAT(Indicador, "+0% ⮝")
+			        )
+			    )
+			
+			```
+		lineageTag: 2f27a471-8038-47d7-97c9-6db7e05d1370
+
+	measure _Indicador_Numerico_vs_AnoAnterior =
+			
+			VAR VolumeAtual = [Volume_Comparativo]
+			VAR VolumeAnterior = [Volume_Ano_Anterior]
+			VAR Indicador =
+			    IF(
+			        ISBLANK(VolumeAnterior),
+			        BLANK(),
+			        DIVIDE(VolumeAtual - VolumeAnterior, VolumeAnterior) // Retorna o valor numérico da variação
+			    )
+			RETURN
+			Indicador
+		lineageTag: 3d2d23e8-ff70-42cd-903b-46ab9facb8b0
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure HourlyPay_Comparativo =
+			
+			VAR v1 = SELECTEDVALUE(TabelaComparativa1[Grupo Econômico])
+			VAR v2 = SELECTEDVALUE(TabelaComparativa2[Grupo Econômico])
+			RETURN
+			CALCULATE(
+			    [*REMUNERACAO_HORA_COM_DESLOC_BaseBC],//TempoMedioServico_PorRebocador_ComDeslocamento_ComArredondamento
+			    KEEPFILTERS(Dim_Cliente[Grupo Econômico] IN {v1,v2}))
+		lineageTag: c6fec84d-dba1-4024-8a4b-b47e6324ecd4
+
+		formatStringDefinition = ```
+				VAR Valor = SELECTEDMEASURE()
+				VAR ValorAbs = ABS(Valor) -- Analisamos o "tamanho" do número independente do sinal
+				VAR Selecao = SELECTEDVALUE(Flag_faturamento[Faturamento])
+				VAR Prefixo = IF(Selecao = "R$", "R$ ", "$ ")
+				
+				RETURN
+				    SWITCH( TRUE(),
+				        ValorAbs >= 1000000000, 
+				            Prefixo & "#,##0,,,.0 ""B"";-" & Prefixo & "#,##0,,,.0 ""B""",
+				        
+				        ValorAbs >= 1000000,    
+				            Prefixo & "#,##0,,.0 ""M"";-" & Prefixo & "#,##0,,.0 ""M""",
+				        
+				        ValorAbs >= 1000,       
+				            Prefixo & "#,##0,.0 ""K"";-" & Prefixo & "#,##0,.0 ""K""",
+				        
+				        -- Para valores entre -999 e 999
+				        Prefixo & "#,##0;-" & Prefixo & "#,##0"
+				    )
+				```
+
+	measure TempoMedio_Comparativo =
+			
+			VAR v1 = SELECTEDVALUE(TabelaComparativa1[Grupo Econômico])
+			VAR v2 = SELECTEDVALUE(TabelaComparativa2[Grupo Econômico])
+			RETURN
+			CALCULATE(
+			    [TempoMedioServico_PorRebocador_ComDeslocamento_ComArredondamento_BaseBC],
+			    KEEPFILTERS(Dim_Cliente[Grupo Econômico] IN {v1,v2}))
+		lineageTag: 0322c564-6f0f-4219-b463-16026206ceae
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Volume_Evolution = " Evolution"
+		lineageTag: 6cfb48b7-1fbe-40d5-9165-c58b49e96acf
+
+	measure PMV_Grupo1 = CALCULATE(Medidas_PmvPmr[PMV_Ponderado],USERELATIONSHIP(TabelaComparativa1[Grupo Econômico],Dim_Cliente[Grupo Econômico]))
+		lineageTag: 75896915-877b-45d4-a1b1-26525297c09e
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure PMV_Grupo2 = CALCULATE(Medidas_PmvPmr[PMV_Ponderado],USERELATIONSHIP(TabelaComparativa2[Grupo Econômico],Dim_Cliente[Grupo Econômico]))
+		lineageTag: 2fa53ee0-2882-4082-a587-9071c2e9158d
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure PMR_Grupo1 = CALCULATE(Medidas_PmvPmr[PMR_Ponderado],USERELATIONSHIP(TabelaComparativa1[Grupo Econômico],Dim_Cliente[Grupo Econômico]))
+		lineageTag: 01a215c5-5c69-4648-a935-0bf3a5821ea0
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure PMR_Grupo2 = CALCULATE(Medidas_PmvPmr[PMR_Ponderado],USERELATIONSHIP(TabelaComparativa2[Grupo Econômico],Dim_Cliente[Grupo Econômico]))
+		lineageTag: fa00580e-ca20-4230-8cb5-55f1726727e7
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition Medidas_Comparative = m
+		mode: import
+		source =
+				let
+				    Fonte = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [#"Coluna 1" = _t]),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(Fonte,{{"Coluna 1", type text}}),
+				    #"Colunas Removidas" = Table.RemoveColumns(#"Tipo Alterado",{"Coluna 1"})
+				in
+				    #"Colunas Removidas"
+
+	annotation PBI_ResultType = Table
+

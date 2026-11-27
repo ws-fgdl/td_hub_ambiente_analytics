@@ -1,0 +1,302 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "4fd08fb82434aa20620c",
+  "displayName": "Overview",
+  "displayOption": "FitToWidth",
+  "height": 1700,
+  "width": 1550,
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "3406d947d9b1ec14b56d",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Dim_calendario"
+              }
+            },
+            "Property": "data"
+          }
+        },
+        "type": "RelativeDate",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "d",
+              "Entity": "Dim_calendario",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Between": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Source": "d"
+                        }
+                      },
+                      "Property": "data"
+                    }
+                  },
+                  "LowerBound": {
+                    "DateSpan": {
+                      "Expression": {
+                        "DateAdd": {
+                          "Expression": {
+                            "DateAdd": {
+                              "Expression": {
+                                "Now": {}
+                              },
+                              "Amount": 1,
+                              "TimeUnit": 0
+                            }
+                          },
+                          "Amount": -100,
+                          "TimeUnit": 3
+                        }
+                      },
+                      "TimeUnit": 0
+                    }
+                  },
+                  "UpperBound": {
+                    "DateSpan": {
+                      "Expression": {
+                        "Now": {}
+                      },
+                      "TimeUnit": 0
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User"
+      },
+      {
+        "name": "996a80639dc108157968",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "aws_bussola_comercial_mar"
+              }
+            },
+            "Property": "manobra_especial"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "a",
+              "Entity": "aws_bussola_comercial_mar",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "a"
+                          }
+                        },
+                        "Property": "manobra_especial"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'NAO'"
+                        }
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User"
+      }
+    ]
+  },
+  "objects": {
+    "background": [
+      {
+        "properties": {
+          "transparency": {
+            "expr": {
+              "Literal": {
+                "Value": "0D"
+              }
+            }
+          },
+          "image": {
+            "image": {
+              "name": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'Bússola - Overview.png'"
+                  }
+                }
+              },
+              "url": {
+                "expr": {
+                  "ResourcePackageItem": {
+                    "PackageName": "RegisteredResources",
+                    "PackageType": 1,
+                    "ItemName": "B_ssola_-_Overview21181601565933106.png"
+                  }
+                }
+              },
+              "scaling": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'Normal'"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ],
+    "outspacePane": [
+      {
+        "properties": {
+          "width": {
+            "expr": {
+              "Literal": {
+                "Value": "267L"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "displayArea": [
+      {
+        "properties": {
+          "verticalAlignment": {
+            "expr": {
+              "Literal": {
+                "Value": "'Middle'"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "visualInteractions": [
+    {
+      "source": "c3888f2eb7b5a317619d",
+      "target": "cc7a97ebb57b7c0a4404",
+      "type": "DataFilter"
+    },
+    {
+      "source": "c3888f2eb7b5a317619d",
+      "target": "8102407c0750e43ed993",
+      "type": "DataFilter"
+    },
+    {
+      "source": "8bf779a243008480dec0",
+      "target": "512b185f4bba780110be",
+      "type": "DataFilter"
+    },
+    {
+      "source": "8bf779a243008480dec0",
+      "target": "8102407c0750e43ed993",
+      "type": "DataFilter"
+    },
+    {
+      "source": "6a9ee337000767e2aa9d",
+      "target": "cc7a97ebb57b7c0a4404",
+      "type": "DataFilter"
+    },
+    {
+      "source": "8bf779a243008480dec0",
+      "target": "cc7a97ebb57b7c0a4404",
+      "type": "DataFilter"
+    },
+    {
+      "source": "8102407c0750e43ed993",
+      "target": "cc7a97ebb57b7c0a4404",
+      "type": "DataFilter"
+    },
+    {
+      "source": "8102407c0750e43ed993",
+      "target": "8bf779a243008480dec0",
+      "type": "DataFilter"
+    },
+    {
+      "source": "8102407c0750e43ed993",
+      "target": "512b185f4bba780110be",
+      "type": "DataFilter"
+    },
+    {
+      "source": "c3888f2eb7b5a317619d",
+      "target": "8bf779a243008480dec0",
+      "type": "DataFilter"
+    },
+    {
+      "source": "c3888f2eb7b5a317619d",
+      "target": "512b185f4bba780110be",
+      "type": "DataFilter"
+    },
+    {
+      "source": "c975e9900cd02a66e985",
+      "target": "8102407c0750e43ed993",
+      "type": "DataFilter"
+    },
+    {
+      "source": "c975e9900cd02a66e985",
+      "target": "8bf779a243008480dec0",
+      "type": "DataFilter"
+    },
+    {
+      "source": "c975e9900cd02a66e985",
+      "target": "512b185f4bba780110be",
+      "type": "DataFilter"
+    },
+    {
+      "source": "6b6cf2dc60803800a476",
+      "target": "512b185f4bba780110be",
+      "type": "DataFilter"
+    },
+    {
+      "source": "6b6cf2dc60803800a476",
+      "target": "8bf779a243008480dec0",
+      "type": "DataFilter"
+    },
+    {
+      "source": "6b6cf2dc60803800a476",
+      "target": "8102407c0750e43ed993",
+      "type": "DataFilter"
+    },
+    {
+      "source": "6b6cf2dc60803800a476",
+      "target": "cc7a97ebb57b7c0a4404",
+      "type": "DataFilter"
+    },
+    {
+      "source": "c975e9900cd02a66e985",
+      "target": "cc7a97ebb57b7c0a4404",
+      "type": "DataFilter"
+    }
+  ]
+}

@@ -1,0 +1,215 @@
+table Dim_DonoManobra
+	lineageTag: a653fae3-987d-4960-a8ac-5773b7723eaf
+
+	measure Cor_DonoManobra_Demais =
+			
+			SWITCH(
+			    SELECTEDVALUE('Dim_DonoManobra'[Dono_Demais]),
+			    "WS", "#118DFF",
+			    "SVITZER", "#893395",
+			    "SAAM", "#E8D166",
+			    "SULNORTE", "#999999",
+			    "CAMORIM", "#D64550",
+			    "VALE", "#73361C",
+			    "DEMAIS", "#001C43",
+			    -- Cor Padrão (Caso apareça outra categoria)
+			    "#708090"
+			)
+		lineageTag: c43ea5db-d28e-47b1-9418-a34cc3187ed1
+
+	column dono_manobra
+		lineageTag: 3aaac946-fb34-4474-a395-a1483d226055
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: aws_bussola_comercial_mar[dono_manobra]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Dono_Padronizado =
+			
+			SWITCH (
+			    TRUE(),
+			    ISBLANK('Dim_DonoManobra'[dono_manobra]) || 'Dim_DonoManobra'[dono_manobra] = "", BLANK(),
+			
+			    'Dim_DonoManobra'[dono_manobra] IN {
+			        "CONSORCIO DE REBOCADORES DA BAIA", "CRBSM"
+			    }, "CONSORCIO",
+			
+			    'Dim_DonoManobra'[dono_manobra] IN {
+			        "SAMARCO MINERACAO S.A.", "SMR", "SAMARCO"
+			    }, "SAMARCO",
+			
+			    'Dim_DonoManobra'[dono_manobra] IN {
+			        "VALE S.A.", "NAVEGACAO VALE DO RIO DOCE   S/A - DOCENAVE", "VA"
+			    }, "VALE",
+			
+			    'Dim_DonoManobra'[dono_manobra] IN {
+			        "SVITZER BRASIL SERVICOS MARITIMOS LTDA", "SVITZER OCEAN TOWAGE", "SV"
+			    }, "SVITZER",
+			
+			    'Dim_DonoManobra'[dono_manobra] IN {
+			        "WILSON SONS SERVICOS MARITIMOS LTDA", "SAVEIROS CAMUYRANO SERVICOSMARITIMOS S/A", "WS"
+			    }, "WS",
+			
+			    'Dim_DonoManobra'[dono_manobra] IN {
+			        "SAAM TOWAGE BRASIL S.A.", "TUGBRASIL APOIO PORTUARIO SA", "TUGBRASIL APOIO PORTUARIO S A", "SST", "STV"
+			    }, "SAAM",
+			
+			    'Dim_DonoManobra'[dono_manobra] IN {
+			        "CAMORIM SERVICOS MARITIMOS LTDA", "CA"
+			    }, "CAMORIM",
+			
+			    'Dim_DonoManobra'[dono_manobra] IN {
+			        "SULNORTE SERVICOS MARITIMOS LTDA", "SN"
+			    }, "SULNORTE",
+			
+			    'Dim_DonoManobra'[dono_manobra] IN {
+			        "PB"
+			    }, "PETROBRAS",
+			
+			    'Dim_DonoManobra'[dono_manobra] IN {
+			        "AGRICULTURE & ENERGY CARRIERS"
+			    }, "AGRICULTURE",
+			
+			    'Dim_DonoManobra'[dono_manobra] IN {
+			        "BRASIMAR SERVICOS MARITIMOS LTDA", "BRA"
+			    }, "BRASIMAR",
+			
+			    'Dim_DonoManobra'[dono_manobra] IN {
+			        "MAXXIMUS SERVICOS MARITIMOS LTDA"
+			    }, "MAXXIMUS",
+			
+			    'Dim_DonoManobra'[dono_manobra] IN {
+			        "OCEANUS AGENCIA MARITIMA SA"
+			    }, "OCEANUS",
+			
+			    'Dim_DonoManobra'[dono_manobra] IN {
+			        "PULLMANTUR CRUZEIROS DO BRASIL LTDA"
+			    }, "PULLMANTUR",
+			
+			    'Dim_DonoManobra'[dono_manobra] IN {
+			        "SEAPORT SERVICOS MARITIMOS LTDA ME", "SEA"
+			    }, "SEAPORT",
+			
+			    'Dim_DonoManobra'[dono_manobra] IN {
+			        "SOBRARE SERVEMAR LTDA"
+			    }, "SOBRARE",
+			
+			    'Dim_DonoManobra'[dono_manobra] IN {
+			        "ZPORT OPERADORES PORTUARIOS LTDA", "ZPORT OPERADORES PORTUARIOS LTD", "ZPORT APOIO PORTUARIO LTDA", "ZP"
+			    }, "ZPORT",
+			
+			    'Dim_DonoManobra'[dono_manobra] IN {
+			        "ALIANCA NAVEGACAO E LOGISTICA LTDA"
+			    }, "ALIANCA",
+			
+			    'Dim_DonoManobra'[dono_manobra] IN {
+			        "ATLANTICO TUNA - INDUSTRIA E COMERCIO, I MPORTACAO"
+			    }, "ATLANTICO",
+			
+			    'Dim_DonoManobra'[dono_manobra] IN {
+			        "CARGILL INTL SA FOR & OBO CARGILL BV DUB AI BRANCH"
+			    }, "CARGILL",
+			
+			    'Dim_DonoManobra'[dono_manobra] IN {
+			        "INTERNACIONAL MARITIMA LTDA"
+			    }, "INTERNACIONAL",
+			
+			    'Dim_DonoManobra'[dono_manobra] IN {
+			        "BRAM OFFSHORE TRANSPORTES MARITIMOS S LTD"
+			    }, "BRAM",
+			
+			    'Dim_DonoManobra'[dono_manobra] IN {
+			        "M DIAS BRANCO SA IND E COMERCIO DE ALIMENTOS"
+			    }, "MDIAS",
+			
+			    'Dim_DonoManobra'[dono_manobra] IN {
+			        "METALNAVE S A COMERCIO E INDUSTRIA"
+			    }, "METALNAVE",
+			
+			    'Dim_DonoManobra'[dono_manobra] IN {
+			        "MINERACOES BRASILEIRAS REUNIDASS A MBR"
+			    }, "MBR",
+			
+			    'Dim_DonoManobra'[dono_manobra] IN {
+			        "NS UNITED SHIPPING USA INC"
+			    }, "NSUNITED",
+			
+			    'Dim_DonoManobra'[dono_manobra] IN {
+			        "SAGA REBOCADORES & SERVICOS MARITIMOS LTDA"
+			    }, "SAGA",
+			
+			    'Dim_DonoManobra'[dono_manobra] IN {
+			        "SUSA INDUSTRIA E COMERCIO DE PRODUTOS MI NERARIOS"
+			    }, "SUSA",
+			
+			    'Dim_DonoManobra'[dono_manobra] IN {
+			        "TRANSHIP TRANSPORTES MARITIMOS LTDA"
+			    }, "TRANSHIP",
+			
+			    'Dim_DonoManobra'[dono_manobra] IN {
+			        "TRANSOCEAN BRASIL LTDA"
+			    }, "TRANSOCEAN"
+			)
+		lineageTag: aee63383-db14-4620-90fd-c1a2d550b9c5
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Dono_Demais =
+			
+			VAR DonoPrincipal = 'Dim_DonoManobra'[Dono_Padronizado]
+			
+			RETURN
+			SWITCH (
+			    TRUE(),
+			    ISBLANK(DonoPrincipal), BLANK(),
+			    DonoPrincipal IN {
+			        "AGRICULTURE",
+			        "BRASIMAR",
+			        "MAXXIMUS",
+			        "OCEANUS",
+			        "PULLMANTUR",
+			        "SEAPORT",
+			        "SOBRARE",
+			        "ZPORT",
+			        "ALIANCA",
+			        "ATLANTICO",
+			        "CARGILL",
+			        "INTERNACIONAL",
+			        "BRAM",
+			        "MDIAS",
+			        "METALNAVE",
+			        "MBR",
+			        "NSUNITED",
+			        "SAGA",
+			        "SUSA",
+			        "TRANSHIP",
+			        "TRANSOCEAN",
+			        "ZPORT",
+			        "PETROBRAS",
+			        "CONSORCIO",
+			        "SAMARCO"
+			    },
+			    "DEMAIS",
+			    DonoPrincipal
+			)
+		lineageTag: e750ff93-7118-4697-8888-e1db32cbad52
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_DonoManobra = calculated
+		mode: import
+		source =
+				
+				DISTINCT (
+				    UNION (
+				        VALUES ( 'aws_bussola_comercial_mar'[dono_manobra] ),
+				        VALUES ( 'aws_bussola_comercial_faina'[dono] ),
+				        VALUES ( 'aws_movimentacao_portuaria'[dono] )
+				    )
+				)
+
+	annotation PBI_Id = 0e07cb8b2f464cf4b3e44595e7ac866b
+

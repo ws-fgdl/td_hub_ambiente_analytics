@@ -1,0 +1,289 @@
+table Fleet_Position_COR
+	lineageTag: 3f2993d4-1e4f-485b-aa73-e9ce70e6a096
+
+	measure Tug_% = DIVIDE(COUNTROWS(Fleet_Position_COR),CALCULATE(COUNTROWS(Fleet_Position_COR),ALL(Fleet_Position_COR[Tug Operator])))
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 41c7db41-6c4f-4cbe-99d1-63d9608baba6
+
+	measure Qtd_Tug = COUNTROWS(Fleet_Position_COR)
+		formatString: 0
+		lineageTag: c5ab9b9d-4ac2-463c-b051-397b8aa9379a
+
+	column State_Map
+		dataType: string
+		lineageTag: 5f7e1efb-0259-47e8-9974-455c93d6c209
+		summarizeBy: none
+		sourceColumn: State_Map
+
+		annotation SummarizationSetBy = Automatic
+
+	column ID
+		dataType: int64
+		formatString: 0
+		lineageTag: 89102804-45dd-4e25-9704-566cef762d68
+		summarizeBy: count
+		sourceColumn: ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Status
+		dataType: string
+		lineageTag: 0f6519df-af2c-4d8a-9c8f-8e32b905a708
+		summarizeBy: none
+		sourceColumn: Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column Status_Reb
+		dataType: string
+		lineageTag: f5fe45e8-6cfe-430c-bb86-bb6e363c9324
+		summarizeBy: none
+		sourceColumn: Status_Reb
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Information / Site'
+		dataType: string
+		lineageTag: 22c348f2-a17b-4438-9a89-c20a867cd625
+		summarizeBy: none
+		sourceColumn: Information / Site
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Tug Operator'
+		dataType: string
+		lineageTag: 609f7804-2a32-4ccc-831e-2476010b1ae2
+		summarizeBy: none
+		sourceColumn: Tug Operator
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Tug Name'
+		dataType: string
+		lineageTag: 1840b23e-360a-41dd-9d31-a09492e5ee35
+		summarizeBy: none
+		sourceColumn: Tug Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Owner
+		dataType: string
+		lineageTag: d5a3dd74-d76c-40c9-b837-440e437bfcdb
+		summarizeBy: none
+		sourceColumn: Owner
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Const. Year'
+		dataType: string
+		lineageTag: acf015ff-2f72-4e56-b960-00e0336136a9
+		summarizeBy: none
+		sourceColumn: Const. Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column AB
+		dataType: int64
+		formatString: 0
+		lineageTag: e1d13bf2-913e-4a42-a813-79e2eb65c62f
+		summarizeBy: sum
+		sourceColumn: AB
+
+		annotation SummarizationSetBy = Automatic
+
+	column BP
+		dataType: double
+		lineageTag: c8b0c3c0-d9f7-49d2-bea1-8b4d1b84b025
+		summarizeBy: sum
+		sourceColumn: BP
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column KW
+		dataType: int64
+		formatString: 0
+		lineageTag: 438bf5b7-3ba9-4731-b482-25cbe698a872
+		summarizeBy: sum
+		sourceColumn: KW
+
+		annotation SummarizationSetBy = Automatic
+
+	column BHP
+		dataType: string
+		lineageTag: f63d8a54-3efa-41c4-bb51-586bb899d207
+		summarizeBy: none
+		sourceColumn: BHP
+
+		annotation SummarizationSetBy = Automatic
+
+	column Fi-Fi
+		dataType: string
+		lineageTag: b7863a8e-cd3b-4c0e-bfbf-f4ae8c5400bc
+		summarizeBy: none
+		sourceColumn: Fi-Fi
+
+		annotation SummarizationSetBy = Automatic
+
+	column Winch
+		dataType: string
+		lineageTag: 95115541-aa90-4ddc-bbd3-b8dfe85311f5
+		summarizeBy: none
+		sourceColumn: Winch
+
+		annotation SummarizationSetBy = Automatic
+
+	column Class
+		dataType: string
+		lineageTag: f58d71e9-42ea-40de-bfa4-299037c8daee
+		summarizeBy: none
+		sourceColumn: Class
+
+		annotation SummarizationSetBy = Automatic
+
+	column Propulsion
+		dataType: string
+		lineageTag: e8f899e0-f186-4f71-9fb5-d40f2926e3c6
+		summarizeBy: none
+		sourceColumn: Propulsion
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'MCP / Manufacturer'
+		dataType: string
+		lineageTag: 246256e1-5f57-4e84-8216-9d15a6f362a8
+		summarizeBy: none
+		sourceColumn: MCP / Manufacturer
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Propulsion / Manufacturer'
+		dataType: string
+		lineageTag: 4e924817-2c03-450b-8963-c0d56539b4be
+		summarizeBy: none
+		sourceColumn: Propulsion / Manufacturer
+
+		annotation SummarizationSetBy = Automatic
+
+	column IMO
+		dataType: string
+		lineageTag: ceab0d5d-deea-4812-8d2b-30d6f2639ee1
+		summarizeBy: none
+		sourceColumn: IMO
+
+		annotation SummarizationSetBy = Automatic
+
+	column MMSI
+		dataType: string
+		lineageTag: 39238273-cf61-4bb5-ace9-08b4d5e52a82
+		summarizeBy: none
+		sourceColumn: MMSI
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Escort Tug'
+		dataType: string
+		lineageTag: a1ba646c-40e6-471c-8d13-fe034f78a9c1
+		summarizeBy: none
+		sourceColumn: Escort Tug
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Joystick / NFU'
+		dataType: string
+		lineageTag: 0ccf95b5-d517-4984-9e48-10688c6bed20
+		summarizeBy: none
+		sourceColumn: Joystick / NFU
+
+		annotation SummarizationSetBy = Automatic
+
+	column Manete
+		dataType: string
+		lineageTag: 0d6c837a-97e3-4a1f-9dc9-bb62f17b7ee8
+		summarizeBy: none
+		sourceColumn: Manete
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'CSN Validade'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 0631ee9a-adb0-4b21-9403-4face9061e08
+		summarizeBy: none
+		sourceColumn: CSN Validade
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Port / Terminal'
+		dataType: string
+		lineageTag: 85570fdb-0f88-4dd2-b4b4-f0104b7d5e5e
+		summarizeBy: none
+		sourceColumn: Port / Terminal
+
+		annotation SummarizationSetBy = Automatic
+
+	column Filial_Tratada = ```
+			
+			VAR TermoOriginal = [Port / Terminal]
+			RETURN
+			SWITCH( TRUE(),
+			    -- Casos com acentuação ou grafia diferente
+			    TermoOriginal = "BELÉM", "BELEM",
+			    TermoOriginal = "SANTARÉM", "SANTAREM",
+			    TermoOriginal = "SÃO SEBASTIÃO", "SAO SEBASTIAO",
+			    TermoOriginal = "PORTO DO AÇU", "PORTO DO ACU",
+			    
+			    -- Casos de Portos que pertencem a uma Filial Agrupadora específica
+			    TermoOriginal = "ANGRA DOS REIS-TEBIG", "SEPETIBA",
+			    TermoOriginal = "ILHA GUAIBA", "SEPETIBA",
+			    TermoOriginal = "ITAGUAI", "SEPETIBA",
+			    TermoOriginal = "PONTA DA MADEIRA", "SAO LUIS",
+			    TermoOriginal = "BARRA DO RIACHO", "VITORIA",
+			    TermoOriginal = "PONTA UBU", "VITORIA",
+			    TermoOriginal = "PORTO TROMBETAS", "TROMBETAS",
+			    
+			    
+			    -- Casos de Cidades que respondem por outra sede
+			    TermoOriginal = "FORTALEZA/MUCURIPE", "FORTALEZA",
+			    TermoOriginal = "FORTALEZA/PECEM", "PECEM",
+			    TermoOriginal = "AREIA BRANCA", "NATAL",
+			    TermoOriginal = "PORTO ALEGRE", "RIO GRANDE",
+			    TermoOriginal = "SUAPE", "IPOJUCA",
+			    
+			    -- Se não cair em nenhuma regra, mantém o original (ou limpa espaços)
+			    TRIM(TermoOriginal)
+			)
+			```
+		lineageTag: b213a9f2-4da1-4a25-81c8-235f5ba0981f
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Fleet_Position_COR = m
+		mode: import
+		source =
+				let
+				    Fonte = PowerPlatform.Dataflows(null),
+				    Workspaces = Fonte{[Id="Workspaces"]}[Data],
+				    #"8c5cc8ba-ed75-4d39-9606-af9ead89ca36" = Workspaces{[workspaceId="8c5cc8ba-ed75-4d39-9606-af9ead89ca36"]}[Data],
+				    #"edbd00bf-3686-47d4-ab15-8fafaecd05cb" = #"8c5cc8ba-ed75-4d39-9606-af9ead89ca36"{[dataflowId="edbd00bf-3686-47d4-ab15-8fafaecd05cb"]}[Data],
+				    Consulta_ = #"edbd00bf-3686-47d4-ab15-8fafaecd05cb"{[entity="Consulta",version=""]}[Data],
+				    #"Tipo Alterado" = Table.TransformColumnTypes(Consulta_,{{"State_Map", type text}, {"ID", Int64.Type}, {"Port / Terminal", type text}, {"Status", type text}, {"Status_Reb", type text}, {"Information / Site", type text}, {"Tug Operator", type text}, {"Tug Name", type text}, {"Owner", type text}, {"Const. Year", type any}, {"AB", Int64.Type}, {"BP", type any}, {"KW", type any}, {"BHP", type any}, {"Fi-Fi", type text}, {"Winch", type text}, {"Class", type any}, {"Propulsion", type text}, {"MCP / Manufacturer", type text}, {"Propulsion / Manufacturer", type text}, {"IMO", type any}, {"MMSI", type any}, {"Escort Tug", type text}, {"Joystick / NFU", type text}, {"Manete", type text}, {"CSN Validade", type date}}),
+				    #"Linhas Filtradas" = Table.SelectRows(#"Tipo Alterado", each ([ID] <> null)),
+				    #"Erros Substituídos" = Table.ReplaceErrorValues(#"Linhas Filtradas", {{"IMO", ""}}),
+				    #"Erros Substituídos1" = Table.ReplaceErrorValues(#"Erros Substituídos", {{"MMSI", ""}}),
+				    #"Tipo Alterado1" = Table.TransformColumnTypes(#"Erros Substituídos1",{{"BP", type number}}),
+				    #"Erros Substituídos2" = Table.ReplaceErrorValues(#"Tipo Alterado1", {{"BP", null}}),
+				    #"Tipo Alterado2" = Table.TransformColumnTypes(#"Erros Substituídos2",{{"KW", Int64.Type}}),
+				    #"Erros Substituídos3" = Table.ReplaceErrorValues(#"Tipo Alterado2", {{"KW", null}}),
+				    #"Tipo Alterado3" = Table.TransformColumnTypes(#"Erros Substituídos3",{{"Class", type text}})
+				in
+				    #"Tipo Alterado3"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

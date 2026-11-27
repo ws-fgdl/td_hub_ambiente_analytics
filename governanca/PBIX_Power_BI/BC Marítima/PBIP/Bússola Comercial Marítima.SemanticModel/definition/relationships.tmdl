@@ -1,0 +1,217 @@
+relationship 75ae32b0-5f02-6c54-ddcb-67fd3b4790a4
+	fromColumn: aws_aging.cod_estab_sap
+	toColumn: Dim_estab_sap.cod_estab_sap
+
+relationship f9efab18-aa56-1a6f-299a-f3d1e5b411b9
+	fromColumn: aws_dre_reb.competencia
+	toColumn: Dim_calendario.data
+
+relationship 11dee7aa-1550-2e0d-fe65-428fc46aa043
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: aws_index_cpi.date
+	toColumn: Dim_calendario.data
+
+relationship 164663eb-e0a9-9bcf-a75a-bf3812fc0bcc
+	fromColumn: aws_aging.dat_vencimento
+	toColumn: Dim_calendario.data
+
+relationship 71ff2730-34f6-e29f-5bec-0a72606c0c0a
+	fromColumn: aws_dre_reb.linha_dre
+	toColumn: Dim_Linha_DRE.linha_dre
+
+relationship 300b72f3-7010-8840-e130-0936f001cffd
+	fromColumn: aws_index_mercado.data
+	toColumn: Dim_calendario.data
+
+relationship 9f5334ff-0744-e2f4-4871-3994b43e0f28
+	fromColumn: aws_bussola_comercial_faina.competencia
+	toColumn: Dim_calendario.data
+
+relationship e1e3d2af-e93a-12a5-8088-4da9353164cf
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: aws_bussola_comercial_faina.evento
+	toColumn: aws_bussola_comercial_mar.os
+
+relationship 58c6f1b6-a420-11e2-f02f-a891757d0099
+	fromColumn: aws_bussola_comercial_mar.cliente_sap
+	toColumn: Dim_carteira_comercial_consolidado.CODIGO_SAP_Padronizado
+
+relationship 350e757b-9117-7ef2-cc41-3c022be7941b
+	fromColumn: aws_movimentacao_portuaria.dono
+	toColumn: Dim_DonoManobra.dono_manobra
+
+relationship 08b6bb07-4bb4-20d8-8374-74e6032a3725
+	fromColumn: aws_bussola_comercial_mar.dono_manobra
+	toColumn: Dim_DonoManobra.dono_manobra
+
+relationship 8580ae8d-be17-d994-0410-92c676bd8555
+	fromColumn: aws_bussola_comercial_faina.dono
+	toColumn: Dim_DonoManobra.dono_manobra
+
+relationship 7c8a7638-d1a2-eafa-23d7-c47882c544ca
+	fromColumn: aws_bussola_comercial_mar.operador
+	toColumn: Dim_Operador.operador
+
+relationship 2ca412bf-0973-847e-dec7-f18f6a6c6063
+	fromColumn: aws_movimentacao_portuaria.operador
+	toColumn: Dim_Operador.operador
+
+relationship 29b46bfc-2732-26fb-4a22-a4f7bb1ecffd
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: aws_bussola_comercial_mar.os
+	toColumn: aws_movimentacao_portuaria.origem_id
+
+relationship 0d3482d5-a13c-6dc9-71c6-468b6db9e067
+	fromColumn: aws_bussola_comercial_mar.Servico_com_TCP_HIDROVIAS
+	toColumn: Dim_Servico.Servico_com_TCP_HIDROVIAS
+
+relationship bfbb28fc-b867-9fb9-0505-d1d5795980e2
+	fromColumn: aws_bussola_comercial_faina.manobra
+	toColumn: Dim_Servico.Servico_com_TCP_HIDROVIAS
+
+relationship 350378db-b70a-f80b-5ed3-0179fdb6dc32
+	fromColumn: aws_movimentacao_portuaria.manobra
+	toColumn: Dim_Servico.Servico_com_TCP_HIDROVIAS
+
+relationship ea5dc9d9-d517-96ba-2225-fdb5d32f23e2
+	fromColumn: aws_bussola_comercial_faina.divisao
+	toColumn: Dim_Divisao.divisao
+
+relationship eea0e586-18e8-d68a-a604-19580809461a
+	fromColumn: aws_bussola_comercial_mar.divisao
+	toColumn: Dim_Divisao.divisao
+
+relationship 76f1665b-0cbc-8d2e-c7fd-482b78e86db1
+	fromColumn: aws_movimentacao_portuaria.div_comercial
+	toColumn: Dim_Divisao.divisao
+
+relationship 73332709-50b5-3077-e7f4-c9f5de86534a
+	fromColumn: aws_dre_reb.filial
+	toColumn: Dim_Filial.filial
+
+relationship 0a897304-3583-b459-5b2b-9fee0410a5f8
+	fromColumn: aws_bussola_comercial_mar.filial
+	toColumn: Dim_Filial.filial
+
+relationship ce232d6e-d75e-f17c-310b-c0ed7581168a
+	fromColumn: aws_bussola_comercial_faina.filial
+	toColumn: Dim_Filial.filial
+
+relationship 2b234431-3b35-792e-fdc3-fb928fab7d3d
+	fromColumn: aws_movimentacao_portuaria.filial
+	toColumn: Dim_Filial.filial
+
+relationship 3ebbb343-d819-3313-01ac-fedd68109b4e
+	fromColumn: aws_bussola_comercial_faina.faina
+	toColumn: Dim_Faina.faina
+
+relationship ea24f63c-116a-45b9-2afe-4693d518e83c
+	fromColumn: Fleet_Position_COR.'Port / Terminal'
+	toColumn: Mapa_FleetPosition.Port/Terminal
+
+relationship e83c03a6-0450-66ab-fc5a-8ba58ed238f4
+	fromColumn: aws_bussola_comercial_mar.cliente_sap
+	toColumn: dim_grupo.cliente_sap
+
+relationship 1744db95-3e42-a162-5df8-afc3831a041a
+	fromColumn: aws_aging.cod_cliente_sap
+	toColumn: Dim_Cliente.'Cód SAP'
+
+relationship 9f1a94c3-b1ae-73f2-7e03-0241cc3992ba
+	fromColumn: aws_bussola_comercial_faina.cliente_sap
+	toColumn: Dim_Cliente.'Cód SAP'
+
+relationship f6c1ea38-dc64-944d-c83b-7fee362ba497
+	fromColumn: aws_bussola_comercial_mar.cliente_sap
+	toColumn: Dim_Cliente.'Cód SAP'
+
+relationship 5661ecd8-756d-0c2c-ea74-4efac6d1413d
+	fromColumn: aws_pmvpmr.cod_cliente_sap
+	toColumn: Dim_Cliente.'Cód SAP'
+
+relationship b6142be7-4f33-74ad-cb1d-9e061a99bc5a
+	fromColumn: aws_movimentacao_portuaria.competencia
+	toColumn: Dim_calendario.data
+
+relationship 0dfaefb2-21de-c5b4-38ad-fa2a53314964
+	fromColumn: Fleet_Position_COR.'Tug Operator'
+	toColumn: Dim_Operador.operador
+
+relationship 4c7f9be6-6011-322e-d8ee-33eb61ea8d55
+	fromColumn: Fleet_Position_COR.Filial_Tratada
+	toColumn: Dim_Filial.filial
+
+relationship 20dd27b9-b16b-ac6a-a497-ae1d9720bfe3
+	fromColumn: aws_aging.ID_Documento_SAP
+	toColumn: dim_ID_Documento_SAP.ID_Documento_SAP
+
+relationship 3c5c442a-9ba4-b55b-337a-b7893ef04edf
+	fromColumn: aws_bussola_comercial_faina.ID_Documento_SAP
+	toColumn: dim_ID_Documento_SAP.ID_Documento_SAP
+
+relationship 21de5fac-0a16-ab85-5f2b-768abf01ef1c
+	fromColumn: aws_pmvpmr.cod_cliente_sap
+	toColumn: aws_salesforce.codigo_sap
+
+relationship 93d9950a-f7e0-6b7c-01f0-33c8af9709d4
+	fromColumn: aws_pmvpmr.data_compensacao
+	toColumn: Dim_calendario.data
+
+relationship 2a37144e-1e87-0058-c669-b04c16ccee58
+	toCardinality: many
+	fromColumn: aws_bussola_comercial_faina.ID_Documento_SAP
+	toColumn: aws_aging.ID_Documento_SAP
+
+relationship 63083054-7dae-17f5-ca93-24d977bf8040
+	fromColumn: aws_pmvpmr.cod_estab_sap
+	toColumn: Dim_estab_sap.cod_estab_sap
+
+relationship 9a8c411c-1d3c-4e6c-0b68-f0e4f388a883
+	isActive: false
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: TabelaComparativa1.'Grupo Econômico'
+	toColumn: Dim_Cliente.'Grupo Econômico'
+
+relationship 143b773a-580e-f278-5c38-79e0ef4e78ba
+	isActive: false
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: TabelaComparativa2.'Grupo Econômico'
+	toColumn: Dim_Cliente.'Grupo Econômico'
+
+relationship c89d37d0-1162-dabe-ef0b-e0c892db0d8f
+	fromColumn: aws_aging.cod_cliente_sap
+	toColumn: aws_salesforce.codigo_sap
+
+relationship eaa642ff-0120-f44b-4a17-8790e6f49e6f
+	fromColumn: aws_bussola_comercial_mar.competencia
+	toColumn: Dim_calendario.data
+
+relationship AutoDetected_e75fc7d6-f46e-41e1-999e-8986e73b134a
+	fromColumn: aws_movimentacao_portuaria.origem_id
+	toColumn: db_etl_grupo_cliente_bussola.ORIGEM_ID
+
+relationship f63c9e3d-5659-bc89-2bac-f1ae0b7c12ed
+	fromColumn: aws_bussola_comercial_mar.os
+	toColumn: db_etl_grupo_cliente_bussola.ORIGEM_ID
+
+relationship 7a94a764-d3ce-8cda-a3e2-2f1c9d2141c9
+	fromColumn: aws_bussola_comercial_faina.evento
+	toColumn: db_etl_grupo_cliente_bussola.ORIGEM_ID
+
+relationship 3f1b1329-b41d-9528-55f2-0426e2b5d070
+	fromColumn: aws_bussola_comercial_faina.mercadoria
+	toColumn: db_rl_lineup_merc.DSC_MERC
+
+relationship 4eec8aff-ac60-7bdb-b28b-7f6005db8307
+	fromColumn: aws_bussola_comercial_mar.commodity
+	toColumn: db_rl_lineup_merc.DSC_MERC
+
+relationship 867ff5e6-6bd6-f343-811c-7ed1b834cbeb
+	fromColumn: aws_movimentacao_portuaria.mercadoria
+	toColumn: db_rl_lineup_merc.DSC_MERC
+

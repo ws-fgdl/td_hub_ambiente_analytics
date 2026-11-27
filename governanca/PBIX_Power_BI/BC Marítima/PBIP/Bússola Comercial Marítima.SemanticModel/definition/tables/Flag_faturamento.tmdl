@@ -1,0 +1,88 @@
+table Flag_faturamento
+	lineageTag: 92f9c9eb-4928-479d-a736-a5a1d49cb4ad
+
+	measure Flag_Faturamento_BaseBC =
+			
+			SWITCH(
+			    SELECTEDVALUE(Flag_faturamento[Faturamento]),
+			    "US$",[FaturamentoUSD_BaseBC],
+			    "R$", [FaturamentoBRL_BaseBC],
+			    "PTAX", [FaturamentoPTAX_BaseBC],
+			    [FaturamentoUSD_BaseBC]
+			)
+		lineageTag: d9c7b52f-2181-4556-8ff3-ba7d3879d970
+
+		formatStringDefinition = ```
+				VAR Valor = SELECTEDMEASURE()
+				VAR ValorAbs = ABS(Valor) -- Analisamos o "tamanho" do número independente do sinal
+				VAR Selecao = SELECTEDVALUE(Flag_faturamento[Faturamento])
+				VAR Prefixo = IF(Selecao = "R$", "R$ ", "$ ")
+				
+				RETURN
+				    SWITCH( TRUE(),
+				        ValorAbs >= 1000000000, 
+				            Prefixo & "#,##0,,,.0 ""B"";-" & Prefixo & "#,##0,,,.0 ""B""",
+				        
+				        ValorAbs >= 1000000,    
+				            Prefixo & "#,##0,,.0 ""M"";-" & Prefixo & "#,##0,,.0 ""M""",
+				        
+				        ValorAbs >= 1000,       
+				            Prefixo & "#,##0,.0 ""K"";-" & Prefixo & "#,##0,.0 ""K""",
+				        
+				        -- Para valores entre -999 e 999
+				        Prefixo & "#,##0;-" & Prefixo & "#,##0"
+				    )
+				```
+
+	measure Flag_Faturamento_BaseFaina =
+			
+			SWITCH(
+			    SELECTEDVALUE(Flag_faturamento[Faturamento]),
+			    "US$",[FaturamentoUSD_BaseFaina],
+			    "R$", [FaturamentoBRL_BaseFaina],
+			    "PTAX", [FaturamentoPTAX_BaseFaina],
+			    [FaturamentoUSD_BaseFaina]
+			)
+		lineageTag: c3d81fb5-8f74-44aa-ac60-9825277bab8f
+
+		formatStringDefinition = ```
+				VAR Valor = SELECTEDMEASURE()
+				VAR ValorAbs = ABS(Valor) -- Analisamos o "tamanho" do número independente do sinal
+				VAR Selecao = SELECTEDVALUE(Flag_faturamento[Faturamento])
+				VAR Prefixo = IF(Selecao = "R$", "R$ ", "$ ")
+				
+				RETURN
+				    SWITCH( TRUE(),
+				        ValorAbs >= 1000000000, 
+				            Prefixo & "#,##0,,,.0 ""B"";-" & Prefixo & "#,##0,,,.0 ""B""",
+				        
+				        ValorAbs >= 1000000,    
+				            Prefixo & "#,##0,,.0 ""M"";-" & Prefixo & "#,##0,,.0 ""M""",
+				        
+				        ValorAbs >= 1000,       
+				            Prefixo & "#,##0,.0 ""K"";-" & Prefixo & "#,##0,.0 ""K""",
+				        
+				        -- Para valores entre -999 e 999
+				        Prefixo & "#,##0;-" & Prefixo & "#,##0"
+				    )
+				```
+
+	column Faturamento
+		lineageTag: 3c66872f-b772-4e41-90cd-3bc726d2ad59
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Faturamento]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Flag_faturamento = calculated
+		mode: import
+		source =
+				UNION(
+				    ROW("Faturamento", "US$"),
+				    ROW("Faturamento", "R$"),
+				    ROW("Faturamento", "PTAX")
+				)
+
+	annotation PBI_Id = baf7275a53374327b5d09fe416ee9348
+

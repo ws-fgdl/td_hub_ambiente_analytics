@@ -1,0 +1,74 @@
+table Medidas_PmvPmr
+	lineageTag: b35bb52b-dda1-4f5e-9274-ec9a9f55cd94
+
+	measure PMV = AVERAGE(aws_pmvpmr[dias_prazo_vencimento])
+		formatString: 0
+		lineageTag: 6259b94d-7764-4aa7-b26c-5f669fc68ea5
+
+	measure PMR = AVERAGE(aws_pmvpmr[dias_prazo_recebimento])
+		formatString: 0
+		lineageTag: 4369d7ab-5b45-41d3-811c-7860ae80bb39
+
+	measure PMO = AVERAGE(aws_pmvpmr[dias_prazo_inadimplencia])
+		formatString: 0
+		lineageTag: 10767aeb-54a2-427e-9eec-c8fa9aced6e3
+
+	measure Total_Invoice =
+			
+			DISTINCTCOUNT(
+			    aws_pmvpmr[num_nf]
+			)
+		formatString: 0
+		lineageTag: 30292f70-20c5-41ac-a6cd-0be43531fe48
+
+	measure PMV_Ponderado = ```
+			
+			DIVIDE(
+			    SUM('aws_pmvpmr'[pond_prazo_vencimento]), 
+			    SUM('aws_pmvpmr'[valor])
+			)
+			```
+		formatString: 0
+		lineageTag: f22bab8b-c32c-4d77-a9f5-9fc7d01dfa93
+
+	measure PMR_Ponderado = ```
+			
+			DIVIDE(
+			    SUM('aws_pmvpmr'[pond_prazo_recebimento]), 
+			    SUM('aws_pmvpmr'[valor])
+			)
+			```
+		formatString: 0
+		lineageTag: 2a1c782a-8596-4dd3-be12-8174fca28e00
+
+	measure PMO_Ponderado = ```
+			
+			DIVIDE(
+			    SUM('aws_pmvpmr'[pond_prazo_inadimplencia]), 
+			    SUM('aws_pmvpmr'[valor])
+			)
+			```
+		formatString: 0
+		lineageTag: c9d13e80-0b51-442c-9da3-558c9d7c1440
+
+	measure Valor_pmvpmr =
+			
+			SUM(
+			    aws_pmvpmr[valor]
+			)
+		lineageTag: 157b3139-d1aa-4b16-944b-eeedf89f47e5
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition Medidas_PmvPmr = m
+		mode: import
+		source =
+				let
+				    Fonte = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [#"Coluna 1" = _t]),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(Fonte,{{"Coluna 1", type text}}),
+				    #"Colunas Removidas" = Table.RemoveColumns(#"Tipo Alterado",{"Coluna 1"})
+				in
+				    #"Colunas Removidas"
+
+	annotation PBI_ResultType = Table
+

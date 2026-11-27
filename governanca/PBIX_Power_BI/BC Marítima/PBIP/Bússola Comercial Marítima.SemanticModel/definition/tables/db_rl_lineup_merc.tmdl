@@ -1,0 +1,111 @@
+table db_rl_lineup_merc
+	lineageTag: cd1761b6-bd34-431d-abe0-e6237a8e8f3e
+
+	measure Cor_Categoria_Agrupamento =
+			
+			SWITCH(
+			    SELECTEDVALUE('db_rl_lineup_merc'[DSC_AGRUPAMENTO]),
+			    "CONTAINER",      "#0A192F", // Container (Azul Noite Bem Escuro)
+			    "CARGA GERAL",    "#4A6572", // Carga Geral (Cinza Azulado Escuro)
+			    "GRANEL LIQUIDO", "#2B580C", // Granel Líquido (Verde Escuro Fechado)
+			    "DEMAIS CARGAS",  "#E0E0E0", // Demais Cargas (Cinza Muito Claro)
+			    "PASSAGEIROS",    "#E5B96B", // Passageiros (Dourado Suave)
+			    "RO-RO",          "#8E9AAF", // Ro-Ro (Lilás Cinzento Sóbrio)
+			    "GRANEL SOLIDO",  "#155263", // Granel Sólido (Azul Petróleo Escuro)
+			    "#00205B"                    // Padrão: Azul Escuro
+			)
+		lineageTag: eadc9c06-dd98-4b44-8e25-b1e7d4b03236
+
+	measure Cor_Categoria =
+			
+			SWITCH(
+			    SELECTEDVALUE('db_rl_lineup_merc'[DSC_CATEG]),
+			    "CARGA GERAL",           "#4A6572", // Cinza Azulado Escuro
+			    "CELULOSE",              "#9DB2BF", // Cinza Claro Azulado
+			    "CONTAINER",             "#0A192F", // Azul Noite Bem Escuro
+			    "DEMAIS CARGAS",         "#E0E0E0", // Cinza Muito Claro
+			    "FERTILIZANTES",         "#F4C482", // Bege / Laranja Suave Pastel
+			    "GRAOS",                 "#00A8CC", // Ciano / Turquesa Corporativo
+			    "MINERIO",               "#1F4E79", // Azul Marinho Médio
+			    "PASSAGEIROS",           "#E5B96B", // Dourado Suave
+			    "PETROLEO E DERIVADOS",  "#708090", // Cinza Azulado
+			    "PRODUTOS SIDERURGICOS", "#5C6B73", // Cinza Aço Fechado
+			    "QUIMICOS",              "#4682B4", // Azul Aço
+			    "RO-RO",                 "#8E9AAF", // Lilás Cinzento Sóbrio
+			    "#708090"                           // Cor Padrão
+			)
+		lineageTag: c45eae6a-fead-4c34-b9a2-85c3e4116d76
+
+	column LINEUP_MERC_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: 2737558c-d2be-41d9-bcb5-9bff210106e4
+		summarizeBy: count
+		sourceColumn: LINEUP_MERC_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column DSC_MERC
+		dataType: string
+		lineageTag: d5b87be0-6eb4-4138-9eaf-516b7922ea66
+		summarizeBy: none
+		sourceColumn: DSC_MERC
+
+		annotation SummarizationSetBy = Automatic
+
+	column DSC_CATEG
+		dataType: string
+		lineageTag: 9908b068-3b63-458f-939f-320cb47073d7
+		summarizeBy: none
+		sourceColumn: DSC_CATEG
+
+		annotation SummarizationSetBy = Automatic
+
+	column DSC_AGRUPAMENTO
+		dataType: string
+		lineageTag: ce44e8c8-478c-44d3-a0f4-6a163af19c4b
+		summarizeBy: none
+		sourceColumn: DSC_AGRUPAMENTO
+
+		annotation SummarizationSetBy = Automatic
+
+	column DSC_AGRUPAMENTO_INGLES
+		dataType: string
+		lineageTag: 7446200e-81e6-4368-a45c-4e362159d81c
+		summarizeBy: none
+		sourceColumn: DSC_AGRUPAMENTO_INGLES
+
+		annotation SummarizationSetBy = Automatic
+
+	column DSC_MERC_INGLES
+		dataType: string
+		lineageTag: 225021f8-2432-43e8-a96a-a03843521d11
+		summarizeBy: none
+		sourceColumn: DSC_MERC_INGLES
+
+		annotation SummarizationSetBy = Automatic
+
+	column DSC_CATEG_INGLES
+		dataType: string
+		lineageTag: ed2c2dd6-56a3-471c-b60b-93b11e4cabe3
+		summarizeBy: none
+		sourceColumn: DSC_CATEG_INGLES
+
+		annotation SummarizationSetBy = Automatic
+
+	partition db_rl_lineup_merc = m
+		mode: import
+		source =
+				let
+				    Fonte = PowerPlatform.Dataflows(null),
+				    Workspaces = Fonte{[Id="Workspaces"]}[Data],
+				    #"8c5cc8ba-ed75-4d39-9606-af9ead89ca36" = Workspaces{[workspaceId="8c5cc8ba-ed75-4d39-9606-af9ead89ca36"]}[Data],
+				    #"521e86c5-882b-4865-bbbf-e1a93b6eba17" = #"8c5cc8ba-ed75-4d39-9606-af9ead89ca36"{[dataflowId="521e86c5-882b-4865-bbbf-e1a93b6eba17"]}[Data],
+				    db_rl_lineup_merc_ = #"521e86c5-882b-4865-bbbf-e1a93b6eba17"{[entity="db_rl_lineup_merc",version=""]}[Data]
+				in
+				    db_rl_lineup_merc_
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

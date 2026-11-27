@@ -1,0 +1,412 @@
+table aws_aging
+	lineageTag: eac6b697-0843-4606-a543-1ca9bb60eb3f
+
+	column cod_empresa_sap
+		dataType: string
+		lineageTag: e780aed2-9622-4461-8f95-f5e3c8ed8897
+		summarizeBy: none
+		sourceColumn: cod_empresa_sap
+
+		annotation SummarizationSetBy = Automatic
+
+	column cod_estab_sap
+		dataType: string
+		lineageTag: 01c3aa8a-9eab-49ea-abf7-ef1a1d50f572
+		summarizeBy: none
+		sourceColumn: cod_estab_sap
+
+		annotation SummarizationSetBy = Automatic
+
+	column cod_cliente_sap
+		dataType: string
+		lineageTag: 30721f02-a049-4018-a0c3-f11cb7da87e7
+		summarizeBy: none
+		sourceColumn: cod_cliente_sap
+
+		annotation SummarizationSetBy = Automatic
+
+	column cod_referencia_mi
+		dataType: string
+		lineageTag: f03d40a6-fc61-40c2-8527-02004e76671b
+		summarizeBy: none
+		sourceColumn: cod_referencia_mi
+
+		annotation SummarizationSetBy = Automatic
+
+	column num_doc_contab_sap
+		dataType: string
+		lineageTag: b4bbf0e7-5ca2-4e98-bdd0-3847f143c39a
+		summarizeBy: none
+		sourceColumn: num_doc_contab_sap
+
+		annotation SummarizationSetBy = Automatic
+
+	column num_ano_exerc
+		dataType: double
+		lineageTag: 21ce2ada-d507-49d7-a6b6-c1d5869f58c0
+		summarizeBy: sum
+		sourceColumn: num_ano_exerc
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column num_linha_lanc
+		dataType: int64
+		lineageTag: 560377f8-8dcb-4294-a06d-6435b28520ea
+		summarizeBy: sum
+		sourceColumn: num_linha_lanc
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column dat_lancamento
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 59ee4bc4-9729-4148-9187-4b6101783e54
+		summarizeBy: none
+		sourceColumn: dat_lancamento
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column dat_documento
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: dc87c4e5-3462-4ddd-a5c6-f4ff8d103579
+		summarizeBy: none
+		sourceColumn: dat_documento
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column tip_moeda
+		dataType: string
+		lineageTag: 05b6fa00-fe5b-424e-87ab-841cd71b0e13
+		summarizeBy: none
+		sourceColumn: tip_moeda
+
+		annotation SummarizationSetBy = Automatic
+
+	column num_referencia
+		dataType: string
+		lineageTag: 31bda53b-e55a-4f00-9bd3-9e7a6d057d47
+		summarizeBy: none
+		sourceColumn: num_referencia
+
+		annotation SummarizationSetBy = Automatic
+
+	column tip_doc
+		dataType: string
+		lineageTag: d1f4f549-70bc-44af-bba1-f2846babac75
+		summarizeBy: none
+		sourceColumn: tip_doc
+
+		annotation SummarizationSetBy = Automatic
+
+	column dat_vencimento
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: a0336465-3984-4fb5-beb0-f92165c4e528
+		summarizeBy: none
+		sourceColumn: dat_vencimento
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column val_montante_interno
+		dataType: double
+		lineageTag: adf84b7a-eebc-401b-b49c-571750855c60
+		summarizeBy: sum
+		sourceColumn: val_montante_interno
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column val_montante_transacao
+		dataType: double
+		lineageTag: 4fd0814c-4fed-4292-b01a-7d4d4b700cc6
+		summarizeBy: sum
+		sourceColumn: val_montante_transacao
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column num_doc_faturamento
+		dataType: string
+		lineageTag: f4ab6eb3-26d4-40d4-a5fe-9ef73db7860b
+		summarizeBy: none
+		sourceColumn: num_doc_faturamento
+
+		annotation SummarizationSetBy = Automatic
+
+	column ch_refer_banc2
+		dataType: string
+		lineageTag: 517c6c0a-96dd-4475-860a-26f310d2977c
+		summarizeBy: none
+		sourceColumn: ch_refer_banc2
+
+		annotation SummarizationSetBy = Automatic
+
+	column ch_refer_banc3
+		dataType: string
+		lineageTag: 89b28565-87c7-4bb5-8207-0f04080f3181
+		summarizeBy: none
+		sourceColumn: ch_refer_banc3
+
+		annotation SummarizationSetBy = Automatic
+
+	column dat_incl_reg
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: ad9d7f62-fddf-44f2-9557-5bbf631febd5
+		summarizeBy: none
+		sourceColumn: dat_incl_reg
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column ch_ctr_banco
+		dataType: string
+		lineageTag: 1765d242-feb6-4f14-9803-e82c08587fec
+		summarizeBy: none
+		sourceColumn: ch_ctr_banco
+
+		annotation SummarizationSetBy = Automatic
+
+	column cod_banco_empresa
+		dataType: string
+		lineageTag: 6c7304f4-76b0-4314-a045-20f2dd315a40
+		summarizeBy: none
+		sourceColumn: cod_banco_empresa
+
+		annotation SummarizationSetBy = Automatic
+
+	column num_conta_bancaria
+		dataType: string
+		lineageTag: 48829e0b-b716-42bc-b728-f23cbcd154c0
+		summarizeBy: none
+		sourceColumn: num_conta_bancaria
+
+		annotation SummarizationSetBy = Automatic
+
+	column ch_banco
+		dataType: string
+		lineageTag: c776b479-9b21-4b92-9b7f-591e36096c10
+		summarizeBy: none
+		sourceColumn: ch_banco
+
+		annotation SummarizationSetBy = Automatic
+
+	column ch_refer_banc4
+		dataType: string
+		lineageTag: 3f98e6c8-3e1d-4a56-a872-328221905fd4
+		summarizeBy: none
+		sourceColumn: ch_refer_banc4
+
+		annotation SummarizationSetBy = Automatic
+
+	column UN = ```
+			
+			// A coluna UN é criada para classificar os códigos de empresa SAP em diferentes unidades de negócio (UN).
+			SWITCH(
+			    TRUE(),  // Inicia a função SWITCH, permitindo avaliar várias condições.
+			    'aws_aging'[cod_empresa_sap] = "W004", "AGE",//AGENCIA    
+			    'aws_aging'[cod_empresa_sap] = "W010", "EST",//ESTALEIRO  
+			    'aws_aging'[cod_empresa_sap] = "W014", "REB",//REBOCADOR
+			    'aws_aging'[cod_empresa_sap] = "W015", "TRG",//TECON RIO GRADNE
+			    'aws_aging'[cod_empresa_sap] = "W018", "TSV",//TECON SALVADOR
+			    'aws_aging'[cod_empresa_sap] = "W017", "TSC",//TERMINAL SANTA CLARA
+			    "Outras UNs" // Se nenhum dos códigos acima corresponder, retorna "Outras UNs".
+			    // 002 foi substi pela 0014 saiu, 005 nao pode ser considerado, 0014 possui reb e base de apoio (divide o saldo da base apoio)
+			    // baixa parcial 
+			)
+			```
+		lineageTag: 967ef46f-e38f-4d23-b010-fab89e657224
+		summarizeBy: none
+		sortByColumn: UN_Ordenada
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ordenar_FaixaVencimento = ```
+			
+			VAR Dias = 
+			DATEDIFF(
+			    aws_aging[dat_vencimento],
+			    TODAY(),
+			    DAY
+			)
+			RETURN 
+			SWITCH(
+			    TRUE(),
+			    Dias >= 0 && Dias <= 5, 5,
+			    Dias >= 6 && Dias <= 30, 6,
+			    Dias >= 31 && Dias <= 90, 30,
+			    Dias >= 91 && Dias <= 180, 90,
+			    188
+			)
+			
+			```
+		formatString: 0
+		lineageTag: cfc3c6bf-6821-4a7b-a404-3c9725b9306e
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column UN_Ordenada = ```
+			
+			SWITCH(
+			    TRUE(),
+			    'aws_aging'[cod_empresa_sap] = "W014", 1,  // REB em primeiro
+			    'aws_aging'[cod_empresa_sap] = "W004", 2,  // AGE
+			    'aws_aging'[cod_empresa_sap] = "W010", 3,  // EST
+			    'aws_aging'[cod_empresa_sap] = "W015", 4,  // TRG
+			    'aws_aging'[cod_empresa_sap] = "W018", 5,  // TSV
+			    'aws_aging'[cod_empresa_sap] = "W017", 6,  // TSC
+			    7  // "Outras UNs"
+			)
+			
+			```
+		formatString: 0
+		lineageTag: 685b01d0-3093-4a65-918f-5e1b9fc4a5fd
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cod_SAP_PossuiNaBussola =
+			
+			VAR ClienteAtual = aws_aging[cod_cliente_sap]
+			RETURN
+			    IF (
+			        NOT ISBLANK (
+			            LOOKUPVALUE (
+			                aws_bussola_comercial_mar[cliente_sap], // Coluna que queremos encontrar
+			                aws_bussola_comercial_mar[cliente_sap], ClienteAtual // Coluna de pesquisa e valor atual
+			            )
+			        ),
+			        "SIM",
+			        "NAO"
+			    )
+		lineageTag: c70142ac-f043-4487-b6f7-b241c25f4715
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column partida_aberta_compen_id
+		dataType: int64
+		formatString: 0
+		lineageTag: a7396daa-1ce6-48f7-ac2c-720e59aa90f3
+		summarizeBy: sum
+		sourceColumn: partida_aberta_compen_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column dat_compensacao
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 9974ce98-94fc-4da5-8d49-b1a76ecd64ad
+		summarizeBy: none
+		sourceColumn: dat_compensacao
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column ch_usr_incl_reg
+		dataType: string
+		lineageTag: 958b20c5-3b28-46ba-8eb3-2cc2f4253dc1
+		summarizeBy: none
+		sourceColumn: ch_usr_incl_reg
+
+		annotation SummarizationSetBy = Automatic
+
+	column dat_alt_reg
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 2d485aaf-8b0a-49cb-b85f-25f2e4056ed5
+		summarizeBy: none
+		sourceColumn: dat_alt_reg
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column ch_usr_alt_reg
+		dataType: string
+		lineageTag: 8dc166ec-9632-4ba9-b6c2-2972542fd339
+		summarizeBy: none
+		sourceColumn: ch_usr_alt_reg
+
+		annotation SummarizationSetBy = Automatic
+
+	column arquivo_remessa_id_baixa
+		dataType: int64
+		formatString: 0
+		lineageTag: 3ff9b8ed-c4d3-415b-9dd0-ae2d5c7a553c
+		summarizeBy: sum
+		sourceColumn: arquivo_remessa_id_baixa
+
+		annotation SummarizationSetBy = Automatic
+
+	column flag_negativacao
+		dataType: string
+		lineageTag: 02140ba2-5dff-45cd-b41d-0297df22e9fd
+		summarizeBy: none
+		sourceColumn: flag_negativacao
+
+		annotation SummarizationSetBy = Automatic
+
+	column ID_Documento_SAP = YEAR(aws_aging[dat_lancamento]) & aws_aging[num_doc_contab_sap]
+		lineageTag: a3ccc56f-a1c9-4ee4-8f11-b57d7c782c78
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column DIAS_ATRASO =
+			
+			VAR DataRef = MAX(aws_aging[dat_incl_reg])
+			VAR Dias = DATEDIFF(aws_aging[dat_vencimento], DataRef, DAY)
+			RETURN
+			IF(Dias > 0, Dias, 0)
+		formatString: 0
+		lineageTag: 073d0e50-8516-486f-b22a-1da3ea7828f4
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column etl_updated_at
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 3b8321d0-f04e-49b8-8fa7-f918ee226e37
+		summarizeBy: none
+		sourceColumn: etl_updated_at
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition aws_aging = m
+		mode: import
+		source =
+				let
+				    Fonte = PowerPlatform.Dataflows(null),
+				    Workspaces = Fonte{[Id="Workspaces"]}[Data],
+				    #"8c5cc8ba-ed75-4d39-9606-af9ead89ca36" = Workspaces{[workspaceId="8c5cc8ba-ed75-4d39-9606-af9ead89ca36"]}[Data],
+				    #"894ec04f-817c-4581-b43f-de2f0cb1c4cb" = #"8c5cc8ba-ed75-4d39-9606-af9ead89ca36"{[dataflowId="894ec04f-817c-4581-b43f-de2f0cb1c4cb"]}[Data],
+				    fct_aging_ = #"894ec04f-817c-4581-b43f-de2f0cb1c4cb"{[entity="fct_aging",version=""]}[Data]
+				in
+				    fct_aging_
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

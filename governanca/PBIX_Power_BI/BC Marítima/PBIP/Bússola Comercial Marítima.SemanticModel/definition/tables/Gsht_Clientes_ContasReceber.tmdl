@@ -1,0 +1,59 @@
+table Gsht_Clientes_ContasReceber
+	lineageTag: 31bdbcb7-4c9a-4f28-9ec5-b1fb101b13a6
+
+	column 'Cód SAP'
+		dataType: string
+		lineageTag: 4cfa385d-1a62-4cd3-8924-038ac2d23893
+		summarizeBy: none
+		sourceColumn: Cód SAP
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cliente
+		dataType: string
+		lineageTag: e4f03fdb-2040-4ba2-8a26-925187c0d6b8
+		summarizeBy: none
+		sourceColumn: Cliente
+
+		annotation SummarizationSetBy = Automatic
+
+	column Grupo
+		dataType: string
+		lineageTag: 0219d141-e81f-4616-9832-c7ca0fcc1b70
+		summarizeBy: none
+		sourceColumn: Grupo
+
+		annotation SummarizationSetBy = Automatic
+
+	column País
+		dataType: string
+		lineageTag: a16c432b-ce5d-4da6-a6da-305e9a3b74be
+		summarizeBy: none
+		sourceColumn: País
+
+		annotation SummarizationSetBy = Automatic
+
+	column Grupo_Ajuste
+		dataType: string
+		lineageTag: cc69f77b-102d-4e79-8c0c-ae1c2c9a2819
+		summarizeBy: none
+		sourceColumn: Grupo_Ajuste
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Gsht_Clientes_ContasReceber = m
+		mode: import
+		source =
+				let
+				    Fonte = PowerPlatform.Dataflows(null),
+				    Workspaces = Fonte{[Id="Workspaces"]}[Data],
+				    #"8c5cc8ba-ed75-4d39-9606-af9ead89ca36" = Workspaces{[workspaceId="8c5cc8ba-ed75-4d39-9606-af9ead89ca36"]}[Data],
+				    #"880d8a92-04dc-4a08-b24e-7e612883f5b9" = #"8c5cc8ba-ed75-4d39-9606-af9ead89ca36"{[dataflowId="880d8a92-04dc-4a08-b24e-7e612883f5b9"]}[Data],
+				    gsht_Clientes_ContasReceber_ = #"880d8a92-04dc-4a08-b24e-7e612883f5b9"{[entity="gsht_Clientes_ContasReceber",version=""]}[Data]
+				in
+				    gsht_Clientes_ContasReceber_
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

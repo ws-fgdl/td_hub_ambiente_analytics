@@ -1,0 +1,648 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "a9d13fa60021dec6c34a",
+  "displayName": "Competition View",
+  "displayOption": "FitToWidth",
+  "height": 3700,
+  "width": 1850,
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "2e77c292743baebd2c55",
+        "ordinal": 0,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Dim_Servico"
+              }
+            },
+            "Property": "Servico_agrupado"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "d",
+              "Entity": "Dim_Servico",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "d"
+                          }
+                        },
+                        "Property": "Servico_agrupado"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'AT/DS'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'MUDANCA'"
+                        }
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User"
+      },
+      {
+        "name": "961c6bbd83dc692d0ab4",
+        "ordinal": 1,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "aws_movimentacao_portuaria"
+              }
+            },
+            "Property": "especial"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "a",
+              "Entity": "aws_movimentacao_portuaria",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "a"
+                          }
+                        },
+                        "Property": "especial"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'N'"
+                        }
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User"
+      },
+      {
+        "name": "b5d60af06e28041b1d27",
+        "ordinal": 2,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Dim_DonoManobra"
+              }
+            },
+            "Property": "Dono_Demais"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "d",
+              "Entity": "Dim_DonoManobra",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Not": {
+                  "Expression": {
+                    "In": {
+                      "Expressions": [
+                        {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Source": "d"
+                              }
+                            },
+                            "Property": "Dono_Demais"
+                          }
+                        }
+                      ],
+                      "Values": [
+                        [
+                          {
+                            "Literal": {
+                              "Value": "'DEMAIS'"
+                            }
+                          }
+                        ],
+                        [
+                          {
+                            "Literal": {
+                              "Value": "null"
+                            }
+                          }
+                        ]
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User",
+        "objects": {
+          "general": [
+            {
+              "properties": {
+                "isInvertedSelectionMode": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "true"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "3d4135807e9c000a403d",
+        "ordinal": 3,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Dim_calendario"
+              }
+            },
+            "Property": "data"
+          }
+        },
+        "type": "RelativeDate",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "d",
+              "Entity": "Dim_calendario",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Between": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Source": "d"
+                        }
+                      },
+                      "Property": "data"
+                    }
+                  },
+                  "LowerBound": {
+                    "DateSpan": {
+                      "Expression": {
+                        "DateAdd": {
+                          "Expression": {
+                            "DateAdd": {
+                              "Expression": {
+                                "Now": {}
+                              },
+                              "Amount": 1,
+                              "TimeUnit": 0
+                            }
+                          },
+                          "Amount": -100,
+                          "TimeUnit": 3
+                        }
+                      },
+                      "TimeUnit": 0
+                    }
+                  },
+                  "UpperBound": {
+                    "DateSpan": {
+                      "Expression": {
+                        "Now": {}
+                      },
+                      "TimeUnit": 0
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User"
+      },
+      {
+        "name": "fb9bf0927c9d374c61a5",
+        "ordinal": 4,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "aws_movimentacao_portuaria"
+              }
+            },
+            "Property": "filial"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "a",
+              "Entity": "aws_movimentacao_portuaria",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Not": {
+                  "Expression": {
+                    "In": {
+                      "Expressions": [
+                        {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Source": "a"
+                              }
+                            },
+                            "Property": "filial"
+                          }
+                        }
+                      ],
+                      "Values": [
+                        [
+                          {
+                            "Literal": {
+                              "Value": "'ARACAJU'"
+                            }
+                          }
+                        ],
+                        [
+                          {
+                            "Literal": {
+                              "Value": "'CABEDELO'"
+                            }
+                          }
+                        ],
+                        [
+                          {
+                            "Literal": {
+                              "Value": "'ILHEUS'"
+                            }
+                          }
+                        ],
+                        [
+                          {
+                            "Literal": {
+                              "Value": "'PORTO DO ACU'"
+                            }
+                          }
+                        ],
+                        [
+                          {
+                            "Literal": {
+                              "Value": "'RECIFE'"
+                            }
+                          }
+                        ],
+                        [
+                          {
+                            "Literal": {
+                              "Value": "'SAO SEBASTIAO'"
+                            }
+                          }
+                        ],
+                        [
+                          {
+                            "Literal": {
+                              "Value": "'TROMBETAS'"
+                            }
+                          }
+                        ]
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User",
+        "objects": {
+          "general": [
+            {
+              "properties": {
+                "isInvertedSelectionMode": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "true"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "filterSortOrder": "Custom"
+  },
+  "objects": {
+    "background": [
+      {
+        "properties": {
+          "color": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "ThemeDataColor": {
+                    "ColorId": 0,
+                    "Percent": 0
+                  }
+                }
+              }
+            }
+          },
+          "transparency": {
+            "expr": {
+              "Literal": {
+                "Value": "0D"
+              }
+            }
+          },
+          "image": {
+            "image": {
+              "name": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'Bússola -  Competition View.png'"
+                  }
+                }
+              },
+              "url": {
+                "expr": {
+                  "ResourcePackageItem": {
+                    "PackageName": "RegisteredResources",
+                    "PackageType": 1,
+                    "ItemName": "B_ssola_-__Competition_View19137109198362479.png"
+                  }
+                }
+              },
+              "scaling": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'Normal'"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ],
+    "outspacePane": [
+      {
+        "properties": {
+          "width": {
+            "expr": {
+              "Literal": {
+                "Value": "267L"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "visualInteractions": [
+    {
+      "source": "889de0c0b38b3de177a3",
+      "target": "f90fab24bb93d8393b40",
+      "type": "DataFilter"
+    },
+    {
+      "source": "889de0c0b38b3de177a3",
+      "target": "aec8458545b026217e46",
+      "type": "DataFilter"
+    },
+    {
+      "source": "889de0c0b38b3de177a3",
+      "target": "c6ebf0fb0b0e4b116558",
+      "type": "DataFilter"
+    },
+    {
+      "source": "889de0c0b38b3de177a3",
+      "target": "6318be9282b50903d851",
+      "type": "DataFilter"
+    },
+    {
+      "source": "889de0c0b38b3de177a3",
+      "target": "2d0a08d87bc22600b042",
+      "type": "DataFilter"
+    },
+    {
+      "source": "2d0a08d87bc22600b042",
+      "target": "6318be9282b50903d851",
+      "type": "DataFilter"
+    },
+    {
+      "source": "f90fab24bb93d8393b40",
+      "target": "c6ebf0fb0b0e4b116558",
+      "type": "DataFilter"
+    },
+    {
+      "source": "f90fab24bb93d8393b40",
+      "target": "2d0a08d87bc22600b042",
+      "type": "DataFilter"
+    },
+    {
+      "source": "f90fab24bb93d8393b40",
+      "target": "6318be9282b50903d851",
+      "type": "DataFilter"
+    },
+    {
+      "source": "f90fab24bb93d8393b40",
+      "target": "889de0c0b38b3de177a3",
+      "type": "DataFilter"
+    },
+    {
+      "source": "f90fab24bb93d8393b40",
+      "target": "aec8458545b026217e46",
+      "type": "DataFilter"
+    },
+    {
+      "source": "aec8458545b026217e46",
+      "target": "f90fab24bb93d8393b40",
+      "type": "DataFilter"
+    },
+    {
+      "source": "aec8458545b026217e46",
+      "target": "889de0c0b38b3de177a3",
+      "type": "DataFilter"
+    },
+    {
+      "source": "aec8458545b026217e46",
+      "target": "c6ebf0fb0b0e4b116558",
+      "type": "DataFilter"
+    },
+    {
+      "source": "aec8458545b026217e46",
+      "target": "6318be9282b50903d851",
+      "type": "DataFilter"
+    },
+    {
+      "source": "aec8458545b026217e46",
+      "target": "2d0a08d87bc22600b042",
+      "type": "DataFilter"
+    },
+    {
+      "source": "c6ebf0fb0b0e4b116558",
+      "target": "aec8458545b026217e46",
+      "type": "DataFilter"
+    },
+    {
+      "source": "c6ebf0fb0b0e4b116558",
+      "target": "f90fab24bb93d8393b40",
+      "type": "DataFilter"
+    },
+    {
+      "source": "c6ebf0fb0b0e4b116558",
+      "target": "889de0c0b38b3de177a3",
+      "type": "DataFilter"
+    },
+    {
+      "source": "c6ebf0fb0b0e4b116558",
+      "target": "2d0a08d87bc22600b042",
+      "type": "DataFilter"
+    },
+    {
+      "source": "c6ebf0fb0b0e4b116558",
+      "target": "6318be9282b50903d851",
+      "type": "DataFilter"
+    },
+    {
+      "source": "22100db79308315965ee",
+      "target": "6318be9282b50903d851",
+      "type": "DataFilter"
+    },
+    {
+      "source": "22100db79308315965ee",
+      "target": "2d0a08d87bc22600b042",
+      "type": "DataFilter"
+    },
+    {
+      "source": "22100db79308315965ee",
+      "target": "c6ebf0fb0b0e4b116558",
+      "type": "DataFilter"
+    },
+    {
+      "source": "22100db79308315965ee",
+      "target": "aec8458545b026217e46",
+      "type": "DataFilter"
+    },
+    {
+      "source": "22100db79308315965ee",
+      "target": "f90fab24bb93d8393b40",
+      "type": "DataFilter"
+    },
+    {
+      "source": "22100db79308315965ee",
+      "target": "889de0c0b38b3de177a3",
+      "type": "DataFilter"
+    },
+    {
+      "source": "2d0a08d87bc22600b042",
+      "target": "c6ebf0fb0b0e4b116558",
+      "type": "DataFilter"
+    },
+    {
+      "source": "2d0a08d87bc22600b042",
+      "target": "aec8458545b026217e46",
+      "type": "DataFilter"
+    },
+    {
+      "source": "2d0a08d87bc22600b042",
+      "target": "f90fab24bb93d8393b40",
+      "type": "DataFilter"
+    },
+    {
+      "source": "2d0a08d87bc22600b042",
+      "target": "889de0c0b38b3de177a3",
+      "type": "DataFilter"
+    },
+    {
+      "source": "6318be9282b50903d851",
+      "target": "2d0a08d87bc22600b042",
+      "type": "DataFilter"
+    },
+    {
+      "source": "6318be9282b50903d851",
+      "target": "c6ebf0fb0b0e4b116558",
+      "type": "DataFilter"
+    },
+    {
+      "source": "6318be9282b50903d851",
+      "target": "aec8458545b026217e46",
+      "type": "DataFilter"
+    },
+    {
+      "source": "6318be9282b50903d851",
+      "target": "f90fab24bb93d8393b40",
+      "type": "DataFilter"
+    },
+    {
+      "source": "6318be9282b50903d851",
+      "target": "889de0c0b38b3de177a3",
+      "type": "DataFilter"
+    }
+  ]
+}

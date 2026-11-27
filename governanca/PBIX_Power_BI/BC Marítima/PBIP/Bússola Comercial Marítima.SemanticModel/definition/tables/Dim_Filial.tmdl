@@ -1,0 +1,48 @@
+table Dim_Filial
+	lineageTag: 76bd16a6-13ea-4a68-abb8-1360b129322b
+
+	column filial
+		lineageTag: d2c12468-5e6f-47ef-be03-b01ac89d4269
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: aws_bussola_comercial_mar[filial]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Filial_agrupado =
+			
+			VAR FilialPadronizado = 'Dim_Filial'[filial]
+			RETURN
+			SWITCH (
+			    TRUE(),
+			    ISBLANK(FilialPadronizado), BLANK(),
+			    FilialPadronizado = "ANGRA DOS REIS", "PORTO DO ACU",
+			    FilialPadronizado = "SAO LUIS - CRBSM", "SAO LUIS",
+			    FilialPadronizado
+			)
+		lineageTag: 5d3b9251-a2ae-4d85-a3fd-98fe00230484
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Concorrência = IF(Dim_Filial[Filial_agrupado] IN {"ARACAJU","CABEDELO","ILHEUS","PORTO DO ACU","RECIFE","SAO SEBASTIAO","TROMBETAS"},FALSE(),TRUE())
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: ac06bf03-c1a6-41ec-bfc5-d49115799930
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_Filial = calculated
+		mode: import
+		source =
+				
+				DISTINCT (
+				    UNION (
+				        VALUES(aws_bussola_comercial_mar[filial]),
+				        VALUES(aws_movimentacao_portuaria[filial]),
+				        VALUES(aws_bussola_comercial_faina[filial])
+				    )
+				)
+
+	annotation PBI_Id = 394206202ffe4761a720f45dcd817668
+

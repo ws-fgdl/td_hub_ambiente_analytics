@@ -1,0 +1,310 @@
+table aws_salesforce
+	lineageTag: 7a1cf133-ba6d-43d2-871d-8e865ed85ca3
+
+	column Grupo_Economico_DimCarteira =
+			
+			VAR CodigoSAPSalesforce = 'aws_salesforce'[codigo_sap]
+			VAR GrupoEconomicoDimCarteira_Valor =
+			    LOOKUPVALUE (
+			        Dim_carteira_comercial_consolidado[GrupoEconomico],
+			        Dim_carteira_comercial_consolidado[CODIGO_SAP_Padronizado], CodigoSAPSalesforce
+			    )
+			VAR GrupoEconomicoSalesforce_Valor = 'aws_salesforce'[grupo_economico]
+			VAR GrupoComercialSalesforce_Valor = 'aws_salesforce'[grupo_comercial]
+			VAR RazaoSocialSalesforce_Valor = 'aws_salesforce'[razao_social]
+			
+			RETURN
+			    IF (
+			        -- Prioridade 1: Verifica GrupoEconomico da dim_carteira
+			        NOT ISBLANK(GrupoEconomicoDimCarteira_Valor) && LEN(TRIM(GrupoEconomicoDimCarteira_Valor)) > 0,
+			        UPPER(GrupoEconomicoDimCarteira_Valor),
+			        -- Se Prioridade 1 é vazia/nula, verifica os campos do salesforce
+			        IF (
+			            -- Prioridade 2: Verifica Grupo Economico do salesforce
+			            NOT ISBLANK(GrupoEconomicoSalesforce_Valor) && LEN(TRIM(GrupoEconomicoSalesforce_Valor)) > 0,
+			            UPPER(GrupoEconomicoSalesforce_Valor),
+			            -- Se Prioridade 2 é vazia/nula, verifica Grupo Comercial do salesforce
+			            IF (
+			                -- Prioridade 3: Verifica Grupo Comercial do salesforce
+			                NOT ISBLANK(GrupoComercialSalesforce_Valor) && LEN(TRIM(GrupoComercialSalesforce_Valor)) > 0,
+			                UPPER(GrupoComercialSalesforce_Valor),
+			                -- Se Prioridade 3 é vazia/nula, usa Razão Social do salesforce (Fallback)
+			                IF (
+			                    NOT ISBLANK(RazaoSocialSalesforce_Valor) && LEN(TRIM(RazaoSocialSalesforce_Valor)) > 0,
+			                    UPPER(RazaoSocialSalesforce_Valor),
+			                    -- Se tudo estiver vazio/nulo, explicitamente retorna BLANK()
+			                    BLANK()
+			                )
+			            )
+			        )
+			    )
+		lineageTag: a3a5ac9a-0502-4ae4-b623-1a8eb40a44c9
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column id
+		dataType: string
+		lineageTag: d85399f7-64a6-4035-83db-78a29fe9a256
+		summarizeBy: none
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+	column parentid
+		dataType: string
+		lineageTag: 70a8625b-33a8-4bb1-9cdc-08ca9fbc2178
+		summarizeBy: none
+		sourceColumn: parentid
+
+		annotation SummarizationSetBy = Automatic
+
+	column grupo_economico
+		dataType: string
+		lineageTag: 9bece7c3-fa48-406c-8de5-691ca28deebf
+		summarizeBy: none
+		sourceColumn: grupo_economico
+
+		annotation SummarizationSetBy = Automatic
+
+	column cidade
+		dataType: string
+		lineageTag: dae9a8b4-1b88-4cc1-938d-e57de0c5fdf2
+		summarizeBy: none
+		sourceColumn: cidade
+
+		annotation SummarizationSetBy = Automatic
+
+	column estado
+		dataType: string
+		lineageTag: 1d188142-aed6-42b6-85e8-20cefa212d5d
+		summarizeBy: none
+		sourceColumn: estado
+
+		annotation SummarizationSetBy = Automatic
+
+	column endereço
+		dataType: string
+		lineageTag: 7b95fe56-6978-4ed6-ac83-eb2ce2b4a105
+		summarizeBy: none
+		sourceColumn: endereço
+
+		annotation SummarizationSetBy = Automatic
+
+	column razao_social
+		dataType: string
+		lineageTag: 7c62576c-e3ff-4223-8314-8b1fe77e87ce
+		summarizeBy: none
+		sourceColumn: razao_social
+
+		annotation SummarizationSetBy = Automatic
+
+	column codigo_sap
+		dataType: string
+		lineageTag: 77c0408b-9d6f-4752-92f0-078f68b4f077
+		summarizeBy: none
+		sourceColumn: codigo_sap
+
+		annotation SummarizationSetBy = Automatic
+
+	column cnpj
+		dataType: string
+		lineageTag: 9ca39c2d-3ea7-40b7-82ce-2c8395450197
+		summarizeBy: none
+		sourceColumn: cnpj
+
+		annotation SummarizationSetBy = Automatic
+
+	column cpf
+		dataType: string
+		lineageTag: 480c4063-e628-4c7f-822b-bc085f9ca127
+		summarizeBy: none
+		sourceColumn: cpf
+
+		annotation SummarizationSetBy = Automatic
+
+	column Grupo_Comercial_DimCarteira = ```
+			
+			UPPER( -- Adiciona UPPER aqui para converter o resultado final
+			    IF(
+			        NOT(
+			            ISBLANK(
+			                LOOKUPVALUE(
+			                    Dim_carteira_comercial_consolidado[GrupoComercial], 
+			                    Dim_carteira_comercial_consolidado[CODIGO_SAP_Padronizado], 
+			                    'aws_salesforce'[codigo_sap]
+			                )
+			            )
+			        ),
+			        LOOKUPVALUE(
+			            Dim_carteira_comercial_consolidado[GrupoComercial], 
+			            Dim_carteira_comercial_consolidado[CODIGO_SAP_Padronizado], 
+			            'aws_salesforce'[codigo_sap]
+			        ),
+			        IF(
+			            ISBLANK(
+			                'aws_salesforce'[grupo_comercial]), -- É boa prática usar ISBLANK() em vez de = BLANK()
+			                'aws_salesforce'[razao_social],
+			                'aws_salesforce'[grupo_comercial]
+			        )
+			    )
+			)
+			```
+		lineageTag: d8cdf8e2-01e0-4795-b64a-23a8a2961396
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Grupo_Economico_off = ```
+			
+			IF(
+			    NOT(
+			        ISBLANK(
+			            LOOKUPVALUE(
+			                Dim_carteira_comercial_consolidado[GRUPO_ECONOMICO], 
+			                Dim_carteira_comercial_consolidado[CODIGO_SAP_Padronizado], 
+			                'aws_salesforce'[codigo_sap]
+			            )
+			        )
+			    ),
+			    LOOKUPVALUE(
+			        Dim_carteira_comercial_consolidado[GRUPO_ECONOMICO], 
+			        Dim_carteira_comercial_consolidado[CODIGO_SAP_Padronizado], 
+			        'aws_salesforce'[codigo_sap]
+			    ), 
+			    IF(
+			        ISBLANK(
+			            'aws_salesforce'[grupo_economico]
+			        ), 
+			        'aws_salesforce'[razao_social],
+			        'aws_salesforce'[grupo_economico]
+			    )
+			)
+			```
+		lineageTag: da6c2e9e-7fe4-4fe1-88d2-6e60b4f1588c
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cod_SAP_PossuiNaBussola_ = ```
+			
+			VAR ClienteAtual = aws_salesforce[codigo_sap]
+			RETURN
+			    IF (
+			        NOT ISBLANK (
+			            LOOKUPVALUE (
+			                aws_bussola_comercial_mar[cliente_sap], // Coluna que queremos encontrar
+			                aws_bussola_comercial_mar[cliente_sap], ClienteAtual // Coluna de pesquisa e valor atual
+			            )
+			        ),
+			        "SIM",
+			        "NAO"
+			    )
+			
+			```
+		lineageTag: dcc60f21-4632-4255-b489-81c55c5f79f6
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column grupo_comercial
+		dataType: string
+		lineageTag: 63eb1988-16c6-4768-896e-7a80fe983eb2
+		summarizeBy: none
+		sourceColumn: grupo_comercial
+
+		annotation SummarizationSetBy = Automatic
+
+	column pais
+		dataType: string
+		lineageTag: e1259a7a-47e8-4ab0-b9fb-a21cbad8d8a9
+		summarizeBy: none
+		sourceColumn: pais
+
+		annotation SummarizationSetBy = Automatic
+
+	column codigo_postal
+		dataType: string
+		lineageTag: 9ca13626-9465-4f99-ac8a-67796e365302
+		summarizeBy: none
+		sourceColumn: codigo_postal
+
+		annotation SummarizationSetBy = Automatic
+
+	column duns_number
+		dataType: string
+		lineageTag: 1618b8b8-7575-44cf-a0c3-4ebcb46dbc9d
+		summarizeBy: none
+		sourceColumn: duns_number
+
+		annotation SummarizationSetBy = Automatic
+
+	column tipo_cliente
+		dataType: string
+		lineageTag: 76e60242-979c-4547-a863-302a7fb775dc
+		summarizeBy: none
+		sourceColumn: tipo_cliente
+
+		annotation SummarizationSetBy = Automatic
+
+	column denominacao_tipo_cliente
+		dataType: string
+		lineageTag: 98c2afee-7bd5-49ef-ba3a-4f6a2c4e297c
+		summarizeBy: none
+		sourceColumn: denominacao_tipo_cliente
+
+		annotation SummarizationSetBy = Automatic
+
+	column Filtro_Local = IF(AND(aws_salesforce[cpf]="",aws_salesforce[cnpj]=""),"Estrangeiro","BR")
+		lineageTag: 8f85c3a8-bddb-44ac-85f6-f1fd03335add
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Nova Categoria Cliente' = ```
+			
+			SWITCH( 
+			    TRUE(),
+			    -- Condição para Estrangeiros
+			    'aws_salesforce'[tipo_cliente] IN {"ZAE1", "ZES1"}, "Cliente Estrangeiro",
+			    
+			    -- Condição para Nacional PF
+			    --'aws_salesforce'[tipo_cliente] = "ZPF1", "Cliente Nacional PF",
+			    
+			    -- Condição para Nacional PJ (incluindo os códigos específicos e os vazios/blank)
+			    'aws_salesforce'[tipo_cliente] IN {"ZPF1", "ZAN1", "ZOG1", "ZPJ1"} || ISBLANK('aws_salesforce'[tipo_cliente]), "Cliente Nacional",
+			    
+			    -- Caso apareça algum código novo que não mapeamos acima
+			    "Outros" 
+			)
+			```
+		lineageTag: 4bcc2a49-2c5e-41fc-98fa-e714dcfe7d8c
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column etl_updated_at
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: db9763a8-8d45-4a7a-a326-78bd52f66b72
+		summarizeBy: none
+		sourceColumn: etl_updated_at
+
+		annotation SummarizationSetBy = Automatic
+
+	partition aws_salesforce = m
+		mode: import
+		source =
+				let
+				    Fonte = PowerPlatform.Dataflows(null),
+				    Workspaces = Fonte{[Id="Workspaces"]}[Data],
+				    #"8c5cc8ba-ed75-4d39-9606-af9ead89ca36" = Workspaces{[workspaceId="8c5cc8ba-ed75-4d39-9606-af9ead89ca36"]}[Data],
+				    #"0b55ab43-a56b-4734-b2b5-b43d6c4041ec" = #"8c5cc8ba-ed75-4d39-9606-af9ead89ca36"{[dataflowId="0b55ab43-a56b-4734-b2b5-b43d6c4041ec"]}[Data],
+				    dim_salesforce = #"0b55ab43-a56b-4734-b2b5-b43d6c4041ec"{[entity="dim_salesforce",version=""]}[Data]
+				in
+				    dim_salesforce
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

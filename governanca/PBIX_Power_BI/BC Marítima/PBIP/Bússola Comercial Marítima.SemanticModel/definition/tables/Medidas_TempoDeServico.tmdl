@@ -1,0 +1,544 @@
+table Medidas_TempoDeServico
+	lineageTag: 87fe36c7-79ba-4827-bba8-e1e38eba84a1
+
+	measure Media_TempoDeServico_ComDesloc_BaseBC = ```
+			
+			VAR MinutosTotais =
+			    AVERAGEX(
+			        aws_bussola_comercial_mar, -- Para cada linha nesta tabela...
+			        
+			        -- Captura as colunas separadas
+			        VAR _DataInicio = aws_bussola_comercial_mar[data_do_inicio_do_evento]
+			        VAR _HoraInicio = aws_bussola_comercial_mar[hora_do_inicio_do_evento]
+			        VAR _DataFim = aws_bussola_comercial_mar[data_do_fim_do_evento]
+			        VAR _HoraFim = aws_bussola_comercial_mar[hora_do_fim_do_evento]
+			        VAR _DataCompetencia = aws_bussola_comercial_mar[competencia]
+			        
+			        -- Junta Data + Hora para formar o campo Data/Hora completo
+			        VAR _DataInicioEvento = _DataInicio + _HoraInicio
+			        VAR _DataFimEvento = _DataFim + _HoraFim
+			        
+			        RETURN
+			            IF(
+			                -- Verifica se as datas de início e fim NÃO estão em branco
+			                NOT ISBLANK(_DataInicio) && NOT ISBLANK(_DataFim) &&
+			                -- E verifica se o evento terminou no seu mês/ano de competência
+			                YEAR(_DataFim) = YEAR(_DataCompetencia) &&
+			                MONTH(_DataFim) = MONTH(_DataCompetencia),
+			                
+			                -- Se TODAS as condições forem VERDADEIRAS, calcula a duração em minutos
+			                DATEDIFF(
+			                    _DataInicioEvento, 
+			                    _DataFimEvento, 
+			                    MINUTE
+			                ),                 
+			                -- Se alguma condição for FALSA, retorna 0
+			                0 
+			            )
+			    )    
+			RETURN
+			    -- Converte o total de minutos para horas
+			    MinutosTotais / 60
+			```
+		lineageTag: 63185d29-54bc-4d60-8d36-319a2e842a3a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Media_TempoDeServico_ComDesloc_Formatada_BaseBC =
+			
+			VAR MediaEmHoras = [Media_TempoDeServico_ComDesloc_BaseBC] // Esta variável já está em horas (ex: 0.666...)
+			VAR TotalMinutosParaFormatar = MediaEmHoras * 60 // Converte a média de horas de volta para minutos totais (ex: 0.666 * 60 = 40)
+			VAR Horas = TRUNC(TotalMinutosParaFormatar / 60) // Obtém a parte inteira das horas
+			VAR MinutosRestantes = ROUND(MOD(TotalMinutosParaFormatar, 60), 0) // Obtém os minutos restantes e arredonda para o número inteiro mais próximo
+			RETURN
+			    FORMAT(Horas, "0") & "h " & FORMAT(MinutosRestantes, "00") & "min"
+		lineageTag: 793f53dd-0435-40fd-bab1-954422b9cd89
+
+	measure Media_TempoDeServico_SemDesloc_BaseBC = ```
+			
+			VAR MinutosTotais =
+			    AVERAGEX(
+			        aws_bussola_comercial_mar, -- Para cada linha nesta tabela...
+			        
+			        -- Captura as colunas separadas de operação
+			        VAR _DataInicio = aws_bussola_comercial_mar[data_inicio_operacao]
+			        VAR _HoraInicio = aws_bussola_comercial_mar[hora_inicio_operacao]
+			        VAR _DataFim = aws_bussola_comercial_mar[data_fim_operacao]
+			        VAR _HoraFim = aws_bussola_comercial_mar[hora_fim_operacao]
+			        VAR _DataCompetencia = aws_bussola_comercial_mar[competencia]
+			        
+			        -- Junta Data + Hora para formar o campo Data/Hora completo
+			        VAR _DataInicioOperacao = _DataInicio + _HoraInicio
+			        VAR _DataFimOperacao = _DataFim + _HoraFim
+			        
+			        RETURN
+			            IF(
+			                -- Verifica se as datas de início e fim NÃO estão em branco
+			                NOT ISBLANK(_DataInicio) && NOT ISBLANK(_DataFim) &&
+			                -- E verifica se o evento terminou no seu mês/ano de competência
+			                YEAR(_DataFim) = YEAR(_DataCompetencia) &&
+			                MONTH(_DataFim) = MONTH(_DataCompetencia),
+			                
+			                -- Se TODAS as condições forem VERDADEIRAS, calcula a duração em minutos
+			                DATEDIFF(
+			                    _DataInicioOperacao, 
+			                    _DataFimOperacao, 
+			                    MINUTE
+			                ),                 
+			                -- Se alguma condição for FALSA, retorna 0
+			                0 
+			            )
+			    )    
+			RETURN
+			    -- Converte o total de minutos para horas
+			    MinutosTotais / 60
+			```
+		lineageTag: 0e760699-b389-4ac8-bcfc-5efaf6682472
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Media_TempoDeServico_SemDesloc_Formatada_BaseBC =
+			
+			VAR MediaEmHoras = [Media_TempoDeServico_SemDesloc_BaseBC] // Esta variável já está em horas (ex: 0.666...)
+			VAR TotalMinutosParaFormatar = MediaEmHoras * 60 // Converte a média de horas de volta para minutos totais (ex: 0.666 * 60 = 40)
+			VAR Horas = TRUNC(TotalMinutosParaFormatar / 60) // Obtém a parte inteira das horas
+			VAR MinutosRestantes = ROUND(MOD(TotalMinutosParaFormatar, 60), 0) // Obtém os minutos restantes e arredonda para o número inteiro mais próximo
+			RETURN
+			    FORMAT(Horas, "0") & "h " & FORMAT(MinutosRestantes, "00") & "min"
+		lineageTag: 46cc3711-b587-49b3-a2f2-632a61551b6c
+
+	measure TempoDeServico_ComDesloc = ```
+			
+			VAR MinutosTotais =
+			    SUMX(
+			        aws_bussola_comercial_mar, -- Para cada linha nesta tabela...
+			        
+			        -- Captura as colunas separadas do evento
+			        VAR _DataInicio = aws_bussola_comercial_mar[data_do_inicio_do_evento]
+			        VAR _HoraInicio = aws_bussola_comercial_mar[hora_do_inicio_do_evento]
+			        VAR _DataFim = aws_bussola_comercial_mar[data_do_fim_do_evento]
+			        VAR _HoraFim = aws_bussola_comercial_mar[hora_do_fim_do_evento]
+			        VAR _DataCompetencia = aws_bussola_comercial_mar[competencia]
+			        
+			        -- Junta Data + Hora para formar o campo Data/Hora completo
+			        VAR _DataInicioEvento = _DataInicio + _HoraInicio
+			        VAR _DataFimEvento = _DataFim + _HoraFim
+			        
+			        RETURN
+			            IF(
+			                -- Verifica se as datas de início e fim NÃO estão em branco
+			                NOT ISBLANK(_DataInicio) && NOT ISBLANK(_DataFim) &&
+			                -- E verifica se o evento terminou no seu mês/ano de competência
+			                YEAR(_DataFim) = YEAR(_DataCompetencia) &&
+			                MONTH(_DataFim) = MONTH(_DataCompetencia),
+			                
+			                -- Se TODAS as condições forem VERDADEIRAS, calcula a duração em minutos
+			                DATEDIFF(
+			                    _DataInicioEvento, 
+			                    _DataFimEvento, 
+			                    MINUTE
+			                ),                 
+			                -- Se alguma condição for FALSA, retorna 0
+			                0 
+			            )
+			    )    
+			RETURN
+			    -- Converte o total de minutos para horas
+			    MinutosTotais / 60
+			```
+		lineageTag: 4e708381-2ab2-459a-90e9-d8f7361eba1c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure TempoDeServico_ComDesloc_Formatada =
+			
+			VAR TotalHoras = [TempoDeServico_ComDesloc] // Pega o valor da sua medida que já está em horas (ex: 2.5)
+			VAR TotalMinutosParaFormatar = TotalHoras * 60 // Converte o total de horas de volta para minutos totais (ex: 2.5 * 60 = 150)
+			VAR HorasInteiras = TRUNC(TotalMinutosParaFormatar / 60) // Calcula as horas inteiras (ex: TRUNC(150 / 60) = 2)
+			VAR MinutosRestantes = ROUND(MOD(TotalMinutosParaFormatar, 60), 0) // Calcula os minutos restantes e arredonda (ex: MOD(150, 60) = 30)
+			RETURN
+			    FORMAT(HorasInteiras, "0") & "h " & FORMAT(MinutosRestantes, "00") & "min"
+		lineageTag: c09a2bb3-a149-4176-bc01-5717e6e5b126
+
+	measure TempoDeServico_SemDesloc = ```
+			
+			VAR MinutosTotais =
+			    SUMX(
+			        aws_bussola_comercial_mar, -- Para cada linha nesta tabela...
+			        
+			        -- Captura as colunas separadas de operação
+			        VAR _DataInicio = aws_bussola_comercial_mar[data_inicio_operacao]
+			        VAR _HoraInicio = aws_bussola_comercial_mar[hora_inicio_operacao]
+			        VAR _DataFim = aws_bussola_comercial_mar[data_fim_operacao]
+			        VAR _HoraFim = aws_bussola_comercial_mar[hora_fim_operacao]
+			        VAR _DataCompetencia = aws_bussola_comercial_mar[competencia]
+			        
+			        -- Junta Data + Hora para formar o campo Data/Hora completo
+			        VAR _DataInicioOperacao = _DataInicio + _HoraInicio
+			        VAR _DataFimOperacao = _DataFim + _HoraFim
+			        
+			        RETURN
+			            IF(
+			                -- Verifica se as datas de início e fim NÃO estão em branco
+			                NOT ISBLANK(_DataInicio) && NOT ISBLANK(_DataFim) &&
+			                -- E verifica se o evento terminou no seu mês/ano de competência
+			                YEAR(_DataFim) = YEAR(_DataCompetencia) &&
+			                MONTH(_DataFim) = MONTH(_DataCompetencia),
+			                
+			                -- Se TODAS as condições forem VERDADEIRAS, calcula a duração em minutos
+			                DATEDIFF(
+			                    _DataInicioOperacao, 
+			                    _DataFimOperacao, 
+			                    MINUTE
+			                ),                 
+			                -- Se alguma condição for FALSA, retorna 0
+			                0 
+			            )
+			    )    
+			RETURN
+			    -- Converte o total de minutos para horas
+			    MinutosTotais / 60
+			```
+		lineageTag: 303f9ada-1b88-44ce-a8c2-1721851a7a18
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure TempoDeServico_SemDesloc_Formatada =
+			
+			VAR TotalHoras = [TempoDeServico_SemDesloc] // Pega o valor da sua medida que já está em horas (ex: 2.5)
+			VAR TotalMinutosParaFormatar = TotalHoras * 60 // Converte o total de horas de volta para minutos totais (ex: 2.5 * 60 = 150)
+			VAR HorasInteiras = TRUNC(TotalMinutosParaFormatar / 60) // Calcula as horas inteiras (ex: TRUNC(150 / 60) = 2)
+			VAR MinutosRestantes = ROUND(MOD(TotalMinutosParaFormatar, 60), 0) // Calcula os minutos restantes e arredonda (ex: MOD(150, 60) = 30)
+			RETURN
+			    FORMAT(HorasInteiras, "0") & "h " & FORMAT(MinutosRestantes, "00") & "min"
+		lineageTag: 9f6125eb-abb1-4a64-9c8f-ef668245357d
+
+	measure TempoDeServico_ComDesloc_View_TempoMedio = ```
+			
+			VAR MinutosTotais =
+			    SUMX(
+			        aws_bussola_comercial_mar, -- Para cada linha nesta tabela...
+			        VAR _InicioEvento = aws_bussola_comercial_mar[data_do_inicio_do_evento] + aws_bussola_comercial_mar[hora_do_inicio_do_evento]
+			        VAR _FimEvento = aws_bussola_comercial_mar[data_do_fim_do_evento] + aws_bussola_comercial_mar[hora_do_fim_do_evento]
+			        
+			        RETURN
+			            DATEDIFF(
+			                _InicioEvento,
+			                _FimEvento,
+			                MINUTE
+			            )
+			    )
+			RETURN
+			    MinutosTotais / 60
+			```
+		lineageTag: 11bf9462-779c-4b0a-9a23-0dac7c8b47ce
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure TempoDeServico_ComDesloc_View_TempoMedio_Formatada =
+			
+			VAR TotalHoras = [TempoDeServico_ComDesloc_View_TempoMedio] // Pega o valor da sua medida que já está em horas (ex: 2.5)
+			VAR TotalMinutosParaFormatar = TotalHoras * 60 // Converte o total de horas de volta para minutos totais (ex: 2.5 * 60 = 150)
+			VAR HorasInteiras = TRUNC(TotalMinutosParaFormatar / 60) // Calcula as horas inteiras (ex: TRUNC(150 / 60) = 2)
+			VAR MinutosRestantes = ROUND(MOD(TotalMinutosParaFormatar, 60), 0) // Calcula os minutos restantes e arredonda (ex: MOD(150, 60) = 30)
+			RETURN
+			    FORMAT(HorasInteiras, "0") & "h " & FORMAT(MinutosRestantes, "00") & "min"
+		lineageTag: 341a2ae5-af46-4bfd-b118-7b7f5043667e
+
+	measure TempoMedioServico_ComDesloc_View_TempoMedio = ```
+			
+			VAR MinutosTotais =
+			    AVERAGEX(
+			        aws_bussola_comercial_mar, -- Para cada linha nesta tabela...
+			        VAR _InicioEvento = aws_bussola_comercial_mar[data_do_inicio_do_evento] + aws_bussola_comercial_mar[hora_do_inicio_do_evento]
+			        VAR _FimEvento = aws_bussola_comercial_mar[data_do_fim_do_evento] + aws_bussola_comercial_mar[hora_do_fim_do_evento]
+			        
+			        RETURN
+			            DATEDIFF(
+			                _InicioEvento,
+			                _FimEvento,
+			                MINUTE
+			            )
+			    )
+			RETURN
+			    MinutosTotais / 60
+			```
+		lineageTag: dd8ca51c-d3bb-40c3-92d2-7479c042df31
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure TempoMedioServico_ComDesloc_View_TempoMedio_Formatada =
+			
+			VAR TotalHoras = [TempoMedioServico_ComDesloc_View_TempoMedio] // Pega o valor da sua medida que já está em horas (ex: 2.5)
+			VAR TotalMinutosParaFormatar = TotalHoras * 60 // Converte o total de horas de volta para minutos totais (ex: 2.5 * 60 = 150)
+			VAR HorasInteiras = TRUNC(TotalMinutosParaFormatar / 60) // Calcula as horas inteiras (ex: TRUNC(150 / 60) = 2)
+			VAR MinutosRestantes = ROUND(MOD(TotalMinutosParaFormatar, 60), 0) // Calcula os minutos restantes e arredonda (ex: MOD(150, 60) = 30)
+			RETURN
+			    FORMAT(HorasInteiras, "0") & "h " & FORMAT(MinutosRestantes, "00") & "min"
+		lineageTag: c0902f5f-f605-40f3-8f70-5fb6d8acc664
+
+	measure TempoMedioServico_SemDesloc_View_TempoMedio = ```
+			
+			VAR MinutosTotais =
+			    AVERAGEX(
+			        aws_bussola_comercial_mar, -- Para cada linha nesta tabela...
+			        VAR _InicioOperacao = aws_bussola_comercial_mar[data_inicio_operacao] + aws_bussola_comercial_mar[hora_inicio_operacao]
+			        VAR _FimOperacao = aws_bussola_comercial_mar[data_fim_operacao] + aws_bussola_comercial_mar[hora_fim_operacao]
+			        
+			        RETURN
+			            DATEDIFF(
+			                _InicioOperacao,
+			                _FimOperacao,
+			                MINUTE
+			            )
+			    )
+			RETURN
+			    MinutosTotais / 60
+			```
+		lineageTag: 673abc19-4ae8-486a-b24c-eaf903cea48d
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure TempoMedioServico_SemDesloc_View_TempoMedio_Formatada =
+			
+			VAR TotalHoras = [TempoMedioServico_SemDesloc_View_TempoMedio] // Pega o valor da sua medida que já está em horas (ex: 2.5)
+			VAR TotalMinutosParaFormatar = TotalHoras * 60 // Converte o total de horas de volta para minutos totais (ex: 2.5 * 60 = 150)
+			VAR HorasInteiras = TRUNC(TotalMinutosParaFormatar / 60) // Calcula as horas inteiras (ex: TRUNC(150 / 60) = 2)
+			VAR MinutosRestantes = ROUND(MOD(TotalMinutosParaFormatar, 60), 0) // Calcula os minutos restantes e arredonda (ex: MOD(150, 60) = 30)
+			RETURN
+			    FORMAT(HorasInteiras, "0") & "h " & FORMAT(MinutosRestantes, "00") & "min"
+		lineageTag: aa0083f8-6745-46ee-8439-cffe573375ee
+
+	measure TempoDeServico_SemDesloc_View_TempoMedio = ```
+			
+			VAR MinutosTotais =
+			    SUMX(
+			        aws_bussola_comercial_mar, -- Para cada linha nesta tabela...
+			        VAR _InicioOperacao = aws_bussola_comercial_mar[data_inicio_operacao] + aws_bussola_comercial_mar[hora_inicio_operacao]
+			        VAR _FimOperacao = aws_bussola_comercial_mar[data_fim_operacao] + aws_bussola_comercial_mar[hora_fim_operacao]
+			        
+			        RETURN
+			            DATEDIFF(
+			                _InicioOperacao,
+			                _FimOperacao,
+			                MINUTE
+			            )
+			    )
+			RETURN
+			    MinutosTotais / 60
+			```
+		lineageTag: 7067efef-6db2-4809-9271-0d54414993a4
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure TempoDeServico_SemDesloc_View_TempoMedio_Formatada =
+			
+			VAR TotalHoras = [TempoDeServico_SemDesloc_View_TempoMedio] // Pega o valor da sua medida que já está em horas (ex: 2.5)
+			VAR TotalMinutosParaFormatar = TotalHoras * 60 // Converte o total de horas de volta para minutos totais (ex: 2.5 * 60 = 150)
+			VAR HorasInteiras = TRUNC(TotalMinutosParaFormatar / 60) // Calcula as horas inteiras (ex: TRUNC(150 / 60) = 2)
+			VAR MinutosRestantes = ROUND(MOD(TotalMinutosParaFormatar, 60), 0) // Calcula os minutos restantes e arredonda (ex: MOD(150, 60) = 30)
+			RETURN
+			    FORMAT(HorasInteiras, "0") & "h " & FORMAT(MinutosRestantes, "00") & "min"
+		lineageTag: b0eb6c85-9f1e-4a01-859d-be8fa25e5985
+
+	measure TempoMedioServico_PorRebocador_SemDeslocamento_ComArredondamento_BaseBC =
+			
+			ROUND(
+			    DIVIDE(
+			        [Tempo_SemDesloc_Horas],
+			        [VolumeManobra_BaseBC],
+			        0
+			    ),
+			    2
+			)
+		lineageTag: cbca7ffa-5ae0-422f-8500-08b3be21eeb5
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure TempoMedioServico_PorRebocador_ComDeslocamento_ComArredondamento_BaseBC =
+			
+			ROUND(
+			    DIVIDE(
+			        [Tempo_ComDesloc_Horas],
+			        [VolumeManobra_BaseBC],
+			        0
+			    ),
+			    2
+			)
+		lineageTag: ba24d054-ac6e-4a94-8ef6-074c2b201e41
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure TempoMedioServico_PorRebocador_ComDeslocamento_Formatada_SemArredondamento_BaseBC =
+			
+			VAR TotalHoras = [TempoMedioServico_PorRebocador_ComDeslocamento_SemArredondamento_BaseBC] // Pega o valor da sua medida que já está em horas (ex: 2.5)
+			VAR TotalMinutosParaFormatar = TotalHoras * 60 // Converte o total de horas de volta para minutos totais (ex: 2.5 * 60 = 150)
+			VAR HorasInteiras = TRUNC(TotalMinutosParaFormatar / 60) // Calcula as horas inteiras (ex: TRUNC(150 / 60) = 2)
+			VAR MinutosRestantes = ROUND(MOD(TotalMinutosParaFormatar, 60), 0) // Calcula os minutos restantes e arredonda (ex: MOD(150, 60) = 30)
+			RETURN
+			    FORMAT(HorasInteiras, "0") & "h " & FORMAT(MinutosRestantes, "00") & "min"
+		lineageTag: 4a1682b5-9f1c-40ba-976e-eba4ad40edfc
+
+	measure TempoMedioServico_PorRebocador_SemDeslocamento_Formatada_SemArredondamento_BaseBC =
+			
+			VAR TotalHoras = [TempoMedioServico_PorRebocador_SemDeslocamento_SemArredondamento_BaseBC] // Pega o valor da sua medida que já está em horas (ex: 2.5)
+			VAR TotalMinutosParaFormatar = TotalHoras * 60 // Converte o total de horas de volta para minutos totais (ex: 2.5 * 60 = 150)
+			VAR HorasInteiras = TRUNC(TotalMinutosParaFormatar / 60) // Calcula as horas inteiras (ex: TRUNC(150 / 60) = 2)
+			VAR MinutosRestantes = ROUND(MOD(TotalMinutosParaFormatar, 60), 0) // Calcula os minutos restantes e arredonda (ex: MOD(150, 60) = 30)
+			RETURN
+			    FORMAT(HorasInteiras, "0") & "h " & FORMAT(MinutosRestantes, "00") & "min"
+		lineageTag: 5bad5b32-b588-4a18-ae79-7b97f757239b
+
+	measure Tempo_Volume = ```
+			
+			DIVIDE(
+			    Medidas_TempoDeServico[TempoDeServico_SemDesloc],
+			    [VolumeManobra_BaseBC],
+			    0
+			)
+			
+			```
+		lineageTag: 40908709-f8b5-4ec7-b281-f3442a11d0c1
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Tempo_Volume_Formatada =
+			
+			VAR TotalHoras = [Tempo_Volume] // Pega o valor da sua medida que já está em horas (ex: 2.5)
+			VAR TotalMinutosParaFormatar = TotalHoras * 60 // Converte o total de horas de volta para minutos totais (ex: 2.5 * 60 = 150)
+			VAR HorasInteiras = TRUNC(TotalMinutosParaFormatar / 60) // Calcula as horas inteiras (ex: TRUNC(150 / 60) = 2)
+			VAR MinutosRestantes = ROUND(MOD(TotalMinutosParaFormatar, 60), 0) // Calcula os minutos restantes e arredonda (ex: MOD(150, 60) = 30)
+			RETURN
+			    FORMAT(HorasInteiras, "0") & "h " & FORMAT(MinutosRestantes, "00") & "min"
+		lineageTag: c562fc84-3a4a-4781-a21c-fd23b113546d
+
+	measure TempoDeServico_SemDesloc_Minutos = ```
+			
+			VAR MinutosTotais =
+			    SUMX(
+			        aws_bussola_comercial_mar,
+			        
+			        -- Captura as colunas separadas de operação
+			        VAR _DataInicio = aws_bussola_comercial_mar[data_inicio_operacao]
+			        VAR _HoraInicio = aws_bussola_comercial_mar[hora_inicio_operacao]
+			        VAR _DataFim = aws_bussola_comercial_mar[data_fim_operacao]
+			        VAR _HoraFim = aws_bussola_comercial_mar[hora_fim_operacao]
+			        VAR _DataCompetencia = aws_bussola_comercial_mar[competencia]
+			        
+			        -- Junta Data + Hora para formar o campo Data/Hora completo
+			        VAR _DataInicioOperacao = _DataInicio + _HoraInicio
+			        VAR _DataFimOperacao = _DataFim + _HoraFim
+			        
+			        RETURN
+			            IF(
+			                -- Verifica se as datas de início e fim NÃO estão em branco
+			                NOT ISBLANK(_DataInicio) && NOT ISBLANK(_DataFim) &&
+			                -- E verifica se o evento terminou no seu mês/ano de competência
+			                YEAR(_DataFim) = YEAR(_DataCompetencia) &&
+			                MONTH(_DataFim) = MONTH(_DataCompetencia),
+			                
+			                -- Se TODAS as condições forem VERDADEIRAS, calcula a duração em minutos
+			                DATEDIFF(
+			                    _DataInicioOperacao, 
+			                    _DataFimOperacao, 
+			                    MINUTE
+			                ),                 
+			                -- Se alguma condição for FALSA, retorna 0
+			                0 
+			            )
+			    )    
+			RETURN
+			    MinutosTotais
+			```
+		formatString: 0
+		lineageTag: 5a08e1be-074c-4070-9e26-ec38bd8e60ea
+
+	measure TempoMedioServico_PorRebocador_ComDeslocamento_SemArredondamento_BaseBC =
+			
+			DIVIDE(
+			    [Tempo_ComDesloc_Horas],
+			    [VolumeManobra_BaseBC],
+			    0
+			)
+		lineageTag: bc250f29-5c68-4165-bc8b-81c279acf18d
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure TempoMedioServico_PorRebocador_SemDeslocamento_SemArredondamento_BaseBC =
+			
+			DIVIDE(
+			    [Tempo_SemDesloc_Horas],
+			    [VolumeManobra_BaseBC],
+			    0
+			)
+		lineageTag: d55b29c7-5ddf-4e62-ae45-09460012e72b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure TempoMedioServico_PorRebocador_SemDeslocamento_Formatada_ComArredondamento_BaseBC =
+			
+			VAR TotalHoras = [TempoMedioServico_PorRebocador_SemDeslocamento_ComArredondamento_BaseBC] // Pega o valor da sua medida que já está em horas (ex: 2.5)
+			VAR TotalMinutosParaFormatar = TotalHoras * 60 // Converte o total de horas de volta para minutos totais (ex: 2.5 * 60 = 150)
+			VAR HorasInteiras = TRUNC(TotalMinutosParaFormatar / 60) // Calcula as horas inteiras (ex: TRUNC(150 / 60) = 2)
+			VAR MinutosRestantes = ROUND(MOD(TotalMinutosParaFormatar, 60), 0) // Calcula os minutos restantes e arredonda (ex: MOD(150, 60) = 30)
+			RETURN
+			    FORMAT(HorasInteiras, "0") & "h " & FORMAT(MinutosRestantes, "00") & "min"
+		lineageTag: aedd59fd-4d33-4f42-bdc5-c789124b64f5
+
+	measure TempoMedioServico_PorRebocador_ComDeslocamento_Formatada_ComArredondamento_BaseBC =
+			
+			VAR TotalHoras = [TempoMedioServico_PorRebocador_ComDeslocamento_ComArredondamento_BaseBC] // Pega o valor da sua medida que já está em horas (ex: 2.5)
+			VAR TotalMinutosParaFormatar = TotalHoras * 60 // Converte o total de horas de volta para minutos totais (ex: 2.5 * 60 = 150)
+			VAR HorasInteiras = TRUNC(TotalMinutosParaFormatar / 60) // Calcula as horas inteiras (ex: TRUNC(150 / 60) = 2)
+			VAR MinutosRestantes = ROUND(MOD(TotalMinutosParaFormatar, 60), 0) // Calcula os minutos restantes e arredonda (ex: MOD(150, 60) = 30)
+			RETURN
+			    FORMAT(HorasInteiras, "0") & "h " & FORMAT(MinutosRestantes, "00") & "min"
+		lineageTag: 20ba5102-7015-4542-9483-c91301ef28fb
+
+	measure TempoMedioServico_PorRebocador_SoDeslocamento_Formatada_ComArredondamento_BaseBC =
+			
+			VAR TotalHoras = [TempoMedioServico_PorRebocador_ComDeslocamento_ComArredondamento_BaseBC]-[TempoMedioServico_PorRebocador_SemDeslocamento_ComArredondamento_BaseBC] // Pega o valor da sua medida que já está em horas (ex: 2.5)
+			VAR TotalMinutosParaFormatar = TotalHoras * 60 // Converte o total de horas de volta para minutos totais (ex: 2.5 * 60 = 150)
+			VAR HorasInteiras = TRUNC(TotalMinutosParaFormatar / 60) // Calcula as horas inteiras (ex: TRUNC(150 / 60) = 2)
+			VAR MinutosRestantes = ROUND(MOD(TotalMinutosParaFormatar, 60), 0) // Calcula os minutos restantes e arredonda (ex: MOD(150, 60) = 30)
+			RETURN
+			    FORMAT(HorasInteiras, "0") & "h " & FORMAT(MinutosRestantes, "00") & "min"
+		lineageTag: 5cae518a-990a-48b4-8002-6b2269b49eb0
+
+	measure TempoMedioServico_PorRebocador_SoDeslocamento_ComArredondamento_BaseBC = [TempoMedioServico_PorRebocador_ComDeslocamento_ComArredondamento_BaseBC]-[TempoMedioServico_PorRebocador_SemDeslocamento_ComArredondamento_BaseBC]
+		lineageTag: c3bc09b9-4a9f-40d3-8291-642b13b8db77
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure %Deslocamento_BaseBC =
+			
+			DIVIDE(
+			    [TempoMedioServico_PorRebocador_SoDeslocamento_ComArredondamento_BaseBC],
+			    [TempoMedioServico_PorRebocador_ComDeslocamento_ComArredondamento_BaseBC],
+			    0
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 54799332-ec53-489b-a696-32d55cd119a0
+
+	measure %Media_TempoManobra_SemDeslocamento_BaseBC =
+			
+			DIVIDE(
+			    [TempoMedioServico_PorRebocador_SemDeslocamento_ComArredondamento_BaseBC],
+			    [TempoMedioServico_PorRebocador_ComDeslocamento_ComArredondamento_BaseBC],
+			    0
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 71af98d6-1b09-4984-b5f2-7772e6f96ea6
+
+	partition Medidas_TempoDeServico = m
+		mode: import
+		source =
+				let
+				    Fonte = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [#"Coluna 1" = _t]),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(Fonte,{{"Coluna 1", type text}}),
+				    #"Colunas Removidas" = Table.RemoveColumns(#"Tipo Alterado",{"Coluna 1"})
+				in
+				    #"Colunas Removidas"
+
+	annotation PBI_ResultType = Table
+

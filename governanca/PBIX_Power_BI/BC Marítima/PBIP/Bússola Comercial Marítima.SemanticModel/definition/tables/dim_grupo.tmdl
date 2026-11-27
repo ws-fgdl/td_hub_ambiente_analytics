@@ -1,0 +1,54 @@
+table dim_grupo
+	lineageTag: 52ffb49e-bd58-407c-ae2c-41e05ecfea6d
+
+	column cliente_sap
+		lineageTag: b363c88d-1bbf-4149-9962-14205c5d312f
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: aws_bussola_comercial_mar[cliente_sap]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Grupo_Final
+		lineageTag: 0e5988bf-e59d-46d1-8414-31c0afdfe9cf
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Grupo_Final]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_grupo = calculated
+		mode: import
+		source = ```
+				
+				VAR TabelaUnica = 
+				    FILTER(
+				        DISTINCT('aws_bussola_comercial_mar'[cliente_sap]),
+				        'aws_bussola_comercial_mar'[cliente_sap] <> BLANK() && 'aws_bussola_comercial_mar'[cliente_sap] <> ""
+				    )
+				
+				RETURN
+				    ADDCOLUMNS(
+				        TabelaUnica,
+				        "Grupo_Final", 
+				        VAR GrupoBussolaPrioritario = 
+				            CALCULATE(
+				                MAX('aws_bussola_comercial_mar'[grupo_economico]),
+				                'aws_bussola_comercial_mar'[grupo_economico] <> "",
+				                NOT(ISBLANK('aws_bussola_comercial_mar'[grupo_economico]))
+				            )
+				        
+				        VAR NomeCliente = 
+				            LOOKUPVALUE(
+				                'Gsht_Clientes_ContasReceber'[Grupo], 
+				                'Gsht_Clientes_ContasReceber'[Cód SAP], 
+				                'aws_bussola_comercial_mar'[cliente_sap]
+				            )
+				        
+				        RETURN
+				            COALESCE(GrupoBussolaPrioritario, NomeCliente)
+				    )
+				```
+
+	annotation PBI_Id = 041827b3018644289d180c3dd7634899
+

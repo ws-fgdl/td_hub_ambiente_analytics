@@ -1,0 +1,41 @@
+table Eventos_relevatn
+	lineageTag: ddc40212-559b-43a4-8940-be3aaf042baf
+
+	column Ano
+		dataType: int64
+		formatString: 0
+		lineageTag: 2dc2d0c2-2074-4aed-83e4-cc49e0c5b504
+		summarizeBy: sum
+		sourceColumn: Ano
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Evento Econômico'
+		dataType: string
+		lineageTag: 055d53f5-ac7e-4bec-b138-e5671a5bee1a
+		summarizeBy: none
+		sourceColumn: Evento Econômico
+
+		annotation SummarizationSetBy = Automatic
+
+	column Impacto
+		dataType: string
+		lineageTag: 65167b5c-d1ca-4a25-93d4-c00150bfa325
+		summarizeBy: none
+		sourceColumn: Impacto
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Eventos_relevatn = m
+		mode: import
+		source =
+				let
+				    Fonte = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("TZAxTgMxEEWvMtoKpERKFgooQ1ghCgQUoYm2mNgDWLI9q/F67wMpUtHBCXwxZgNR0o08/z8/e72u6tn8qppUd5lEEJYcSIxDD81qMV2+u4i6XPgeYWCPvfPOoiUwGDaaqtrJSKhnGnrCaCk4ZTy+3N9O59d69pzJIkQEbQ5/TTIcy3dwBuHN8+bIqI8WWlgZKZ/R7W/PgWLPYBk6obLTSQU4bHLqy9dALh0QF5peiksENxhN+RC1OdOHAEGThTs818ADOhbAgSSVLQMyaMPwgXGpkcaTK7vyQwk4g9ArS8B0oq5zgPGn0HICzwZVQtHZYiw7HAU73VKnlO3e/D9cte0v", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Ano = _t, #"Evento Econômico" = _t, Impacto = _t]),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(Fonte,{{"Ano", Int64.Type}, {"Evento Econômico", type text}, {"Impacto", type text}})
+				in
+				    #"Tipo Alterado"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navegação
+

@@ -1,0 +1,345 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "20a72a026b1b4977b407",
+  "position": {
+    "x": 16.616837136113297,
+    "y": 743.22580645161293,
+    "z": 1000,
+    "height": 321.76239181746655,
+    "width": 1867.128245476003,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "aws_bussola_comercial_mar"
+                    }
+                  },
+                  "Property": "os"
+                }
+              },
+              "queryRef": "aws_bussola_comercial_mar.os",
+              "nativeQueryRef": "os"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "aws_bussola_comercial_mar"
+                    }
+                  },
+                  "Property": "tipo_doc"
+                }
+              },
+              "queryRef": "aws_bussola_comercial_mar.tipo_doc",
+              "nativeQueryRef": "tipo_doc"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "aws_bussola_comercial_mar"
+                    }
+                  },
+                  "Property": "competencia"
+                }
+              },
+              "queryRef": "aws_bussola_comercial_mar.competencia",
+              "nativeQueryRef": "competencia"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "aws_bussola_comercial_mar"
+                    }
+                  },
+                  "Property": "data_do_inicio_do_evento"
+                }
+              },
+              "queryRef": "aws_bussola_comercial_mar.data_do_inicio_do_evento",
+              "nativeQueryRef": "data_do_inicio_do_evento"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "aws_bussola_comercial_mar"
+                    }
+                  },
+                  "Property": "filial"
+                }
+              },
+              "queryRef": "aws_bussola_comercial_mar.filial",
+              "nativeQueryRef": "filial"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "aws_bussola_comercial_mar"
+                    }
+                  },
+                  "Property": "navio"
+                }
+              },
+              "queryRef": "aws_bussola_comercial_mar.navio",
+              "nativeQueryRef": "navio"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "aws_bussola_comercial_mar"
+                    }
+                  },
+                  "Property": "grupo_acordo"
+                }
+              },
+              "queryRef": "aws_bussola_comercial_mar.grupo_acordo",
+              "nativeQueryRef": "grupo_acordo"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "aws_bussola_comercial_mar"
+                    }
+                  },
+                  "Property": "grupo_pagador"
+                }
+              },
+              "queryRef": "aws_bussola_comercial_mar.grupo_pagador",
+              "nativeQueryRef": "grupo_pagador"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "aws_bussola_comercial_mar"
+                    }
+                  },
+                  "Property": "grupo_tomador"
+                }
+              },
+              "queryRef": "aws_bussola_comercial_mar.grupo_tomador",
+              "nativeQueryRef": "grupo_tomador"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "aws_bussola_comercial_mar"
+                    }
+                  },
+                  "Property": "dono_manobra"
+                }
+              },
+              "queryRef": "aws_bussola_comercial_mar.dono_manobra",
+              "nativeQueryRef": "dono_manobra"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "aws_bussola_comercial_mar"
+                  }
+                },
+                "Property": "competencia"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "columnHeaders": [
+        {
+          "properties": {
+            "columnAdjustment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'fixedWidth'"
+                }
+              }
+            },
+            "defaultColumnWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "90D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "64D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "aws_bussola_comercial_mar.os"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "184D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "aws_bussola_comercial_mar.tipo_doc"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "102D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "aws_bussola_comercial_mar.competencia"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "198D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "aws_bussola_comercial_mar.data_do_inicio_do_evento"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "207D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "aws_bussola_comercial_mar.filial"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "174D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "aws_bussola_comercial_mar.navio"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "201.63282596599834D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "aws_bussola_comercial_mar.grupo_acordo"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "189.44787630033505D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "aws_bussola_comercial_mar.grupo_pagador"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "120D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "aws_bussola_comercial_mar.grupo_tomador"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "350D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "aws_bussola_comercial_mar.dono_manobra"
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

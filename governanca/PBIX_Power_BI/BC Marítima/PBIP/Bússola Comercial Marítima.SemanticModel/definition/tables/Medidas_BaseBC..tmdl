@@ -1,0 +1,714 @@
+table 'Medidas_BaseBC.'
+	lineageTag: 3eecbb9c-5105-4792-9a9d-b7c541191ad2
+
+	measure blank = BLANK()
+		formatString: 0
+		lineageTag: 6c4f8924-0709-4eb0-be1f-e5d4003a96fd
+
+	measure FaturamentoBRL_BaseBC =
+			
+			SUM(
+			    aws_bussola_comercial_mar[valor_faturado_brl]
+			)
+		formatString: #,0
+		lineageTag: 108ce995-ada2-4615-b25a-e3fb7dd67d95
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure FaturamentoUSD_BaseBC =
+			
+			SUM(
+			    aws_bussola_comercial_mar[valor_faturado_usd]
+			)
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: e46f3e48-4add-4dbd-8adb-2390dccc1aed
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure Faturamento_YTM_BaseBC = ```
+			
+			VAR vDataMaxSelecionada = MAXX(ALLSELECTED(aws_bussola_comercial_mar), aws_bussola_comercial_mar[competencia])
+			
+			VAR vMesLimite = MONTH(vDataMaxSelecionada)
+			VAR vDiaLimite = DAY(vDataMaxSelecionada)
+			
+			RETURN
+			    CALCULATE(
+			        [Flag_Faturamento_BaseBC],
+			        KEEPFILTERS(
+			            Dim_calendario[numero_mes] < vMesLimite || 
+			            (Dim_calendario[numero_mes] = vMesLimite
+			        )
+			    ))
+			```
+		lineageTag: 1942f0a4-0bda-4cb4-8c15-0eb778ae957a
+
+		formatStringDefinition = ```
+				VAR Valor = SELECTEDMEASURE()
+				VAR ValorAbs = ABS(Valor) -- Analisamos o "tamanho" do número independente do sinal
+				VAR Selecao = SELECTEDVALUE(Flag_faturamento[Faturamento])
+				VAR Prefixo = IF(Selecao = "R$", "R$ ", "$ ")
+				
+				RETURN
+				    SWITCH( TRUE(),
+				        ValorAbs >= 1000000000, 
+				            Prefixo & "#,##0,,,.0 ""B"";-" & Prefixo & "#,##0,,,.0 ""B""",
+				        
+				        ValorAbs >= 1000000,    
+				            Prefixo & "#,##0,,.0 ""M"";-" & Prefixo & "#,##0,,.0 ""M""",
+				        
+				        ValorAbs >= 1000,       
+				            Prefixo & "#,##0,.0 ""K"";-" & Prefixo & "#,##0,.0 ""K""",
+				        
+				        -- Para valores entre -999 e 999
+				        Prefixo & "#,##0;-" & Prefixo & "#,##0"
+				    )
+				```
+
+	measure Faturamento_YTM_CY_BaseBC = ```
+			
+			-- 1. Pega o limite (Ex: Outubro) baseado no seu segmentador
+			VAR vDataMaxSlicer = MAXX(ALLSELECTED(aws_bussola_comercial_mar), aws_bussola_comercial_mar[competencia])
+			VAR vMesLimite = MONTH(vDataMaxSlicer)
+			VAR vDiaLimite = DAY(vDataMaxSlicer)
+			
+			-- 2. Pega o ano que está na linha da tabela (ou no contexto)
+			VAR vAnoContexto = MAX(Dim_calendario[ano_calendario])
+			
+			RETURN
+			CALCULATE(
+			    [Flag_Faturamento_BaseBC],
+			    KEEPFILTERS(Dim_calendario[ano_calendario] = vAnoContexto),
+			    KEEPFILTERS(
+			        Dim_calendario[numero_mes] < vMesLimite || 
+			        (Dim_calendario[numero_mes] = vMesLimite)
+			    ),
+			    -- Limpa filtros de mês/dia que venham das linhas da tabela para permitir o acumulado
+			    REMOVEFILTERS(Dim_calendario[numero_mes])
+			)
+			
+			
+			// VAR vAnoCorrenteDoContexto = YEAR(MAX(Dim_calendario[data]))
+			// RETURN
+			// CALCULATE(
+			//     [Faturamento_YTM_Competencia],
+			//     FILTER(
+			//         ALL(Dim_calendario),
+			//         Dim_calendario[ano_calendario] = vAnoCorrenteDoContexto
+			//     )
+			// )
+			```
+		lineageTag: 03b8b427-2a8c-48c3-96cf-cf1937301654
+
+		formatStringDefinition = ```
+				VAR Valor = SELECTEDMEASURE()
+				VAR ValorAbs = ABS(Valor) -- Analisamos o "tamanho" do número independente do sinal
+				VAR Selecao = SELECTEDVALUE(Flag_faturamento[Faturamento])
+				VAR Prefixo = IF(Selecao = "R$", "R$ ", "$ ")
+				
+				RETURN
+				    SWITCH( TRUE(),
+				        ValorAbs >= 1000000000, 
+				            Prefixo & "#,##0,,,.0 ""B"";-" & Prefixo & "#,##0,,,.0 ""B""",
+				        
+				        ValorAbs >= 1000000,    
+				            Prefixo & "#,##0,,.0 ""M"";-" & Prefixo & "#,##0,,.0 ""M""",
+				        
+				        ValorAbs >= 1000,       
+				            Prefixo & "#,##0,.0 ""K"";-" & Prefixo & "#,##0,.0 ""K""",
+				        
+				        -- Para valores entre -999 e 999
+				        Prefixo & "#,##0;-" & Prefixo & "#,##0"
+				    )
+				```
+
+	measure Faturamento_YTM_PY_BaseBC =
+			
+			CALCULATE(
+			    [Faturamento_YTM_CY_BaseBC],
+			    SAMEPERIODLASTYEAR(Dim_calendario[data])
+			)
+		lineageTag: f93f649d-747d-4c0e-8c26-f1add1f38691
+
+		formatStringDefinition = ```
+				VAR Valor = SELECTEDMEASURE()
+				VAR ValorAbs = ABS(Valor) -- Analisamos o "tamanho" do número independente do sinal
+				VAR Selecao = SELECTEDVALUE(Flag_faturamento[Faturamento])
+				VAR Prefixo = IF(Selecao = "R$", "R$ ", "$ ")
+				
+				RETURN
+				    SWITCH( TRUE(),
+				        ValorAbs >= 1000000000, 
+				            Prefixo & "#,##0,,,.0 ""B"";-" & Prefixo & "#,##0,,,.0 ""B""",
+				        
+				        ValorAbs >= 1000000,    
+				            Prefixo & "#,##0,,.0 ""M"";-" & Prefixo & "#,##0,,.0 ""M""",
+				        
+				        ValorAbs >= 1000,       
+				            Prefixo & "#,##0,.0 ""K"";-" & Prefixo & "#,##0,.0 ""K""",
+				        
+				        -- Para valores entre -999 e 999
+				        Prefixo & "#,##0;-" & Prefixo & "#,##0"
+				    )
+				```
+
+	measure Legenda_AnoAnterior = UPPER(FORMAT(EDATE(MAX(Dim_calendario[data]), -12), "MMM/YY", "en-US"))
+		lineageTag: f6db505d-4d5b-4490-95ab-bf2fbf46f802
+
+	measure Legenda_AnoAtual = UPPER(FORMAT(MAX(Dim_calendario[data]), "MMM/YY", "en-US"))
+		lineageTag: 2f9949d0-5aff-45ed-ba55-9f1843c40f83
+
+	measure Media_Tempo_de_Servico_BaseBC = ```
+			
+			VAR TempoTotalSegundos = 
+			    AVERAGEX(
+			        'aws_bussola_comercial_mar',  // Substitua 'hml_bussola_comercial_mar_daily' pelo nome da sua tabela
+			        DATEDIFF('aws_bussola_comercial_mar'[data_do_inicio_do_evento], 'aws_bussola_comercial_mar'[data_do_fim_do_evento], SECOND)
+			    )
+			VAR Dias = INT(TempoTotalSegundos / (24 * 3600))
+			VAR SegundosRestantes = TempoTotalSegundos - (Dias * 24 * 3600)
+			VAR Horas = INT(SegundosRestantes / 3600)
+			RETURN
+			    Dias & " dias e " & Horas & " horas"
+			```
+		lineageTag: 93ce5b60-9991-4d57-9f6c-42ef02490085
+
+	measure Media_Tempo_de_Servico_T_BaseBC = ```
+			
+			VAR TempoTotalSegundos = 
+			    AVERAGEX(
+			        'aws_bussola_comercial_mar',  // Substitua 'hml_bussola_comercial_mar_daily' pelo nome da sua tabela
+			        DATEDIFF('aws_bussola_comercial_mar'[data_do_inicio_do_evento_tratado], 'aws_bussola_comercial_mar'[data_do_fim_do_evento_tratado], SECOND)
+			    )
+			VAR Dias = INT(TempoTotalSegundos / (24 * 3600))
+			VAR SegundosRestantes = TempoTotalSegundos - (Dias * 24 * 3600)
+			VAR Horas = INT(SegundosRestantes / 3600)
+			RETURN
+			    Dias & " dias e " & Horas & " horas"
+			```
+		lineageTag: 313740b1-b047-4bfe-a682-bc8aa787a8cc
+
+	measure PrecoMedia_YTD_BaseBC =
+			
+			VAR vUltimoAno = YEAR(MAX(aws_bussola_comercial_mar[competencia]))
+			VAR vUltimoMesContexto = MONTH(MAXX(ALL(aws_bussola_comercial_mar), aws_bussola_comercial_mar[competencia]))-1
+			VAR vDia = DAY(MAXX(ALL(aws_bussola_comercial_mar), aws_bussola_comercial_mar[competencia]))
+			
+			RETURN
+			    CALCULATE(
+			        [PrecoMedio_BaseBC],
+			        FILTER(
+			            Dim_calendario,
+			            Dim_calendario[data] <= DATE(vUltimoAno,vUltimoMesContexto,vDia)
+			        )
+			    )
+		lineageTag: 8eb3b9cf-b06a-4c9c-8021-894b116d80b1
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure PrecoMedio_ManobraEspecial_BaseBC =
+			
+			CALCULATE(
+			    DIVIDE(
+			        [Flag_Faturamento_BaseBC],
+			        [VolumeManobra_BaseBC],
+			        0
+			    ),
+			    aws_bussola_comercial_mar[manobra_especial] = "SIM"
+			)
+		lineageTag: 4580eff4-9b6b-49dc-a132-910186e8f67e
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure PrecoMedio_ManobraPortuaria_BaseBC =
+			
+			CALCULATE(
+			    DIVIDE(
+			        [Flag_Faturamento_BaseBC],
+			        [VolumeManobra_BaseBC],
+			        0
+			    ),
+			    aws_bussola_comercial_mar[manobra_especial] = "NAO"
+			)
+		lineageTag: 4d999c12-5030-47ad-b691-23f0e8d7abf8
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure PrecoMedio_BaseBC =
+			
+			DIVIDE(
+			    Flag_faturamento[Flag_Faturamento_BaseBC],
+			    [VolumeManobra_BaseBC],
+			    0
+			)
+		lineageTag: ff6a996a-ce4a-4376-a0fc-f66043baa940
+
+		formatStringDefinition = ```
+				VAR Valor = SELECTEDMEASURE()
+				VAR ValorAbs = ABS(Valor) -- Analisamos o "tamanho" do número independente do sinal
+				VAR Selecao = SELECTEDVALUE(Flag_faturamento[Faturamento])
+				VAR Prefixo = IF(Selecao = "R$", "R$ ", "$ ")
+				
+				RETURN
+				    SWITCH( TRUE(),
+				        ValorAbs >= 1000000000, 
+				            Prefixo & "#,##0,,,.0 ""B"";-" & Prefixo & "#,##0,,,.0 ""B""",
+				        
+				        ValorAbs >= 1000000,    
+				            Prefixo & "#,##0,,.0 ""M"";-" & Prefixo & "#,##0,,.0 ""M""",
+				        
+				        ValorAbs >= 1000,       
+				            Prefixo & "#,##0,.0 ""K"";-" & Prefixo & "#,##0,.0 ""K""",
+				        
+				        -- Para valores entre -999 e 999
+				        Prefixo & "#,##0;-" & Prefixo & "#,##0"
+				    )
+				```
+
+	measure PrecoMedio_Desloc_BaseBC = [PrecoMedio_BaseBC] * [%Deslocamento_BaseBC]
+		lineageTag: aa579123-bbd9-44f5-9509-a823c95009fb
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure PrecoMedio_Manobra_BaseBC = [PrecoMedio_BaseBC] * [%Media_TempoManobra_SemDeslocamento_BaseBC]
+		lineageTag: c1515d0f-4524-4385-b964-6b6c069aeed2
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Ranking_Historico_BaseBC =
+			
+			RANKX(
+			    ALL(
+			        Dim_Cliente[Grupo Econômico]
+			    ),
+			    [Flag_Faturamento_BaseBC]
+			)
+		formatString: 0
+		lineageTag: 8edd6076-c7ea-49d8-9923-53bd8a6040b6
+
+	measure %Variacao_VolumeManobra_YTM_BaseBC = ```
+			
+			VAR AnoAtual = MAX(Dim_calendario[ano_calendario])
+			VAR PrimeiroAnoSelecionado =
+			    CALCULATE(
+			        MIN(Dim_calendario[ano_calendario]),
+			        ALLSELECTED(Dim_calendario)
+			    )
+			VAR VolAtual = [VolumeManobra_YTM_Competenia]
+			VAR VolAnterior =
+			    IF(
+			        AnoAtual > PrimeiroAnoSelecionado,
+			        CALCULATE(
+			            [VolumeManobra_YTM_Competenia],
+			            FILTER(
+			                ALL(Dim_calendario),
+			                Dim_calendario[ano_calendario] = AnoAtual - 1
+			            )
+			        )
+			    )
+			RETURN
+			    IF(
+			        ISBLANK(VolAnterior) || ISBLANK(VolAtual),
+			        BLANK(),
+			        DIVIDE(VolAtual - VolAnterior, VolAnterior, 0)
+			    )
+			
+			```
+		lineageTag: af9089a7-8f69-444d-a7fd-9ccae2ca5835
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Variacao_Faturamenrto_YTM_BaseBC = ```
+			
+			-- 1. Identificamos o mês limite do YTM (Com alta performance)
+			VAR vDataMax = CALCULATE(MAX(aws_bussola_comercial_mar[competencia]), ALLSELECTED(aws_bussola_comercial_mar))
+			VAR vMesLimite = MONTH(vDataMax)
+			
+			-- 2. Pegamos o valor YTM do ano atual (da barra do gráfico)
+			VAR FatAtual = [Faturamento_YTM_BaseBC]
+			
+			-- 3. Calculamos o ano anterior com o "Passe Livre"
+			VAR FatAnterior = 
+			    CALCULATE(
+			        [Flag_Faturamento_BaseBC], 
+			        REMOVEFILTERS(Dim_calendario), -- A MÁGICA: Ignora o segmentador da tela para conseguir ler 2022
+			        DATEADD(Dim_calendario[data], -1, YEAR), -- Puxa os dias exatos do ano anterior
+			        Dim_calendario[numero_mes] <= vMesLimite -- Trava no mês limite
+			    )
+			
+			-- 4. O retorno faz a divisão. Se não tiver ano anterior na base (Ex: 2021), fica em branco naturalmente!
+			RETURN
+			    IF(
+			        ISBLANK(FatAnterior) || FatAnterior = 0, 
+			        BLANK(), 
+			        DIVIDE(FatAtual - FatAnterior, FatAnterior)
+			    )
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 217fda92-0773-459a-8ec5-c9fc8b2c2c3c
+
+	measure %Variacao_VolumeManobra_BaseBC = ```
+			
+			VAR AnoAtual = MAX(Dim_calendario[ano_calendario])
+			VAR PrimeiroAnoSelecionado =
+			    CALCULATE(
+			        MIN(Dim_calendario[ano_calendario]),
+			        ALLSELECTED(Dim_calendario)
+			    )
+			VAR VolAtual = [VolumeManobra_BaseBC]
+			VAR VolAnterior =
+			    IF(
+			        AnoAtual > PrimeiroAnoSelecionado,
+			        CALCULATE(
+			            [VolumeManobra_BaseBC],
+			            FILTER(
+			                ALL(Dim_calendario),
+			                Dim_calendario[ano_calendario] = AnoAtual - 1
+			            )
+			        )
+			    )
+			RETURN
+			    IF(
+			        ISBLANK(VolAnterior) || ISBLANK(VolAtual),
+			        BLANK(),
+			        DIVIDE(VolAtual - VolAnterior, VolAnterior, 0)
+			    )
+			
+			```
+		lineageTag: 6d434114-75b2-4e9f-a889-37d5065296a6
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure VolumeManobra_BaseBC =
+			
+			SUM(
+			    aws_bussola_comercial_mar[volume]
+			)
+		lineageTag: b587a68c-3590-49bf-b0f7-db91662936d0
+
+		formatStringDefinition =
+				VAR Valor = SELECTEDMEASURE()
+				VAR ValorAbs = ABS(Valor) -- Pega o valor sem o sinal para a comparação
+				RETURN
+				    SWITCH( TRUE(),
+				        ValorAbs >= 1000000000, "#,##0,,,.0 ""B"";-#,##0,,,.0 ""B""",
+				        ValorAbs >= 1000000,    "#,##0,,.0 ""M"";-#,##0,,.0 ""M""",
+				        ValorAbs >= 1000,       "#,##0,.0 ""K"";-#,##0,.0 ""K""",
+				        "#,##0;-#,##0" -- Para valores menores que 1000
+				    )
+
+	measure VolumeManobra_OsUnicas_BaseBC =
+			
+			SUMX(
+			    VALUES(aws_bussola_comercial_mar[os]),
+			    CALCULATE(MAX(aws_bussola_comercial_mar[volume]))
+			)
+		formatString: 0
+		lineageTag: a31787bc-dac2-456f-9641-69abccb34191
+
+	measure VolumeManobra_YTM_Competenia = ```
+			
+			VAR vDataMaxSelecionada = MAXX(ALLSELECTED(aws_bussola_comercial_mar), aws_bussola_comercial_mar[competencia])
+			
+			VAR vMesLimite = MONTH(vDataMaxSelecionada)
+			VAR vDiaLimite = DAY(vDataMaxSelecionada)
+			
+			RETURN
+			    CALCULATE([Flag_Volume_BaseBC],
+			        KEEPFILTERS(
+			            Dim_calendario[numero_mes] < vMesLimite || 
+			            (Dim_calendario[numero_mes] = vMesLimite
+			        )
+			    ))
+			
+			
+			// VAR vUltimoAno = YEAR(MAX(aws_bussola_comercial_mar[competencia]))
+			// VAR vUltimoMesContexto = MONTH(MAXX(ALL(aws_bussola_comercial_mar), aws_bussola_comercial_mar[competencia])) -1//Considerar o Mês de competencia fechado (pegando o mês anteioro ao atual)
+			// VAR vUltimoDia = DAY(MAXX(ALL(aws_bussola_comercial_mar), aws_bussola_comercial_mar[competencia]))
+			
+			// RETURN
+			//     CALCULATE(
+			//         [Volume_Manobra],
+			//         FILTER(
+			//             Dim_calendario,
+			//             Dim_calendario[data] <= DATE(vUltimoAno, vUltimoMesContexto, vUltimoDia)
+			//         )
+			//     )
+			
+			```
+		lineageTag: a0f05383-bc22-4fd4-9ea9-5ee3a063f815
+
+		formatStringDefinition =
+				VAR Valor = SELECTEDMEASURE()
+				VAR ValorAbs = ABS(Valor) -- Pega o valor sem o sinal para a comparação
+				RETURN
+				    SWITCH( TRUE(),
+				        ValorAbs >= 1000000000, "#,##0,,,.0 ""B"";-#,##0,,,.0 ""B""",
+				        ValorAbs >= 1000000,    "#,##0,,.0 ""M"";-#,##0,,.0 ""M""",
+				        ValorAbs >= 1000,       "#,##0,.0 ""K"";-#,##0,.0 ""K""",
+				        "#,##0;-#,##0" -- Para valores menores que 1000
+				    )
+
+	measure VolumeManobra_YTM_CY_BaseBC = ```
+			
+			VAR vDataMaxSlicer = MAXX(ALLSELECTED(aws_bussola_comercial_mar), aws_bussola_comercial_mar[competencia])
+			VAR vMesLimite = MONTH(vDataMaxSlicer)
+			VAR vDiaLimite = DAY(vDataMaxSlicer)
+			
+			-- 2. Pega o ano que está na linha da tabela (ou no contexto)
+			VAR vAnoContexto = MAX(Dim_calendario[ano_calendario])
+			
+			RETURN
+			CALCULATE(
+			    [Flag_Volume_BaseBC],
+			    KEEPFILTERS(Dim_calendario[ano_calendario] = vAnoContexto),
+			    KEEPFILTERS(
+			        Dim_calendario[numero_mes] < vMesLimite || 
+			        (Dim_calendario[numero_mes] = vMesLimite)
+			    ),
+			    -- Limpa filtros de mês/dia que venham das linhas da tabela para permitir o acumulado
+			    REMOVEFILTERS(Dim_calendario[numero_mes])
+			)
+			// VAR vAnoCorrenteDoContexto = YEAR(MAX(Dim_calendario[data]))
+			// RETURN
+			// CALCULATE(
+			//     [VolumeManobra_YTM_Competenia],
+			//     FILTER(
+			//         ALL(Dim_calendario),
+			//         Dim_calendario[ano_calendario] = vAnoCorrenteDoContexto
+			//     )
+			// )
+			```
+		lineageTag: d7ad2e9e-9d34-4f46-9272-474902281f2d
+
+		formatStringDefinition =
+				VAR Valor = SELECTEDMEASURE()
+				VAR ValorAbs = ABS(Valor) -- Pega o valor sem o sinal para a comparação
+				RETURN
+				    SWITCH( TRUE(),
+				        ValorAbs >= 1000000000, "#,##0,,,.0 ""B"";-#,##0,,,.0 ""B""",
+				        ValorAbs >= 1000000,    "#,##0,,.0 ""M"";-#,##0,,.0 ""M""",
+				        ValorAbs >= 1000,       "#,##0,.0 ""K"";-#,##0,.0 ""K""",
+				        "#,##0;-#,##0" -- Para valores menores que 1000
+				    )
+
+	measure VolumeManobra_YTM_PY_BaseBC =
+			
+			CALCULATE(
+			    [VolumeManobra_YTM_CY_BaseBC],
+			    SAMEPERIODLASTYEAR(Dim_calendario[data])
+			)
+		lineageTag: 3c46ffa1-a405-4e5d-9c1c-428ee4811049
+
+		formatStringDefinition =
+				VAR Valor = SELECTEDMEASURE()
+				VAR ValorAbs = ABS(Valor) -- Pega o valor sem o sinal para a comparação
+				RETURN
+				    SWITCH( TRUE(),
+				        ValorAbs >= 1000000000, "#,##0,,,.0 ""B"";-#,##0,,,.0 ""B""",
+				        ValorAbs >= 1000000,    "#,##0,,.0 ""M"";-#,##0,,.0 ""M""",
+				        ValorAbs >= 1000,       "#,##0,.0 ""K"";-#,##0,.0 ""K""",
+				        "#,##0;-#,##0" -- Para valores menores que 1000
+				    )
+
+	measure Δ_Faturamento_YTM_BaseBC = ```
+			
+			VAR CY = [Faturamento_YTM_CY_BaseBC]
+			VAR PY = [Faturamento_YTM_PY_BaseBC]
+			RETURN
+			    DIVIDE(CY - PY, PY, BLANK())
+			
+			// IF(
+			//     ISBLANK([Faturamento_YTM_CY_Competencia]) || ISBLANK([Faturamento_YTM_PY_Competencia]),
+			//     BLANK(),
+			//     DIVIDE([Faturamento_YTM_CY_Competencia] - [Faturamento_YTM_PY_Competencia], [Faturamento_YTM_PY_Competencia], BLANK())
+			// )
+			
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: a468436c-63e7-4015-b3e2-8decd9792f15
+
+	measure Δ_VolumeManobra_YTM_BaseBC = ```
+			
+			VAR CY = [VolumeManobra_YTM_CY_BaseBC]
+			VAR PY = [VolumeManobra_YTM_PY_BaseBC]
+			RETURN
+			    DIVIDE(CY - PY, PY,BLANK())
+			// IF(
+			//     ISBLANK([VolumeManobra_YTM_CY_Competencia]) || ISBLANK([VolumeManobra_YTM_PY_Competencia]),
+			//     BLANK(),
+			//     DIVIDE([VolumeManobra_YTM_CY_Competencia] - [VolumeManobra_YTM_PY_Competencia], [VolumeManobra_YTM_PY_Competencia], BLANK())
+			// )
+			
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: f5b78c8e-4aa2-43ca-8e3d-0711a4046afe
+
+	measure Contagem_Navio_BaseBC =
+			
+			DISTINCTCOUNT(
+			    aws_bussola_comercial_mar[navio]
+			)
+		formatString: 0
+		lineageTag: 03640408-8882-4d95-b165-98fbf89b8a78
+
+	measure Faturamento_ManobraEspecial_BaseBC = ```
+			
+			CALCULATE(
+			    [Flag_Faturamento_BaseBC],
+			    'aws_bussola_comercial_mar'[manobra_especial] = "SIM"
+			)
+			
+			```
+		lineageTag: 9ef68177-c524-40ed-a69f-57a6ae6f7901
+
+		formatStringDefinition = ```
+				VAR Valor = SELECTEDMEASURE()
+				VAR ValorAbs = ABS(Valor) -- Analisamos o "tamanho" do número independente do sinal
+				VAR Selecao = SELECTEDVALUE(Flag_faturamento[Faturamento])
+				VAR Prefixo = IF(Selecao = "R$", "R$ ", "$ ")
+				
+				RETURN
+				    SWITCH( TRUE(),
+				        ValorAbs >= 1000000000, 
+				            Prefixo & "#,##0,,,.0 ""B"";-" & Prefixo & "#,##0,,,.0 ""B""",
+				        
+				        ValorAbs >= 1000000,    
+				            Prefixo & "#,##0,,.0 ""M"";-" & Prefixo & "#,##0,,.0 ""M""",
+				        
+				        ValorAbs >= 1000,       
+				            Prefixo & "#,##0,.0 ""K"";-" & Prefixo & "#,##0,.0 ""K""",
+				        
+				        -- Para valores entre -999 e 999
+				        Prefixo & "#,##0;-" & Prefixo & "#,##0"
+				    )
+				```
+
+	measure Faturamento_ManobraPortuaria_BaseBC = ```
+			
+			CALCULATE(
+			    [Flag_Faturamento_BaseBC],
+			    'aws_bussola_comercial_mar'[manobra_especial] = "NAO"
+			)
+			
+			```
+		lineageTag: 068e5d17-1960-4d41-b1d3-a83b43c54750
+
+		formatStringDefinition = ```
+				VAR Valor = SELECTEDMEASURE()
+				VAR ValorAbs = ABS(Valor) -- Analisamos o "tamanho" do número independente do sinal
+				VAR Selecao = SELECTEDVALUE(Flag_faturamento[Faturamento])
+				VAR Prefixo = IF(Selecao = "R$", "R$ ", "$ ")
+				
+				RETURN
+				    SWITCH( TRUE(),
+				        ValorAbs >= 1000000000, 
+				            Prefixo & "#,##0,,,.0 ""B"";-" & Prefixo & "#,##0,,,.0 ""B""",
+				        
+				        ValorAbs >= 1000000,    
+				            Prefixo & "#,##0,,.0 ""M"";-" & Prefixo & "#,##0,,.0 ""M""",
+				        
+				        ValorAbs >= 1000,       
+				            Prefixo & "#,##0,.0 ""K"";-" & Prefixo & "#,##0,.0 ""K""",
+				        
+				        -- Para valores entre -999 e 999
+				        Prefixo & "#,##0;-" & Prefixo & "#,##0"
+				    )
+				```
+
+	measure Eventos_BaseBC =
+			
+			CALCULATE(
+			    DISTINCTCOUNT(
+			        aws_bussola_comercial_mar[os]
+			    )
+			)
+		formatString: 0
+		lineageTag: 2c47e50a-680e-497c-82b9-7e1944fdd69f
+
+	measure Tugs_por_Portcall_BaseBC =
+			
+			DIVIDE(
+			    [VolumeManobra_BaseBC],
+			    [Contagem_Portcall_BaseBC],
+			    0
+			)
+		lineageTag: 03d4cbbd-5d15-41e8-a17b-ab5ac0d91e27
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Contagem_Portcall_BaseBC = DISTINCTCOUNT(aws_bussola_comercial_mar[portcall_calculado])
+		lineageTag: 0aaafdd5-562c-42dd-9541-de6e5b929050
+
+		formatStringDefinition =
+				VAR Valor = SELECTEDMEASURE()
+				VAR ValorAbs = ABS(Valor) -- Pega o valor sem o sinal para a comparação
+				RETURN
+				    SWITCH( TRUE(),
+				        ValorAbs >= 1000000000, "#,##0,,,.0 ""B"";-#,##0,,,.0 ""B""",
+				        ValorAbs >= 1000000,    "#,##0,,.0 ""M"";-#,##0,,.0 ""M""",
+				        ValorAbs >= 1000,       "#,##0,.0 ""K"";-#,##0,.0 ""K""",
+				        "#,##0;-#,##0" -- Para valores menores que 1000
+				    )
+
+	measure Escala_BaseBC =
+			
+			CALCULATE(
+			    DISTINCTCOUNT(aws_bussola_comercial_mar[os]),
+			    aws_bussola_comercial_mar[servico] = "MANOBRA DE ATRACACAO"
+			)
+		lineageTag: 55799b01-a0d3-43c0-b8bb-e023c2d7956e
+
+		formatStringDefinition =
+				VAR Valor = SELECTEDMEASURE()
+				VAR ValorAbs = ABS(Valor) -- Pega o valor sem o sinal para a comparação
+				RETURN
+				    SWITCH( TRUE(),
+				        ValorAbs >= 1000000000, "#,##0,,,.0 ""B"";-#,##0,,,.0 ""B""",
+				        ValorAbs >= 1000000,    "#,##0,,.0 ""M"";-#,##0,,.0 ""M""",
+				        ValorAbs >= 1000,       "#,##0,.0 ""K"";-#,##0,.0 ""K""",
+				        "#,##0;-#,##0" -- Para valores menores que 1000
+				    )
+
+	measure Contagem_Portcall_chaceBaseBC = DISTINCTCOUNT(aws_bussola_comercial_mar[Chave_Portcalconcat_fil_divl_DAX])
+		formatString: 0
+		lineageTag: 03c73435-e69a-431e-9103-eb7ee4ef34c4
+
+	measure FaturamentoPTAX_BaseBC =
+			
+			SUM(
+			    aws_bussola_comercial_mar[valor_faturado_ptax]
+			)
+		lineageTag: 655a38f7-3b53-4a37-a73e-e0916112d98c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'DWT Medio' = AVERAGE(aws_bussola_comercial_mar[dwt])
+		lineageTag: 70c12a30-5acc-46b1-9a7b-2911910b72f3
+
+		formatStringDefinition =
+				VAR Valor = SELECTEDMEASURE()
+				VAR ValorAbs = ABS(Valor) -- Pega o valor sem o sinal para a comparação
+				RETURN
+				    SWITCH( TRUE(),
+				        ValorAbs >= 1000000000, "#,##0,,,.0 ""B"";-#,##0,,,.0 ""B""",
+				        ValorAbs >= 1000000,    "#,##0,,.0 ""M"";-#,##0,,.0 ""M""",
+				        ValorAbs >= 1000,       "#,##0,.0 ""K"";-#,##0,.0 ""K""",
+				        "#,##0;-#,##0" -- Para valores menores que 1000
+				    )
+
+	measure 'Período Selecionado' = MIN(Dim_calendario[data])&" - "&MAX(Dim_calendario[data])
+		lineageTag: 83ae62bc-973c-4670-bff0-6ef5a82957b7
+
+	partition 'Medidas_BaseBC.' = m
+		mode: import
+		source =
+				let
+				    Fonte = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [#"Coluna 1" = _t]),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(Fonte,{{"Coluna 1", type text}}),
+				    #"Colunas Removidas" = Table.RemoveColumns(#"Tipo Alterado",{"Coluna 1"})
+				in
+				    #"Colunas Removidas"
+
+	annotation PBI_ResultType = Table
+

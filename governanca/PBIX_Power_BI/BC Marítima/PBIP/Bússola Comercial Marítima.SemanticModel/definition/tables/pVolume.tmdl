@@ -1,0 +1,74 @@
+table pVolume
+	lineageTag: cf533560-f8de-489c-8c44-be1da57e769c
+
+	measure Flag_Volume_BaseBC =
+			
+			SWITCH(
+			    SELECTEDVALUE(pVolume[Volume Pedido]),
+			    0,[Escala_BaseBC],
+			    1, [VolumeManobra_BaseBC],
+			    [Escala_BaseBC]
+			)
+		lineageTag: 461c0044-ea2a-4fab-a2e3-28df2a810acc
+
+		formatStringDefinition =
+				VAR Valor = SELECTEDMEASURE()
+				VAR ValorAbs = ABS(Valor) -- Pega o valor sem o sinal para a comparação
+				RETURN
+				    SWITCH( TRUE(),
+				        ValorAbs >= 1000000000, "#,##0,,,.0 ""B"";-#,##0,,,.0 ""B""",
+				        ValorAbs >= 1000000,    "#,##0,,.0 ""M"";-#,##0,,.0 ""M""",
+				        ValorAbs >= 1000,       "#,##0,.0 ""K"";-#,##0,.0 ""K""",
+				        "#,##0;-#,##0" -- Para valores menores que 1000
+				    )
+
+	measure Título_Dinamico_volumexdwt = MAXX('pVolume', 'pVolume'[Volume]) & " per Dwt Range"
+		lineageTag: 666d5770-3e80-4795-99a7-c8b1e2a57000
+
+	measure Título_Dinamico_volumexAno = MAXX('pVolume', 'pVolume'[Volume]) & " per Year"
+		lineageTag: c2419f81-56b0-41f1-8be7-1da95f468f32
+
+	column Volume
+		lineageTag: 415f3dbd-427a-469c-a7b2-3c8c2899ed45
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'Volume Pedido'
+
+		relatedColumnDetails
+			groupByColumn: 'Volume Campos'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Volume Campos'
+		lineageTag: ac74c2aa-a20f-4e5d-b3b9-5ea6465df22a
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'Volume Pedido'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Volume Pedido'
+		isHidden
+		formatString: 0
+		lineageTag: 59e5cd24-596b-4b78-a8cc-3faae6e6d095
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition pVolume = calculated
+		mode: import
+		source =
+				{
+				    ("Portcalls", NAMEOF('Medidas_BaseBC.'[Contagem_Portcall_BaseBC]), 0),
+				    ("Tugboats", NAMEOF('Medidas_BaseBC.'[VolumeManobra_BaseBC]), 1)
+				}
+
+	annotation PBI_Id = e8436ba59c0e4f67b49f88f16032fcbe
+

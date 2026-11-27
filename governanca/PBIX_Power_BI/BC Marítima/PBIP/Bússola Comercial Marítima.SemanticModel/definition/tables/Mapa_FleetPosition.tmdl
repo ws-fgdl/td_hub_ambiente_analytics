@@ -1,0 +1,52 @@
+table Mapa_FleetPosition
+	lineageTag: 1bb617b0-5a21-4a3c-a7ab-b435c25d1d28
+
+	column Port/Terminal
+		dataType: string
+		lineageTag: 84157382-b461-4975-9797-44fe3ba46d2e
+		summarizeBy: none
+		sourceColumn: Port/Terminal
+
+		annotation SummarizationSetBy = Automatic
+
+	column State_Map
+		dataType: string
+		lineageTag: 0c5eaa51-d86a-487e-babe-6dba7e3dc55b
+		summarizeBy: none
+		sourceColumn: State_Map
+
+		annotation SummarizationSetBy = Automatic
+
+	column Port_Map
+		dataType: string
+		lineageTag: 51c5af6d-dac4-4ad6-8b67-8f2b3372a536
+		summarizeBy: none
+		sourceColumn: Port_Map
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ordem
+		dataType: int64
+		formatString: 0
+		lineageTag: db0b45bc-f2fe-4e30-af22-c947a82d13ee
+		summarizeBy: none
+		sourceColumn: Ordem
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Mapa_FleetPosition = m
+		mode: import
+		source =
+				let
+				    Fonte = PowerPlatform.Dataflows(null),
+				    Workspaces = Fonte{[Id="Workspaces"]}[Data],
+				    #"8c5cc8ba-ed75-4d39-9606-af9ead89ca36" = Workspaces{[workspaceId="8c5cc8ba-ed75-4d39-9606-af9ead89ca36"]}[Data],
+				    #"2cc6ec08-a32b-4077-93da-08fcfb59c30e" = #"8c5cc8ba-ed75-4d39-9606-af9ead89ca36"{[dataflowId="2cc6ec08-a32b-4077-93da-08fcfb59c30e"]}[Data],
+				    Consulta_ = #"2cc6ec08-a32b-4077-93da-08fcfb59c30e"{[entity="Consulta",version=""]}[Data]
+				in
+				    Consulta_
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

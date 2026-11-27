@@ -1,0 +1,71 @@
+table Selecao_ShareConcorrente
+	lineageTag: 69288f83-b0d0-495f-81b3-72322743b4f1
+
+	measure Cor_Share_Dinamica = ```
+			
+			VAR CategoriaAtual = 
+			    COALESCE(
+			        SELECTEDVALUE('Dim_DonoManobra'[Dono_Demais]),
+			        SELECTEDVALUE('Dim_Operador'[Operador_Demais])
+			    )
+			
+			RETURN
+			SWITCH(
+			    CategoriaAtual,
+			    "WS", "#118DFF",
+			    "SVITZER", "#893395",
+			    "SAAM", "#E8D166",
+			    "SULNORTE", "#999999",
+			    "CAMORIM", "#D64550",
+			    "VALE", "#73361C",
+			    "DEMAIS", "#001C43",
+			    "#708090" -- Cor Padrão
+			)
+			```
+		lineageTag: d1db755d-d875-4a2e-ba8f-e9ca979ff96f
+
+	column Selecao_ShareConcorrente
+		lineageTag: 6b3fcbcd-d33c-4ad1-994d-c142dd6ba8fe
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'Selecao_ShareConcorrente Pedido'
+
+		relatedColumnDetails
+			groupByColumn: 'Selecao_ShareConcorrente Campos'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Selecao_ShareConcorrente Campos'
+		isHidden
+		lineageTag: e554cb00-5ce8-48c9-a0d7-5f75631fcf97
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'Selecao_ShareConcorrente Pedido'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Selecao_ShareConcorrente Pedido'
+		isHidden
+		formatString: 0
+		lineageTag: 34c374ce-559d-46de-8fb4-fe893eb49a35
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Selecao_ShareConcorrente = calculated
+		mode: import
+		source =
+				{
+				    ("Manoeuvre Owner", NAMEOF(Dim_DonoManobra[Dono_Demais]), 0),
+				    ("Operator", NAMEOF('Dim_Operador'[Operador_Demais]), 1)
+				}
+
+	annotation PBI_Id = dcb00e10c92848e086a9f674125e241e
+

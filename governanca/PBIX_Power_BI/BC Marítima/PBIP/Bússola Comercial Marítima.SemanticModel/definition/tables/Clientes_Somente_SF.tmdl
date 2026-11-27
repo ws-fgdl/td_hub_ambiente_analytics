@@ -1,0 +1,39 @@
+table Clientes_Somente_SF
+	lineageTag: b5ccfba6-5824-4db7-a8f1-6055ecac0d97
+
+	column codigo_sap
+		lineageTag: f0036ef4-26af-4763-8b7c-51fd4f232486
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: aws_salesforce[codigo_sap]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cliente
+		lineageTag: 52f61440-947d-4b71-bacb-7e4d916655fd
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Cliente]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Clientes_Somente_SF = calculated
+		mode: import
+		source = ```
+				
+				FILTER(
+				    ADDCOLUMNS(
+				        VALUES('aws_salesforce'[codigo_sap]),
+				        "Cliente", 
+				        CALCULATE(
+				            MAX('aws_salesforce'[razao_social])
+				        )
+				    ),
+				    NOT 'aws_salesforce'[codigo_sap] 
+				        IN VALUES(Dim_carteira_comercial_consolidado[CODIGO_SAP])
+				)
+				
+				```
+
+	annotation PBI_Id = 0a6ae6c834344366a41b0a76de305396
+

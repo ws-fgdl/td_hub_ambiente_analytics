@@ -1,0 +1,145 @@
+table Select_Displacement
+	lineageTag: 7a734846-18ae-4e84-868c-9f5304854edd
+
+	measure TempoManobraMedio_Dinamico = ```
+			SWITCH(
+			    True,
+			    SELECTEDVALUE(Select_Displacement[Tipo]) = "Without Mobilisation",[TempoMedioServico_PorRebocador_SemDeslocamento_ComArredondamento_BaseBC],
+			    SELECTEDVALUE(Select_Displacement[Tipo]) = "With Mobilisation",[TempoMedioServico_PorRebocador_ComDeslocamento_ComArredondamento_BaseBC],[TempoMedioServico_PorRebocador_SoDeslocamento_ComArredondamento_BaseBC]
+			    )
+			//IF(    SELECTEDVALUE(Select_Displacement[Tipo]) = "Without Mobilisation",     [TempoMedioServico_PorRebocador_SemDeslocamento_ComArredondamento],     [TempoMedioServico_PorRebocador_ComDeslocamento_ComArredondamento])
+			
+			```
+		lineageTag: 36c077b4-4a20-41aa-9b70-ef065e47a66e
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure RemuneracaoHora_x_TempoMedio_Dinamico = ```
+			
+			IF(
+			    SELECTEDVALUE(Select_Displacement[Tipo]) = "Without Mobilisation", 
+			    [Remuneracao_x_TempoMedio_SemDeslocamento_BaseBC], 
+			    [Remuneracao_x_TempoMedio_ComDeslocamento_BaseBC]
+			)
+			```
+		lineageTag: 26ccbc0a-5fff-4f5c-9878-c0fe5c8a5191
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure TempoManobraMedio_Dinamico_Cores = ```
+			SWITCH(
+			    True,
+			    SELECTEDVALUE(Select_Displacement[Tipo]) = "Without Mobilisation",[TempoMedioServico_PorRebocador_SemDeslocamento_ComArredondamento_BaseBC],
+			    SELECTEDVALUE(Select_Displacement[Tipo]) = "With Mobilisation",[TempoMedioServico_PorRebocador_ComDeslocamento_ComArredondamento_BaseBC],[TempoMedioServico_PorRebocador_SoDeslocamento_ComArredondamento_BaseBC]
+			    )
+			//IF(    SELECTEDVALUE(Select_Displacement[Tipo]) = "Without Mobilisation"[TempoMedioServico_PorRebocador_SemDeslocamento_ComArredondamento],    [TempoMedioServico_PorRebocador_ComDeslocamento_ComArredondamento])
+			
+			```
+		lineageTag: 667ce068-2d87-4892-b2b2-8c6de8024bc6
+
+	measure RemuneracaoHora_Dinamico = ```
+			
+			//IF(
+			//    SELECTEDVALUE(Select_Displacement[Tipo]) = "Without Mobilisation", 
+			//    [*REMUNERACAO_HORA_SEM_DESLOC], 
+			//    [*REMUNERACAO_HORA_COM_DESLOC]
+			//)
+			SWITCH(
+			    True,
+			    SELECTEDVALUE(Select_Displacement[Tipo]) = "Without Mobilisation",
+			    [*REMUNERACAO_HORA_SEM_DESLOC_BaseBC],
+			    SELECTEDVALUE(Select_Displacement[Tipo]) = "With Mobilisation",
+			    [*REMUNERACAO_HORA_COM_DESLOC_BaseBC],
+			    SELECTEDVALUE(Select_Displacement[Tipo]) = "Mobilisation Only",
+			    [*REMUNERACAO_HORA_COM_DESLOC_BaseBC])
+			```
+		lineageTag: 6af50f71-f70b-4554-8c3b-da7c170daea9
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure *TempoManobraMedio_Dinamico = ```
+			
+			IF(
+			    SELECTEDVALUE(Select_Displacement[Tipo]) = "Without Mobilisation", 
+			    [TempoMedioServico_SemDesloc_View_TempoMedio_Formatada], 
+			    [TempoMedioServico_ComDesloc_View_TempoMedio_Formatada]
+			)
+			
+			```
+		lineageTag: e17d8087-13c9-4ab4-97ee-36c36cce0f06
+
+	measure RemuneracaoHora_Dinamico_geral = ```
+			
+			IF(
+			    SELECTEDVALUE(Select_Displacement[Tipo]) = "Without Mobilisation", 
+			    [Remuneracao_Hora_SemDeslocamento_geral_BaseBC], 
+			    [Remuneracao_Hora_ComDeslocamento_geral_BaseBC]
+			)
+			```
+		lineageTag: 4804f8a6-32ee-4c5f-9d86-aca23232b8b3
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure TempoMedioServico_PorRebocadorDinamico =
+			
+			[TempoMedioServico_PorRebocador_ComDeslocamento_Formatada_ComArredondamento_BaseBC]
+		lineageTag: aa7b9a81-be10-4d92-b734-fc4ec9a65371
+
+		formatStringDefinition = ""
+
+	measure *TempoManobraMedio_Dinamico_Cores = ```
+			
+			IF(
+			    SELECTEDVALUE(Select_Displacement[Tipo]) = "Without Mobilisation", 
+			    [TempoMedioServico_SemDesloc_View_TempoMedio], 
+			    [TempoMedioServico_ComDesloc_View_TempoMedio]
+			)
+			
+			```
+		lineageTag: 6f1ba873-1a7a-4bac-bfbd-b0ccd15e450e
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure %Tempo_Dinamico =
+			SWITCH(
+			    TRUE(),
+			    SELECTEDVALUE(Select_Displacement[Tipo])="With Mobilisation",
+			    [%Deslocamento_BaseBC],
+			    SELECTEDVALUE(Select_Displacement[Tipo])="Without Mobilisation",
+			    0,
+			    SELECTEDVALUE(Select_Displacement[Tipo])="Mobilisation Only",
+			    [%Deslocamento_BaseBC]
+			    )
+		lineageTag: 194f0c34-3066-4660-82c6-2577ea04f9b3
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Remuneracao_Dinamica = SWITCH(TRUE(),SELECTEDVALUE(Select_Displacement[Tipo])="With Mobilisation",[PrecoMedio_BaseBC],SELECTEDVALUE(Select_Displacement[Tipo])="Without Mobilisation",[PrecoMedio_Manobra_BaseBC],SELECTEDVALUE(Select_Displacement[Tipo])="Mobilisation Only",[PrecoMedio_Desloc_BaseBC])
+		formatString: 0
+		lineageTag: 98d2379b-fd06-40d7-93c6-81c65612caf9
+
+	column Tipo
+		lineageTag: 2fa8d407-da82-428f-b977-e2fe984aeb4e
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Tipo]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Select_Displacement = calculated
+		mode: import
+		source = ```
+				
+				DATATABLE(
+				    "Tipo", STRING,
+				    {
+				        {"With Mobilisation"},
+				        {"Without Mobilisation"},
+				        {"Mobilisation Only"}
+				    }
+				)
+				
+				```
+
+	annotation PBI_Id = 8c19998807b645c98cd27bc5214eca83
+

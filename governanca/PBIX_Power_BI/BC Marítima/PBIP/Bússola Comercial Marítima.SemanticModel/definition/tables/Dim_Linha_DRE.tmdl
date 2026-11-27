@@ -1,0 +1,151 @@
+table Dim_Linha_DRE
+	lineageTag: cd2c2352-6840-48c2-973f-485499c90536
+
+	column linha_dre
+		lineageTag: b5fb9a0a-6a0c-4cda-88d0-d6ebcfb2d246
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: aws_dre_reb[linha_dre]
+
+		annotation SummarizationSetBy = Automatic
+
+	column linha_dre_eng
+		lineageTag: e63ee201-4232-4725-9954-4f7bbcd53832
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [linha_dre_eng]
+
+		annotation SummarizationSetBy = Automatic
+
+	column linha_dre_agrupada_pt
+		lineageTag: e99306cc-2683-4731-b0ad-96d56a0150da
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [linha_dre_agrupada_pt]
+
+		annotation SummarizationSetBy = Automatic
+
+	column linha_dre_agrupada_eng
+		lineageTag: 243abebc-8e0f-4b37-8479-43ed45fd2d80
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [linha_dre_agrupada_eng]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_Linha_DRE = calculated
+		mode: import
+		source = ```
+				
+				ADDCOLUMNS(
+				    // Começa com os valores únicos da coluna linha_dre da tabela aws_dre_reb
+				    DISTINCT(aws_dre_reb[linha_dre]),
+				
+				    // 1. Coluna de tradução direta para o inglês (linha_dre_eng)
+				    "linha_dre_eng",
+				    SWITCH(
+				        TRUE(),
+				        aws_dre_reb[linha_dre] = "Afretamento", "Chartering",
+				        aws_dre_reb[linha_dre] = "Combustível", "Fuel",
+				        aws_dre_reb[linha_dre] = "Crédito sobre Depreciação", "Depreciation Credit",
+				        aws_dre_reb[linha_dre] = "Custos de Pessoal (Tripulação e Manutenção)", "Personnel Costs (Crew & Maintenance)",
+				        aws_dre_reb[linha_dre] = "Depreciação e Amortização - Efeito Ebitda", "Depreciation & Amortization - EBITDA Effect",
+				        aws_dre_reb[linha_dre] = "Depreciação e Amortização - Efeito Lair", "Depreciation & Amortization - Lair Effect",
+				        aws_dre_reb[linha_dre] = "Descontos Concedidos", "Discounts Granted",
+				        aws_dre_reb[linha_dre] = "Despesas de Pessoal Terra", "Shore Personnel Expenses",
+				        aws_dre_reb[linha_dre] = "Impostos Efetivos", "Effective Taxes",
+				        aws_dre_reb[linha_dre] = "Lubrificantes", "Lubricants",
+				        aws_dre_reb[linha_dre] = "Manutenção", "Maintenance",
+				        aws_dre_reb[linha_dre] = "Material de Operações", "Operating Supplies",
+				        aws_dre_reb[linha_dre] = "Outras Despesas Margem 2", "Other Expenses Margin 2",
+				        aws_dre_reb[linha_dre] = "Outras Despesas Margem 3", "Other Expenses Margin 3",
+				        aws_dre_reb[linha_dre] = "Outros Custos Margem 1", "Other Costs Margin 1",
+				        aws_dre_reb[linha_dre] = "Receita Bruta (após descontos)", "Gross Revenue (after discounts)",
+				        aws_dre_reb[linha_dre] = "Receita Líquida", "Net Revenue",
+				        aws_dre_reb[linha_dre] = "Resultado Financeiro e Correção Monetária", "Financial Result & Monetary Correction",
+				        aws_dre_reb[linha_dre] = "Resultados Financeiros - Efeito Lair", "Financial Results - Lair Effect",
+				        aws_dre_reb[linha_dre] = "Seguro", "Insurance",
+				        aws_dre_reb[linha_dre] = "Sinistro", "Loss / Claim",
+				        aws_dre_reb[linha_dre] // Valor padrão se não houver correspondência
+				    ),
+				
+				    // 2. Coluna de agrupamento em português (linha_dre_agrupada_pt)
+				    "linha_dre_agrupada_pt",
+				    SWITCH(
+				        TRUE(),
+				        aws_dre_reb[linha_dre] IN {
+				            "Receita Líquida", 
+				            "Receita Bruta (após descontos)"
+				        }, "Receitas",
+				        aws_dre_reb[linha_dre] IN {
+				            "Afretamento", 
+				            "Combustível", 
+				            "Custos de Pessoal (Tripulação e Manutenção)", 
+				            "Lubrificantes", 
+				            "Manutenção", 
+				            "Material de Operações", 
+				            "Seguro", 
+				            "Outros Custos Margem 1"
+				        }, "Custos Operacionais",
+				        aws_dre_reb[linha_dre] IN {
+				            "Despesas de Pessoal Terra", 
+				            "Outras Despesas Margem 2", 
+				            "Outras Despesas Margem 3"
+				        }, "Outras Despesas",
+				        aws_dre_reb[linha_dre] IN {
+				            "Depreciação e Amortização - Efeito Ebitda", 
+				            "Depreciação e Amortização - Efeito Lair", 
+				            "Crédito sobre Depreciação"
+				        }, "Depreciação",
+				        aws_dre_reb[linha_dre] IN {
+				            "Resultado Financeiro e Correção Monetária", 
+				            "Resultados Financeiros - Efeito Lair"
+				        }, "Resultado Financeiro",
+				        aws_dre_reb[linha_dre] = "Descontos Concedidos", "Deduções da Receita",
+				        aws_dre_reb[linha_dre] = "Impostos Efetivos", "Impostos sobre Receita",
+				        aws_dre_reb[linha_dre] = "Sinistro", "Sinistro",
+				        "Outros"
+				    ),
+				
+				    // 3. Coluna de agrupamento em inglês (linha_dre_agrupada_eng)
+				    "linha_dre_agrupada_eng",
+				    SWITCH(
+				        TRUE(),
+				        aws_dre_reb[linha_dre] IN {
+				            "Receita Líquida", 
+				            "Receita Bruta (após descontos)"
+				        }, "Revenue",
+				        aws_dre_reb[linha_dre] IN {
+				            "Afretamento", 
+				            "Combustível", 
+				            "Custos de Pessoal (Tripulação e Manutenção)", 
+				            "Lubrificantes", 
+				            "Manutenção", 
+				            "Material de Operações", 
+				            "Seguro", 
+				            "Outros Custos Margem 1"
+				        }, "Operating Costs",
+				        aws_dre_reb[linha_dre] IN {
+				            "Despesas de Pessoal Terra", 
+				            "Outras Despesas Margem 2", 
+				            "Outras Despesas Margem 3"
+				        }, "Overhead",
+				        aws_dre_reb[linha_dre] IN {
+				            "Depreciação e Amortização - Efeito Ebitda", 
+				            "Depreciação e Amortização - Efeito Lair", 
+				            "Crédito sobre Depreciação"
+				        }, "Depreciation",
+				        aws_dre_reb[linha_dre] IN {
+				            "Resultado Financeiro e Correção Monetária", 
+				            "Resultados Financeiros - Efeito Lair"
+				        }, "Financial Result",
+				        aws_dre_reb[linha_dre] = "Descontos Concedidos", "Revenue Deductions",
+				        aws_dre_reb[linha_dre] = "Impostos Efetivos", "Taxes on Revenue",
+				        aws_dre_reb[linha_dre] = "Sinistro", "Loss / Claim",
+				        "Other"
+				    )
+				)
+				```
+
+	annotation PBI_Id = a9caf84c301f47f9b70eb587cf3e8a0e
+

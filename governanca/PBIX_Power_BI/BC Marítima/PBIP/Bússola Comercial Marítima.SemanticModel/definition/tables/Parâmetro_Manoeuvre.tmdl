@@ -1,0 +1,48 @@
+table Parâmetro_Manoeuvre
+	lineageTag: ddd2036a-690f-412e-9746-d7833323ea49
+
+	column Parâmetro_Manoeuvre
+		lineageTag: 453edfa7-1c7e-468c-ab19-3bab6aa98175
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'Parâmetro_Manoeuvre Pedido'
+
+		relatedColumnDetails
+			groupByColumn: 'Parâmetro_Manoeuvre Campos'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parâmetro_Manoeuvre Campos'
+		isHidden
+		lineageTag: cc379e52-caca-4966-9da5-3eb39da8e23c
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'Parâmetro_Manoeuvre Pedido'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parâmetro_Manoeuvre Pedido'
+		formatString: 0
+		lineageTag: fb453c2e-b372-48b4-9d46-adad6e59ff02
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Parâmetro_Manoeuvre = calculated
+		mode: import
+		source =
+				{
+				    ("Port", NAMEOF('Dim_Filial'[Filial_agrupado]), 0),
+				    ("Economic Group", NAMEOF('Dim_Cliente'[Grupo Econômico]), 1),
+				    ("Category", NAMEOF('Dim_Categoria'[categoria_eng]), 2)
+				}
+
+	annotation PBI_Id = ec18f2f36c204408969127fddf685144
+

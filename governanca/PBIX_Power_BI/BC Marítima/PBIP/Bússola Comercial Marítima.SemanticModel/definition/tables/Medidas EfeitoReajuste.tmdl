@@ -1,0 +1,434 @@
+table 'Medidas EfeitoReajuste'
+	lineageTag: 325f7394-da19-4d8e-85ad-0055b436d106
+
+	measure Filtro_Volume_Ambos_Periodos =
+			
+			IF(
+			    [PMedio_P1] > 0 && [PMedio_P2] > 0,
+			    1,
+			    BLANK()
+			)
+		formatString: 0
+		lineageTag: 6fcb4ff3-8994-4828-a2b3-f904b9641e24
+
+	measure Fat_P1 =
+			// Novo Faturamento para o Período 1
+			VAR Periodo1_Selecionado = VALUES('Calendario P1'[Data])
+			RETURN
+			CALCULATE(
+			    Flag_faturamento[Flag_Faturamento_BaseBC], --[Faturamento_TipoData], // Ou a medida [Faturamento Válido] se preferir
+			    KEEPFILTERS('Dim_calendario'[data] IN Periodo1_Selecionado)
+			)
+		lineageTag: 290d225b-f5db-4891-a761-49953a7ac12b
+
+		formatStringDefinition = ```
+				VAR Valor = SELECTEDMEASURE()
+				VAR ValorAbs = ABS(Valor) -- Analisamos o "tamanho" do número independente do sinal
+				VAR Selecao = SELECTEDVALUE(Flag_faturamento[Faturamento])
+				VAR Prefixo = IF(Selecao = "R$", "R$ ", "$ ")
+				
+				RETURN
+				    SWITCH( TRUE(),
+				        ValorAbs >= 1000000000, 
+				            Prefixo & "#,##0,,,.0 ""B"";-" & Prefixo & "#,##0,,,.0 ""B""",
+				        
+				        ValorAbs >= 1000000,    
+				            Prefixo & "#,##0,,.0 ""M"";-" & Prefixo & "#,##0,,.0 ""M""",
+				        
+				        ValorAbs >= 1000,       
+				            Prefixo & "#,##0,.0 ""K"";-" & Prefixo & "#,##0,.0 ""K""",
+				        
+				        -- Para valores entre -999 e 999
+				        Prefixo & "#,##0;-" & Prefixo & "#,##0"
+				    )
+				```
+
+	measure Fat_P2 =
+			// Novo Faturamento para o Período 2
+			VAR Periodo2_Selecionado = VALUES('Calendario P2'[Data])
+			RETURN
+			CALCULATE(
+			    Flag_faturamento[Flag_Faturamento_BaseBC], --[Faturamento_TipoData], // Ou a medida [Faturamento Válido] se preferir
+			    KEEPFILTERS('Dim_calendario'[data] IN Periodo2_Selecionado)
+			)
+		lineageTag: a8e56fd1-23f2-4cdb-b0b5-92b73079ecdc
+
+		formatStringDefinition = ```
+				VAR Valor = SELECTEDMEASURE()
+				VAR ValorAbs = ABS(Valor) -- Analisamos o "tamanho" do número independente do sinal
+				VAR Selecao = SELECTEDVALUE(Flag_faturamento[Faturamento])
+				VAR Prefixo = IF(Selecao = "R$", "R$ ", "$ ")
+				
+				RETURN
+				    SWITCH( TRUE(),
+				        ValorAbs >= 1000000000, 
+				            Prefixo & "#,##0,,,.0 ""B"";-" & Prefixo & "#,##0,,,.0 ""B""",
+				        
+				        ValorAbs >= 1000000,    
+				            Prefixo & "#,##0,,.0 ""M"";-" & Prefixo & "#,##0,,.0 ""M""",
+				        
+				        ValorAbs >= 1000,       
+				            Prefixo & "#,##0,.0 ""K"";-" & Prefixo & "#,##0,.0 ""K""",
+				        
+				        -- Para valores entre -999 e 999
+				        Prefixo & "#,##0;-" & Prefixo & "#,##0"
+				    )
+				```
+
+	measure Vol_P1 = ```
+			// Novo Volume para o Período 1
+			VAR Periodo1_Selecionado = VALUES('Calendario P1'[Data])
+			RETURN
+			CALCULATE(
+			    [VolumeManobra_BaseBC], --[VolumeManobra_TipoData], 
+			    KEEPFILTERS('Dim_calendario'[data] IN Periodo1_Selecionado)
+			)
+			```
+		lineageTag: 5dbe21ef-6df1-4e0c-8cd7-d47a85c7ef39
+
+		formatStringDefinition =
+				VAR Valor = SELECTEDMEASURE()
+				VAR ValorAbs = ABS(Valor) -- Pega o valor sem o sinal para a comparação
+				RETURN
+				    SWITCH( TRUE(),
+				        ValorAbs >= 1000000000, "#,##0,,,.0 ""B"";-#,##0,,,.0 ""B""",
+				        ValorAbs >= 1000000,    "#,##0,,.0 ""M"";-#,##0,,.0 ""M""",
+				        ValorAbs >= 1000,       "#,##0,.0 ""K"";-#,##0,.0 ""K""",
+				        "#,##0;-#,##0" -- Para valores menores que 1000
+				    )
+
+	measure Vol_P2 = ```
+			// Novo Volume para o Período 2
+			VAR Periodo2_Selecionado = VALUES('Calendario P2'[Data])
+			RETURN
+			CALCULATE(
+			    [VolumeManobra_BaseBC], --[VolumeManobra_TipoData], 
+			    KEEPFILTERS('Dim_calendario'[data] IN Periodo2_Selecionado)
+			)
+			```
+		lineageTag: bd6acdee-589e-4883-b5df-57992fb7cffb
+
+		formatStringDefinition =
+				VAR Valor = SELECTEDMEASURE()
+				VAR ValorAbs = ABS(Valor) -- Pega o valor sem o sinal para a comparação
+				RETURN
+				    SWITCH( TRUE(),
+				        ValorAbs >= 1000000000, "#,##0,,,.0 ""B"";-#,##0,,,.0 ""B""",
+				        ValorAbs >= 1000000,    "#,##0,,.0 ""M"";-#,##0,,.0 ""M""",
+				        ValorAbs >= 1000,       "#,##0,.0 ""K"";-#,##0,.0 ""K""",
+				        "#,##0;-#,##0" -- Para valores menores que 1000
+				    )
+
+	measure PMedio_P1 =
+			// Novo Preço Médio para o Período 1
+			DIVIDE([FaT_P1], [Vol_P1])
+		lineageTag: 62886846-7d8d-40d9-a2f7-5756cf929eb9
+
+		formatStringDefinition = ```
+				VAR Valor = SELECTEDMEASURE()
+				VAR ValorAbs = ABS(Valor) -- Analisamos o "tamanho" do número independente do sinal
+				VAR Selecao = SELECTEDVALUE(Flag_faturamento[Faturamento])
+				VAR Prefixo = IF(Selecao = "R$", "R$ ", "$ ")
+				
+				RETURN
+				    SWITCH( TRUE(),
+				        ValorAbs >= 1000000000, 
+				            Prefixo & "#,##0,,,.0 ""B"";-" & Prefixo & "#,##0,,,.0 ""B""",
+				        
+				        ValorAbs >= 1000000,    
+				            Prefixo & "#,##0,,.0 ""M"";-" & Prefixo & "#,##0,,.0 ""M""",
+				        
+				        ValorAbs >= 1000,       
+				            Prefixo & "#,##0,.0 ""K"";-" & Prefixo & "#,##0,.0 ""K""",
+				        
+				        -- Para valores entre -999 e 999
+				        Prefixo & "#,##0;-" & Prefixo & "#,##0"
+				    )
+				```
+
+	measure PMedio_P2 =
+			// Novo Preço Médio para o Período 2
+			DIVIDE([Fat_P2], [Vol_P2])
+		lineageTag: 5977bd88-cc50-4033-abb0-2eeda94ace50
+
+		formatStringDefinition = ```
+				VAR Valor = SELECTEDMEASURE()
+				VAR ValorAbs = ABS(Valor) -- Analisamos o "tamanho" do número independente do sinal
+				VAR Selecao = SELECTEDVALUE(Flag_faturamento[Faturamento])
+				VAR Prefixo = IF(Selecao = "R$", "R$ ", "$ ")
+				
+				RETURN
+				    SWITCH( TRUE(),
+				        ValorAbs >= 1000000000, 
+				            Prefixo & "#,##0,,,.0 ""B"";-" & Prefixo & "#,##0,,,.0 ""B""",
+				        
+				        ValorAbs >= 1000000,    
+				            Prefixo & "#,##0,,.0 ""M"";-" & Prefixo & "#,##0,,.0 ""M""",
+				        
+				        ValorAbs >= 1000,       
+				            Prefixo & "#,##0,.0 ""K"";-" & Prefixo & "#,##0,.0 ""K""",
+				        
+				        -- Para valores entre -999 e 999
+				        Prefixo & "#,##0;-" & Prefixo & "#,##0"
+				    )
+				```
+
+	measure 'Efeito Preço' = ([PMedio_P2] - [PMedio_P1]) * [Vol_P2]
+		lineageTag: 184c8f10-7570-4f39-9fea-b94ae34c4856
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure %_P1vsP2 =
+			
+			VAR Periodo1 = [PMedio_P1]
+			VAR Periodo2 = [PMedio_P2]
+			
+			RETURN
+			    DIVIDE(
+			        (Periodo2 - Periodo1),
+			        Periodo1,
+			        BLANK()
+			    )
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 2a6cbdbe-d2be-4aa0-abf2-7d2bcdbc68c9
+
+	measure %_Agregado_Cartao_FINAL =
+			
+			CALCULATE(
+			    [%_P1vsP2],
+			    FILTER(
+			        SUMMARIZE(
+			            'aws_bussola_comercial_mar',
+			            aws_bussola_comercial_mar[grupo_acordo],
+			            'Dim_Cliente'[Grupo Econômico],
+			            Dim_Filial[Filial_agrupado],
+			            Dim_Divisao[divisao],
+			            aws_bussola_comercial_mar[FAIXA_DWT_2025]
+			        ),
+			        // CONDIÇÃO DE FILTRO ORIGINAL
+			        ( [PMedio_P1] > 0 && [PMedio_P2] > 0 )
+			        &&
+			        // CONDIÇÃO DE SEGURANÇA PARA IGNORAR RELACIONAMENTOS EM BRANCO
+			        NOT ISBLANK('Dim_Cliente'[Grupo Econômico])
+			    )
+			)
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 03213e48-2ed1-4649-bca4-0af2c6d63c9b
+
+	measure Efeito_Preco_Agregado_Cartao_FINAL =
+			
+			CALCULATE(
+			    [Efeito Preço],
+			    FILTER(
+			        SUMMARIZE(
+			            'aws_bussola_comercial_mar',
+			            'Dim_Cliente'[Grupo Econômico],
+			            Dim_Filial[Filial_agrupado],
+			            Dim_Divisao[divisao],
+			            aws_bussola_comercial_mar[FAIXA_DWT_2025]
+			        ),
+			        // CONDIÇÃO DE FILTRO ORIGINAL
+			        ( [PMedio_P1] > 0 && [PMedio_P2] > 0 )
+			        &&
+			        // CONDIÇÃO DE SEGURANÇA PARA IGNORAR RELACIONAMENTOS EM BRANCO
+			        NOT ISBLANK('Dim_Cliente'[Grupo Econômico])
+			    )
+			)
+		lineageTag: 6d83bee1-0942-46ed-9351-c5dadf5cf214
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure PrecoMedio_P1_Agregado_Cartao_FINAL =
+			
+			CALCULATE(
+			    [PMedio_P1],
+			    FILTER(
+			        SUMMARIZE(
+			            'aws_bussola_comercial_mar',
+			            aws_bussola_comercial_mar[grupo_acordo],
+			            'Dim_Cliente'[Grupo Econômico],
+			            Dim_Filial[Filial_agrupado],
+			            Dim_Divisao[divisao],
+			            aws_bussola_comercial_mar[FAIXA_DWT_2025]
+			        ),
+			        // CONDIÇÃO DE FILTRO ORIGINAL
+			        ( [PMedio_P1] > 0 && [PMedio_P2] > 0 )
+			        &&
+			        // CONDIÇÃO DE SEGURANÇA PARA IGNORAR RELACIONAMENTOS EM BRANCO
+			        NOT ISBLANK('Dim_Cliente'[Grupo Econômico])
+			    )
+			)
+		lineageTag: bb8d2ed8-573c-4f3c-aae1-c291dbba5e2e
+
+		formatStringDefinition = ```
+				VAR Valor = SELECTEDMEASURE()
+				VAR ValorAbs = ABS(Valor) -- Analisamos o "tamanho" do número independente do sinal
+				VAR Selecao = SELECTEDVALUE(Flag_faturamento[Faturamento])
+				VAR Prefixo = IF(Selecao = "R$", "R$ ", "$ ")
+				
+				RETURN
+				    SWITCH( TRUE(),
+				        ValorAbs >= 1000000000, 
+				            Prefixo & "#,##0,,,.0 ""B"";-" & Prefixo & "#,##0,,,.0 ""B""",
+				        
+				        ValorAbs >= 1000000,    
+				            Prefixo & "#,##0,,.0 ""M"";-" & Prefixo & "#,##0,,.0 ""M""",
+				        
+				        ValorAbs >= 1000,       
+				            Prefixo & "#,##0,.0 ""K"";-" & Prefixo & "#,##0,.0 ""K""",
+				        
+				        -- Para valores entre -999 e 999
+				        Prefixo & "#,##0;-" & Prefixo & "#,##0"
+				    )
+				```
+
+	measure PrecoMedio_P2_Agregado_Cartao_FINAL =
+			
+			CALCULATE(
+			    [PMedio_P2],
+			    FILTER(
+			        SUMMARIZE(
+			            'aws_bussola_comercial_mar',
+			            aws_bussola_comercial_mar[grupo_acordo],
+			            'Dim_Cliente'[Grupo Econômico],
+			            Dim_Filial[Filial_agrupado],
+			            Dim_Divisao[divisao],
+			            aws_bussola_comercial_mar[FAIXA_DWT_2025]
+			        ),
+			        // CONDIÇÃO DE FILTRO ORIGINAL
+			        ( [PMedio_P1] > 0 && [PMedio_P2] > 0 )
+			        &&
+			        // CONDIÇÃO DE SEGURANÇA PARA IGNORAR RELACIONAMENTOS EM BRANCO
+			        NOT ISBLANK('Dim_Cliente'[Grupo Econômico])
+			    )
+			)
+		lineageTag: dedc8ddb-d0ee-494f-84a8-4856d6b32a4c
+
+		formatStringDefinition = ```
+				VAR Valor = SELECTEDMEASURE()
+				VAR ValorAbs = ABS(Valor) -- Analisamos o "tamanho" do número independente do sinal
+				VAR Selecao = SELECTEDVALUE(Flag_faturamento[Faturamento])
+				VAR Prefixo = IF(Selecao = "R$", "R$ ", "$ ")
+				
+				RETURN
+				    SWITCH( TRUE(),
+				        ValorAbs >= 1000000000, 
+				            Prefixo & "#,##0,,,.0 ""B"";-" & Prefixo & "#,##0,,,.0 ""B""",
+				        
+				        ValorAbs >= 1000000,    
+				            Prefixo & "#,##0,,.0 ""M"";-" & Prefixo & "#,##0,,.0 ""M""",
+				        
+				        ValorAbs >= 1000,       
+				            Prefixo & "#,##0,.0 ""K"";-" & Prefixo & "#,##0,.0 ""K""",
+				        
+				        -- Para valores entre -999 e 999
+				        Prefixo & "#,##0;-" & Prefixo & "#,##0"
+				    )
+				```
+
+	measure 'Efeito Preço Ajustado' =
+			
+			SUMX(SUMMARIZE(aws_bussola_comercial_mar,Dim_Filial[Filial_agrupado],Dim_Divisao[divisao],Dim_Cliente[Grupo Econômico],aws_bussola_comercial_mar[grupo_acordo],aws_bussola_comercial_mar[faixa_dwt_2025]),([PMedio_P2] - [PMedio_P1]) * [Vol_P2])
+			
+			// SUMX(
+			//     KEEPFILTERS(VALUES(aws_bussola_comercial_mar[FAIXA_DWT_2025])),
+			//     ([PMedio_P2] - [PMedio_P1]) * [Vol_P2]
+			// )
+		lineageTag: 035bb5a8-7846-4e6a-a638-8929c944a430
+
+		formatStringDefinition = ```
+				VAR Valor = SELECTEDMEASURE()
+				VAR ValorAbs = ABS(Valor) -- Analisamos o "tamanho" do número independente do sinal
+				VAR Selecao = SELECTEDVALUE(Flag_faturamento[Faturamento])
+				VAR Prefixo = IF(Selecao = "R$", "R$ ", "$ ")
+				
+				RETURN
+				    SWITCH( TRUE(),
+				        ValorAbs >= 1000000000, 
+				            Prefixo & "#,##0,,,.0 ""B"";-" & Prefixo & "#,##0,,,.0 ""B""",
+				        
+				        ValorAbs >= 1000000,    
+				            Prefixo & "#,##0,,.0 ""M"";-" & Prefixo & "#,##0,,.0 ""M""",
+				        
+				        ValorAbs >= 1000,       
+				            Prefixo & "#,##0,.0 ""K"";-" & Prefixo & "#,##0,.0 ""K""",
+				        
+				        -- Para valores entre -999 e 999
+				        Prefixo & "#,##0;-" & Prefixo & "#,##0"
+				    )
+				```
+
+	measure Efeito_Preco_Cartao = ```
+			
+			SUMX(
+			    FILTER(
+			        SUMMARIZE(
+			            'aws_bussola_comercial_mar',
+			            'Dim_Cliente'[Grupo Econômico],
+			            aws_bussola_comercial_mar[grupo_acordo],
+			            Dim_Filial[Filial_agrupado],
+			            Dim_Divisao[divisao],
+			            aws_bussola_comercial_mar[FAIXA_DWT_2025]
+			        ),
+			        -- CONDIÇÃO DE FILTRO ORIGINAL
+			        [PMedio_P1] > 0 && 
+			        [PMedio_P2] > 0 && 
+			        NOT ISBLANK('Dim_Cliente'[Grupo Econômico])
+			    ),
+			    -- EXPRESSÃO: O SUMX vai calcular a medida abaixo para cada linha da tabela virtual acima e somar tudo
+			    [Efeito Preço Ajustado]
+			)
+			// CALCULATE(
+			//     [Efeito Preço Ajustado],
+			//     FILTER(
+			//         SUMMARIZE(
+			//             'aws_bussola_comercial_mar',
+			//             'Dim_Cliente'[Grupo Econômico],
+			//             Dim_Filial[Filial_agrupado],
+			//             Dim_Divisao[divisao],
+			//             aws_bussola_comercial_mar[FAIXA_DWT_2025]
+			//         ),
+			//         // CONDIÇÃO DE FILTRO ORIGINAL
+			//         ( [PMedio_P1] > 0 && [PMedio_P2] > 0 )
+			//         &&
+			//         // CONDIÇÃO DE SEGURANÇA PARA IGNORAR RELACIONAMENTOS EM BRANCO
+			//         NOT ISBLANK('Dim_Cliente'[Grupo Econômico])
+			//     )
+			// )
+			```
+		lineageTag: 7ae6671b-9bf9-44af-bae7-66b23ebed717
+
+		formatStringDefinition = ```
+				VAR Valor = SELECTEDMEASURE()
+				VAR ValorAbs = ABS(Valor) -- Analisamos o "tamanho" do número independente do sinal
+				VAR Selecao = SELECTEDVALUE(Flag_faturamento[Faturamento])
+				VAR Prefixo = IF(Selecao = "R$", "R$ ", "$ ")
+				
+				RETURN
+				    SWITCH( TRUE(),
+				        ValorAbs >= 1000000000, 
+				            Prefixo & "#,##0,,,.0 ""B"";-" & Prefixo & "#,##0,,,.0 ""B""",
+				        
+				        ValorAbs >= 1000000,    
+				            Prefixo & "#,##0,,.0 ""M"";-" & Prefixo & "#,##0,,.0 ""M""",
+				        
+				        ValorAbs >= 1000,       
+				            Prefixo & "#,##0,.0 ""K"";-" & Prefixo & "#,##0,.0 ""K""",
+				        
+				        -- Para valores entre -999 e 999
+				        Prefixo & "#,##0;-" & Prefixo & "#,##0"
+				    )
+				```
+
+	partition 'Medidas EfeitoReajuste' = m
+		mode: import
+		source =
+				let
+				    Fonte = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [#"Coluna 1" = _t]),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(Fonte,{{"Coluna 1", type text}}),
+				    #"Colunas Removidas" = Table.RemoveColumns(#"Tipo Alterado",{"Coluna 1"})
+				in
+				    #"Colunas Removidas"
+
+	annotation PBI_ResultType = Table
+

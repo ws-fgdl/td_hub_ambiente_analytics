@@ -1,0 +1,464 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "3c12231ebb507687a727",
+  "displayName": "Profitability per Customer",
+  "displayOption": "FitToWidth",
+  "height": 1500,
+  "width": 1550,
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "37fc1e3e8844713a5a90",
+        "ordinal": 0,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "aws_bussola_comercial_mar"
+              }
+            },
+            "Property": "manobra_especial"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      },
+      {
+        "name": "b537ace0a9358c25375b",
+        "ordinal": 1,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Dim_calendario"
+              }
+            },
+            "Property": "eh_ate_mes_anterior"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "d",
+              "Entity": "Dim_calendario",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "d"
+                          }
+                        },
+                        "Property": "eh_ate_mes_anterior"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "true"
+                        }
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User"
+      },
+      {
+        "name": "28673109f91d01e3fd3e",
+        "ordinal": 2,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Dim_Filial"
+              }
+            },
+            "Property": "Filial_agrupado"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "d",
+              "Entity": "Dim_Filial",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Not": {
+                  "Expression": {
+                    "In": {
+                      "Expressions": [
+                        {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Source": "d"
+                              }
+                            },
+                            "Property": "Filial_agrupado"
+                          }
+                        }
+                      ],
+                      "Values": [
+                        [
+                          {
+                            "Literal": {
+                              "Value": "'MATRIZ'"
+                            }
+                          }
+                        ]
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User",
+        "objects": {
+          "general": [
+            {
+              "properties": {
+                "isInvertedSelectionMode": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "true"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "037f35760cc26d226870",
+        "ordinal": 3,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Dim_Cliente"
+              }
+            },
+            "Property": "Grupo Econômico"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "d",
+              "Entity": "Dim_Cliente",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Not": {
+                  "Expression": {
+                    "In": {
+                      "Expressions": [
+                        {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Source": "d"
+                              }
+                            },
+                            "Property": "Grupo Econômico"
+                          }
+                        }
+                      ],
+                      "Values": [
+                        [
+                          {
+                            "Literal": {
+                              "Value": "null"
+                            }
+                          }
+                        ]
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User",
+        "objects": {
+          "general": [
+            {
+              "properties": {
+                "isInvertedSelectionMode": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "true"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "0627f1ecd90113eb60e8",
+        "ordinal": 4,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Dim_calendario"
+              }
+            },
+            "Property": "data"
+          }
+        },
+        "type": "RelativeDate",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "d",
+              "Entity": "Dim_calendario",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Between": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Source": "d"
+                        }
+                      },
+                      "Property": "data"
+                    }
+                  },
+                  "LowerBound": {
+                    "DateSpan": {
+                      "Expression": {
+                        "DateAdd": {
+                          "Expression": {
+                            "DateAdd": {
+                              "Expression": {
+                                "Now": {}
+                              },
+                              "Amount": 1,
+                              "TimeUnit": 0
+                            }
+                          },
+                          "Amount": -100,
+                          "TimeUnit": 3
+                        }
+                      },
+                      "TimeUnit": 0
+                    }
+                  },
+                  "UpperBound": {
+                    "DateSpan": {
+                      "Expression": {
+                        "Now": {}
+                      },
+                      "TimeUnit": 0
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User"
+      }
+    ],
+    "filterSortOrder": "Custom"
+  },
+  "pageBinding": {
+    "name": "f7f60cd04bcfbe20c273",
+    "type": "Default",
+    "parameters": [],
+    "acceptsFilterContext": "None"
+  },
+  "objects": {
+    "background": [
+      {
+        "properties": {
+          "color": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "ThemeDataColor": {
+                    "ColorId": 0,
+                    "Percent": 0
+                  }
+                }
+              }
+            }
+          },
+          "transparency": {
+            "expr": {
+              "Literal": {
+                "Value": "0D"
+              }
+            }
+          },
+          "image": {
+            "image": {
+              "name": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'Bússola - Profitability per Customer (96).png'"
+                  }
+                }
+              },
+              "url": {
+                "expr": {
+                  "ResourcePackageItem": {
+                    "PackageName": "RegisteredResources",
+                    "PackageType": 1,
+                    "ItemName": "B_ssola_-_Profitability_per_Cu23452966785145402.png"
+                  }
+                }
+              },
+              "scaling": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'Normal'"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ],
+    "outspacePane": [
+      {
+        "properties": {
+          "width": {
+            "expr": {
+              "Literal": {
+                "Value": "322L"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "visualInteractions": [
+    {
+      "source": "f78d4747029843c25c4d",
+      "target": "4ff962a5bbfbb6ecee1e",
+      "type": "DataFilter"
+    },
+    {
+      "source": "f78d4747029843c25c4d",
+      "target": "77c02fe90c71c5f12836",
+      "type": "NoFilter"
+    },
+    {
+      "source": "4ff962a5bbfbb6ecee1e",
+      "target": "77c02fe90c71c5f12836",
+      "type": "DataFilter"
+    },
+    {
+      "source": "f78d4747029843c25c4d",
+      "target": "a32be157d7cf196b8dae",
+      "type": "NoFilter"
+    },
+    {
+      "source": "f78d4747029843c25c4d",
+      "target": "62265190f6190e15195d",
+      "type": "NoFilter"
+    },
+    {
+      "source": "f78d4747029843c25c4d",
+      "target": "5358297551c431ce6b58",
+      "type": "NoFilter"
+    },
+    {
+      "source": "f78d4747029843c25c4d",
+      "target": "44f9146c9754fce1e65d",
+      "type": "NoFilter"
+    },
+    {
+      "source": "f78d4747029843c25c4d",
+      "target": "28e1dde090f8779f16ac",
+      "type": "NoFilter"
+    },
+    {
+      "source": "4ff962a5bbfbb6ecee1e",
+      "target": "f78d4747029843c25c4d",
+      "type": "NoFilter"
+    },
+    {
+      "source": "77c02fe90c71c5f12836",
+      "target": "f78d4747029843c25c4d",
+      "type": "NoFilter"
+    },
+    {
+      "source": "4ff962a5bbfbb6ecee1e",
+      "target": "27575f429787f9a99eef",
+      "type": "DataFilter"
+    },
+    {
+      "source": "f78d4747029843c25c4d",
+      "target": "27575f429787f9a99eef",
+      "type": "DataFilter"
+    },
+    {
+      "source": "77c02fe90c71c5f12836",
+      "target": "27575f429787f9a99eef",
+      "type": "DataFilter"
+    },
+    {
+      "source": "27575f429787f9a99eef",
+      "target": "77c02fe90c71c5f12836",
+      "type": "DataFilter"
+    },
+    {
+      "source": "0e9164ee76c7aaf15315",
+      "target": "f78d4747029843c25c4d",
+      "type": "DataFilter"
+    },
+    {
+      "source": "0e9164ee76c7aaf15315",
+      "target": "77c02fe90c71c5f12836",
+      "type": "DataFilter"
+    },
+    {
+      "source": "0e9164ee76c7aaf15315",
+      "target": "27575f429787f9a99eef",
+      "type": "DataFilter"
+    }
+  ]
+}

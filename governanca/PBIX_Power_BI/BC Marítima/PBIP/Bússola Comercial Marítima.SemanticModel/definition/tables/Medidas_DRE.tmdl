@@ -1,0 +1,567 @@
+table Medidas_DRE
+	lineageTag: fa6ea7fd-92f7-4093-aafe-911bc0fe386a
+
+	measure Tempo_ComDesloc_Horas =
+			
+			CALCULATE(
+			    SUM(aws_bussola_comercial_mar[duracao_evento_minutos]) / 60,
+			    aws_bussola_comercial_mar[flag_anomes_datafim_competencia] = 1
+			)
+		lineageTag: 9e07ce38-a90a-4141-a943-b446ece03dc4
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Tempo_SemDesloc_Horas =
+			
+			CALCULATE(
+			    SUM(aws_bussola_comercial_mar[duracao_operacao_minutos]) / 60,
+			    aws_bussola_comercial_mar[flag_anomes_datafim_competencia] = 1
+			)
+		lineageTag: 00331c1b-b88e-459b-acad-692fa94eca52
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Volume_Filial_Mes = ```
+			
+			CALCULATE(
+			    [VolumeManobra_BaseBC],
+			    REMOVEFILTERS('Dim_Cliente'), 
+			    REMOVEFILTERS('db_rl_lineup_merc') 
+			    // Se tiver filial e data no visual, NÃO remova os filtros delas!
+			)
+			```
+		lineageTag: 0c725248-5341-478e-91d7-b521b8ae9010
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Tempo_ComDesloc_Filial_Mes =
+			
+			CALCULATE(
+			    [Tempo_ComDesloc_Horas],
+			    REMOVEFILTERS('Dim_Cliente'),
+			    REMOVEFILTERS('db_rl_lineup_merc')
+			)
+		lineageTag: 4652ac2e-1c27-4ac1-97d7-7de0d3645e95
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Tempo_SemDesloc_Filial_Mes =
+			
+			CALCULATE(
+			    [Tempo_SemDesloc_Horas],
+			    REMOVEFILTERS('Dim_Cliente'),
+			    REMOVEFILTERS('db_rl_lineup_merc')
+			)
+		lineageTag: 21ba8824-c143-465f-b7d2-e30e38d95289
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Custo_Alocado_Volume = ```
+			
+			VAR Perc_Participacao = 
+			DIVIDE(
+			    [VolumeManobra_BaseBC], 
+			    [Volume_Filial_Mes], 
+			    0
+			)
+			RETURN [Soma_Custo_Ebitda] * Perc_Participacao
+			```
+		lineageTag: 5f264938-cace-42b1-bcf4-5e1695212c2a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Custo_Alocado_Tempo_ComDesloc = ```
+			
+			VAR Perc_Participacao = 
+			DIVIDE(
+			    [Tempo_ComDesloc_Horas], 
+			    [Tempo_ComDesloc_Filial_Mes], 
+			    0
+			)
+			RETURN [Soma_Custo_Ebitda] * Perc_Participacao
+			```
+		lineageTag: 488bdaed-ef06-4324-8583-4938eff0f0e3
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Custo_Alocado_Tempo_SemDesloc = ```
+			
+			VAR Perc_Participacao = 
+			DIVIDE(
+			    [Tempo_SemDesloc_Horas], 
+			    [Tempo_SemDesloc_Filial_Mes], 
+			    0
+			)
+			RETURN [Soma_Custo_Ebitda] * Perc_Participacao
+			```
+		lineageTag: 8f54409a-bd67-462d-a08a-a14f96440716
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Resultado_Volume = [Receita_Liquida] + [Custo_Alocado_Volume]
+		lineageTag: b37ec345-1b77-47a3-8bb9-d58c8026a572
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Margem_Volume_% = ```
+			
+			DIVIDE(
+			    [Resultado_Volume], 
+			    [Receita_Liquida], 
+			    0
+			)
+			```
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: be95c7b1-ba36-436e-aa84-736bed5a6fa7
+
+	measure Lucro_Por_Manobra_Volume = ```
+			
+			DIVIDE(
+			    [Resultado_Volume], 
+			    [VolumeManobra_BaseBC], 
+			    0
+			)
+			```
+		lineageTag: b9a3fea6-43c4-4c60-880e-98e40583bad4
+
+		formatStringDefinition =
+				VAR Valor = SELECTEDMEASURE()
+				VAR ValorAbs = ABS(Valor) -- Pega o valor sem o sinal para a comparação
+				RETURN
+				    SWITCH( TRUE(),
+				        ValorAbs >= 1000000000, "$ #,##0,,,.0 ""B"";-$ #,##0,,,.0 ""B""",
+				        ValorAbs >= 1000000,    "$ #,##0,,.0 ""M"";-$ #,##0,,.0 ""M""",
+				        ValorAbs >= 1000,       "$ #,##0,.0 ""K"";-$ #,##0,.0 ""K""",
+				        "$ #,##0;-$ #,##0" -- Para valores menores que 1000
+				    )
+
+	measure Resultado_TempoComDesloc = [Receita_Liquida] + [Custo_Alocado_Tempo_ComDesloc]
+		lineageTag: 44cf02df-0e56-4654-9870-186e9843d82b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Resultado_TempoSemDesloc = [Receita_Liquida] + [Custo_Alocado_Tempo_SemDesloc]
+		lineageTag: bbfd1b9c-6d56-4e43-baf2-e89a59fc6d62
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Margem_TempoComDesloc_% = ```
+			
+			DIVIDE(
+			    [Resultado_TempoComDesloc], 
+			    [Receita_Liquida], 
+			    0
+			)
+			```
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 9b6bc9e6-ec2f-4967-985f-73de74543795
+
+	measure Lucro_Por_Hora_ComDesloc = ```
+			
+			DIVIDE(
+			    [Resultado_TempoComDesloc], 
+			    [Tempo_ComDesloc_Horas], 
+			    0
+			)
+			```
+		lineageTag: 8b0a53cc-4ced-43a4-a799-a63a3672fc50
+
+		formatStringDefinition =
+				VAR Valor = SELECTEDMEASURE()
+				VAR ValorAbs = ABS(Valor) -- Pega o valor sem o sinal para a comparação
+				RETURN
+				    SWITCH( TRUE(),
+				        ValorAbs >= 1000000000, "$ #,##0,,,.0 ""B"";-$ #,##0,,,.0 ""B""",
+				        ValorAbs >= 1000000,    "$ #,##0,,.0 ""M"";-$ #,##0,,.0 ""M""",
+				        ValorAbs >= 1000,       "$ #,##0,.0 ""K"";-$ #,##0,.0 ""K""",
+				        "$ #,##0;-$ #,##0" -- Para valores menores que 1000
+				    )
+
+	measure Margem_TempoSemDesloc_% = ```
+			
+			DIVIDE(
+			    [Resultado_TempoSemDesloc], 
+			    [Receita_Liquida], 
+			    0
+			)
+			```
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 53c16aaf-be8e-4093-ad60-02a63ad9e0f4
+
+	measure Lucro_Por_Hora_SemDesloc = ```
+			
+			DIVIDE(
+			    [Resultado_TempoSemDesloc], 
+			    [Tempo_SemDesloc_Horas], 
+			    0
+			)
+			```
+		lineageTag: 5f9cafa6-0f30-468f-b9a0-7a928159de70
+
+		formatStringDefinition =
+				VAR Valor = SELECTEDMEASURE()
+				VAR ValorAbs = ABS(Valor) -- Pega o valor sem o sinal para a comparação
+				RETURN
+				    SWITCH( TRUE(),
+				        ValorAbs >= 1000000000, "$ #,##0,,,.0 ""B"";-$ #,##0,,,.0 ""B""",
+				        ValorAbs >= 1000000,    "$ #,##0,,.0 ""M"";-$ #,##0,,.0 ""M""",
+				        ValorAbs >= 1000,       "$ #,##0,.0 ""K"";-$ #,##0,.0 ""K""",
+				        "$ #,##0;-$ #,##0" -- Para valores menores que 1000
+				    )
+
+	measure Resultado_Por_Manobra_TempoComDesloc = ```
+			
+			DIVIDE(
+			    [Resultado_TempoComDesloc], 
+			    [VolumeManobra_BaseBC],
+			    0
+			)
+			```
+		lineageTag: 1a94c91e-34b3-4962-9eb2-90d8cf4a7cdf
+
+		formatStringDefinition =
+				VAR Valor = SELECTEDMEASURE()
+				VAR ValorAbs = ABS(Valor) -- Pega o valor sem o sinal para a comparação
+				RETURN
+				    SWITCH( TRUE(),
+				        ValorAbs >= 1000000000, "$ #,##0,,,.0 ""B"";-$ #,##0,,,.0 ""B""",
+				        ValorAbs >= 1000000,    "$ #,##0,,.0 ""M"";-$ #,##0,,.0 ""M""",
+				        ValorAbs >= 1000,       "$ #,##0,.0 ""K"";-$ #,##0,.0 ""K""",
+				        "$ #,##0;-$ #,##0" -- Para valores menores que 1000
+				    )
+
+	measure Custo_Medio_TempoComDesloc = ```
+			
+			DIVIDE(
+			    [Custo_Alocado_Tempo_ComDesloc], 
+			    [VolumeManobra_BaseBC], 
+			    0
+			)
+			```
+		lineageTag: e27cdacd-1900-4ebc-81c3-3eb15bde1629
+
+		formatStringDefinition =
+				VAR Valor = SELECTEDMEASURE()
+				VAR ValorAbs = ABS(Valor) -- Pega o valor sem o sinal para a comparação
+				RETURN
+				    SWITCH( TRUE(),
+				        ValorAbs >= 1000000000, "$ #,##0,,,.0 ""B"";-$ #,##0,,,.0 ""B""",
+				        ValorAbs >= 1000000,    "$ #,##0,,.0 ""M"";-$ #,##0,,.0 ""M""",
+				        ValorAbs >= 1000,       "$ #,##0,.0 ""K"";-$ #,##0,.0 ""K""",
+				        "$ #,##0;-$ #,##0" -- Para valores menores que 1000
+				    )
+
+	measure Custo_Medio_TempoSemDesloc = ```
+			
+			DIVIDE(
+			    [Custo_Alocado_Tempo_SemDesloc], 
+			    [VolumeManobra_BaseBC], 
+			    0
+			)
+			```
+		lineageTag: 3a8a6aed-d5cd-4df2-86b4-4ff126812468
+
+		formatStringDefinition =
+				VAR Valor = SELECTEDMEASURE()
+				VAR ValorAbs = ABS(Valor) -- Pega o valor sem o sinal para a comparação
+				RETURN
+				    SWITCH( TRUE(),
+				        ValorAbs >= 1000000000, "$ #,##0,,,.0 ""B"";-$ #,##0,,,.0 ""B""",
+				        ValorAbs >= 1000000,    "$ #,##0,,.0 ""M"";-$ #,##0,,.0 ""M""",
+				        ValorAbs >= 1000,       "$ #,##0,.0 ""K"";-$ #,##0,.0 ""K""",
+				        "$ #,##0;-$ #,##0" -- Para valores menores que 1000
+				    )
+
+	measure Resultado_Por_Manobra_TempoSemDesloc = ```
+			
+			DIVIDE(
+			    [Resultado_TempoSemDesloc], 
+			    [VolumeManobra_BaseBC],
+			    0
+			)
+			```
+		lineageTag: 4cbf86d0-1c40-456a-b643-1aa1630c9956
+
+		formatStringDefinition =
+				VAR Valor = SELECTEDMEASURE()
+				VAR ValorAbs = ABS(Valor) -- Pega o valor sem o sinal para a comparação
+				RETURN
+				    SWITCH( TRUE(),
+				        ValorAbs >= 1000000000, "$ #,##0,,,.0 ""B"";-$ #,##0,,,.0 ""B""",
+				        ValorAbs >= 1000000,    "$ #,##0,,.0 ""M"";-$ #,##0,,.0 ""M""",
+				        ValorAbs >= 1000,       "$ #,##0,.0 ""K"";-$ #,##0,.0 ""K""",
+				        "$ #,##0;-$ #,##0" -- Para valores menores que 1000
+				    )
+
+	measure Custo_Medio_Por_Volume = ```
+			
+			DIVIDE(
+			    [Custo_Alocado_Volume], 
+			    [VolumeManobra_BaseBC], 
+			    0
+			) 
+			```
+		lineageTag: ee177920-d8b5-413b-b0a6-9ab63491e916
+
+		formatStringDefinition =
+				VAR Valor = SELECTEDMEASURE()
+				VAR ValorAbs = ABS(Valor) -- Pega o valor sem o sinal para a comparação
+				RETURN
+				    SWITCH( TRUE(),
+				        ValorAbs >= 1000000000, "$ #,##0,,,.0 ""B"";-$ #,##0,,,.0 ""B""",
+				        ValorAbs >= 1000000,    "$ #,##0,,.0 ""M"";-$ #,##0,,.0 ""M""",
+				        ValorAbs >= 1000,       "$ #,##0,.0 ""K"";-$ #,##0,.0 ""K""",
+				        "$ #,##0;-$ #,##0" -- Para valores menores que 1000
+				    )
+
+	measure Preco_Liquido_Volume =
+			
+			DIVIDE(
+			    [Receita_Liquida],
+			    [VolumeManobra_BaseBC],
+			    0
+			)
+		lineageTag: 20e8551a-d058-42dd-8341-af95d54c7f2f
+
+		formatStringDefinition =
+				VAR Valor = SELECTEDMEASURE()
+				VAR ValorAbs = ABS(Valor) -- Pega o valor sem o sinal para a comparação
+				RETURN
+				    SWITCH( TRUE(),
+				        ValorAbs >= 1000000000, "$ #,##0,,,.0 ""B"";-$ #,##0,,,.0 ""B""",
+				        ValorAbs >= 1000000,    "$ #,##0,,.0 ""M"";-$ #,##0,,.0 ""M""",
+				        ValorAbs >= 1000,       "$ #,##0,.0 ""K"";-$ #,##0,.0 ""K""",
+				        "$ #,##0;-$ #,##0" -- Para valores menores que 1000
+				    )
+
+	measure Receita_Liquida =
+			
+			[FaturamentoUSD_BaseBC] - [Imposto]
+		lineageTag: 9bfee05d-2e43-43e1-ac39-dac4e88b5f6d
+
+		formatStringDefinition =
+				VAR Valor = SELECTEDMEASURE()
+				VAR ValorAbs = ABS(Valor) -- Pega o valor sem o sinal para a comparação
+				RETURN
+				    SWITCH( TRUE(),
+				        ValorAbs >= 1000000000, "$ #,##0,,,.0 ""B"";-$ #,##0,,,.0 ""B""",
+				        ValorAbs >= 1000000,    "$ #,##0,,.0 ""M"";-$ #,##0,,.0 ""M""",
+				        ValorAbs >= 1000,       "$ #,##0,.0 ""K"";-$ #,##0,.0 ""K""",
+				        "$ #,##0;-$ #,##0" -- Para valores menores que 1000
+				    )
+
+	measure Imposto = ```
+			[FaturamentoUSD_BaseBC] * [Perfil]
+			
+			```
+		lineageTag: 1dee57c4-d05e-40cd-bccf-73bf188a3565
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Perfil =
+			
+			DIVIDE(
+			    [Total_ImportosEfetivos],
+			    [Total_Receita_Bruta_AposDesconto],
+			    0
+			)
+		lineageTag: 09d56209-7b97-4d85-bd2e-9702704f4eb0
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Total_ImportosEfetivos =
+			
+			ABS(
+			    CALCULATE(
+			        SUM(aws_dre_reb[realizado_dolar]),
+			        aws_dre_reb[linha_agrupadas] = "Impostos Efetivos"
+			    )
+			)
+		lineageTag: 479e35de-f0cb-4332-99e6-946544e9c7ec
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Total_Receita_Bruta_AposDesconto =
+			
+			CALCULATE(
+			    SUM(aws_dre_reb[realizado_dolar]),
+			    aws_dre_reb[linha_agrupadas] = "Receita Bruta (após descontos)"
+			)
+		lineageTag: 5735728f-fead-4838-92e5-1df1487fb3d3
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Soma_Custo_Ebitda =
+			
+			CALCULATE(
+			    SUM(aws_dre_reb[realizado_dolar]),
+			    FILTER(
+			        aws_dre_reb, // Itera sobre a tabela aws_dre_reb
+			        NOT(aws_dre_reb[linha_agrupadas] IN {"Receita Líquida", "Receita Bruta (após descontos)", "Impostos Efetivos"})
+			    )
+			)
+		lineageTag: e04a4a46-c73d-4bbb-a52b-eda6f32ff695
+
+		formatStringDefinition =
+				VAR Valor = SELECTEDMEASURE()
+				VAR ValorAbs = ABS(Valor) -- Pega o valor sem o sinal para a comparação
+				RETURN
+				    SWITCH( TRUE(),
+				        ValorAbs >= 1000000000, "$ #,##0,,,.0 ""B"";-$ #,##0,,,.0 ""B""",
+				        ValorAbs >= 1000000,    "$ #,##0,,.0 ""M"";-$ #,##0,,.0 ""M""",
+				        ValorAbs >= 1000,       "$ #,##0,.0 ""K"";-$ #,##0,.0 ""K""",
+				        "$ #,##0;-$ #,##0" -- Para valores menores que 1000
+				    )
+
+	measure Sinal_Resultado_Volume = ```
+			
+			VAR vResultadoAtual = [Lucro_Por_Manobra_Volume]
+			
+			VAR vMediaGeral = 
+			    CALCULATE(
+			        [Lucro_Por_Manobra_Volume],
+			        ALLSELECTED(Dim_Cliente) 
+			    )
+			    
+			RETURN
+			IF(
+			    NOT ISBLANK(vResultadoAtual),
+			    SWITCH(
+			        TRUE(),
+			        vResultadoAtual > vMediaGeral, "▲",
+			        vResultadoAtual < vMediaGeral, "▼",
+			        "▬"
+			    )
+			)
+			```
+		lineageTag: 187a0323-b983-42f1-841a-374fb17040ba
+
+	measure Sinal_Resultado_Volume_Cor = ```
+			
+			VAR vResultadoAtual = [Lucro_Por_Manobra_Volume]
+			
+			VAR vMediaGeral = 
+			    CALCULATE(
+			        [Lucro_Por_Manobra_Volume],
+			        ALLSELECTED(Dim_Cliente)
+			    )
+			    
+			RETURN
+			IF(
+			    NOT ISBLANK(vResultadoAtual),
+			    SWITCH(
+			        TRUE(),
+			        vResultadoAtual > vMediaGeral, "#118D57", // Verde
+			        vResultadoAtual < vMediaGeral, "#D93644", // Vermelho
+			        "#DAA520" // Amarelo
+			    )
+			)
+			```
+		lineageTag: ffd71bdc-0350-41f7-a0ec-ae538b42c192
+
+	measure Sinal_Resultado_ComDesloc = ```
+			
+			VAR vResultadoAtual = [Resultado_Por_Manobra_TempoComDesloc]
+			
+			VAR vMediaGeral = 
+			    CALCULATE(
+			        [Resultado_Por_Manobra_TempoComDesloc],
+			        ALLSELECTED(Dim_Cliente) 
+			    )
+			    
+			RETURN
+			IF(
+			    NOT ISBLANK(vResultadoAtual),
+			    SWITCH(
+			        TRUE(),
+			        vResultadoAtual > vMediaGeral, "▲",
+			        vResultadoAtual < vMediaGeral, "▼",
+			        "▬"
+			    )
+			)
+			```
+		lineageTag: bcac978f-bae0-47f5-b9c2-30973c350b70
+
+	measure Sinal_Resultado_ComDesloc_Cor = ```
+			
+			VAR vResultadoAtual = [Resultado_Por_Manobra_TempoComDesloc]
+			
+			VAR vMediaGeral = 
+			    CALCULATE(
+			        [Resultado_Por_Manobra_TempoComDesloc],
+			        ALLSELECTED(Dim_Cliente)
+			    )
+			    
+			RETURN
+			IF(
+			    NOT ISBLANK(vResultadoAtual),
+			    SWITCH(
+			        TRUE(),
+			        vResultadoAtual > vMediaGeral, "#118D57", // Verde
+			        vResultadoAtual < vMediaGeral, "#D93644", // Vermelho
+			        "#DAA520" // Amarelo
+			    )
+			)
+			```
+		lineageTag: 28b85b1b-28e0-4574-876f-9c0415b6b267
+
+	measure Sinal_Resultado_SemDesloc = ```
+			
+			VAR vResultadoAtual = [Resultado_Por_Manobra_TempoSemDesloc]
+			
+			VAR vMediaGeral = 
+			    CALCULATE(
+			        [Resultado_Por_Manobra_TempoSemDesloc],
+			        ALLSELECTED(Dim_Cliente) 
+			    )
+			    
+			RETURN
+			IF(
+			    NOT ISBLANK(vResultadoAtual),
+			    SWITCH(
+			        TRUE(),
+			        vResultadoAtual > vMediaGeral, "▲",
+			        vResultadoAtual < vMediaGeral, "▼",
+			        "▬"
+			    )
+			)
+			```
+		lineageTag: bf9b77f5-c053-4c7e-b7e7-87be5c6662af
+
+	measure Sinal_Resultado_SemDesloc_Cor = ```
+			
+			VAR vResultadoAtual = [Resultado_Por_Manobra_TempoSemDesloc]
+			
+			VAR vMediaGeral = 
+			    CALCULATE(
+			        [Resultado_Por_Manobra_TempoSemDesloc],
+			        ALLSELECTED(Dim_Cliente)
+			    )
+			    
+			RETURN
+			IF(
+			    NOT ISBLANK(vResultadoAtual),
+			    SWITCH(
+			        TRUE(),
+			        vResultadoAtual > vMediaGeral, "#118D57", // Verde
+			        vResultadoAtual < vMediaGeral, "#D93644", // Vermelho
+			        "#DAA520" // Amarelo
+			    )
+			)
+			```
+		lineageTag: 89fa2f38-b07f-4512-b764-acf39d4a1e23
+
+	partition Medidas_DRE = m
+		mode: import
+		source =
+				let
+				    Fonte = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [#"Coluna 1" = _t]),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(Fonte,{{"Coluna 1", type text}}),
+				    #"Colunas Removidas" = Table.RemoveColumns(#"Tipo Alterado",{"Coluna 1"})
+				in
+				    #"Colunas Removidas"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navegação
+

@@ -1,0 +1,52 @@
+table Dim_estab_sap
+	lineageTag: b1787fce-1aac-4527-99d1-98b8b187b391
+
+	column cod_estab_sap
+		dataType: string
+		lineageTag: a313d8cd-9b8f-4c83-a716-76cdfaf48fb9
+		summarizeBy: none
+		sourceColumn: cod_estab_sap
+
+		annotation SummarizationSetBy = Automatic
+
+	column cod_estab_sap_descricao
+		dataType: string
+		lineageTag: 40cf4fe4-3945-475b-be2b-1602124d6a3a
+		summarizeBy: none
+		sourceColumn: cod_estab_sap_descricao
+
+		annotation SummarizationSetBy = Automatic
+
+	column cod_estab_sap_agrupado
+		dataType: string
+		lineageTag: 2986f2ec-fdcb-4677-8e63-ef940069f040
+		summarizeBy: none
+		sourceColumn: cod_estab_sap_agrupado
+
+		annotation SummarizationSetBy = Automatic
+
+	column filial_estab
+		dataType: string
+		lineageTag: fab94a94-941e-4ae2-bccb-ebaa05a1c296
+		summarizeBy: none
+		sourceColumn: filial_estab
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_estab_sap = m
+		mode: import
+		source =
+				let
+				    Fonte = PowerPlatform.Dataflows(null),
+				    Workspaces = Fonte{[Id="Workspaces"]}[Data],
+				    #"8c5cc8ba-ed75-4d39-9606-af9ead89ca36" = Workspaces{[workspaceId="8c5cc8ba-ed75-4d39-9606-af9ead89ca36"]}[Data],
+				    #"8fd36867-5bad-4d17-b5ea-a5bb773dd921" = #"8c5cc8ba-ed75-4d39-9606-af9ead89ca36"{[dataflowId="8fd36867-5bad-4d17-b5ea-a5bb773dd921"]}[Data],
+				    gsht_dim_estab_sap_ = #"8fd36867-5bad-4d17-b5ea-a5bb773dd921"{[entity="gsht_dim_estab_sap",version=""]}[Data],
+				    #"Linhas Filtradas" = Table.SelectRows(gsht_dim_estab_sap_, each [cod_estab_sap] <> null and [cod_estab_sap] <> "")
+				in
+				    #"Linhas Filtradas"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navegação
+

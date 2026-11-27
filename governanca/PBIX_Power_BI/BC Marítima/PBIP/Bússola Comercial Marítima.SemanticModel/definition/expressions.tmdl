@@ -1,0 +1,36 @@
+expression Consulta1 = ```
+		(CampoAtual as nullable datetime, Campo1 as nullable datetime, Campo2 as nullable datetime, Campo3 as nullable datetime) as nullable datetime =>
+		let
+		    AnoAtual = if CampoAtual <> null then Date.Year(CampoAtual) else null,
+		    Ano1 = if Campo1 <> null then Date.Year(Campo1) else null,
+		    Ano2 = if Campo2 <> null then Date.Year(Campo2) else null,
+		    Ano3 = if Campo3 <> null then Date.Year(Campo3) else null,
+		    
+		    AnoSistema = Date.Year(DateTime.LocalNow()),
+		
+		    AnosValidos = List.RemoveNulls({AnoAtual, Ano1, Ano2, Ano3}),
+		    AnosValidosFiltrados = List.Select(AnosValidos, each _ >= 2000 and _ <= AnoSistema),
+		    
+		    AnoCorrigido = if List.Count(AnosValidosFiltrados) > 0 then List.Min(AnosValidosFiltrados) else AnoSistema,
+		
+		    DataCorrigida = if CampoAtual <> null then Date.FromText(Text.Replace(Text.From(CampoAtual), Text.From(AnoAtual), Text.From(AnoCorrigido))) else null
+		in
+		    DataCorrigida
+		```
+	lineageTag: 1a328872-e20c-4b5b-bb3f-5f41cd680915
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Function
+
+expression Medidas_DRE_TEST =
+		let
+		    Fonte = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [#"Coluna 1" = _t]),
+		    #"Tipo Alterado" = Table.TransformColumnTypes(Fonte,{{"Coluna 1", type text}}),
+		    #"Colunas Removidas" = Table.RemoveColumns(#"Tipo Alterado",{"Coluna 1"})
+		in
+		    #"Colunas Removidas"
+	lineageTag: 1066bebe-78a6-4357-9b51-6db255ae1f65
+
+	annotation PBI_ResultType = Table
+

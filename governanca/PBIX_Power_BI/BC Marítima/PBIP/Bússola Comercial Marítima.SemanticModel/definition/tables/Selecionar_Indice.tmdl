@@ -1,0 +1,108 @@
+table Selecionar_Indice
+	lineageTag: 68624816-b5cd-4cc7-96d8-4f503155f210
+
+	measure PrecoMedio_Inflacionado = ```
+			
+			VAR IndiceSelecionado = SELECTEDVALUE('Selecionar_Indice'[Índice], "CPI") // "CPI" como padrão
+			
+			// Calcula o valor inflacionado usando a lógica que você já construiu
+			VAR PrecoInflacionado = 
+			    SWITCH(IndiceSelecionado,
+			        "CPI", [PrecoMedio_Inflacionado_Dinamico_CPI],
+			        "IPCA", [PrecoMedio_Inflacionado_Dinamico_IPCA],
+			        "CPI60 / IPCA40", [PrecoMedio_Inflacionado_Dinamico_CPI60_IPCA40]
+			    )
+			
+			RETURN
+			    // Condição: Só retorna o valor inflacionado se o Preço Médio Base NÃO for nulo no contexto atual
+			    IF(
+			        NOT(ISBLANK([PrecoMedio_BaseBC])), 
+			        PrecoInflacionado
+			    )
+			
+			
+			// VAR IndiceSelecionado = SELECTEDVALUE('Selecionar_Indice'[Índice], "CPI") // "CPI" como padrão
+			// RETURN
+			//     SWITCH(IndiceSelecionado,
+			//         "CPI", [PrecoMedio_Inflacionado_Dinamico_CPI],
+			//         "IPCA", [PrecoMedio_Inflacionado_Dinamico_IPCA],
+			//         "CPI60 / IPCA40", [PrecoMedio_Inflacionado_Dinamico_CPI60_IPCA40]
+			//     )
+			```
+		lineageTag: fffee03a-308f-4ab1-b994-311fff3b7da5
+
+		formatStringDefinition =
+				VAR Valor = SELECTEDMEASURE()
+				VAR ValorAbs = ABS(Valor) -- Pega o valor sem o sinal para a comparação
+				RETURN
+				    SWITCH( TRUE(),
+				        ValorAbs >= 1000000000, "$ #,##0,,,.0 ""B"";-$ #,##0,,,.0 ""B""",
+				        ValorAbs >= 1000000,    "$ #,##0,,.0 ""M"";-$ #,##0,,.0 ""M""",
+				        ValorAbs >= 1000,       "$ #,##0,.0 ""K"";-$ #,##0,.0 ""K""",
+				        "$ #,##0;-$ #,##0" -- Para valores menores que 1000
+				    )
+
+	measure Indice_Acumulado =
+			
+			VAR IndiceSelecionado = SELECTEDVALUE('Selecionar_Indice'[Índice], "CPI") // "CPI" como padrão
+			RETURN
+			    SWITCH(IndiceSelecionado,
+			        "CPI", [CPI_Mensal],
+			        "IPCA", [IPCA_Mensal],
+			        "CPI60 / IPCA40", [Indice_CPI60_IPCA40]
+			    )
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 8162e536-b154-42e4-b7a2-adc4ffe1534d
+
+	measure %Diferenca_Inflacionado =
+			
+			VAR IndiceSelecionado = SELECTEDVALUE('Selecionar_Indice'[Índice], "CPI") // "CPI" como padrão
+			RETURN
+			    SWITCH(IndiceSelecionado,
+			        "CPI", [Percentual_Diferenca_Inflacionado_CPI],
+			        "IPCA", [Percentual_Diferenca_Inflacionado_IPCA],
+			        "CPI60 / IPCA40", [Percentual_Diferenca_Inflacionado_CPI60_IPCA40]
+			    )
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 3a755c06-a46c-46f4-bc4d-92c0cbfa77be
+
+	measure Cor_PrecoMedio = ```
+			
+			IF(
+			    // Primeiro, checa se os valores existem para não pintar células vazias
+			    ISBLANK([PrecoMedio_BaseBC]) || ISBLANK([PrecoMedio_Inflacionado]), 
+			    BLANK(),
+			    
+			    // Se o Preço Real for maior ou igual ao Inflacionado, pinta de Verde. Se for menor, pinta de Vermelho.
+			    IF(
+			        [PrecoMedio_BaseBC] >= [PrecoMedio_Inflacionado],
+			        "#90EE90", // Verde corporativo padrão
+			        "#FF6961"  // Vermelho corporativo padrão
+			    )
+			)
+			```
+		lineageTag: e7fba781-d533-48cf-a2d2-67889cab1b16
+
+	column Índice
+		lineageTag: eacccd82-50f8-413b-b6e8-d3d03671eb62
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Índice]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Selecionar_Indice = calculated
+		mode: import
+		source =
+				
+				DATATABLE(
+				    "Índice", STRING,
+				    {
+				        {"CPI"},
+				        {"IPCA"},
+				        {"CPI60 / IPCA40"}
+				    }
+				)
+
+	annotation PBI_Id = 232575741c52421589a67a2941a25393
+

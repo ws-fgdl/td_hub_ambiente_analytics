@@ -1,0 +1,130 @@
+table Titulo_Dinamico
+	lineageTag: fb945e97-1e2a-45e9-a9f4-c706c0b71f86
+
+	measure Variation_by_Revenue = "Variation by Revenue " & SELECTEDVALUE(Flag_faturamento[Faturamento])
+		displayFolder: Overview
+		lineageTag: 969ccf58-5251-44a5-acb4-da1ba68deea9
+
+	measure Total_Revenue_Service = "Total Revenue " & SELECTEDVALUE(Flag_faturamento[Faturamento]) & " by Service"
+		displayFolder: Overview
+		lineageTag: 429ffb07-4eba-49b8-a5a8-ed5c4d0c3e5a
+
+	measure Revenue = "Revenue " & SELECTEDVALUE(Flag_faturamento[Faturamento])
+		displayFolder: Overview
+		lineageTag: bbb673c7-520f-4851-ba4e-8642dcbfa8cd
+
+	measure Regional_Total_Revenue = "Regional Total Revenue " & SELECTEDVALUE(Flag_faturamento[Faturamento])
+		displayFolder: Overview
+		lineageTag: 815b523e-c844-4b82-bb86-ec546094da32
+
+	measure Ranking_by_Revenue = "Ranking by Revenue " & SELECTEDVALUE(Flag_faturamento[Faturamento])
+		displayFolder: Overview
+		lineageTag: 02cc7afd-de28-44f9-8ccc-d4c7045704d2
+
+	measure Volume_x_Revenue = "Volume x Revenue " & SELECTEDVALUE(Flag_faturamento[Faturamento])
+		displayFolder: Overview
+		lineageTag: d8662203-0ef9-41c2-8e82-6e74dbd11550
+
+	measure Revenue_YTM = "Revenue " & SELECTEDVALUE(Flag_faturamento[Faturamento])// & " YTM" Não está sendo calculado YTM
+		displayFolder: Overview
+		lineageTag: 3315d600-da7a-4778-9365-f8251be3dbf8
+
+	measure History_of_Revenue = "History of Revenue " & SELECTEDVALUE(Flag_faturamento[Faturamento])
+		displayFolder: Overview
+		lineageTag: f4fa89d4-69bc-4d5c-aa79-4a7e7b30b575
+
+	measure Average_Price = "Average Price " & SELECTEDVALUE(Flag_faturamento[Faturamento])
+		displayFolder: Overview
+		lineageTag: 59c7604a-ac4d-48d2-94f6-746cb18a065b
+
+	measure Evolution = "Δ Evolution: Avg Price " & SELECTEDVALUE(Flag_faturamento[Faturamento]) & " x Inflated Avg Price"
+		displayFolder: Performance
+		lineageTag: 60c63ac6-4cc2-4d13-b7b7-f0635c2cb439
+
+	measure Revenue_Port_Service = ```
+			
+			VAR AnosSelecionados = 
+			    VALUES(
+			        Calendario[Date].[Ano]
+			    )
+			VAR MinAno = 
+			    MIN(
+			        Calendario[Date].[Ano]
+			    )
+			VAR MaxAno = 
+			    MAX(
+			        Calendario[Date].[Ano]
+			    )
+			VAR TotalAnos = 
+			    COUNTROWS(
+			        ALL(
+			            Calendario[Date].[Ano]
+			        )
+			    )
+			VAR AnosFiltrados = 
+			    COUNTROWS(
+			        AnosSelecionados
+			    )
+			
+			RETURN 
+			    IF(
+			        AnosFiltrados = TotalAnos, 
+			        "All Years",
+			        IF(
+			            AnosFiltrados = 1,
+			            "" & FORMAT(
+			                SELECTEDVALUE(
+			                    Calendario[Date].[Ano]
+			                ), 
+			                "0"
+			            ),
+			            "" & FORMAT(
+			                MinAno, 
+			                "0"
+			            ) & " - " & FORMAT(
+			                MaxAno, 
+			                "0"
+			            )
+			        )
+			    )
+			
+			```
+		lineageTag: 497f8424-8695-46a8-bb2f-dd24fe62921d
+
+	measure Avg_Price_vs_Inflation =
+			
+			"Avg Price " & Flag_faturamento & " vs Inflation " & Selecionar_Indice
+		lineageTag: edcd8341-21df-4b27-a2ab-bb24f2621b24
+
+	measure Revenue_Evolution = "Revenue Evolution " & SELECTEDVALUE(Flag_faturamento[Faturamento])
+		lineageTag: 453e1a3e-c4dd-4648-84f7-be658c87ba47
+
+	measure Average_Price_Service = "Average Price " & SELECTEDVALUE(Flag_faturamento[Faturamento]) & " by Service"
+		displayFolder: Overview
+		lineageTag: e31c4251-ef5f-4edd-a02f-aeaafad74a5a
+
+	measure Average_Price_YTM = "Average Price " & SELECTEDVALUE(Flag_faturamento[Faturamento]) & " YTM"
+		displayFolder: Overview
+		lineageTag: faee5bd3-6446-4d57-a665-5a237d6a8e93
+
+	measure Revenue_YTM_PerService = "Revenue " & SELECTEDVALUE(Flag_faturamento[Faturamento]) & " YTM per Service"
+		lineageTag: de6eebba-7778-48e8-851f-38e22d797571
+
+	measure Avg_Rev_per_Dwt = MAXX('Selecionar_PrecoMedio_Faturamento_BaseBC', 'Selecionar_PrecoMedio_Faturamento_BaseBC'[Selecionar_PrecoMedio_Faturamento]) & " per DWT Range"
+		lineageTag: 9029b4b3-4ea9-421e-b05c-f70f341a4d16
+
+	measure Total_Revenue_Categoria = "Total Revenue " & SELECTEDVALUE(Flag_faturamento[Faturamento]) & " by Category"
+		lineageTag: 17f18ccf-1584-4a75-9a81-141f9435ac78
+
+	partition Titulo_Dinamico = m
+		mode: import
+		source =
+				let
+				    Fonte = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [#"Coluna 1" = _t]),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(Fonte,{{"Coluna 1", type text}}),
+				    #"Colunas Removidas" = Table.RemoveColumns(#"Tipo Alterado",{"Coluna 1"})
+				in
+				    #"Colunas Removidas"
+
+	annotation PBI_ResultType = Table
+

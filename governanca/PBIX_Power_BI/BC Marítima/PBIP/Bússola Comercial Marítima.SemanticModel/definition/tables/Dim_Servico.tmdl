@@ -1,0 +1,225 @@
+table Dim_Servico
+	lineageTag: 72a7ce91-db1b-4000-a26c-bdc9a71e0bb0
+
+	measure Cor_Servico = ```
+			
+			SWITCH(
+			    SELECTEDVALUE('Dim_Servico'[Servico_agrupado_eng]),
+			    
+			    // Top 7 Faturamentos (Cores do Tema)
+			    "IN/OUT", "#00205B",       // 1º Maior Faturamento (Azul Escuro)
+			    "TCP", "#00B0F0",          // 2º Maior Faturamento (Azul Claro)
+			    "ASSISTANCE", "#FFC000",   // 3º Maior Faturamento (Amarelo)
+			    "NA", "#7030A0",           // 4º Maior Faturamento (Roxo)
+			    "SHIFTING", "#F4B183",     // 5º Maior Faturamento (Salmão)
+			    "DOCKING", "#D24996",      // 6º Maior Faturamento (Rosa)
+			    "HIDROVIAS", "#C0504D",    // 7º Maior Faturamento (Vermelho)
+			    
+			    // Todos os outros serviços com faturamento menor ficam em cinza
+			    "#808080"                  
+			)
+			```
+		lineageTag: 85fa6ee2-0f0b-4779-b6e0-92fcd0740663
+
+	column Servico_com_TCP_HIDROVIAS
+		lineageTag: ca481d25-1e27-4f40-90ab-d4a4b54c95ed
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: aws_bussola_comercial_mar[Servico_com_TCP_HIDROVIAS]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Servico_Padronizado = ```
+			
+			VAR ServicoPrincipal = 'Dim_Servico'[Servico_com_TCP_HIDROVIAS]
+			RETURN
+			SWITCH (
+			    TRUE(),
+			    ISBLANK(ServicoPrincipal) || ServicoPrincipal = "", BLANK(),
+			
+			    ServicoPrincipal IN {
+			        "AGO"
+			    }, "STAND BY",
+			
+			    ServicoPrincipal IN {
+			        "ASS", "A"
+			    }, "ASSISTENCIA",
+			
+			    ServicoPrincipal IN {
+			        "AT"
+			    }, "MANOBRA DE ATRACACAO",
+			
+			    ServicoPrincipal IN {
+			        "DMT"
+			    }, "DESISTENCIA MAU TEMPO",
+			
+			    ServicoPrincipal IN {
+			        "DO"
+			    }, "DESISTENCIA OPERACIONAL",
+			
+			    ServicoPrincipal IN {
+			        "EC"
+			    }, "EMPURRAR NO COSTADO",
+			
+			    ServicoPrincipal IN {
+			        "DOC"
+			    }, "DOCAGEM",
+			
+			    ServicoPrincipal IN {
+			        "DS"
+			    }, "MANOBRA DE DESATRACACAO",
+			
+			    ServicoPrincipal IN {
+			        "MD AT"
+			    }, "MUDANCA ATRACACAO",
+			
+			    ServicoPrincipal IN {
+			        "MD DS", "MDD"
+			    }, "MUDANCA DESATRACACAO",
+			
+			    ServicoPrincipal IN {
+			        "MPP"
+			    }, "MANOBRA COM PASSAGEM PONTE",
+			
+			    ServicoPrincipal IN {
+			        "PP"
+			    }, "PASSAGEM DE PONTE",
+			
+			    ServicoPrincipal IN {
+			        "SB"
+			    }, "STAND BY",
+			
+			    ServicoPrincipal 
+			)
+			```
+		lineageTag: 1c9f2bb5-b34f-4e55-a97e-66eccf81a797
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Servico_Eng =
+			
+			VAR ServicoPadronizado = 'Dim_Servico'[Servico_Padronizado]
+			RETURN
+			SWITCH (
+			    TRUE(),
+			    ISBLANK(ServicoPadronizado), BLANK(),
+			    ServicoPadronizado = "FATURAMENTO AVULSO", "AD-HOC",
+			    ServicoPadronizado = "AFRETAMENTO A CASCO NU", "BARE BOAT CHARTER",
+			    ServicoPadronizado = "AFRETAMENTO POR MANOBRA", "MANEUVER CHARTER",
+			    ServicoPadronizado = "APOIO SINALIZAÇÃO NÁUTICA", "SUPPORT NAUTICAL SIGNALING",
+			    ServicoPadronizado = "ASSISTENCIA", "ASSISTANCE",
+			    ServicoPadronizado = "AUXILIO NA AMARRACAO", "MOORING",
+			    ServicoPadronizado = "AUXILIO NA DESAMARRACAO", "UNMOORING",
+			    ServicoPadronizado = "DESISTENCIA MAU TEMPO", "BAD WEATHER DISMISSAL",
+			    ServicoPadronizado = "DESISTENCIA OPERACIONAL", "OPERATIONAL DISMISSAL",
+			    ServicoPadronizado = "DOCAGEM", "DOCKING",
+			    ServicoPadronizado = "EMPURRAR NO COSTADO", "PUSH AGAINST THE QUAY",
+			    ServicoPadronizado = "ENTRADA DE DIQUES", "DOCK IN",
+			    ServicoPadronizado = "GIRO", "TURNING VESSEL AT ANCHORAGE",
+			    ServicoPadronizado = "MANOBRA ACOMPANHAMENTO COM CABO PASSADO", "ESCORT TUG WITH TOWLINE FASTEN",
+			    ServicoPadronizado = "MANOBRA COM PASSAGEM PONTE", "BRIDGE PASSING MANOEUVRE",
+			    ServicoPadronizado = "MANOBRA DE ACOMPANHAMENTO SEM CABO", "ESCORT TUG",
+			    ServicoPadronizado = "MANOBRA DE ATRACACAO", "BERTHING",
+			    ServicoPadronizado = "MANOBRA DE DESATRACACAO", "UNBERTHING",
+			    ServicoPadronizado = "MANOBRA DE MOVIMENTO AO LARGO", "TURNING VESSEL AT ANCHORAGE",
+			    ServicoPadronizado = "MUDANCA ATRACACAO", "BERTHING (SHIFTING)",
+			    ServicoPadronizado = "MUDANCA DE ATRACACAO 2", "BERTHING (SHIFTING) 2",
+			    ServicoPadronizado = "MUDANCA DE ATRACACAO 3", "BERTHING (SHIFTING) 3",
+			    ServicoPadronizado = "MUDANCA DESATRACACAO", "UNBERTHING (SHIFTING)",
+			    ServicoPadronizado = "MUDANCA FUNDEADOURO", "SHIFTING AT ANCHORAGE",
+			    ServicoPadronizado = "PASSAGEM DE PONTE", "BRIDGE PASSING",
+			    ServicoPadronizado = "SAIDA DE DIQUES", "DIKE OUT",
+			    ServicoPadronizado = "SAIDA DO DIQUE COM ATRACACAO", "DIKE OUT UNBERTHING",
+			    ServicoPadronizado = "SEGUNDA ATRACACAO", "SECOND BERTHING",
+			    ServicoPadronizado = "SEGUNDA DESATRACACAO", "SECOND UNBERTHING",
+			    ServicoPadronizado = "SEGURANCA", "SAFETY",
+			    ServicoPadronizado = "STAND BY", "STAND BY",
+			    ServicoPadronizado
+			)
+		lineageTag: 2beab77d-fd58-4ce9-abdb-8c48cdfe6edb
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Servico_agrupado =
+			
+			VAR ServicoPadronizado = 'Dim_Servico'[Servico_Padronizado]
+			RETURN
+			SWITCH (
+			    TRUE(),
+			    ISBLANK(ServicoPadronizado), BLANK(),
+			    ServicoPadronizado IN {
+			        "AUXILIO NA AMARRACAO", "AUXILIO NA DESAMARRACAO"
+			    }, "AUXILIO",
+			    ServicoPadronizado IN {
+			        "DOCAGEM", "ENTRADA DE DIQUES", "SAIDA DE DIQUES", "SAIDA DO DIQUE COM ATRACACAO"
+			    }, "DOCAGEM",
+			    ServicoPadronizado IN {
+			        "MANOBRA COM PASSAGEM PONTE", "MANOBRA DE ATRACACAO", "MANOBRA DE DESATRACACAO"
+			    }, "AT/DS",
+			    ServicoPadronizado IN {
+			        "MUDANCA ATRACACAO", "MUDANCA DESATRACACAO", "MUDANCA FUNDEADOURO"
+			    }, "MUDANCA",
+			    ServicoPadronizado IN {
+			        "SEGUNDA ATRACACAO", "SEGUNDA DESATRACACAO"
+			    }, "SEGUNDA AT/DS",
+			    ServicoPadronizado IN {
+			        "ASSISTENCIA", "SEGURANCA"
+			    }, "ASSISTENCIA",
+			    ServicoPadronizado
+			)
+		lineageTag: fe024704-4a18-4527-86e5-e5f9001a53a7
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Servico_agrupado_eng =
+			
+			VAR ServicoAgrupado = 'Dim_Servico'[Servico_agrupado]
+			RETURN
+			SWITCH (
+			    TRUE(),
+			    ISBLANK(ServicoAgrupado), BLANK(),
+			    ServicoAgrupado = "FATURAMENTO AVULSO", "AD-HOC",
+			    ServicoAgrupado = "AFRETAMENTO A CASCO NU", "BARE BOAT CHARTER",
+			    ServicoAgrupado = "AFRETAMENTO POR MANOBRA", "MANEUVER CHARTER",
+			    ServicoAgrupado = "APOIO SINALIZAÇÃO NÁUTICA", "SUPPORT NAUTICAL SIGNALING",
+			    ServicoAgrupado = "ASSISTENCIA", "ASSISTANCE",
+			    ServicoAgrupado = "AUXILIO", "ASSISTED MOORING",
+			    ServicoAgrupado = "DESISTENCIA MAU TEMPO", "BAD WEATHER DISMISSAL",
+			    ServicoAgrupado = "DESISTENCIA OPERACIONAL", "OPERATIONAL DISMISSAL",
+			    ServicoAgrupado = "DOCAGEM", "DOCKING",
+			    ServicoAgrupado = "EMPURRAR NO COSTADO", "PUSH AGAINST THE QUAY",
+			    ServicoAgrupado = "GIRO", "TURNING VESSEL AT ANCHORAGE",
+			    ServicoAgrupado = "MANOBRA ACOMPANHAMENTO COM CABO PASSADO", "ESCORT TUG WITH TOWLINE FASTEN",
+			    ServicoAgrupado = "AT/DS", "IN/OUT",
+			    ServicoAgrupado = "MANOBRA DE ACOMPANHAMENTO SEM CABO", "ESCORT TUG",
+			    ServicoAgrupado = "MANOBRA DE MOVIMENTO AO LARGO", "TURNING VESSEL AT ANCHORAGE",
+			    ServicoAgrupado = "MUDANCA", "SHIFTING",
+			    ServicoAgrupado = "MUDANCA DE ATRACACAO 2", "BERTHING (SHIFTING) 2",
+			    ServicoAgrupado = "MUDANCA DE ATRACACAO 3", "BERTHING (SHIFTING) 3",
+			    ServicoAgrupado = "PASSAGEM DE PONTE", "BRIDGE PASSING",
+			    ServicoAgrupado = "SEGUNDA AT/DS", "SECOND IN/OUT",
+			    ServicoAgrupado = "STAND BY", "STAND BY",
+			    ServicoAgrupado
+			)
+		lineageTag: 23df0caf-35f1-4803-88d1-0537325e5d2d
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_Servico = calculated
+		mode: import
+		source =
+				
+				DISTINCT (
+				    UNION (
+				        VALUES(aws_bussola_comercial_mar[Servico_com_TCP_HIDROVIAS]),
+				        VALUES(aws_movimentacao_portuaria[manobra]),
+				        VALUES(aws_bussola_comercial_faina[manobra])
+				    )
+				)
+
+	annotation PBI_Id = 8e5c1d869b5447cd9989eeb258a7b6fe
+
