@@ -1,0 +1,94 @@
+table table_percent_price
+	lineageTag: ff56ff5b-c94b-49ee-bca5-9a4aa3753d8a
+
+	column Ano
+		formatString: 0
+		lineageTag: 50455421-3895-4a68-b797-d1621325c718
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Ano]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Status
+		lineageTag: e192d0df-8c51-42a4-b3a5-e76a53636686
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Status]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Modalidade
+		lineageTag: 8a2fa4e6-5b55-41e1-b798-b8f19ed0d9fa
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Modalidade]
+
+		annotation SummarizationSetBy = Automatic
+
+	column UN
+		lineageTag: 4feda9e0-178c-43c8-a1da-6521b9f746b6
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [UN]
+
+		annotation SummarizationSetBy = Automatic
+
+	column percent_price
+		lineageTag: 93504a2a-3358-49fb-bbd6-caf4f751a21a
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [percent_price]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column id_mod_ano = table_percent_price[Modalidade]&table_percent_price[Ano]
+		lineageTag: 48aab962-2c0a-4e18-b6f2-7669fcda1bff
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition table_percent_price = calculated
+		mode: import
+		source =
+				
+				VAR Anos =
+				    GENERATESERIES(2018, 2026, 1)
+				
+				VAR Regras =
+				    DATATABLE(
+				        "Status", STRING,
+				        "Modalidade", STRING,
+				        "UN", STRING,
+				        "percent_price", DOUBLE,
+				        {
+				            {"Cheio", "Box Rate Cheio CAB", "TRG", 0.8775},
+				            {"Vazio", "Box Rate Vazio CAB", "TRG", 0.8775},
+				            {"Cheio", "Box Rate Cheio LC",  "TRG", 0.97},
+				            {"Vazio", "Box Rate Vazio LC",  "TRG", 0.97},
+				            {"Cheio", "Box Rate Cheio TRA BT", "TRG", 0.97},
+				            {"Vazio", "Box Rate Vazio TRA BT", "TRG", 0.97},
+				
+				            {"Cheio", "Box Rate Cheio CAB", "TSV", 0.8575},
+				            {"Vazio", "Box Rate Vazio CAB", "TSV", 0.8575},
+				            {"Cheio", "Box Rate Cheio LC",  "TSV", 0.95},
+				            {"Vazio", "Box Rate Vazio LC",  "TSV", 0.95},
+				            {"Cheio", "Box Rate Cheio TRA", "TSV", 0.95},
+				            {"Vazio", "Box Rate Vazio TRA", "TSV", 0.95}
+				        }
+				    )
+				
+				RETURN
+				SELECTCOLUMNS(
+				    CROSSJOIN(Anos, Regras),
+				    "Ano", [Value],
+				    "Status", [Status],
+				    "Modalidade", [Modalidade],
+				    "UN", [UN],
+				    "percent_price", [percent_price]
+				)
+
+	annotation PBI_Id = 9da4e7bd3c234bcbb76a2d10ab4f4528
+

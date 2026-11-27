@@ -1,0 +1,28 @@
+table '#Remoção por Terra Cheio'
+	lineageTag: 58191b23-ab36-4d45-9625-4c115b96c0cb
+
+	measure 'Valor #Remoção por Terra Cheio' = SELECTEDVALUE('#Remoção por Terra Cheio'[#Remoção por Terra Cheio])
+		lineageTag: c336d05c-38a4-499f-b1d8-a1dc86c1286c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#Remoção por Terra Cheio'
+		lineageTag: ae01e4da-495d-44c4-af49-ea30110a6b0c
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '#Remoção por Terra Cheio' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 4, 0.001)
+
+	annotation PBI_Id = af3aaf8f9dce45868fad989d45176d41
+

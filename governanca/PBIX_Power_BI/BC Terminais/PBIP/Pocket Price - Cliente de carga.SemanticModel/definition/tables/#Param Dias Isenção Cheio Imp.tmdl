@@ -1,0 +1,26 @@
+table '#Param Dias Isenção Cheio Imp'
+	lineageTag: 1d665406-8f55-47ee-859c-155971682aa0
+
+	measure 'Valor #Param Dias Isenção Cheio Imp (selecionado)' = SELECTEDVALUE('#Param Dias Isenção Cheio Imp'[#Param Dias Isenção Cheio Imp])
+		formatString: 0
+		lineageTag: f622e786-1fb1-43db-ba96-412bd80cecd7
+
+	column '#Param Dias Isenção Cheio Imp'
+		formatString: 0
+		lineageTag: 327deb80-4573-4cef-b6fb-15235815afa1
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition '#Param Dias Isenção Cheio Imp' = calculated
+		mode: import
+		source = GENERATESERIES(0, 60, 1)
+
+	annotation PBI_Id = c997c969ecaf419b87d7255e25306e15
+

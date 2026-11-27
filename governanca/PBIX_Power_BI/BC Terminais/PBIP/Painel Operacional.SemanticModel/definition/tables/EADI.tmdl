@@ -1,0 +1,32 @@
+table EADI
+	lineageTag: 7a46c20e-1c97-466d-8fdc-18247d812ba0
+	sourceLineageTag: cfaa31ee-2111-4708-a15c-cc3a3d8d2652
+
+	column 'EADI ID'
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		lineageTag: 368a918a-4d7f-493a-a0b7-0f418373a57f
+		sourceLineageTag: a6b8e8eb-8376-4a18-ac92-808fc8baa034
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: EADI ID
+
+		annotation SummarizationSetBy = User
+
+	column EADI
+		dataType: string
+		lineageTag: 577d755e-b229-4cdf-93a8-6d9b6deb4baa
+		sourceLineageTag: cb445680-5d4b-4c22-ba7d-94afd54c5ea5
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: EADI
+
+		annotation SummarizationSetBy = User
+
+	partition EADI = entity
+		mode: directQuery
+		source
+			entityName: EADI
+			expressionSource: 'DirectQuery para AS – Modelo Operações Portuárias'
+

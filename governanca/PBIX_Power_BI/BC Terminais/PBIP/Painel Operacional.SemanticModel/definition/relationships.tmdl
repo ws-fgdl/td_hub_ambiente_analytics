@@ -1,0 +1,1066 @@
+relationship 83599254-4057-4dc3-8410-0c227e51f965
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Calendario1.Date
+	toColumn: LocalDateTable_6d9ed7e7-31fb-4b26-a361-3a55c1c59a19.Date
+
+relationship 678dc88b-9a03-4f0f-87d5-8756e992d3e6
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Movimentacao_CNTR.Data
+	toColumn: LocalDateTable_36085fb3-5bf0-4581-af92-de14c097415d.Date
+
+relationship b94685c6-c8f4-54de-345c-16d9c032580c
+	fromColumn: Movimentacao_CNTR.dt_valor
+	toColumn: Calendario1.dt_valor
+
+relationship 87b83018-9f5a-0af0-fa84-6103ee1adddf
+	fromColumn: Movimentacao_CNTR.codigo_sap
+	toColumn: dim_carteira_comercial.cod_sap
+
+relationship ae75f812-63d6-275c-87ac-fb0fdd242d43
+	fromColumn: Movimentacao_CNTR.UN
+	toColumn: UN.UN
+
+relationship 255d002a-543c-69e7-3320-5b9ce2e16287
+	fromColumn: Movimentacao_CNTR.STATUS
+	toColumn: 'Status Container'.'Status Container'
+
+relationship 1fe0294f-f9c9-b6ee-87b9-2a45adffbb0c
+	fromColumn: Movimentacao_CNTR.MODALIDADE
+	toColumn: Modalidade.Modalidade
+
+relationship 16b17009-bc5a-47aa-9cb1-75fce3fe017f
+	fromColumn: Armador.'Grupo Armador'
+	toColumn: 'Grupo Armador'.'Grupo Armador'
+
+relationship 8ec20470-d4ac-443e-a540-ba864f63d262
+	fromColumn: Armador.'Grupo Armador IM'
+	toColumn: 'Grupo Armador IM'.'Grupo Armador IM'
+
+relationship c1764589-a6ea-436e-a0ca-2b439ff4583a
+	fromColumn: Mercadoria.GRUPO_MERCADORIA_ID
+	toColumn: 'Grupo Mercadoria'.'ID Grupo Mercadoria'
+
+relationship 3195d645-99d2-4a40-8acb-4372c24f9b5d
+	fromColumn: Vessel.'LOA Maior 330'
+	toColumn: 'LOA Maior 330'.'LOA Maior 330'
+
+relationship d0eed1dc-da73-4762-9eca-3ed7ba08967f
+	fromColumn: 'Vessel Visit'.Janela
+	toColumn: Janela.Janela
+
+relationship 9c9b4646-2ab7-4e2a-8f76-a7607871631d
+	fromColumn: '_Medidas Movimento'.COD_CLIENTE_SAP
+	toColumn: Cliente.'Código Cliente SAP'
+
+relationship 799ab5f8-7c27-41fa-87ce-c559a32047a5
+	fromColumn: '_Medidas Movimento'.COD_CLIENTE_SAP
+	toColumn: Cliente/Armador.COD_CLIENTE_SAP
+
+relationship 2833daaf-a300-4875-8b72-b4722c4a4995
+	fromColumn: '_Medidas Movimento'.COD_CLIENTE_SAP
+	toColumn: Região.COD_CLIENTE_SAP
+
+relationship 35f990ab-8589-4cb6-87b6-5988070c28ea
+	fromColumn: '_Medidas Movimento'.COD_EMPR_SAP
+	toColumn: Empresa.'Código Empresa'
+
+relationship cd4cd8bf-b6b4-4b23-968f-974a2c8f08cf
+	fromColumn: '_Medidas Movimento'.TEMPO_ID
+	toColumn: _Tempo.TEMPO_ID
+
+relationship fb4b105b-bc0f-4de7-b16d-69a1203556a5
+	fromColumn: '_Medidas Movimento'.ARM_ID
+	toColumn: Armador.'Armador ID'
+
+relationship 1ef49499-1f28-48a6-9aad-290c8e689274
+	fromColumn: '_Medidas Movimento'.BERCO_ID
+	toColumn: Berço.'Berço ID'
+
+relationship c9adedf8-914d-413c-a851-d47f9126f62c
+	fromColumn: '_Medidas Movimento'.DETALHES_CLIENTE_ID
+	toColumn: 'Detalhes Cliente'.'Detalhes Cliente ID'
+
+relationship a8dd8767-6429-43ff-991b-75b293a3bc33
+	fromColumn: '_Medidas Movimento'.GRUPO_ID
+	toColumn: Grupo.'Grupo ID'
+
+relationship ac555a02-b74b-4af1-a405-73b7a287e080
+	fromColumn: '_Medidas Movimento'.LINHA_ID
+	toColumn: Linha.'ID Linha'
+
+relationship eb85250c-42c6-44e4-8861-c775f7ddc8ba
+	fromColumn: '_Medidas Movimento'.SEGMENTACAO_ID
+	toColumn: Segmentação.'Segmentação ID'
+
+relationship 05212424-2aa1-4285-a016-ea4652071ac4
+	fromColumn: '_Medidas Movimento'.TIPO_CONTAINER_ID
+	toColumn: 'Tipo Container'.'Tipo Container ID'
+
+relationship 6f70ca35-654b-405c-b4ff-232d114b7d56
+	fromColumn: '_Medidas Movimento'.VENDEDOR_COMERC_ID
+	toColumn: Vendedor.'Vendedor ID'
+
+relationship 0924374a-603d-4025-99d7-35de445cb6eb
+	fromColumn: '_Medidas Movimento'.NAVIO_ID
+	toColumn: Vessel.'Navio ID'
+
+relationship 379365d3-efec-40db-b97b-0cd8bc899342
+	fromColumn: '_Medidas Movimento'.OPERACAO_ID
+	toColumn: 'Vessel Visit'.'Operação ID'
+
+relationship 40c15356-cdee-41f7-acaf-a553e4a0d30b
+	fromColumn: '_Medidas Movimento'.MODALIDADE_ID
+	toColumn: 'Modalidade 2'.'Modalidade ID'
+
+relationship 3ac125b8-ee33-4e15-ac46-7c3955a63a66
+	fromColumn: '_Medidas Movimento'.MOVIMENTO_ID
+	toColumn: Movimento.'Movimento ID'
+
+relationship dcdbec04-458c-4415-821f-65758b778fc2
+	fromColumn: '_Medidas Movimento'.TAMANHO_ID
+	toColumn: 'Tamanho Container'.'Tamanho Container ID'
+
+relationship b10cdac8-054c-4a43-b2a7-0fb450836a5f
+	fromColumn: '_Medidas Movimento'.TIPO_VIAGEM_ID
+	toColumn: 'Tipo Viagem'.'Tipo Viagem ID'
+
+relationship 79b4c6ce-72c3-4ba6-970e-f9b310704ef4
+	fromColumn: '_Medidas Movimento'.REGIAO_ID
+	toColumn: 'Região pelo COD_MUNICIPIO_IBGE'.'Região pelo COD_MUNICIPIO_IBGE ID'
+
+relationship 22a667af-6a28-436f-9ceb-f312fca89d4e
+	fromColumn: '_Medidas Movimento'.DESTINO_ID
+	toColumn: 'Destino Final'.'Localidade ID'
+
+relationship 24adec8c-4ffc-4c99-831c-ccb02d707764
+	fromColumn: '_Medidas Movimento'.PORTO_ORIGEM_ID
+	toColumn: 'Porto Origem'.'Porto Origem ID'
+
+relationship b4e6fe93-99e2-40c8-9f6c-546b0c98a43d
+	fromColumn: '_Medidas Movimento'.STATUS_CNTR_ID
+	toColumn: 'Status Container 2'.'Status Container ID'
+
+relationship 49ffceb0-cca0-43ec-a2d7-7281a61c17fd
+	fromColumn: '_Medidas Movimento'.EQUIPTO_ID
+	toColumn: 'Equipamento Manutenção'.'Código Equipamento'
+
+relationship be3e9f29-424d-4ade-ac9c-04b76c21bf19
+	fromColumn: '_Medidas Movimento'.TRADE
+	toColumn: Trade.Trade
+
+relationship 8c168fac-5ac6-4ce4-90eb-3ce45ab83274
+	fromColumn: '_Medidas Movimento'.PAIS_DESTINO_ID
+	toColumn: 'País Destino'.ID_PAIS
+
+relationship 5a2a1395-6672-4b50-b462-2980c955c975
+	fromColumn: '_Medidas Movimento'.PAIS_PORTO_EMBARQUE_ID
+	toColumn: 'Pais Porto Embarque'.ID_PAIS
+
+relationship 4ccbe167-f54c-4087-bc89-b0aa77e5c9d4
+	fromColumn: '_Medidas Movimento'.PAIS_PORTO_DESCARGA_ID
+	toColumn: 'Pais Porto Descarga'.ID_PAIS
+
+relationship 2ccfe09f-6f01-48f4-9951-19e9115221ef
+	fromColumn: '_Medidas Movimento'.PAIS_PORTO_ORIGEM_ID
+	toColumn: 'Pais Porto Origem'.ID_PAIS
+
+relationship fd629d02-8343-4cef-a86b-0a13a92879ae
+	fromColumn: '_Medidas Movimento'.CATEGORIA_ID
+	toColumn: Categoria.'Categoria ID'
+
+relationship c49f957d-6133-4745-a6dd-1ff77e783761
+	fromColumn: '_Medidas Movimento'.COD_SAP_TRANSPORTADORA
+	toColumn: Transportadora.'Código Cliente Transportadora'
+
+relationship 82b789a0-25a8-4f7e-8d04-139d27c5cbc7
+	fromColumn: '_Medidas Movimento'.COD_SAP_DESPACHANTE
+	toColumn: Despachante.'Código Cliente Despachante'
+
+relationship 229a2f59-b90f-404b-b266-951a2d279682
+	fromColumn: '_Medidas Movimento'.COD_SAP_DESCONSOLIDADOR
+	toColumn: Desconsolidador.'Código Cliente Desconsolidador'
+
+relationship d777e3fa-b896-41b6-b72a-4e5b8a3413ea
+	fromColumn: '_Medidas Movimento'.COD_SAP_CONSOLIDADOR
+	toColumn: Consolidador.'Código Cliente Consolidador'
+
+relationship 85000080-9f94-48e8-a65c-368b658c0eaa
+	fromColumn: '_Medidas Movimento'.PORTO_EMBARQUE_ID
+	toColumn: 'Porto Embarque'.'Porto Embarque ID'
+
+relationship bc477e25-05b0-4f47-8d35-dd6c28352b3a
+	fromColumn: '_Medidas Movimento'.PORTO_DESCARGA_ID
+	toColumn: 'Porto Descarga'.'Porto Descarga ID'
+
+relationship 778c0cc8-753b-4a71-8f7d-c0dfcc507d61
+	fromColumn: '_Medidas Movimento'.PERIGOSO
+	toColumn: Perigoso.'ID Perigoso'
+
+relationship 74e1b385-1cce-49cb-8022-f7e1cfc99656
+	fromColumn: '_Medidas Movimento'.REEFER
+	toColumn: Refrigerado.'ID Refrigerado'
+
+relationship dfe0f7f3-8949-459f-abf0-6140e442b021
+	fromColumn: '_Medidas Movimento'.TEMPO_ID
+	toColumn: '_Tempo Competência'.TEMPO_ID_COMPETENCIA
+
+relationship f0185d01-2f33-40be-90f7-a010f0921fb9
+	fromColumn: '_Medidas Movimento'.NCM_HASH
+	toColumn: Mercadoria.NCM_HASH
+
+relationship 12a1b91a-bdb2-4566-94e8-3f9026af6072
+	fromColumn: '_Medidas Receita'.TEMPO_ID
+	toColumn: _Tempo.TEMPO_ID
+
+relationship 82a41331-6fbb-48db-a7c2-3a55646d61fe
+	fromColumn: '_Medidas Receita'.GRUPO_ID
+	toColumn: Grupo.'Grupo ID'
+
+relationship f425640f-866d-49be-8bed-7e0c53e75df2
+	fromColumn: '_Medidas Receita'.NAVIO_ID
+	toColumn: Vessel.'Navio ID'
+
+relationship 1239fb92-299e-412c-89f5-9a3375cdda6b
+	fromColumn: '_Medidas Receita'.MOVIMENTO_ID
+	toColumn: Movimento.'Movimento ID'
+
+relationship b3a8cf4d-e6c0-4417-a232-6182d220769d
+	fromColumn: '_Medidas Receita'.TIPO_VIAGEM_ID
+	toColumn: 'Tipo Viagem'.'Tipo Viagem ID'
+
+relationship 5edae2e6-04d7-49a6-9fde-054e705c45b9
+	fromColumn: '_Medidas Receita'.CATEGORIA_ID
+	toColumn: Categoria.'Categoria ID'
+
+relationship 062bf7a4-2379-44e7-b187-07bd74639693
+	fromColumn: '_Medidas Receita'.COD_CLIENTE_SAP
+	toColumn: Cliente/Armador.COD_CLIENTE_SAP
+
+relationship ca61678b-02da-4abb-a258-a5814117350e
+	fromColumn: '_Medidas Receita'.COD_CLIENTE_SAP
+	toColumn: Região.COD_CLIENTE_SAP
+
+relationship 152786a1-cd55-4486-97f8-daa2a3009f91
+	fromColumn: '_Medidas Receita'.COD_DIVISAO_SAP
+	toColumn: Divisão.'Código Divisão'
+
+relationship e2fe827b-3609-4f11-b641-acfff5e94c91
+	fromColumn: '_Medidas Receita'.SERVICO_ID
+	toColumn: Serviço.'Serviço ID'
+
+relationship 7c165858-9022-40a4-89f7-aee49f46e9ec
+	fromColumn: '_Medidas Receita'.TIPO_DOCUMENTO_ID
+	toColumn: 'Tipo Documento'.TIPO_DOCUMENTO_ID
+
+relationship 1b4fa528-92ea-4d51-99c4-e33139187148
+	fromColumn: '_Medidas Receita'.CCUSTO_TECON_ID
+	toColumn: 'Centro de Custo Tecon'.'Centro de Custo Tecon ID'
+
+relationship 0814c601-e861-45e0-ba5e-cce32b79257a
+	fromColumn: '_Medidas Receita'.GRUPO_RECEITA_ID
+	toColumn: 'Grupo Receita'.'Grupo Receita ID'
+
+relationship 704189b1-4065-4dde-98b7-15b84fa9e66c
+	fromColumn: '_Medidas Receita'.AGRUP_ID
+	toColumn: 'Agrupador de Serviços'.'Agrupador de Serviço ID'
+
+relationship 3f791b80-ca88-4721-a23f-aa744a5c3dda
+	fromColumn: '_Medidas Receita'.LINHA_ID
+	toColumn: Linha.'ID Linha'
+
+relationship 8e1e3055-5ab9-42a3-a865-a1c4ea411e71
+	fromColumn: '_Medidas Receita'.DETALHE_CLIENTE_ID
+	toColumn: 'Detalhes Cliente'.'Detalhes Cliente ID'
+
+relationship dc2fe7a8-e9c4-4cb8-886e-18dd8202c868
+	fromColumn: '_Medidas Receita'.COD_EMPR_SAP
+	toColumn: Empresa.'Código Empresa'
+
+relationship d2310496-d29a-43ea-9206-6bf784a508a1
+	fromColumn: '_Medidas Receita'.CONGELADO
+	toColumn: Congelado.'Congelado Código'
+
+relationship fceadf70-88c2-4d79-8adc-6253dc7f2371
+	fromColumn: '_Medidas Receita'.COMPETENCIA
+	toColumn: '_Tempo Competência'.TEMPO_ID_COMPETENCIA
+
+relationship 9ee377a7-0751-4b8c-a1af-3470b8484202
+	fromColumn: '_Medidas Receita'.TAMANHO_ID
+	toColumn: 'Tamanho Container'.'Tamanho Container ID'
+
+relationship 97707d42-d848-4431-a214-0b2b7017eb0a
+	fromColumn: '_Medidas Receita'.STATUS_CNTR_ID
+	toColumn: 'Status Container 2'.'Status Container ID'
+
+relationship aeea8063-cf5d-4151-bff3-cd8e3efea15d
+	fromColumn: '_Medidas Receita'.VENDEDOR_COMERC_ID
+	toColumn: Vendedor.'Vendedor ID'
+
+relationship b0088520-9412-407f-9cf1-bbdf760026c3
+	fromColumn: '_Medidas Receita'.SEGMENTACAO_ID
+	toColumn: Segmentação.'Segmentação ID'
+
+relationship 0e535e0a-686e-4091-b16a-4e0ae9e36314
+	fromColumn: '_Medidas Receita'.CCUSTO_SAP
+	toColumn: 'Centro de Custo'.'Centro de Custo ID'
+
+relationship fcdbacba-fd1f-4f1b-aeaa-df5f3ebb1301
+	fromColumn: '_Medidas Receita'.CATEGORIA_ID
+	toColumn: 'Modalidade 2'.'Modalidade ID'
+
+relationship 792f2f71-91ff-4e76-bf9d-a78309fd740a
+	fromColumn: '_Medidas Receita'.OVERTIME
+	toColumn: Overtime.'Overtime Código'
+
+relationship 5d212a65-aada-47ab-a3b1-4e0314b26ca8
+	fromColumn: '_Medidas Receita'.COD_CLIENTE_SAP
+	toColumn: Cliente.'Código Cliente SAP'
+
+relationship 9393e079-d1aa-40a5-a7f6-0a9fb098ee3f
+	fromColumn: '_Medidas Receita'.REEFER
+	toColumn: Reefer.'Reefer Código'
+
+relationship 9faa1c53-9e0c-4651-b0ba-072e2b076243
+	fromColumn: '_Medidas Receita'.TIPO_ID
+	toColumn: 'Tipo Faturamento'.'Tipo Faturamento ID'
+
+relationship b8e2735c-0b59-4620-b177-24bc19b6757e
+	fromColumn: '_Medidas Armazém'.NCM_HASH
+	toColumn: Mercadoria.NCM_HASH
+
+relationship 80aa9c73-a3a6-4aa1-9040-381663dc4a03
+	fromColumn: '_Medidas Armazém'.VISTORIA
+	toColumn: Vistoria.Vistoria
+
+relationship 38a632f0-d2d3-410a-aa07-287243682a96
+	fromColumn: '_Medidas Armazém'.PORTO_ID
+	toColumn: Porto.'Porto ID'
+
+relationship 7c9be0de-3af0-4b84-b210-b0d824244fd3
+	fromColumn: '_Medidas Armazém'.LOCALIDADE_ID
+	toColumn: Localidade.'Localidade ID'
+
+relationship e4e68580-ed98-459a-9fc3-cc3cd699bd39
+	fromColumn: '_Medidas Armazém'.GRUPO_CONSOLIDADOR_ID
+	toColumn: 'Grupo Consolidador'.'Grupo Consolidador ID'
+
+relationship 2523d009-1b30-45cb-9af3-79eb876261af
+	fromColumn: '_Medidas Armazém'.GRUPO_CLIENTE_ID
+	toColumn: Grupo.'Grupo ID'
+
+relationship 1195bf72-129f-4f5f-b18e-f470f510fb4c
+	fromColumn: '_Medidas Armazém'.TEMPO_ID
+	toColumn: _Tempo.TEMPO_ID
+
+relationship 1e336067-9085-4a39-bd1a-b9a929201329
+	fromColumn: '_Medidas Armazém'.COD_CLI_SAP_COBRAR
+	toColumn: 'Cobrar de'.'Código Cliente SAP'
+
+relationship 04f6cc59-7c03-4221-b8c1-66ceabafe292
+	fromColumn: '_Medidas Armazém'.COD_EMPRESA
+	toColumn: Empresa.'Código Empresa'
+
+relationship b1691f98-cb40-46dd-be6c-3845f40012d8
+	fromColumn: '_Medidas Armazém'.MOD_EMBARQUE_ID
+	toColumn: Regime.'Regime ID'
+
+relationship 3673acb3-f1b0-42c3-a27a-634a10beb28b
+	fromColumn: '_Medidas Armazém'.TIPO_CNTR_ID
+	toColumn: 'Tipo Container'.'Tipo Container ID'
+
+relationship 25290620-e28f-4c48-befd-04536ed8cb8b
+	fromColumn: '_Medidas Armazém'.VENDEDOR_ID
+	toColumn: Vendedor.'Vendedor ID'
+
+relationship 44c82fd6-3d2a-445d-a82a-13e216a7bb81
+	fromColumn: '_Medidas Armazém'.NAVIO_ID
+	toColumn: Vessel.'Navio ID'
+
+relationship b0c6f109-91c1-4c91-b9e1-131eec9fa14a
+	fromColumn: '_Medidas Armazém'.SERVICO_ID
+	toColumn: Serviço.'Serviço ID'
+
+relationship 597e22cf-5f32-4fc1-ac2e-d5e80cb20ade
+	fromColumn: '_Medidas Combustível'.TEMPO_ID
+	toColumn: _Tempo.TEMPO_ID
+
+relationship 74989103-150a-4316-a9e3-42f4c580d10c
+	fromColumn: '_Medidas Combustível'.COD_EMPR_SAP
+	toColumn: Empresa.'Código Empresa'
+
+relationship 20e59165-f3db-4aec-a148-52685fbae742
+	fromColumn: '_Medidas Combustível'.COD_EQUIPAMENTO
+	toColumn: 'Equipamento Manutenção'.'Código Equipamento'
+
+relationship 3c1095d5-1521-4697-9463-141412ee20c2
+	fromColumn: '_Medidas Custo variavel e Container'.COD_EMPR_SAP
+	toColumn: Empresa.'Código Empresa'
+
+relationship 7c3d1fec-076e-491b-b864-2c021762ed5e
+	fromColumn: '_Medidas Custo variavel e Container'.COD_DIVISAO_SAP
+	toColumn: Divisão.'Código Divisão'
+
+relationship f05706ec-3f1c-412d-9a06-c5f499800901
+	fromColumn: '_Medidas Custo variavel e Container'.TEMPO_ID
+	toColumn: _Tempo.TEMPO_ID
+
+relationship 664256a3-a8b6-44a4-b66c-dcf09462a85d
+	fromColumn: '_Medidas Disponibilidade Manutenção'.TEMPO_ID
+	toColumn: _Tempo.TEMPO_ID
+
+relationship 931735fe-d209-4efc-8327-b5a415fe715b
+	fromColumn: '_Medidas Disponibilidade Manutenção'.COD_EMPRESA
+	toColumn: Empresa.'Código Empresa'
+
+relationship 9c30e287-96a3-4e85-94f1-0cd936e0e5fd
+	fromColumn: '_Medidas Disponibilidade Manutenção'.COD_EQUIP_MANUT
+	toColumn: 'Equipamento Manutenção'.'Código Equipamento'
+
+relationship ceec7198-4698-4ccd-9d3d-1d7b72d9ffe3
+	fromColumn: '_Medidas Estadia Cntr'.STATUS
+	toColumn: 'Status Container 2'.'Status Container ID'
+
+relationship f0c9ce28-e38f-4fca-927f-cca9fd17ac45
+	fromColumn: '_Medidas Estadia Cntr'.TAMANHO
+	toColumn: 'Tamanho Container'.'Tamanho Container ID'
+
+relationship 9a1189c2-69ad-4f2b-971f-ef11ceca84f1
+	fromColumn: '_Medidas Estadia Cntr'.ARM_ID
+	toColumn: Armador.'Armador ID'
+
+relationship a132f2a6-d69f-4081-9ac2-a4aa6c97926d
+	fromColumn: '_Medidas Estadia Cntr'.TEMPO_ID
+	toColumn: _Tempo.TEMPO_ID
+
+relationship 19315ec4-119f-49d1-9268-e86ecc337c78
+	fromColumn: '_Medidas Estadia Cntr'.COD_EMPR_SAP
+	toColumn: Empresa.'Código Empresa'
+
+relationship 61057de8-e0ec-4e27-9d49-de257e883b16
+	fromColumn: '_Medidas Estadia Cntr'.REEFER
+	toColumn: Refrigerado.'ID Refrigerado'
+
+relationship f945785a-07eb-4546-9150-ef57e5e25d9e
+	fromColumn: '_Medidas Estadia Cntr'.VENDEDOR_COMERC_ID
+	toColumn: Vendedor.'Vendedor ID'
+
+relationship f04175dc-17fd-4aa5-be8a-582af2b30775
+	fromColumn: '_Medidas Estadia Cntr'.SEGMENTACAO_ID
+	toColumn: Segmentação.'Segmentação ID'
+
+relationship 8fa75c5d-63d6-40eb-a82f-a58035b2c164
+	fromColumn: '_Medidas Estadia Cntr'.GRUPO_ID
+	toColumn: Grupo.'Grupo ID'
+
+relationship f6e12e3e-0381-43dd-9ae6-41ea5bc58132
+	fromColumn: '_Medidas Estadia Cntr'.COD_CLIENTE_SAP
+	toColumn: Cliente.'Código Cliente SAP'
+
+relationship 0df67f80-584c-44cf-9e5f-daf0a1dfb76d
+	fromColumn: '_Medidas Estadia Cntr'.TIPO_CONTAINER_ID
+	toColumn: 'Tipo Container'.'Tipo Container ID'
+
+relationship 32737332-9fac-40a6-b676-4fc1c86ddabb
+	fromColumn: '_Medidas Estadia Cntr'.MODALIDADE_ID
+	toColumn: 'Modalidade 2'.'Modalidade ID'
+
+relationship 1136d870-4d70-4157-91a4-d932ad8f6e89
+	fromColumn: '_Medidas Estadia FCL'.COD_EMPR_SAP
+	toColumn: Empresa.'Código Empresa'
+
+relationship 87f2b8e3-69f8-4007-83fe-9bbebe5cc677
+	fromColumn: '_Medidas Estadia FCL'.TEMPO_ID
+	toColumn: _Tempo.TEMPO_ID
+
+relationship b8f7d4fc-0435-4180-8352-47c4856e3bdf
+	fromColumn: '_Medidas Estadia FCL'.VENDEDOR_COMERC_ID
+	toColumn: Vendedor.'Vendedor ID'
+
+relationship 3579bab4-93a6-4165-b7b2-930742a4dfac
+	fromColumn: '_Medidas Estadia FCL'.SEGMENTACAO_ID
+	toColumn: Segmentação.'Segmentação ID'
+
+relationship 8b692c6d-9d3f-4b89-8450-df479da58224
+	fromColumn: '_Medidas Estadia FCL'.GRUPO_ID
+	toColumn: Grupo.'Grupo ID'
+
+relationship 313ecb7c-6316-4b26-adaf-35cbc98f5943
+	fromColumn: '_Medidas Estadia FCL'.COD_EMPR_SAP_IMPORTADOR
+	toColumn: Cliente.'Código Cliente SAP'
+
+relationship b1d98044-d2ea-4942-acdc-bff5165675cf
+	fromColumn: '_Medidas Estadia FCL'.TIPO_DI
+	toColumn: 'Tipo DI'.'Tipo DI'
+
+relationship 914b9a53-ac34-4e3e-9ee6-6f4604504395
+	fromColumn: '_Medidas Estadia LCL'.GRUPO_ID
+	toColumn: Grupo.'Grupo ID'
+
+relationship 484e22d1-eea2-4b2d-917b-c7a473fc104e
+	fromColumn: '_Medidas Estadia LCL'.COD_SAP_CONSOLIDADOR
+	toColumn: Consolidador.'Código Cliente Consolidador'
+
+relationship 9124c406-3aac-45fb-b2c0-cf54a0f99c4b
+	fromColumn: '_Medidas Estadia LCL'.TEMPO_ID
+	toColumn: _Tempo.TEMPO_ID
+
+relationship 252e685f-7e83-486c-b49a-6ebcaa7f092a
+	fromColumn: '_Medidas Estadia LCL'.PERIODO
+	toColumn: Período.Período
+
+relationship dd21fa97-e9e9-46ed-907f-d3760f426048
+	fromColumn: '_Medidas Estadia LCL'.TIPO_DI
+	toColumn: 'Tipo DI'.'Tipo DI'
+
+relationship d12f8b11-d2ab-43df-864e-e1a47031e338
+	fromColumn: '_Medidas Estadia LCL'.VENDEDOR_COMERC_ID
+	toColumn: Vendedor.'Vendedor ID'
+
+relationship 71c94750-b333-46ee-9ecc-97a997fd0259
+	fromColumn: '_Medidas Estadia LCL'.SEGMENTACAO_ID
+	toColumn: Segmentação.'Segmentação ID'
+
+relationship 2bf9716f-a463-4719-9143-10181ecb5b7b
+	fromColumn: '_Medidas Estadia LCL'.COD_SAP_IMPORTADOR
+	toColumn: Importador.'Código Cliente Importador'
+
+relationship d76f882e-cc9c-45cf-99da-f5d2bc981926
+	fromColumn: '_Medidas Estadia Reefer'.MODALIDADE_ID
+	toColumn: 'Modalidade 2'.'Modalidade ID'
+
+relationship 375e6bc3-188e-4a38-9b3c-373c277a0628
+	fromColumn: '_Medidas Estadia Reefer'.TAMANHO
+	toColumn: 'Tamanho Container'.'Tamanho Container ID'
+
+relationship 54a11581-b655-4195-90b5-39130040752b
+	fromColumn: '_Medidas Estadia Reefer'.TEMPO_ID
+	toColumn: _Tempo.TEMPO_ID
+
+relationship b77b46fb-d869-4d2b-8f08-2af393521da0
+	fromColumn: '_Medidas Estadia Reefer'.VENDEDOR_COMERC_ID
+	toColumn: Vendedor.'Vendedor ID'
+
+relationship b29f748e-b075-4edd-a506-30f4a10f6014
+	fromColumn: '_Medidas Estadia Reefer'.SEGMENTACAO_ID
+	toColumn: Segmentação.'Segmentação ID'
+
+relationship 13d8b50e-bdbb-4559-9d8b-3a41aeac16b9
+	fromColumn: '_Medidas Estadia Reefer'.GRUPO_ID
+	toColumn: Grupo.'Grupo ID'
+
+relationship c0549150-4d50-4631-87f0-813209ff1e0e
+	fromColumn: '_Medidas Estadia Reefer'.COD_CLIENTE_SAP
+	toColumn: Cliente.'Código Cliente SAP'
+
+relationship 85664529-59ec-4d83-8182-6b6b38059f88
+	fromColumn: '_Medidas Estadia Reefer'.ARM_ID
+	toColumn: Armador.'Armador ID'
+
+relationship 9d9ed909-d337-4a16-a259-85b1d65dfc0e
+	fromColumn: '_Medidas Estadia Reefer'.COD_EMPR_SAP
+	toColumn: Empresa.'Código Empresa'
+
+relationship fc0f64ce-5872-4f78-8ccc-9c4d6558071a
+	fromColumn: '_Medidas Financeiro - KPI'.TEMPO_ID
+	toColumn: _Tempo.TEMPO_ID
+
+relationship 1209f7d4-68ba-4956-a6eb-81860224d368
+	fromColumn: '_Medidas Financeiro - KPI'.COD_CLIENTE_SAP
+	toColumn: Cliente.'Código Cliente SAP'
+
+relationship be5379d4-052c-4e2d-8695-d11d93a99666
+	fromColumn: '_Medidas Financeiro - KPI'.COD_EMPRESA_SAP
+	toColumn: Empresa.'Código Empresa'
+
+relationship 6d55b8bd-7f61-4859-bba7-637b7becc8ad
+	fromColumn: '_Medidas Financeiro - KPI'.COD_DIVISAO_SAP
+	toColumn: Divisão.'Código Divisão'
+
+relationship 566c401b-d154-4999-a179-c567f7468580
+	fromColumn: '_Medidas Financeiro - SAP'.COD_EMPR_SAP
+	toColumn: Empresa.'Código Empresa'
+
+relationship 0a37ac09-74f5-48a7-94bf-d58769bf0c5c
+	fromColumn: '_Medidas Financeiro - SAP'.COD_DIVISAO_SAP
+	toColumn: Divisão.'Código Divisão'
+
+relationship 053206c1-5c04-4396-892e-c2c37cc541fc
+	fromColumn: '_Medidas Financeiro - SAP'.TEMPO_ID
+	toColumn: _Tempo.TEMPO_ID
+
+relationship 43c3b53d-d5c8-4b4d-badb-657dc135fbb2
+	fromColumn: '_Medidas Gate'.TIPO_CONTAINER_ID
+	toColumn: 'Tipo Container'.'Tipo Container ID'
+
+relationship df254c6f-460b-4fb1-9d85-e02d94eae704
+	fromColumn: '_Medidas Gate'.LINHA_ID
+	toColumn: Linha.'ID Linha'
+
+relationship 9459e478-ec74-4f51-b977-b68d7faa55b2
+	fromColumn: '_Medidas Gate'.GRUPO_MERCADORIA_ID
+	toColumn: 'Grupo Mercadoria'.'ID Grupo Mercadoria'
+
+relationship b9e053a6-edaf-4ed1-9cc1-9a56e6afe423
+	fromColumn: '_Medidas Gate'.GRUPO_CLIENTE_ID
+	toColumn: Grupo.'Grupo ID'
+
+relationship ce900235-8359-4622-b8a4-a1d36a775d7f
+	fromColumn: '_Medidas Gate'.FAINA_ID
+	toColumn: Faina.'Faina ID'
+
+relationship 81f470a0-abe4-4dc7-ab83-38939b4e2b58
+	fromColumn: '_Medidas Gate'.ARM_ID
+	toColumn: Armador.'Armador ID'
+
+relationship 8ec6290e-98ac-4de7-a46d-21820f931e61
+	fromColumn: '_Medidas Gate'.GATE_AUTOMATICO
+	toColumn: 'Gate Automático'.'ID Gate Automático'
+
+relationship 945f1bd3-ffa7-4587-b9ed-9da858e6bfda
+	fromColumn: '_Medidas Gate'.BITREM
+	toColumn: Bitrem.'ID Bitrem'
+
+relationship dc01eca8-66ac-4e6b-9be0-2d24c692f1da
+	fromColumn: '_Medidas Gate'.PERIGOSO
+	toColumn: Perigoso.'ID Perigoso'
+
+relationship 1430b487-32b5-4258-9c27-a2167ead0bb9
+	fromColumn: '_Medidas Gate'.CATEGORIA_ID
+	toColumn: Categoria.'Categoria ID'
+
+relationship dce87d16-deff-4180-bd4e-e1fad0bf7979
+	fromColumn: '_Medidas Gate'.TURNO_ID
+	toColumn: Turno.'Turno ID'
+
+relationship 3a66fd91-b278-46ca-9ea0-317bf7b2af47
+	fromColumn: '_Medidas Gate'.TAMANHO_ID
+	toColumn: 'Tamanho Container'.'Tamanho Container ID'
+
+relationship 926407fa-a32a-4b83-ae42-3955714c4e6a
+	fromColumn: '_Medidas Gate'.STATUS_CNTR_ID
+	toColumn: 'Status Container 2'.'Status Container ID'
+
+relationship 9d97067d-19dd-49fa-af8a-b13f0344810e
+	fromColumn: '_Medidas Gate'.AGRUPADOR_FAINA
+	toColumn: Movimento.'Movimento ID'
+
+relationship 5182e44c-809f-4824-9eb7-6d115fb5d903
+	fromColumn: '_Medidas Gate'.REEFER
+	toColumn: Refrigerado.'ID Refrigerado'
+
+relationship 84978db5-7397-4e3c-a50f-586b6d36db94
+	fromColumn: '_Medidas Gate'.TEMPO_ID
+	toColumn: _Tempo.TEMPO_ID
+
+relationship fc3a8742-48e2-4b48-af9b-1cc222bd5c2e
+	fromColumn: '_Medidas Gate'.OPERACAO_ID
+	toColumn: 'Vessel Visit'.'Operação ID'
+
+relationship 714a928a-9274-45c7-bd23-d72b9797e7c8
+	fromColumn: '_Medidas Gate'.TEMPO_BASE
+	toColumn: '_Tempo Base Gate'.TEMPO_ID
+
+relationship 1ddf0483-b7c6-4bf5-a5ae-6f06800fa961
+	fromColumn: '_Medidas Gate'.COD_EMPR_SAP
+	toColumn: Empresa.'Código Empresa'
+
+relationship a262d869-143c-4e04-ba3b-4bb212fc5109
+	fromColumn: '_Medidas Market Share'.TEMPO_ID
+	toColumn: _Tempo.TEMPO_ID
+
+relationship f93d1d6e-c153-48f4-a1f6-a76088f6133c
+	fromColumn: '_Medidas Market Share'.COD_EMPRESA
+	toColumn: Empresa.'Código Empresa'
+
+relationship ef8e4142-1bda-45f8-ba31-009e3d203b3e
+	fromColumn: '_Medidas Market Share'.COD_CLIENTE_SAP_SOL
+	toColumn: Solicitante.'Código Cliente SAP'
+
+relationship e43e6565-6c77-4ff7-bdc1-209c0ae5ba1e
+	fromColumn: '_Medidas Market Share'.COD_CLIENTE_SAP_IMP
+	toColumn: Cliente.'Código Cliente SAP'
+
+relationship 667b7262-7c03-4c1c-a11f-819c0b7ea306
+	fromColumn: '_Medidas Market Share'.TAMANHO_ID
+	toColumn: 'Tamanho Container'.'Tamanho Container ID'
+
+relationship 39058b55-d64b-4c80-9d76-ab82d6ce508a
+	fromColumn: '_Medidas Market Share'.ARM_ID
+	toColumn: Armador.'Armador ID'
+
+relationship f3ab0517-3ad8-4314-8b6c-c5a2d49b7c2e
+	fromColumn: '_Medidas Market Share'.VENDEDOR_COMERC_ID
+	toColumn: Vendedor.'Vendedor ID'
+
+relationship 3dd04561-b904-4012-911e-7929409c29d8
+	fromColumn: '_Medidas Market Share'.SERVICO_ID
+	toColumn: Serviço.'Serviço ID'
+
+relationship be6eded7-02a3-4be0-b903-d900b386bdf2
+	fromColumn: '_Medidas Market Share'.SEGMENTACAO_ID
+	toColumn: Segmentação.'Segmentação ID'
+
+relationship 6eb330e1-a058-4ea4-8c6c-ba8df0c9b06b
+	fromColumn: '_Medidas Market Share'.GRUPO_ID
+	toColumn: Grupo.'Grupo ID'
+
+relationship 7b7e9709-9fb7-4d2a-ba34-218559bd52ff
+	fromColumn: '_Medidas Market Share'.EADI_ID
+	toColumn: EADI.'EADI ID'
+
+relationship 15634395-dcf6-4847-b5f6-2689b660b1f8
+	fromColumn: '_Medidas Market Share'.TIPO_DOCUMENTO_ID
+	toColumn: 'Tipo Documento'.TIPO_DOCUMENTO_ID
+
+relationship 25b88cc8-8a4d-4371-96ea-c7fade9ced1f
+	fromColumn: '_Medidas Produtividade Abratec'.NAVIO_ID
+	toColumn: Vessel.'Navio ID'
+
+relationship f8c6da2c-8b6d-4154-95dc-979b9ae4a8c7
+	fromColumn: '_Medidas Produtividade Abratec'.OPERACAO_ID
+	toColumn: 'Vessel Visit'.'Operação ID'
+
+relationship 9764fad2-9998-454d-9d62-bff323c4787d
+	fromColumn: '_Medidas Produtividade Abratec'.LINHA_ID
+	toColumn: Linha.'ID Linha'
+
+relationship b4ab6f26-776f-457c-b345-017442936a03
+	fromColumn: '_Medidas Produtividade Abratec'.TEMPO_ID
+	toColumn: _Tempo.TEMPO_ID
+
+relationship 0ab12858-6fca-46d4-b20a-9d91ff3fd162
+	fromColumn: '_Medidas Produtividade Abratec'.COD_EMPR_SAP
+	toColumn: Empresa.'Código Empresa'
+
+relationship 0c17eb05-d2d5-40a7-afb3-2836f3ba7f86
+	fromColumn: '_Medidas Produtividade Abratec'.CONSIDERAR
+	toColumn: 'Considerar Meta Prod Armador'.'Considerar Meta Prod Armador'
+
+relationship 2e60ccd6-33b2-44b2-9a1d-3a58a18e1201
+	fromColumn: '_Medidas Produtividade Abratec'.BERCO_ID
+	toColumn: Berço.'Berço ID'
+
+relationship 2148d4d7-36c4-4188-a9bf-3b0866e50a0c
+	fromColumn: '_Medidas Produtividade Abratec'.FLAG_COMPUTA_ABRATEC
+	toColumn: 'Flag Computa ABRATEC'.'ID Flag Computa ABRATEC'
+
+relationship c6d6af89-3bb5-40e7-8b3a-d979bda5eccb
+	fromColumn: '_Medidas Produtividade Abratec'.FLAG_N4_PRODUTIVIDADE
+	toColumn: 'Flag Produtividade N4'.'ID Flag Produtividade N4'
+
+relationship dc3a4e67-a2c9-44be-8744-6e6044b949ed
+	fromColumn: '_Medidas Produtividade Abratec'.ARM_ID
+	toColumn: Armador.'Armador ID'
+
+relationship 47040341-ecb0-43be-b64f-a5c557b4a0a2
+	fromColumn: DW_FAT_PROD_ARMADOR.COD_EMPR_SAP
+	toColumn: Empresa.'Código Empresa'
+
+relationship 5fd3f1e4-b3c4-464a-ab1d-bc513b2001bc
+	fromColumn: DW_FAT_PROD_ARMADOR.TEMPO_ID
+	toColumn: _Tempo.TEMPO_ID
+
+relationship 8d188360-e0a3-4f00-8cff-ece75acabb0a
+	fromColumn: DW_FAT_PROD_ARMADOR.LINHA_ID
+	toColumn: Linha.'ID Linha'
+
+relationship 80565d32-53fa-4140-a08f-a02d7330e16c
+	fromColumn: DW_FAT_PROD_ARMADOR.ARM_ID
+	toColumn: Armador.'Armador ID'
+
+relationship 501bf6b4-8820-49b8-8b0b-1bbff461011e
+	fromColumn: '_Medidas Produtividade Pátio'.TEMPO_ID
+	toColumn: _Tempo.TEMPO_ID
+
+relationship c4a607ca-a242-4489-bebf-6a08b08f87e1
+	fromColumn: '_Medidas Produtividade Pátio'.COD_EMPR_SAP
+	toColumn: Empresa.'Código Empresa'
+
+relationship 4a2906a5-a709-41cc-a065-dc30968d0a7a
+	fromColumn: '_Medidas Produtividade Pátio'.COD_EQUIPAMENTO
+	toColumn: 'Equipamento Manutenção'.'Código Equipamento'
+
+relationship f9008cac-0f33-4cb8-b788-4f471d6aad65
+	fromColumn: '_Medidas Produtividade Pátio'.OPERADOR_ID
+	toColumn: Operador.'Operador ID'
+
+relationship 572757b7-8666-42e6-b5e3-ed5ef8c58c43
+	fromColumn: '_Medidas Receita Liquida'.TEMPO_ID
+	toColumn: _Tempo.TEMPO_ID
+
+relationship ce4be045-03dd-4b94-8019-5d3a0fa290f4
+	fromColumn: '_Medidas Receita Liquida'.COD_DIVISAO_SAP
+	toColumn: Divisão.'Código Divisão'
+
+relationship ceff2cc5-18a2-4641-8f6c-f7f9e120797c
+	fromColumn: '_Medidas Receita Liquida'.COD_EMPR_SAP
+	toColumn: Empresa.'Código Empresa'
+
+relationship 6fb5bb53-3f03-4a80-bfb2-a9a5d55431df
+	fromColumn: '_Medidas Volume Real Orçado'.TEMPO_ID
+	toColumn: _Tempo.TEMPO_ID
+
+relationship b72e2cda-85ea-4508-82db-d6b4916a7733
+	fromColumn: '_Medidas Volume Real Orçado'.COD_EMPR_SAP
+	toColumn: Empresa.'Código Empresa'
+
+relationship 13da3dc3-8f0b-4091-9ea0-b3869fb3ffaf
+	fromColumn: '_Medidas Volume Real Orçado'.MODALIDADE_ID
+	toColumn: 'Modalidade 2'.'Modalidade ID'
+
+relationship a9a3a665-4b5b-4e9d-86cf-e60482e01529
+	fromColumn: '_Medidas Volume Real Orçado'.MOVIMENTO_ID
+	toColumn: Movimento.'Movimento ID'
+
+relationship 9674dafc-db04-47cc-986e-6f1f9400fe8b
+	fromColumn: '_Medidas Volume Real Orçado'.STATUS_CNTR_ID
+	toColumn: 'Status Container 2'.'Status Container ID'
+
+relationship 75143fe2-3dc7-4612-b0d1-36ff88695f28
+	fromColumn: '_Medidas Volume Real Orçado'.REEFER
+	toColumn: Reefer.'Reefer Código'
+
+relationship 24f392de-1870-448b-b4ca-3e70b4cd51c9
+	fromColumn: '_Medidas Movimento Histórico'.TEMPO_ID
+	toColumn: _Tempo.TEMPO_ID
+
+relationship a1c8fc3f-efb7-4e11-b5c1-efbc96c643ff
+	fromColumn: '_Medidas Movimento Histórico'.STATUS_CNTR_ID
+	toColumn: 'Status Container 2'.'Status Container ID'
+
+relationship ca461cd2-cc8b-457f-8a2c-73a10c7b3f9c
+	fromColumn: '_Medidas Movimento Histórico'.MODALIDADE_MOV_HIST
+	toColumn: 'Modalidade Mov. Histórico'.'Modalidade Mov Histórico'
+
+relationship c8c988be-e2ef-4f41-804a-2c4443365a2b
+	fromColumn: '_Medidas Escalas Histórico'.TEMPO_ID
+	toColumn: _Tempo.TEMPO_ID
+
+relationship e6caa41b-9f9f-4be1-bd55-d8381a14c81e
+	fromColumn: '_Medidas Escalas Histórico'.OPER_ESCALAS_HISTORICO
+	toColumn: 'Operação Escalas Histórico'.'Operação Escalas Hist'
+
+relationship 7be97f50-b0d4-4627-871f-96eaa0f5569b
+	fromColumn: '_Medidas Abratec Histórico'.TEMPO_ID
+	toColumn: _Tempo.TEMPO_ID
+
+relationship f4a8f023-da5a-45a1-b32a-71669c98d4a7
+	fromColumn: '_Medidas Porto Novo Histórico'.TEMPO_ID
+	toColumn: _Tempo.TEMPO_ID
+
+relationship 5715ec17-5542-487d-a467-7a79bd86d6bf
+	fromColumn: '_Medidas Porto Novo Histórico'.TERMINAL
+	toColumn: 'Terminal Porto Novo'.'Terminal Porto Novo'
+
+relationship 022489a2-e30e-4524-aa6f-d714d3bf0f20
+	fromColumn: '_Medidas Ranking Armadores Base Cálculos'.TEMPO_ID
+	toColumn: _Tempo.TEMPO_ID
+
+relationship 7469fe8a-e308-4565-9557-e347af097e98
+	fromColumn: '_Medidas Ranking Armadores Base Cálculos'.'Grupo Armador Ranking'
+	toColumn: 'Grupo Armador Ranking'.'Grupo Armador Ranking'
+
+relationship 0a24b421-cc8c-4b54-a9fb-8a4e7b4d90ad
+	fromColumn: '_Medidas Ranking Armadores'.TEMPO_ID
+	toColumn: _Tempo.TEMPO_ID
+
+relationship 3709b81b-40a4-4ed0-bfaf-4c83e5161716
+	fromColumn: '_Medidas Ranking Armadores'.'Grupo Armador Ranking'
+	toColumn: 'Grupo Armador Ranking'.'Grupo Armador Ranking'
+
+relationship 7dcc2d78-da68-414d-8a60-48bd1a818540
+	fromColumn: Escalas.'ETA Programação'
+	toColumn: '_Tempo (ETA Programação)'.'Data Prog'
+
+relationship 177e3e97-daae-46a1-a8a8-8c9c9439cbac
+	fromColumn: Escalas.NAVIO_ID
+	toColumn: Vessel.'Navio ID'
+
+relationship 221cb139-1ef1-437b-9da5-455253380b56
+	fromColumn: Escalas.TEMPO_ID
+	toColumn: _Tempo.TEMPO_ID
+
+relationship 8253bb12-969b-44c0-b9ed-6565e289ab0d
+	fromColumn: Escalas.'Ref Carrier Service ID'
+	toColumn: Linha.'Código Linha'
+
+relationship 257d2f17-2abf-4601-a6cb-f22dd5325968
+	fromColumn: Escalas.'Situação Traduzida'
+	toColumn: 'Status Escala'.SITUACAO_TRADUZIDA
+
+relationship 57c8e0b4-58a2-41fb-a36a-da71f9b38be1
+	fromColumn: Escalas.ARM_ID
+	toColumn: Armador.'Armador ID'
+
+relationship 7c2f520e-06cf-451e-b36d-c5a4795b5f70
+	fromColumn: 'Pocket Price Armador'.TEMPO_ID
+	toColumn: _Tempo.TEMPO_ID
+
+relationship ecd904e7-ebfd-49c7-8028-ef410686e108
+	fromColumn: 'Pocket Price Armador'.CLIENTE_ARMADOR
+	toColumn: 'Cliente ou Armador'.'Cliente ou Armador'
+
+relationship 91425459-e72e-4af6-8553-d58638c7cf8d
+	fromColumn: 'Pocket Price Armador'.COD_EMPR_SAP
+	toColumn: Empresa.'Código Empresa'
+
+relationship 629a1373-c237-4c39-ae7f-a7d1e717c947
+	fromColumn: 'Pocket Price Armador'.GRUPO_ID
+	toColumn: Grupo.'Grupo ID'
+
+relationship 9dad900c-3f18-4875-91f7-ce8eaea5e486
+	fromColumn: 'Pocket Price Armador'.SEGMENTACAO_ID
+	toColumn: Segmentação.'Segmentação ID'
+
+relationship 504bec90-db43-4f3e-a351-929a44414e0e
+	fromColumn: 'Pocket Price Armador'.VENDEDOR_COMERC_ID
+	toColumn: Vendedor.'Vendedor ID'
+
+relationship 40d49a4a-2ef4-4947-93d3-9ea6449ca8e1
+	fromColumn: 'Pocket Price Armador'.GRUPO_RECEITA_ID
+	toColumn: 'Grupo Receita'.'Grupo Receita ID'
+
+relationship ce8b0431-1955-4a9a-b638-32736a575c59
+	fromColumn: 'Pocket Price Armador'.CCUSTO_TECON_ID
+	toColumn: 'Centro de Custo Tecon'.'Centro de Custo Tecon ID'
+
+relationship 1e4a6067-4a9f-4c6b-a74c-e62ba3a0bccc
+	fromColumn: 'Pocket Price Armador'.STATUS_CNTR_ID
+	toColumn: 'Status Container 2'.'Status Container ID'
+
+relationship 730ea027-a809-41b9-be2d-f918d38d417e
+	fromColumn: 'Pocket Price Cliente'.TEMPO_ID
+	toColumn: _Tempo.TEMPO_ID
+
+relationship 8128b378-e119-4cf9-9312-06c40ff41140
+	fromColumn: 'Pocket Price Cliente'.CLIENTE_ARMADOR
+	toColumn: 'Cliente ou Armador'.'Cliente ou Armador'
+
+relationship 966ac154-744c-4b2c-b0f4-1670acfc370e
+	fromColumn: 'Pocket Price Cliente'.COD_EMPR_SAP
+	toColumn: Empresa.'Código Empresa'
+
+relationship 46f9a97c-bd6e-4c32-8798-c92eba6e02a7
+	fromColumn: 'Pocket Price Cliente'.GRUPO_ID
+	toColumn: Grupo.'Grupo ID'
+
+relationship c0b8aea5-fb84-457a-9bc1-1d3a5fae400a
+	fromColumn: 'Pocket Price Cliente'.SEGMENTACAO_ID
+	toColumn: Segmentação.'Segmentação ID'
+
+relationship 09d625cf-a4ff-48a4-8dcc-dac8f33d5b9f
+	fromColumn: 'Pocket Price Cliente'.VENDEDOR_COMERC_ID
+	toColumn: Vendedor.'Vendedor ID'
+
+relationship 05281af3-5ec0-48cf-8ddb-29227ddf50ed
+	fromColumn: 'Pocket Price Cliente'.MODALIDADE_ID
+	toColumn: Categoria.'Categoria ID'
+
+relationship 623f16b3-a076-4aab-8534-5f40928337fa
+	fromColumn: '_Medidas Receita W017'.DETALHE_CLIENTE_ID
+	toColumn: 'Detalhes Cliente'.'Detalhes Cliente ID'
+
+relationship 98acda1f-9f80-499f-8c67-09fb6b25160d
+	fromColumn: '_Medidas Receita W017'.SERVICO_ID
+	toColumn: Serviço.'Serviço ID'
+
+relationship d943e958-3c37-4676-9255-54cba9efe00b
+	fromColumn: '_Medidas Receita W017'.COD_DIVISAO_SAP
+	toColumn: Divisão.'Código Divisão'
+
+relationship d4538fc5-6280-444c-a270-5b8911b78407
+	fromColumn: '_Medidas Receita W017'.TEMPO_ID
+	toColumn: _Tempo.TEMPO_ID
+
+relationship c3b7aaf8-aa96-4dfd-973c-70e10b4a39f1
+	fromColumn: '_Medidas Receita W017'.COD_CLIENTE_SAP
+	toColumn: Cliente/Armador.COD_CLIENTE_SAP
+
+relationship fa34fe8b-53c6-4105-ade5-48b0beefe1e6
+	fromColumn: '_Medidas Receita W017'.AGRUP_ID
+	toColumn: 'Agrupador de Serviços'.'Agrupador de Serviço ID'
+
+relationship 21320b64-bf32-41e1-bc95-e480f872374b
+	fromColumn: '_Medidas Receita W017'.TAMANHO_ID
+	toColumn: 'Tamanho Container'.'Tamanho Container ID'
+
+relationship d003c16d-e5ff-4127-b756-e768e5dffbf9
+	fromColumn: '_Medidas Receita W017'.CONGELADO
+	toColumn: Congelado.'Congelado Código'
+
+relationship adc6d5d1-8bb9-4c07-bf90-0e3a4361c766
+	fromColumn: '_Medidas Receita W017'.COMPETENCIA
+	toColumn: '_Tempo Competência'.TEMPO_ID_COMPETENCIA
+
+relationship ba8e01f2-459c-4aea-91cb-f005c584a5d7
+	fromColumn: '_Medidas Receita W017'.TIPO_VIAGEM_ID
+	toColumn: 'Tipo Viagem'.'Tipo Viagem ID'
+
+relationship dd6a696f-44c5-4202-9ca6-f3dbcf531ed6
+	fromColumn: '_Medidas Receita W017'.STATUS_CNTR_ID
+	toColumn: 'Status Container 2'.'Status Container ID'
+
+relationship 65f91c41-86e9-440b-96f1-2d6eeefe3717
+	fromColumn: '_Medidas Receita W017'.MOVIMENTO_ID
+	toColumn: Movimento.'Movimento ID'
+
+relationship 7221d505-575d-4460-a1d1-188607959513
+	fromColumn: '_Medidas Receita W017'.VENDEDOR_COMERC_ID
+	toColumn: Vendedor.'Vendedor ID'
+
+relationship fd015d03-1d71-444b-9fec-e55385a076fb
+	fromColumn: '_Medidas Receita W017'.REEFER
+	toColumn: Reefer.'Reefer Código'
+
+relationship 5def5a41-df98-46ed-8a69-1f48572df90f
+	fromColumn: '_Medidas Receita W017'.CATEGORIA_ID
+	toColumn: 'Modalidade 2'.'Modalidade ID'
+
+relationship 4c461582-db32-41b6-afc0-ea5240a2e20c
+	fromColumn: '_Medidas Receita W017'.OVERTIME
+	toColumn: Overtime.'Overtime Código'
+
+relationship fdf2efb8-5c21-4921-bfb7-ed77dc8217ab
+	fromColumn: '_Medidas Receita W017'.TIPO_ID
+	toColumn: 'Tipo Faturamento'.'Tipo Faturamento ID'
+
+relationship c8d9ec8a-278a-4b0a-8f68-e0878cdd5df2
+	fromColumn: '_Medidas Receita W017'.LINHA_ID
+	toColumn: Linha.'ID Linha'
+
+relationship a7cd999e-0ab9-4ad1-ae8c-322a8c7386bf
+	fromColumn: '_Medidas Receita W017'.COD_CLIENTE_SAP
+	toColumn: Cliente.'Código Cliente SAP'
+
+relationship d17c6ac2-bb54-4887-a713-51c8c6661cd6
+	fromColumn: '_Medidas Receita W017'.SEGMENTACAO_ID
+	toColumn: Segmentação.'Segmentação ID'
+
+relationship ec53a2a9-8de0-4a6f-af7f-1f7d20a7c60f
+	fromColumn: '_Medidas Receita W017'.CCUSTO_TECON_ID
+	toColumn: 'Centro de Custo Tecon'.'Centro de Custo Tecon ID'
+
+relationship 343d2fcb-c401-40ef-a9ac-15f6c6191dba
+	fromColumn: '_Medidas Receita W017'.CCUSTO_SAP
+	toColumn: 'Centro de Custo'.'Centro de Custo ID'
+
+relationship 9995f749-e6d0-4f72-a1ed-6841b49053f3
+	fromColumn: '_Medidas Receita W017'.GRUPO_RECEITA_ID
+	toColumn: 'Grupo Receita'.'Grupo Receita ID'
+
+relationship c7b078f5-76e0-4c41-88e5-05a1866d9dfc
+	fromColumn: '_Medidas Receita W017'.NAVIO_ID
+	toColumn: Vessel.'Navio ID'
+
+relationship ec5f5cf7-040f-4bc8-be7d-e76eece3dc58
+	fromColumn: '_Medidas Receita W017'.GRUPO_ID
+	toColumn: Grupo.'Grupo ID'
+
+relationship c65a8c96-cac8-4aae-ae2b-16852d403820
+	fromColumn: '_Medidas Receita W017'.TIPO_DOCUMENTO_ID
+	toColumn: 'Tipo Documento'.TIPO_DOCUMENTO_ID
+
+relationship 8cb47eec-ebba-4173-96d9-8d1bfe8dbebb
+	fromColumn: '_Medidas Receita W017'.COD_EMPR_SAP
+	toColumn: 'Empresa W017'.'Código Empresa'
+

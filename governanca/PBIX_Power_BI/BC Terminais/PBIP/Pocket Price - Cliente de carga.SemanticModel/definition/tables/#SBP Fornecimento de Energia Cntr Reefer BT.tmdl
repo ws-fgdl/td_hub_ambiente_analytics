@@ -1,0 +1,28 @@
+table '#SBP Fornecimento de Energia Cntr Reefer BT'
+	lineageTag: 3c28755b-488b-4d04-b147-4282668f9ad4
+
+	measure 'Valor #SBP Fornecimento de Energia Cntr Reefer BT' = SELECTEDVALUE('#SBP Fornecimento de Energia Cntr Reefer BT'[#SBP Fornecimento de Energia Cntr Reefer BT])
+		lineageTag: 963f00a8-8ee4-45c1-9ad7-9334e7d0ef1c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#SBP Fornecimento de Energia Cntr Reefer BT'
+		lineageTag: 449aaa64-2f90-45cf-9a34-aa01f0f44a42
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '#SBP Fornecimento de Energia Cntr Reefer BT' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 0.5, 0.0001)
+
+	annotation PBI_Id = 582efafd7ff44d1798e8b8d80980cd0a
+

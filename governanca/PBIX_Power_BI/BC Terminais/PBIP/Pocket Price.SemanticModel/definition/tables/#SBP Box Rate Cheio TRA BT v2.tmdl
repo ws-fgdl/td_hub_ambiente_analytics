@@ -1,0 +1,37 @@
+table '#SBP Box Rate Cheio TRA BT v2'
+	lineageTag: 6ed36835-1377-46be-81fc-39586c7322a2
+
+	measure 'Valor #SBP Box Rate Cheio TRA BT v2' =
+			
+			COALESCE(SELECTEDVALUE('#SBP Box Rate Cheio TRA BT v2'[BoxRateDecimal]), 0)
+		lineageTag: 9cf878fc-538c-440f-8ff0-0a651146c0a2
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Value
+		formatString: 0
+		lineageTag: 71fd3142-b646-428a-b765-3bcc7e14d305
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Value]
+
+		annotation SummarizationSetBy = Automatic
+
+	column BoxRateDecimal = DIVIDE('#SBP Box Rate Cheio TRA BT v2'[Value], 10000)
+		formatString: 0.0000%;-0.0000%;0.0000%
+		lineageTag: d6792f6b-cd58-49ba-b827-9747c9f9590a
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	partition '#SBP Box Rate Cheio TRA BT v2' = calculated
+		mode: import
+		source =
+				
+				SELECTCOLUMNS(
+				    '#Param BoxRate_Int',
+				    "Value", '#Param BoxRate_Int'[Value]
+				)
+
+	annotation PBI_Id = 4ec4cc2524f64aacbdce0f673259a80b
+

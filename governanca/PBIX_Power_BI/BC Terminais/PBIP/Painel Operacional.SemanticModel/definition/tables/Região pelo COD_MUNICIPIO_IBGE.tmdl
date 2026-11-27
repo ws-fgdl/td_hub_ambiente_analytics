@@ -1,0 +1,32 @@
+table 'Região pelo COD_MUNICIPIO_IBGE'
+	lineageTag: e77118cb-780d-4320-872b-467a7ff3a8ba
+	sourceLineageTag: 60bc9746-4772-4746-a98e-5b2ff81f6842
+
+	column 'Região pelo COD_MUNICIPIO_IBGE ID'
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		lineageTag: 6300ac90-f305-4484-a672-e5a39f18ee3e
+		sourceLineageTag: f7e763db-38ba-4e22-8657-580aa53c3dd6
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Região pelo COD_MUNICIPIO_IBGE ID
+
+		annotation SummarizationSetBy = User
+
+	column 'Região pelo COD_MUNICIPIO_IBGE'
+		dataType: string
+		lineageTag: 2c7fae5e-ad45-4607-b76a-880276171ae4
+		sourceLineageTag: 99e77378-7ac6-470b-be41-8b0fd3f57a00
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Região pelo COD_MUNICIPIO_IBGE
+
+		annotation SummarizationSetBy = User
+
+	partition 'Região pelo COD_MUNICIPIO_IBGE' = entity
+		mode: directQuery
+		source
+			entityName: Região pelo COD_MUNICIPIO_IBGE
+			expressionSource: 'DirectQuery para AS – Modelo Operações Portuárias'
+

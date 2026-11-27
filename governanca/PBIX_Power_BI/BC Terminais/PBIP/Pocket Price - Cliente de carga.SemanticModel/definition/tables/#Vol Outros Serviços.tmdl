@@ -1,0 +1,28 @@
+table '#Vol Outros Serviços'
+	lineageTag: 696f6cae-58b1-4a4a-8a61-d270d516ab55
+
+	measure 'Valor #Vol Outros Serviços' = SELECTEDVALUE('#Vol Outros Serviços'[#Vol Outros Serviços])
+		lineageTag: 79f9bc42-c991-4e36-8513-5eb88a4bc9c7
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#Vol Outros Serviços'
+		lineageTag: b54ebff6-1cf6-4347-ae98-ade866ee6a05
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '#Vol Outros Serviços' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 1, 0.001)
+
+	annotation PBI_Id = b352d87b63054339a787a3ffaf7525dd
+

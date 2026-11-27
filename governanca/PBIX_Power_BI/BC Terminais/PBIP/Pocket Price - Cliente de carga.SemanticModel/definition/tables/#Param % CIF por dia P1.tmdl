@@ -1,0 +1,29 @@
+table '#Param % CIF por dia P1'
+	lineageTag: dca2588d-9cff-45b9-9fac-ebb9d9d830da
+
+	measure 'Valor Param % CIF por dia P1 (selecionado)' = SELECTEDVALUE('#Param % CIF por dia P1'[Param % CIF por dia P1])
+		formatString: "R$"\ #,0.###############;-"R$"\ #,0.###############;"R$"\ #,0.###############
+		lineageTag: 9caa55dd-7f46-4570-b26d-4bb46cd7dc42
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	column 'Param % CIF por dia P1'
+		lineageTag: 0db18941-e773-4d48-aa34-0e7160ed9a27
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '#Param % CIF por dia P1' = calculated
+		mode: import
+		source = GENERATESERIES(CURRENCY(-1), CURRENCY(1), CURRENCY(0.001))
+
+	annotation PBI_Id = 0d3e23ca082f4d2a9140376c5ac09b8b
+

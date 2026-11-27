@@ -1,0 +1,29 @@
+table '#Param % ajuste CIF Cheio Imp'
+	lineageTag: 72e35b98-7d5a-4d38-ae96-9d1d292b5151
+
+	measure 'Valor #Param % ajuste CIF Cheio Imp (selecionado)' = SELECTEDVALUE('#Param % ajuste CIF Cheio Imp'[#Param % ajuste CIF Cheio Imp])
+		formatString: "R$"\ #,0.###############;-"R$"\ #,0.###############;"R$"\ #,0.###############
+		lineageTag: ae96ff2f-0773-43d4-9be7-6aa8142a8aac
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	column '#Param % ajuste CIF Cheio Imp'
+		lineageTag: 21a6c004-626a-44e5-916b-77f7a4f65418
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '#Param % ajuste CIF Cheio Imp' = calculated
+		mode: import
+		source = GENERATESERIES(CURRENCY(-1), CURRENCY(1), CURRENCY(0.01))
+
+	annotation PBI_Id = b5f763979f9d4e608a87f94c65c77f74
+

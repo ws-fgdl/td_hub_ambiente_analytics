@@ -1,0 +1,28 @@
+table '#Monitoramento Cntr Reefer'
+	lineageTag: 74653e67-a6cf-4a5e-9dbe-549a6054c832
+
+	measure 'Valor #Monitoramento Cntr Reefer' = SELECTEDVALUE('#Monitoramento Cntr Reefer'[#Monitoramento Cntr Reefer])
+		lineageTag: e5ae4179-9548-4e52-bdd2-d993ea080aa6
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#Monitoramento Cntr Reefer'
+		lineageTag: 2040aae5-60dd-412a-90d0-8cb7e3e4669f
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '#Monitoramento Cntr Reefer' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 1, 0.001)
+
+	annotation PBI_Id = 020257de20334f02a808481f415af018
+

@@ -1,0 +1,27 @@
+table '#SBP Cargas Especiais'
+	lineageTag: e5103662-13d3-49dd-9ea6-8ab684530de5
+
+	measure 'Valor #SBP Cargas Especiais' = SELECTEDVALUE('#SBP Cargas Especiais'[#SBP Cargas Especiais])
+		lineageTag: e9d00730-0a02-49cf-b2c8-756ddfd5e414
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#SBP Cargas Especiais'
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: b89381a1-87dc-4af9-9a22-0291bbb256b7
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition '#SBP Cargas Especiais' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 0.5, 0.001)
+
+	annotation PBI_Id = bcfed64804a44cfe8dfe209e5e743048
+

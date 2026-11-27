@@ -1,0 +1,1274 @@
+table '_Medidas Financeiro - SAP'
+	lineageTag: c06e27c0-2735-4e84-820e-050dd42d113a
+	sourceLineageTag: 53f2250c-3514-40da-84ac-c129a549cd5c
+
+	measure Slicer_Possui_Financeiro_SAP_Sim_Não = EXTERNALMEASURE("Slicer_Possui_Financeiro_SAP_Sim_Não", STRING, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: bf8addd7-271e-4754-a4b4-ba60161167b3
+		sourceLineageTag: 699f667b-666f-4cf1-a21b-6972b1be9c66
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isText":true}
+
+	measure 'EBITDA Realizado R$' = EXTERNALMEASURE("EBITDA Realizado R$", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		lineageTag: 347fe2f3-c2af-465d-96a0-4fdd72fc5c88
+		sourceLineageTag: fc159a94-d78f-4860-a5e5-8e425dc12e64
+		dataCategory: Uncategorized
+
+	measure 'EBITDA Realizado USD' = EXTERNALMEASURE("EBITDA Realizado USD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		lineageTag: d3adbb13-5a70-442f-8b18-6ae8071db5c1
+		sourceLineageTag: 8e047c46-6ff4-44f2-a9c8-5cea24e1ad7b
+		dataCategory: Uncategorized
+
+	measure 'EBITDA Orçado R$' = EXTERNALMEASURE("EBITDA Orçado R$", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		lineageTag: 4ac2cc16-fe07-4da0-b881-e65cf52a41f1
+		sourceLineageTag: 7c667237-75bf-4aa6-8ff4-c6cfacb8e2f7
+		dataCategory: Uncategorized
+
+	measure 'EBITDA Orçado USD' = EXTERNALMEASURE("EBITDA Orçado USD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		lineageTag: f54111ef-28dd-45b2-9893-232d4f73b638
+		sourceLineageTag: a575c6df-3409-47e9-8d64-a739305409ab
+		dataCategory: Uncategorized
+
+	measure 'Receita Liquita Realizado R$' = EXTERNALMEASURE("Receita Liquita Realizado R$", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		lineageTag: 9abc29d4-d863-4828-843d-e20d85bd9e78
+		sourceLineageTag: 9b9aca3e-f11b-4b59-9c2e-2dc8c7ce5590
+		dataCategory: Uncategorized
+
+	measure 'Receita Liquida Realizado USD' = EXTERNALMEASURE("Receita Liquida Realizado USD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		lineageTag: 1a1beec6-f584-4d86-9d4f-c7756fd9d0a9
+		sourceLineageTag: ecdf388d-f1b7-473a-80e4-e7fa904a256c
+		dataCategory: Uncategorized
+
+	measure 'Receita Liquida Orçado R$' = EXTERNALMEASURE("Receita Liquida Orçado R$", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		lineageTag: c26a46c1-d6f9-4454-bfc1-870b86be2464
+		sourceLineageTag: dd348a22-ebb2-41e7-9e47-6c43da04f84b
+		dataCategory: Uncategorized
+
+	measure 'Receita Liquida Orçado USD' = EXTERNALMEASURE("Receita Liquida Orçado USD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		lineageTag: ba7aae4c-dc3f-453a-b3e1-19d406e4840f
+		sourceLineageTag: d9e9bb52-c9d4-4032-a028-062b2f84fa1c
+		dataCategory: Uncategorized
+
+	measure 'LAIR Realizado R$' = EXTERNALMEASURE("LAIR Realizado R$", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		lineageTag: 1ea08a91-7837-4da2-8d3e-514791160169
+		sourceLineageTag: a599341f-bd80-4fca-b3da-882bbf020739
+		dataCategory: Uncategorized
+
+	measure 'LAIR Realizado USD' = EXTERNALMEASURE("LAIR Realizado USD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		lineageTag: 42698291-c69d-41c5-876b-f355b1fd9cc5
+		sourceLineageTag: b22abdd3-8a39-4e67-876c-8aed0315a052
+		dataCategory: Uncategorized
+
+	measure 'LAIR Orçado R$' = EXTERNALMEASURE("LAIR Orçado R$", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		lineageTag: 92515186-2139-430e-a879-a417e27a59ce
+		sourceLineageTag: 30e865c5-98a9-4893-ab80-16aa4f087864
+		dataCategory: Uncategorized
+
+	measure 'LAIR Orçado USD' = EXTERNALMEASURE("LAIR Orçado USD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		lineageTag: 4c43c1a1-6fca-493e-8d2a-e7ca5b113a4d
+		sourceLineageTag: 2f693f8a-e568-4625-9cfa-a7fde40ce17b
+		dataCategory: Uncategorized
+
+	measure 'EBITDA SR Realizado R$' = EXTERNALMEASURE("EBITDA SR Realizado R$", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		lineageTag: 8fb1fe61-3bb8-4bf0-a66c-1ec9c9cf82b5
+		sourceLineageTag: bc876aa4-2a19-4542-9d5d-01e6c83b1488
+		dataCategory: Uncategorized
+
+	measure 'EBITDA SR Realizado USD' = EXTERNALMEASURE("EBITDA SR Realizado USD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		lineageTag: 9b996315-dfc9-446d-98aa-1590bae8111a
+		sourceLineageTag: 5532d2de-db36-41ca-b353-c083605c532a
+		dataCategory: Uncategorized
+
+	measure 'EBITDA SR Orçado R$' = EXTERNALMEASURE("EBITDA SR Orçado R$", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		lineageTag: a7d56edd-3422-4db3-9ea9-5ebad0890e56
+		sourceLineageTag: c261d449-0de1-480c-b80b-87a40a56ec4d
+		dataCategory: Uncategorized
+
+	measure 'EBITDA SR Orçado USD' = EXTERNALMEASURE("EBITDA SR Orçado USD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		lineageTag: 26a34ecd-1aa4-4faa-b298-ca7fbdfe9ccc
+		sourceLineageTag: 1a6dc3f5-5439-42f2-a250-551949c65383
+		dataCategory: Uncategorized
+
+	measure 'LAIR SR Realizado R$' = EXTERNALMEASURE("LAIR SR Realizado R$", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		lineageTag: c448fcf2-55a8-4089-8337-350d19538f5e
+		sourceLineageTag: 344a9743-41b3-41be-9171-2b2ef162e52c
+		dataCategory: Uncategorized
+
+	measure 'LAIR SR Realizado USD' = EXTERNALMEASURE("LAIR SR Realizado USD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		lineageTag: a84411a4-cb28-4eb4-a7de-86485e1f36fc
+		sourceLineageTag: f8e9cb88-9e96-4321-a5b5-b72414a8c0f3
+		dataCategory: Uncategorized
+
+	measure 'LAIR SR Orçado R$' = EXTERNALMEASURE("LAIR SR Orçado R$", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		lineageTag: 758cf100-6440-49da-8a52-49ba98b443c1
+		sourceLineageTag: c78923e8-ce49-4cf4-be13-9b937bf15bd9
+		dataCategory: Uncategorized
+
+	measure 'LAIR SR Orçado USD' = EXTERNALMEASURE("LAIR SR Orçado USD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		lineageTag: a8dc1e5b-558a-4662-a102-52915ee8df76
+		sourceLineageTag: 5fed6dac-b962-44e8-9710-245b27b8f833
+		dataCategory: Uncategorized
+
+	measure 'EBITDA Realizado R$ PY' = EXTERNALMEASURE("EBITDA Realizado R$ PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		displayFolder: PY
+		lineageTag: f8435ce5-2bbe-4a90-bd8e-9642ad72c089
+		sourceLineageTag: f9ccdc87-89a9-4c08-b081-162c66880064
+		dataCategory: Uncategorized
+
+	measure 'EBITDA Realizado R$ PYTD' = EXTERNALMEASURE("EBITDA Realizado R$ PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		displayFolder: PYTD
+		lineageTag: 61cf010a-b437-478b-b695-18395a5b5247
+		sourceLineageTag: e79cd2fe-1eaf-4530-95d3-41ba9bc3e14b
+		dataCategory: Uncategorized
+
+	measure 'EBITDA Realizado R$ YTD' = EXTERNALMEASURE("EBITDA Realizado R$ YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		displayFolder: YTD
+		lineageTag: 465f998e-671d-4694-b4aa-189086e8d7ae
+		sourceLineageTag: 5d2fb661-66d9-4780-a627-f3efaf49511b
+		dataCategory: Uncategorized
+
+	measure 'EBITDA Realizado USD PY' = EXTERNALMEASURE("EBITDA Realizado USD PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		displayFolder: PY
+		lineageTag: 02252b79-06fe-498f-98a5-593bff0bf645
+		sourceLineageTag: 33cde85d-9cb1-4e69-98e5-43aa11722473
+		dataCategory: Uncategorized
+
+	measure 'EBITDA Realizado USD PYTD' = EXTERNALMEASURE("EBITDA Realizado USD PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		displayFolder: PYTD
+		lineageTag: 1b8e7199-135c-4e01-8ff8-83adad95d9e4
+		sourceLineageTag: 0bedf1c9-92a6-4be0-afb2-5aefb66f0e8a
+		dataCategory: Uncategorized
+
+	measure 'EBITDA Realizado USD YTD' = EXTERNALMEASURE("EBITDA Realizado USD YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		displayFolder: YTD
+		lineageTag: 02068167-0797-458a-a4e6-d035f529d262
+		sourceLineageTag: 144248d5-8965-42c0-abdc-26db177eb5ce
+		dataCategory: Uncategorized
+
+	measure 'EBITDA Orçado R$ PY' = EXTERNALMEASURE("EBITDA Orçado R$ PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		displayFolder: PY
+		lineageTag: 98922715-c736-4b27-bba9-b287715f1f32
+		sourceLineageTag: 3f0e3b84-70cc-41cc-80fd-ea429b012ef7
+		dataCategory: Uncategorized
+
+	measure 'EBITDA Orçado R$ PYTD' = EXTERNALMEASURE("EBITDA Orçado R$ PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		displayFolder: PYTD
+		lineageTag: 4398ca18-6a99-43f1-9552-fbcb7e252dfd
+		sourceLineageTag: ad94268c-5868-4d08-9859-eb1cabb37f02
+		dataCategory: Uncategorized
+
+	measure 'EBITDA Orçado R$ YTD' = EXTERNALMEASURE("EBITDA Orçado R$ YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		displayFolder: YTD
+		lineageTag: eb75496c-7d43-4d90-93e6-9bea673c5c67
+		sourceLineageTag: b542f8fd-2bd5-4503-bc7e-503933c42ecf
+		dataCategory: Uncategorized
+
+	measure 'EBITDA Orçado USD PY' = EXTERNALMEASURE("EBITDA Orçado USD PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		displayFolder: PY
+		lineageTag: 2aed6238-c82b-4413-96b8-64e266e68f42
+		sourceLineageTag: 4d4bc234-a577-4178-9fe7-703f5fd188dd
+		dataCategory: Uncategorized
+
+	measure 'EBITDA Orçado USD PYTD' = EXTERNALMEASURE("EBITDA Orçado USD PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		displayFolder: PYTD
+		lineageTag: f71cfc86-b399-4ad9-b341-d7ca037a1729
+		sourceLineageTag: 66080237-a02f-4bb3-9618-a43040f295e1
+		dataCategory: Uncategorized
+
+	measure 'EBITDA Orçado USD YTD' = EXTERNALMEASURE("EBITDA Orçado USD YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		displayFolder: YTD
+		lineageTag: c1b23665-1e34-48ac-8607-3bbe9f4eb5d2
+		sourceLineageTag: 896d6897-eb98-49b3-ba78-fe6f7ab75e46
+		dataCategory: Uncategorized
+
+	measure 'Receita Liquita Realizado R$ PY' = EXTERNALMEASURE("Receita Liquita Realizado R$ PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		displayFolder: PY
+		lineageTag: a544a2db-ca57-42e2-97f9-f25c31c59a3e
+		sourceLineageTag: 28683d6a-acef-4504-ac50-6a4a36e3b313
+		dataCategory: Uncategorized
+
+	measure 'Receita Liquita Realizado R$ PYTD' = EXTERNALMEASURE("Receita Liquita Realizado R$ PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		displayFolder: PYTD
+		lineageTag: 63f4f5df-26fe-4901-8bc9-8558d5d77a31
+		sourceLineageTag: 7d97af34-78ff-4e3b-8afd-4283c25887df
+		dataCategory: Uncategorized
+
+	measure 'Receita Liquita Realizado R$ YTD' = EXTERNALMEASURE("Receita Liquita Realizado R$ YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		displayFolder: YTD
+		lineageTag: 28186faa-622f-4c8c-925b-93e885698ff4
+		sourceLineageTag: 26672e3b-6dc0-4d44-be0a-979599fa0aad
+		dataCategory: Uncategorized
+
+	measure 'Receita Liquida Realizado USD PY' = EXTERNALMEASURE("Receita Liquida Realizado USD PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		displayFolder: PY
+		lineageTag: 7cb3f4a2-ac44-4ac7-88b2-1d9006d0e10c
+		sourceLineageTag: a0d46546-504b-402c-a577-c1d2fe46df0a
+		dataCategory: Uncategorized
+
+	measure 'Receita Liquida Realizado USD PYTD' = EXTERNALMEASURE("Receita Liquida Realizado USD PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		displayFolder: PYTD
+		lineageTag: 649df990-6cec-403b-a7f9-0c6a3472e8ee
+		sourceLineageTag: c65082eb-2ae1-43d1-864e-8a6ef4758844
+		dataCategory: Uncategorized
+
+	measure 'Receita Liquida Realizado USD YTD' = EXTERNALMEASURE("Receita Liquida Realizado USD YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		displayFolder: YTD
+		lineageTag: d3382671-f784-4557-821f-ddaa2f8f357f
+		sourceLineageTag: 7226af97-9f4f-4f56-9234-6a0755d786cd
+		dataCategory: Uncategorized
+
+	measure 'Receita Liquida Orçado R$ PY' = EXTERNALMEASURE("Receita Liquida Orçado R$ PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		displayFolder: PY
+		lineageTag: f16de2ee-a2e4-4d24-be89-f98f16f12b9e
+		sourceLineageTag: 2ff1bc48-c8dc-45eb-8081-25666dfd1d69
+		dataCategory: Uncategorized
+
+	measure 'Receita Liquida Orçado R$ PYTD' = EXTERNALMEASURE("Receita Liquida Orçado R$ PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		displayFolder: PYTD
+		lineageTag: d9c49edd-e641-4778-9e2d-1fef3bea63e3
+		sourceLineageTag: 91297501-285b-4cfc-b957-971242b57ecf
+		dataCategory: Uncategorized
+
+	measure 'Receita Liquida Orçado R$ YTD' = EXTERNALMEASURE("Receita Liquida Orçado R$ YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		displayFolder: YTD
+		lineageTag: 19f8a433-11a2-46fe-b32a-ff1a5d06fe26
+		sourceLineageTag: 3cfbb870-f09f-46ee-a0a5-34fff4acecd5
+		dataCategory: Uncategorized
+
+	measure 'Receita Liquida Orçado USD PY' = EXTERNALMEASURE("Receita Liquida Orçado USD PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		displayFolder: PY
+		lineageTag: 7d06091f-0b85-454e-9cc8-7146eb58c875
+		sourceLineageTag: 81d20d53-e344-472a-8c77-2b078a295d9f
+		dataCategory: Uncategorized
+
+	measure 'Receita Liquida Orçado USD PYTD' = EXTERNALMEASURE("Receita Liquida Orçado USD PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		displayFolder: PYTD
+		lineageTag: d89795ea-36cc-42e7-a4cb-806097b88f15
+		sourceLineageTag: 6f99db17-f9d6-4e81-a847-5a97a518418f
+		dataCategory: Uncategorized
+
+	measure 'Receita Liquida Orçado USD YTD' = EXTERNALMEASURE("Receita Liquida Orçado USD YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		displayFolder: YTD
+		lineageTag: 8237f7ea-4b0f-4a7b-b34d-53ccefd834bf
+		sourceLineageTag: 49632cde-8d38-4f0a-a30a-2308b389b7b9
+		dataCategory: Uncategorized
+
+	measure 'LAIR Realizado R$ PY' = EXTERNALMEASURE("LAIR Realizado R$ PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		displayFolder: PY
+		lineageTag: 6a529694-dc9f-4ef7-afd6-3354dc1e4c34
+		sourceLineageTag: 3e5081b8-9477-482b-b689-4ff825719d5c
+		dataCategory: Uncategorized
+
+	measure 'LAIR Realizado R$ PYTD' = EXTERNALMEASURE("LAIR Realizado R$ PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		displayFolder: PYTD
+		lineageTag: 8de66d93-8244-493e-ac23-a41ed4a32ac5
+		sourceLineageTag: 406c8948-138d-44cc-b584-97de48a404bf
+		dataCategory: Uncategorized
+
+	measure 'LAIR Realizado R$ YTD' = EXTERNALMEASURE("LAIR Realizado R$ YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		displayFolder: YTD
+		lineageTag: 6094b65f-b01c-4f81-8d8d-3d36dce30b82
+		sourceLineageTag: e59a7565-4e20-41ce-9f10-af0f1233722f
+		dataCategory: Uncategorized
+
+	measure 'LAIR Realizado USD PY' = EXTERNALMEASURE("LAIR Realizado USD PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		displayFolder: PY
+		lineageTag: 514d754d-e87d-4aae-9162-bec5c8173e93
+		sourceLineageTag: 58cc547b-0874-412b-bfe6-902909f716b9
+		dataCategory: Uncategorized
+
+	measure 'LAIR Realizado USD PYTD' = EXTERNALMEASURE("LAIR Realizado USD PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		displayFolder: PYTD
+		lineageTag: 5cf9fc48-3744-448d-8813-3cccc29e1bfd
+		sourceLineageTag: 47959fe2-6506-40a2-9719-aa458e20648c
+		dataCategory: Uncategorized
+
+	measure 'LAIR Realizado USD YTD' = EXTERNALMEASURE("LAIR Realizado USD YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		displayFolder: YTD
+		lineageTag: ac2c6e1d-ef0c-4b4c-86f9-414492980410
+		sourceLineageTag: 6409fa09-eaca-4057-8703-d8eef01204b1
+		dataCategory: Uncategorized
+
+	measure 'LAIR Orçado R$ PY' = EXTERNALMEASURE("LAIR Orçado R$ PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		displayFolder: PY
+		lineageTag: 7cc7ceeb-d2d1-4bd4-a086-a94ecd76a799
+		sourceLineageTag: da11f48b-ae5d-4417-b08f-3378bf748adb
+		dataCategory: Uncategorized
+
+	measure 'LAIR Orçado R$ PYTD' = EXTERNALMEASURE("LAIR Orçado R$ PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		displayFolder: PYTD
+		lineageTag: 77466dbf-054f-448c-afd6-642451a30c5e
+		sourceLineageTag: 5722d74e-d3e3-47e6-a161-0d5afefdbf1f
+		dataCategory: Uncategorized
+
+	measure 'LAIR Orçado R$ YTD' = EXTERNALMEASURE("LAIR Orçado R$ YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		displayFolder: YTD
+		lineageTag: d5263cd2-c45d-4812-976b-938de425ba2c
+		sourceLineageTag: 90215d22-f30b-40f0-8b1d-0a297f6803b6
+		dataCategory: Uncategorized
+
+	measure 'LAIR Orçado USD PY' = EXTERNALMEASURE("LAIR Orçado USD PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		displayFolder: PY
+		lineageTag: bd351bf4-9d2c-4236-bbbb-6d4e12159e4a
+		sourceLineageTag: 32af211a-eae4-4082-a5c4-f675dce38626
+		dataCategory: Uncategorized
+
+	measure 'LAIR Orçado USD PYTD' = EXTERNALMEASURE("LAIR Orçado USD PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		displayFolder: PYTD
+		lineageTag: eeeb7f01-0fc5-4241-8e05-1245f87d820d
+		sourceLineageTag: 3983d976-c1c1-4c4d-9a54-0780ec369abc
+		dataCategory: Uncategorized
+
+	measure 'LAIR Orçado USD YTD' = EXTERNALMEASURE("LAIR Orçado USD YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		displayFolder: YTD
+		lineageTag: 13c1bd66-14f4-4717-9dc1-199b51ce26d3
+		sourceLineageTag: 5723a2e3-1052-45fa-8c5d-ca818817e811
+		dataCategory: Uncategorized
+
+	measure 'EBITDA SR Realizado R$ PY' = EXTERNALMEASURE("EBITDA SR Realizado R$ PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		displayFolder: PY
+		lineageTag: ee8ce9ca-725d-4b14-98d6-bc05c421a9fc
+		sourceLineageTag: 43bf2880-02c6-459e-88c3-904baf5d27c7
+		dataCategory: Uncategorized
+
+	measure 'EBITDA SR Realizado R$ PYTD' = EXTERNALMEASURE("EBITDA SR Realizado R$ PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		displayFolder: PYTD
+		lineageTag: b8d828f4-948a-41aa-a399-6288a1a64fbd
+		sourceLineageTag: 0cca0af0-4316-49aa-9f15-f422334c3c7e
+		dataCategory: Uncategorized
+
+	measure 'EBITDA SR Realizado R$ YTD' = EXTERNALMEASURE("EBITDA SR Realizado R$ YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		displayFolder: YTD
+		lineageTag: 702ec628-714d-455f-9380-1ca32e2644f2
+		sourceLineageTag: 077b148e-e2dd-4d3d-89c1-77c3efd9f1bc
+		dataCategory: Uncategorized
+
+	measure 'EBITDA SR Realizado USD PY' = EXTERNALMEASURE("EBITDA SR Realizado USD PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		displayFolder: PY
+		lineageTag: 877c9198-159f-488e-9f68-183ac04b7d44
+		sourceLineageTag: 3b5c12a0-97b3-4f02-a8b9-78b0e51111c1
+		dataCategory: Uncategorized
+
+	measure 'EBITDA SR Realizado USD PYTD' = EXTERNALMEASURE("EBITDA SR Realizado USD PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		displayFolder: PYTD
+		lineageTag: e6114678-82be-4a68-9fe5-05a074e8fdc3
+		sourceLineageTag: 4b64a5a3-60b8-4c48-9ae1-50c52827e072
+		dataCategory: Uncategorized
+
+	measure 'EBITDA SR Realizado USD YTD' = EXTERNALMEASURE("EBITDA SR Realizado USD YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		displayFolder: YTD
+		lineageTag: 6ce2f2d5-7333-4913-9aed-78c5a909c473
+		sourceLineageTag: ca7a9f58-41e2-4d94-8086-af542578b9d6
+		dataCategory: Uncategorized
+
+	measure 'EBITDA SR Orçado R$ PY' = EXTERNALMEASURE("EBITDA SR Orçado R$ PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		displayFolder: PY
+		lineageTag: ab4cc628-3baf-4ed8-8fd6-c33a30de551d
+		sourceLineageTag: ce8c40b0-8ea5-4fc7-a242-67b073175719
+		dataCategory: Uncategorized
+
+	measure 'EBITDA SR Orçado R$ PYTD' = EXTERNALMEASURE("EBITDA SR Orçado R$ PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		displayFolder: PYTD
+		lineageTag: f34ee803-0992-49e9-a938-a546c6bb8e7f
+		sourceLineageTag: d694149a-cb24-40fb-a242-9ca91b58ed75
+		dataCategory: Uncategorized
+
+	measure 'EBITDA SR Orçado R$ YTD' = EXTERNALMEASURE("EBITDA SR Orçado R$ YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		displayFolder: YTD
+		lineageTag: 209795ba-adb2-41ca-9a52-164b9f11b78f
+		sourceLineageTag: e7d0bdd3-ec2a-4149-987e-e070998dd8ce
+		dataCategory: Uncategorized
+
+	measure 'EBITDA SR Orçado USD PY' = EXTERNALMEASURE("EBITDA SR Orçado USD PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		displayFolder: PY
+		lineageTag: 3efb773c-43f7-4d2c-9344-426250889a73
+		sourceLineageTag: e2e557d9-53d7-44c4-baa7-6bdc539c012e
+		dataCategory: Uncategorized
+
+	measure 'EBITDA SR Orçado USD PYTD' = EXTERNALMEASURE("EBITDA SR Orçado USD PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		displayFolder: PYTD
+		lineageTag: 085a60a1-e3b9-4d2d-bb16-0afc84392ed8
+		sourceLineageTag: e31086ba-8dcd-45cb-987c-1b2c833de425
+		dataCategory: Uncategorized
+
+	measure 'EBITDA SR Orçado USD YTD' = EXTERNALMEASURE("EBITDA SR Orçado USD YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		displayFolder: YTD
+		lineageTag: 3ce4b719-7902-4583-ab09-1b7c5c2c548f
+		sourceLineageTag: 44593141-7c88-4007-b9f0-887e509e2220
+		dataCategory: Uncategorized
+
+	measure 'LAIR SR Realizado R$ PY' = EXTERNALMEASURE("LAIR SR Realizado R$ PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		displayFolder: PY
+		lineageTag: 6dc5f3e9-e079-4d70-879b-dc888dde7c8b
+		sourceLineageTag: 19a8d995-e145-414a-9a3c-752284743787
+		dataCategory: Uncategorized
+
+	measure 'LAIR SR Realizado R$ PYTD' = EXTERNALMEASURE("LAIR SR Realizado R$ PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		displayFolder: PYTD
+		lineageTag: cb366029-2972-4eb4-a9b6-ef54d146bb40
+		sourceLineageTag: f7b896c3-3009-4722-9b97-09575f4b0328
+		dataCategory: Uncategorized
+
+	measure 'LAIR SR Realizado R$ YTD' = EXTERNALMEASURE("LAIR SR Realizado R$ YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		displayFolder: YTD
+		lineageTag: 12a1a8e0-acc3-4e0a-8181-98dc94433447
+		sourceLineageTag: 1899b7c0-d7ef-4d24-b9ff-ae102466f632
+		dataCategory: Uncategorized
+
+	measure 'LAIR SR Realizado USD PY' = EXTERNALMEASURE("LAIR SR Realizado USD PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		displayFolder: PY
+		lineageTag: 86cf0611-7ae7-4227-bb0d-5e5a09003502
+		sourceLineageTag: b9c7f19a-b249-486d-b411-f1c0c7df8c4d
+		dataCategory: Uncategorized
+
+	measure 'LAIR SR Realizado USD PYTD' = EXTERNALMEASURE("LAIR SR Realizado USD PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		displayFolder: PYTD
+		lineageTag: 3ebf27db-e9fc-430a-8c48-8dac7f979d6c
+		sourceLineageTag: 051fe98d-69cc-402a-a73c-8482aeba467e
+		dataCategory: Uncategorized
+
+	measure 'LAIR SR Realizado USD YTD' = EXTERNALMEASURE("LAIR SR Realizado USD YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		displayFolder: YTD
+		lineageTag: c27147ea-373b-4d6f-8bf1-b7eb4054664c
+		sourceLineageTag: 61384cee-e8f0-46ac-a8d3-77784584777d
+		dataCategory: Uncategorized
+
+	measure 'LAIR SR Orçado R$ PY' = EXTERNALMEASURE("LAIR SR Orçado R$ PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		displayFolder: PY
+		lineageTag: f71667d4-4805-4221-9f10-9c10e6b3a2c5
+		sourceLineageTag: 554fb6e1-0887-4e5a-938e-c38df7e297ec
+		dataCategory: Uncategorized
+
+	measure 'LAIR SR Orçado R$ PYTD' = EXTERNALMEASURE("LAIR SR Orçado R$ PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		displayFolder: PYTD
+		lineageTag: 20213968-32ad-49fc-97da-932567faf9ea
+		sourceLineageTag: de15ab4e-88e8-4c71-a574-26eaa04322ee
+		dataCategory: Uncategorized
+
+	measure 'LAIR SR Orçado R$ YTD' = EXTERNALMEASURE("LAIR SR Orçado R$ YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		displayFolder: YTD
+		lineageTag: b6cad1a5-a5df-4901-b993-14459d092349
+		sourceLineageTag: a691b1c2-7181-41a0-b3f5-d59e84958edb
+		dataCategory: Uncategorized
+
+	measure 'LAIR SR Orçado USD PY' = EXTERNALMEASURE("LAIR SR Orçado USD PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		displayFolder: PY
+		lineageTag: 1e65119c-de88-44d2-bcc8-a386e6c41d4a
+		sourceLineageTag: 8a0bb304-ab05-4579-87db-d148a38f8ce2
+		dataCategory: Uncategorized
+
+	measure 'LAIR SR Orçado USD PYTD' = EXTERNALMEASURE("LAIR SR Orçado USD PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		displayFolder: PYTD
+		lineageTag: 364495c8-2d7d-476e-8560-e272531e6a3c
+		sourceLineageTag: d71f785f-a9df-4173-a76f-286077f51dcb
+		dataCategory: Uncategorized
+
+	measure 'LAIR SR Orçado USD YTD' = EXTERNALMEASURE("LAIR SR Orçado USD YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		displayFolder: YTD
+		lineageTag: c3a4cc79-478e-4a76-a0df-7cc9fd91062a
+		sourceLineageTag: 83d2fd35-e0b2-442c-874f-8b3eadf48bf8
+		dataCategory: Uncategorized
+
+	measure 'Marg. Ebitda Real. R$' = EXTERNALMEASURE("Marg. Ebitda Real. R$", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		lineageTag: ea9398e0-b228-4933-b233-895f68f0a709
+		sourceLineageTag: 254184c3-d742-4d09-ad8b-4cf58274199e
+		dataCategory: Uncategorized
+
+	measure 'Marg. Ebitda Real. USD' = EXTERNALMEASURE("Marg. Ebitda Real. USD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		lineageTag: 6d8f2d64-4a16-4f0d-9e45-8b665e464db6
+		sourceLineageTag: 0e13d3ed-59f3-43e5-a762-f0c0cee69784
+		dataCategory: Uncategorized
+
+	measure 'Marg. Ebitda Orç. R$' = EXTERNALMEASURE("Marg. Ebitda Orç. R$", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		lineageTag: 49ac7342-a4c9-48f5-a191-41210ff08c1f
+		sourceLineageTag: 6fc97a3f-2ffe-4442-a4f7-da464fb42088
+		dataCategory: Uncategorized
+
+	measure 'Marg. Ebitda Orç. USD' = EXTERNALMEASURE("Marg. Ebitda Orç. USD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		lineageTag: 7ae456b1-977c-4de7-9a53-3a449c3a062d
+		sourceLineageTag: e1ac73f9-32bf-4863-ba0a-2b09eac3eb2a
+		dataCategory: Uncategorized
+
+	measure 'Marg. Ebitda SR Real. R$' = EXTERNALMEASURE("Marg. Ebitda SR Real. R$", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		lineageTag: 9cb03a8b-8312-4383-9804-66a8e166f303
+		sourceLineageTag: 6102964d-ae70-4fe8-af29-186a821a4a53
+		dataCategory: Uncategorized
+
+	measure 'Marg. Ebitda SR Real. USD' = EXTERNALMEASURE("Marg. Ebitda SR Real. USD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		lineageTag: 531d3736-a24a-4350-9ac0-882dab6640a7
+		sourceLineageTag: cd153ed4-b953-4a18-9a14-71e66e37f896
+		dataCategory: Uncategorized
+
+	measure 'Marg. Ebitda SR Orç. R$' = EXTERNALMEASURE("Marg. Ebitda SR Orç. R$", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		lineageTag: 3ce06090-671d-4a9b-a586-572232d6a631
+		sourceLineageTag: bcd16110-7b2a-48b9-9a5f-41ebf71e8779
+		dataCategory: Uncategorized
+
+	measure 'Marg. Ebitda SR Orç. USD' = EXTERNALMEASURE("Marg. Ebitda SR Orç. USD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		lineageTag: d218c046-3843-4b63-a3b1-2a7d698d8e1c
+		sourceLineageTag: 1297d955-7b92-4e9f-8006-d6da6e52eb90
+		dataCategory: Uncategorized
+
+	measure 'Marg. Ebitda Real. R$ PY' = EXTERNALMEASURE("Marg. Ebitda Real. R$ PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		displayFolder: PY
+		lineageTag: ea2fbca3-16a2-4ed8-9ee0-b1cd0ba32f2b
+		sourceLineageTag: 1f77ddbb-1a53-4878-b27f-23ac2cd3e343
+		dataCategory: Uncategorized
+
+	measure 'Marg. Ebitda Real. R$ PYTD' = EXTERNALMEASURE("Marg. Ebitda Real. R$ PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		displayFolder: PYTD
+		lineageTag: 1a845e7f-7628-40d5-85e9-1027da9c15bc
+		sourceLineageTag: 81ba1f6e-3e63-42b1-ba46-0b7737802ba7
+		dataCategory: Uncategorized
+
+	measure 'Marg. Ebitda Real. R$ YTD' = EXTERNALMEASURE("Marg. Ebitda Real. R$ YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		displayFolder: YTD
+		lineageTag: e7dff03f-fba5-44aa-8c4f-8e03c2049f62
+		sourceLineageTag: f283a10b-c0eb-4128-940a-fb745ee11611
+		dataCategory: Uncategorized
+
+	measure 'Marg. Ebitda Real. USD PY' = EXTERNALMEASURE("Marg. Ebitda Real. USD PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		displayFolder: PY
+		lineageTag: 0c2b0519-474a-414d-b7d8-f52448cfce48
+		sourceLineageTag: e5f32a0b-6e97-4f60-ac57-11afb6292044
+		dataCategory: Uncategorized
+
+	measure 'Marg. Ebitda Real. USD PYTD' = EXTERNALMEASURE("Marg. Ebitda Real. USD PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		displayFolder: PYTD
+		lineageTag: e3ffde8b-d752-4519-a356-3c1d7a922ad0
+		sourceLineageTag: bd6c68fc-f4de-4d6f-a0f7-ee49ffa66ba8
+		dataCategory: Uncategorized
+
+	measure 'Marg. Ebitda Real. USD YTD' = EXTERNALMEASURE("Marg. Ebitda Real. USD YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		displayFolder: YTD
+		lineageTag: 611005c3-667e-4835-b287-59d59cde53ab
+		sourceLineageTag: 7ea85ab0-6bd9-4ab0-ac01-363db21bf9ec
+		dataCategory: Uncategorized
+
+	measure 'Marg. Ebitda Orç. R$ PY' = EXTERNALMEASURE("Marg. Ebitda Orç. R$ PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		displayFolder: PY
+		lineageTag: 12c2d26b-2f48-4157-80f1-7eb9f38ce14f
+		sourceLineageTag: 88692666-ef42-4bce-b01a-dfe8a0d093f9
+		dataCategory: Uncategorized
+
+	measure 'Marg. Ebitda Orç. R$ PYTD' = EXTERNALMEASURE("Marg. Ebitda Orç. R$ PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		displayFolder: PYTD
+		lineageTag: 8b21ac83-f678-4805-86f3-b46da99c2c54
+		sourceLineageTag: 9984a27e-8d9b-4e70-a10c-67aab820cc18
+		dataCategory: Uncategorized
+
+	measure 'Marg. Ebitda Orç. R$ YTD' = EXTERNALMEASURE("Marg. Ebitda Orç. R$ YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		displayFolder: YTD
+		lineageTag: a161240f-206d-49a1-8429-338aa892594f
+		sourceLineageTag: e5aef1b4-28cc-4adc-b0c9-5f1ec4fbac3e
+		dataCategory: Uncategorized
+
+	measure 'Marg. Ebitda Orç. USD PY' = EXTERNALMEASURE("Marg. Ebitda Orç. USD PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		displayFolder: PY
+		lineageTag: c7596ece-f5cb-4388-a186-053b0e77e8c9
+		sourceLineageTag: dbe4ead4-bf14-4701-a18b-5803c343b30a
+		dataCategory: Uncategorized
+
+	measure 'Marg. Ebitda Orç. USD PYTD' = EXTERNALMEASURE("Marg. Ebitda Orç. USD PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		displayFolder: PYTD
+		lineageTag: 629f0413-b51e-4862-b086-b1e6d00449ec
+		sourceLineageTag: 83ff58b9-8cad-4cbc-9a2d-b598e93cd197
+		dataCategory: Uncategorized
+
+	measure 'Marg. Ebitda Orç. USD YTD' = EXTERNALMEASURE("Marg. Ebitda Orç. USD YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		displayFolder: YTD
+		lineageTag: fedd3d14-0480-4eed-9697-4083d6bf65b2
+		sourceLineageTag: 8bfdc89b-9f4f-4874-99b8-d8f0538dc012
+		dataCategory: Uncategorized
+
+	measure 'Marg. Ebitda SR Real. R$ PY' = EXTERNALMEASURE("Marg. Ebitda SR Real. R$ PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		displayFolder: PY
+		lineageTag: 5afc39ba-6c70-4892-ae87-1cfae7e422b9
+		sourceLineageTag: 49fb1d72-84ea-456b-9ca6-a6c82429cb6c
+		dataCategory: Uncategorized
+
+	measure 'Marg. Ebitda SR Real. R$ PYTD' = EXTERNALMEASURE("Marg. Ebitda SR Real. R$ PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		displayFolder: PYTD
+		lineageTag: a4a456fd-fc91-413c-b41d-69953e012399
+		sourceLineageTag: b75e3aad-9d48-4e77-9261-e2753ee6c3a5
+		dataCategory: Uncategorized
+
+	measure 'Marg. Ebitda SR Real. R$ YTD' = EXTERNALMEASURE("Marg. Ebitda SR Real. R$ YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		displayFolder: YTD
+		lineageTag: 5792f20c-0b8e-4ea0-aac2-409f7ab212bf
+		sourceLineageTag: 9fabc1c3-b64d-4fca-b6c2-70db598b1250
+		dataCategory: Uncategorized
+
+	measure 'Marg. Ebitda SR Real. USD PY' = EXTERNALMEASURE("Marg. Ebitda SR Real. USD PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		displayFolder: PY
+		lineageTag: a2ee06a3-cf46-4ee5-ab1e-ebad41d8429d
+		sourceLineageTag: 977b9ae6-fc69-49dc-a64b-573e27023efd
+		dataCategory: Uncategorized
+
+	measure 'Marg. Ebitda SR Real. USD PYTD' = EXTERNALMEASURE("Marg. Ebitda SR Real. USD PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		displayFolder: PYTD
+		lineageTag: f87f15d3-ea38-4ff1-b71f-43e2bba4a950
+		sourceLineageTag: 8cdf3b73-140e-491a-97b9-e371e0c4a74a
+		dataCategory: Uncategorized
+
+	measure 'Marg. Ebitda SR Real. USD YTD' = EXTERNALMEASURE("Marg. Ebitda SR Real. USD YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		displayFolder: YTD
+		lineageTag: 465510a1-32ab-498b-b266-c01edb84d38f
+		sourceLineageTag: faa04dcc-63ea-4e4a-87bd-c6a1d2bdb5a9
+		dataCategory: Uncategorized
+
+	measure 'Marg. Ebitda SR Orç. R$ PY' = EXTERNALMEASURE("Marg. Ebitda SR Orç. R$ PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		displayFolder: PY
+		lineageTag: 970308ce-880e-41d7-824c-611eac308c71
+		sourceLineageTag: f0a2b887-fe5f-43d6-a04a-b716e121f9cf
+		dataCategory: Uncategorized
+
+	measure 'Marg. Ebitda SR Orç. R$ PYTD' = EXTERNALMEASURE("Marg. Ebitda SR Orç. R$ PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		displayFolder: PYTD
+		lineageTag: a18fcc6c-2318-4d15-a048-d02a5d5e9aff
+		sourceLineageTag: d5d97631-8966-4552-bfff-b2332cbf72ef
+		dataCategory: Uncategorized
+
+	measure 'Marg. Ebitda SR Orç. R$ YTD' = EXTERNALMEASURE("Marg. Ebitda SR Orç. R$ YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		displayFolder: YTD
+		lineageTag: e7519ccc-3f7a-4cd0-9f00-ef1c12c97ed5
+		sourceLineageTag: 0d20a3f6-7dca-4ee3-8c0e-b7c0a70317bb
+		dataCategory: Uncategorized
+
+	measure 'Marg. Ebitda SR Orç. USD PY' = EXTERNALMEASURE("Marg. Ebitda SR Orç. USD PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		displayFolder: PY
+		lineageTag: 396732ec-d822-4342-8023-ef73cb5196eb
+		sourceLineageTag: b82c396f-acdd-4db5-accd-f1a3351e1a63
+		dataCategory: Uncategorized
+
+	measure 'Marg. Ebitda SR Orç. USD PYTD' = EXTERNALMEASURE("Marg. Ebitda SR Orç. USD PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		displayFolder: PYTD
+		lineageTag: aab5680e-dd64-4847-85d0-c5a36ff50376
+		sourceLineageTag: 29582638-9087-4e68-b536-c0083612679d
+		dataCategory: Uncategorized
+
+	measure 'Marg. Ebitda SR Orç. USD YTD' = EXTERNALMEASURE("Marg. Ebitda SR Orç. USD YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		displayFolder: YTD
+		lineageTag: a80ee2fc-15e1-4fb9-afc8-8d6c356d23b2
+		sourceLineageTag: 3e3b1ecd-53d5-487b-be87-53f9cb50df70
+		dataCategory: Uncategorized
+
+	column RL_FMR_REAL_BRL
+		dataType: double
+		isHidden
+		lineageTag: e1fb83bd-6e55-409f-a78a-c142311e2efc
+		sourceLineageTag: 4feecf96-65c3-47c1-aefd-cb54d0c22212
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: RL_FMR_REAL_BRL
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column EBITDA_FMR_REAL_USD
+		dataType: double
+		isHidden
+		lineageTag: 9b857b3c-05bf-4538-84c0-198411d678a5
+		sourceLineageTag: 499d8654-d40e-4bb4-bd54-360f03a3189f
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: EBITDA_FMR_REAL_USD
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column RL_FMR_REAL_USD
+		dataType: double
+		isHidden
+		lineageTag: e5ce6f9c-24d5-4f9d-8380-b832cb4d78a8
+		sourceLineageTag: 0843e5d6-a401-4d39-9470-69d98cd84100
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: RL_FMR_REAL_USD
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column EBITDA_FMR_ORC_BRL
+		dataType: double
+		isHidden
+		lineageTag: 3abf722f-b294-4e43-958e-b883bd895fcf
+		sourceLineageTag: ac6dd989-5249-4c08-9189-ec811dd348ab
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: EBITDA_FMR_ORC_BRL
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column RL_FMR_ORC_BRL
+		dataType: double
+		isHidden
+		lineageTag: 848d37b8-f851-4372-9e86-e7e77b93aa3e
+		sourceLineageTag: af7a17c1-e293-4033-9caf-a3d3ff616c87
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: RL_FMR_ORC_BRL
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column EBITDA_FMR_ORC_USD
+		dataType: double
+		isHidden
+		lineageTag: 864c4c9f-29fb-4744-9763-0996719c5e7f
+		sourceLineageTag: b52341f6-2e6a-48f9-9bde-6566dfc09c5d
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: EBITDA_FMR_ORC_USD
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column RL_FMR_ORC_USD
+		dataType: double
+		isHidden
+		lineageTag: f004ce36-469b-4bda-a11b-c32c3350a9ee
+		sourceLineageTag: 961e78ec-288d-437e-bbac-cb7fa9e29331
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: RL_FMR_ORC_USD
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column LAIR_FMR_REAL_BRL
+		dataType: double
+		isHidden
+		lineageTag: 7413e129-0245-4d32-8cf6-58ae7826fb9f
+		sourceLineageTag: bcfe29fa-28b4-4da1-9cfa-60aa9583547d
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: LAIR_FMR_REAL_BRL
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column LAIR_FMR_REAL_USD
+		dataType: double
+		isHidden
+		lineageTag: c05ca96f-f3a8-4b56-ba78-8995ecb855a0
+		sourceLineageTag: bba207b4-f41f-47c3-93a9-9bb311b0d6a3
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: LAIR_FMR_REAL_USD
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column LAIR_FMR_ORC_BRL
+		dataType: double
+		isHidden
+		lineageTag: bae6a029-7c21-4efc-8d66-2aea14a4578b
+		sourceLineageTag: 1c5662f0-8dcb-4838-bbfa-524f0ed79a2f
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: LAIR_FMR_ORC_BRL
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column LAIR_FMR_ORC_USD
+		dataType: double
+		isHidden
+		lineageTag: 31e20a6f-5851-4e41-981e-7b7a1572f3d4
+		sourceLineageTag: 5bfe79a0-8c36-4a85-aee8-473e73d1bc13
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: LAIR_FMR_ORC_USD
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column EBITDA_IFRS_REAL_BRL
+		dataType: double
+		isHidden
+		lineageTag: a131d997-299f-49c6-9060-02b28cad84d9
+		sourceLineageTag: d20c6494-34ab-4ee2-82fa-1a873625e87a
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: EBITDA_IFRS_REAL_BRL
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column RL_IFRS_REAL_BRL
+		dataType: double
+		isHidden
+		lineageTag: 41679a19-97c3-432b-a252-9e339c1db0ca
+		sourceLineageTag: 7de08ec8-a2e9-4d5e-8e6a-a637534f658d
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: RL_IFRS_REAL_BRL
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column EBITDA_IFRS_REAL_USD
+		dataType: double
+		isHidden
+		lineageTag: 369cb66a-7b71-4601-b89f-1ca074a1c007
+		sourceLineageTag: 139a2d58-9234-4657-b003-5aa21fa2ddc2
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: EBITDA_IFRS_REAL_USD
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column RL_IFRS_REAL_USD
+		dataType: double
+		isHidden
+		lineageTag: 12d37a6c-e9a8-4ba0-ae22-3e5e423548f5
+		sourceLineageTag: b9456efb-6d66-42b2-b930-e4634205d840
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: RL_IFRS_REAL_USD
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column EBITDA_IFRS_ORC_BRL
+		dataType: double
+		isHidden
+		lineageTag: 4573a050-4c62-42a5-a825-9bd179574b80
+		sourceLineageTag: 6e218b58-b6bb-4c01-9ec6-ecbcf39d3948
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: EBITDA_IFRS_ORC_BRL
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column RL_IFRS_ORC_BRL
+		dataType: double
+		isHidden
+		lineageTag: 5f1987d3-9473-42f4-95ec-591865646b13
+		sourceLineageTag: a2e5e44a-af60-4af6-a6b1-e1bd7ce1b71c
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: RL_IFRS_ORC_BRL
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column EBITDA_IFRS_ORC_USD
+		dataType: double
+		isHidden
+		lineageTag: 466bd085-ba11-4f50-b691-ad3c538dca27
+		sourceLineageTag: b4ca3579-b03e-4b5f-8b60-ac41e9be3a5e
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: EBITDA_IFRS_ORC_USD
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column RL_IFRS_ORC_USD
+		dataType: double
+		isHidden
+		lineageTag: 245c4798-a49b-4ecc-9d61-ca8bc4c10d08
+		sourceLineageTag: 06fa4244-e0c2-49d9-9bfd-07ec1097a3ff
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: RL_IFRS_ORC_USD
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column LAIR_IFRS_REAL_BRL
+		dataType: double
+		isHidden
+		lineageTag: e2d09924-0123-453c-9b9d-b71f0feb0728
+		sourceLineageTag: 717eb588-b677-4d87-a560-e2276d52e796
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: LAIR_IFRS_REAL_BRL
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column LAIR_IFRS_REAL_USD
+		dataType: double
+		isHidden
+		lineageTag: c3e2f710-a958-4478-aa24-c1c5c22adb48
+		sourceLineageTag: ea2d7345-12a2-496c-9511-f8767b3254b6
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: LAIR_IFRS_REAL_USD
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column LAIR_IFRS_ORC_BRL
+		dataType: double
+		isHidden
+		lineageTag: 19e8e656-ff82-475d-9afa-82c8fe9fb15e
+		sourceLineageTag: f7d55b40-9e95-4975-b37a-af67c0c94c87
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: LAIR_IFRS_ORC_BRL
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column LAIR_IFRS_ORC_USD
+		dataType: double
+		isHidden
+		lineageTag: e11fb0da-e642-40cd-b908-17f622320be2
+		sourceLineageTag: 3b08e714-fa45-4cd9-a2c5-d8c870a3d693
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: LAIR_IFRS_ORC_USD
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column LAIR_SR_IFRS_REAL_BRL
+		dataType: double
+		isHidden
+		lineageTag: 0466b4e9-0def-441c-83c0-295850a19255
+		sourceLineageTag: e2e33314-d202-4c86-98e1-3b76cf8fd36d
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: LAIR_SR_IFRS_REAL_BRL
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column LAIR_SR_IFRS_REAL_USD
+		dataType: double
+		isHidden
+		lineageTag: dc5b0313-79f3-4ec5-9320-71be1fc49385
+		sourceLineageTag: 08aca3da-da2f-44c0-bbe8-1b338b30633d
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: LAIR_SR_IFRS_REAL_USD
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column LAIR_SR_IFRS_ORC_BRL
+		dataType: double
+		isHidden
+		lineageTag: 97161a0c-ac6d-4a11-aaef-96abea914010
+		sourceLineageTag: 5297cf7c-b506-4c06-ba21-89873625f2fa
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: LAIR_SR_IFRS_ORC_BRL
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column LAIR_SR_IFRS_ORC_USD
+		dataType: double
+		isHidden
+		lineageTag: 10b1f8fd-ebb6-4b8c-a311-14a1fd47559e
+		sourceLineageTag: be210b85-41a8-4adb-9c2f-6cf5322983b4
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: LAIR_SR_IFRS_ORC_USD
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column EBITDA_SR_IFRS_REAL_BRL
+		dataType: double
+		isHidden
+		lineageTag: f0cc852d-9082-4176-a924-f9fc0939cf99
+		sourceLineageTag: 92ff2d41-1c4a-4e7c-b6c8-efa7a66627d3
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: EBITDA_SR_IFRS_REAL_BRL
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column EBITDA_SR_IFRS_REAL_USD
+		dataType: double
+		isHidden
+		lineageTag: 93ed75ed-3c9f-4f38-93f7-cdd446eb570b
+		sourceLineageTag: 006dcee7-07a0-45f1-b499-3a67137a4fae
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: EBITDA_SR_IFRS_REAL_USD
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column EBITDA_SR_IFRS_ORC_BRL
+		dataType: double
+		isHidden
+		lineageTag: 4ace6d45-6b5a-4adb-840e-95ad862ad085
+		sourceLineageTag: 852f8b3b-fa91-4e53-9970-3dfa42df7423
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: EBITDA_SR_IFRS_ORC_BRL
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column EBITDA_SR_IFRS_ORC_USD
+		dataType: double
+		isHidden
+		lineageTag: ec9e8a61-1c40-44b7-a0bf-43018d7d8886
+		sourceLineageTag: c6e4ed54-00b8-4d32-8765-7e6b7d0c1eef
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: EBITDA_SR_IFRS_ORC_USD
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column VAL_MARGEM_EBITDA_FMR_REAL_BRL
+		dataType: double
+		isHidden
+		lineageTag: d32588ea-c2ed-44d5-aa89-889253aa9aeb
+		sourceLineageTag: 118cedaa-4a95-4ecb-81e5-19db3ee773c4
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: VAL_MARGEM_EBITDA_FMR_REAL_BRL
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column VAL_MARGEM_EBITDA_FMR_REAL_USD
+		dataType: double
+		isHidden
+		lineageTag: b8f6cd3f-2682-4642-8942-e161f393fc63
+		sourceLineageTag: 020cc9b2-7299-4047-9be8-acbae08ae479
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: VAL_MARGEM_EBITDA_FMR_REAL_USD
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column VAL_MARGEM_EBITDA_FMR_ORC_BRL
+		dataType: double
+		isHidden
+		lineageTag: 0ea395c1-9558-4f85-b0aa-44788e0c2b01
+		sourceLineageTag: 85185ff4-5bc4-4f2f-88f8-ed3689a56e73
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: VAL_MARGEM_EBITDA_FMR_ORC_BRL
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TEMPO_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: 00d094fc-d5eb-4d0d-9767-d067a301715b
+		sourceLineageTag: da160394-d8d9-4c63-9e8d-c2ce7b1c0f30
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: TEMPO_ID
+
+		annotation SummarizationSetBy = User
+
+	column COD_EMPR_SAP
+		dataType: string
+		isHidden
+		lineageTag: 29e8a857-6cd6-45b5-8bf1-1d7e2a5cab0a
+		sourceLineageTag: 3c9d824e-2f3e-457b-8d70-33f38a393414
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: COD_EMPR_SAP
+
+		annotation SummarizationSetBy = User
+
+	column COD_DIVISAO_SAP
+		dataType: string
+		isHidden
+		lineageTag: 48c62e4a-5005-4408-95bd-7419117a476f
+		sourceLineageTag: 392070b0-8c02-43eb-beda-aadecebbcd9f
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: COD_DIVISAO_SAP
+
+		annotation SummarizationSetBy = User
+
+	column EBITDA_FMR_REAL_BRL
+		dataType: double
+		isHidden
+		lineageTag: 38ea7200-7121-4e90-8c39-d6e6127bff00
+		sourceLineageTag: dda8e29c-b63f-4273-b842-155b710a1ecf
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: EBITDA_FMR_REAL_BRL
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column VAL_MARGEM_EBITDA_FMR_ORC_USD
+		dataType: double
+		isHidden
+		lineageTag: 09274332-c3c9-409a-8b05-1f892bc8c62e
+		sourceLineageTag: a8aeced8-eeeb-4f6e-8e53-9b23ec7ad611
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: VAL_MARGEM_EBITDA_FMR_ORC_USD
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '_Medidas Financeiro - SAP' = entity
+		mode: directQuery
+		source
+			entityName: _Medidas Financeiro - SAP
+			expressionSource: 'DirectQuery para AS – Modelo Operações Portuárias'
+

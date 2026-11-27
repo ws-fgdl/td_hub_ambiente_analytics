@@ -1,0 +1,28 @@
+table '#% ajuste volume Arm Cntr Vazio (selecionado) - EXP'
+	lineageTag: 3409cde0-7783-4ad1-91f1-83b46227fa75
+
+	measure '#Param % ajuste volume Arm Cntr Vazio (selecionado) - EXP' = SELECTEDVALUE('#% ajuste volume Arm Cntr Vazio (selecionado) - EXP'[# % ajuste volume Arm Cntr Vazio (selecionado) - EXP])
+		lineageTag: 21301d18-adac-4e82-a096-59caf9663632
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '# % ajuste volume Arm Cntr Vazio (selecionado) - EXP'
+		lineageTag: 0bc76519-b541-43b5-bd39-ac5518d9685b
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '#% ajuste volume Arm Cntr Vazio (selecionado) - EXP' = calculated
+		mode: import
+		source = GENERATESERIES(0, 1, 0.0001)
+
+	annotation PBI_Id = 144417e35a734bd0b7c9e1e846ba9664
+

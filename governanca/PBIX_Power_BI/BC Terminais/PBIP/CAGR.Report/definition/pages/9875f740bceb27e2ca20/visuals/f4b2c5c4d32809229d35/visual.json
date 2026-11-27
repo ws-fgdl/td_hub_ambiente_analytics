@@ -1,0 +1,111 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "f4b2c5c4d32809229d35",
+  "position": {
+    "x": 47.999999999999993,
+    "y": 752,
+    "z": 14000,
+    "height": 176.00000000000003,
+    "width": 1168,
+    "tabOrder": 14000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Observações:",
+                    "textStyle": {
+                      "color": "#ffffff"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "1) O filtro do 'Mês Fim Vigência' retorna o acumulado dos índices IPCA e IGPM em 12 meses até o mês selecionado;",
+                    "textStyle": {
+                      "color": "#ffffff"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "2) Para o CARG retornar o calculo é necessário que tanto o ano final quanto o ano inicial possuam valores, é possível modelar pelo filtro 'Ano' localizado na lateral direita do painel;",
+                    "textStyle": {
+                      "color": "#ffffff"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "3) O filtro 'Ano Base Inflação' determina o preço inicial a ser reajustado ao redor do restante dos anos;",
+                    "textStyle": {
+                      "color": "#ffffff"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "4) O valor selecionado no filtro  'Ano Base Inflação' não pode ser menor do que o ano mínimo selecionado no período estudado pelo filtro 'Ano' na parte lateral direita do painel;",
+                    "textStyle": {
+                      "color": "#ffffff"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "5) O valor selecionado do filtro  'Ano Base Inflação' precisa conter o campo 'Preço' preenchido na matriz, caso contrario não retornará o cálculo da inflação acumulada.",
+                    "textStyle": {
+                      "color": "#ffffff"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "6) Para o terminal de Salvador (TSV), para o cliente CMA CGM é necessário selecionar a razão social (Mercosul ou CMA CGM)",
+                    "textStyle": {
+                      "color": "#ffffff"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "100D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

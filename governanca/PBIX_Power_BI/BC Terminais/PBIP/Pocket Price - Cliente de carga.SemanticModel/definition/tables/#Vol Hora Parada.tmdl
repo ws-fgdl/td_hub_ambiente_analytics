@@ -1,0 +1,27 @@
+table '#Vol Hora Parada'
+	lineageTag: e22f6cec-1c31-44fa-81c0-8780b29c1a1b
+
+	measure 'Valor #Vol Hora Parada' = SELECTEDVALUE('#Vol Hora Parada'[#Vol Hora Parada])
+		lineageTag: acb4555f-f3d3-4c74-9f56-fb2d0fd93a2d
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#Vol Hora Parada'
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: f9a193d5-1f9e-4628-b570-ee4400bde49c
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition '#Vol Hora Parada' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 1, 0.01)
+
+	annotation PBI_Id = a0d96302bc254e3391d1bed25b190270
+

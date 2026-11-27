@@ -1,0 +1,28 @@
+table '#Registro Fotográfico Armazém'
+	lineageTag: c361ecd4-ded1-4089-8a26-5e4ba6fb8103
+
+	measure 'Valor #Registro Fotográfico Armazém' = SELECTEDVALUE('#Registro Fotográfico Armazém'[#Registro Fotográfico])
+		lineageTag: 8efcf0c3-74c7-4ecb-8dfa-dfe13e96e9d4
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#Registro Fotográfico'
+		lineageTag: 48fad334-39fc-421f-8ae6-ef9c72cae623
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '#Registro Fotográfico Armazém' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 1, 0.001)
+
+	annotation PBI_Id = bd0fe67ecd624d9cbdcd19061ce36c9a
+

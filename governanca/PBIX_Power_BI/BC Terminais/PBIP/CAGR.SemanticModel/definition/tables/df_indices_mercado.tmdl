@@ -1,0 +1,205 @@
+table df_indices_mercado
+	lineageTag: 8f8b9ccc-c5cb-4ac5-9d82-6703239ea0bb
+
+	column Data
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 2f5834f7-a6f1-4822-ae69-6b8714c11c3b
+		summarizeBy: none
+		sourceColumn: Data
+
+		variation Variation
+			isDefault
+			relationship: c3954889-5ebb-4893-a905-03726f8c10c0
+			defaultHierarchy: LocalDateTable_20fe3dbd-31ae-4b7d-af8a-807235e44200.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column IPCA
+		dataType: double
+		lineageTag: d85d34f9-25ba-4b34-8d84-ce5f752b96c7
+		summarizeBy: sum
+		sourceColumn: IPCA
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column IGP-M
+		dataType: double
+		lineageTag: 98652928-6712-417b-8ec0-d5fccdb88a6a
+		summarizeBy: sum
+		sourceColumn: IGP-M
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column INPC
+		dataType: double
+		lineageTag: 15fcc2de-8bfd-452b-8ac5-a9c371bf99dc
+		summarizeBy: sum
+		sourceColumn: INPC
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Indice_TRG
+		dataType: double
+		lineageTag: 277a2a52-caca-438f-9375-cdd0d53aec92
+		summarizeBy: sum
+		sourceColumn: Indice_TRG
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Indice_TSV
+		dataType: double
+		lineageTag: e1d7c741-e283-4127-bcd1-43a62b14574d
+		summarizeBy: sum
+		sourceColumn: Indice_TSV
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Indice_Frete_WCSA
+		dataType: double
+		lineageTag: d8d2cc38-4a9b-4706-be48-50739494df24
+		summarizeBy: sum
+		sourceColumn: Indice_Frete_WCSA
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Multiplicador IPCA'
+		dataType: double
+		lineageTag: 71839faf-e84f-40c5-ac00-3de7a2507396
+		summarizeBy: sum
+		sourceColumn: Multiplicador IPCA
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Acum. 12 meses IPCA'
+		dataType: double
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 174ea1c7-19fb-4072-a384-b111134f7c80
+		summarizeBy: sum
+		sourceColumn: Acum. 12 meses IPCA
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Multiplicador Acum 12 meses IPCA'
+		dataType: double
+		lineageTag: c689c4aa-9fb6-42ad-bd9e-af46101c24e0
+		summarizeBy: sum
+		sourceColumn: Multiplicador Acum 12 meses IPCA
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Multiplicador IGP-M'
+		dataType: double
+		lineageTag: 5ada7995-8dce-44cf-8289-eb246dbadb2a
+		summarizeBy: sum
+		sourceColumn: Multiplicador IGP-M
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Multiplicador INPC'
+		dataType: double
+		lineageTag: 08b61e55-99f1-4b5c-8772-8c2bdcec9426
+		summarizeBy: sum
+		sourceColumn: Multiplicador INPC
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column dt_valor = 'df_indices_mercado'[Data]
+		dataType: int64
+		formatString: 0
+		lineageTag: 4d89b17d-930e-43cd-b561-8fe73ab48cbe
+		summarizeBy: none
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Acum. 24 meses IPCA'
+		dataType: double
+		lineageTag: c8c87cde-961c-46b6-a155-10072297359d
+		summarizeBy: sum
+		sourceColumn: Acum. 24 meses IPCA
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Multiplicador Acum 24 meses IPCA'
+		dataType: double
+		lineageTag: f9db95b4-70f1-47ab-8111-04bf8ac40ef7
+		summarizeBy: sum
+		sourceColumn: Multiplicador Acum 24 meses IPCA
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Acum. 60 meses IPCA'
+		dataType: double
+		lineageTag: 8952b250-c6df-4cba-8303-c6c93e770495
+		summarizeBy: sum
+		sourceColumn: Acum. 60 meses IPCA
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Acum. 12 meses IGPM'
+		dataType: double
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 4926638c-64e4-47c2-a7ea-0159b18625c2
+		summarizeBy: sum
+		sourceColumn: Acum. 12 meses IGPM
+
+		annotation SummarizationSetBy = Automatic
+
+	column Column1
+		dataType: string
+		lineageTag: 208e99df-fd97-43a5-bf68-9c081b6412d0
+		summarizeBy: none
+		sourceColumn: Column1
+
+		annotation SummarizationSetBy = Automatic
+
+	partition df_indices_mercado = m
+		mode: import
+		source =
+				let
+				    Fonte = PowerPlatform.Dataflows(null),
+				    Workspaces = Fonte{[Id="Workspaces"]}[Data],
+				    #"bcd54b55-e85f-4c30-a169-bfbf18f90f30" = Workspaces{[workspaceId="bcd54b55-e85f-4c30-a169-bfbf18f90f30"]}[Data],
+				    #"6a999e2e-a74c-43b1-aa17-218ee7bc1267" = #"bcd54b55-e85f-4c30-a169-bfbf18f90f30"{[dataflowId="6a999e2e-a74c-43b1-aa17-218ee7bc1267"]}[Data],
+				    #"Índices de Mercado_" = #"6a999e2e-a74c-43b1-aa17-218ee7bc1267"{[entity="Índices de Mercado",version=""]}[Data],
+				    #"Cabeçalhos Promovidos" = Table.PromoteHeaders(#"Índices de Mercado_", [PromoteAllScalars=true]),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Cabeçalhos Promovidos",{{"Data", type date}, {"IPCA", type number}, {"IGP-M", type number}, {"INPC", type number}, {"Indice_TRG", type number}, {"Indice_TSV", type number}, {"Indice_Frete_WCSA", type number}, {"Multiplicador IPCA", type number}, {"Acum. 12 meses IPCA", type number}, {"Multiplicador Acum 12 meses IPCA", type number}, {"Multiplicador IGP-M", type number}, {"Multiplicador INPC", type number}, {"Acum. 24 meses IPCA", type number}, {"Multiplicador Acum 24 meses IPCA", type number}, {"Acum. 60 meses IPCA", type number}}),
+				    #"Linhas Filtradas" = Table.SelectRows(#"Tipo Alterado", each [Data] <> null and [Data] <> ""),
+				    #"Tipo Alterado1" = Table.TransformColumnTypes(#"Linhas Filtradas",{{"Acum. 12 meses IGPM", type number}})
+				in
+				    #"Tipo Alterado1"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navegação
+

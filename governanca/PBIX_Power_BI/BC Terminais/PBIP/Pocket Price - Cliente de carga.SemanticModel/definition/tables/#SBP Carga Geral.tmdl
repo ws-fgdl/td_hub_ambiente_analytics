@@ -1,0 +1,27 @@
+table '#SBP Carga Geral'
+	lineageTag: 23b4c534-9c63-44ba-94e6-aa892562d80a
+
+	measure 'Valor #SBP Carga Geral' = SELECTEDVALUE('#SBP Carga Geral'[#SBP Carga Geral])
+		lineageTag: ee8d790d-76fa-45b0-896a-005f21ac0d5e
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#SBP Carga Geral'
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 9a3e8b4b-8945-41af-855b-6f96cfd42830
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition '#SBP Carga Geral' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 0.5, 0.0001)
+
+	annotation PBI_Id = 81e3540c75dc44ddbb2ce537a61f9ae2
+

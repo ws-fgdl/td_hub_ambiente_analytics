@@ -1,0 +1,537 @@
+table contratos
+	lineageTag: 0ee997bc-e092-4ff4-b439-54f6cac3be22
+
+	column un
+		dataType: string
+		lineageTag: 84698060-3f7c-4ee2-bef1-b490c2f44ba2
+		summarizeBy: none
+		sourceColumn: un
+
+		annotation SummarizationSetBy = Automatic
+
+	column clibrs_id
+		dataType: int64
+		lineageTag: d0b0d507-2ada-48e1-9f10-14233b0936fa
+		summarizeBy: sum
+		sourceColumn: clibrs_id
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column cod_cliente_sap
+		dataType: int64
+		lineageTag: 6a9726fb-a6ee-45a1-93dd-3acfa6fe434c
+		summarizeBy: sum
+		sourceColumn: cod_cliente_sap
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column cd_tipo_contrato
+		dataType: string
+		lineageTag: 09622eda-ea7e-4b1a-a58b-ff66bcbf6fc7
+		summarizeBy: none
+		sourceColumn: cd_tipo_contrato
+
+		annotation SummarizationSetBy = Automatic
+
+	column dsc_tipo_contrato
+		dataType: string
+		lineageTag: d53f5e61-a5f9-403d-a260-56b38b349ba5
+		summarizeBy: none
+		sourceColumn: dsc_tipo_contrato
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_cliente
+		dataType: int64
+		lineageTag: 370dff84-6fb3-4255-bc8c-6a64b99903fb
+		summarizeBy: sum
+		sourceColumn: id_cliente
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column cliente
+		dataType: string
+		lineageTag: 7d64b0ec-1001-4eb1-8e51-e34f53568669
+		summarizeBy: none
+		sourceColumn: cliente
+
+		annotation SummarizationSetBy = Automatic
+
+	column arm_id
+		dataType: double
+		lineageTag: 9e84dc30-bbed-481a-a36b-8ecad7430bd3
+		summarizeBy: sum
+		sourceColumn: arm_id
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column cod_armador
+		dataType: double
+		lineageTag: 88428a77-8db0-4d5b-a2ea-9f5f34695173
+		summarizeBy: sum
+		sourceColumn: cod_armador
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column armador
+		dataType: double
+		lineageTag: eea3e0bd-d621-4de6-b807-7933360e6b20
+		summarizeBy: sum
+		sourceColumn: armador
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column cod_contrato
+		dataType: int64
+		formatString: 0
+		lineageTag: 45437a56-e7b8-4f0c-9cfc-4428d0a2303f
+		summarizeBy: none
+		sourceColumn: cod_contrato
+
+		annotation SummarizationSetBy = Automatic
+
+	column cod_situacao
+		dataType: string
+		lineageTag: 1963ec4e-5104-4248-a074-f759a53e43cd
+		summarizeBy: none
+		sourceColumn: cod_situacao
+
+		annotation SummarizationSetBy = Automatic
+
+	column situacao
+		dataType: string
+		lineageTag: a84433e0-1edd-4444-b056-241669f5de88
+		summarizeBy: none
+		sourceColumn: situacao
+
+		annotation SummarizationSetBy = Automatic
+
+	column cod_tabela
+		dataType: int64
+		formatString: 0
+		lineageTag: 8db47ee1-fd0a-43b6-8d92-e6bf34070c93
+		summarizeBy: sum
+		sourceColumn: cod_tabela
+
+		annotation SummarizationSetBy = Automatic
+
+	column tabela
+		dataType: string
+		lineageTag: d2723a34-c8e7-431d-8e07-7cd4bda2899e
+		summarizeBy: none
+		sourceColumn: tabela
+
+		annotation SummarizationSetBy = Automatic
+
+	column cd_tipo_servico
+		dataType: int64
+		formatString: 0
+		lineageTag: 59651706-7470-46eb-bc55-97ddc11a4d64
+		summarizeBy: sum
+		sourceColumn: cd_tipo_servico
+
+		annotation SummarizationSetBy = Automatic
+
+	column servico
+		dataType: string
+		lineageTag: 6d6c721f-b9f7-4ef8-bd53-e5c026092704
+		summarizeBy: none
+		sourceColumn: servico
+
+		annotation SummarizationSetBy = Automatic
+
+	column valor_minimo_tabela
+		dataType: double
+		lineageTag: ef0a7acf-c586-4884-8380-c8fd6f7355e3
+		summarizeBy: sum
+		sourceColumn: valor_minimo_tabela
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column periodo
+		dataType: int64
+		lineageTag: 90159eec-1ca8-4488-9031-98a15a30e7e9
+		summarizeBy: sum
+		sourceColumn: periodo
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column valor_minimo_periodo
+		dataType: double
+		lineageTag: 211099c5-f5c1-4835-b1b9-1100f4976268
+		summarizeBy: sum
+		sourceColumn: valor_minimo_periodo
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column inicio_vigencia
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: f0d984c5-f638-427f-958c-9e77e0208091
+		summarizeBy: none
+		sourceColumn: inicio_vigencia
+
+		variation Variation
+			isDefault
+			relationship: 82ada209-ac29-4825-95c1-0b9cf9898289
+			defaultHierarchy: LocalDateTable_74059a3d-7dfd-4178-b0b4-99deae6a3a62.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column fim_vigencia
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 6764a51b-cb4f-498a-8962-c9312bb09cbd
+		summarizeBy: none
+		sourceColumn: fim_vigencia
+
+		variation Variation
+			isDefault
+			relationship: 2c68faf6-9f72-4695-93b0-44fa68540177
+			defaultHierarchy: LocalDateTable_fae259b9-b496-479c-ab07-17fbf9099c2f.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column vigencia
+		dataType: string
+		lineageTag: a0db2d49-ff89-4e50-82fd-474853ee3681
+		summarizeBy: none
+		sourceColumn: vigencia
+
+		annotation SummarizationSetBy = Automatic
+
+	column dias_free_time
+		dataType: int64
+		lineageTag: f4b65b97-ae5f-458b-944e-e435af37a7e5
+		summarizeBy: sum
+		sourceColumn: dias_free_time
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column adic_carga_perigosa
+		dataType: double
+		lineageTag: 42ed1a8e-da77-43d0-91cb-c0537ba24d32
+		summarizeBy: sum
+		sourceColumn: adic_carga_perigosa
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column adic_mercadoria_especial
+		dataType: double
+		lineageTag: 6d00c962-a27b-4fba-83f1-6bb5bd45d2e8
+		summarizeBy: sum
+		sourceColumn: adic_mercadoria_especial
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column perc_seguro_tabela
+		dataType: double
+		lineageTag: 8395db5a-a0e8-4064-abe5-8a7ee68d33e5
+		summarizeBy: sum
+		sourceColumn: perc_seguro_tabela
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column perc_seguro_periodo
+		dataType: double
+		lineageTag: 56ee92d0-bd4b-4b84-9ea3-a50b4f37fc8c
+		summarizeBy: sum
+		sourceColumn: perc_seguro_periodo
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column flag_isencao
+		dataType: string
+		lineageTag: d1ca164d-9b49-4011-82ff-a50208c20f92
+		summarizeBy: none
+		sourceColumn: flag_isencao
+
+		annotation SummarizationSetBy = Automatic
+
+	column percentual_desconto
+		dataType: double
+		lineageTag: 39f0eee7-5297-4063-b082-273ead1f9196
+		summarizeBy: sum
+		sourceColumn: percentual_desconto
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column forma_pagamento
+		dataType: string
+		lineageTag: a37dc149-93c2-485b-95d1-26a4f0e21b9a
+		summarizeBy: none
+		sourceColumn: forma_pagamento
+
+		annotation SummarizationSetBy = Automatic
+
+	column dias_periodo
+		dataType: int64
+		lineageTag: a4c8c0b5-d737-41ba-9e55-e062d1c35d12
+		summarizeBy: sum
+		sourceColumn: dias_periodo
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column data_criacao_tabela
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: a52d6d69-1640-405b-a30f-1a44b4aa3fa5
+		summarizeBy: none
+		sourceColumn: data_criacao_tabela
+
+		variation Variation
+			isDefault
+			relationship: 5b0e1638-da24-49a2-94ce-d7c38490ae5a
+			defaultHierarchy: LocalDateTable_834d57e7-2d37-4ab1-8cbf-08cbebfdad38.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column grupo_cliente
+		dataType: string
+		lineageTag: e4efa6fd-b21e-4c05-8d31-fbdf5a7a75a9
+		summarizeBy: none
+		sourceColumn: grupo_cliente
+
+		annotation SummarizationSetBy = Automatic
+
+	column grupo_armador
+		dataType: string
+		lineageTag: dcc0cce7-c399-4d12-91fc-589baa29b6c8
+		summarizeBy: none
+		sourceColumn: grupo_armador
+
+		annotation SummarizationSetBy = Automatic
+
+	column grupo_cobrar_de
+		dataType: string
+		lineageTag: 7e26d415-d347-4dc9-980d-15691194bf47
+		summarizeBy: none
+		sourceColumn: grupo_cobrar_de
+
+		annotation SummarizationSetBy = Automatic
+
+	column Tempo_vigencia_meses = ```
+			ROUND((contratos[fim_vigencia] - contratos[inicio_vigencia])/30,0)
+			
+			```
+		formatString: 0
+		lineageTag: ef3b9d0f-a904-4164-bdb5-f57b9949691a
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	column contar = ```
+			COUNTX
+			(FILTER(
+			    contratos, contratos[concat2] = EARLIER(contratos[concat2])), 
+			contratos[concat2]
+			)
+			```
+		formatString: 0
+		lineageTag: f060379f-3369-4204-8a5e-359f6c209a57
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column concat2 = contratos[cd_tipo_servico] & contratos[cod_tabela] & contratos[cod_contrato] & contratos[periodo]
+		lineageTag: 388ed7da-a55a-462e-83a6-ce35b30d2190
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'inicio e fim vigencia' = contratos[inicio_vigencia]&" - "&contratos[fim_vigencia]
+		lineageTag: a0645141-2a45-4cac-ab53-3201add12f4f
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column cod_servico_un = contratos[cd_tipo_servico]&contratos[un]
+		lineageTag: 73b029fb-943a-402c-8b09-79efb75fe1b1
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_valor_negociado = YEAR('contratos'[inicio_vigencia])&'contratos'[cd_tipo_servico]&contratos[cod_cliente_sap]&'contratos'[un]
+		lineageTag: f1e7dd60-3e9c-4129-9839-0f1dde3da294
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column contrato
+		dataType: string
+		lineageTag: 5d0608fa-3ffb-4592-8ead-95a690358018
+		summarizeBy: none
+		sourceColumn: contrato
+
+		annotation SummarizationSetBy = Automatic
+
+	column cod_servico
+		dataType: int64
+		formatString: 0
+		lineageTag: 9ce01f23-f729-44a6-977e-586daae59bef
+		summarizeBy: sum
+		sourceColumn: cod_servico
+
+		annotation SummarizationSetBy = Automatic
+
+	column chave = contratos[servico]&contratos[un]
+		lineageTag: 5efac372-be44-4b90-bb20-bc27e46779a8
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column dias_portas
+		dataType: int64
+		lineageTag: 43ec0eeb-bbf5-4d0b-8a20-7307747c44e0
+		summarizeBy: sum
+		sourceColumn: dias_portas
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column percent_desconto
+		dataType: double
+		lineageTag: 767e6ebf-e165-4f0b-aba9-60d73be1ff1a
+		summarizeBy: sum
+		sourceColumn: percent_desconto
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column valor_nao_numerico
+		dataType: string
+		lineageTag: 7386dabf-0d0b-4b0c-90a8-9b840a9d60f0
+		summarizeBy: none
+		sourceColumn: valor_nao_numerico
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_serv_contrato = contratos[cod_contrato]&contratos[cd_tipo_servico]&contratos[un]
+		lineageTag: c4fd3788-268c-4680-96f5-3475b8bf6680
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column dias_isencao
+		dataType: int64
+		lineageTag: 06891e3c-97f7-4a8f-b0b3-e6e00a716320
+		summarizeBy: sum
+		sourceColumn: dias_isencao
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column id_periodo = contratos[id_serv_contrato]&contratos[periodo]
+		lineageTag: 7c496dbd-0599-4057-994b-0f50325c5c2e
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column tipo_tabela
+		dataType: string
+		lineageTag: 77d3188d-a3b9-420b-aa08-f513e26a2bdc
+		summarizeBy: none
+		sourceColumn: tipo_tabela
+
+		annotation SummarizationSetBy = Automatic
+
+	column valor
+		dataType: double
+		lineageTag: 25364eba-b0ba-4afb-bcb0-52c019eb01a9
+		summarizeBy: sum
+		sourceColumn: valor
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Contagem de Repetições' =
+			
+			COUNTROWS(
+			    FILTER(
+			        'contratos',
+			        'contratos'[cod_contrato] = EARLIER('contratos'[cod_contrato])
+			    )
+			)
+		formatString: 0
+		lineageTag: 983f1354-f0f5-4607-bcdc-9f697a7b0b12
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column etl_updated_at
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 3f845022-6c2a-427d-8294-85a9c5f0a60f
+		summarizeBy: none
+		sourceColumn: etl_updated_at
+
+		variation Variation
+			isDefault
+			relationship: e04cd2c5-df91-4991-8f88-2594fe605f9c
+			defaultHierarchy: LocalDateTable_90a7e5a3-5a9b-4f8a-8ea7-a1ed68604475.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	partition contratos = m
+		mode: import
+		source =
+				let
+				    Origem = PowerPlatform.Dataflows([]),
+				  Navegação = Origem{[Id = "Workspaces"]}[Data],
+				  #"Navegação 1" = Navegação{[workspaceId = "bcd54b55-e85f-4c30-a169-bfbf18f90f30"]}[Data],
+				  #"Navegação 2" = #"Navegação 1"{[dataflowId = "db21c979-872a-4339-a1f0-74e09afefa00"]}[Data],
+				  #"Navegação 3" = #"Navegação 2"{[entity = "dim_bc_tecons_contratos_teste", version = ""]}[Data],
+				  #"Linhas Filtradas" = Table.SelectRows(#"Navegação 3",each not Text.Contains([tabela], "TABELA PUBLICA")),
+				  #"Linhas Filtradas1" = Table.SelectRows(#"Linhas Filtradas", each not Text.Contains([tabela], "TABELA GERAL")),
+				  #"Colunas Renomeadas" = Table.RenameColumns(#"Linhas Filtradas1",{{"valor_numerico", "valor"}}),
+				  #"Valor Substituído" = Table.ReplaceValue(#"Colunas Renomeadas",".",",",Replacer.ReplaceText,{"valor"}),
+				  #"Tipo Alterado" = Table.TransformColumnTypes(#"Valor Substituído",{{"valor", type number}}),
+				  Personalizar1 = Table.RemoveColumns(#"Tipo Alterado",{"cliente_cnpj"}),
+				  #"Tipo Alterado1" = Table.TransformColumnTypes(Personalizar1,{{"arm_id", type number}, {"armador", type number}, {"cod_armador", type number}}),
+				  #"Colunas Removidas" = Table.RemoveColumns(#"Tipo Alterado1",{"valor"}),
+				  #"Colunas Renomeadas1" = Table.RenameColumns(#"Colunas Removidas",{{"multiplicador_cif", "valor"}})
+				in
+				    #"Colunas Renomeadas1"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navegação
+

@@ -1,0 +1,28 @@
+table '#Despesa Administrativa'
+	lineageTag: f49def11-e535-4b00-b371-003134726538
+
+	measure 'Valor #Despesa Administrativa' = SELECTEDVALUE('#Despesa Administrativa'[#Despesa Administrativa])
+		lineageTag: 1105f187-25a9-460c-9d23-b7ff27548a83
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#Despesa Administrativa'
+		lineageTag: 281199ec-56b0-4378-b1dc-e060ba8e56da
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '#Despesa Administrativa' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 1, 0.001)
+
+	annotation PBI_Id = 6a1f547a4cff4efd8e13293497203876
+

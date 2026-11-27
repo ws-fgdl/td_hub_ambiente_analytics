@@ -1,0 +1,33 @@
+model Model
+	culture: pt-BR
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: pt-BR
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+/// Erros nas consultas que foram carregadas em 30/08/2024 14:59:51.
+queryGroup 'Erros na Consulta - 30/08/2024 14:59:51'
+
+	annotation PBI_QueryGroupOrder = 0
+
+annotation PBI_QueryOrder = ["dim_carteira_comercial","aws_tsv_movimentacao_cntr_daily","Erros em tsv_movimentacao_cntr_daily","salesforce (2)","dataliner_exp","dataliner_imp"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table DateTableTemplate_cd1a258a-92cf-4c67-a62e-9bf5912e4952
+ref table dim_carteira_comercial
+ref table Calendario1
+ref table LocalDateTable_6d9ed7e7-31fb-4b26-a361-3a55c1c59a19
+ref table UN
+ref table Modalidade
+ref table 'Status Container'
+ref table 'salesforce (2)'
+ref table dataliner_exp
+ref table dataliner_imp
+ref table dataliner_consolidado
+
+ref cultureInfo pt-BR
+

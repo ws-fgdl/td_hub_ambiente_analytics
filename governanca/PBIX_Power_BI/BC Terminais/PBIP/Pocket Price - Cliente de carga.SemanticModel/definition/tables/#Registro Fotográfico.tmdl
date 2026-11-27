@@ -1,0 +1,28 @@
+table '#Registro Fotográfico'
+	lineageTag: bac55fa8-1c57-442b-81d9-def66cc7a1c3
+
+	measure 'Valor #Registro Fotográfico' = SELECTEDVALUE('#Registro Fotográfico'[#Registro Fotográfico])
+		lineageTag: 6edc1725-93ab-4338-9113-3e56db77cc46
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#Registro Fotográfico'
+		lineageTag: 70e9d88d-a512-4bdb-8e77-4372395eae30
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '#Registro Fotográfico' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 1, 0.001)
+
+	annotation PBI_Id = cce51356d6904dbf94c9a0b12ee8db7a
+

@@ -1,0 +1,28 @@
+table '#Manuseio Extra/Realocações/Transferência Lote'
+	lineageTag: 7462b0ec-b096-4514-ab59-c7fb68435a30
+
+	measure 'Valor #Manuseio Extra/Realocações/Transferência Lote' = SELECTEDVALUE('#Manuseio Extra/Realocações/Transferência Lote'[#Manuseio Extra/Realocações/Transferência Lote])
+		lineageTag: a75eefb7-a6ca-4dd3-bae0-ec4393960148
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#Manuseio Extra/Realocações/Transferência Lote'
+		lineageTag: d901f871-f56d-4133-b3f0-ee67a30e70b2
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '#Manuseio Extra/Realocações/Transferência Lote' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 1, 0.001)
+
+	annotation PBI_Id = fabf54b010a445b78e0c19a0e955c0a8
+

@@ -1,0 +1,263 @@
+table '_Medidas Estadia Reefer'
+	lineageTag: 83730921-e616-4b2b-a153-0a273f3b4bad
+	sourceLineageTag: c8745353-92de-4d55-ae15-03a265433d5a
+
+	measure Slicer_Possui_Estadia_Reefer_Sim_Não = EXTERNALMEASURE("Slicer_Possui_Estadia_Reefer_Sim_Não", STRING, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: ab78844e-8d64-441d-8950-ca039aa756df
+		sourceLineageTag: bafe5e03-7638-476a-9737-7599a634005f
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isText":true}
+
+	measure 'Qtde Cntrs Estadia Reefer' = EXTERNALMEASURE("Qtde Cntrs Estadia Reefer", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: d24ab745-36d2-4060-96c9-d398aa1e6a87
+		sourceLineageTag: b0a46891-acc5-4795-917a-18a19682e0d1
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Dias Cobrar' = EXTERNALMEASURE("Dias Cobrar", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 329ba2b4-346f-4546-991f-be13d41f20a5
+		sourceLineageTag: 97996835-bcba-4d57-9f88-6d6426cf3053
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Dias Líquido' = EXTERNALMEASURE("Dias Líquido", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 7c54048d-0dba-4c7d-b0bf-b28c39d6af6a
+		sourceLineageTag: 33cb4a67-c7cd-4e66-8764-2373753c7608
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Qtde Cntrs Estadia Reefer YTD' = EXTERNALMEASURE("Qtde Cntrs Estadia Reefer YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: YTD
+		lineageTag: 46987285-fa9f-4ceb-b2c4-56356f3cc390
+		sourceLineageTag: 16d3fc8f-e381-4017-8376-795e223ba8f7
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Qtde Cntrs Estadia Reefer PYTD' = EXTERNALMEASURE("Qtde Cntrs Estadia Reefer PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PYTD
+		lineageTag: 38003ed0-16fa-4ee9-ad4a-bc07323a9e8d
+		sourceLineageTag: 77cbe8b8-000b-46e8-a3ab-caf6efe059aa
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Qtde Cntrs Estadia Reefer PY' = EXTERNALMEASURE("Qtde Cntrs Estadia Reefer PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PY
+		lineageTag: 45f5f552-b71c-49ef-a850-d54d3a949fbb
+		sourceLineageTag: 58f6079c-6b75-4660-8f80-e701eb819656
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Dias Cobrar YTD' = EXTERNALMEASURE("Dias Cobrar YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: YTD
+		lineageTag: bb171839-922e-490a-814d-3c8192deb1f3
+		sourceLineageTag: 172a0e02-f4fc-44e8-99e5-813dd6f2006a
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Dias Cobrar PYTD' = EXTERNALMEASURE("Dias Cobrar PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PYTD
+		lineageTag: 15ca2cbc-21c2-458e-beff-5982671bbff3
+		sourceLineageTag: efeaeb43-f4d6-49aa-84c2-643412be09c5
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Dias Cobrar PY' = EXTERNALMEASURE("Dias Cobrar PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PY
+		lineageTag: 65ff59a7-90c2-4a48-8805-2943564c6675
+		sourceLineageTag: 8c25932d-e6fe-4115-9049-47ad47d3415e
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Dias Líquido YTD' = EXTERNALMEASURE("Dias Líquido YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: YTD
+		lineageTag: 83874e8e-d752-4323-b8e8-d97bd8a3797d
+		sourceLineageTag: 9eea5e9e-a5e8-47f3-abb6-886c28cf3d93
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Dias Líquido PYTD' = EXTERNALMEASURE("Dias Líquido PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PYTD
+		lineageTag: 98f262bb-228a-4e49-9cff-a2a609f7007b
+		sourceLineageTag: 69e3d138-d672-4916-9854-2d7d33c48bcc
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Dias Líquido PY' = EXTERNALMEASURE("Dias Líquido PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PY
+		lineageTag: 90dcef0f-08da-4fc2-b81d-1690393f1b55
+		sourceLineageTag: f8b30e2d-0205-4651-bce0-ede445c6d5a1
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ESTADIA_REEFER_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: b59c4f3e-58c0-4285-8ed8-d84b48b40c12
+		sourceLineageTag: 4c7401fb-849a-493a-9e61-0678f670cf7a
+		dataCategory: Uncategorized
+		summarizeBy: count
+		sourceColumn: ESTADIA_REEFER_ID
+
+		annotation SummarizationSetBy = User
+
+	column TEMPO_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: 011c5116-8afe-47fc-a33d-558fb0943022
+		sourceLineageTag: 1a95839f-623a-4e6b-89f9-b38415fd54b4
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: TEMPO_ID
+
+		annotation SummarizationSetBy = User
+
+	column COD_EMPR_SAP
+		dataType: string
+		isHidden
+		lineageTag: c2f931d6-e067-4550-a321-c8dc5d483c0c
+		sourceLineageTag: 0edf7fa5-573b-4c4b-a02e-57a7f4521989
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: COD_EMPR_SAP
+
+		annotation SummarizationSetBy = User
+
+	column MODALIDADE_ID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: e0ddbaa7-81aa-431e-a762-c0bcf5e1a461
+		sourceLineageTag: dd5e1bbc-ddd1-4519-859e-731cdca330ed
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: MODALIDADE_ID
+
+		annotation SummarizationSetBy = User
+
+	column TAMANHO
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: f38bbb85-420d-45de-b0d4-d1e0063db579
+		sourceLineageTag: b36cf7e2-55b0-4886-aa00-a09a501e0288
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: TAMANHO
+
+		annotation SummarizationSetBy = User
+
+	column ARM_ID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: c5ca05d0-caa2-4a65-a6c5-497a2abb7804
+		sourceLineageTag: 35dc7d86-ef10-4e64-b15d-c82590c66649
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: ARM_ID
+
+		annotation SummarizationSetBy = User
+
+	column COD_CLIENTE_SAP
+		dataType: string
+		isHidden
+		lineageTag: 678bee1e-acf8-4579-b082-ab536d0298c2
+		sourceLineageTag: 4412e76d-b537-465a-9cc9-17d87b39f5c7
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: COD_CLIENTE_SAP
+
+		annotation SummarizationSetBy = User
+
+	column GRUPO_ID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: f5256228-0293-43bf-b699-c2a6d3c65074
+		sourceLineageTag: a81deee2-17cd-4ea3-aa7e-ede6bc3f5ca7
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: GRUPO_ID
+
+		annotation SummarizationSetBy = User
+
+	column VENDEDOR_COMERC_ID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 45769d10-5835-4d47-a9b9-a9c1261d4c52
+		sourceLineageTag: eefba315-4206-41f3-b2d3-dfa3500f4764
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: VENDEDOR_COMERC_ID
+
+		annotation SummarizationSetBy = User
+
+	column SEGMENTACAO_ID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: eff83736-fb0f-4bb9-8a09-00a7a6933c61
+		sourceLineageTag: 8151d942-63e0-48c7-86b6-06ed6b879b13
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: SEGMENTACAO_ID
+
+		annotation SummarizationSetBy = User
+
+	column QTD_CNTRS
+		dataType: double
+		isHidden
+		lineageTag: 2d2382c7-49d1-4d9b-964a-42e38b76d988
+		sourceLineageTag: 1c51a8a4-6ce1-4c2a-afdf-b500a337cd7e
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: QTD_CNTRS
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DIAS_COBRAR
+		dataType: double
+		lineageTag: f25c42a4-3d1c-467a-83e2-9655b8e86787
+		sourceLineageTag: 61f081f1-c171-48b3-a733-602fb2637528
+		dataCategory: Uncategorized
+		summarizeBy: average
+		sourceColumn: DIAS_COBRAR
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DIAS_LIQUIDO
+		dataType: double
+		lineageTag: 643685a9-3d5a-45da-ae32-ef5b5d626d91
+		sourceLineageTag: 0752d953-241e-40de-8733-1e871e43171f
+		dataCategory: Uncategorized
+		summarizeBy: average
+		sourceColumn: DIAS_LIQUIDO
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '_Medidas Estadia Reefer' = entity
+		mode: directQuery
+		source
+			entityName: _Medidas Estadia Reefer
+			expressionSource: 'DirectQuery para AS – Modelo Operações Portuárias'
+

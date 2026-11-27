@@ -1,0 +1,407 @@
+table '_Medidas Estadia FCL'
+	lineageTag: 79d56dae-2e2b-44ce-9a67-af627ddd8e35
+	sourceLineageTag: 78a77ef5-6c5c-4a39-bc14-cfc5d3b53377
+
+	measure Slicer_Possui_Estadia_FCL_Sim_Não = EXTERNALMEASURE("Slicer_Possui_Estadia_FCL_Sim_Não", STRING, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 286f05db-2ac0-4b57-b017-2f5ae1cdf34f
+		sourceLineageTag: 1f3df007-7c23-45aa-8e03-59d225c22cb8
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isText":true}
+
+	measure 'Qtde Cntrs Estadia FCL' = EXTERNALMEASURE("Qtde Cntrs Estadia FCL", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 47417de7-0865-44f3-b48c-1664a37dce14
+		sourceLineageTag: 392affd5-9c08-47b8-9650-26da5b8127da
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Estadia Média' = EXTERNALMEASURE("Estadia Média", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 2e7e1da6-8b0a-4186-9489-8cbad8f73f9d
+		sourceLineageTag: cc702688-6377-4b9e-bfb1-4107b62ad388
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'CIF Médio' = EXTERNALMEASURE("CIF Médio", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: c5e381e5-8dad-4f9b-891f-06338c26e457
+		sourceLineageTag: bd2bc662-6619-4332-99ff-81fccf975745
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Valor Médio Armazenagem' = EXTERNALMEASURE("Valor Médio Armazenagem", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 4501b420-38e8-40ab-9ff4-24b35e01d7f5
+		sourceLineageTag: fab9bfd1-c2e3-407b-b257-e91e3104212a
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Valor Médio Fiel Depósito' = EXTERNALMEASURE("Valor Médio Fiel Depósito", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 34200606-c46e-4fe4-8b90-471b0d096193
+		sourceLineageTag: a4152e5d-4015-466b-bec3-8f7c694a519b
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Qtd BLs' = EXTERNALMEASURE("Qtd BLs", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 7df0ffb1-c72e-4d4f-acb1-2c0f489c0d9f
+		sourceLineageTag: d218a06a-31f8-45bf-a1cd-42e13add3e68
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Qtde Cntrs Estadia FCL YTD' = EXTERNALMEASURE("Qtde Cntrs Estadia FCL YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: YTD
+		lineageTag: 38bc2eba-74ba-4b41-952a-7a0e72de6502
+		sourceLineageTag: f988a568-b2a1-4a43-8aee-fb7bc97b468a
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Qtde Cntrs Estadia FCL PYTD' = EXTERNALMEASURE("Qtde Cntrs Estadia FCL PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PYTD
+		lineageTag: 95683801-a87a-4942-a96c-2d291fc48007
+		sourceLineageTag: 071c9cfb-bfd1-4017-b206-713cad0cb624
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Qtde Cntrs Estadia FCL PY' = EXTERNALMEASURE("Qtde Cntrs Estadia FCL PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PY
+		lineageTag: 3f8c8d6b-bc20-4059-b324-67d4f807f5f4
+		sourceLineageTag: 95c97b35-db69-4b4e-9d1d-f6df6dd21b99
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Estadia Média YTD' = EXTERNALMEASURE("Estadia Média YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: YTD
+		lineageTag: 8d94417e-8b13-4769-a584-2d83e3f6f297
+		sourceLineageTag: 48270898-860a-477b-94ac-51fa263a50f4
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Estadia Média PYTD' = EXTERNALMEASURE("Estadia Média PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PYTD
+		lineageTag: 8ddccb0c-fc3d-4013-815d-ecaada3bd48f
+		sourceLineageTag: a899d05f-7823-4f14-8b82-7985a0cff697
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Estadia Média PY' = EXTERNALMEASURE("Estadia Média PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PY
+		lineageTag: 072a6eab-b8f3-469a-8e53-adef46011e96
+		sourceLineageTag: 5ada8b1b-2611-4b3a-9b6d-7674bfeeb291
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'CIF Médio YTD' = EXTERNALMEASURE("CIF Médio YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: YTD
+		lineageTag: fd6a3760-fe0d-4f6f-a309-2d93889bc59b
+		sourceLineageTag: cda8fa6c-542b-43a5-bff3-6454df494e28
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'CIF Médio PYTD' = EXTERNALMEASURE("CIF Médio PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PYTD
+		lineageTag: f1dc26fd-3a88-41fd-a746-d6981a18e78e
+		sourceLineageTag: bc0c9245-af85-43e1-a21b-d28148b4f79d
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'CIF Médio PY' = EXTERNALMEASURE("CIF Médio PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PY
+		lineageTag: 8e4ef72e-7e97-4a09-8056-0f213c2102d4
+		sourceLineageTag: a8b4cea7-3e3a-4ef7-8bd5-b64119f1567e
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Valor Médio Armazenagem YTD' = EXTERNALMEASURE("Valor Médio Armazenagem YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: YTD
+		lineageTag: 45efcf41-1cf2-4ac2-9ccd-14323cd6f072
+		sourceLineageTag: 48aa16fc-c917-4f90-b350-494579a13026
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Valor Médio Armazenagem PYTD' = EXTERNALMEASURE("Valor Médio Armazenagem PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PYTD
+		lineageTag: e0213fdd-b935-4162-9457-46e393cc5f30
+		sourceLineageTag: d2737dcd-8a0d-46c3-aa51-209e713ee21b
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Valor Médio Armazenagem PY' = EXTERNALMEASURE("Valor Médio Armazenagem PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PY
+		lineageTag: db94f024-81f6-4d87-87f0-634175ddc1e4
+		sourceLineageTag: 47977b8a-f904-4762-945a-4ef17db41689
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Valor Médio Fiel Depósito YTD' = EXTERNALMEASURE("Valor Médio Fiel Depósito YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: YTD
+		lineageTag: 430fabc8-9dc5-4391-99c2-e97d67ef12f0
+		sourceLineageTag: fa01b905-524b-4057-8bd3-745d99080e0c
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Valor Médio Fiel Depósito PYTD' = EXTERNALMEASURE("Valor Médio Fiel Depósito PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PYTD
+		lineageTag: ac4d806c-b8e0-4431-8ec7-33a77c93f935
+		sourceLineageTag: f4041d89-7496-4c5b-a419-c96093aa1e3a
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Valor Médio Fiel Depósito PY' = EXTERNALMEASURE("Valor Médio Fiel Depósito PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PY
+		lineageTag: d7e416ce-3f51-4a31-af9e-a0f7420382e6
+		sourceLineageTag: 63c8b516-31d8-4db9-a882-bf31e2c7ed41
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Qtd BLs YTD' = EXTERNALMEASURE("Qtd BLs YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: YTD
+		lineageTag: ba5a3ea2-f20e-4524-99c0-1b6f232e3480
+		sourceLineageTag: bc614700-baed-44c8-a314-87959f138363
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Qtd BLs PYTD' = EXTERNALMEASURE("Qtd BLs PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PYTD
+		lineageTag: f1da448d-6579-4799-ad72-c0feb3fa2d54
+		sourceLineageTag: a90758f5-8d90-4f3b-bbcf-8fc1da7ba093
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Qtd BLs PY' = EXTERNALMEASURE("Qtd BLs PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PY
+		lineageTag: e0e01064-dd53-44ba-a993-e80e7a949046
+		sourceLineageTag: 6effca32-ba77-44e4-abef-a68b57005a44
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ESTADIA_FCL_ID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 727e1677-0e54-48a8-988a-cd6528e6d932
+		sourceLineageTag: c831c3ec-65c0-49cc-82e8-64b58c67f2d8
+		dataCategory: Uncategorized
+		summarizeBy: count
+		sourceColumn: ESTADIA_FCL_ID
+
+		annotation SummarizationSetBy = User
+
+	column COD_EMPR_SAP
+		dataType: string
+		isHidden
+		lineageTag: ce7d4cd1-dd0c-4ac9-9252-d5567cc517a7
+		sourceLineageTag: 56193bf7-1054-4305-a2f5-03dcc988670f
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: COD_EMPR_SAP
+
+		annotation SummarizationSetBy = User
+
+	column TEMPO_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: 1deab61a-8bac-4b0c-995e-4f7bdb4f4ba3
+		sourceLineageTag: df56e1d5-0244-4d39-aa40-38470bae2c20
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: TEMPO_ID
+
+		annotation SummarizationSetBy = User
+
+	column TIPO_DI
+		dataType: string
+		isHidden
+		lineageTag: 164e47e9-f0df-4068-bc9f-4a17769fc2cc
+		sourceLineageTag: 60b103ab-e346-4ec6-8d9c-c6c800c8ee28
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: TIPO_DI
+
+		annotation SummarizationSetBy = User
+
+	column COD_EMPR_SAP_IMPORTADOR
+		dataType: string
+		isHidden
+		lineageTag: beac3232-3f06-4fa7-bd55-1a86fdde7220
+		sourceLineageTag: 6e61502c-2bff-44c8-86f0-bdc30e0976f9
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: COD_EMPR_SAP_IMPORTADOR
+
+		annotation SummarizationSetBy = User
+
+	column GRUPO_ID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: a67d9ec9-9241-47a0-b867-a91ea90b31c6
+		sourceLineageTag: b9e916b3-a9a4-4a11-9ef0-584a950dddf0
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: GRUPO_ID
+
+		annotation SummarizationSetBy = User
+
+	column SEGMENTACAO_ID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: c1ed3662-058c-47fd-b08f-e1559b07b683
+		sourceLineageTag: 4750ca01-aace-423d-a914-4175104bf749
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: SEGMENTACAO_ID
+
+		annotation SummarizationSetBy = User
+
+	column VENDEDOR_COMERC_ID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 41e2fdfd-0a9b-498a-86b0-551b0d9fbf95
+		sourceLineageTag: 5e973f3d-9713-4fde-8aa5-0907f5281d0c
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: VENDEDOR_COMERC_ID
+
+		annotation SummarizationSetBy = User
+
+	column Periodo
+		dataType: int64
+		formatString: 0
+		lineageTag: 64a97967-850b-4c01-b1ca-482131931c3c
+		sourceLineageTag: 7fc07266-0f4d-4edb-9a08-446c5d5fdd98
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Periodo
+
+		annotation SummarizationSetBy = User
+
+	column PERIGOSO
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 239250e3-0686-4c9a-8b25-5592cbf3b4a8
+		sourceLineageTag: a877e5ea-4c14-42ae-ab12-0e1b3eb4cb4e
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: PERIGOSO
+
+		annotation SummarizationSetBy = User
+
+	column ANVISA
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: de0ff97c-800d-4b76-b41d-400f9a5a25af
+		sourceLineageTag: fdd842a6-f679-4245-80bf-2ca54db47fca
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: ANVISA
+
+		annotation SummarizationSetBy = User
+
+	column QTD_CNTRS
+		dataType: double
+		isHidden
+		lineageTag: 220b05a0-627c-46f3-ad26-2f264baddfe1
+		sourceLineageTag: 163b8ec1-d39c-486e-a934-5e7f20a0ff40
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: QTD_CNTRS
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ESTADIA_MEDIA
+		dataType: double
+		lineageTag: f2ee50ea-4311-40d6-8572-1da3fd8c704a
+		sourceLineageTag: 5e1f54fe-1f4a-4c21-8693-e691584678e5
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: ESTADIA_MEDIA
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CIF_MEDIO
+		dataType: double
+		isHidden
+		lineageTag: 62f23eb1-289c-4a83-be61-cea0571aff08
+		sourceLineageTag: ad41829d-b492-4d95-a065-badf6d5fd798
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: CIF_MEDIO
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column VALOR_MEDIO_ARMAZENAGEM
+		dataType: double
+		isHidden
+		lineageTag: 5170855c-6481-4732-9fad-12ef63f2df21
+		sourceLineageTag: db56f059-6b5d-4f85-82d0-08954db4b9a5
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: VALOR_MEDIO_ARMAZENAGEM
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column VALOR_MEDIO_FIEL_DEPOSITO
+		dataType: double
+		isHidden
+		lineageTag: de8f4ee5-be8c-48ed-bd9f-0c1fe2f3c9b9
+		sourceLineageTag: 1e1d2619-41cb-4482-90d3-eaf65191bc9f
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: VALOR_MEDIO_FIEL_DEPOSITO
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column QTD_BL
+		dataType: double
+		isHidden
+		lineageTag: 5f748154-ee18-4caf-92e2-87e2dd5646d8
+		sourceLineageTag: 92079727-3adb-444a-8574-df55cb5e398b
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: QTD_BL
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '_Medidas Estadia FCL' = entity
+		mode: directQuery
+		source
+			entityName: _Medidas Estadia FCL
+			expressionSource: 'DirectQuery para AS – Modelo Operações Portuárias'
+

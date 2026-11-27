@@ -1,0 +1,42 @@
+table Porto
+	lineageTag: 41aa1997-4c40-4110-929a-27dae29d45b0
+	sourceLineageTag: 4d267002-a00c-4d83-98b2-13443c65d71d
+
+	column 'Porto ID'
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		lineageTag: d82b84ca-98e6-4bae-b5cb-c65ee623a4f2
+		sourceLineageTag: 657d6932-b6aa-4bb4-b55b-60ea639a0bb2
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Porto ID
+
+		annotation SummarizationSetBy = User
+
+	column 'Código Porto'
+		dataType: string
+		lineageTag: 7e55b37c-6cfa-4d62-bea2-3950606c47a1
+		sourceLineageTag: ee5d9a81-2b11-4c4f-b6f3-148c6d5c08e6
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Código Porto
+
+		annotation SummarizationSetBy = User
+
+	column Porto
+		dataType: string
+		lineageTag: ecec5fff-0b1a-4cc7-99a6-c6067bfa38c1
+		sourceLineageTag: cf9d582f-5ae4-459a-a97c-6333e8a50453
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Porto
+
+		annotation SummarizationSetBy = User
+
+	partition Porto = entity
+		mode: directQuery
+		source
+			entityName: Porto
+			expressionSource: 'DirectQuery para AS – Modelo Operações Portuárias'
+

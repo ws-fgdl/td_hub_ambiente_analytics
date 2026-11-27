@@ -1,0 +1,32 @@
+table 'Tipo Faturamento'
+	lineageTag: d963e174-70e0-4464-a293-b055485e1f28
+	sourceLineageTag: c625f7f5-b75a-4023-b2dc-ee2917fc6235
+
+	column 'Tipo Faturamento ID'
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		lineageTag: 8aa03471-c0d6-4225-a040-17aac98216d5
+		sourceLineageTag: 453205b6-11ba-4f79-a6d6-965da0c2b6a7
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Tipo Faturamento ID
+
+		annotation SummarizationSetBy = User
+
+	column 'Tipo Faturamento'
+		dataType: string
+		lineageTag: 7687716e-9b54-4985-a21a-78f9ab6ef420
+		sourceLineageTag: f66a1a51-7862-4d18-afb3-7824b393c4ed
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Tipo Faturamento
+
+		annotation SummarizationSetBy = User
+
+	partition 'Tipo Faturamento' = entity
+		mode: directQuery
+		source
+			entityName: Tipo Faturamento
+			expressionSource: 'DirectQuery para AS – Modelo Operações Portuárias'
+

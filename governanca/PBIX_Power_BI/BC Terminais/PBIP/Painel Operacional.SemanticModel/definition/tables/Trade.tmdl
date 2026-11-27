@@ -1,0 +1,21 @@
+table Trade
+	lineageTag: 920d588e-5fb3-4295-b6b4-d517bd3dea58
+	sourceLineageTag: 0a3c546e-25c6-4122-a731-1c69be35eef3
+
+	column Trade
+		dataType: string
+		isNullable: false
+		lineageTag: 3b7b0752-7af0-404e-986d-a4d2b5265528
+		sourceLineageTag: 3b597034-eca5-459e-bdbb-96b563938e93
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Trade
+
+		annotation SummarizationSetBy = User
+
+	partition Trade = entity
+		mode: directQuery
+		source
+			entityName: Trade
+			expressionSource: 'DirectQuery para AS – Modelo Operações Portuárias'
+

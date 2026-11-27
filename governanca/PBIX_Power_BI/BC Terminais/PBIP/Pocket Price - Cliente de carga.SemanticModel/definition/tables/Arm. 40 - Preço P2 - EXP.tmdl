@@ -1,0 +1,27 @@
+table 'Arm. 40 - Preço P2 - EXP'
+	lineageTag: 13742da8-97a7-4283-a0b0-cfcd1eea63f7
+
+	measure 'Valor Arm. 40 - Preço P2 - EXP' = SELECTEDVALUE('Arm. 40 - Preço P2 - EXP'[Arm. 40 - Preço P2 - EXP])
+		lineageTag: b894399e-b3fe-45db-bf0e-b8fa318a1ccb
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Arm. 40 - Preço P2 - EXP'
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: a1bcfde8-2bb5-4ece-b5d0-84a40beb57d3
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition 'Arm. 40 - Preço P2 - EXP' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 1, 0.001)
+
+	annotation PBI_Id = af7a5d0d4a4b42f28e5319cbf6c1c5bd
+

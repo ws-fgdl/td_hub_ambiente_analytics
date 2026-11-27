@@ -1,0 +1,27 @@
+table '#SBP Entrega Cntr Vazio SA'
+	lineageTag: f3e96796-48a2-4803-b2ed-f1391a5b6b4d
+
+	measure 'Valor #SBP Entrega Cntr Vazio SA' = SELECTEDVALUE('#SBP Entrega Cntr Vazio SA'[#SBP Entrega Cntr Vazio SA])
+		lineageTag: 3f359145-736a-4587-94f4-f108ff93cb93
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#SBP Entrega Cntr Vazio SA'
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 7a2c68ee-6832-44ee-8bc4-28f30c67de5b
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition '#SBP Entrega Cntr Vazio SA' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 0.5, 0.0001)
+
+	annotation PBI_Id = ffe4b9f9adde443ea88bb7eb996cdae5
+

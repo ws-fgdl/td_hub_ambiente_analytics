@@ -1,0 +1,109 @@
+table '_Medidas Pocket Price Cliente'
+	lineageTag: a2e02e67-7b94-4e57-914a-4fce1e2c5c2e
+	sourceLineageTag: 4652e527-0d9e-49c6-aff6-49984bf19257
+
+	measure '% PP (Cliente)' = EXTERNALMEASURE("% PP (Cliente)", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 01225770-c828-47dd-8e63-f49ab19819e4
+		sourceLineageTag: 4e140343-bbb3-44af-865c-9f50091fae72
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Receita PP (Cliente)' = EXTERNALMEASURE("Receita PP (Cliente)", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 78427e52-dea7-4d70-aee6-2e5580db24ad
+		sourceLineageTag: c21fbae3-9b0b-4c50-b6dd-8c6c2e4cd894
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '% PP Grupo (Cliente)' = EXTERNALMEASURE("% PP Grupo (Cliente)", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 94d10475-482e-4303-91df-cc2719b30495
+		sourceLineageTag: aee9d925-b7dd-4630-b911-e21067dce830
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Receita PP Grupo (Cliente)' = EXTERNALMEASURE("Receita PP Grupo (Cliente)", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: fafcf22b-43c1-47d3-8c64-57c1c665e3e0
+		sourceLineageTag: 32ada47d-6263-490d-90f8-3cd3243ba5ae
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Preço Médio (Cliente)' = EXTERNALMEASURE("Preço Médio (Cliente)", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 603b10d0-f64d-495a-bfe6-f85d59989b36
+		sourceLineageTag: 1b18e89e-6e47-4d4e-b075-c835a62704bc
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Preço Médio AA (Cliente)' = EXTERNALMEASURE("Preço Médio AA (Cliente)", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 06da1756-d71a-4563-9ff2-359fad943965
+		sourceLineageTag: ce2e0569-2004-4208-921b-84a14a493254
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Vl Receita (Cliente)' = EXTERNALMEASURE("Vl Receita (Cliente)", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 12caa275-0edc-48d1-9a9f-289b03e3d907
+		sourceLineageTag: 434f4c62-785d-4bbb-ac6d-e6f8ed87e45f
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Vl Receita AA (Cliente)' = EXTERNALMEASURE("Vl Receita AA (Cliente)", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: c5964c5c-b379-45cc-bb91-1fe1e408b63a
+		sourceLineageTag: 3aa5e43e-8988-4db8-800b-945cabfd1ec8
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Volume (Cliente)' = EXTERNALMEASURE("Volume (Cliente)", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 9149070a-2941-4905-8b67-f0b681f54671
+		sourceLineageTag: b0e2174f-1fb9-4a2f-88fa-cab85f23f41d
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Volume AA (Cliente)' = EXTERNALMEASURE("Volume AA (Cliente)", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 1ae7e1f1-3251-4a9e-b1e5-714159b41039
+		sourceLineageTag: d2eb40a2-a1b4-48d7-af74-1c04b5b177a3
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Slicer_Possui_Pocket_Price_Cliente_Sim_Não = EXTERNALMEASURE("Slicer_Possui_Pocket_Price_Cliente_Sim_Não", STRING, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: da057527-761d-4c59-9c11-9ec5601227ce
+		sourceLineageTag: de4e4df7-bfc6-4c40-a6fa-92db1fd0c8fa
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isText":true}
+
+	column ColunaDummy
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 391fa6e1-f562-437c-986d-50ff381822ca
+		sourceLineageTag: 4864cd11-15e0-4118-9810-abb38673da1f
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: ColunaDummy
+
+		annotation SummarizationSetBy = User
+
+	column Assunto
+		dataType: string
+		lineageTag: 6b62f75d-2123-4f76-b8e4-2341ba119235
+		sourceLineageTag: 333c5256-589e-4c1e-8b49-3352f854b6c9
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Assunto
+
+		annotation SummarizationSetBy = User
+
+	partition '_Medidas Pocket Price Cliente' = entity
+		mode: directQuery
+		source
+			entityName: _Medidas Pocket Price Cliente
+			expressionSource: 'DirectQuery para AS – Modelo Operações Portuárias'
+

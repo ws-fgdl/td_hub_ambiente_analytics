@@ -1,0 +1,28 @@
+table '#Vol Básicos Exportação'
+	lineageTag: b9edc3df-91ac-4e25-bfdd-d97b5190939f
+
+	measure 'Valor #Vol Básicos Exportação' = SELECTEDVALUE('#Vol Básicos Exportação'[#Vol Básicos Exportação])
+		lineageTag: 4c714a98-6cf0-4bed-a938-a693193756ed
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#Vol Básicos Exportação'
+		lineageTag: 0af86745-91d5-4199-a04b-29ca39d7a2c9
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '#Vol Básicos Exportação' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 1, 0.001)
+
+	annotation PBI_Id = 7ecdb8dc598f41d08bda865b2fc20bc4
+

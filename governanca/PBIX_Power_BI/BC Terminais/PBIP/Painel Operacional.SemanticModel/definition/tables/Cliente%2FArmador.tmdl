@@ -1,0 +1,32 @@
+table Cliente/Armador
+	lineageTag: 93cd362a-986e-46f1-9e4e-ffca6a8e4b3e
+	sourceLineageTag: 4501d1e3-9302-4530-b48e-035ba5144380
+
+	column COD_CLIENTE_SAP
+		dataType: string
+		isHidden
+		isNullable: false
+		lineageTag: a215a00c-0d7e-421d-9298-766ab2a25796
+		sourceLineageTag: 02a2d927-6d02-40bf-8475-a5363965da14
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: COD_CLIENTE_SAP
+
+		annotation SummarizationSetBy = User
+
+	column Cliente/Armador
+		dataType: string
+		lineageTag: 571070b0-648a-41e7-ab38-0721ee2e813a
+		sourceLineageTag: c0fe9837-73cc-47e7-9995-dadc87c212a8
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Cliente/Armador
+
+		annotation SummarizationSetBy = User
+
+	partition Cliente/Armador = entity
+		mode: directQuery
+		source
+			entityName: Cliente/Armador
+			expressionSource: 'DirectQuery para AS – Modelo Operações Portuárias'
+

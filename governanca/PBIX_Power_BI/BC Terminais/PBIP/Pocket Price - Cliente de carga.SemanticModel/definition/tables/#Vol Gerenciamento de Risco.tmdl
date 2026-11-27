@@ -1,0 +1,28 @@
+table '#Vol Gerenciamento de Risco'
+	lineageTag: 4dd3b688-846c-43d0-8acd-31131b92fd0e
+
+	measure 'Valor #Vol Gerenciamento de Risco' = SELECTEDVALUE('#Vol Gerenciamento de Risco'[#Vol Gerenciamento de Risco])
+		lineageTag: ae940029-ce14-4b4c-ad8f-4fd14577c684
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#Vol Gerenciamento de Risco'
+		lineageTag: 155b8cec-aded-4b3b-9619-6660511e831b
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '#Vol Gerenciamento de Risco' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 1, 0.001)
+
+	annotation PBI_Id = 8409c4140f7f4e7d8780cac571d603aa
+

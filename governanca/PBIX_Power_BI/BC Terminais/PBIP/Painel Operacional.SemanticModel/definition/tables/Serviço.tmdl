@@ -1,0 +1,32 @@
+table Serviço
+	lineageTag: dcc38640-a49b-41da-a700-2fc61873a3e1
+	sourceLineageTag: 7bed00a2-34f1-4777-bdb8-73d5154c3069
+
+	column 'Serviço ID'
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		lineageTag: c0b1a576-897c-49c8-b6dc-a1ed26bc2434
+		sourceLineageTag: 7a1b4487-41c1-4308-8c77-7db7d73aa833
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Serviço ID
+
+		annotation SummarizationSetBy = User
+
+	column Serviço
+		dataType: string
+		lineageTag: 406d708a-1093-4a39-9d2d-ba79d0a79b28
+		sourceLineageTag: d66612fa-1882-4c72-919b-6bcf078722cb
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Serviço
+
+		annotation SummarizationSetBy = User
+
+	partition Serviço = entity
+		mode: directQuery
+		source
+			entityName: Serviço
+			expressionSource: 'DirectQuery para AS – Modelo Operações Portuárias'
+

@@ -1,0 +1,37 @@
+table '#SBP Box Rate Cheio TRA BT'
+	lineageTag: 5ad0728b-200d-4732-9703-06b6031fb169
+
+	measure 'Valor #SBP Box Rate Cheio TRA BT' = ```
+			
+			VAR p =
+			    SELECTEDVALUE ( '#SBP Box Rate Cheio TRA BT'[#SBP Box Rate Cheio TRA BT] )
+			RETURN
+			    DIVIDE ( COALESCE ( p, 0 ), 10000 )
+			
+			```
+		lineageTag: 6f4fd89a-6009-4820-9b59-38467e0196f0
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#SBP Box Rate Cheio TRA BT'
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: d23da246-18e6-47bb-b9af-4833900922c9
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition '#SBP Box Rate Cheio TRA BT' = calculated
+		mode: import
+		source = ```
+				GENERATESERIES(-10000, 5000, 1)
+				
+				```
+
+	annotation PBI_Id = 708507d466504d8a97ff045e452d1f1e
+

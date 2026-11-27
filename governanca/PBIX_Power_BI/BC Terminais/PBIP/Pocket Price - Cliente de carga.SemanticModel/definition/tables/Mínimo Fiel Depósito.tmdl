@@ -1,0 +1,28 @@
+table 'Mínimo Fiel Depósito'
+	lineageTag: 2144540d-0ae5-48de-b33e-2d5fb8b76ab1
+
+	measure 'Valor Mínimo Fiel Depósito' = SELECTEDVALUE('Mínimo Fiel Depósito'[Mínimo Fiel Depósito])
+		lineageTag: d61ce0b2-dcc6-4a0e-90bc-cfb88e9d64c0
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Mínimo Fiel Depósito'
+		dataType: double
+		formatString: 0
+		lineageTag: 8395d11e-0fe6-45c4-a65d-5ebea4cf6c89
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition 'Mínimo Fiel Depósito' = calculated
+		mode: import
+		source = GENERATESERIES(0, 2000, 1)
+
+	annotation PBI_Id = 01151e8856d44d86a4c58c0832ca2af7
+

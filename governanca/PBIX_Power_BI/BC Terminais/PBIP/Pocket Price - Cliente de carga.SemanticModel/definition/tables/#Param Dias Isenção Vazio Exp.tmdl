@@ -1,0 +1,26 @@
+table '#Param Dias Isenção Vazio Exp'
+	lineageTag: 071df831-d5d9-420c-8160-a94acad00c6d
+
+	measure '#Param Dias Isenção Vazio Exp (selecionado)' = SELECTEDVALUE('#Param Dias Isenção Vazio Exp'[qtd_dias_isencao])
+		formatString: 0
+		lineageTag: 0397e36b-d604-48a7-a805-2413d1dce4c3
+
+	column qtd_dias_isencao
+		formatString: 0
+		lineageTag: 38142f6c-1119-40f6-b8d4-edbf2eaf9ef8
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition '#Param Dias Isenção' = calculated
+		mode: import
+		source = GENERATESERIES(0, 60, 1)
+
+	annotation PBI_Id = ea934c16dbbc4ff996dcb0e51469b1dd
+

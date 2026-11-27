@@ -1,0 +1,28 @@
+table 'Grupo Armador'
+	lineageTag: eecdf27d-f951-44ce-bbc7-b781f2da74f9
+	sourceLineageTag: 85ac7ab8-17d5-4fac-a191-036532245f30
+
+	measure 'Grupos Armador Selecionados' = EXTERNALMEASURE("Grupos Armador Selecionados", STRING, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: ef0da53c-3d1d-4f5f-a15f-deb2e294acdd
+		sourceLineageTag: 3216629c-eddd-47d8-953f-feb4019d9cea
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isText":true}
+
+	column 'Grupo Armador'
+		dataType: string
+		isNullable: false
+		lineageTag: 9d09ef66-fc28-49ea-8a27-f6b19d4f1d98
+		sourceLineageTag: ba6577d3-e2a1-44ae-b24e-c2052bf058e4
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Grupo Armador
+
+		annotation SummarizationSetBy = User
+
+	partition 'Grupo Armador' = entity
+		mode: directQuery
+		source
+			entityName: Grupo Armador
+			expressionSource: 'DirectQuery para AS – Modelo Operações Portuárias'
+

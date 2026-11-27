@@ -1,0 +1,160 @@
+table Vessel
+	lineageTag: 52f49384-7e8d-407e-8230-cbb20c4397fc
+	sourceLineageTag: 92df7cac-997c-4ee4-a276-dd03a68f96df
+
+	column 'Navio ID'
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		lineageTag: 983d97d7-55d6-43f0-8776-a9816c53d2e4
+		sourceLineageTag: f3460f06-4b0a-413c-bc3d-e545ebc5b0ac
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Navio ID
+
+		annotation SummarizationSetBy = User
+
+	column 'Código Navio'
+		dataType: string
+		lineageTag: 5a1d5038-3ef5-4bc4-bb86-4e64c3658c7d
+		sourceLineageTag: d67304aa-c82e-4845-bee9-f0843aa4b32d
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Código Navio
+
+		annotation SummarizationSetBy = User
+
+	column Navio
+		dataType: string
+		lineageTag: 4fe62228-e986-4f68-acfc-ed1276c3b675
+		sourceLineageTag: 91506f19-5c05-4dd1-8d8b-99b155e9aa84
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Navio
+
+		annotation SummarizationSetBy = User
+
+	column 'LOA M'
+		dataType: double
+		lineageTag: dfa0201a-0020-4613-9352-8239a4e232eb
+		sourceLineageTag: 3479b2e5-38a2-4bff-86ae-7341ee0a193e
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: LOA M
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'LLOYDS ID'
+		dataType: string
+		lineageTag: 0cbba2ce-dc21-4fe9-b699-2b4fb1b0c509
+		sourceLineageTag: ca7ac903-fa70-46ac-8ebd-2b71c5f0760b
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: LLOYDS ID
+
+		annotation SummarizationSetBy = User
+
+	column 'Country Code'
+		dataType: string
+		lineageTag: 1a79c099-196d-4126-935d-969b9f186a4f
+		sourceLineageTag: 7d73e657-6e12-4cb2-971f-98a8a54612f4
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Country Code
+
+		annotation SummarizationSetBy = User
+
+	column 'Dt Criação'
+		dataType: dateTime
+		formatString: General Number
+		lineageTag: ba8b014d-1907-48fb-a4c4-354878ec45a7
+		sourceLineageTag: 2ab1b4fd-8dd6-47b7-aa9d-e63e005adeb4
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Dt Criação
+
+		annotation SummarizationSetBy = User
+
+	column 'Life Cycle State'
+		dataType: string
+		lineageTag: 81aa04cf-2db0-4dc7-aeb1-6ca158a3e3ec
+		sourceLineageTag: 48077005-28ac-4c63-a9b1-7ff91c7703ff
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Life Cycle State
+
+		annotation SummarizationSetBy = User
+
+	column Classe
+		dataType: string
+		lineageTag: 59cd4536-2e71-4839-a02b-039f67474361
+		sourceLineageTag: 82cd6915-51c2-4fe6-9c93-5dc1250e67b7
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Classe
+
+		annotation SummarizationSetBy = User
+
+	column 'Basic Class'
+		dataType: string
+		lineageTag: 287906c3-a7ec-4174-9f11-ba74b30d4d27
+		sourceLineageTag: 6d1d6d98-1877-4094-8d96-396683647863
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Basic Class
+
+		annotation SummarizationSetBy = User
+
+	column 'BEAM CM'
+		dataType: double
+		lineageTag: 18b131a6-004e-41a7-abf7-773859ba9318
+		sourceLineageTag: 6691b167-b4b8-48f4-9d10-436aa0d39e25
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: BEAM CM
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Gross Registered Ton'
+		dataType: double
+		lineageTag: 5da7d291-0ece-41ba-a350-91bfbb055a9f
+		sourceLineageTag: e97678ce-d0b2-4214-8eb5-4335d0895857
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Gross Registered Ton
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Dt Carga BI'
+		dataType: dateTime
+		formatString: General Number
+		lineageTag: a4dcfcc5-473f-4037-8eed-d1b80ef3b491
+		sourceLineageTag: b7cf04e3-e938-42b3-acf6-c214d8e97ce9
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Dt Carga BI
+
+		annotation SummarizationSetBy = User
+
+	column 'LOA Maior 330'
+		dataType: string
+		lineageTag: 59386934-d975-4ad3-a55f-64a019b81218
+		sourceLineageTag: b42eb4ef-9ff2-4f22-bc65-a3f619170a48
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: LOA Maior 330
+
+		annotation SummarizationSetBy = User
+
+	partition Vessel = entity
+		mode: directQuery
+		source
+			entityName: Vessel
+			expressionSource: 'DirectQuery para AS – Modelo Operações Portuárias'
+

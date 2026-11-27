@@ -1,0 +1,28 @@
+table '#Inspeção Cntr'
+	lineageTag: 1aea43bf-8e84-4807-9520-af8eec5f870b
+
+	measure 'Valor #Inspeção Cntr' = SELECTEDVALUE('#Inspeção Cntr'[#Inspeção Cntr])
+		lineageTag: 349de4c8-4116-45d2-bc38-52a7b7241447
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#Inspeção Cntr'
+		lineageTag: 4837965e-7c37-4508-8540-84508ac5f923
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '#Inspeção Cntr' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 1, 0.001)
+
+	annotation PBI_Id = 41173ad160f3418abf4299976c9583c0
+

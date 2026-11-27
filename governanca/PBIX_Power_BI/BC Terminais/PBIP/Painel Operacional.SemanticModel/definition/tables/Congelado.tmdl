@@ -1,0 +1,43 @@
+table Congelado
+	lineageTag: 99922fc9-8bd1-4823-a330-777cd8bbcd04
+	sourceLineageTag: 021ad883-359b-458c-9517-5ab35dad0cc8
+
+	column 'Congelado Código'
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		lineageTag: 8e1794ee-3164-4e34-bb1c-2f0cf18a6645
+		sourceLineageTag: 73f2e176-e972-413e-9ec8-959880e7bc6b
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Congelado Código
+
+		annotation SummarizationSetBy = User
+
+	column DSC_BOOLEAN1
+		dataType: string
+		isHidden
+		lineageTag: 4d593cb9-73dc-4c35-80a4-54a3f3d49071
+		sourceLineageTag: 76c57e4d-1d4d-467b-a226-e194c2ca7ccd
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: DSC_BOOLEAN1
+
+		annotation SummarizationSetBy = User
+
+	column Congelado
+		dataType: string
+		lineageTag: 0e649ac5-3aa7-40c7-bde8-3f06daa9a25b
+		sourceLineageTag: a90b17b5-5666-43a9-b517-9ea6c127db28
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Congelado
+
+		annotation SummarizationSetBy = User
+
+	partition Congelado = entity
+		mode: directQuery
+		source
+			entityName: Congelado
+			expressionSource: 'DirectQuery para AS – Modelo Operações Portuárias'
+

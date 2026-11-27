@@ -1,0 +1,28 @@
+table '#Inspeção Não Invasiva Vazio Importação'
+	lineageTag: 7e6c5d35-2602-4e19-8b80-40702316d344
+
+	measure 'Valor #Inspeção Não Invasiva Vazio Importação' = SELECTEDVALUE('#Inspeção Não Invasiva Vazio Importação'[#Inspeção Não Invasiva Vazio Importação])
+		lineageTag: e4fa20a6-bc35-49ab-a96b-32eaec25032b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#Inspeção Não Invasiva Vazio Importação'
+		lineageTag: f59e9308-16a7-4482-b582-70fb9e0704e9
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '#Inspeção Não Invasiva Vazio Importação' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 1, 0.001)
+
+	annotation PBI_Id = b8c70c584b8241559154fd95fa6bfc7b
+

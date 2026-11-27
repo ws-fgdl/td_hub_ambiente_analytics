@@ -1,0 +1,98 @@
+table Tabela_Simulacao_BoxRate
+	lineageTag: 1b74381f-c934-4763-bddc-703c874783ce
+
+	column 'Box Rate Vazio LC'
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: dff1d881-dc30-4669-afe8-677d818cb646
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Box Rate Vazio LC]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Box Rate Vazio TRA BT'
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 2c36d1fe-efde-4f54-98f4-8445225ce706
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Box Rate Vazio TRA BT]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Box Rate Vazio CAB'
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 8122d2ff-26a6-4e48-899f-a8677ed33332
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Box Rate Vazio CAB]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Box Rate Cheio CAB'
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: ffe45791-208b-4279-8243-ae449e932656
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Box Rate Cheio CAB]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Box Rate Cheio LC'
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: b7b49b25-97d1-4df0-bfd6-9092a0767599
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Box Rate Cheio LC]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Box Rate Cheio TRA BT'
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: cc02f60d-576d-46cc-bba2-9c9335c30bae
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Box Rate Cheio TRA BT]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Box Rate Cheio TRA'
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 751d66cf-65b2-4525-bbac-5e35b864cc96
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Box Rate Cheio TRA]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Box Rate Vazio TRA'
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 89938c43-c3f9-4c1c-a088-d03bd4f8bd6b
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Box Rate Vazio TRA]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Tabela_Simulacao_BoxRate = calculated
+		mode: import
+		source = ```
+				
+				VAR Base =
+				    GENERATESERIES(0.0001, 2, 0.0001)
+				RETURN
+				SELECTCOLUMNS(
+				    Base,
+				    "Box Rate Vazio LC", [Value],
+				    "Box Rate Vazio TRA BT", [Value],
+				    "Box Rate Vazio CAB", [Value],
+				    "Box Rate Cheio CAB", [Value],
+				    "Box Rate Cheio LC", [Value],
+				    "Box Rate Cheio TRA BT", [Value],
+				    "Box Rate Cheio TRA", [Value],
+				    "Box Rate Vazio TRA", [Value]
+				)
+				
+				```
+
+	annotation PBI_Id = 7f655688dfd445638cba6d398ff8c97d
+

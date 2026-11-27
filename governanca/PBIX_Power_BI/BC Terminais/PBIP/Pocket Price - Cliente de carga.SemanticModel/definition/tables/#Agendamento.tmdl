@@ -1,0 +1,28 @@
+table #Agendamento
+	lineageTag: 8decd46e-dc15-4c4a-baac-041c69ab15c5
+
+	measure 'Valor #Agendamento' = SELECTEDVALUE('#Agendamento'[#Agendamento])
+		lineageTag: e571b02a-92b5-4396-9bc3-5da12355adbe
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column #Agendamento
+		lineageTag: 8b93db35-bb49-49bb-b3a7-3ec93a1d8946
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition #Agendamento = calculated
+		mode: import
+		source = GENERATESERIES(-1, 1, 0.001)
+
+	annotation PBI_Id = af0d3aaece654b5f8bf8360731869ace
+

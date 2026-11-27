@@ -1,0 +1,28 @@
+table '#Manuseio Cntr (Vistoria, Expurgo, labels)'
+	lineageTag: 080aa685-5081-4105-b822-3d66ed7a39bb
+
+	measure 'Valor #Manuseio Cntr (Vistoria, Expurgo, labels)' = SELECTEDVALUE('#Manuseio Cntr (Vistoria, Expurgo, labels)'[#Manuseio Cntr (Vistoria, Expurgo, labels)])
+		lineageTag: 352b8b01-8e46-4fff-894d-c7f76139433b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#Manuseio Cntr (Vistoria, Expurgo, labels)'
+		lineageTag: 0519145a-ba64-447c-b57b-44c914ac317e
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '#Manuseio Cntr (Vistoria, Expurgo, labels)' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 1, 0.001)
+
+	annotation PBI_Id = 6db2f29f4405471b9242932ea8f9ea35
+

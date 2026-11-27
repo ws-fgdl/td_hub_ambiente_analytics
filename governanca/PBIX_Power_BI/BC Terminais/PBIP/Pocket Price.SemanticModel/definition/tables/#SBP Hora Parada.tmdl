@@ -1,0 +1,27 @@
+table '#SBP Hora Parada'
+	lineageTag: 93e7ffb8-4c04-4f26-812b-a20ce2986d0d
+
+	measure 'Valor #SBP Hora Parada' = SELECTEDVALUE('#SBP Hora Parada'[#SBP Hora Parada])
+		lineageTag: 73075881-3a4f-4785-8d79-6fca71027719
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#SBP Hora Parada'
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: c518d54d-d241-4042-9104-1628075e281a
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition '#SBP Hora Parada' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 0.5, 0.0001)
+
+	annotation PBI_Id = ef8d323d35534a9a822a46559e702c84
+

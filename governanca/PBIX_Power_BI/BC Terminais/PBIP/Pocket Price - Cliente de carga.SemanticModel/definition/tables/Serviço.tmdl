@@ -1,0 +1,147 @@
+table Serviço
+	lineageTag: ffbdbb7f-ce22-4cc2-810c-eb572d33cc80
+
+	column Categoria
+		dataType: string
+		lineageTag: 656cb942-abcb-4375-b67f-d44c951ec929
+		summarizeBy: none
+		sourceColumn: Categoria
+
+		annotation SummarizationSetBy = Automatic
+
+	column UN
+		dataType: string
+		lineageTag: 4224acc5-f75b-4497-ad4b-4c3a81bf5163
+		summarizeBy: none
+		sourceColumn: UN
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Serviço é especial (carga de projeto ou salvatagem) ou é impactado por tempo?'
+		dataType: string
+		lineageTag: 3eb6d84f-ba37-41cb-a499-d67ce78b289c
+		summarizeBy: none
+		sourceColumn: Serviço é especial (carga de projeto ou salvatagem) ou é impactado por tempo?
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Deve ser considerado para cálculo de remuneração por hora?'
+		dataType: string
+		lineageTag: eb63d679-c03c-47e8-adf1-fa871f82ec83
+		summarizeBy: none
+		sourceColumn: Deve ser considerado para cálculo de remuneração por hora?
+
+		annotation SummarizationSetBy = Automatic
+
+	column CONT_MOV
+		dataType: string
+		lineageTag: 92af5efc-ea44-4611-b774-1b3dca8db41a
+		summarizeBy: none
+		sourceColumn: CONT_MOV
+
+		annotation SummarizationSetBy = Automatic
+
+	column NOME_MOV
+		dataType: string
+		lineageTag: 0d1d398b-fa67-4aa7-b4ee-fc6a2323f317
+		summarizeBy: none
+		sourceColumn: NOME_MOV
+
+		annotation SummarizationSetBy = Automatic
+
+	column Chave = 'Serviço'[Serviço Descrição]&'Serviço'[UN]
+		lineageTag: 6d8c3a97-e8fe-4ee4-ab53-7ab4fae31921
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sub Grupo Pricing'
+		dataType: string
+		lineageTag: 12e96798-edeb-49d4-a5fe-00878a3e9428
+		summarizeBy: none
+		sourceColumn: Sub Grupo Pricing
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Serviço Descrição'
+		dataType: string
+		lineageTag: 2dc80b8f-afed-4acd-bb75-ce76057d4610
+		summarizeBy: none
+		sourceColumn: Serviço Descrição
+
+		annotation SummarizationSetBy = Automatic
+
+	column Chave-Bussola
+		dataType: string
+		lineageTag: cce5924f-c9a3-4508-b650-96e0b7a91e8d
+		summarizeBy: none
+		sourceColumn: Chave-Bussola
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Subgrupo 2'
+		dataType: string
+		lineageTag: 38e37bcc-f92f-4530-be33-9edae523b638
+		summarizeBy: none
+		sourceColumn: Subgrupo 2
+
+		annotation SummarizationSetBy = Automatic
+
+	column Modalidade
+		dataType: string
+		lineageTag: 916d1a34-c7de-4371-aca6-15b3f8f83300
+		summarizeBy: none
+		sourceColumn: Modalidade
+
+		annotation SummarizationSetBy = Automatic
+
+	column Status
+		dataType: string
+		lineageTag: 62524209-7569-4a25-b2b6-47d85b46cb46
+		summarizeBy: none
+		sourceColumn: Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Serviço Complexo/Simples'
+		dataType: string
+		lineageTag: da456e1e-950c-4d94-bc20-b2e5e16fe3b9
+		summarizeBy: none
+		sourceColumn: Serviço Complexo/Simples
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Cod Serviço'
+		dataType: string
+		lineageTag: 029a4247-de5d-4477-8d46-7137cf083883
+		summarizeBy: none
+		sourceColumn: Cod Serviço
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'NOVO SERVIÇO'
+		dataType: string
+		lineageTag: 0feb5314-ffd0-44c6-929f-8684b2e86dda
+		summarizeBy: none
+		sourceColumn: NOVO SERVIÇO
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Serviço = m
+		mode: import
+		source =
+				let
+				    Fonte = GoogleSheets.Contents("https://docs.google.com/spreadsheets/d/19RUte77LmEvi7ucUzxHMD8tWOgVL15GJd9cnTCNEAUY/edit?hl=pt-BR&forcehl=1&gid=863734164#gid=863734164"),
+				    Serviço_com_UN_Sheet = Fonte{[name="serviço",ItemKind="Table"]}[Data],
+				    #"Tipo Alterado" = Table.TransformColumnTypes(Serviço_com_UN_Sheet,{{"Column1", type text}, {"Column2", type text}, {"Column3", type text}, {"Column4", type text}, {"Column5", type text}, {"Column6", type text}, {"Column7", type text}, {"Column8", type text}}),
+				    #"Cabeçalhos Promovidos" = Table.PromoteHeaders(#"Tipo Alterado", [PromoteAllScalars=true]),
+				    #"Linhas Filtradas" = Table.SelectRows(#"Cabeçalhos Promovidos", each [Serviço Descrição] <> null and [Serviço Descrição] <> ""),
+				    #"Erros Removidos" = Table.RemoveRowsWithErrors(#"Linhas Filtradas", {"Subgrupo 2"}),
+				    #"Duplicatas Removidas" = Table.Distinct(#"Erros Removidos", {"Chave-Bussola"})
+				in
+				    #"Duplicatas Removidas"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

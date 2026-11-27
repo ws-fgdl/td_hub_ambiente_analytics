@@ -1,0 +1,27 @@
+table Modalidade
+	lineageTag: fbad1d68-b50e-467c-afef-1ca027bdde15
+
+	column Modalidade
+		lineageTag: de56e068-3e4c-4575-9afb-70db5a303b50
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Modalidade]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Modalidade = calculated
+		mode: import
+		source = ```
+				UNION(
+				    ROW("Modalidade", "CABOTAGEM"), 
+				    ROW("Modalidade", "EXPORTAÇÃO"), 
+				    ROW("Modalidade", "IMPORTAÇÃO"),
+				    ROW("Modalidade", "REMOÇÃO POR TERRA"),
+				    ROW("Modalidade", "REMOÇÃO A BORDO"),
+				    ROW("Modalidade", "REMOÇÃO"),
+				    ROW("Modalidade", "TRANSBORDO")
+				    )
+				```
+
+	annotation PBI_Id = 7a3c2f1367bc40a597af4022c14aff63
+

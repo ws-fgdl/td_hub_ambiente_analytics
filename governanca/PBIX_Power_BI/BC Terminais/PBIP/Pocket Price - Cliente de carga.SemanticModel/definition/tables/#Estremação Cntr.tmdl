@@ -1,0 +1,28 @@
+table '#Estremação Cntr'
+	lineageTag: 35b1c9a3-a805-4022-80a9-8143c0e1d05e
+
+	measure 'Valor #Estremação Cntr' = SELECTEDVALUE('#Estremação Cntr'[#Estremação Cntr])
+		lineageTag: cd97b03d-3479-476c-b284-9d2fc5dfce0a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#Estremação Cntr'
+		lineageTag: 1ff74d50-91d9-4e7f-b62a-21861b2c50ee
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '#Estremação Cntr' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 1, 0.001)
+
+	annotation PBI_Id = e6b1766edbe34230b67337b1660c36c9
+

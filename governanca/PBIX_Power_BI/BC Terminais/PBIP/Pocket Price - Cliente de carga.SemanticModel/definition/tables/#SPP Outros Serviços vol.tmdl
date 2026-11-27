@@ -1,0 +1,27 @@
+table '#SPP Outros Serviços vol'
+	lineageTag: 5604cbd6-0163-428b-8912-f362c1339901
+
+	measure 'Valor #SPP Outros Serviços vol' = SELECTEDVALUE('#SPP Outros Serviços vol'[#SPP Outros Serviços vol])
+		lineageTag: f8cc2413-ce26-4064-a907-bd3faaefec8d
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#SPP Outros Serviços vol'
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: c97cf465-9db2-4e7c-810e-798bd76be9dc
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition '#SPP Outros Serviços vol' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 2, 0.01)
+
+	annotation PBI_Id = 7b9853bd6f6d4be5b5c97d7caea9f9dc
+

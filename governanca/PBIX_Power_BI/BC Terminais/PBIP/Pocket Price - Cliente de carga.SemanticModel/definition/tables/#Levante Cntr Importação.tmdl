@@ -1,0 +1,28 @@
+table '#Levante Cntr Importação'
+	lineageTag: 32772af8-8731-448f-beb2-4124adeaaa9d
+
+	measure 'Valor #Levante Cntr Importação' = SELECTEDVALUE('#Levante Cntr Importação'[#Levante Cntr Importação])
+		lineageTag: 290ee592-350b-4de4-b234-18ebb9af6b36
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#Levante Cntr Importação'
+		lineageTag: 12dff3da-1ff2-4b1c-abb3-1af582a2ffb7
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '#Levante Cntr Importação' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 1, 0.001)
+
+	annotation PBI_Id = d6af24fa237340c6b7ef031930a535a6
+

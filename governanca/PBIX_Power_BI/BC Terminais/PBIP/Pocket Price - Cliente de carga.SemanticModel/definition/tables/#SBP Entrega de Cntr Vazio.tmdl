@@ -1,0 +1,27 @@
+table '#SBP Entrega de Cntr Vazio'
+	lineageTag: ae393f66-1592-4543-afa3-6c71c725bad9
+
+	measure 'Valor #SBP Entrega de Cntr Vazio' = SELECTEDVALUE('#SBP Entrega de Cntr Vazio'[#SBP Entrega de Cntr Vazio])
+		lineageTag: f6bb9406-69f8-4942-a905-8dbfebdd6dca
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#SBP Entrega de Cntr Vazio'
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 3c439198-11ef-4b90-a9a6-6aecec195371
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition '#SBP Entrega de Cntr Vazio' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 0.5, 0.0001)
+
+	annotation PBI_Id = 108c50217e6b451d97cc12df528d9c07
+

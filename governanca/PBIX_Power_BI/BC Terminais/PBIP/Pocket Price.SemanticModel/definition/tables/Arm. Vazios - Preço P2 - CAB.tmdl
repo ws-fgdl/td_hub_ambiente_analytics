@@ -1,0 +1,27 @@
+table 'Arm. Vazios - Preço P2 - CAB'
+	lineageTag: 3db5360d-47a6-467b-8507-2165ff3ecb27
+
+	measure 'Valor Arm. Vazios - Preço P2 - CAB' = SELECTEDVALUE('Arm. Vazios - Preço P2 - CAB'[Arm. Vazios - Preço P2 - CAB])
+		lineageTag: d5dcf167-f038-4991-86a3-f34d67f8f812
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Arm. Vazios - Preço P2 - CAB'
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: b569e28b-24d0-4fa3-a549-a793715ba18c
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition 'Arm. Vazios - Preço P2 - CAB' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 1, 0.001)
+
+	annotation PBI_Id = a411f3f0b66e4d5f85aa70feeaa7c2da
+

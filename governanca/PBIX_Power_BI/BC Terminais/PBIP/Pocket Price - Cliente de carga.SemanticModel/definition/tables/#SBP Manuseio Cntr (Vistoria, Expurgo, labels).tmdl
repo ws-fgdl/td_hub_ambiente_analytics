@@ -1,0 +1,27 @@
+table '#SBP Manuseio Cntr (Vistoria, Expurgo, labels)'
+	lineageTag: 710b161a-0d8d-45ce-8956-d95ac778c6f5
+
+	measure 'Valor #SBP Manuseio Cntr (Vistoria, Expurgo, labels)' = SELECTEDVALUE('#SBP Manuseio Cntr (Vistoria, Expurgo, labels)'[#SBP Manuseio Cntr (Vistoria, Expurgo, labels)])
+		lineageTag: d3b94699-6af5-4335-942d-5dc26d0f8cc5
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#SBP Manuseio Cntr (Vistoria, Expurgo, labels)'
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 2fb54c87-d8c3-4254-8a85-2e6b6c547c3c
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition '#SBP Manuseio Cntr (Vistoria, Expurgo, labels)' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 0.5, 0.0001)
+
+	annotation PBI_Id = a7bc7b92a8224c7db03157e4ac21bbcc
+

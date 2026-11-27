@@ -1,0 +1,28 @@
+table 'Preço Dólar'
+	lineageTag: 200b0cd0-496d-4418-8537-787bdda2b56b
+
+	measure 'Valor Preço Dólar' = SELECTEDVALUE('Preço Dólar'[Preço Dólar])
+		lineageTag: ec66a929-30a9-48d3-ad5f-9cdcb4d5c1d5
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Preço Dólar'
+		lineageTag: 7527cfda-47fd-4e6c-9b74-b28b26784499
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'Preço Dólar' = calculated
+		mode: import
+		source = GENERATESERIES(1, 15, 0.01)
+
+	annotation PBI_Id = 53ca97230cd747ba806660e9d44f74f2
+

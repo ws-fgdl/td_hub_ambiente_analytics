@@ -1,0 +1,21 @@
+table 'Terminal Porto Novo'
+	lineageTag: 661cdcca-5927-4811-a02c-94b5c5fc42ea
+	sourceLineageTag: c7602b00-5f9c-4a86-974a-f03298d9460f
+
+	column 'Terminal Porto Novo'
+		dataType: string
+		isNullable: false
+		lineageTag: d99e1847-950e-4ff4-91c3-47b9a4841551
+		sourceLineageTag: 05491df2-0870-4960-b406-ef683f194aad
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Terminal Porto Novo
+
+		annotation SummarizationSetBy = User
+
+	partition 'Terminal Porto Novo' = entity
+		mode: directQuery
+		source
+			entityName: Terminal Porto Novo
+			expressionSource: 'DirectQuery para AS – Modelo Operações Portuárias'
+

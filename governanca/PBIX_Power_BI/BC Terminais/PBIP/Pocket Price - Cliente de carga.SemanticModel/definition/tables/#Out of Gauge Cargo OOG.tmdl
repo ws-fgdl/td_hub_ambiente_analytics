@@ -1,0 +1,28 @@
+table '#Out of Gauge Cargo OOG'
+	lineageTag: cead257f-caaa-4226-bfba-f0e56a43c94b
+
+	measure 'Valor #Out of Gauge Cargo OOG' = SELECTEDVALUE('#Out of Gauge Cargo OOG'[#Out of Gauge Cargo OOG])
+		lineageTag: fd0480ba-9d94-4335-941c-e676abf482d5
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#Out of Gauge Cargo OOG'
+		lineageTag: 280438d2-4559-40a6-8774-ae52ce516b38
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '#Out of Gauge Cargo OOG' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 1, 0.001)
+
+	annotation PBI_Id = 7fc52367c73f41c88ab2ec80245823a7
+

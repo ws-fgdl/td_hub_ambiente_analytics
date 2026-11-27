@@ -1,0 +1,28 @@
+table '#SBP Armazenagem Cntr Cheio BT'
+	lineageTag: 29fbb667-49fe-41d3-ba91-809b5158ed70
+
+	measure 'Valor #SBP Armazenagem Cntr Cheio BT' = SELECTEDVALUE('#SBP Armazenagem Cntr Cheio BT'[#SBP Armazenagem Cntr Cheio BT])
+		lineageTag: 7b81d89e-fc5c-4649-931c-435bd4369b74
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#SBP Armazenagem Cntr Cheio BT'
+		lineageTag: a957c948-454c-4cc9-b719-2554ee09ec6a
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '#SBP Armazenagem Cntr Cheio BT' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 0.5, 0.0001)
+
+	annotation PBI_Id = d822ff3a301b435e91dbb9c4d3f4b780
+

@@ -1,0 +1,28 @@
+table '#SBP Plug In/Out'
+	lineageTag: adac59fc-787f-44c9-82ec-51f2ce07c503
+
+	measure 'Valor #SBP Plug In/Out' = SELECTEDVALUE('#SBP Plug In/Out'[#SBP Plug In/Out])
+		lineageTag: 912cb3b9-d171-49e5-90fd-768bafeac5c9
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#SBP Plug In/Out'
+		lineageTag: 84bd4975-2405-43b2-9da6-a38654a6c61f
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '#SBP Plug In/Out' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 0.5, 0.0001)
+
+	annotation PBI_Id = e089e64b5332442698173a1ccef04915
+

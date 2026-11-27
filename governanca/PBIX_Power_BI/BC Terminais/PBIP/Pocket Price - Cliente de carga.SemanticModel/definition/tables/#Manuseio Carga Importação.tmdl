@@ -1,0 +1,28 @@
+table '#Manuseio Carga Importação'
+	lineageTag: e340f1ad-a437-4395-998a-ea1b61afb200
+
+	measure 'Valor #Manuseio Carga Importação' = SELECTEDVALUE('#Manuseio Carga Importação'[#Manuseio Carga Importação])
+		lineageTag: 22fdd446-9187-4441-ac26-a3118ea936c6
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#Manuseio Carga Importação'
+		lineageTag: 981c918b-f373-4309-909c-0b314488c9c0
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '#Manuseio Carga Importação' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 1, 0.001)
+
+	annotation PBI_Id = cc9b9cb306534489bf549a85e92b60f9
+

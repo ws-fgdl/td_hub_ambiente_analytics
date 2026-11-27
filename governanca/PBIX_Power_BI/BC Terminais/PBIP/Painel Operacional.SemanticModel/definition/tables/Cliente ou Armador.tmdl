@@ -1,0 +1,21 @@
+table 'Cliente ou Armador'
+	lineageTag: 7cc455cf-9a91-4b93-8008-f602c67848ce
+	sourceLineageTag: 689473ab-7156-4eb3-98f0-ef73bf75d2bf
+
+	column 'Cliente ou Armador'
+		dataType: string
+		isNullable: false
+		lineageTag: 15f3ae10-ae66-4137-ab45-687cb7be33b0
+		sourceLineageTag: 79293989-d369-4fe1-a7b1-ba55bb3ca76d
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Cliente ou Armador
+
+		annotation SummarizationSetBy = User
+
+	partition 'Cliente ou Armador' = entity
+		mode: directQuery
+		source
+			entityName: Cliente ou Armador
+			expressionSource: 'DirectQuery para AS – Modelo Operações Portuárias'
+

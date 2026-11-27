@@ -1,0 +1,28 @@
+table '#% CIF por dia P4'
+	lineageTag: 0d80268c-e691-4930-a185-6c2793720434
+
+	measure 'Valor % CIF por dia P4' = SELECTEDVALUE('#% CIF por dia P4'[% CIF por dia P4])
+		lineageTag: a8b167a8-e79b-47d6-8b51-c78169b7aa47
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '% CIF por dia P4'
+		lineageTag: ce3c527f-bbe8-46b6-869e-c750bddcb51c
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '#% CIF por dia P4' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 1, 0.001)
+
+	annotation PBI_Id = 389c3f16ecb448078a0af9b3b65e56f5
+

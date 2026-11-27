@@ -1,0 +1,37 @@
+table '#SBP Remoção por Terra Vazio v2'
+	lineageTag: 6469eab6-e076-4f8a-9d24-e4ff4370164c
+
+	measure 'Valor #SBP Remoção por Terra Vazio v2' =
+			
+			MIN('#SBP Remoção por Terra Vazio v2'[RemocaoDecimal])
+		lineageTag: a436b69f-321d-480d-80c4-449a492f2eaa
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Value
+		formatString: 0
+		lineageTag: 014f82ab-52a5-4c49-88e2-2b6b95980083
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Value]
+
+		annotation SummarizationSetBy = Automatic
+
+	column RemocaoDecimal = DIVIDE('#SBP Remoção por Terra Vazio v2'[Value], 10000)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 55a5601c-8531-44f7-abe6-1ca6c687dac6
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	partition '#SBP Remoção por Terra Vazio v2' = calculated
+		mode: import
+		source =
+				
+				SELECTCOLUMNS(
+				    '#Param BoxRate_Int',
+				    "Value", '#Param BoxRate_Int'[Value]
+				)
+
+	annotation PBI_Id = d06299b459934359a245a9e1bd9cca3d
+

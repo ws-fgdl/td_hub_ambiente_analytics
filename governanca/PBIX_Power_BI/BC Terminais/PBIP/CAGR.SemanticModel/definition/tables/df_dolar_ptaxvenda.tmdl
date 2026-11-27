@@ -1,0 +1,58 @@
+table df_dolar_ptaxvenda
+	lineageTag: fb3ee676-acbc-4adc-8237-032b154dfd58
+
+	column Data
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 62fb127b-d0ca-42c9-9ef6-2da4ac953f50
+		summarizeBy: none
+		sourceColumn: Data
+
+		variation Variation
+			isDefault
+			relationship: 699f640d-2dd4-438f-8018-18841ef6ca5f
+			defaultHierarchy: LocalDateTable_0600cc30-efc4-4dc4-a7c5-25574ca83e79.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column dt_valor = 'df_dolar_ptaxvenda'[Data]
+		dataType: int64
+		formatString: 0
+		lineageTag: d7187a9e-b985-44df-8da1-33bd5a45c8ab
+		summarizeBy: none
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column Valor
+		dataType: double
+		lineageTag: 9864cd1d-82f4-44ba-9c2b-973ace9bb05e
+		summarizeBy: sum
+		sourceColumn: Valor
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition df_dolar_ptaxvenda = m
+		mode: import
+		source =
+				let
+				    Fonte = PowerPlatform.Dataflows(null),
+				    Workspaces = Fonte{[Id="Workspaces"]}[Data],
+				    #"bcd54b55-e85f-4c30-a169-bfbf18f90f30" = Workspaces{[workspaceId="bcd54b55-e85f-4c30-a169-bfbf18f90f30"]}[Data],
+				    #"1382f76f-d6ec-4b38-a0e1-829e8cbd336f" = #"bcd54b55-e85f-4c30-a169-bfbf18f90f30"{[dataflowId="1382f76f-d6ec-4b38-a0e1-829e8cbd336f"]}[Data],
+				    Dolar_ = #"1382f76f-d6ec-4b38-a0e1-829e8cbd336f"{[entity="Dolar",version=""]}[Data],
+				    #"Cabeçalhos Promovidos1" = Table.PromoteHeaders(Dolar_, [PromoteAllScalars=true]),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Cabeçalhos Promovidos1",{{"Valor", type number}, {"Data", type date}}),
+				    #"Linhas Filtradas" = Table.SelectRows(#"Tipo Alterado", each [Data] <> null and [Data] <> "")
+				in
+				    #"Linhas Filtradas"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

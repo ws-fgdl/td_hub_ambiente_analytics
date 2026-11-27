@@ -1,0 +1,26 @@
+table '#Val Min P2'
+	lineageTag: 9a447cb6-228d-4e92-afa2-124eb31cda22
+
+	measure 'Valor #Val Min P2' = SELECTEDVALUE('#Val Min P2'[#Val Min P2])
+		formatString: 0
+		lineageTag: 97dad8e5-3282-4cf9-b2df-a5890f6041e9
+
+	column '#Val Min P2'
+		formatString: 0
+		lineageTag: e250081a-2e23-4fda-b921-5713c04d30f8
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition '#Val Min P2' = calculated
+		mode: import
+		source = GENERATESERIES(1000, 5000, 100)
+
+	annotation PBI_Id = 6acfbec0a1ff47e99e56eb42cf3178bf
+

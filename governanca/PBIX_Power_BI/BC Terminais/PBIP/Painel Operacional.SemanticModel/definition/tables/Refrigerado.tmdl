@@ -1,0 +1,32 @@
+table Refrigerado
+	lineageTag: d9c223d0-83db-4479-b243-362a677658ad
+	sourceLineageTag: 0a360c77-008c-4463-b4ce-1247920dec53
+
+	column Refrigerado
+		dataType: string
+		lineageTag: 3a49a87f-3ee2-4441-b970-f82a784c7a90
+		sourceLineageTag: 35170c45-5e80-4481-8954-f109a2e87da8
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Refrigerado
+
+		annotation SummarizationSetBy = User
+
+	column 'ID Refrigerado'
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		lineageTag: d51231ca-6d63-4452-8b17-c6130dcab719
+		sourceLineageTag: 15b89496-8142-4048-8b6e-f6e038cf7532
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: ID Refrigerado
+
+		annotation SummarizationSetBy = User
+
+	partition Refrigerado = entity
+		mode: directQuery
+		source
+			entityName: Refrigerado
+			expressionSource: 'DirectQuery para AS – Modelo Operações Portuárias'
+

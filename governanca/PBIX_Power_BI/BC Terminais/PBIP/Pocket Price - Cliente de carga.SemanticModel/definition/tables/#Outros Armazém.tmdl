@@ -1,0 +1,28 @@
+table '#Outros Armazém'
+	lineageTag: 4a000726-b27e-4bc8-b8e2-17c8bbad1566
+
+	measure 'Valor #Outros Armazém' = SELECTEDVALUE('#Outros Armazém'[#Outros Armazém])
+		lineageTag: 3582468b-afe3-4c2a-b712-b66a527c52c3
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#Outros Armazém'
+		lineageTag: c9d6f0c8-3de1-4e04-bd08-fc91f7f8a71b
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '#Outros Armazém' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 1, 0.001)
+
+	annotation PBI_Id = 98049b505b954ac689b0f951e2dd3b29
+

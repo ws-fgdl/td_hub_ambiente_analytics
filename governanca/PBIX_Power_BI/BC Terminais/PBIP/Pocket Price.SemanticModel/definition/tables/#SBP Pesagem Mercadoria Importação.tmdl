@@ -1,0 +1,27 @@
+table '#SBP Pesagem Mercadoria Importação'
+	lineageTag: ee6b6e2b-b2d6-4bb0-aa2f-0395a0d4a368
+
+	measure 'Valor #SBP Pesagem Mercadoria Importação' = SELECTEDVALUE('#SBP Pesagem Mercadoria Importação'[#SBP Pesagem Mercadoria Importação])
+		lineageTag: f07c2381-531b-4884-ae51-f18b4603317c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#SBP Pesagem Mercadoria Importação'
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 1ec68d84-b0a3-4deb-b426-3a9fb4f6f509
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition '#SBP Pesagem Mercadoria Importação' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 0.5, 0.0001)
+
+	annotation PBI_Id = 0fa5964a854849f7b740961c7d3cfb5b
+

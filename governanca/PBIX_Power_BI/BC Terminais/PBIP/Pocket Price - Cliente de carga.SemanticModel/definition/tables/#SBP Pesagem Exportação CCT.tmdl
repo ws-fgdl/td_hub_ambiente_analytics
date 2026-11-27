@@ -1,0 +1,27 @@
+table '#SBP Pesagem Exportação CCT'
+	lineageTag: 60a0ad99-6c1f-4df4-bbe1-2eb2aea21012
+
+	measure 'Valor #SBP Pesagem Exportação CCT' = SELECTEDVALUE('#SBP Pesagem Exportação CCT'[#SBP Pesagem Exportação CCT])
+		lineageTag: da113270-238a-4b45-a4f8-6ea2ea9b003f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#SBP Pesagem Exportação CCT'
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: bf67d540-48cc-4fc6-b43f-9cdea4883227
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition '#SBP Pesagem Exportação CCT' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 0.5, 0.0001)
+
+	annotation PBI_Id = 6847864b4eaa4d6ca0ee5f3eaa09b836
+

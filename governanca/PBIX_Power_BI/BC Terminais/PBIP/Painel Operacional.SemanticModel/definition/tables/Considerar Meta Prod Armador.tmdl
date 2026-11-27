@@ -1,0 +1,21 @@
+table 'Considerar Meta Prod Armador'
+	lineageTag: 2660981a-64b7-48bd-a084-b7c7dea96bc4
+	sourceLineageTag: 8fbb14e4-a178-427a-9bbe-71e504fedded
+
+	column 'Considerar Meta Prod Armador'
+		dataType: string
+		isNullable: false
+		lineageTag: bc60cfd2-1e48-4888-9180-0abcf54224d0
+		sourceLineageTag: 515ed8bd-3383-4255-90df-8a9ebe973365
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Considerar Meta Prod Armador
+
+		annotation SummarizationSetBy = User
+
+	partition 'Considerar Meta Prod Armador' = entity
+		mode: directQuery
+		source
+			entityName: Considerar Meta Prod Armador
+			expressionSource: 'DirectQuery para AS – Modelo Operações Portuárias'
+

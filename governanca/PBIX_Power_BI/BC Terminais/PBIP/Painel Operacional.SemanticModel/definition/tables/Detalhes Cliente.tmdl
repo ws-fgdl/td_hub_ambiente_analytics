@@ -1,0 +1,52 @@
+table 'Detalhes Cliente'
+	lineageTag: 9500bbee-c041-437c-96fb-97ab883045a6
+	sourceLineageTag: c76c4bd6-9c34-4d8e-82e0-e67dd7217c6a
+
+	column 'Detalhes Cliente ID'
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		lineageTag: ad683f74-319b-43d9-9d34-89143de5e03a
+		sourceLineageTag: ed7f57d4-b74e-4a7d-a311-3759008dc793
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Detalhes Cliente ID
+
+		annotation SummarizationSetBy = User
+
+	column 'Descrição Cliente'
+		dataType: string
+		lineageTag: 1f44d368-a4cb-4f54-b6b6-8ee2796fd24f
+		sourceLineageTag: 89de43d7-8eba-40d5-9b93-864e412455d8
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Descrição Cliente
+
+		annotation SummarizationSetBy = User
+
+	column CNPJ
+		dataType: string
+		lineageTag: ccc86e1f-d197-4a84-a90d-9ed137c009ef
+		sourceLineageTag: 23e70fe5-679c-4326-b6a3-97b491315929
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: CNPJ
+
+		annotation SummarizationSetBy = User
+
+	column 'Armador Cliente'
+		dataType: string
+		lineageTag: 64b69c01-411e-4970-8a26-710fe68ffff3
+		sourceLineageTag: 2efac2b0-e08a-4c47-b5e0-848925878d34
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Armador Cliente
+
+		annotation SummarizationSetBy = User
+
+	partition 'Detalhes Cliente' = entity
+		mode: directQuery
+		source
+			entityName: Detalhes Cliente
+			expressionSource: 'DirectQuery para AS – Modelo Operações Portuárias'
+

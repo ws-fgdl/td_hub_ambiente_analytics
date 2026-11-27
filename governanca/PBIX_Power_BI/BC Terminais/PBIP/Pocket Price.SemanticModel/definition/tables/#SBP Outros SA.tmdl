@@ -1,0 +1,27 @@
+table '#SBP Outros SA'
+	lineageTag: 4a39589c-ee04-4e3a-b534-f713e737c3d5
+
+	measure 'Valor #SBP Outros SA' = SELECTEDVALUE('#SBP Outros SA'[#SBP Outros])
+		lineageTag: 3a92fc24-29d0-4549-9733-7402691329b0
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#SBP Outros'
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: dc79e614-5f70-4831-9f09-5307f8fd5e14
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition '#SBP Outros SA' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 0.5, 0.0001)
+
+	annotation PBI_Id = ab5aa3a97a0244f0af55ee7894189ec2
+

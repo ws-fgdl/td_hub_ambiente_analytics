@@ -1,0 +1,27 @@
+table 'Adicional OOG (selecionado) - TRA'
+	lineageTag: 50de8475-16a9-453d-a989-651a6dfb66df
+
+	measure 'Valor Adicional OOG (selecionado) - TRA' = SELECTEDVALUE('Adicional OOG (selecionado) - TRA'[Adicional OOG (selecionado) - TRA])
+		lineageTag: 480fb794-a7be-43b5-94ec-bd5efe3ff525
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Adicional OOG (selecionado) - TRA'
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 8441c2e6-210e-460b-8638-35ed1fc9cdf6
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition 'Adicional OOG (selecionado) - TRA' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 1, 0.001)
+
+	annotation PBI_Id = 03da4f30cf634b8e837f9c3397e235be
+

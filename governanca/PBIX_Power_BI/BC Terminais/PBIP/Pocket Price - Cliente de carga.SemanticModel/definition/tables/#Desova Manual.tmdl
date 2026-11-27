@@ -1,0 +1,28 @@
+table '#Desova Manual'
+	lineageTag: b801c905-7a89-427f-9d66-7ed5e1798ec6
+
+	measure 'Valor #Desova Manual' = SELECTEDVALUE('#Desova Manual'[#Desova Manual])
+		lineageTag: ccf8bbbe-4936-42b8-85f8-2b534cbd3bee
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#Desova Manual'
+		lineageTag: 2c6a390d-91ed-46dd-aa5a-e176cebfde30
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '#Desova Manual' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 1, 0.001)
+
+	annotation PBI_Id = c97056c7435042feb5ea434d30cd82d2
+

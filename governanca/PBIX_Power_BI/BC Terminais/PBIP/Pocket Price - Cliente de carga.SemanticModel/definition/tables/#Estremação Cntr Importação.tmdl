@@ -1,0 +1,28 @@
+table '#Estremação Cntr Importação'
+	lineageTag: 726b64a5-3d61-422e-bc49-10229a18a739
+
+	measure 'Valor #Estremação Cntr Importação' = SELECTEDVALUE('#Estremação Cntr Importação'[#Estremação Cntr Importação])
+		lineageTag: 5885bf97-36be-401e-88bf-6e8ee9512c9a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#Estremação Cntr Importação'
+		lineageTag: 3b116e82-44ba-4de3-a7ab-2e591be9831e
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '#Estremação Cntr Importação' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 1, 0.001)
+
+	annotation PBI_Id = 1a9edb30f32e4757acea0d32e306a48d
+

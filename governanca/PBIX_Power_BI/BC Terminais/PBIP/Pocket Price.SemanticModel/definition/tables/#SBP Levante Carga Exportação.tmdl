@@ -1,0 +1,27 @@
+table '#SBP Levante Carga Exportação'
+	lineageTag: da57204e-dea8-4cdc-83f1-b2913d397cdf
+
+	measure 'Valor #SBP Levante Carga Exportação' = SELECTEDVALUE('#SBP Levante Carga Exportação'[#SBP Levante Carga Exportação])
+		lineageTag: faa49db8-2e24-4bce-a7f0-ddb9923dc7bb
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#SBP Levante Carga Exportação'
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: b85a66a6-1a34-465f-8d75-d2ba8ac4ecb5
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition '#SBP Levante Carga Exportação' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 0.5, 0.0001)
+
+	annotation PBI_Id = ab50024cac24415384f32cadba40db87
+

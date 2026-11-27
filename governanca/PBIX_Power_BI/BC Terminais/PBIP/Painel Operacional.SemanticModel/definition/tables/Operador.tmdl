@@ -1,0 +1,42 @@
+table Operador
+	lineageTag: ff70a750-a00a-431c-8e41-173ae6bb11a2
+	sourceLineageTag: 6d1e2546-4ef2-464f-b359-a2c29846d290
+
+	column 'Operador ID'
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		lineageTag: d9e42213-4a6b-4fb0-9f8a-ebe8507ef4c2
+		sourceLineageTag: 452e657f-2c5e-46f5-b48d-feea4b1969a0
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Operador ID
+
+		annotation SummarizationSetBy = User
+
+	column 'Código Operador'
+		dataType: string
+		lineageTag: a5f6b5bb-f768-46fe-9ea3-e04bef0b733c
+		sourceLineageTag: 2e4beadd-fc21-4217-8ae7-3da9e0f32e6e
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Código Operador
+
+		annotation SummarizationSetBy = User
+
+	column Operador
+		dataType: string
+		lineageTag: aac8472a-6e0a-417e-b04a-365fd044e6e4
+		sourceLineageTag: 81bff687-d2a2-4984-8155-940ac03f96e5
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Operador
+
+		annotation SummarizationSetBy = User
+
+	partition Operador = entity
+		mode: directQuery
+		source
+			entityName: Operador
+			expressionSource: 'DirectQuery para AS – Modelo Operações Portuárias'
+

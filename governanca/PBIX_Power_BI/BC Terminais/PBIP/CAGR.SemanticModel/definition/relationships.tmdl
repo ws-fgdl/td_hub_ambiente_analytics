@@ -1,0 +1,96 @@
+relationship 729fccb5-6b5b-48ce-b8cc-0fe576d08993
+	fromColumn: df_indices_mercado.dt_valor
+	toColumn: Calendario1.dt_valor
+
+relationship 699f640d-2dd4-438f-8018-18841ef6ca5f
+	joinOnDateBehavior: datePartOnly
+	fromColumn: df_dolar_ptaxvenda.Data
+	toColumn: LocalDateTable_0600cc30-efc4-4dc4-a7c5-25574ca83e79.Date
+
+relationship d3ac3a9b-4e5e-4a8d-8186-89939c4b0f19
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: df_dolar_ptaxvenda.dt_valor
+	toColumn: Calendario1.dt_valor
+
+relationship 0723eb7f-3fe7-4426-9c07-48537c8c4a4f
+	joinOnDateBehavior: datePartOnly
+	fromColumn: contratos.fim_vigencia
+	toColumn: LocalDateTable_dc02d228-9887-43a6-8878-671ff6905942.Date
+
+relationship 36c31e50-d3bf-4410-abf8-1c94f7725ef9
+	joinOnDateBehavior: datePartOnly
+	fromColumn: contratos.data_criacao_tabela
+	toColumn: LocalDateTable_fb2498e6-b6c9-426d-8af7-8af04df853ca.Date
+
+relationship c3954889-5ebb-4893-a905-03726f8c10c0
+	joinOnDateBehavior: datePartOnly
+	fromColumn: df_indices_mercado.Data
+	toColumn: LocalDateTable_20fe3dbd-31ae-4b7d-af8a-807235e44200.Date
+
+relationship 66d23f93-1483-1097-ec8e-39d142f3de30
+	fromColumn: contratos.dtvalor
+	toColumn: Calendario1.dt_valor
+
+relationship acde4cdc-74a7-116b-5710-4f0660abc860
+	fromColumn: contratos.chave
+	toColumn: dim_servico.id_servico
+
+relationship 00502fae-cd94-de78-c082-04c508ae8086
+	fromColumn: contratos.un
+	toColumn: UN.UN
+
+relationship 64d113e5-051a-f1b4-0978-405d9581f0c4
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: contratos.id_mod_ano
+	toColumn: Tabela_Inframar.id_mod_ano
+
+relationship 45b743ca-5c00-3861-adfd-7f21b95d7d29
+	fromColumn: 'Inciso XIV'.dtvalor
+	toColumn: Calendario1.dt_valor
+
+relationship bb6816a2-7f41-d16b-84d9-039fc41d8d39
+	fromColumn: contratos.cod_cliente_sap
+	toColumn: dim_carteira_comercial.codigo_sap
+
+relationship 6d7fad60-17f8-b470-de0b-4378ce08012f
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: contratos.cod_cliente_sap
+	toColumn: SalesForce_Unificada.codigo_sap
+
+relationship 5c580f39-ddcc-4933-b419-64edaea4a7dd
+	joinOnDateBehavior: datePartOnly
+	fromColumn: contratos.inicio_vigencia
+	toColumn: LocalDateTable_9cc49ec1-a97c-492f-89e3-85496bcdcfb3.Date
+
+relationship 47bf3617-01ec-4914-9b30-f651fec5dbca
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Inciso XIV'.inicio_vigencia
+	toColumn: LocalDateTable_48a1b2f3-8ab4-4a76-951a-a63274fe2fb4.Date
+
+relationship d0144bd6-0741-4a35-b308-2505240d5f41
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Calendario1.Date
+	toColumn: LocalDateTable_6d9ed7e7-31fb-4b26-a361-3a55c1c59a19.Date
+
+relationship f6405ada-113b-4954-8a95-c7a9c1e6844b
+	joinOnDateBehavior: datePartOnly
+	fromColumn: contratos.etl_updated_at
+	toColumn: LocalDateTable_9c3fc37c-10da-48f9-8619-efcdb9af5f8b.Date
+
+relationship 06703a12-1d45-1326-221f-eb6bc375d341
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: table_percent_price.id_mod_ano
+	toColumn: contratos.id_mod_ano
+
+relationship 140b910b-a6ce-bc64-b3e8-47edded18164
+	fromColumn: table_percent_price.UN
+	toColumn: UN.UN
+
+relationship cafd072a-9262-8634-c112-631e025f7bd9
+	fromColumn: Tabela_Inframar.UN
+	toColumn: UN.UN
+

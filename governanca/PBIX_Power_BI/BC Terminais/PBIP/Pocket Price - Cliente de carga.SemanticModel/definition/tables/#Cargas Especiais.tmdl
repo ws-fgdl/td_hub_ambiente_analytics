@@ -1,0 +1,28 @@
+table '#Cargas Especiais'
+	lineageTag: fd35bf67-fba6-4e15-b882-015f288753d2
+
+	measure 'Valor #Cargas Especiais' = SELECTEDVALUE('#Cargas Especiais'[#Cargas Especiais])
+		lineageTag: 398b0402-615b-4acb-ad52-0b41b9574e82
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#Cargas Especiais'
+		lineageTag: a5739654-ae99-499a-9f6f-a78ea09a8081
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '#Cargas Especiais' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 1, 0.001)
+
+	annotation PBI_Id = 30472e12d5f34385b21295ecdc9ac6d9
+

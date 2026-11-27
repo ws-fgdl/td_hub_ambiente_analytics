@@ -1,0 +1,200 @@
+table '_Medidas Combustível'
+	lineageTag: cc4843c9-e8b6-4ffc-a279-40a44b433be6
+	sourceLineageTag: c9a3eb8d-453e-4fc1-9d2f-dd095f37f0e9
+
+	measure 'Litragem YTD' = EXTERNALMEASURE("Litragem YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: YTD
+		lineageTag: 2e099d2e-89c1-49f8-8f03-b427a83a3663
+		sourceLineageTag: 9fb7ecb4-fa16-4adb-be03-3b796d9f2009
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Litragem PYTD' = EXTERNALMEASURE("Litragem PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PYTD
+		lineageTag: 38f124af-32c6-40d3-83fd-51ee966c3aaf
+		sourceLineageTag: dd1103bb-88b1-4ed7-804f-11bc24e6dadd
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Litragem PY' = EXTERNALMEASURE("Litragem PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PY
+		lineageTag: 582abf60-29cf-46fe-b333-70eae23433ca
+		sourceLineageTag: 865f13d6-8e63-4682-9824-1702613706f4
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Horimetro YTD' = EXTERNALMEASURE("Horimetro YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: YTD
+		lineageTag: 2f8f571c-0bd8-44a4-8e83-95d3f60cb6d0
+		sourceLineageTag: 2382add5-6ef1-467f-9b2d-e06982658a6b
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Horimetro PYTD' = EXTERNALMEASURE("Horimetro PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PYTD
+		lineageTag: 3038c370-c83e-44ee-a342-689da30d8e96
+		sourceLineageTag: f102494e-a2d1-4c3e-8922-1f12cea8b9c3
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Horimetro PY' = EXTERNALMEASURE("Horimetro PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PY
+		lineageTag: 9c5e9467-2cdc-4a73-89c2-5c4797b3e18b
+		sourceLineageTag: 3d5960e5-a026-462e-aa37-ed496b6f1041
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Movimentos YTD' = EXTERNALMEASURE("Movimentos YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: YTD
+		lineageTag: ef3fdb0f-5b06-461f-b3c7-20cf2e24aa90
+		sourceLineageTag: ffba5372-9f5d-4be1-b951-3c08f65deadc
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Movimentos PYTD' = EXTERNALMEASURE("Movimentos PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PYTD
+		lineageTag: bb966c11-c296-4d41-8845-94bdc9631e2b
+		sourceLineageTag: 6d6780cc-59b3-4829-93a8-e16eb9ca69ea
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Movimentos PY' = EXTERNALMEASURE("Movimentos PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PY
+		lineageTag: 18d3d873-6ce0-4d52-a149-a0bfc84ac236
+		sourceLineageTag: aa4f9ca6-2ee0-4a9d-ac7e-2325d47df0a1
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Slicer_Possui_Combustivel_Sim_Não = EXTERNALMEASURE("Slicer_Possui_Combustivel_Sim_Não", STRING, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 9af4f3b0-5cd9-42ca-ac73-11c2dd833a97
+		sourceLineageTag: 2f3c889f-7379-42b8-a4b5-fd53b8751a9c
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isText":true}
+
+	measure Litragem = EXTERNALMEASURE("Litragem", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 92b5c92c-199e-4408-bf9f-bbe440b3a2ef
+		sourceLineageTag: 37a24999-bc4a-4354-80aa-f8efaf96f0fe
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Horimetro = EXTERNALMEASURE("Horimetro", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: aa1e6387-e86a-480b-abff-9a9dde99667c
+		sourceLineageTag: 2577dbeb-f7ce-4822-beb2-0b362ea5b77d
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Movimentos = EXTERNALMEASURE("Movimentos", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 5c46a61a-d66c-451c-a7bf-f98651f6983b
+		sourceLineageTag: 491ae639-6a1a-4a6d-b699-492324ca6188
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Litros por Movimento' = EXTERNALMEASURE("Litros por Movimento", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		lineageTag: b462a970-de3d-4d21-a686-b7782c9b4517
+		sourceLineageTag: bc7f093b-99e5-4392-920d-6240cb955719
+		dataCategory: Uncategorized
+
+	column FAT_CONSUMO_COMBUSTIVEL_ID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 014b8ca7-65d5-46f2-ad20-53fb646fb4ea
+		sourceLineageTag: ef3fe92a-b131-4ba9-98d8-a673baf14456
+		dataCategory: Uncategorized
+		summarizeBy: count
+		sourceColumn: FAT_CONSUMO_COMBUSTIVEL_ID
+
+		annotation SummarizationSetBy = User
+
+	column TEMPO_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: 1b4cb832-55c0-4ce3-a22b-cb19291441d3
+		sourceLineageTag: cb14d958-90c6-4c42-bde3-4f58269e932e
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: TEMPO_ID
+
+		annotation SummarizationSetBy = User
+
+	column COD_EMPR_SAP
+		dataType: string
+		isHidden
+		lineageTag: d7557540-feec-463c-9e3c-ee4d243aadc9
+		sourceLineageTag: 4da3869e-e1d8-4609-b631-670405228bc5
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: COD_EMPR_SAP
+
+		annotation SummarizationSetBy = User
+
+	column COD_EQUIPAMENTO
+		dataType: string
+		isHidden
+		lineageTag: 79dddc22-4811-4280-af08-250efe8cd184
+		sourceLineageTag: 642bedc2-6dcf-4ad5-822e-8cbc355fe31d
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: COD_EQUIPAMENTO
+
+		annotation SummarizationSetBy = User
+
+	column COLLITRAGEM
+		dataType: double
+		isHidden
+		lineageTag: 7b8124a3-ffa4-4db2-a313-0daf6659426a
+		sourceLineageTag: 4401759d-02d6-4992-bbb5-2832da1e54c9
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: COLLITRAGEM
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column COLHORIMETRO
+		dataType: double
+		isHidden
+		lineageTag: 4e578cf5-cd37-4a41-9c6b-de01e53abaa9
+		sourceLineageTag: b93450bf-24f4-4501-8559-82c625af235b
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: COLHORIMETRO
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column COLMOVIMENTOS
+		dataType: double
+		isHidden
+		lineageTag: 5a638cf9-0cfc-4da6-8fbb-2afbcbade0ec
+		sourceLineageTag: 51afaffd-932c-43b3-9023-9a5e6851c6d9
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: COLMOVIMENTOS
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '_Medidas Combustível' = entity
+		mode: directQuery
+		source
+			entityName: _Medidas Combustível
+			expressionSource: 'DirectQuery para AS – Modelo Operações Portuárias'
+

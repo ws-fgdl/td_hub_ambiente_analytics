@@ -1,0 +1,27 @@
+table '#SBP Manuseio Cntr Vistoria SA'
+	lineageTag: e4e57b23-c2df-4d69-82c9-95d96e7a173f
+
+	measure 'Valor #SBP Manuseio Cntr Vistoria SA' = SELECTEDVALUE('#SBP Manuseio Cntr Vistoria SA'[#SBP Manuseio Cntr Vistoria])
+		lineageTag: 7f31a9ba-e641-4614-82d7-403fcb2d52b7
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#SBP Manuseio Cntr Vistoria'
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 4c2088a3-10d9-4e14-b164-b515abd90be0
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition '#SBP Manuseio Cntr Vistoria SA' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 0.5, 0.0001)
+
+	annotation PBI_Id = b3b6b942ce994b3d96f60cf3648e4ca5
+

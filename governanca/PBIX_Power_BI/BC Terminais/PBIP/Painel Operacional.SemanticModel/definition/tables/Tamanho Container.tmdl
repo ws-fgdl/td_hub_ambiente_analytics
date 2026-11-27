@@ -1,0 +1,32 @@
+table 'Tamanho Container'
+	lineageTag: eabf090d-0267-4785-83e7-4b78b4b10b96
+	sourceLineageTag: 46bb6437-6c94-4363-aa7c-8bf8229ed756
+
+	column 'Tamanho Container ID'
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		lineageTag: 1600ba24-10e5-4558-8565-cdb73c310398
+		sourceLineageTag: 220899f3-a6d4-4bfb-b4bb-5cbafa624d24
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Tamanho Container ID
+
+		annotation SummarizationSetBy = User
+
+	column 'Tamanho Container'
+		dataType: string
+		lineageTag: ec7e6ea1-1dd9-4abc-ab6c-cac66b6ed154
+		sourceLineageTag: fdfcc847-5179-4597-b280-b447611e180f
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Tamanho Container
+
+		annotation SummarizationSetBy = User
+
+	partition 'Tamanho Container' = entity
+		mode: directQuery
+		source
+			entityName: Tamanho Container
+			expressionSource: 'DirectQuery para AS – Modelo Operações Portuárias'
+

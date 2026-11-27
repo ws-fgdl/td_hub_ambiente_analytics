@@ -1,0 +1,32 @@
+table 'Centro de Custo Tecon'
+	lineageTag: d58e92dd-da00-44e4-9b92-6d843fefd066
+	sourceLineageTag: 3ac2f031-c8f7-43c1-827e-259cc0cfec61
+
+	column 'Centro de Custo Tecon ID'
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		lineageTag: 3728d49e-7291-4ff4-adf4-15c3fea60c85
+		sourceLineageTag: 8a8c07fc-6d50-49c2-b39b-abf8a5f4bbc4
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Centro de Custo Tecon ID
+
+		annotation SummarizationSetBy = User
+
+	column 'Centro de Custo Tecon'
+		dataType: string
+		lineageTag: f559eaac-b78c-4486-994a-8904856badb8
+		sourceLineageTag: b1ea7669-db9c-4bd1-ab47-36556def0eb1
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Centro de Custo Tecon
+
+		annotation SummarizationSetBy = User
+
+	partition 'Centro de Custo Tecon' = entity
+		mode: directQuery
+		source
+			entityName: Centro de Custo Tecon
+			expressionSource: 'DirectQuery para AS – Modelo Operações Portuárias'
+

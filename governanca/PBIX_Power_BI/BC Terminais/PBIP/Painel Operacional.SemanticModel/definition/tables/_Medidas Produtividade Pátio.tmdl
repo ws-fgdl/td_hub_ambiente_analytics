@@ -1,0 +1,182 @@
+table '_Medidas Produtividade Pátio'
+	lineageTag: 1ffe82f1-45ae-45e5-b187-c3c7920f5759
+	sourceLineageTag: b75e6df5-05bd-4ae6-b261-6ac7f2443ac9
+
+	measure Slicer_Possui_Produtividade_Patio_Sim_Não = EXTERNALMEASURE("Slicer_Possui_Produtividade_Patio_Sim_Não", STRING, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: d9aac628-db00-4cc9-b6c0-c6b1b2ea0dc4
+		sourceLineageTag: 72d3f033-aca0-4c58-8249-13092d3950bf
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isText":true}
+
+	measure 'Qtde Movimentos Prod Pátio' = EXTERNALMEASURE("Qtde Movimentos Prod Pátio", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: c15f8f38-7636-498f-8d38-022ee5de7c5c
+		sourceLineageTag: b95504c7-c84f-427c-8bc1-7006afe09a1f
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Tempo Bruto Operado' = EXTERNALMEASURE("Tempo Bruto Operado", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: ad23a335-d140-4052-aeae-cf184e2542ac
+		sourceLineageTag: da5f5e31-fa73-49f6-8b84-be2b43b94f9b
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Qtde Movimentos Prod Pátio PY' = EXTERNALMEASURE("Qtde Movimentos Prod Pátio PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 5b872599-d547-4ec6-af6c-1dd9677289e7
+		sourceLineageTag: 7772eb65-7b23-4800-af49-729943591d70
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Qtde Movimentos Prod Pátio PYTD' = EXTERNALMEASURE("Qtde Movimentos Prod Pátio PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 0d9d70eb-bd2c-4651-9831-6dba33019bf3
+		sourceLineageTag: 4b1c8eec-7dc7-4d8d-b75a-516ad2c580ff
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Qtde Movimentos Prod Pátio YTD' = EXTERNALMEASURE("Qtde Movimentos Prod Pátio YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: d61ffcf7-e611-48fb-a2cf-c7a47166e5b1
+		sourceLineageTag: 90a0e9f6-4459-4ad9-8c7b-456b828e3217
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Tempo Bruto Operado PY' = EXTERNALMEASURE("Tempo Bruto Operado PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 879a498b-218c-48b8-bafd-c1ac71d95ed1
+		sourceLineageTag: 10c13c8b-1894-4235-9dd9-6244f17cc050
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Tempo Bruto Operado PYTD' = EXTERNALMEASURE("Tempo Bruto Operado PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: f6cfaa36-09d9-4a13-94ee-0c1290c0401d
+		sourceLineageTag: 296ed999-5dff-447f-9d45-fdfec9fba11e
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Tempo Bruto Operado YTD' = EXTERNALMEASURE("Tempo Bruto Operado YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 25b54c14-4248-4173-9d6d-dc511020d872
+		sourceLineageTag: 3383fd09-993d-4730-bf71-4f54def1975a
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'MPH Prod Pátio' = EXTERNALMEASURE("MPH Prod Pátio", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		lineageTag: 1c34a90b-1cdf-4074-bff4-2a2ec5ec5999
+		sourceLineageTag: 3e457ec7-9c2b-4eb1-9daa-0a6c7d66348a
+		dataCategory: Uncategorized
+
+	column ID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: b4a0494c-1c54-4b1a-b1e2-ffa3e08f687a
+		sourceLineageTag: abcf8764-e015-4d21-81e5-1cdf37db10ef
+		dataCategory: Uncategorized
+		summarizeBy: count
+		sourceColumn: ID
+
+		annotation SummarizationSetBy = User
+
+	column TEMPO_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: 6762e183-705e-4c05-9e3a-50e6efea92ac
+		sourceLineageTag: 94894811-d31d-469d-9a3d-030c2af68f30
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: TEMPO_ID
+
+		annotation SummarizationSetBy = User
+
+	column COD_EMPR_SAP
+		dataType: string
+		isHidden
+		lineageTag: a1716d6e-8c94-44c0-ac3a-3e3aee098559
+		sourceLineageTag: 4bdae1d8-d995-469e-a4df-5bf33816ee3e
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: COD_EMPR_SAP
+
+		annotation SummarizationSetBy = User
+
+	column OPERADOR_ID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: e56594b4-4bb8-49bc-9e5e-3b8e1513218f
+		sourceLineageTag: 7d84e224-4597-4444-b6bf-894e5c66353a
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: OPERADOR_ID
+
+		annotation SummarizationSetBy = User
+
+	column Turno
+		dataType: string
+		lineageTag: 741db393-3612-49da-8114-9f5669f05d3b
+		sourceLineageTag: ef4c5dcf-bc07-4035-81d0-f50ac95f8aea
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Turno
+
+		annotation SummarizationSetBy = User
+
+	column Q_MOV
+		dataType: double
+		isHidden
+		lineageTag: 9a27441b-37b1-4bff-8d91-a04775a2f9ef
+		sourceLineageTag: 8ef7ea22-f33e-4e28-bec2-fb14d78c9bfe
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Q_MOV
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column T_OPERACAO
+		dataType: double
+		isHidden
+		lineageTag: 01008601-2310-4f81-90f1-8e837eebc35a
+		sourceLineageTag: a1a76712-c430-472e-a312-14cba5d78e48
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: T_OPERACAO
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column COD_EQUIPAMENTO
+		dataType: string
+		isHidden
+		lineageTag: 3cad4358-eec2-4d61-afd7-fd996e369e7a
+		sourceLineageTag: 397ac0e4-1606-44a1-8af2-fcf7a9ea2921
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: COD_EQUIPAMENTO
+
+		annotation SummarizationSetBy = User
+
+	column UNIT_FRGHT_KIND
+		dataType: string
+		lineageTag: 34951dc0-993f-4333-9bf0-725e62b705c4
+		sourceLineageTag: 5f0a1ebb-90ac-4e4a-99b7-952b3974e479
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: UNIT_FRGHT_KIND
+
+		annotation SummarizationSetBy = User
+
+	partition '_Medidas Produtividade Pátio' = entity
+		mode: directQuery
+		source
+			entityName: _Medidas Produtividade Pátio
+			expressionSource: 'DirectQuery para AS – Modelo Operações Portuárias'
+

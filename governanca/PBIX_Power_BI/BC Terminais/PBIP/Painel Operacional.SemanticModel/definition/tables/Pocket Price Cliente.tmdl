@@ -1,0 +1,223 @@
+table 'Pocket Price Cliente'
+	lineageTag: 7bf4e229-3d9d-4c42-a8a5-15586d63e370
+	sourceLineageTag: 9a5a801a-689a-42ea-a4c7-a9d10f83f307
+
+	column COD_EMPR_SAP
+		dataType: string
+		isHidden
+		lineageTag: c34fc4e1-d8fd-45b2-ab09-6a01008047c6
+		sourceLineageTag: 0e33348d-e96d-4b9d-9d8d-6db812037287
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: COD_EMPR_SAP
+
+		annotation SummarizationSetBy = User
+
+	column TEMPO_ID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: c8be0f43-14e2-4465-a7dd-2b31d9031f97
+		sourceLineageTag: f897a7ab-7859-43c2-a6b4-42b102cdd409
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: TEMPO_ID
+
+		annotation SummarizationSetBy = User
+
+	column GRUPO_ID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 9d9cdf2c-bb11-4438-9b45-5820f2a98623
+		sourceLineageTag: 4ae5ea48-eaa8-435d-b68e-05cdf1ead795
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: GRUPO_ID
+
+		annotation SummarizationSetBy = User
+
+	column MODALIDADE_ID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 400e73eb-57bc-479f-8696-dbdd9dcc9d2e
+		sourceLineageTag: 6d243951-4053-4d16-bd35-1685e73da7a4
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: MODALIDADE_ID
+
+		annotation SummarizationSetBy = User
+
+	column 'Valor Receita'
+		dataType: double
+		lineageTag: 818f33ab-fd27-454c-a265-45a371520037
+		sourceLineageTag: 960a4aa2-b50e-4630-bc98-cc2560e512ab
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Valor Receita
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Volume
+		dataType: double
+		lineageTag: 7ee334ab-b7a0-4ec3-a34f-85322eb76256
+		sourceLineageTag: a077fef8-5b47-4a40-9207-10fbfbe5866f
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Volume
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Valor Receita PY'
+		dataType: double
+		lineageTag: 932c3e92-a235-4dc0-92fe-7652aaab73bf
+		sourceLineageTag: a58cd7d8-eafb-43de-9947-8ce9d1e3cff5
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Valor Receita PY
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Volume PY'
+		dataType: double
+		lineageTag: ca039cc2-4454-43a2-917d-5eaf86ea8a3e
+		sourceLineageTag: f440880b-40db-4237-9401-9db74f624410
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Volume PY
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Valor Receita YTD'
+		dataType: double
+		lineageTag: 2703ebfb-0c8e-41e6-98bf-4f3c8ebdf78d
+		sourceLineageTag: 33865f4e-2743-42c4-8669-38fd2bc54713
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Valor Receita YTD
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Volume YTD'
+		dataType: double
+		lineageTag: 7ddd0b12-5c9e-433d-b02a-4cc7f75a0140
+		sourceLineageTag: b747f6f2-e1b0-4580-92c8-3289d5c7fc18
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Volume YTD
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Valor Receita PYTD'
+		dataType: double
+		lineageTag: de106619-7664-4eda-8443-8927f03a6b68
+		sourceLineageTag: c2d5b4bb-8b4a-4f06-836d-722788aa1c98
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Valor Receita PYTD
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Volume PYTD'
+		dataType: double
+		lineageTag: 6bf86de0-9ed2-4a35-b997-412fc4e59c7e
+		sourceLineageTag: 3b9a2cce-ad2e-4bae-a20e-d6493b706f97
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Volume PYTD
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DH_CARGA
+		dataType: dateTime
+		formatString: General Number
+		lineageTag: ddec5d48-f4fe-4bcd-93c6-579031559572
+		sourceLineageTag: 45f862df-6714-4539-b383-7d98732f5d51
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: DH_CARGA
+
+		annotation SummarizationSetBy = User
+
+	column CLIENTE_ARMADOR
+		dataType: string
+		isHidden
+		lineageTag: 3db7184a-ab03-4067-b750-cf6117aee4e3
+		sourceLineageTag: 8bbf575b-9c85-45a5-a95b-a34ba66a1c31
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: CLIENTE_ARMADOR
+
+		annotation SummarizationSetBy = User
+
+	column VENDEDOR_COMERC_ID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: b6a134d1-cf32-40ac-b464-91bf7bbdfc74
+		sourceLineageTag: c70dfa79-9e4f-477d-8508-223dde79288e
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: VENDEDOR_COMERC_ID
+
+		annotation SummarizationSetBy = User
+
+	column SEGMENTACAO_ID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 9e2abf39-34a1-46c0-bdca-3cb771ef957a
+		sourceLineageTag: af446110-90e2-4984-b1b6-c8f5fceeae5e
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: SEGMENTACAO_ID
+
+		annotation SummarizationSetBy = User
+
+	column 'Receita PP'
+		dataType: double
+		lineageTag: 58030a5a-2657-4f2b-ad5c-307e8774ee6a
+		sourceLineageTag: 14f4828b-0e44-420c-b757-9f0ec1ac8345
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Receita PP
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Receita PP Grupo'
+		dataType: double
+		lineageTag: b1027f62-7d0e-448f-9348-e87d7473e4f0
+		sourceLineageTag: 272d5391-35cf-4d9f-a205-70ab20d6f715
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Receita PP Grupo
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'Pocket Price Cliente' = entity
+		mode: directQuery
+		source
+			entityName: Pocket Price Cliente
+			expressionSource: 'DirectQuery para AS – Modelo Operações Portuárias'
+

@@ -1,0 +1,27 @@
+table '#SBP Agendamento'
+	lineageTag: 74ab1b9c-cac3-404b-8d07-a0c9bfb0fe9a
+
+	measure 'Valor #SBP Agendamento' = SELECTEDVALUE('#SBP Agendamento'[#SBP Agendamento])
+		lineageTag: a66f5d29-d9a7-4672-99b7-843a830fbdbd
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#SBP Agendamento'
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: b48e54f7-917d-468b-a48e-1ae2c4e0cb76
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition '#SBP Agendamento' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 0.5, 0.001)
+
+	annotation PBI_Id = 4f870be10b8844dcb824a123252832ba
+

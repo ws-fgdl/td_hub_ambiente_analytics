@@ -1,0 +1,28 @@
+table '#Param % ajuste volume Arm Cntr Cheio (selecionado) - TRA'
+	lineageTag: c9f6afde-5efc-4658-8b9b-84c102e36fd5
+
+	measure '#Param % ajuste volume Arm Cntr Cheio (selecionado) - TRA' = SELECTEDVALUE('#Param % ajuste volume Arm Cntr Cheio (selecionado) - TRA'[percentual])
+		lineageTag: 5cc6e017-29c1-4e16-b569-55562c689997
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column percentual
+		lineageTag: 1f0eadca-ab2b-40e5-adbf-1386e03e29b1
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '#Param % ajuste volume Arm Cntr Cheio (selecionado) - TRA' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 1, 0.01)
+
+	annotation PBI_Id = 945d6d5e23124b7f931236eea45c5fef
+

@@ -1,0 +1,34 @@
+table 'tabela cod servico'
+	lineageTag: c481f88b-faa1-44e0-a0e3-72ab2d0db2b3
+
+	column cod_servico
+		formatString: 0
+		lineageTag: 245bac5f-4257-47d2-8196-b956ef281ba3
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [cod_servico]
+
+		annotation SummarizationSetBy = Automatic
+
+	column chave
+		lineageTag: 861fc159-a0e7-4f41-9234-09e7dce3d42a
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: contratos[chave]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'tabela cod servico' = calculated
+		mode: import
+		source = ```
+				
+				SUMMARIZE(
+				    'contratos',
+				    'contratos'[chave],
+				    "cod_servico", 
+				    LASTNONBLANK(contratos[cd_tipo_servico],[Faturamento])
+				)
+				```
+
+	annotation PBI_Id = 9647ae09994643f7a432e6df93512223
+

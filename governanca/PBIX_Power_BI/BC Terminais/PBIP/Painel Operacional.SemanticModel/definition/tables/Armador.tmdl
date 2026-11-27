@@ -1,0 +1,62 @@
+table Armador
+	lineageTag: 2eac59ad-28ea-4eef-b903-f302f0f897c4
+	sourceLineageTag: 5b0b5f19-edb5-40f0-89f7-c8bdb58c0266
+
+	column 'Armador ID'
+		dataType: double
+		isNullable: false
+		formatString: 0
+		lineageTag: 4b36fc6e-5e83-4cdb-9e8f-02771ecbbc1f
+		sourceLineageTag: df842674-5400-41ff-8c92-7c81d0e8edb6
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Armador ID
+
+		annotation SummarizationSetBy = User
+
+	column 'Grupo Armador'
+		dataType: string
+		lineageTag: 8df942a5-b3e2-4bdb-acc7-86cfc1a25f43
+		sourceLineageTag: 41928d07-32e1-4bed-a6f4-f588c5b804ff
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Grupo Armador
+
+		annotation SummarizationSetBy = User
+
+	column 'Código Armador'
+		dataType: string
+		lineageTag: 6632834d-6b9d-4ceb-8572-e9fd720c064b
+		sourceLineageTag: e2d868df-d08b-44a3-97b6-f137d80c1f14
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Código Armador
+
+		annotation SummarizationSetBy = User
+
+	column Armador
+		dataType: string
+		lineageTag: 2650bf55-1453-43ba-86f7-016b4eb6e5cd
+		sourceLineageTag: b62b994b-e97f-4d87-babd-971870d3e694
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Armador
+
+		annotation SummarizationSetBy = User
+
+	column 'Grupo Armador IM'
+		dataType: string
+		lineageTag: 428f48b7-e6ab-4c78-931f-658d24ec8a15
+		sourceLineageTag: fa4b06f3-0385-472f-8b16-60df235aee84
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Grupo Armador IM
+
+		annotation SummarizationSetBy = User
+
+	partition Armador = entity
+		mode: directQuery
+		source
+			entityName: Armador
+			expressionSource: 'DirectQuery para AS – Modelo Operações Portuárias'
+

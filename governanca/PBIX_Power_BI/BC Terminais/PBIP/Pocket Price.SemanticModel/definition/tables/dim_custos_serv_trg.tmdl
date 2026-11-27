@@ -1,0 +1,88 @@
+table dim_custos_serv_trg
+	lineageTag: c26ba974-fabf-436b-8d93-abbe9acf192c
+
+	column UN
+		dataType: string
+		lineageTag: 89b65dd3-ccf1-4d54-ade2-928d1adfd3f2
+		summarizeBy: none
+		sourceColumn: UN
+
+		annotation SummarizationSetBy = Automatic
+
+	column VIG_DE
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 56476608-cf4b-4a7c-a2bc-ffac4a444368
+		summarizeBy: none
+		sourceColumn: VIG_DE
+
+		variation Variation
+			isDefault
+			relationship: 2c231f2c-92b6-4632-a298-97e615c4d5c5
+			defaultHierarchy: LocalDateTable_7db7ce86-0535-4352-a7b6-31e89b0606cd.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column VIG_ATE
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: fc335aa0-3aa9-48b8-8821-55dd34b2eb70
+		summarizeBy: none
+		sourceColumn: VIG_ATE
+
+		variation Variation
+			isDefault
+			relationship: 0fe766b5-a477-4703-aba7-20cd3f7142c0
+			defaultHierarchy: LocalDateTable_a5c5da49-36a9-472d-8843-808bd9c800f0.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column COD_SERV
+		dataType: int64
+		formatString: 0
+		lineageTag: c705d59d-3118-469c-bb02-b88d6226f069
+		summarizeBy: sum
+		sourceColumn: COD_SERV
+
+		annotation SummarizationSetBy = Automatic
+
+	column DESCR_SERVIÇO
+		dataType: string
+		lineageTag: 2bfdbebe-032b-41ea-bdde-5867b27a44ca
+		summarizeBy: none
+		sourceColumn: DESCR_SERVIÇO
+
+		annotation SummarizationSetBy = Automatic
+
+	column CUSTO
+		dataType: double
+		lineageTag: b730f284-8142-4d50-8d83-6b59322c2207
+		summarizeBy: sum
+		sourceColumn: CUSTO
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition dim_custos_serv_trg = m
+		mode: import
+		source =
+				let
+				    Origem = PowerPlatform.Dataflows([]),
+				    Navegação = Origem{[Id = "Workspaces"]}[Data],
+				    #"Navegação 1" = Navegação{[workspaceId = "bcd54b55-e85f-4c30-a169-bfbf18f90f30"]}[Data],
+				    #"Navegação 2" = #"Navegação 1"{[dataflowId = "4a895ddd-2fe7-4b72-85c8-027bc578b331"]}[Data],
+				    #"Navegação 3" = #"Navegação 2"{[entity = "dim_custos_serv_trg", version = ""]}[Data],
+				    #"Cabeçalhos Promovidos" = Table.PromoteHeaders(#"Navegação 3", [PromoteAllScalars=true]),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Cabeçalhos Promovidos",{{"UN", type text}, {"VIG_DE", type date}, {"VIG_ATE", type date}, {"COD_SERV", Int64.Type}, {"DESCR_SERVIÇO", type text}, {"CUSTO", type number}})
+				in
+				    #"Tipo Alterado"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

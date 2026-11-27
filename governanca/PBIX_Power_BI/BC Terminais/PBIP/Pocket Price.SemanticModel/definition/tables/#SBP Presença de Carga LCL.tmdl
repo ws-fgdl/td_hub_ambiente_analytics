@@ -1,0 +1,28 @@
+table '#SBP Presença de Carga LCL'
+	lineageTag: 987d1b25-7183-4f47-b537-1d897b28ddc2
+
+	measure 'Valor #SBP Presença de Carga LCL' = SELECTEDVALUE('#SBP Presença de Carga LCL'[#SBP Presença de Carga LCL])
+		lineageTag: 54ecfbb4-bfa8-4559-b344-ae868c4414e7
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#SBP Presença de Carga LCL'
+		lineageTag: 9d5db607-636f-4ace-9d3c-f1fc5ac21700
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '#SBP Presença de Carga LCL' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 0.5, 0.0001)
+
+	annotation PBI_Id = 712178209f8442088208a088858e6f99
+

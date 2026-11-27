@@ -1,0 +1,28 @@
+table '#Armazenagem Carga Exportação'
+	lineageTag: 5f91456e-5e76-4b82-97c2-496598ab6d30
+
+	measure 'Valor #Armazenagem Carga Exportação' = SELECTEDVALUE('#Armazenagem Carga Exportação'[#Armazenagem Carga Exportação])
+		lineageTag: c8b298f2-82c1-4f0c-a456-710af5f51644
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#Armazenagem Carga Exportação'
+		lineageTag: aae3d004-6271-4720-a6be-0f920f2722a7
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '#Armazenagem Carga Exportação' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 1, 0.001)
+
+	annotation PBI_Id = 37b606c67d0a4925bf982a104c812583
+

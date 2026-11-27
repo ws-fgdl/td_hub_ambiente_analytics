@@ -1,0 +1,11 @@
+relationship d1e9ef26-a690-4475-a50f-4bf47bfa3c9a
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Calendario1.Date
+	toColumn: LocalDateTable_6d9ed7e7-31fb-4b26-a361-3a55c1c59a19.Date
+
+relationship c83f9fc5-827f-002d-d824-817d3cb1f157
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: Calendario1.'Ano Calendario'
+	toColumn: comexstat_2019-2024.year
+

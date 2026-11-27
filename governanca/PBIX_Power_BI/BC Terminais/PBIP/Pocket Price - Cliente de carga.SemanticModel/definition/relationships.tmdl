@@ -1,0 +1,114 @@
+relationship d762c95f-118e-4de8-9b98-18a778b499e3
+	joinOnDateBehavior: datePartOnly
+	fromColumn: bussola_comercial.data_do_inicio_do_evento
+	toColumn: LocalDateTable_afa5a82b-9a28-4f71-90e5-cd05bf178883.Date
+
+relationship 4716d328-b732-4a51-96c7-167c16e87186
+	joinOnDateBehavior: datePartOnly
+	fromColumn: bussola_comercial.data_do_fim_do_evento
+	toColumn: LocalDateTable_a874c2f8-09df-4680-a475-518ea74d0192.Date
+
+relationship 82ada209-ac29-4825-95c1-0b9cf9898289
+	joinOnDateBehavior: datePartOnly
+	fromColumn: contratos.inicio_vigencia
+	toColumn: LocalDateTable_74059a3d-7dfd-4178-b0b4-99deae6a3a62.Date
+
+relationship 2c68faf6-9f72-4695-93b0-44fa68540177
+	joinOnDateBehavior: datePartOnly
+	fromColumn: contratos.fim_vigencia
+	toColumn: LocalDateTable_fae259b9-b496-479c-ab07-17fbf9099c2f.Date
+
+relationship 5b0e1638-da24-49a2-94ce-d7c38490ae5a
+	joinOnDateBehavior: datePartOnly
+	fromColumn: contratos.data_criacao_tabela
+	toColumn: LocalDateTable_834d57e7-2d37-4ab1-8cbf-08cbebfdad38.Date
+
+relationship 28cc63f5-cffe-4612-aa84-034b94bf2244
+	fromColumn: bussola_comercial.dt_valor
+	toColumn: Calendario2.dt_valor
+
+relationship 37872287-2a22-42b3-83f5-aeda4dea280f
+	joinOnDateBehavior: datePartOnly
+	fromColumn: bussola_comercial.competencia
+	toColumn: LocalDateTable_3b6f30e3-697d-4e4c-b0bc-c009ef7f405d.Date
+
+relationship 34a77949-32af-48b2-923b-e8194ed4fbae
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: contratos.cod_contrato
+	toColumn: bussola_comercial.contrato_id
+
+relationship 27a2ee26-6b6e-4c40-bbc1-1af9d675618d
+	fromColumn: bussola_comercial.dt_valor
+	toColumn: Calendario1.dt_valor
+
+relationship 74b45064-5ebd-4160-b938-3eec35c18824
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Calendario2.Ano-Mês
+	toColumn: LocalDateTable_87d86559-1e74-4364-9438-14eb67193ab9.Date
+
+relationship e0bbfde3-59d9-484a-b59e-43ef9581f677
+	fromColumn: bussola_comercial.chave1
+	toColumn: Serviço.Chave
+
+relationship afccb616-d3d8-71f6-9ec7-8a712b53b4e7
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: bussola_comercial.cod_contrato_servico
+	toColumn: 'Tabela Pública'.cod_contrato_servico
+
+relationship e80ebacd-0e03-a836-5a22-29eda3b3c375
+	fromColumn: bussola_comercial.status_container
+	toColumn: STATUS_CNTR.status_container
+
+relationship 58bb8a7b-68d2-951a-5e65-18c6b75a899d
+	isActive: false
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: contratos.servico
+	toColumn: Serviço.'Sub Grupo Pricing'
+
+relationship a44a0679-0dc6-44ed-a615-584818c324b0
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Custos TRG 06_2024'.VIG_DE
+	toColumn: LocalDateTable_11a3317d-fe2e-4351-9e14-3b5918e7bae9.Date
+
+relationship e41b3e1b-01ce-4761-9ba1-43d57ba92b72
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Custos TRG 06_2024'.VIG_ATE
+	toColumn: LocalDateTable_88ee88b7-5d98-4d7b-a23d-154694d8ff7f.Date
+
+relationship 57538cde-1d48-4cc4-9fc3-db42606652ea
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Calendario1.Date
+	toColumn: LocalDateTable_5e002863-e2b2-4915-9364-f333c585b067.Date
+
+relationship 40eca982-c4f8-4942-959e-344d28055106
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Calendario2.Date
+	toColumn: LocalDateTable_82b9b750-34bd-4776-9e1a-7b5364b18da4.Date
+
+relationship 5d928079-9c73-498f-b742-dd4c3d332f5b
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Tabela Pública'.inicio_vigencia
+	toColumn: LocalDateTable_428418c8-18d1-4c90-a74a-bc3d6132f1c2.Date
+
+relationship 58fcdfe8-1876-4917-bbb6-f9244267dd89
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Tabela Pública'.fim_vigencia
+	toColumn: LocalDateTable_435809ef-3986-4e70-9024-e0c3386f85f4.Date
+
+relationship 12f036e4-4d82-4b0c-bdf5-164da3adc729
+	joinOnDateBehavior: datePartOnly
+	fromColumn: bussola_comercial.etl_updated_at
+	toColumn: LocalDateTable_17a8410a-f895-466b-b9bd-932010db2f5e.Date
+
+relationship e04cd2c5-df91-4991-8f88-2594fe605f9c
+	joinOnDateBehavior: datePartOnly
+	fromColumn: contratos.etl_updated_at
+	toColumn: LocalDateTable_90a7e5a3-5a9b-4f8a-8ea7-a1ed68604475.Date
+
+relationship 64715f42-db5b-0201-b14a-411ebfe28fa4
+	fromColumn: bussola_comercial.cobrar_de_sap
+	toColumn: salesforce.cod_sap
+

@@ -1,0 +1,28 @@
+table '#Box Rate Cheio LC'
+	lineageTag: e2fe967a-5923-4e3e-9a55-80e011155594
+
+	measure 'Valor #Box Rate Cheio LC' = SELECTEDVALUE('#Box Rate Cheio LC'[#Box Rate Cheio LC])
+		lineageTag: b61c72d1-37da-46b9-a357-9627e9c08a87
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#Box Rate Cheio LC'
+		lineageTag: f9f6c5e1-44cd-48fc-8eeb-571cf55b995b
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '#Box Rate Cheio LC' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 1, 0.001)
+
+	annotation PBI_Id = 398d25bd2ca34e9598c88d01bf8594cf
+

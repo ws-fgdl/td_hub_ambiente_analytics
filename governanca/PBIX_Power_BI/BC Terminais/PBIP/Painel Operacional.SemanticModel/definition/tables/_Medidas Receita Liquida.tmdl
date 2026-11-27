@@ -1,0 +1,132 @@
+table '_Medidas Receita Liquida'
+	lineageTag: 22a1706d-8c9b-4380-be17-2394dfb835de
+	sourceLineageTag: b3b3907f-b312-4dd6-b171-bf6109da3e0a
+
+	measure Slicer_Possui_Receita_Liquida_Sim_Não = EXTERNALMEASURE("Slicer_Possui_Receita_Liquida_Sim_Não", STRING, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 204d2944-fa6a-4f05-bcd1-c9ca24c8a6f3
+		sourceLineageTag: 4e6bc7d7-933e-48e9-a780-b28af8aa1862
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isText":true}
+
+	measure 'Valor Receita Liquida R$' = EXTERNALMEASURE("Valor Receita Liquida R$", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 10f9930a-6830-45ce-8f7c-19d27af5b93e
+		sourceLineageTag: 616b8d1d-8a9f-42d3-8c46-8644f2023b66
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Valor Receita Liquida USD' = EXTERNALMEASURE("Valor Receita Liquida USD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 55c85d9c-4a7e-468e-9592-75fe1c3d0f5e
+		sourceLineageTag: 71f74fbb-595e-4572-a665-78a4498b9c72
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Valor Receita Liquida R$ PY' = EXTERNALMEASURE("Valor Receita Liquida R$ PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 8906ce54-8578-4030-8791-bd053307651e
+		sourceLineageTag: e7ae6e45-8be7-4437-853b-37c31f2d6721
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Valor Receita Liquida R$ PYTD' = EXTERNALMEASURE("Valor Receita Liquida R$ PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 6e702c99-5f52-402b-84b5-984f27e00745
+		sourceLineageTag: b23bbafd-9fa1-4e09-8410-b5f93cf3419c
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Valor Receita Liquida R$ YTD' = EXTERNALMEASURE("Valor Receita Liquida R$ YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: c0dceb7d-0737-4fb9-8c13-bef88133bbda
+		sourceLineageTag: dbd72355-4b03-4473-aadd-9a9cdc936955
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Valor Receita Liquida USD PY' = EXTERNALMEASURE("Valor Receita Liquida USD PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 050e690f-dfcd-4dfc-af49-a7a93ddc2f39
+		sourceLineageTag: 538b8aec-ee79-4c80-b510-52ba810e9d75
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Valor Receita Liquida USD PYTD' = EXTERNALMEASURE("Valor Receita Liquida USD PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: af7031c4-06a6-4198-9344-672dc425c438
+		sourceLineageTag: 76950d31-5dd5-47ef-83ea-49544f58fba8
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Valor Receita Liquida USD YTD' = EXTERNALMEASURE("Valor Receita Liquida USD YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 9ae9510b-f3eb-4964-b018-e1888a74af55
+		sourceLineageTag: e94728bf-d87f-4b01-8044-4e78aceca7f4
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TEMPO_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: 29d3bd64-e3c1-4bd4-964b-3e37442ce76f
+		sourceLineageTag: bcf0b1fb-6bfa-40c7-ba1a-0060f53a30dc
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: TEMPO_ID
+
+		annotation SummarizationSetBy = User
+
+	column COD_EMPR_SAP
+		dataType: string
+		isHidden
+		lineageTag: ad7e11e8-14b7-4cd1-8e77-487480126c1c
+		sourceLineageTag: f4124f2b-01de-43fb-9b99-f3425fdc48d8
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: COD_EMPR_SAP
+
+		annotation SummarizationSetBy = User
+
+	column COD_DIVISAO_SAP
+		dataType: string
+		isHidden
+		lineageTag: 6202a183-15bd-424d-9b11-f3e86788ead0
+		sourceLineageTag: c639373b-3d6a-47dc-a949-57a7b4989d4e
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: COD_DIVISAO_SAP
+
+		annotation SummarizationSetBy = User
+
+	column VALOR_REAL_BRL
+		dataType: double
+		isHidden
+		lineageTag: c51c30ab-6224-4224-ad12-b1862d10303c
+		sourceLineageTag: a67208d6-9e78-43b9-95b2-1d2e3cb5da43
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: VALOR_REAL_BRL
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column VALOR_REAL_USD
+		dataType: double
+		isHidden
+		lineageTag: c72d5eb2-7df8-4e5e-8057-d8c70a92c8f3
+		sourceLineageTag: 96e37ef2-ce2d-446c-90df-e998f87a8195
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: VALOR_REAL_USD
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '_Medidas Receita Liquida' = entity
+		mode: directQuery
+		source
+			entityName: _Medidas Receita Liquida
+			expressionSource: 'DirectQuery para AS – Modelo Operações Portuárias'
+

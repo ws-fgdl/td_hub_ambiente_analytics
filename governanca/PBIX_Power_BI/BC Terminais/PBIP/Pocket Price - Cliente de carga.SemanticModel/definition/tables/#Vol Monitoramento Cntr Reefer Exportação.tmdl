@@ -1,0 +1,28 @@
+table '#Vol Monitoramento Cntr Reefer Exportação'
+	lineageTag: 04aa3f5a-56e8-44fa-9e74-eb968a1cda50
+
+	measure 'Valor #Vol Monitoramento Cntr Reefer Exportação' = SELECTEDVALUE('#Vol Monitoramento Cntr Reefer Exportação'[#Vol Monitoramento Cntr Reefer Exporrtação])
+		lineageTag: e03c51b1-6b91-40ca-8dc5-3c5da1a83f38
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#Vol Monitoramento Cntr Reefer Exporrtação'
+		lineageTag: 94990ab3-4618-4a9f-819e-51a24e62169b
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '#Vol Monitoramento Cntr Reefer Exportação' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 1, 0.001)
+
+	annotation PBI_Id = 75eda3cb2c6647238a74a68863465dc4
+

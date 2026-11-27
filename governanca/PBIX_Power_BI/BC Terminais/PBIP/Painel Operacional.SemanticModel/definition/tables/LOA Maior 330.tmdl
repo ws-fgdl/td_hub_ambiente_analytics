@@ -1,0 +1,21 @@
+table 'LOA Maior 330'
+	lineageTag: 8a06a880-ceab-43fc-88b1-4325b5e4e7cc
+	sourceLineageTag: 3d5b5f86-ecd0-4237-a824-e44175288b89
+
+	column 'LOA Maior 330'
+		dataType: string
+		isNullable: false
+		lineageTag: 143abe2d-7e7b-4cae-bd65-8bbbe1f1eb44
+		sourceLineageTag: a7c7773c-6179-4f10-8adf-7f54b185f9c1
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: LOA Maior 330
+
+		annotation SummarizationSetBy = User
+
+	partition 'LOA Maior 330' = entity
+		mode: directQuery
+		source
+			entityName: LOA Maior 330
+			expressionSource: 'DirectQuery para AS – Modelo Operações Portuárias'
+

@@ -1,0 +1,21 @@
+table 'Grupo Armador Ranking'
+	lineageTag: 2475d0c4-593b-47bd-a9b5-15bb1f951394
+	sourceLineageTag: 7fe570f1-6f11-4321-8a6c-e6c9cea9af16
+
+	column 'Grupo Armador Ranking'
+		dataType: string
+		isNullable: false
+		lineageTag: 31de38c2-7c74-4910-b484-f1bdd1934801
+		sourceLineageTag: 5aab09d2-ac1e-4145-84be-9160c6b761c9
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Grupo Armador Ranking
+
+		annotation SummarizationSetBy = User
+
+	partition 'Grupo Armador Ranking' = entity
+		mode: directQuery
+		source
+			entityName: Grupo Armador Ranking
+			expressionSource: 'DirectQuery para AS – Modelo Operações Portuárias'
+

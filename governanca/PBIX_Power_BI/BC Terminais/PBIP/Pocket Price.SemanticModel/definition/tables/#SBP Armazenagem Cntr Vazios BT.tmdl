@@ -1,0 +1,28 @@
+table '#SBP Armazenagem Cntr Vazios BT'
+	lineageTag: f9d3758e-9d0b-44e7-ac77-5c51259a0df9
+
+	measure 'Valor #SBP Armazenagem Cntr Vazios BT' = SELECTEDVALUE('#SBP Armazenagem Cntr Vazios BT'[#SBP Armazenagem Cntr Vazios BT])
+		lineageTag: 35d93756-e617-4d6b-81ae-ffdf1e2b4c54
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#SBP Armazenagem Cntr Vazios BT'
+		lineageTag: 95dd5606-7462-449e-9060-17e87b6ed52e
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '#SBP Armazenagem Cntr Vazios BT' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 0.5, 0.0001)
+
+	annotation PBI_Id = 7b991e2e6aef41dbacc7dd77456dd778
+

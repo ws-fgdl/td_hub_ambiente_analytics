@@ -1,0 +1,43 @@
+table 'Pais Porto Origem'
+	lineageTag: 6f3613b9-9b79-4dbf-be0e-f8aef9ee8271
+	sourceLineageTag: 20ca7467-9fba-46dc-996a-7e33a0a5bb42
+
+	column ID_PAIS
+		dataType: int64
+		isHidden
+		isNullable: false
+		formatString: 0
+		lineageTag: 70e99bb7-cee8-476c-a9bb-51254873ab26
+		sourceLineageTag: 97989a18-8334-40c0-8e41-e2dadc3cf77a
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: ID_PAIS
+
+		annotation SummarizationSetBy = User
+
+	column 'Código País Porto Origem'
+		dataType: string
+		lineageTag: ef5ed311-89cc-4fa4-ab69-69acf41e543b
+		sourceLineageTag: 601448d0-4d7c-4054-8695-b96d73230ef2
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Código País Porto Origem
+
+		annotation SummarizationSetBy = User
+
+	column 'Páis Porto Origem'
+		dataType: string
+		lineageTag: 5e20cc2e-853e-42fa-87ec-9c42626b9dda
+		sourceLineageTag: 8f56e506-3761-4a7e-baab-e873be898c20
+		dataCategory: Country
+		summarizeBy: none
+		sourceColumn: Páis Porto Origem
+
+		annotation SummarizationSetBy = User
+
+	partition 'Pais Porto Origem' = entity
+		mode: directQuery
+		source
+			entityName: Pais Porto Origem
+			expressionSource: 'DirectQuery para AS – Modelo Operações Portuárias'
+

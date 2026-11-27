@@ -1,0 +1,407 @@
+table '_Medidas Disponibilidade Manutenção'
+	lineageTag: 9e3ad1e4-a58a-4f10-a742-bfc3e3f1cf54
+	sourceLineageTag: e19f102e-bfc5-4afb-ab8f-464591182362
+
+	measure 'Quantidade de Paradas' = EXTERNALMEASURE("Quantidade de Paradas", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: fca1323d-e966-4da7-90eb-6693cbbba314
+		sourceLineageTag: 393b4a0e-917f-45c7-b628-d9d68953c3bd
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Quantidade Horas Mês' = EXTERNALMEASURE("Quantidade Horas Mês", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 610d266a-2366-42f1-bd23-a48f6b6b12fb
+		sourceLineageTag: b1cc5233-b976-48a2-913c-bd5ec4c5e111
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Quantidade Horas Equipamento Parado' = EXTERNALMEASURE("Quantidade Horas Equipamento Parado", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 16690a82-4ed9-4981-b7b3-3cc01582d86a
+		sourceLineageTag: 0f51fbc8-9ab0-42e5-9f16-3f7a4747a026
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Quantidade Horas Manutenção' = EXTERNALMEASURE("Quantidade Horas Manutenção", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: c2409691-13c5-46c6-9801-9fc47855d7f4
+		sourceLineageTag: 68f19d49-0c8a-451b-b144-d8f42a6ad9a1
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Quantidade Horas Operando' = EXTERNALMEASURE("Quantidade Horas Operando", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 2d300de2-281d-436c-9a12-ab5a999e1617
+		sourceLineageTag: 99a4d810-5fdf-4565-889d-d5aef469a598
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Quantidade Horas Equipamento Disponível' = EXTERNALMEASURE("Quantidade Horas Equipamento Disponível", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 224eafdf-1ada-4d9a-a2ff-30def6d3ed19
+		sourceLineageTag: f7f77018-94b4-4cbe-8e0d-eb37bc38ea2f
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Quantidade Horas Fora Manutenção' = EXTERNALMEASURE("Quantidade Horas Fora Manutenção", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 38992f49-7b70-4b86-b32c-08b8624facdb
+		sourceLineageTag: 2fd3d7b6-d09a-4b53-b986-95b1cc6d9906
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Quantidade Horas Fora Manutencao OPR' = EXTERNALMEASURE("Quantidade Horas Fora Manutencao OPR", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 049e598c-5c2f-485c-b7d9-9113eb6237ea
+		sourceLineageTag: c4d8bd8f-9fa7-494d-80c8-c4095de7da2b
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '% Horas Paradas' = EXTERNALMEASURE("% Horas Paradas", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 52e0e92b-442b-43d4-8c64-2ee408be1ecb
+		sourceLineageTag: 9094bb98-351a-4aaf-98ee-a2a951e1043b
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '% Horas Manutenção' = EXTERNALMEASURE("% Horas Manutenção", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 125e17b3-866c-4a92-8088-5b1aa0fd2f92
+		sourceLineageTag: 79d30eeb-e370-43bf-80b0-c7e2522c5b6b
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '% Horas Disponibilidade' = EXTERNALMEASURE("% Horas Disponibilidade", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: a5b1e374-3ebb-43d0-8bf6-1d81b5ffdf10
+		sourceLineageTag: d45ac9ff-7056-4c36-9804-68d8497e031d
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '% Horas Fora Manutenção' = EXTERNALMEASURE("% Horas Fora Manutenção", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: a011f209-be21-460e-9809-e9af08f6f24d
+		sourceLineageTag: 6b7fe3b8-8582-407d-abfb-1e5205f8177b
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'MTTR Paradas' = EXTERNALMEASURE("MTTR Paradas", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: f88fd6f6-f557-4c19-998e-2ab769c132a4
+		sourceLineageTag: d97baf75-7dd4-4379-8c24-dab0f054e26d
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'MTTR Manutenção' = EXTERNALMEASURE("MTTR Manutenção", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 851f7bac-ee1d-483f-ada5-5a7cdb929682
+		sourceLineageTag: b72d3535-64b1-4fd8-bda9-52c3c85ed97d
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'MTBF Paradas' = EXTERNALMEASURE("MTBF Paradas", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: b5a79ce4-1ce9-4731-8a2a-4f63e32a6bb0
+		sourceLineageTag: fe94d88d-371b-4f4c-aa06-6cb5365bec39
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'MTBF Manutenção' = EXTERNALMEASURE("MTBF Manutenção", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: ffe0235b-4ed8-47d4-a036-82950ebacd9f
+		sourceLineageTag: c7db428a-ecac-46de-95b0-4c1952089847
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '% Downtime' = EXTERNALMEASURE("% Downtime", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 08eba6bc-3a38-4bcc-a179-55ee2d586b6b
+		sourceLineageTag: 650c519c-1815-4fc0-9278-d7258bf62b3d
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Disponibilidade = EXTERNALMEASURE("Disponibilidade", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: fa610f91-af2e-4e9d-a764-88fd79799713
+		sourceLineageTag: cd44e05c-6ce2-4852-aa72-7d4dee7f6f83
+		dataCategory: Uncategorized
+
+	measure Slicer_Possui_Disponibilidade_Manutenção_Sim_Não = EXTERNALMEASURE("Slicer_Possui_Disponibilidade_Manutenção_Sim_Não", STRING, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 0dbaf682-e4f6-4db8-939e-cda11c013fe5
+		sourceLineageTag: bccbfea5-aeb8-4073-bb2e-1631c9dd536d
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isText":true}
+
+	measure 'Utilização Equipamentos' = EXTERNALMEASURE("Utilização Equipamentos", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		lineageTag: cb2838d8-1b77-452e-a0da-6e4ef7a7162b
+		sourceLineageTag: f93f7c68-c6c8-4e04-b898-be8511ef61d1
+		dataCategory: Uncategorized
+
+	column DISPONIBILIDADE_MANUT_ID
+		dataType: string
+		isHidden
+		lineageTag: bed59f61-882a-4d93-b827-795496ae1e71
+		sourceLineageTag: b765abfb-2584-4e7f-88e8-14e94f36b318
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: DISPONIBILIDADE_MANUT_ID
+
+		annotation SummarizationSetBy = User
+
+	column TEMPO_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: bbb5687c-7546-401d-a8d8-f05b7dd640d0
+		sourceLineageTag: cc43a41a-13e1-420d-a3c4-fa67a59d1680
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: TEMPO_ID
+
+		annotation SummarizationSetBy = User
+
+	column COD_EQUIP_MANUT
+		dataType: string
+		lineageTag: 3da14869-b57a-42b4-9cab-f8872b8eff1a
+		sourceLineageTag: 22a11b62-3819-400b-aa5f-dce49582ce33
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: COD_EQUIP_MANUT
+
+		annotation SummarizationSetBy = User
+
+	column QTD_PARADAS
+		dataType: double
+		isHidden
+		lineageTag: 31ffad36-c78a-44df-9ae7-647baa0da748
+		sourceLineageTag: a8b5a08a-8dbb-45a9-811f-88bad33a22fc
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: QTD_PARADAS
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column QTD_HRS_NO_MES
+		dataType: double
+		lineageTag: c67696f0-0c3a-4b64-b4e8-31708fa67a70
+		sourceLineageTag: 9f4ce5f3-9dac-45a8-91c2-f8a85327800b
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: QTD_HRS_NO_MES
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column QTD_HRS_EQUIP_PARADO
+		dataType: double
+		lineageTag: 48d68300-50f4-4fde-ab31-715a1efe322a
+		sourceLineageTag: 6038f748-c1d5-42ec-90f8-73d38593cedc
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: QTD_HRS_EQUIP_PARADO
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column QTD_HRS_EQUIP_MANUTENCAO
+		dataType: double
+		isHidden
+		lineageTag: 3c83dba6-ea31-4388-a4cd-5f1ebde136c4
+		sourceLineageTag: 2e3201e0-70d1-49a0-b138-c61c648f6b3b
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: QTD_HRS_EQUIP_MANUTENCAO
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column QTD_HRS_OPERANDO_BERCO
+		dataType: double
+		lineageTag: d0b74c04-ae27-4d4c-8a68-8880136ea437
+		sourceLineageTag: 6dee56cc-6f89-449a-a7dd-4de9095f178b
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: QTD_HRS_OPERANDO_BERCO
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column QTD_HRS_DISP_EQUIPTO
+		dataType: double
+		lineageTag: 4814b276-de76-4f12-b9d3-6092cb505e5f
+		sourceLineageTag: 994fbb2a-e945-409c-a526-5a849c9747b7
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: QTD_HRS_DISP_EQUIPTO
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column QTD_HRS_FORA_MANUT_EQUIPTO
+		dataType: double
+		isHidden
+		lineageTag: b0ab8216-bfef-4350-b1aa-fdf7dfa3a8c8
+		sourceLineageTag: e679b523-ec81-459e-a613-2d46950dd68c
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: QTD_HRS_FORA_MANUT_EQUIPTO
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column P_HRS_PARADAS
+		dataType: double
+		isHidden
+		lineageTag: 2a4e4f9a-7f18-4fc9-8e60-41aa8fa10701
+		sourceLineageTag: d4089446-531e-48ab-8bbc-b090712d88de
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: P_HRS_PARADAS
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column P_HRS_MANUTENCAO
+		dataType: double
+		isHidden
+		lineageTag: a825ba9c-d0e9-4e10-b0f3-34946b8a28c3
+		sourceLineageTag: 29a2a4b0-3a73-4e4e-a67d-729923b57499
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: P_HRS_MANUTENCAO
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column P_HRS_DISPONIBILIDADE
+		dataType: double
+		isHidden
+		lineageTag: 508bc153-5529-4e86-a851-611e1f5d7cbf
+		sourceLineageTag: 179927ad-ca5f-4304-a912-b67ece98efe7
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: P_HRS_DISPONIBILIDADE
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column P_HRS_FORA_MANUTENCAO
+		dataType: double
+		isHidden
+		lineageTag: 2fd11230-371f-4c48-8748-3afe0fc077d0
+		sourceLineageTag: f8198159-c0f3-403e-b136-234ff862de2b
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: P_HRS_FORA_MANUTENCAO
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column MTTR_PARADAS
+		dataType: double
+		isHidden
+		lineageTag: c0a139f2-bce6-4601-a09c-494e92509a7e
+		sourceLineageTag: be7b74ab-06a7-4a02-bbd3-82db8a2b04f1
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: MTTR_PARADAS
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column MTTR_MANUTENCAO
+		dataType: double
+		isHidden
+		lineageTag: 62055a64-a319-4985-af3e-8dbc60871d98
+		sourceLineageTag: 4f491cc1-9c59-4460-83c2-edfffbd3ec6f
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: MTTR_MANUTENCAO
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column MTBF_PARADAS
+		dataType: double
+		isHidden
+		lineageTag: a9754cd0-4c5c-4c2a-aff9-1ae06357526b
+		sourceLineageTag: 96236b8a-ebb4-4b18-943a-763ccd1a39f8
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: MTBF_PARADAS
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column MTBF_MANUTENCAO
+		dataType: double
+		isHidden
+		lineageTag: 4f0ab789-ab26-49f1-8d6d-7457275ec0cd
+		sourceLineageTag: b5b11c94-3de8-4d57-8458-5fa2f11fa189
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: MTBF_MANUTENCAO
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column P_DOWNTIME
+		dataType: double
+		isHidden
+		lineageTag: 6eb38105-619d-4200-ae64-4b3402619680
+		sourceLineageTag: 12caa18c-0ea5-4c19-a3b9-d3c1707308d5
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: P_DOWNTIME
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column COD_EMPRESA
+		dataType: string
+		lineageTag: 721774f8-fa5e-43f2-b5ee-1abbcaf0985c
+		sourceLineageTag: bdd86799-9a3e-43d2-9003-cb8e47ffa8ee
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: COD_EMPRESA
+
+		annotation SummarizationSetBy = User
+
+	column QTD_HRS_FORA_MANUT_EQPT_OPR
+		dataType: double
+		isHidden
+		lineageTag: 50c7fc3e-7ba8-4878-bcbb-f81860367e79
+		sourceLineageTag: 27c59cc1-550c-415c-8bb0-391b15af287f
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: QTD_HRS_FORA_MANUT_EQPT_OPR
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '_Medidas Disponibilidade Manutenção' = entity
+		mode: directQuery
+		source
+			entityName: _Medidas Disponibilidade Manutenção
+			expressionSource: 'DirectQuery para AS – Modelo Operações Portuárias'
+

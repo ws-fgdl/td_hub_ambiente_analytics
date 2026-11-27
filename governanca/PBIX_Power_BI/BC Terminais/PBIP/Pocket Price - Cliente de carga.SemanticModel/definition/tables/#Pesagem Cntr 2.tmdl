@@ -1,0 +1,28 @@
+table '#Pesagem Cntr 2'
+	lineageTag: b5f67823-ea07-42dc-82a8-852c3317b122
+
+	measure 'Valor #Pesagem Cntr 2' = SELECTEDVALUE('#Pesagem Cntr 2'[#Pesagem Cntr])
+		lineageTag: 75508231-1acd-4eca-baef-369089b39055
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#Pesagem Cntr'
+		lineageTag: fbb407e8-107f-4bec-8235-ce015f7e0572
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '#Pesagem Cntr 2' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 1, 0.001)
+
+	annotation PBI_Id = c497887d1b8b4643a5d7aa110a6dfa9a
+

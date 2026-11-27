@@ -1,0 +1,28 @@
+table 'Arm. Vazios - Preço P1 - EXP'
+	lineageTag: f65b0265-8aed-427a-88ec-90d6ba9ef82d
+
+	measure 'Valor Arm. Vazios - Preço P1 - EXP' = SELECTEDVALUE('Arm. Vazios - Preço P1 - EXP'[Arm. Vazios - Preço P1 - EXP])
+		lineageTag: 3cf4c5a8-e0e1-4d65-8d8f-6ced5a4fe662
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Arm. Vazios - Preço P1 - EXP'
+		lineageTag: c66c9a7f-06ac-4e1d-b6be-be68bd672997
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'Arm. Vazios - Preço P1 - EXP' = calculated
+		mode: import
+		source = GENERATESERIES(0, 1, 0.0001)
+
+	annotation PBI_Id = db2fe60e83974ff8be338e1ea9dbaffb
+

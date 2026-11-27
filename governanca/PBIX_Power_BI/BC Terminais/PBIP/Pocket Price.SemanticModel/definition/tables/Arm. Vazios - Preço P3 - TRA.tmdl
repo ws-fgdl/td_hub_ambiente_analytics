@@ -1,0 +1,27 @@
+table 'Arm. Vazios - Preço P3 - TRA'
+	lineageTag: 2deb1955-dc92-47e6-8bfd-ecb159d52a2a
+
+	measure 'Valor Arm. Vazios - Preço P3 - TRA' = SELECTEDVALUE('Arm. Vazios - Preço P3 - TRA'[Arm. Vazios - Preço P3 - TRA])
+		lineageTag: 0d96b3d7-63f6-4593-a93f-656fe168d892
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Arm. Vazios - Preço P3 - TRA'
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 83c4b420-76b3-4ac1-8c69-4273106955af
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition 'Arm. Vazios - Preço P3 - TRA' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 1, 0.001)
+
+	annotation PBI_Id = 81c3e27dcdc9418495104f8bc78c8f66
+

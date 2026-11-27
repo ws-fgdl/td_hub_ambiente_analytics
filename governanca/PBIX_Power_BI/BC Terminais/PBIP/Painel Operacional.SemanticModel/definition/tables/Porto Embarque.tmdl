@@ -1,0 +1,42 @@
+table 'Porto Embarque'
+	lineageTag: 6c8ff893-8d2d-4622-8ca9-d8df1b9cd1c9
+	sourceLineageTag: a152d02b-e265-43ad-8c98-6ef5fe9f2319
+
+	column 'Porto Embarque ID'
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		lineageTag: 257bee45-e92c-4074-8750-dcdb68345628
+		sourceLineageTag: 5046dee1-2426-47df-a6a5-1764d656cfc8
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Porto Embarque ID
+
+		annotation SummarizationSetBy = User
+
+	column 'Código Porto Embarque'
+		dataType: string
+		lineageTag: 979a31ce-2045-48be-b163-f84c2196112e
+		sourceLineageTag: d2710ff5-0790-4f9b-aaec-6f0ba53b01bd
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Código Porto Embarque
+
+		annotation SummarizationSetBy = User
+
+	column 'Porto Embarque'
+		dataType: string
+		lineageTag: 65d15173-cc4c-41b4-8abb-9dbbedd72a61
+		sourceLineageTag: f802c50d-394e-4fd1-912d-363317593a78
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Porto Embarque
+
+		annotation SummarizationSetBy = User
+
+	partition 'Porto Embarque' = entity
+		mode: directQuery
+		source
+			entityName: Porto Embarque
+			expressionSource: 'DirectQuery para AS – Modelo Operações Portuárias'
+

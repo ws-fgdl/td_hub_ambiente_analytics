@@ -1,0 +1,148 @@
+table dim_servico
+	lineageTag: 5b04513b-c41d-4396-833c-6b97408c6667
+
+	column Categoria
+		dataType: string
+		lineageTag: f314be85-d8cb-408b-91db-7ecc2ba8c145
+		summarizeBy: none
+		sourceColumn: Categoria
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sub Grupo Pricing'
+		dataType: string
+		lineageTag: e3f6da24-0128-48ab-be4c-c693fb7a4827
+		summarizeBy: none
+		sourceColumn: Sub Grupo Pricing
+
+		annotation SummarizationSetBy = Automatic
+
+	column UN
+		dataType: string
+		lineageTag: 9523e2a7-22e2-4969-81f6-c00143336b35
+		summarizeBy: none
+		sourceColumn: UN
+
+		annotation SummarizationSetBy = Automatic
+
+	column CONT_MOV
+		dataType: string
+		lineageTag: e26f33aa-edf8-4f9c-bede-1d571d375250
+		summarizeBy: none
+		sourceColumn: CONT_MOV
+
+		annotation SummarizationSetBy = Automatic
+
+	column NOME_MOV
+		dataType: string
+		lineageTag: a751b279-2338-497b-8bcb-964703a6255f
+		summarizeBy: none
+		sourceColumn: NOME_MOV
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Serviço é especial (carga de projeto ou salvatagem) ou é impactado por tempo?'
+		dataType: string
+		lineageTag: 3bb10fb8-672f-482c-91d4-e7e298a6e314
+		summarizeBy: none
+		sourceColumn: Serviço é especial (carga de projeto ou salvatagem) ou é impactado por tempo?
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Deve ser considerado para cálculo de remuneração por hora?'
+		dataType: string
+		lineageTag: 58574b79-0bd0-4a24-b4cc-241ca190bcc2
+		summarizeBy: none
+		sourceColumn: Deve ser considerado para cálculo de remuneração por hora?
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_servico = 'dim_servico'[Serviço Descrição]&'dim_servico'[UN]
+		lineageTag: f00a4941-a7b8-4b1a-bc34-4ae0c86bbb16
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Subgrupo 2'
+		dataType: string
+		lineageTag: 6fac55e9-5196-4c2c-aa7d-0117c1c20986
+		summarizeBy: none
+		sourceColumn: Subgrupo 2
+
+		annotation SummarizationSetBy = Automatic
+
+	column Modalidade
+		dataType: string
+		lineageTag: e79ded71-298b-4028-a03c-5b55835dbfa2
+		summarizeBy: none
+		sourceColumn: Modalidade
+
+		annotation SummarizationSetBy = Automatic
+
+	column Status
+		dataType: string
+		lineageTag: 48108d69-7e86-4686-8b74-8a2b10811c16
+		summarizeBy: none
+		sourceColumn: Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Serviço Descrição'
+		dataType: string
+		lineageTag: 0d7de4d3-6df0-4b08-a065-6b242f0d3a67
+		summarizeBy: none
+		sourceColumn: Serviço Descrição
+
+		annotation SummarizationSetBy = Automatic
+
+	column Chave-Bussola
+		dataType: string
+		lineageTag: 9ff55ee9-574c-46cb-b1f8-563f29f0c9db
+		summarizeBy: none
+		sourceColumn: Chave-Bussola
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Serviço Complexo/Simples'
+		dataType: string
+		lineageTag: 7863a1c6-b913-4b9c-b539-1614c00c173f
+		summarizeBy: none
+		sourceColumn: Serviço Complexo/Simples
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Cod Serviço'
+		dataType: string
+		lineageTag: a70c88f3-01bf-4a06-a972-ca62ce9109fe
+		summarizeBy: none
+		sourceColumn: Cod Serviço
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'NOVO SERVIÇO'
+		dataType: string
+		lineageTag: 8835015d-0dd5-4775-a61f-7920ed0f6a3e
+		summarizeBy: none
+		sourceColumn: NOVO SERVIÇO
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_servico = m
+		mode: import
+		source =
+				let
+				    Fonte = PowerPlatform.Dataflows([]),
+				    Workspaces = Fonte{[Id="Workspaces"]}[Data],
+				    #"bcd54b55-e85f-4c30-a169-bfbf18f90f30" = Workspaces{[workspaceId="bcd54b55-e85f-4c30-a169-bfbf18f90f30"]}[Data],
+				    #"5ec39377-da94-4298-b844-52ea6bdf424d" = #"bcd54b55-e85f-4c30-a169-bfbf18f90f30"{[dataflowId="5ec39377-da94-4298-b844-52ea6bdf424d"]}[Data],
+				    serviço_ = #"5ec39377-da94-4298-b844-52ea6bdf424d"{[entity="serviço",version=""]}[Data],
+				    #"Cabeçalhos Promovidos" = Table.PromoteHeaders(serviço_, [PromoteAllScalars=true]),
+				    #"Linhas em Branco Removidas" = Table.SelectRows(#"Cabeçalhos Promovidos", each not List.IsEmpty(List.RemoveMatchingItems(Record.FieldValues(_), {"", null}))),
+				    #"Duplicatas Removidas" = Table.Distinct(#"Linhas em Branco Removidas", {"Chave-Bussola"})
+				in
+				    #"Duplicatas Removidas"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navegação
+

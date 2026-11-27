@@ -1,0 +1,20 @@
+expression aws_tsv_movimentacao_cntr_daily =
+		let
+		    Fonte = PowerPlatform.Dataflows(null),
+		    Workspaces = Fonte{[Id="Workspaces"]}[Data],
+		    #"bcd54b55-e85f-4c30-a169-bfbf18f90f30" = Workspaces{[workspaceId="bcd54b55-e85f-4c30-a169-bfbf18f90f30"]}[Data],
+		    #"3eb59ef5-8b86-432b-8846-a02448d9bf51" = #"bcd54b55-e85f-4c30-a169-bfbf18f90f30"{[dataflowId="3eb59ef5-8b86-432b-8846-a02448d9bf51"]}[Data],
+		    tsv_movimentacao_cntr_daily_ = #"3eb59ef5-8b86-432b-8846-a02448d9bf51"{[entity="tsv_movimentacao_cntr_daily",version=""]}[Data],
+		    #"Tipo Alterado" = Table.TransformColumnTypes(tsv_movimentacao_cntr_daily_, {{"cod_cliente_sap", type text}, {"cod_cliente_sap2", type text}, {"cod_sap_byname", type text} }),
+		    RemoverZeroscCodClieneSap = Table.TransformColumns(#"Tipo Alterado", {"cod_cliente_sap", each if Text.Start(_, 2) = "00" then Text.Middle(_, 2) else _}),
+		    RemoverZeroscCodClieneSap2 = Table.TransformColumns(RemoverZeroscCodClieneSap, {"cod_cliente_sap2", each if Text.Start(_, 2) = "00" then Text.Middle(_, 2) else _}),
+		    RemoverZeroscCodSapByName = Table.TransformColumns(RemoverZeroscCodClieneSap2, {"cod_sap_byname", each if Text.Start(_, 2) = "00" then Text.Middle(_, 2) else _}),
+		    #"Tipo Alterado1" = Table.TransformColumnTypes(RemoverZeroscCodSapByName,{{"cod_cliente_sap", type text}, {"cod_cliente_sap2", type text}, {"cod_sap_byname", type text}})
+		in
+		    #"Tipo Alterado1"
+	lineageTag: e9778778-c432-4caa-b263-386ed2452b51
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

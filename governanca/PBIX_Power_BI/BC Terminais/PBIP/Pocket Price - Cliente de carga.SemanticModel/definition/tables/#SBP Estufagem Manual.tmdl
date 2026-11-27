@@ -1,0 +1,27 @@
+table '#SBP Estufagem Manual'
+	lineageTag: 3ecaa1c4-a0bf-44bd-91a4-bd43108f3077
+
+	measure 'Valor #SBP Estufagem Manual' = SELECTEDVALUE('#SBP Estufagem Manual'[#SBP Estufagem Manual])
+		lineageTag: c2179138-9434-459f-ace5-352b1a6f3fd1
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#SBP Estufagem Manual'
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 24d38fc4-acfc-42dc-b9e6-91d341a1f2eb
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition '#SBP Estufagem Manual' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 0.5, 0.0001)
+
+	annotation PBI_Id = c55de9793cfb4176a87088c374f382e7
+

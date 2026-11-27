@@ -1,0 +1,194 @@
+table dim_carteira_comercial
+	lineageTag: 9f66a2b3-7b55-4442-921c-82d8bfc5c7c4
+
+	column id
+		dataType: string
+		lineageTag: 4bbd02aa-d63a-4181-a0f8-8e5b712b2161
+		summarizeBy: none
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+	column parentid
+		dataType: string
+		lineageTag: 2a2552f9-3c7c-47b8-8bbf-831f0fc1b196
+		summarizeBy: none
+		sourceColumn: parentid
+
+		annotation SummarizationSetBy = Automatic
+
+	column cidade
+		dataType: string
+		lineageTag: d98b0476-d74c-4b16-950c-ea73e9a461fe
+		summarizeBy: none
+		sourceColumn: cidade
+
+		annotation SummarizationSetBy = Automatic
+
+	column pais
+		dataType: string
+		lineageTag: c21fa176-ff50-40b2-8f90-128394626b39
+		summarizeBy: none
+		sourceColumn: pais
+
+		annotation SummarizationSetBy = Automatic
+
+	column estado
+		dataType: string
+		lineageTag: 2723f818-0bc7-4fa6-b1b9-a9ecfec6319b
+		summarizeBy: none
+		sourceColumn: estado
+
+		annotation SummarizationSetBy = Automatic
+
+	column cnpj
+		dataType: string
+		lineageTag: fbae8851-0743-4163-89f1-1bfdb422516a
+		summarizeBy: none
+		sourceColumn: cnpj
+
+		annotation SummarizationSetBy = Automatic
+
+	column cpf
+		dataType: string
+		lineageTag: c3dfb936-bc1a-4c4a-b203-c838740e1f06
+		summarizeBy: none
+		sourceColumn: cpf
+
+		annotation SummarizationSetBy = Automatic
+
+	column grupo_economico
+		dataType: string
+		lineageTag: 773a995a-3ae0-431f-bf45-b84ee570efbc
+		summarizeBy: none
+		sourceColumn: grupo_economico
+
+		annotation SummarizationSetBy = Automatic
+
+	column grupo_comercial
+		dataType: string
+		lineageTag: 9b32400e-c4be-4972-b653-6973aa37331b
+		summarizeBy: none
+		sourceColumn: grupo_comercial
+
+		annotation SummarizationSetBy = Automatic
+
+	column codigo_postal
+		dataType: string
+		lineageTag: c3501915-c762-4ed3-b7cf-bef1416a0023
+		summarizeBy: none
+		sourceColumn: codigo_postal
+
+		annotation SummarizationSetBy = Automatic
+
+	column endereço
+		dataType: string
+		lineageTag: a8b3b2cb-a4be-4aa1-89cd-c2f29d56dfd9
+		summarizeBy: none
+		sourceColumn: endereço
+
+		annotation SummarizationSetBy = Automatic
+
+	column razao_social
+		dataType: string
+		lineageTag: 2d16a23e-cedc-48ae-9fe5-dd6b56e1ddcd
+		summarizeBy: none
+		sourceColumn: razao_social
+
+		annotation SummarizationSetBy = Automatic
+
+	column codigo_sap
+		dataType: string
+		lineageTag: 0c6d7a8e-5841-4efc-8918-ca8b3db70e09
+		summarizeBy: none
+		sourceColumn: codigo_sap
+
+		annotation SummarizationSetBy = Automatic
+
+	column duns_number
+		dataType: string
+		lineageTag: 311cee0a-d89f-42c5-b521-7123eb9b4cdb
+		summarizeBy: none
+		sourceColumn: duns_number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Armador/Cliente Carga'
+		dataType: string
+		lineageTag: c0be2c22-05cb-40bb-b0d8-e09c4264e5d0
+		summarizeBy: none
+		sourceColumn: Armador/Cliente Carga
+
+		annotation SummarizationSetBy = Automatic
+
+	column FaturamentoTRG
+		dataType: string
+		lineageTag: 3d6c471d-d5ff-408c-84ea-1ce3278a8050
+		summarizeBy: none
+		sourceColumn: FaturamentoTRG
+
+		annotation SummarizationSetBy = Automatic
+
+	column FaturamentoTSV
+		dataType: string
+		lineageTag: 4e24e84b-ea2f-4a8b-9cd7-a9c36d4c085a
+		summarizeBy: none
+		sourceColumn: FaturamentoTSV
+
+		annotation SummarizationSetBy = Automatic
+
+	column FaturamentoTotal
+		dataType: string
+		lineageTag: 19e29e50-79f4-491e-a7f9-e45851cfd8d6
+		summarizeBy: none
+		sourceColumn: FaturamentoTotal
+
+		annotation SummarizationSetBy = Automatic
+
+	column Column1
+		dataType: string
+		lineageTag: fee78c30-7adc-4c37-a1d5-41f988d288f8
+		summarizeBy: none
+		sourceColumn: Column1
+
+		annotation SummarizationSetBy = Automatic
+
+	column _1
+		dataType: string
+		lineageTag: 058909d1-fa63-49f0-a226-bc17f24edee6
+		summarizeBy: none
+		sourceColumn: _1
+
+		annotation SummarizationSetBy = Automatic
+
+	column _2
+		dataType: string
+		lineageTag: 3f682302-dfee-4503-a7ec-cccaf73a4422
+		summarizeBy: none
+		sourceColumn: _2
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_carteira_comercial = m
+		mode: import
+		source =
+				let
+				    Fonte = PowerPlatform.Dataflows(null),
+				    Workspaces = Fonte{[Id="Workspaces"]}[Data],
+				    #"bcd54b55-e85f-4c30-a169-bfbf18f90f30" = Workspaces{[workspaceId="bcd54b55-e85f-4c30-a169-bfbf18f90f30"]}[Data],
+				    #"4f905621-8575-46ce-b391-82061f44bc12" = #"bcd54b55-e85f-4c30-a169-bfbf18f90f30"{[dataflowId="4f905621-8575-46ce-b391-82061f44bc12"]}[Data],
+				    Salesforce_ = #"4f905621-8575-46ce-b391-82061f44bc12"{[entity="Salesforce",version=""]}[Data],
+				    #"Cabeçalhos Promovidos" = Table.PromoteHeaders(Salesforce_, [PromoteAllScalars=true]),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Cabeçalhos Promovidos",{{"id", type text}, {"parentid", type any}, {"cidade", type any}, {"pais", type any}, {"estado", type any}, {"cnpj", type text}, {"cpf", type any}, {"grupo_economico", type text}, {"grupo_comercial", type text}, {"codigo_postal", type any}, {"endereço", type any}, {"razao_social", type text}, {"duns_number", type any}}),
+				    #"Tipo Alterado2" = Table.TransformColumnTypes(#"Tipo Alterado", {{"codigo_sap", type text}}),
+				    RemoverZeroscCodClieneSap = Table.TransformColumns(#"Tipo Alterado2", {"codigo_sap", each if Text.Start(_, 2) = "00" then Text.Middle(_, 2) else _}),
+				    #"Duplicatas Removidas" = Table.Distinct(RemoverZeroscCodClieneSap, {"codigo_sap"}),
+				    #"Linhas Filtradas1" = Table.SelectRows(#"Duplicatas Removidas", each [codigo_sap] <> null and [codigo_sap] <> ""),
+				    #"Tipo Alterado1" = Table.TransformColumnTypes(#"Linhas Filtradas1",{{"codigo_sap", type text}})
+				in
+				    #"Tipo Alterado1"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navegação
+

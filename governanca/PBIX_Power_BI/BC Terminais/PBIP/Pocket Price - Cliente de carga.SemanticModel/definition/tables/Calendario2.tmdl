@@ -1,0 +1,120 @@
+table Calendario2
+	lineageTag: bdebcccc-bdc2-439f-958f-475160bfb784
+
+	column Date
+		formatString: Short Date
+		lineageTag: 8a37cb73-afd0-404c-a8e9-7889feb3b7eb
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date]
+
+		variation Variation
+			isDefault
+			relationship: 40eca982-c4f8-4942-959e-344d28055106
+			defaultHierarchy: LocalDateTable_82b9b750-34bd-4776-9e1a-7b5364b18da4.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Ano Calendario'
+		formatString: 0
+		lineageTag: e65e695b-82d8-44be-89d2-eca6a98dba93
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Ano Calendario]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Nome Mes'
+		lineageTag: a54a03bd-870b-4eed-b9b5-ef2147c8aa3c
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Nome Mes]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Numero Mes'
+		formatString: 0
+		lineageTag: a36779fe-d7f8-4663-9861-67c8873cef42
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Numero Mes]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Dia da Semana'
+		lineageTag: 57381617-b834-4f59-9984-13ef2f5ad3ee
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Dia da Semana]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Numero do Dia da Semana'
+		formatString: 0
+		lineageTag: 8ab848a3-7a0a-4481-9834-e3e1dc41928d
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Numero do Dia da Semana]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Trimestre
+		lineageTag: 6c7b114b-a6f5-4050-bf40-a1bc3e93aa1f
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Trimestre]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Mês/Ano
+		lineageTag: 7ea451e3-96ff-454f-85af-6e0c0058d4f0
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Mês/Ano]
+
+		annotation SummarizationSetBy = Automatic
+
+	column dt_valor = Calendario2[Date]
+		dataType: int64
+		formatString: 0
+		lineageTag: 008d9ed4-b8be-4fef-a34d-6725cea78423
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ano-Mês = Calendario2[Date]
+		formatString: yyyy-mm
+		lineageTag: 5e095a8a-e873-4e23-b2a5-c03b7f167c77
+		summarizeBy: none
+
+		variation Variation
+			isDefault
+			relationship: 74b45064-5ebd-4160-b938-3eec35c18824
+			defaultHierarchy: LocalDateTable_87d86559-1e74-4364-9438-14eb67193ab9.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	partition Calendario2 = calculated
+		mode: import
+		source = ```
+				
+				ADDCOLUMNS (
+				    CALENDAR ( DATE ( 2023, 1, 1 ), DATE ( 2026, 12, 31 ) ),
+				    "Mês/Ano", FORMAT ( [Date], "YYYY/MM" ), 
+				    "Ano Calendario", YEAR([Date]),
+				    "Nome Mes", FORMAT([Date],"mmmm"),
+				    "Numero Mes", MONTH([Date]),
+				    "Dia da Semana", FORMAT([Date], "dddd"),
+				    "Numero do Dia da Semana", WEEKDAY([Date]),
+				    "Trimestre", "T" & TRUNC((MONTH([Date])-1)/3)+1
+				   
+				    
+				)
+				```
+
+	annotation PBI_Id = 2615a723cdba4a879f1e137412c2f142
+

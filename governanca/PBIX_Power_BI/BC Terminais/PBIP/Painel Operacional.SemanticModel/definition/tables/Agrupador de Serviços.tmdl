@@ -1,0 +1,32 @@
+table 'Agrupador de Serviços'
+	lineageTag: de2ccf4e-e25c-4a70-9996-1067dcb4417f
+	sourceLineageTag: d8acabd7-3a4b-4b8f-89a8-d4e4bef421bb
+
+	column 'Agrupador de Serviço ID'
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		lineageTag: c89b6888-4538-4fb4-bcdf-3d2c92d612f2
+		sourceLineageTag: 49631b8e-c808-4c5e-a28e-c5f41a8f82d8
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Agrupador de Serviço ID
+
+		annotation SummarizationSetBy = User
+
+	column 'Agrupador de Serviço'
+		dataType: string
+		lineageTag: 419fab85-1cdc-4cc1-834a-3562f9586814
+		sourceLineageTag: 42157420-446c-4684-8864-dd8b5dd2ce7f
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Agrupador de Serviço
+
+		annotation SummarizationSetBy = User
+
+	partition 'Agrupador de Serviços' = entity
+		mode: directQuery
+		source
+			entityName: Agrupador de Serviços
+			expressionSource: 'DirectQuery para AS – Modelo Operações Portuárias'
+

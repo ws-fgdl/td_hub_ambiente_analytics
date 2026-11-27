@@ -1,0 +1,26 @@
+table '#Param Dias Isenção (selecionado) - CAB'
+	lineageTag: 9cda266d-7b10-43fb-ab44-1cadb363167b
+
+	measure '#Param Dias Isenção (selecionado) - CAB' = SELECTEDVALUE('#Param Dias Isenção (selecionado) - CAB'[qtd_dias_isencao])
+		formatString: 0
+		lineageTag: b135a9db-434e-43ce-bb31-b1a320496be8
+
+	column qtd_dias_isencao
+		formatString: 0
+		lineageTag: fcd8ecf1-1cd2-4e21-8f79-76da78733c1b
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition '#Param Dias Isenção (selecionado) - CAB' = calculated
+		mode: import
+		source = GENERATESERIES(0, 60, 1)
+
+	annotation PBI_Id = b4a68603ca054db486eac83bd124fee3
+

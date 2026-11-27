@@ -1,0 +1,1230 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "7dd7af0e389d37e947e7",
+  "position": {
+    "x": 24,
+    "y": 170,
+    "z": 16000,
+    "height": 694,
+    "width": 1622,
+    "tabOrder": 16000
+  },
+  "visual": {
+    "visualType": "pivotTable",
+    "query": {
+      "queryState": {
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bussola_comercial"
+                    }
+                  },
+                  "Property": "Agrupamento Serviço"
+                }
+              },
+              "queryRef": "bussola_comercial.Agrupamento Serviço",
+              "nativeQueryRef": "Agrupamento Serviço",
+              "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bussola_comercial"
+                    }
+                  },
+                  "Property": "Agrupamento Subgrupo Princing"
+                }
+              },
+              "queryRef": "bussola_comercial.Agrupamento Subgrupo Princing",
+              "nativeQueryRef": "Sub Grupo Pricing",
+              "active": true,
+              "displayName": "Sub Grupo Pricing"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bussola_comercial"
+                    }
+                  },
+                  "Property": "servico"
+                }
+              },
+              "queryRef": "bussola_comercial.servico",
+              "nativeQueryRef": "servico",
+              "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bussola_comercial"
+                    }
+                  },
+                  "Property": "os"
+                }
+              },
+              "queryRef": "bussola_comercial.os",
+              "nativeQueryRef": "os",
+              "active": true
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidas PP"
+                    }
+                  },
+                  "Property": "Volume/Qtd."
+                }
+              },
+              "queryRef": "Medidas PP.Volume/Qtd.",
+              "nativeQueryRef": "Volume/Qtd."
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidas PP"
+                    }
+                  },
+                  "Property": "Simulador de volume"
+                }
+              },
+              "queryRef": "Medidas PP.Simulador de volume",
+              "nativeQueryRef": "Simulador de volume"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidas PP"
+                    }
+                  },
+                  "Property": "Tipo Price"
+                }
+              },
+              "queryRef": "Medidas PP.Tipo Price",
+              "nativeQueryRef": "Tipo Price"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidas PP"
+                    }
+                  },
+                  "Property": "Price3"
+                }
+              },
+              "queryRef": "Medidas PP.Price3",
+              "nativeQueryRef": "Preço",
+              "displayName": "Preço"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidas PP"
+                    }
+                  },
+                  "Property": "Preço FD Simulado"
+                }
+              },
+              "queryRef": "Medidas PP.Preço FD Simulado",
+              "nativeQueryRef": "Preço FD Simulado"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidas PP"
+                    }
+                  },
+                  "Property": "Cif"
+                }
+              },
+              "queryRef": "Medidas PP.Cif",
+              "nativeQueryRef": "Cif"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidas PP"
+                    }
+                  },
+                  "Property": "Valor Mínimo FD"
+                }
+              },
+              "queryRef": "Medidas PP.Valor Mínimo FD",
+              "nativeQueryRef": "Valor Mínimo FD"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidas PP"
+                    }
+                  },
+                  "Property": "Mínimo FD Simulado"
+                }
+              },
+              "queryRef": "Medidas PP.Mínimo FD Simulado",
+              "nativeQueryRef": "Mínimo FD Simulado"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidas PP"
+                    }
+                  },
+                  "Property": "Faturamento Calculado FD table2"
+                }
+              },
+              "queryRef": "Medidas PP.Faturamento Calculado FD table2",
+              "nativeQueryRef": "Faturamento Calculado FD table2"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidas PP"
+                    }
+                  },
+                  "Property": "Faturamento Simulado Fiel Depósito"
+                }
+              },
+              "queryRef": "Medidas PP.Faturamento Simulado Fiel Depósito",
+              "nativeQueryRef": "Faturamento Simulado Fiel Depósito"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidas PP"
+                    }
+                  },
+                  "Property": "Faturamento Simulado FD table2"
+                }
+              },
+              "queryRef": "Medidas PP.Faturamento Simulado FD table2",
+              "nativeQueryRef": "Faturamento Simulado FD table2"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidas PP"
+                    }
+                  },
+                  "Property": "Δ Fat. FD"
+                }
+              },
+              "queryRef": "Medidas PP.Δ Fat. FD",
+              "nativeQueryRef": "Δ Fat. FD"
+            }
+          ]
+        }
+      }
+    },
+    "expansionStates": [
+      {
+        "roles": [
+          "Rows"
+        ],
+        "levels": [
+          {
+            "queryRefs": [
+              "bussola_comercial.Agrupamento Serviço"
+            ],
+            "isCollapsed": true,
+            "identityKeys": [
+              {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bussola_comercial"
+                    }
+                  },
+                  "Property": "Agrupamento Serviço"
+                }
+              }
+            ],
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "bussola_comercial.Agrupamento Subgrupo Princing"
+            ],
+            "isCollapsed": true,
+            "identityKeys": [
+              {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bussola_comercial"
+                    }
+                  },
+                  "Property": "Agrupamento Subgrupo Princing"
+                }
+              }
+            ],
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "bussola_comercial.servico"
+            ],
+            "isCollapsed": true,
+            "identityKeys": [
+              {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bussola_comercial"
+                    }
+                  },
+                  "Property": "servico"
+                }
+              }
+            ],
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "bussola_comercial.os"
+            ],
+            "isCollapsed": true,
+            "isPinned": true
+          }
+        ],
+        "root": {
+          "children": [
+            {
+              "identityValues": [
+                {
+                  "Literal": {
+                    "Value": "'Operação Navio'"
+                  }
+                }
+              ],
+              "isToggled": true
+            },
+            {
+              "identityValues": [
+                {
+                  "Literal": {
+                    "Value": "'Básicos Importação'"
+                  }
+                }
+              ],
+              "isToggled": true,
+              "children": [
+                {
+                  "identityValues": [
+                    {
+                      "Literal": {
+                        "Value": "'Fiel Depósito'"
+                      }
+                    }
+                  ],
+                  "isToggled": true,
+                  "children": [
+                    {
+                      "identityValues": [
+                        {
+                          "Literal": {
+                            "Value": "'FIEL DEPOSITO - CARGA - IMP'"
+                          }
+                        }
+                      ],
+                      "isToggled": true
+                    },
+                    {
+                      "identityValues": [
+                        {
+                          "Literal": {
+                            "Value": "'FIEL DEPOSITO - CARGA EM CONTAINER  - IMP'"
+                          }
+                        }
+                      ],
+                      "isToggled": true
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "objects": {
+      "columnHeaders": [
+        {
+          "properties": {
+            "autoSizeColumnWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'wf_standard-font, helvetica, arial, sans-serif'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "13D"
+                }
+              }
+            },
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#001C43'"
+                    }
+                  }
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Left'"
+                }
+              }
+            },
+            "titleAlignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Left'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "values": [
+        {
+          "properties": {
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'wf_standard-font, helvetica, arial, sans-serif'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "12D"
+                }
+              }
+            },
+            "valuesOnRow": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "grid": [
+        {
+          "properties": {
+            "gridHorizontal": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "135.66663275826517D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Medidas.Variação Acum. Vol Ano"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "147.33331637912988D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Medidas.Variação Acum. Tckt Méd Ano"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "571.9560289796277D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Calendario1.Date.Variation.Hierarquia de datas.Ano"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "88D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Medidas PP.Preço P1 Simulado"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "82D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Medidas PP.Preço P2 Simulado"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "82D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Medidas PP.Preço P3 Simulado"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "78D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Medidas PP.Dias P1 Simulado"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "80D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Medidas PP.Dias P2 Simulado"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "86D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Medidas PP.Dias P3 Simulado"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "81.15907102756378D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(bussola_comercial.dias_servico)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "71.24698229377489D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(bussola_comercial.dias_isencao)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "79.81443303047959D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(bussola_comercial.dias_free_time)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "85.76574521926715D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Medidas PP.Volume Simulado"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "99.3008314436886D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Medidas PP.Valor Mínimo FD"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "95D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Medidas PP.Preço FD Simulado"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "84.66667461741459D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Medidas PP.Mínimo FD Simulado"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "100.33337501825906D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Medidas PP.Faturamento Calculado FD table2"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "136.277234739495D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Medidas PP.Faturamento Simulado Fiel Depósito"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "117.33332815485053D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Medidas PP.Faturamento Simulado FD table2"
+          }
+        }
+      ],
+      "rowHeaders": [
+        {
+          "properties": {
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'wf_standard-font, helvetica, arial, sans-serif'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "13D"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 3,
+                      "Percent": -0.5
+                    }
+                  }
+                }
+              }
+            },
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#ffffff'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "rowTotal": [
+        {
+          "properties": {
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 3,
+                      "Percent": -0.5
+                    }
+                  }
+                }
+              }
+            },
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#FFFFFF'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnTotal": [
+        {
+          "properties": {
+            "applyToHeaders": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnFormatting": [
+        {
+          "properties": {
+            "labelPrecision": {
+              "expr": {
+                "Literal": {
+                  "Value": "4L"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Medidas PP.Price3"
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "titleWrap": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#001c43'"
+                    }
+                  }
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "84D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "stylePreset": [
+        {
+          "properties": {
+            "name": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Sparse'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "divider": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualTooltip": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "type": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Default'"
+                }
+              }
+            },
+            "background": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 1,
+                      "Percent": 0.4
+                    }
+                  }
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "774d783c43b0e04a47b9",
+        "ordinal": 0,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Medidas PP"
+              }
+            },
+            "Property": "fat calculado table"
+          }
+        },
+        "type": "Advanced",
+        "howCreated": "User"
+      },
+      {
+        "name": "5b37226752a7839ac05c",
+        "ordinal": 1,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "bussola_comercial"
+              }
+            },
+            "Property": "Agrupamento Serviço"
+          }
+        },
+        "type": "Categorical",
+        "objects": {
+          "general": [
+            {
+              "properties": {
+                "isInvertedSelectionMode": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "true"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "636c4d0704e59c99c29b",
+        "ordinal": 2,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Medidas PP"
+              }
+            },
+            "Property": "Price3"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "a7de270ac06270577a54",
+        "ordinal": 3,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "bussola_comercial"
+              }
+            },
+            "Property": "servico"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "32de9cef984489ae30da",
+        "ordinal": 4,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Medidas PP"
+              }
+            },
+            "Property": "Simulador de preço"
+          }
+        },
+        "type": "Advanced",
+        "howCreated": "User"
+      },
+      {
+        "name": "cbbadb1cbc4003bd1c73",
+        "ordinal": 5,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Medidas PP"
+              }
+            },
+            "Property": "Simulador de volume"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "ea1b8741d50a7b57b603",
+        "ordinal": 6,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "bussola_comercial"
+              }
+            },
+            "Property": "Agrupamento Subgrupo Princing"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "267ea6c05c09151c411c",
+        "ordinal": 7,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Medidas PP"
+              }
+            },
+            "Property": "Tipo Price"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "399c59cd021519626140",
+        "ordinal": 8,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Medidas PP"
+              }
+            },
+            "Property": "Volume/Qtd."
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "8398e4fa503b42a56bab",
+        "ordinal": 9,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Medidas PP"
+              }
+            },
+            "Property": "Δ Fat."
+          }
+        },
+        "type": "Advanced",
+        "howCreated": "User"
+      },
+      {
+        "name": "1079793fa3bea6aa5ba0",
+        "ordinal": 10,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "bussola_comercial"
+              }
+            },
+            "Property": "Agrupamento Subgrupo Princing"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "b",
+              "Entity": "bussola_comercial",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "b"
+                          }
+                        },
+                        "Property": "Agrupamento Subgrupo Princing"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'Fiel Depósito'"
+                        }
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User",
+        "objects": {
+          "general": [
+            {
+              "properties": {}
+            }
+          ]
+        }
+      }
+    ],
+    "filterSortOrder": "Custom"
+  }
+}

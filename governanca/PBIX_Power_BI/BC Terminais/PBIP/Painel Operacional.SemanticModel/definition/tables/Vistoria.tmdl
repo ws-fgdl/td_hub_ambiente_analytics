@@ -1,0 +1,21 @@
+table Vistoria
+	lineageTag: 18ff38de-e4da-478a-90e2-6b858683e702
+	sourceLineageTag: 5aa0d34e-fd37-4f44-a398-bc6069a5098a
+
+	column Vistoria
+		dataType: string
+		isNullable: false
+		lineageTag: 81cf6005-661d-4fb9-95cd-71ab6430f89b
+		sourceLineageTag: 80d932bc-49f7-4380-9262-9b9992aab7ed
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Vistoria
+
+		annotation SummarizationSetBy = User
+
+	partition Vistoria = entity
+		mode: directQuery
+		source
+			entityName: Vistoria
+			expressionSource: 'DirectQuery para AS – Modelo Operações Portuárias'
+

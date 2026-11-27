@@ -1,0 +1,35 @@
+table '#SBP Box Rate Cheio CAB'
+	lineageTag: 0020384a-105b-4529-b36d-525c6193bbe2
+
+	measure 'Valor #SBP Box Rate Cheio CAB' = ```
+			
+			VAR p =
+			    SELECTEDVALUE ( '#SBP Box Rate Cheio CAB'[#SBP Box Rate Cheio CAB] )
+			RETURN
+			    DIVIDE ( COALESCE ( p, 0 ), 1000 )
+			
+			```
+		lineageTag: ac1e6691-d641-4b1e-8ebe-16a1361daa2f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#SBP Box Rate Cheio CAB'
+		dataType: decimal
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 1786f2c2-cf6e-4181-b7dc-c75b2a2f8520
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition '#SBP Box Rate Cheio CAB' = calculated
+		mode: import
+		source = GENERATESERIES(-1000, 500, 1)
+
+	annotation PBI_Id = d38e8568cc6a427cb326b341774c25dd
+

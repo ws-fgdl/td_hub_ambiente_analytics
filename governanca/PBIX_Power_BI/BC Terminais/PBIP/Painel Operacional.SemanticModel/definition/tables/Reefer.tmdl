@@ -1,0 +1,43 @@
+table Reefer
+	lineageTag: 6f96a8ec-b359-4fde-afed-80d9cdfca371
+	sourceLineageTag: c069b9a0-4743-4db3-a58e-8ee1bd7cc7fe
+
+	column 'Reefer Código'
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		lineageTag: 2f001ace-25bf-4b57-9dac-e2a38698e590
+		sourceLineageTag: 1ce48626-092f-4adc-a3ab-09c3b622e254
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Reefer Código
+
+		annotation SummarizationSetBy = User
+
+	column DSC_BOOLEAN1
+		dataType: string
+		isHidden
+		lineageTag: 80b4c24e-1b91-46da-a1cc-aab68b48c76b
+		sourceLineageTag: d748dbe1-c29f-40ae-bd5d-593ea00e787d
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: DSC_BOOLEAN1
+
+		annotation SummarizationSetBy = User
+
+	column Reefer
+		dataType: string
+		lineageTag: 07e542b2-281a-4744-94a3-a06f86aff843
+		sourceLineageTag: 8885e56c-5e04-48fd-b768-f6d3f971f86d
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Reefer
+
+		annotation SummarizationSetBy = User
+
+	partition Reefer = entity
+		mode: directQuery
+		source
+			entityName: Reefer
+			expressionSource: 'DirectQuery para AS – Modelo Operações Portuárias'
+

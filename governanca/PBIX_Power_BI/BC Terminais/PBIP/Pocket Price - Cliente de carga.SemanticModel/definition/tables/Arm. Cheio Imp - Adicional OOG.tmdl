@@ -1,0 +1,26 @@
+table 'Arm. Cheio Imp - Adicional OOG'
+	lineageTag: 0ecba5db-afc8-472b-9f06-19a101abcabb
+
+	measure 'Valor Arm. Cheio Imp - Adicional OOG' = SELECTEDVALUE('Arm. Cheio Imp - Adicional OOG'[Arm. Cheio Imp - Adicional OOG])
+		formatString: 0
+		lineageTag: 732a16aa-9a8a-42de-8a05-2a76b2746a58
+
+	column 'Arm. Cheio Imp - Adicional OOG'
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: ada019e1-1537-4845-a953-7b41dedeb092
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition 'Arm. Cheio Imp - Adicional OOG' = calculated
+		mode: import
+		source = GENERATESERIES(0, 1, 0.001)
+
+	annotation PBI_Id = 3d15ae1322574718af417107f536b0c6
+

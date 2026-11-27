@@ -1,0 +1,70 @@
+table dim_linha_maritima
+	lineageTag: 440d4b1f-9e21-4333-8b07-66de40493e8e
+
+	column LINHA_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: a2a8625e-b1be-4161-b0cd-c2203e6883ba
+		summarizeBy: count
+		sourceColumn: LINHA_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column COD_LINHA
+		dataType: string
+		lineageTag: dbca0f86-b73b-4ab6-91a7-60ec0fd50843
+		summarizeBy: none
+		sourceColumn: COD_LINHA
+
+		annotation SummarizationSetBy = Automatic
+
+	column DSC_LINHA
+		dataType: string
+		lineageTag: bfd2588d-d1a4-44c2-8d43-45ba24599ab4
+		summarizeBy: none
+		sourceColumn: DSC_LINHA
+
+		annotation SummarizationSetBy = Automatic
+
+	column TRADE
+		dataType: string
+		lineageTag: 3d8eaeff-b106-471a-ac33-af4def61e175
+		summarizeBy: none
+		sourceColumn: TRADE
+
+		annotation SummarizationSetBy = Automatic
+
+	column UN
+		dataType: string
+		lineageTag: 08cf49a3-8947-4873-91c4-ae0db7488a76
+		summarizeBy: none
+		sourceColumn: UN
+
+		annotation SummarizationSetBy = Automatic
+
+	column chave
+		dataType: string
+		lineageTag: e09b84d9-a968-42de-9863-28a07925607b
+		summarizeBy: none
+		sourceColumn: chave
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_linha_maritima = m
+		mode: import
+		source =
+				let
+				    Fonte = PowerPlatform.Dataflows([]),
+				    Workspaces = Fonte{[Id="Workspaces"]}[Data],
+				    #"bcd54b55-e85f-4c30-a169-bfbf18f90f30" = Workspaces{[workspaceId="bcd54b55-e85f-4c30-a169-bfbf18f90f30"]}[Data],
+				    #"c26b4f2a-1ef5-4790-9739-b1cca43d810e" = #"bcd54b55-e85f-4c30-a169-bfbf18f90f30"{[dataflowId="c26b4f2a-1ef5-4790-9739-b1cca43d810e"]}[Data],
+				    #"Linha Marítima - Página1_" = #"c26b4f2a-1ef5-4790-9739-b1cca43d810e"{[entity="Linha Marítima - Página1",version=""]}[Data],
+				    #"Cabeçalhos Promovidos" = Table.PromoteHeaders(#"Linha Marítima - Página1_", [PromoteAllScalars=true]),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Cabeçalhos Promovidos",{{"LINHA_ID", Int64.Type}, {"COD_LINHA", type text}, {"DSC_LINHA", type text}, {"TRADE", type text}, {"UN", type text}, {"chave", type text}})
+				in
+				    #"Tipo Alterado"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

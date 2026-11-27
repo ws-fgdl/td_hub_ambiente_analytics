@@ -1,0 +1,64 @@
+table Mercadoria
+	lineageTag: 0dd8e783-e4b6-4878-b7ce-5ba9cbd78f20
+	sourceLineageTag: 3e0894f5-6401-41c0-b412-d95e267dc635
+
+	column NCM
+		dataType: string
+		lineageTag: 84c24557-87f2-455c-9531-bd5e96c3402b
+		sourceLineageTag: a37025d6-94be-4229-a99d-e7d05de5e29e
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: NCM
+
+		annotation SummarizationSetBy = User
+
+	column Mercadoria
+		dataType: string
+		lineageTag: 1a58bba8-a24e-4cb8-86dc-cb88b7ac0255
+		sourceLineageTag: ea66f305-f3a2-4122-adbd-496752ae26e7
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Mercadoria
+
+		annotation SummarizationSetBy = User
+
+	column GRUPO_MERCADORIA
+		dataType: string
+		isHidden
+		lineageTag: 25be90c5-979f-4a31-bf06-4969bdb6de37
+		sourceLineageTag: d6a4d159-c575-4910-9dfc-ebaf73295812
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: GRUPO_MERCADORIA
+
+		annotation SummarizationSetBy = User
+
+	column GRUPO_MERCADORIA_ID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: c6ed8f7c-104c-4dcc-a5f0-671d5f15da3f
+		sourceLineageTag: 737a8891-6d9b-4bfb-96c6-0e011ccbb71f
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: GRUPO_MERCADORIA_ID
+
+		annotation SummarizationSetBy = User
+
+	column NCM_HASH
+		dataType: string
+		isNullable: false
+		lineageTag: 219ed9ae-0c4c-45df-ab6b-9a0d1e633f9d
+		sourceLineageTag: 7857359b-94d6-464e-bf79-1b1dcb9485c6
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: NCM_HASH
+
+		annotation SummarizationSetBy = User
+
+	partition Mercadoria = entity
+		mode: directQuery
+		source
+			entityName: Mercadoria
+			expressionSource: 'DirectQuery para AS – Modelo Operações Portuárias'
+

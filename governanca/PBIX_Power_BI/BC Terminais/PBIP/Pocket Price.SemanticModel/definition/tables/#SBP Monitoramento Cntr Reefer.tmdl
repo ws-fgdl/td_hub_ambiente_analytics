@@ -1,0 +1,27 @@
+table '#SBP Monitoramento Cntr Reefer'
+	lineageTag: ac6a3ae2-e655-4730-b6b1-4ca34a28d1a2
+
+	measure 'Valor #SBP Monitoramento Cntr Reefer' = SELECTEDVALUE('#SBP Monitoramento Cntr Reefer'[#SBP Monitoramento Cntr Reefer])
+		lineageTag: 673e5004-bb17-485e-b93e-1d1e71280e0e
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#SBP Monitoramento Cntr Reefer'
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 2491acb3-bfda-4ea1-a4f5-dbe234f0dac2
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition '#SBP Monitoramento Cntr Reefer' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 0.5, 0.0001)
+
+	annotation PBI_Id = 76482e54b33a4752b8570e518f3a1e55
+

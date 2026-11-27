@@ -1,0 +1,26 @@
+table '#Arm. Vazios Exportação - Preço P1'
+	lineageTag: a07e3d1b-1581-455a-80fd-e61968362357
+
+	measure '#Arm. Vazios Exportação - Preço P1 (selecionado)' = SELECTEDVALUE('#Arm. Vazios Exportação - Preço P1'[percentual], 0)
+		formatString: #,0.00%;-#,0.00%;#,0.00%
+		lineageTag: 0b68cb5d-bd8c-40d1-86bc-43db4003ab8c
+
+	column percentual
+		formatString: 0%;-0%;0%
+		lineageTag: c394d5cc-32ce-4ddc-bd0d-bfd86d23b1df
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition '#Param % ajuste volume Arm Cntr Vazio' = calculated
+		mode: import
+		source = GENERATESERIES(CURRENCY(-1), CURRENCY(1), CURRENCY(0.01))
+
+	annotation PBI_Id = 81fa1eaa6e4947369b891a14e4703302
+

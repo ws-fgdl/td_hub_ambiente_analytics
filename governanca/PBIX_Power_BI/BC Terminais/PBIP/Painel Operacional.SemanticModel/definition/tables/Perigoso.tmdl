@@ -1,0 +1,32 @@
+table Perigoso
+	lineageTag: b65a779b-1e6c-41a5-bd8f-301a75129ae0
+	sourceLineageTag: 4fa6a3f5-0f4c-446b-af10-4ce7fb4879b8
+
+	column Perigoso
+		dataType: string
+		lineageTag: f19a3205-aac7-4b92-be67-2f77bacd79f9
+		sourceLineageTag: 3f2a860c-5b91-42dc-bcf1-709dac1a6670
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Perigoso
+
+		annotation SummarizationSetBy = User
+
+	column 'ID Perigoso'
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		lineageTag: eadaa5e1-a798-48bb-8476-ad7ebe6d94d7
+		sourceLineageTag: 1f2fec6d-1e6c-4605-8169-62ef0e443270
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: ID Perigoso
+
+		annotation SummarizationSetBy = User
+
+	partition Perigoso = entity
+		mode: directQuery
+		source
+			entityName: Perigoso
+			expressionSource: 'DirectQuery para AS – Modelo Operações Portuárias'
+

@@ -1,0 +1,235 @@
+table '_Medidas Volume Real Orçado'
+	lineageTag: e8bfcc97-ce1d-4c19-8aca-08a7db0ca9a1
+	sourceLineageTag: 2a8ea32b-f2f3-4f87-a440-925bfb04609a
+
+	measure Slicer_Possui_Volume_Real_Orcado_Sim_Não = EXTERNALMEASURE("Slicer_Possui_Volume_Real_Orcado_Sim_Não", STRING, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: b5b3d8dc-5cca-474d-a589-d46ade10ffaf
+		sourceLineageTag: bb4db728-a530-4c0a-8693-2467669a43aa
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isText":true}
+
+	measure 'Volume Orçado' = EXTERNALMEASURE("Volume Orçado", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		lineageTag: bb24ce70-d057-4e12-9723-5d411fd4803d
+		sourceLineageTag: 6b7c7160-ca7d-4819-95bf-f723d21b9de8
+		dataCategory: Uncategorized
+
+	measure 'Volume Real' = EXTERNALMEASURE("Volume Real", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		lineageTag: dcdee171-8aba-44b3-b3d8-44075364bf2c
+		sourceLineageTag: 94f9f37f-c24c-4948-b421-46c1f8a1d14f
+		dataCategory: Uncategorized
+
+	measure 'TEUS Orçado' = EXTERNALMEASURE("TEUS Orçado", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		lineageTag: 7c8f8444-b1ab-45ca-991e-0e1b3f08c06d
+		sourceLineageTag: 0e5c6182-cfbb-4e3e-8993-7f7485964d3b
+		dataCategory: Uncategorized
+
+	measure 'TEUS Real' = EXTERNALMEASURE("TEUS Real", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		lineageTag: c70fb722-1e3d-42be-a907-cca30fa4a04f
+		sourceLineageTag: 9b5dff1e-4b24-4c63-871c-c4a2a07b55a0
+		dataCategory: Uncategorized
+
+	measure 'Volume Orçado PY' = EXTERNALMEASURE("Volume Orçado PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		lineageTag: 41096dc7-d093-419e-9bf7-4c7e2bb3818b
+		sourceLineageTag: 18a2b929-2dc7-4699-b48d-91ea4958f15c
+		dataCategory: Uncategorized
+
+	measure 'Volume Orçado PYTD' = EXTERNALMEASURE("Volume Orçado PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		lineageTag: cf7d177c-44c9-4b8e-a0c7-0774a3c18ccd
+		sourceLineageTag: c58120af-e5da-476b-8b59-d1eb470150a0
+		dataCategory: Uncategorized
+
+	measure 'Volume Orçado YTD' = EXTERNALMEASURE("Volume Orçado YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		lineageTag: bc75a50e-e263-4f9a-ab82-6c6da6f21216
+		sourceLineageTag: cb5d9355-3e7d-4e43-ab24-ed41135e27c8
+		dataCategory: Uncategorized
+
+	measure 'Volume Real PY' = EXTERNALMEASURE("Volume Real PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		lineageTag: d2fd0802-27d0-467e-b1d8-c105d34ff70c
+		sourceLineageTag: eb456f0b-4c16-4749-b3f6-3c0823cf4e5d
+		dataCategory: Uncategorized
+
+	measure 'Volume Real PYTD' = EXTERNALMEASURE("Volume Real PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		lineageTag: 84f03608-844c-4f67-ab57-d86442916cb8
+		sourceLineageTag: acee7137-43b9-43ce-99fc-a7b826e7edbf
+		dataCategory: Uncategorized
+
+	measure 'Volume Real YTD' = EXTERNALMEASURE("Volume Real YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		lineageTag: 2b8efa65-5518-49e0-97d4-56b0870cdbe6
+		sourceLineageTag: b677cc00-db0e-4c45-bfd2-f51a3b912e8e
+		dataCategory: Uncategorized
+
+	measure 'TEUS Orçado PY' = EXTERNALMEASURE("TEUS Orçado PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		lineageTag: f5751eda-3a3d-4767-b196-cb0bf9572cda
+		sourceLineageTag: 38e1eddf-9747-44e6-acbd-89089a2f0d40
+		dataCategory: Uncategorized
+
+	measure 'TEUS Orçado PYTD' = EXTERNALMEASURE("TEUS Orçado PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		lineageTag: 3d512511-b625-4114-b0c1-e941be7c15ec
+		sourceLineageTag: bce9f5be-b7f5-494d-8b09-6f3a437d7525
+		dataCategory: Uncategorized
+
+	measure 'TEUS Orçado YTD' = EXTERNALMEASURE("TEUS Orçado YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		lineageTag: 229a96fd-ff8f-4d07-881c-dc1a246aa021
+		sourceLineageTag: df351a68-5ae9-4e6a-b2f8-7ac0e294611b
+		dataCategory: Uncategorized
+
+	measure 'TEUS Real PY' = EXTERNALMEASURE("TEUS Real PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		lineageTag: dd04fbb7-52c4-4c5d-a7c4-148ad595d1f5
+		sourceLineageTag: 6498633d-20eb-4f29-bfd6-62275451b2e6
+		dataCategory: Uncategorized
+
+	measure 'TEUS Real PYTD' = EXTERNALMEASURE("TEUS Real PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		lineageTag: 319a58d9-229d-4a4b-a2f1-68f744dfb510
+		sourceLineageTag: 1ac9c6dc-572a-4c47-a2a5-f3244beabfc9
+		dataCategory: Uncategorized
+
+	measure 'TEUS Real YTD' = EXTERNALMEASURE("TEUS Real YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		lineageTag: 8816c6e0-bc29-4f6d-ae52-00c7bb807bc8
+		sourceLineageTag: 5d7a7a90-3788-408e-93f1-93467d8d9866
+		dataCategory: Uncategorized
+
+	column COD_EMPR_SAP
+		dataType: string
+		isHidden
+		lineageTag: af5cc1be-a628-48eb-a514-62ed5a0c8756
+		sourceLineageTag: 998e53f1-6a87-4c15-8cf7-24c5e7361aa6
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: COD_EMPR_SAP
+
+		annotation SummarizationSetBy = User
+
+	column TEMPO_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: 72330124-d123-4bf1-87b9-e1cc7c6930a7
+		sourceLineageTag: 7eb53949-3634-40b5-b82f-718bae3f3fda
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: TEMPO_ID
+
+		annotation SummarizationSetBy = User
+
+	column MODALIDADE_ID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: f9b9f726-a3d8-4835-9641-4b7781449dfa
+		sourceLineageTag: e8e46384-e6ec-46b8-9122-19cce99be77b
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: MODALIDADE_ID
+
+		annotation SummarizationSetBy = User
+
+	column MOVIMENTO_ID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 561813f0-c29d-495c-a03f-9075b4aea631
+		sourceLineageTag: 567f99b1-6774-4b13-bf31-553bafbdd47a
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: MOVIMENTO_ID
+
+		annotation SummarizationSetBy = User
+
+	column STATUS_CNTR_ID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: c825e7f9-f5ba-42b9-b9c5-16629145264b
+		sourceLineageTag: 5e2a24d2-21d2-478b-be9f-fbf70033d24f
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: STATUS_CNTR_ID
+
+		annotation SummarizationSetBy = User
+
+	column QTD_ORCADO
+		dataType: double
+		isHidden
+		lineageTag: ee209a27-b039-4cbd-9545-568d5c6a3bb9
+		sourceLineageTag: 4fe404c4-5b79-4973-abf2-2da98ba58a8d
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: QTD_ORCADO
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column QTD_CNTR_REAL
+		dataType: double
+		isHidden
+		lineageTag: 08dbface-50d5-4dd4-9be7-66e315dd29ae
+		sourceLineageTag: c9d74192-4307-4dd8-8305-f2c81bb442d0
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: QTD_CNTR_REAL
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column REEFER
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: a8526d8f-fe02-4969-94bf-cf6b2f10a4c8
+		sourceLineageTag: 11861ad2-183c-4921-b756-0435e6099ed7
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: REEFER
+
+		annotation SummarizationSetBy = User
+
+	column QTD_TEUS_ORCADO
+		dataType: double
+		isHidden
+		lineageTag: 676ac3aa-93a4-45f0-9549-5e3f75e9fc26
+		sourceLineageTag: 9094e104-7549-458d-95dd-b13affbbbb55
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: QTD_TEUS_ORCADO
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column QTD_TEUS_REAL
+		dataType: double
+		isHidden
+		lineageTag: 4abd3622-52a4-4bf5-a044-078d56f33597
+		sourceLineageTag: 673a7c90-5525-48ff-bf4d-58c553a6f171
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: QTD_TEUS_REAL
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '_Medidas Volume Real Orçado' = entity
+		mode: directQuery
+		source
+			entityName: _Medidas Volume Real Orçado
+			expressionSource: 'DirectQuery para AS – Modelo Operações Portuárias'
+

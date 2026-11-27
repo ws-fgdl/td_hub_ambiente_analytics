@@ -1,0 +1,673 @@
+table '_Medidas Ranking Armadores Base Cálculos'
+	lineageTag: 800cc3e9-1de0-4b70-aed9-46e7faf98d0c
+	sourceLineageTag: 3dd26134-a181-47dd-bb72-8711086ad54e
+
+	column TEMPO_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: 0a116c86-0362-4bdd-8a4f-64acd6ea2035
+		sourceLineageTag: 7a87f95b-1638-487d-870e-a482561e0b1c
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: TEMPO_ID
+
+		annotation SummarizationSetBy = User
+
+	column 'Grupo Armador Ranking'
+		dataType: string
+		lineageTag: ef4902df-5c8c-4757-b683-3e347bfdf17a
+		sourceLineageTag: d857a075-f429-4489-8780-15fac9e90606
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Grupo Armador Ranking
+
+		annotation SummarizationSetBy = User
+
+	column 'Volume Total'
+		dataType: double
+		formatString: 0
+		lineageTag: 149ef606-12b7-4484-ac40-918ba04e6dba
+		sourceLineageTag: 1a29790d-42ca-47a6-a379-f8a9eb9d31c7
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Volume Total
+
+		annotation SummarizationSetBy = User
+
+	column 'Volume Reefer'
+		dataType: double
+		formatString: 0
+		lineageTag: bab49006-5270-4dd5-a56a-4db8a2eb37e9
+		sourceLineageTag: 4295926e-e504-4ce9-8e23-dbf20131c092
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Volume Reefer
+
+		annotation SummarizationSetBy = User
+
+	column 'Descarga Vazios'
+		dataType: double
+		formatString: 0
+		lineageTag: f778b9b4-e8f6-4460-96f3-08c0b5edc9a4
+		sourceLineageTag: 09a59076-3f0b-4a75-9e2e-f82f8fa5a0ba
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Descarga Vazios
+
+		annotation SummarizationSetBy = User
+
+	column 'Embarque Cheios'
+		dataType: double
+		formatString: 0
+		lineageTag: 793f7515-0343-4a54-ada7-2fda22e7bfcc
+		sourceLineageTag: c63b257b-754b-4d90-aed8-d700de111627
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Embarque Cheios
+
+		annotation SummarizationSetBy = User
+
+	column 'Diversificacao de Servicos'
+		dataType: int64
+		formatString: 0
+		lineageTag: 4ae3cea7-4380-4703-b17c-541cc0478dd9
+		sourceLineageTag: 410a3add-a1cb-48b4-8b42-45b511e20d79
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Diversificacao de Servicos
+
+		annotation SummarizationSetBy = User
+
+	column 'Faturamento Total'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: d04ee940-84a8-4490-9c51-4cf8ee0865be
+		sourceLineageTag: 9825075f-c2fb-4aa8-ab83-c627c04b7701
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Faturamento Total
+
+		annotation SummarizationSetBy = User
+
+	column 'Faturamento Operacao Navio'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 7c3cd093-5998-4f43-96b5-71d79684a09c
+		sourceLineageTag: 2b89c68d-fe2e-4b48-87f6-a584480022a8
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Faturamento Operacao Navio
+
+		annotation SummarizationSetBy = User
+
+	column 'Faturamento Demais Servicos'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 64077e9e-5289-4267-bb5c-677e35fe9069
+		sourceLineageTag: b0086326-f04e-41ec-bff7-c234ed6ffdc1
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Faturamento Demais Servicos
+
+		annotation SummarizationSetBy = User
+
+	column 'Pocket Price Armador'
+		dataType: double
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: dc3c2747-9826-4b29-a5d7-67481b19faea
+		sourceLineageTag: add7e2d4-8e0a-45e6-bdf1-46e5a8e3a4f1
+		dataCategory: Uncategorized
+		summarizeBy: average
+		sourceColumn: Pocket Price Armador
+
+		annotation SummarizationSetBy = User
+
+	column 'Navios LOA acima de 330m'
+		dataType: int64
+		formatString: 0
+		lineageTag: 60210096-f7e9-4d32-add8-255cdfcd536e
+		sourceLineageTag: 4cdb8c4a-683d-4170-82a1-2b92733e736e
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Navios LOA acima de 330m
+
+		annotation SummarizationSetBy = User
+
+	column 'Qtd Navios Operados na Janela'
+		dataType: double
+		formatString: 0
+		lineageTag: 482bc10f-040e-4438-9aaa-c1633067499f
+		sourceLineageTag: 19f0c39d-efe0-4b7d-8361-2be975f274e1
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Qtd Navios Operados na Janela
+
+		annotation SummarizationSetBy = User
+
+	column 'Qtd Navios Fora de Janela'
+		dataType: double
+		formatString: 0
+		lineageTag: 95b739ed-86fa-4212-bd4f-b3afda8b631e
+		sourceLineageTag: f77ea186-ac67-42f1-96be-e0d3d48818b6
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Qtd Navios Fora de Janela
+
+		annotation SummarizationSetBy = User
+
+	column 'Qtd Escalas Realizadas'
+		dataType: double
+		formatString: 0
+		lineageTag: d7537bfb-6613-4ff3-abc4-ed5a57ffb0c8
+		sourceLineageTag: 069e53f8-2882-48b8-91c3-59732023d572
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Qtd Escalas Realizadas
+
+		annotation SummarizationSetBy = User
+
+	column 'Qtd Escalas Omitidas e Sem Navio Sistema'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 287c7afd-adb8-4b3e-a097-dac5826ee853
+		sourceLineageTag: c59b2a8d-691b-4a47-ab5d-c2956ba27b24
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Qtd Escalas Omitidas e Sem Navio Sistema
+
+		annotation SummarizationSetBy = User
+
+	column 'Prazo de Pagamento'
+		dataType: double
+		formatString: 0
+		lineageTag: 31ad70ac-5bef-4d1e-8fd2-2782871a3b15
+		sourceLineageTag: e4619416-d059-46b5-8de1-bede1def9fb4
+		dataCategory: Uncategorized
+		summarizeBy: average
+		sourceColumn: Prazo de Pagamento
+
+		annotation SummarizationSetBy = User
+
+	column PMR
+		dataType: double
+		formatString: #,0.0000
+		lineageTag: e24a8d1a-60b9-45eb-b92f-51060d13fd38
+		sourceLineageTag: 86f62cc1-37df-4d7d-86a8-98d5e03970ab
+		dataCategory: Uncategorized
+		summarizeBy: average
+		sourceColumn: PMR
+
+		annotation SummarizationSetBy = User
+
+	column 'CAR (R$)'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 96e5b523-895f-432b-9b01-a2a264182c8b
+		sourceLineageTag: a3ba45d5-0ebe-4a07-bf4b-5056bf5c8708
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: CAR (R$)
+
+		annotation SummarizationSetBy = User
+
+	column 'CAR Ideal'
+		dataType: double
+		formatString: 0
+		lineageTag: 9a9e8671-8d19-4ab3-9d70-34262c030cc6
+		sourceLineageTag: 7bccc287-9367-4082-9fab-26f2382761df
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: CAR Ideal
+
+		annotation SummarizationSetBy = User
+
+	column 'Juros e Multa'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 3e8f386a-32ca-45be-9f17-b0310c6d2720
+		sourceLineageTag: 4f4877cb-083e-444c-a7e3-40c6824e8ddd
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Juros e Multa
+
+		annotation SummarizationSetBy = User
+
+	column 'Juros e Multa Ideal'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: b7412fb7-f4ce-4fdb-bf8b-5eb4211a7dd8
+		sourceLineageTag: 3bff9040-9441-44da-8b37-3ee769ab691e
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Juros e Multa Ideal
+
+		annotation SummarizationSetBy = User
+
+	column 'Taxa DI'
+		dataType: double
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 1053d6dd-3efb-4de6-8145-91a82b853ad2
+		sourceLineageTag: ec007c2b-7899-45fd-9457-3278377f2a0a
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Taxa DI
+
+		annotation SummarizationSetBy = User
+
+	column 'Linhas Atendidas'
+		dataType: double
+		formatString: 0
+		lineageTag: a8831c0a-e0cb-4e0c-88f2-8fbc99070903
+		sourceLineageTag: 60aa1fec-86ce-4078-9341-a53b2607c075
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Linhas Atendidas
+
+		annotation SummarizationSetBy = User
+
+	column 'Trades Atendidos'
+		dataType: double
+		formatString: 0
+		lineageTag: 165883da-8fef-4cfe-b3fb-fcca4ae35640
+		sourceLineageTag: 6527cd79-6214-4ad6-8448-ad4292b78723
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Trades Atendidos
+
+		annotation SummarizationSetBy = User
+
+	column 'Ideal Linhas'
+		dataType: double
+		formatString: 0
+		lineageTag: a6572ef8-8118-4e13-980e-9ac8c8b10831
+		sourceLineageTag: 3bfe6061-27e5-483a-9bb5-13de8611f8af
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Ideal Linhas
+
+		annotation SummarizationSetBy = User
+
+	column 'Ideal Trades'
+		dataType: double
+		formatString: 0
+		lineageTag: ad26535e-b27b-491d-8d14-243b469535c4
+		sourceLineageTag: f3b0a2b2-92d4-4451-bd38-e09a88aabf60
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Ideal Trades
+
+		annotation SummarizationSetBy = User
+
+	column 'Ideal Pocket Price Armador'
+		dataType: double
+		formatString: 0.0000%;-0.0000%;0.0000%
+		lineageTag: 135c39c7-4d11-4255-9668-b50b841f62a8
+		sourceLineageTag: c0e395ad-755e-401d-8b73-f6e6d74af652
+		dataCategory: Uncategorized
+		summarizeBy: average
+		sourceColumn: Ideal Pocket Price Armador
+
+		annotation SummarizationSetBy = User
+
+	column '% de Crescimento Ideal'
+		dataType: double
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 89e5256a-6e61-47dd-9bea-e117cd753c09
+		sourceLineageTag: 309415d4-3db2-477d-949c-4df2aa379b41
+		dataCategory: Uncategorized
+		summarizeBy: average
+		sourceColumn: % de Crescimento Ideal
+
+		annotation SummarizationSetBy = User
+
+	column 'Ideal % Reposicionamento de Vazios'
+		dataType: double
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: c4873742-7919-4a18-aeb9-539a3560eaeb
+		sourceLineageTag: cdc7a0c7-47d5-485e-9fee-b82808cf1192
+		dataCategory: Uncategorized
+		summarizeBy: average
+		sourceColumn: Ideal % Reposicionamento de Vazios
+
+		annotation SummarizationSetBy = User
+
+	column 'Ideal Diversificacao de Serviço'
+		dataType: double
+		formatString: 0
+		lineageTag: 8d7dd31f-5ef7-487c-82b5-a25948230ef6
+		sourceLineageTag: 44b998f5-56b6-4391-86bc-ae495d700775
+		dataCategory: Uncategorized
+		summarizeBy: average
+		sourceColumn: Ideal Diversificacao de Serviço
+
+		annotation SummarizationSetBy = User
+
+	column 'PMR Ideal'
+		dataType: double
+		formatString: 0
+		lineageTag: 26608c0c-808a-430e-a252-793219af0041
+		sourceLineageTag: ba1f99a9-8f01-4d15-b160-2e9a7aff6810
+		dataCategory: Uncategorized
+		summarizeBy: average
+		sourceColumn: PMR Ideal
+
+		annotation SummarizationSetBy = User
+
+	column 'Preco Box Rate Cheio'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: d665a1d9-4089-4563-8c3d-b6cb69d13017
+		sourceLineageTag: d5ebd8d9-a624-4434-bee1-b118f887a294
+		dataCategory: Uncategorized
+		summarizeBy: average
+		sourceColumn: Preco Box Rate Cheio
+
+		annotation SummarizationSetBy = User
+
+	column 'Ideal Preco Box Rate Cheio'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 3917c75f-911c-487a-9654-1f2d32621cba
+		sourceLineageTag: db1b8f5b-7f74-4f4a-8965-fba6d5354215
+		dataCategory: Uncategorized
+		summarizeBy: average
+		sourceColumn: Ideal Preco Box Rate Cheio
+
+		annotation SummarizationSetBy = User
+
+	column 'Aderencia ao Prazo de Pagamento'
+		dataType: double
+		formatString: 0
+		lineageTag: ab9db050-98d9-4786-9027-09a5e508a564
+		sourceLineageTag: 2cd0c5b4-8fcb-4ef4-a3fb-b878d6b53596
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Aderencia ao Prazo de Pagamento
+
+		annotation SummarizationSetBy = User
+
+	column 'Indice CAR'
+		dataType: double
+		formatString: 0
+		lineageTag: ac19fc95-7ac9-4b81-88a9-f9397793aecf
+		sourceLineageTag: d150e54f-bca6-47a8-b1bb-2bdc35890482
+		dataCategory: Uncategorized
+		summarizeBy: average
+		sourceColumn: Indice CAR
+
+		annotation SummarizationSetBy = User
+
+	column 'Taxa Diaria'
+		dataType: double
+		formatString: #,0.0000
+		lineageTag: f4bfcc5d-f422-4050-924c-ff2f59fe532e
+		sourceLineageTag: 05a68a92-6672-4048-add1-35cf1d7ae74e
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Taxa Diaria
+
+		annotation SummarizationSetBy = User
+
+	column 'Performance de Escalas Sistema'
+		dataType: double
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 649a0bc6-32ed-4461-b2a0-2127c9769b0c
+		sourceLineageTag: ea754898-e725-47e6-9926-7d55a254cd9e
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Performance de Escalas Sistema
+
+		annotation SummarizationSetBy = User
+
+	column '% Navios Fora de Janela (NFJ)'
+		dataType: double
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: fd21c950-4524-4c52-827e-6363e16fa1a6
+		sourceLineageTag: f5093ecb-4725-4a20-aac2-2c562348012a
+		dataCategory: Uncategorized
+		summarizeBy: average
+		sourceColumn: % Navios Fora de Janela (NFJ)
+
+		annotation SummarizationSetBy = User
+
+	column 'Ideal Faturamento'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 719647eb-728b-4591-8ee8-5d76194bf7ec
+		sourceLineageTag: 1ca218be-b23c-4556-9726-18798ec3146c
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Ideal Faturamento
+
+		annotation SummarizationSetBy = User
+
+	column 'Ideal Faturamento Operação Navio'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 0fd4619c-ba1f-471c-9a9b-c73e7294b3f0
+		sourceLineageTag: 3f9d7383-0cfb-4915-82cf-827f8729f8fc
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Ideal Faturamento Operação Navio
+
+		annotation SummarizationSetBy = User
+
+	column 'Ideal Faturamento Demais Serviço'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: b2b30c5a-be34-49bd-9182-34bf569a3304
+		sourceLineageTag: e80f2242-9269-41a8-ad2b-8264ceb7f4d2
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Ideal Faturamento Demais Serviço
+
+		annotation SummarizationSetBy = User
+
+	column 'Ticket Medio'
+		dataType: double
+		formatString: #,0.0000
+		lineageTag: bd9aa034-815d-49d0-a300-bd34338599e0
+		sourceLineageTag: 62eca922-9438-46a2-85b8-4ac37dbd5865
+		dataCategory: Uncategorized
+		summarizeBy: average
+		sourceColumn: Ticket Medio
+
+		annotation SummarizationSetBy = User
+
+	column 'Ideal Ticket Medio'
+		dataType: double
+		formatString: #,0.0000
+		lineageTag: 15937658-0931-4c95-a4cd-485843255199
+		sourceLineageTag: 2e00c84a-efe5-4bb2-9b01-22666e9a8fac
+		dataCategory: Uncategorized
+		summarizeBy: average
+		sourceColumn: Ideal Ticket Medio
+
+		annotation SummarizationSetBy = User
+
+	column 'Volume Total Ideal'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 301d0676-cd28-4e38-8865-a9a2a1998dc3
+		sourceLineageTag: 43270b0e-aa57-4f62-88fe-5d09f75fb867
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Volume Total Ideal
+
+		annotation SummarizationSetBy = User
+
+	column 'Ideal Volume Reefer'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: cdabddb3-75c4-45d9-b931-2ea5f2517a02
+		sourceLineageTag: 95808951-2b95-4a31-8aad-89fee6e42196
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Ideal Volume Reefer
+
+		annotation SummarizationSetBy = User
+
+	column '% Reposicionamento de Vazios'
+		dataType: double
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: bf198462-301b-4ce4-bcfb-ab73c01f97c1
+		sourceLineageTag: 9f3c1f34-9ac0-49c0-ab2e-2b9ae66c632e
+		dataCategory: Uncategorized
+		summarizeBy: average
+		sourceColumn: % Reposicionamento de Vazios
+
+		annotation SummarizationSetBy = User
+
+	column 'Efeito Prazo de Pagamento'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 8577c1a9-b53e-41b6-b864-e15fb6bf108c
+		sourceLineageTag: c4b7ef14-10c7-446e-b40d-f1509eefd888
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Efeito Prazo de Pagamento
+
+		annotation SummarizationSetBy = User
+
+	column 'Qtd Escalas Omitidas e Sem Navio Planilha'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: c5394d43-efdd-4b05-83b5-c60699a7a441
+		sourceLineageTag: c78817f4-a48c-43ea-a5a2-7f3bf83276e2
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Qtd Escalas Omitidas e Sem Navio Planilha
+
+		annotation SummarizationSetBy = User
+
+	column 'Performance de Escalas Planilha'
+		dataType: double
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 76fe1f3e-50de-4b6e-97e3-704000717515
+		sourceLineageTag: c73bf0b6-5e06-440a-b743-e6c4268d7ee1
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Performance de Escalas Planilha
+
+		annotation SummarizationSetBy = User
+
+	column 'Índice Faturamento'
+		dataType: double
+		lineageTag: fad646fa-8a3c-4a87-a76e-50333093fd8b
+		sourceLineageTag: f47e5076-3f65-4ddf-9518-57845119b687
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Índice Faturamento
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Faturamento operação navio orçado'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 83404de7-2b26-4fa0-8127-bdb4353b0649
+		sourceLineageTag: edd963ac-871f-4453-ab26-1a95c8c0c9bc
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Faturamento operação navio orçado
+
+		annotation SummarizationSetBy = User
+
+	column 'Faturamento demais serviços orçado'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 8e2f3b95-1d86-4e3e-8f92-0a8ebb3e5cd7
+		sourceLineageTag: 6de6544e-a029-45b1-9d25-bb90ea27e87e
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Faturamento demais serviços orçado
+
+		annotation SummarizationSetBy = User
+
+	column 'Volume orçado total'
+		dataType: double
+		lineageTag: e3b79a50-8f0e-4fa3-afa7-10357833e403
+		sourceLineageTag: 71e9bee1-fc33-4ce9-bfcc-df9f5f67d4d7
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Volume orçado total
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Volume reefer orçado'
+		dataType: double
+		formatString: 0
+		lineageTag: 1be88a7e-7bf2-4601-a102-85fff02a8b33
+		sourceLineageTag: 7d9a6069-834d-4f51-910d-20882aaf306f
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Volume reefer orçado
+
+		annotation SummarizationSetBy = User
+
+	column 'Descarga Vazios orçado'
+		dataType: double
+		formatString: 0
+		lineageTag: cf692502-a586-4448-a2ce-53ff08d628ac
+		sourceLineageTag: df164966-6081-4bdf-a336-5a937cc0fcf7
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Descarga Vazios orçado
+
+		annotation SummarizationSetBy = User
+
+	column 'Embarque Cheios orçado'
+		dataType: double
+		formatString: 0
+		lineageTag: 605bd295-4035-48fc-9ab5-79582d69283d
+		sourceLineageTag: daa35a1e-9ccc-4faa-9ce3-f3886d8648d7
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Embarque Cheios orçado
+
+		annotation SummarizationSetBy = User
+
+	column 'Armador com navio'
+		dataType: double
+		formatString: 0
+		lineageTag: f305c4c6-c751-44e0-ae44-37b681ec4da7
+		sourceLineageTag: 3b52580d-5011-4e11-a5f9-ebeec4d1c99d
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Armador com navio
+
+		annotation SummarizationSetBy = User
+
+	column 'Share de Faturamento'
+		dataType: double
+		lineageTag: 66ac6653-13f2-4738-9bed-8af121e4f871
+		sourceLineageTag: dba18a06-1aa0-4022-b171-8a269ef2c0f6
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Share de Faturamento
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Share de Volume'
+		dataType: double
+		lineageTag: 753a00e6-8c9b-4719-94e1-ef32f12e342f
+		sourceLineageTag: f6c3d285-70c6-4008-ab20-4aa6c729b28f
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Share de Volume
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '_Medidas Ranking Armadores Base Cálculos' = entity
+		mode: directQuery
+		source
+			entityName: _Medidas Ranking Armadores Base Cálculos
+			expressionSource: 'DirectQuery para AS – Modelo Operações Portuárias'
+

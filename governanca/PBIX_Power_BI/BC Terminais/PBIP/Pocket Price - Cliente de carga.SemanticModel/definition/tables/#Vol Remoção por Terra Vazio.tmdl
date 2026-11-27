@@ -1,0 +1,27 @@
+table '#Vol Remoção por Terra Vazio'
+	lineageTag: 034e95f6-77c0-4ce4-826b-96ec5f79b87c
+
+	measure 'Valor #Vol Remoção por Terra Vazio' = SELECTEDVALUE('#Vol Remoção por Terra Vazio'[#Vol Remoção por Terra Vazio])
+		lineageTag: 46df47e7-86ae-45d2-a12f-ee3acc01a594
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#Vol Remoção por Terra Vazio'
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 645a64f3-3946-406b-a9cf-1f997c2cc08b
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition '#Vol Remoção por Terra Vazio' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 1, 0.01)
+
+	annotation PBI_Id = 52f9a5acc1474bf4b32662bf5f72b28f
+

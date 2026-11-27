@@ -1,0 +1,28 @@
+table '#Param % ajuste volume Arm Cntr Vazio'
+	lineageTag: a56cc56b-3001-46c8-b6d8-edbf3dcbfd6c
+
+	measure '#Param % ajuste volume Arm Cntr Vazio (selecionado)' = SELECTEDVALUE('#Param % ajuste volume Arm Cntr Vazio'[percentual], 0)
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 41fc9241-10f5-492f-bd18-419e8cc03d4c
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	column percentual
+		formatString: 0%;-0%;0%
+		lineageTag: 8ed73ee4-f674-49b8-a258-425e8bd2d370
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition '#Param % ajuste volume Arm Cntr Vazio' = calculated
+		mode: import
+		source = GENERATESERIES(CURRENCY(-1), CURRENCY(1), CURRENCY(0.01))
+
+	annotation PBI_Id = 81fa1eaa6e4947369b891a14e4703302
+

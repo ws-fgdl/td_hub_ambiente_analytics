@@ -1,0 +1,40 @@
+table 'Operação Escalas Histórico'
+	lineageTag: c591702b-65e5-4766-86cd-c611e992eeed
+	sourceLineageTag: 9af1304b-7919-4ac5-b868-ef67aaacb0a2
+
+	measure 'Operação Escalas Hist Selecionadas' = EXTERNALMEASURE("Operação Escalas Hist Selecionadas", STRING, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 5a30d298-25f2-49a8-9c38-f5e00aded9ab
+		sourceLineageTag: de381315-3914-4535-8cd4-1aab838e101e
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isText":true}
+
+	column 'Operação Escalas Hist'
+		dataType: string
+		isNullable: false
+		lineageTag: 48e6faf9-fc2b-41c5-9fe3-9359bb6c788a
+		sourceLineageTag: 9c50200d-8714-4572-a78a-411e7624d68c
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Operação Escalas Hist
+
+		annotation SummarizationSetBy = User
+
+	column DT_ULT_CARGA
+		dataType: dateTime
+		isHidden
+		formatString: General Number
+		lineageTag: 7e0f0c19-34b5-475f-874b-c2144a1a6b5d
+		sourceLineageTag: b5397742-ee87-44f7-9764-8b126121f508
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: DT_ULT_CARGA
+
+		annotation SummarizationSetBy = User
+
+	partition 'Operação Escalas Histórico' = entity
+		mode: directQuery
+		source
+			entityName: Operação Escalas Histórico
+			expressionSource: 'DirectQuery para AS – Modelo Operações Portuárias'
+

@@ -1,0 +1,21 @@
+table Janela
+	lineageTag: 79d04501-838a-4827-86f1-545731d940f8
+	sourceLineageTag: 94c1e4a2-4acb-44a1-bbba-9d54697b61af
+
+	column Janela
+		dataType: string
+		isNullable: false
+		lineageTag: a831ab01-4d65-47ef-a14f-6867cb8075f9
+		sourceLineageTag: 1099717e-93f0-4dd6-8d8c-11ddd55acbd2
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Janela
+
+		annotation SummarizationSetBy = User
+
+	partition Janela = entity
+		mode: directQuery
+		source
+			entityName: Janela
+			expressionSource: 'DirectQuery para AS – Modelo Operações Portuárias'
+

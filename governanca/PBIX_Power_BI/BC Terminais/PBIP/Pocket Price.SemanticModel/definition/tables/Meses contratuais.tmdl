@@ -1,0 +1,63 @@
+table 'Meses contratuais'
+	lineageTag: 32a9e55e-1ea6-4715-be88-f9377fae5b02
+
+	measure 'Período contratual' = SELECTEDVALUE('Meses contratuais'[Meses contratuais])
+		lineageTag: 49630a7b-8b18-416e-8e3c-41fc10b54673
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Meses contratuais'
+		formatString: 0
+		lineageTag: ec08104f-df04-47b0-a897-9b07c9bcb9b2
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Meses contratuais]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	partition 'Meses contratuais' = calculated
+		mode: import
+		source =
+				DATATABLE(
+				    "Meses contratuais",DOUBLE,
+				
+				{
+				    {1},
+				    {2},
+				    {3},
+				    {4},
+				    {5},
+				    {6},
+				    {7},
+				    {8},
+				    {9},
+				    {10},
+				    {11},
+				    {12},
+				    {13},
+				    {14},
+				    {15},
+				    {16},
+				    {17},
+				    {18},
+				    {19},
+				    {20},
+				    {21},
+				    {22},
+				    {23},
+				    {24},
+				    {25},
+				    {26},
+				    {27},
+				    {28},
+				    {29},
+				    {30},
+				    {31}
+				
+				}
+				)
+
+	annotation PBI_Id = 80c6e54854dc4b97ac812c26215e6c3d
+

@@ -1,0 +1,27 @@
+table '#SBP Remoção a Bordo Cheio'
+	lineageTag: a1378474-b9be-46cb-acaf-174e6cbac087
+
+	measure 'Valor #SBP Remoção a Bordo Cheio' = SELECTEDVALUE('#SBP Remoção a Bordo Cheio'[#SBP Remoção a Bordo Cheio])
+		lineageTag: 085dd94f-2393-424f-9aed-332122923998
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#SBP Remoção a Bordo Cheio'
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 4c066a3c-b67e-41f8-8698-18860ad1b815
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition '#SBP Remoção a Bordo Cheio' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 4, 0.001)
+
+	annotation PBI_Id = 68f06b8009b24d3ea710fa3910d1b479
+

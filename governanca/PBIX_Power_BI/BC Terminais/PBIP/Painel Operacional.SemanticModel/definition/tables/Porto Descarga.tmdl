@@ -1,0 +1,42 @@
+table 'Porto Descarga'
+	lineageTag: 43540e60-e7a4-447b-93ba-0b45ae29278d
+	sourceLineageTag: 14480bcc-551f-4d9d-94f0-bb88e8b15966
+
+	column 'Porto Descarga ID'
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		lineageTag: f50e0b92-ec29-46f6-8bd2-56ca5053d941
+		sourceLineageTag: 10079bc4-282f-4aaf-881e-d5ecc3acebef
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Porto Descarga ID
+
+		annotation SummarizationSetBy = User
+
+	column 'Código Porto Descarga'
+		dataType: string
+		lineageTag: 01ee0438-0725-4be1-bc70-9b0354715616
+		sourceLineageTag: 7e97cc6b-5f2c-4054-af9e-0b52e0bacb22
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Código Porto Descarga
+
+		annotation SummarizationSetBy = User
+
+	column 'Porto Descarga'
+		dataType: string
+		lineageTag: d429fbf1-eb2f-417c-8a93-2264ac485d28
+		sourceLineageTag: 458b8198-ffa5-411c-b9df-60eadd69574e
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Porto Descarga
+
+		annotation SummarizationSetBy = User
+
+	partition 'Porto Descarga' = entity
+		mode: directQuery
+		source
+			entityName: Porto Descarga
+			expressionSource: 'DirectQuery para AS – Modelo Operações Portuárias'
+

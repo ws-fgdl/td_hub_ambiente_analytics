@@ -1,0 +1,27 @@
+table '#SPP Reefer vol'
+	lineageTag: 6d06f335-9520-4c03-9417-d6d5bf6f2a43
+
+	measure 'Valor #SPP Reefer vol' = SELECTEDVALUE('#SPP Reefer vol'[#SPP Reefer vol])
+		lineageTag: af02aef3-9854-4724-80fa-7240560bc1c7
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#SPP Reefer vol'
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 427ee28c-1743-4c87-9bbc-28467415a01e
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition '#SPP Reefer vol' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 2, 0.01)
+
+	annotation PBI_Id = 74e094c017aa4bbc92e56973082ebeb5
+

@@ -1,0 +1,40 @@
+table 'Modalidade Mov. Histórico'
+	lineageTag: 44de5746-8978-4e04-b1aa-d6fd3a3dfa21
+	sourceLineageTag: 65444a11-c944-4087-938c-6aea329f5bd9
+
+	measure 'Modalidades Hist Selecionadas' = EXTERNALMEASURE("Modalidades Hist Selecionadas", STRING, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: d07cd524-5892-4dbf-acab-96e15b3998b7
+		sourceLineageTag: e9bd80c0-68bd-4af4-8f58-6e52d55dab55
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isText":true}
+
+	column 'Modalidade Mov Histórico'
+		dataType: string
+		isNullable: false
+		lineageTag: d684bee9-2434-474a-80bc-305cba027d72
+		sourceLineageTag: 6504c4e0-02a7-4364-933e-46d54af93c3f
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Modalidade Mov Histórico
+
+		annotation SummarizationSetBy = User
+
+	column DT_ULT_CARGA
+		dataType: dateTime
+		isHidden
+		formatString: General Number
+		lineageTag: ee9baa1f-7b65-4de0-a14b-6dd054922d65
+		sourceLineageTag: cd98a5ba-5a77-41dd-a9f5-83d8e4b49a14
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: DT_ULT_CARGA
+
+		annotation SummarizationSetBy = User
+
+	partition 'Modalidade Mov. Histórico' = entity
+		mode: directQuery
+		source
+			entityName: Modalidade Mov. Histórico
+			expressionSource: 'DirectQuery para AS – Modelo Operações Portuárias'
+

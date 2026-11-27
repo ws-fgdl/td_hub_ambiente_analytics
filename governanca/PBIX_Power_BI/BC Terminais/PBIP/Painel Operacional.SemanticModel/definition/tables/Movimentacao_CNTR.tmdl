@@ -1,0 +1,188 @@
+table Movimentacao_CNTR
+	lineageTag: 1533bb04-79c2-432c-a92b-bd95408938e4
+
+	column codigo_sap
+		dataType: string
+		lineageTag: 1b543466-7b9f-46f3-b37b-fa6bd9daf361
+		summarizeBy: none
+		sourceColumn: codigo_sap
+
+		annotation SummarizationSetBy = Automatic
+
+	column Mov_CNTR
+		dataType: int64
+		formatString: 0
+		lineageTag: 246e3004-2688-4a8e-84f6-456362764e5b
+		summarizeBy: sum
+		sourceColumn: Mov_CNTR
+
+		annotation SummarizationSetBy = Automatic
+
+	column Data
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 37969b26-20dc-4586-a9f2-238313fdd8ff
+		summarizeBy: none
+		sourceColumn: Data
+
+		variation Variation
+			isDefault
+			relationship: 678dc88b-9a03-4f0f-87d5-8756e992d3e6
+			defaultHierarchy: LocalDateTable_36085fb3-5bf0-4581-af92-de14c097415d.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column MODALIDADE
+		dataType: string
+		lineageTag: ff5f85ec-f82c-4424-bae5-49c22985a887
+		summarizeBy: none
+		sourceColumn: MODALIDADE
+
+		annotation SummarizationSetBy = Automatic
+
+	column STATUS
+		dataType: string
+		lineageTag: 98da9ba5-5505-4449-b2de-85c586d051d6
+		summarizeBy: none
+		sourceColumn: STATUS
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'DSC GRUPO ARMADOR'
+		dataType: string
+		lineageTag: 8e9e62fb-5343-4721-9e8e-d4a3589adce9
+		summarizeBy: none
+		sourceColumn: DSC GRUPO ARMADOR
+
+		annotation SummarizationSetBy = Automatic
+
+	column EMP_SAP
+		dataType: string
+		lineageTag: a50c4e24-7a53-4e64-a72f-4a67b6bfd944
+		summarizeBy: none
+		sourceColumn: EMP_SAP
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'QNT TEU'
+		dataType: double
+		lineageTag: 9cc53a9f-b178-48bd-83cb-faf67e538da3
+		summarizeBy: sum
+		sourceColumn: QNT TEU
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column MODALIDADE_PAINEL
+		dataType: string
+		lineageTag: 57d88902-1a4f-4c3f-aaf6-f42038c59f6d
+		summarizeBy: none
+		sourceColumn: MODALIDADE_PAINEL
+
+		annotation SummarizationSetBy = Automatic
+
+	column UN
+		dataType: string
+		lineageTag: 5d36c8dc-473c-4439-b6aa-1a6f8a79198e
+		summarizeBy: none
+		sourceColumn: UN
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'OPERAÇÃO POR NAVIO'
+		dataType: string
+		lineageTag: e976c7c4-0ba4-4510-a0c2-56e9f582b373
+		summarizeBy: none
+		sourceColumn: OPERAÇÃO POR NAVIO
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'LINHA MARITIMA'
+		dataType: string
+		lineageTag: c4a067c7-c4f7-4bd4-8110-5149d25319bb
+		summarizeBy: none
+		sourceColumn: LINHA MARITIMA
+
+		annotation SummarizationSetBy = Automatic
+
+	column tipo
+		dataType: string
+		lineageTag: 0b91f81f-405c-43e3-9e33-a9c9bc4a4d90
+		summarizeBy: none
+		sourceColumn: tipo
+
+		annotation SummarizationSetBy = Automatic
+
+	column dt_valor = 'Movimentacao_CNTR'[Data]
+		dataType: int64
+		formatString: 0
+		lineageTag: 23dccfd0-c14c-4ca7-8d42-6e4d8764df6c
+		summarizeBy: none
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column Modalidade2 =
+			
+			IF('Movimentacao_CNTR'[MODALIDADE] = "NAVEGAÇÃO INTERIOR", "CABOTAGEM NI", 'Movimentacao_CNTR'[MODALIDADE])
+		lineageTag: 1003bc82-0f44-4bc9-b7fc-294cacbfb236
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'numero mes' = MONTH('Movimentacao_CNTR'[Data])
+		formatString: 0
+		lineageTag: 7d4f8821-e49b-4399-b3eb-07b18100f774
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column ano = YEAR('Movimentacao_CNTR'[Data])
+		formatString: 0
+		lineageTag: 0cea978a-d0d4-428d-9e5b-6d0543c19552
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Rank Lin. Marítima' = ```
+			
+			RANKX(
+			    ALL('Movimentacao_CNTR'[LINHA MARITIMA]), 
+			    CALCULATE(
+			        SUM('Movimentacao_CNTR'[Mov_CNTR]),
+			        ALLEXCEPT('Movimentacao_CNTR', 'Movimentacao_CNTR'[LINHA MARITIMA])
+			    ),
+			    ,
+			    DESC
+			)
+			```
+		formatString: 0
+		lineageTag: 306e2cb9-25bf-42aa-9285-0d488e0ffac8
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Movimentacao_CNTR = m
+		mode: import
+		source =
+				let
+				    Fonte = PowerPlatform.Dataflows(null),
+				    Workspaces = Fonte{[Id="Workspaces"]}[Data],
+				    #"bcd54b55-e85f-4c30-a169-bfbf18f90f30" = Workspaces{[workspaceId="bcd54b55-e85f-4c30-a169-bfbf18f90f30"]}[Data],
+				    #"74f928b0-f022-428d-b321-23ee127044d6" = #"bcd54b55-e85f-4c30-a169-bfbf18f90f30"{[dataflowId="74f928b0-f022-428d-b321-23ee127044d6"]}[Data],
+				    movimentacao_cntr_ = #"74f928b0-f022-428d-b321-23ee127044d6"{[entity="movimentacao_cntr",version=""]}[Data],
+				    #"Colunas Renomeadas" = Table.RenameColumns(movimentacao_cntr_,{{"cod_sap", "codigo_sap"}, {"mov_cntr", "Mov_CNTR"}, {"data", "Data"}, {"modalidade", "MODALIDADE"}, {"status", "STATUS"}, {"dsc_grupo_armador", "DSC GRUPO ARMADOR"}, {"emp_sap", "EMP_SAP"}, {"qnt_teu", "QNT TEU"}, {"modalidade_painel", "MODALIDADE_PAINEL"}, {"un", "UN"}, {"operacao_por_navio", "OPERAÇÃO POR NAVIO"}, {"linha_maritima", "LINHA MARITIMA"}}),
+				    #"Texto em Maiúscula" = Table.TransformColumns(#"Colunas Renomeadas",{{"UN", Text.Upper, type text}})
+				in
+				    #"Texto em Maiúscula"
+
+	changedProperty = Name
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

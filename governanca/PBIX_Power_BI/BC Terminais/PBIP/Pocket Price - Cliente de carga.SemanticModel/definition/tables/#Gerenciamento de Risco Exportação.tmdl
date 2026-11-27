@@ -1,0 +1,28 @@
+table '#Gerenciamento de Risco Exportação'
+	lineageTag: cdef30d4-ebf9-4f37-a705-387bc53b76fc
+
+	measure 'Valor #Gerenciamento de Risco Exportação' = SELECTEDVALUE('#Gerenciamento de Risco Exportação'[#Gerenciamento de Risco Exportação])
+		lineageTag: 49b7747e-be93-4504-8e9a-f1fb5cb748ca
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#Gerenciamento de Risco Exportação'
+		lineageTag: cf948f8f-95ae-40c1-b031-0b34f25687e1
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '#Gerenciamento de Risco Exportação' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 1, 0.001)
+
+	annotation PBI_Id = 78fec8ce59d54ab1958977c827f24832
+

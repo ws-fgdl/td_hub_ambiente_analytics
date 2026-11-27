@@ -1,0 +1,28 @@
+table '#Param % ajuste volume Arm Cntr Cheio (selecionado) - EXP'
+	lineageTag: e065030f-7463-41a5-b993-b46934d825dc
+
+	measure '#Param % ajuste volume Arm Cntr Cheio (selecionado) - EXP' = SELECTEDVALUE('#Param % ajuste volume Arm Cntr Cheio (selecionado) - EXP'[percentual])
+		lineageTag: 1db1383b-7a6c-46d2-8300-261b7da3ec7d
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column percentual
+		lineageTag: 31595bd7-2bf0-4c1d-9df0-e3f055e00ae6
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '#Param % ajuste volume Arm Cntr Cheio (selecionado) - EXP' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 1, 0.01)
+
+	annotation PBI_Id = 02fef7b63bf74b649f639111b119bb74
+

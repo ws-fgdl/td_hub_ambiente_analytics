@@ -1,0 +1,32 @@
+table Turno
+	lineageTag: e1bbdedc-7ae3-4334-bd17-b64987ca4790
+	sourceLineageTag: 395ea9ac-cd61-4d06-9bda-b26ca9a688ad
+
+	column 'Turno ID'
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		lineageTag: 9393cf58-6b9d-41bb-8fb9-19d5139daeb4
+		sourceLineageTag: cccda7af-875a-4e3d-81b2-912ad13c0b93
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Turno ID
+
+		annotation SummarizationSetBy = User
+
+	column Turno
+		dataType: string
+		lineageTag: a9b6604f-9484-4e0a-9579-5b3374cc641d
+		sourceLineageTag: d097453a-3866-4794-88da-1eaa26a217e5
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Turno
+
+		annotation SummarizationSetBy = User
+
+	partition Turno = entity
+		mode: directQuery
+		source
+			entityName: Turno
+			expressionSource: 'DirectQuery para AS – Modelo Operações Portuárias'
+

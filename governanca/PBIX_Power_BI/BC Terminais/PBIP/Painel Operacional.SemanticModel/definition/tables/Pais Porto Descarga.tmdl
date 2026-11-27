@@ -1,0 +1,43 @@
+table 'Pais Porto Descarga'
+	lineageTag: 3a3c9f91-c03e-400a-85f9-f1a8c808306a
+	sourceLineageTag: ca1e3d63-8082-4c64-88a3-3ccc5b5d373b
+
+	column ID_PAIS
+		dataType: int64
+		isHidden
+		isNullable: false
+		formatString: 0
+		lineageTag: 63f54a01-7d70-4633-9a9c-5c3bda75ba0d
+		sourceLineageTag: aad84ef7-3dfb-4c0c-b0d9-f7585c80d869
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: ID_PAIS
+
+		annotation SummarizationSetBy = User
+
+	column 'Código Pais Porto Descarga'
+		dataType: string
+		lineageTag: 34e33b5e-8152-4f1f-bcdc-eb461a6801c9
+		sourceLineageTag: 9cdbae2a-4ed0-4ddf-9ad9-81dc86e0c769
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Código Pais Porto Descarga
+
+		annotation SummarizationSetBy = User
+
+	column 'Pais Porto Descarga'
+		dataType: string
+		lineageTag: 5d082989-b7a6-48fa-a09b-2cd9cfd7af7e
+		sourceLineageTag: 1aaaed13-14eb-44a0-9543-8b00446c835c
+		dataCategory: Country
+		summarizeBy: none
+		sourceColumn: Pais Porto Descarga
+
+		annotation SummarizationSetBy = User
+
+	partition 'Pais Porto Descarga' = entity
+		mode: directQuery
+		source
+			entityName: Pais Porto Descarga
+			expressionSource: 'DirectQuery para AS – Modelo Operações Portuárias'
+

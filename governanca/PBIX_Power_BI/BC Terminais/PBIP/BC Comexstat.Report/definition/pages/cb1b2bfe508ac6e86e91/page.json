@@ -1,0 +1,191 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "cb1b2bfe508ac6e86e91",
+  "displayName": "BC Comexstat",
+  "displayOption": "FitToWidth",
+  "height": 1000,
+  "width": 1550,
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "b8d30496c4093ab61808",
+        "field": {
+          "HierarchyLevel": {
+            "Expression": {
+              "Hierarchy": {
+                "Expression": {
+                  "PropertyVariationSource": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Calendario1"
+                      }
+                    },
+                    "Name": "Variation",
+                    "Property": "Date"
+                  }
+                },
+                "Hierarchy": "Hierarquia de datas"
+              }
+            },
+            "Level": "Ano"
+          }
+        },
+        "type": "Advanced",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "c",
+              "Entity": "Calendario1",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Comparison": {
+                  "ComparisonKind": 2,
+                  "Left": {
+                    "HierarchyLevel": {
+                      "Expression": {
+                        "Hierarchy": {
+                          "Expression": {
+                            "PropertyVariationSource": {
+                              "Expression": {
+                                "SourceRef": {
+                                  "Source": "c"
+                                }
+                              },
+                              "Name": "Variation",
+                              "Property": "Date"
+                            }
+                          },
+                          "Hierarchy": "Hierarquia de datas"
+                        }
+                      },
+                      "Level": "Ano"
+                    }
+                  },
+                  "Right": {
+                    "Literal": {
+                      "Value": "2018L"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User"
+      }
+    ]
+  },
+  "objects": {
+    "background": [
+      {
+        "properties": {
+          "color": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#001C43'"
+                  }
+                }
+              }
+            }
+          },
+          "transparency": {
+            "expr": {
+              "Literal": {
+                "Value": "0D"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "visualInteractions": [
+    {
+      "source": "2d5b22272b7a20ad4c18",
+      "target": "712b08c38e379c010903",
+      "type": "NoFilter"
+    },
+    {
+      "source": "2d5b22272b7a20ad4c18",
+      "target": "ddcbfab0cd37c5c36808",
+      "type": "NoFilter"
+    },
+    {
+      "source": "2d5b22272b7a20ad4c18",
+      "target": "7ec2a3ef7dc52045bc84",
+      "type": "NoFilter"
+    },
+    {
+      "source": "2d5b22272b7a20ad4c18",
+      "target": "b9ebaad52014a8a2bb35",
+      "type": "NoFilter"
+    },
+    {
+      "source": "b00f8f8866d0907abc08",
+      "target": "7ec2a3ef7dc52045bc84",
+      "type": "NoFilter"
+    },
+    {
+      "source": "b00f8f8866d0907abc08",
+      "target": "ddcbfab0cd37c5c36808",
+      "type": "NoFilter"
+    },
+    {
+      "source": "b00f8f8866d0907abc08",
+      "target": "712b08c38e379c010903",
+      "type": "NoFilter"
+    },
+    {
+      "source": "b00f8f8866d0907abc08",
+      "target": "b9ebaad52014a8a2bb35",
+      "type": "NoFilter"
+    },
+    {
+      "source": "712b08c38e379c010903",
+      "target": "2d5b22272b7a20ad4c18",
+      "type": "NoFilter"
+    },
+    {
+      "source": "712b08c38e379c010903",
+      "target": "b00f8f8866d0907abc08",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ddcbfab0cd37c5c36808",
+      "target": "2d5b22272b7a20ad4c18",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ddcbfab0cd37c5c36808",
+      "target": "b00f8f8866d0907abc08",
+      "type": "NoFilter"
+    },
+    {
+      "source": "7ec2a3ef7dc52045bc84",
+      "target": "2d5b22272b7a20ad4c18",
+      "type": "NoFilter"
+    },
+    {
+      "source": "7ec2a3ef7dc52045bc84",
+      "target": "b00f8f8866d0907abc08",
+      "type": "NoFilter"
+    },
+    {
+      "source": "64c9534bab666c0e65c4",
+      "target": "2d5b22272b7a20ad4c18",
+      "type": "NoFilter"
+    },
+    {
+      "source": "64c9534bab666c0e65c4",
+      "target": "b00f8f8866d0907abc08",
+      "type": "NoFilter"
+    }
+  ]
+}

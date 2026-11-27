@@ -1,0 +1,394 @@
+table '_Medidas Receita W017'
+	lineageTag: a9497dbf-fc9e-41de-9be8-edbb1de5d248
+	sourceLineageTag: 5168a09c-9247-4718-a416-e1712127c987
+
+	measure 'Valor Receita W017' = EXTERNALMEASURE("Valor Receita W017", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		lineageTag: d3f8a579-7a22-47c0-bc12-30199db337d5
+		sourceLineageTag: dec4a9e9-b0bb-41be-960b-7eda13b7b237
+		dataCategory: Uncategorized
+
+	column TEMPO_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: e1b27364-06c1-4739-bb1d-f0119741c1b4
+		sourceLineageTag: f1fee467-0f25-4c7e-bce6-0840b9f5fd64
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: TEMPO_ID
+
+		annotation SummarizationSetBy = User
+
+	column COD_EMPR_SAP
+		dataType: string
+		lineageTag: 3352594d-1886-4cc9-a766-3e790654f1ce
+		sourceLineageTag: c0a2a909-c2d2-48ef-b86b-828621ea834c
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: COD_EMPR_SAP
+
+		annotation SummarizationSetBy = User
+
+	column COD_DIVISAO_SAP
+		dataType: string
+		lineageTag: ea039bc1-ba3b-466f-b3ca-703f926d819a
+		sourceLineageTag: fc2eeb9e-992d-4f55-baa5-a3dedaddb644
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: COD_DIVISAO_SAP
+
+		annotation SummarizationSetBy = User
+
+	column COD_CLIENTE_SAP
+		dataType: string
+		lineageTag: 1042b524-4472-4807-bf8d-d81aa9bb8b8a
+		sourceLineageTag: 6334d794-9010-412b-ac65-9fcf4f9056bd
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: COD_CLIENTE_SAP
+
+		annotation SummarizationSetBy = User
+
+	column TIPO_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: f75ab0c2-55d6-4c62-a613-cae8f43da477
+		sourceLineageTag: 8a1785aa-365f-4a17-8525-fcd6bff8b640
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: TIPO_ID
+
+		annotation SummarizationSetBy = User
+
+	column COMPETENCIA
+		dataType: int64
+		formatString: 0
+		lineageTag: 97243800-920d-44c9-8768-761e0327a47c
+		sourceLineageTag: 470a71ae-bbbb-4214-8814-7b45e4ff5401
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: COMPETENCIA
+
+		annotation SummarizationSetBy = User
+
+	column SERVICO_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: bc674dc6-068b-449a-b25a-9fe78b958caf
+		sourceLineageTag: 598bf62f-2bbb-476f-a187-7585328eaa77
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: SERVICO_ID
+
+		annotation SummarizationSetBy = User
+
+	column MOVIMENTO_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: 095072e5-951a-45ec-a9fb-4dbe27b99d86
+		sourceLineageTag: 1684913b-d9c2-4368-940a-e457ed0ac32b
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: MOVIMENTO_ID
+
+		annotation SummarizationSetBy = User
+
+	column CATEGORIA_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: 40b72fe2-8210-4ff6-9437-1ccbb3d96b13
+		sourceLineageTag: 83d5d9b4-c350-482b-aba8-b0ac8a884b00
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: CATEGORIA_ID
+
+		annotation SummarizationSetBy = User
+
+	column STATUS_CNTR_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: 30a4c47b-be27-46ef-8e14-fa1cf79b1672
+		sourceLineageTag: 16f4a810-6263-48ed-942c-ed834588be58
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: STATUS_CNTR_ID
+
+		annotation SummarizationSetBy = User
+
+	column TAMANHO_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: a770b3ef-a846-48a8-b488-cb2d8c68d4b6
+		sourceLineageTag: b09edb12-e5fe-44d3-b61b-72c89ae4f99c
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: TAMANHO_ID
+
+		annotation SummarizationSetBy = User
+
+	column OVERTIME
+		dataType: int64
+		formatString: 0
+		lineageTag: 7f4fe585-8220-4e5a-bfe7-d29e901c3a9b
+		sourceLineageTag: fa46ece8-e0da-4aed-9c53-1b4a2b63cdd3
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: OVERTIME
+
+		annotation SummarizationSetBy = User
+
+	column CCUSTO_TECON_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: ed2ec95e-a173-4297-90c4-212ed78e888b
+		sourceLineageTag: cd241645-fc60-4372-a308-acf42d5636ed
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: CCUSTO_TECON_ID
+
+		annotation SummarizationSetBy = User
+
+	column CCUSTO_SAP
+		dataType: string
+		lineageTag: 9d0b6179-2eb4-4b20-9cfa-da5833093fce
+		sourceLineageTag: 15cc8eac-dabe-445f-af09-17faed858b57
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: CCUSTO_SAP
+
+		annotation SummarizationSetBy = User
+
+	column GRUPO_RECEITA_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: d0d04659-4c50-46cd-a5f7-778326c73de0
+		sourceLineageTag: 387a5a8e-aa45-4e57-af93-6ccf19d94629
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: GRUPO_RECEITA_ID
+
+		annotation SummarizationSetBy = User
+
+	column DETALHE_CLIENTE_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: db2edfa9-c674-4a73-b5a5-91578e94c499
+		sourceLineageTag: 63dbaf20-6045-4e64-b361-83b3fc249d8a
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: DETALHE_CLIENTE_ID
+
+		annotation SummarizationSetBy = User
+
+	column GRUPO_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: 010f0d89-0099-4947-9ad8-f24d6b4406f9
+		sourceLineageTag: 208cf277-e05e-4708-b312-5c271c2f8b44
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: GRUPO_ID
+
+		annotation SummarizationSetBy = User
+
+	column VENDEDOR_COMERC_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: be9e76e5-69de-4d52-9ac1-5dbd034eeab3
+		sourceLineageTag: 7235eae3-2afa-4f52-a1b2-ad59edf32f05
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: VENDEDOR_COMERC_ID
+
+		annotation SummarizationSetBy = User
+
+	column SEGMENTACAO_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: f93f8cd8-fbb7-4045-9ed6-57c8bbb019f7
+		sourceLineageTag: 9d6a0f21-aa03-4244-b2ed-8e0459c55cbc
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: SEGMENTACAO_ID
+
+		annotation SummarizationSetBy = User
+
+	column TIPO_DOCUMENTO_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: 2552b82e-c2ba-4980-808d-830559084dae
+		sourceLineageTag: 5294c806-a25a-4a2b-a818-ab33dc255112
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: TIPO_DOCUMENTO_ID
+
+		annotation SummarizationSetBy = User
+
+	column NAVIO_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: 848b20b2-0a14-4073-846a-ebed5db75182
+		sourceLineageTag: d6917147-1043-40a2-aad5-bc39cd31ed38
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: NAVIO_ID
+
+		annotation SummarizationSetBy = User
+
+	column LINHA_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: 6fecb350-9fd6-4a49-9184-68b98984517f
+		sourceLineageTag: 7b0a9be5-52bb-4716-9454-fdef85628de5
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: LINHA_ID
+
+		annotation SummarizationSetBy = User
+
+	column TIPO_VIAGEM_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: 5044dcfb-87ab-4562-a15a-8131fe898371
+		sourceLineageTag: 4cd94e02-f40e-443e-9e7a-8bbc803fb876
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: TIPO_VIAGEM_ID
+
+		annotation SummarizationSetBy = User
+
+	column REEFER
+		dataType: int64
+		formatString: 0
+		lineageTag: 60bcba3d-eb74-4e66-b2f3-0d0fe19a1eb5
+		sourceLineageTag: f07e170f-0c8c-4479-ab14-5b38140dce8e
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: REEFER
+
+		annotation SummarizationSetBy = User
+
+	column CONGELADO
+		dataType: int64
+		formatString: 0
+		lineageTag: 1cc65c2d-27cf-42fb-b043-29a066995372
+		sourceLineageTag: 7b640285-7bc9-42d3-b3fa-f21311987738
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: CONGELADO
+
+		annotation SummarizationSetBy = User
+
+	column DIAS_ESTADIA
+		dataType: double
+		lineageTag: 0fdce3c7-f63b-4ce5-9b70-49235c0071da
+		sourceLineageTag: f25c857d-921c-4a58-9e1f-8cf34a8ce4c2
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: DIAS_ESTADIA
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DIAS_FATURAMENTO
+		dataType: double
+		lineageTag: 87bd2b02-fe54-4d7d-8c5f-732713d6a98b
+		sourceLineageTag: 0807ee81-a5c3-4365-bfe5-e81921043529
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: DIAS_FATURAMENTO
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ARMAZ_VALOR_CIF
+		dataType: double
+		lineageTag: c2c37fc2-5baf-4f20-bbc2-16f08c0ed7a9
+		sourceLineageTag: 50859314-027c-4442-8b6f-9cd5b5ca8dba
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: ARMAZ_VALOR_CIF
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ADICIONAL_IMO
+		dataType: double
+		lineageTag: dfe11df5-9c99-4647-8339-ceeab850dd5f
+		sourceLineageTag: bd09dbba-298a-4b08-95b8-6a1af2c30c6e
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: ADICIONAL_IMO
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column COLPMF
+		dataType: double
+		lineageTag: f30c4cd0-31a2-4905-bed7-b6f4b2a28613
+		sourceLineageTag: 17e31f96-6d52-4553-86fa-1f5bb790d6fd
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: COLPMF
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column VALOR_RECEITA
+		dataType: double
+		lineageTag: 38f8147e-5e8e-4168-9fc1-0eff1abe031e
+		sourceLineageTag: 053e554b-9226-431f-873d-de48a18ee4dd
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: VALOR_RECEITA
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column VOLUME_SERVICOS
+		dataType: double
+		lineageTag: de31c76f-fc56-4c45-b08b-969a5e82927a
+		sourceLineageTag: 313f7f62-a2a1-426f-b543-320845f3bdbb
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: VOLUME_SERVICOS
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FATURAMENTO_REEFER
+		dataType: double
+		lineageTag: a60ab05d-13de-4eb9-9747-858e07f11a8f
+		sourceLineageTag: 4ebc20ec-b169-473e-9949-73db6e81eb28
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: FATURAMENTO_REEFER
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column AGRUP_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: 4686e1cc-bbee-4503-af5e-58bbcdf8cf15
+		sourceLineageTag: 5ab6f0e4-fc8f-4831-a31a-07a78a9a9001
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: AGRUP_ID
+
+		annotation SummarizationSetBy = User
+
+	partition '_Medidas Receita W017' = entity
+		mode: directQuery
+		source
+			entityName: _Medidas Receita W017
+			expressionSource: 'DirectQuery para AS – Modelo Operações Portuárias'
+

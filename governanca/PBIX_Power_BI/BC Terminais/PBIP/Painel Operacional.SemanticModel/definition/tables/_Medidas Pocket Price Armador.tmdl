@@ -1,0 +1,109 @@
+table '_Medidas Pocket Price Armador'
+	lineageTag: 10ad36ba-f672-40bb-89cf-60fb59b5abd1
+	sourceLineageTag: 633bc755-5631-4887-8556-eb7cd8c0e119
+
+	measure '% PP (Armador)' = EXTERNALMEASURE("% PP (Armador)", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 1cb8b072-ddbc-45bf-be54-efccc84e1c83
+		sourceLineageTag: efb3db10-1f9d-40aa-9beb-fc94b0b09b11
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Receita PP (Armador)' = EXTERNALMEASURE("Receita PP (Armador)", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 8c398b63-a764-4fed-b813-bee5492307ed
+		sourceLineageTag: ab8c1b09-da3a-4b24-bb68-4954dfeacbb8
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '% PP Grupo (Armador)' = EXTERNALMEASURE("% PP Grupo (Armador)", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 92124362-6713-40f7-96f3-8d5590c945be
+		sourceLineageTag: e5b2dda2-2a53-4290-a5a8-a177fe7e7c62
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Receita PP Grupo (Armador)' = EXTERNALMEASURE("Receita PP Grupo (Armador)", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 55b15606-2778-40c3-8a7e-afa1c8d458a3
+		sourceLineageTag: 44d4a0eb-4882-4ea1-a236-5559f2e166ca
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Preço Médio (Armador)' = EXTERNALMEASURE("Preço Médio (Armador)", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 8b1b6d56-c580-49c6-8989-82ab392b3769
+		sourceLineageTag: 1398c0e1-39c6-49c2-bb48-470ee8a26c09
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Preço Médio AA (Armador)' = EXTERNALMEASURE("Preço Médio AA (Armador)", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: b258ded6-a7c5-4a24-9f3b-88fc3b55d950
+		sourceLineageTag: 7c41ea74-dcb6-4389-9693-23cd8e05b519
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Vl Receita (Armador)' = EXTERNALMEASURE("Vl Receita (Armador)", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 9e7c4e66-dc2b-408c-b5d8-6f46731a3510
+		sourceLineageTag: aa71f8a4-942c-403b-bab4-185843489f92
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Vl Receita AA (Armador)' = EXTERNALMEASURE("Vl Receita AA (Armador)", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 81de8a8c-e47b-44c8-9328-1a73d5d449f1
+		sourceLineageTag: 9ebcf2d7-46a5-4561-b4ac-8530069f7b69
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Volume (Armador)' = EXTERNALMEASURE("Volume (Armador)", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 5d5e8bfa-4a1f-4425-871d-1f94414921c7
+		sourceLineageTag: 305b26af-00e5-415d-b9a7-debb19388da3
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Volume AA (Armador)' = EXTERNALMEASURE("Volume AA (Armador)", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 4089a9f6-834b-44ce-8850-b1f56e778614
+		sourceLineageTag: 18f280ea-3b79-4609-9e0f-25d3435fe808
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Slicer_Possui_Pocket_Price_Armador_Sim_Não = EXTERNALMEASURE("Slicer_Possui_Pocket_Price_Armador_Sim_Não", STRING, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 76787471-11c3-4626-bbeb-be3c32592c03
+		sourceLineageTag: e9ae712e-e2ba-4130-8c22-612d4e48b1df
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isText":true}
+
+	column ColunaDummy
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: a7d6e621-90d8-4ca7-9eff-913fc1db9ea5
+		sourceLineageTag: 560c4a1a-f759-40bc-9492-a38d4d789546
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: ColunaDummy
+
+		annotation SummarizationSetBy = User
+
+	column Assunto
+		dataType: string
+		lineageTag: 06f8eb6d-e0a9-4df0-9906-15acdafdc8e5
+		sourceLineageTag: ebc10853-f294-4cfb-98ab-131acecdc232
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Assunto
+
+		annotation SummarizationSetBy = User
+
+	partition '_Medidas Pocket Price Armador' = entity
+		mode: directQuery
+		source
+			entityName: _Medidas Pocket Price Armador
+			expressionSource: 'DirectQuery para AS – Modelo Operações Portuárias'
+

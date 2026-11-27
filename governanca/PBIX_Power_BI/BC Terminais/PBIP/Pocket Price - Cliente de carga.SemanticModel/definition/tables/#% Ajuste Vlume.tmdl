@@ -1,0 +1,28 @@
+table '#% Ajuste Vlume'
+	lineageTag: 2280c519-bf20-4029-9b4f-43e01a8f2bbe
+
+	measure 'Valor #% Ajuste Vlume' = SELECTEDVALUE('#% Ajuste Vlume'[#% Ajuste Vlume])
+		lineageTag: c0bcbcb7-3a5e-4c0a-a712-7791b7e01fb8
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#% Ajuste Vlume'
+		lineageTag: 798be6a8-7545-4f52-a168-34f78293bebe
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '#% Ajuste Vlume' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 1, 0.01)
+
+	annotation PBI_Id = cfd5b984838245878950fe4aa2bd4870
+

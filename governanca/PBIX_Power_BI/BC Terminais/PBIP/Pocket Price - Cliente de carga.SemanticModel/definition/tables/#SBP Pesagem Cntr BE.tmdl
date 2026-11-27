@@ -1,0 +1,27 @@
+table '#SBP Pesagem Cntr BE'
+	lineageTag: 4bcf66a1-012d-4f51-b2f1-8bd962735ae9
+
+	measure 'Valor #SBP Pesagem Cntr BE' = SELECTEDVALUE('#SBP Pesagem Cntr BE'[#SBP Pesagem Cntr BE])
+		lineageTag: 135463af-9b0e-4b03-9525-db7114bfa0b7
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#SBP Pesagem Cntr BE'
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 6cb681c2-365f-410b-a48d-c2f0dab81eec
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition '#SBP Pesagem Cntr BE' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 0.5, 0.0001)
+
+	annotation PBI_Id = bed50e7036854f7ea48f657659a85e57
+

@@ -1,0 +1,36 @@
+table '#SBP Box Rate Vazio LC'
+	lineageTag: cec9ca11-37cb-4dc4-a05f-939831f83f0b
+
+	measure 'Valor #SBP Box Rate Vazio LC' = ```
+			
+			VAR p =
+			    SELECTEDVALUE ( '#SBP Box Rate Vazio LC'[#SBP Box Rate Vazio LC] )
+			RETURN
+			    DIVIDE ( COALESCE ( p, 0 ), 10000 )
+			
+			```
+		formatString: 0.0000
+		lineageTag: de4413bd-47a6-46af-8d0a-e7396af7db12
+
+	column '#SBP Box Rate Vazio LC'
+		formatString: 0.0000%;-0.0000%;0.0000%
+		lineageTag: 20cca9cd-a8fd-4618-b212-a72a1a47bd32
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition '#SBP Box Rate Vazio LC' = calculated
+		mode: import
+		source = ```
+				GENERATESERIES(-10000, 5000, 1)
+				
+				```
+
+	annotation PBI_Id = aae5a42df81245218742a7f9528fb29a
+

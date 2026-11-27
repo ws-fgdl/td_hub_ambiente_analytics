@@ -1,0 +1,760 @@
+table '_Medidas Armazém'
+	lineageTag: b8241788-cb43-4366-8a14-f04f582fadc3
+	sourceLineageTag: a9990d77-421e-492c-9e4e-3546c75be12e
+
+	measure Slicer_Possui_Armazem_Sim_Não = EXTERNALMEASURE("Slicer_Possui_Armazem_Sim_Não", STRING, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 99c2f49b-75ae-4f91-9758-2363d964cc10
+		sourceLineageTag: 4703a762-0fe2-470b-a8b0-ad6d1dd963cc
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isText":true}
+
+	measure '% Desovas concluídas dentro do prazo' = EXTERNALMEASURE("% Desovas concluídas dentro do prazo", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 48533944-3b07-4478-b7b1-d5d11fb1023e
+		sourceLineageTag: b51c44e5-d577-4e47-bea4-72482cd97767
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '% OSs fechadas dentro do prazo' = EXTERNALMEASURE("% OSs fechadas dentro do prazo", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 0e2c9176-6efc-4f23-a733-721bcbc92c4c
+		sourceLineageTag: b7158827-c190-43dc-aff3-97f29b1fd954
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '% Presenças enviadas dentro do prazo' = EXTERNALMEASURE("% Presenças enviadas dentro do prazo", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 60ace21d-604e-4ab8-a90b-662612bd30da
+		sourceLineageTag: 75e74ea7-fae0-43b5-846d-5bb505769482
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Qtd. Desovas realizadas YTD' = EXTERNALMEASURE("Qtd. Desovas realizadas YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: YTD
+		lineageTag: c833a683-d714-4d28-a82f-3e4e77d54d15
+		sourceLineageTag: 89a196c1-f517-42cb-86e4-1c51f7d3f1c6
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Qtd. Desovas realizadas PYTD' = EXTERNALMEASURE("Qtd. Desovas realizadas PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PYTD
+		lineageTag: 7ff6c4a4-9126-4b53-a5c4-b84a3cbd1dcc
+		sourceLineageTag: d6afa6d5-7315-4d2a-9ca4-a5cb711f1cda
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Qtd. Desovas realizadas PY' = EXTERNALMEASURE("Qtd. Desovas realizadas PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PY
+		lineageTag: 06016e08-c017-4d88-9374-8339d0d06f31
+		sourceLineageTag: ada44630-bd11-4bdd-a31f-d19b6d13ea52
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Qtd. de desovas concluídas no prazo YTD' = EXTERNALMEASURE("Qtd. de desovas concluídas no prazo YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: YTD
+		lineageTag: 33631f5c-75ba-4cae-9df1-87a2f2c3a180
+		sourceLineageTag: ac11263e-53b6-4e08-8969-73043f8bc1f2
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Qtd. de desovas concluídas no prazo PYTD' = EXTERNALMEASURE("Qtd. de desovas concluídas no prazo PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PYTD
+		lineageTag: a8059649-754f-4fb5-9080-bfe29433b60c
+		sourceLineageTag: b83f8dc4-58d9-49c4-86b7-2d31807cff79
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Qtd. de desovas concluídas no prazo PY' = EXTERNALMEASURE("Qtd. de desovas concluídas no prazo PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PY
+		lineageTag: 81fabe46-d23c-47db-8f48-1646724ffd07
+		sourceLineageTag: eef10335-2ff1-4ec7-bd00-ca5e329626f8
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Qtd. de desovas concluídas fora do prazo YTD' = EXTERNALMEASURE("Qtd. de desovas concluídas fora do prazo YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: YTD
+		lineageTag: 94d6d900-8d23-4c6c-bee5-1d0247dfa5c8
+		sourceLineageTag: 62d7dc00-7e80-4bca-b9d7-6743c5459ef7
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Qtd. de desovas concluídas fora do prazo PYTD' = EXTERNALMEASURE("Qtd. de desovas concluídas fora do prazo PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PYTD
+		lineageTag: 8c92e9db-9eb3-472d-874f-515ae977787f
+		sourceLineageTag: cf2b830d-411e-4ea2-888c-65b67d8f5758
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Qtd. de desovas concluídas fora do prazo PY' = EXTERNALMEASURE("Qtd. de desovas concluídas fora do prazo PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PY
+		lineageTag: b9d5fccd-7ca1-4d0f-8d36-e26b1fec0c70
+		sourceLineageTag: 8de00dcd-47d3-4c34-b3d3-86b906d3bfb2
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '% Desovas concluídas dentro do prazo YTD' = EXTERNALMEASURE("% Desovas concluídas dentro do prazo YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: YTD
+		lineageTag: 99950393-3b46-4023-8f28-36f1444ebfba
+		sourceLineageTag: deb11e37-cf6b-4f98-8a9d-e6f2944077cd
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '% Desovas concluídas dentro do prazo PYTD' = EXTERNALMEASURE("% Desovas concluídas dentro do prazo PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PYTD
+		lineageTag: 753ee884-3ff1-4fcc-8d32-2f51731e7970
+		sourceLineageTag: 8494d3ec-e48b-48e2-9e70-d8ea6a1762e2
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '% Desovas concluídas dentro do prazo PY' = EXTERNALMEASURE("% Desovas concluídas dentro do prazo PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PY
+		lineageTag: 2e23f086-d9f3-4768-aa92-7ebc4d449adc
+		sourceLineageTag: 5774432a-f86e-4139-90ec-5ca56fa6d56f
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Qtd. OSs Fechadas no prazo YTD' = EXTERNALMEASURE("Qtd. OSs Fechadas no prazo YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: YTD
+		lineageTag: ef4fd1fe-2008-4815-b640-2ecc7f111d8c
+		sourceLineageTag: d6a25691-1a42-4ecd-9c06-79d7e5ba7952
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Qtd. OSs Fechadas no prazo PYTD' = EXTERNALMEASURE("Qtd. OSs Fechadas no prazo PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PYTD
+		lineageTag: 64435418-af54-4438-897a-54ae4dfa2212
+		sourceLineageTag: a9e14e62-4a14-4701-b0dc-f3a1655ef88c
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Qtd. OSs Fechadas no prazo PY' = EXTERNALMEASURE("Qtd. OSs Fechadas no prazo PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PY
+		lineageTag: 175bb030-4a87-44f7-9558-2d9397ac9703
+		sourceLineageTag: ab7fdfe3-652e-4d4f-8664-cde1a1f7bdb6
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Qtd. OSs Fechadas fora do prazo YTD' = EXTERNALMEASURE("Qtd. OSs Fechadas fora do prazo YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: YTD
+		lineageTag: 725d4d3c-581b-46cb-8340-35875cbf761c
+		sourceLineageTag: 33114588-4938-4064-ab5a-28cb99bc849a
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Qtd. OSs Fechadas fora do prazo PYTD' = EXTERNALMEASURE("Qtd. OSs Fechadas fora do prazo PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PYTD
+		lineageTag: fd38eae1-6df7-4dfe-a77d-05405f8da6dc
+		sourceLineageTag: f2c0fc73-2ee4-49f8-bf8b-797aa2575c20
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Qtd. OSs Fechadas fora do prazo PY' = EXTERNALMEASURE("Qtd. OSs Fechadas fora do prazo PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PY
+		lineageTag: 940f58c4-24f0-44b6-90bf-ec78c9632de8
+		sourceLineageTag: 2d0d3e43-7e7c-4574-98e5-eda36c1862f9
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '% OSs fechadas dentro do prazo YTD' = EXTERNALMEASURE("% OSs fechadas dentro do prazo YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: YTD
+		lineageTag: 5ffb6493-f717-4434-87e6-0670acc2fbdc
+		sourceLineageTag: 08930db2-fd66-487f-986a-a1a5a60ab3cd
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '% OSs fechadas dentro do prazo PYTD' = EXTERNALMEASURE("% OSs fechadas dentro do prazo PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PYTD
+		lineageTag: 0a9da3dc-cd6b-4a4c-b219-8398d8d7dcfd
+		sourceLineageTag: 588d0214-a32f-46c6-ae4d-c8b5ee414eef
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '% OSs fechadas dentro do prazo PY' = EXTERNALMEASURE("% OSs fechadas dentro do prazo PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PY
+		lineageTag: 8c133462-e9dd-403f-884d-5755488cf424
+		sourceLineageTag: 64160ee2-5fa6-4caa-9b81-c1eed30a2fa1
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Qtd. Presenças Enviadas YTD' = EXTERNALMEASURE("Qtd. Presenças Enviadas YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: YTD
+		lineageTag: 250babc1-b201-4ba6-b304-232554f786b8
+		sourceLineageTag: 3bcca8df-5914-4301-b5ec-00287ebfc6bf
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Qtd. Presenças Enviadas PYTD' = EXTERNALMEASURE("Qtd. Presenças Enviadas PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PYTD
+		lineageTag: 36c50803-0f1c-401b-8a3b-9b2f5414c4b6
+		sourceLineageTag: 7ccff6c5-8f16-4fb6-abb1-4860407f5db6
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Qtd. Presenças Enviadas PY' = EXTERNALMEASURE("Qtd. Presenças Enviadas PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PY
+		lineageTag: 836f4e92-7e82-4f7d-95e9-1a9f3b8a2f89
+		sourceLineageTag: a716c294-1d34-46f7-b689-a590f7ee1597
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Qtd. Presenças Enviadas dentro do Prazo YTD' = EXTERNALMEASURE("Qtd. Presenças Enviadas dentro do Prazo YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: YTD
+		lineageTag: ae3924b1-4748-4115-abb1-e9df87016683
+		sourceLineageTag: bdec3d63-579b-4b33-baa7-bf077bb92416
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Qtd. Presenças Enviadas dentro do Prazo PYTD' = EXTERNALMEASURE("Qtd. Presenças Enviadas dentro do Prazo PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PYTD
+		lineageTag: 135360b1-a224-46e5-ace3-eef70e1f9d0e
+		sourceLineageTag: 1c6f5706-4480-4cf2-a617-2c198c1daac5
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Qtd. Presenças Enviadas dentro do Prazo PY' = EXTERNALMEASURE("Qtd. Presenças Enviadas dentro do Prazo PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PY
+		lineageTag: d9fb6973-4fec-47aa-b1bf-71678ef899d6
+		sourceLineageTag: 79ab3095-6991-4bc2-a461-4e9ce54f4da2
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Qtd. Presenças Enviadas Fora do Prazo YTD' = EXTERNALMEASURE("Qtd. Presenças Enviadas Fora do Prazo YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: YTD
+		lineageTag: 58b3e7f8-07b9-4494-b777-3e56528197ae
+		sourceLineageTag: 740f2a55-188b-41d2-abe9-bc53ca7d506a
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Qtd. Presenças Enviadas Fora do Prazo PYTD' = EXTERNALMEASURE("Qtd. Presenças Enviadas Fora do Prazo PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PYTD
+		lineageTag: 680c73df-9b68-4b38-bd04-7c620e340cf0
+		sourceLineageTag: 061d10fc-52ab-4b51-b299-8b5882225941
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Qtd. Presenças Enviadas Fora do Prazo PY' = EXTERNALMEASURE("Qtd. Presenças Enviadas Fora do Prazo PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PY
+		lineageTag: dad2e82f-c04e-4135-9380-6396e35ab7f1
+		sourceLineageTag: 759d8304-1fe2-4973-8492-b0ef8ded3cf5
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '% Presenças enviadas dentro do prazo YTD' = EXTERNALMEASURE("% Presenças enviadas dentro do prazo YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: YTD
+		lineageTag: 3c3f0308-e7de-4291-8671-47b20a13192b
+		sourceLineageTag: 6eaaedbc-0af6-4b7f-b421-8b4a641a0476
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '% Presenças enviadas dentro do prazo PYTD' = EXTERNALMEASURE("% Presenças enviadas dentro do prazo PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PYTD
+		lineageTag: a2102636-629d-4128-920f-2ad4e01a5943
+		sourceLineageTag: f82641b9-8a5f-4647-8131-7e68a7a1f05e
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '% Presenças enviadas dentro do prazo PY' = EXTERNALMEASURE("% Presenças enviadas dentro do prazo PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PY
+		lineageTag: 8fca3d30-a5a0-4aa8-aa77-fc04dc9409e0
+		sourceLineageTag: c16ad6a9-e3ee-45c9-a0c5-efa692071364
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Qtd. Ovas realizadas YTD' = EXTERNALMEASURE("Qtd. Ovas realizadas YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: YTD
+		lineageTag: d732583d-37e5-4817-bda0-b18514d844c1
+		sourceLineageTag: 2072ec81-dee1-4547-916d-22c3b5bc4b7e
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Qtd. Ovas realizadas PYTD' = EXTERNALMEASURE("Qtd. Ovas realizadas PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PYTD
+		lineageTag: 01fb9334-5283-42ab-8847-b0e2c7a1cb8b
+		sourceLineageTag: ae080061-1033-4117-b42e-7742dc4f8abe
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Qtd. Ovas realizadas PY' = EXTERNALMEASURE("Qtd. Ovas realizadas PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PY
+		lineageTag: f8b12459-b2d7-4c89-89fa-5f3b7da74785
+		sourceLineageTag: bc042df3-8a01-44f6-a032-30cabae5fb62
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Qtd. Desovas realizadas' = EXTERNALMEASURE("Qtd. Desovas realizadas", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 8c2ac350-ff29-4091-a932-4625ee10e157
+		sourceLineageTag: cd4366af-2989-446b-828d-14f4f12a78c5
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Qtd. de desovas concluídas no prazo' = EXTERNALMEASURE("Qtd. de desovas concluídas no prazo", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: eb90d73e-0187-42d5-9e3b-3b18fa40103d
+		sourceLineageTag: 8daec70c-3607-4b0e-9b6d-5b5460d4c004
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Qtd. de desovas concluídas fora do prazo' = EXTERNALMEASURE("Qtd. de desovas concluídas fora do prazo", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: cda5a95f-4114-4a81-9cd8-11bb7ef2c082
+		sourceLineageTag: 91337850-5594-4842-a493-89565b88a5bf
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Qtd. OSs Fechadas no prazo' = EXTERNALMEASURE("Qtd. OSs Fechadas no prazo", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 0a51d01b-d402-4e67-8137-840a3e4e34a4
+		sourceLineageTag: 86150528-3644-4d98-a3b9-59c9a505f1cf
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Qtd. OSs Fechadas fora do prazo' = EXTERNALMEASURE("Qtd. OSs Fechadas fora do prazo", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 3631b374-c3f9-40f7-9637-d9cc34a1a285
+		sourceLineageTag: 68521e5d-cd7f-4bff-ba34-d0d53cc51555
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Qtd. Presenças Enviadas' = EXTERNALMEASURE("Qtd. Presenças Enviadas", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: d951ca6e-fa86-478a-b8e1-fce0727c1a14
+		sourceLineageTag: 37b03180-a4ce-4a4c-b822-87993145975f
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Qtd. Presenças Enviadas dentro do Prazo' = EXTERNALMEASURE("Qtd. Presenças Enviadas dentro do Prazo", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: db21d3b6-c7ae-4463-8510-edb9f8e08f5d
+		sourceLineageTag: 03e21faf-7acd-4fdd-b109-ae5a7285774e
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Qtd. Presenças Enviadas Fora do Prazo' = EXTERNALMEASURE("Qtd. Presenças Enviadas Fora do Prazo", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 2a702476-e133-43f6-afe5-0d1b4ae6324e
+		sourceLineageTag: 488aebe4-3858-4346-8225-5506a7b1befc
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Qtd. Ovas realizadas' = EXTERNALMEASURE("Qtd. Ovas realizadas", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 769f2c5a-c4de-413b-91d3-50653213eab0
+		sourceLineageTag: 7d416e68-84e2-43cf-b7e6-2714a7552c5c
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Estufagem + Desova' = EXTERNALMEASURE("Estufagem + Desova", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: af7d76e4-018a-415a-ae81-c78d905923f7
+		sourceLineageTag: 78ce290c-53da-470e-b771-92d108100310
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column IND_ARMAZEM_ID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 13ade980-a28e-4949-b852-1c61e4c9d68b
+		sourceLineageTag: 7b42b828-24db-4792-b7f9-4dc03ab8c1af
+		dataCategory: Uncategorized
+		summarizeBy: count
+		sourceColumn: IND_ARMAZEM_ID
+
+		annotation SummarizationSetBy = User
+
+	column COD_EMPRESA
+		dataType: string
+		isHidden
+		lineageTag: aaf3bbe8-d78b-4cb2-b7b0-2f7da4704df8
+		sourceLineageTag: 9ceb1a46-dd89-41a4-b228-47d36caa2e17
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: COD_EMPRESA
+
+		annotation SummarizationSetBy = User
+
+	column TEMPO_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: d3148258-f523-4eda-8250-d80a57f45831
+		sourceLineageTag: 15161a60-5e9b-444d-96b1-6f5a07b3ee6b
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: TEMPO_ID
+
+		annotation SummarizationSetBy = User
+
+	column COD_CLI_SAP
+		dataType: string
+		isHidden
+		lineageTag: 17eabfc3-827e-43b9-b08b-ffe8d4d2a7b8
+		sourceLineageTag: 662e4590-5994-4ed6-81ed-07ff80b0e57d
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: COD_CLI_SAP
+
+		annotation SummarizationSetBy = User
+
+	column COD_CLI_SAP_COBRAR
+		dataType: string
+		isHidden
+		lineageTag: 8aa8e7fd-de61-4e6f-8f5d-a0934fee9b7e
+		sourceLineageTag: 9befca07-a052-44ab-889f-dc30631dfa38
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: COD_CLI_SAP_COBRAR
+
+		annotation SummarizationSetBy = User
+
+	column COD_CLI_SAP_CONS
+		dataType: string
+		isHidden
+		lineageTag: 5bc0a1e4-2ad5-4a7d-bf7d-2766129e7c56
+		sourceLineageTag: bb049ab0-d6ff-4495-ab21-ae8e678d16ce
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: COD_CLI_SAP_CONS
+
+		annotation SummarizationSetBy = User
+
+	column COD_CLI_SAP_DESP
+		dataType: string
+		isHidden
+		lineageTag: 40541161-a88f-4d0f-a58e-95d445a8e094
+		sourceLineageTag: 5d05a0e2-0f49-4a11-a36e-a646636cab30
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: COD_CLI_SAP_DESP
+
+		annotation SummarizationSetBy = User
+
+	column LOCALIDADE_ID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 07435247-d165-4603-8ac0-e5c10afba5f1
+		sourceLineageTag: 08c1d906-af72-4f30-b38f-a63229c3c9e4
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: LOCALIDADE_ID
+
+		annotation SummarizationSetBy = User
+
+	column GRUPO_CLIENTE_ID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 4991db86-d71f-4f88-b9e3-39a1449d08c5
+		sourceLineageTag: 2f997b3f-05dd-407b-8bd2-7de4e1ab751e
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: GRUPO_CLIENTE_ID
+
+		annotation SummarizationSetBy = User
+
+	column GRUPO_CONSOLIDADOR_ID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 7ad24f55-fd34-45f1-a1c8-732f741359d0
+		sourceLineageTag: 2c077add-aed5-4ab6-b296-5e60af44f522
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: GRUPO_CONSOLIDADOR_ID
+
+		annotation SummarizationSetBy = User
+
+	column MOD_EMBARQUE_ID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 6002d13d-6988-4acb-8e05-f7118afdb53a
+		sourceLineageTag: 9c814c85-b5b7-4af0-99b7-5af3158f4a3c
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: MOD_EMBARQUE_ID
+
+		annotation SummarizationSetBy = User
+
+	column NAVIO_ID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 0bdc4b06-604c-4fe4-a3c6-87fa287b1f49
+		sourceLineageTag: 8b519a05-0c45-4498-87f0-595fb1afd84d
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: NAVIO_ID
+
+		annotation SummarizationSetBy = User
+
+	column PORTO_ID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 240635fa-137d-4319-ae2e-805368a4b2a1
+		sourceLineageTag: 72dde46a-3c2a-4f22-96a5-a34c4b32c2a5
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: PORTO_ID
+
+		annotation SummarizationSetBy = User
+
+	column TIPO_CNTR_ID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 60cbf04c-676d-4080-982f-844aa26bb336
+		sourceLineageTag: 8b3c2704-bd09-4c08-a94c-1f7a13ff9588
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: TIPO_CNTR_ID
+
+		annotation SummarizationSetBy = User
+
+	column SERVICO_ID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 8b507e00-972f-4594-929a-53d6683902a2
+		sourceLineageTag: a67750dd-5162-45ba-8859-89e831488fab
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: SERVICO_ID
+
+		annotation SummarizationSetBy = User
+
+	column VENDEDOR_ID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: d9326ee3-99ea-4f0f-8f40-55b8fef454c6
+		sourceLineageTag: 70e839f5-5de5-4abf-8076-732a26cde882
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: VENDEDOR_ID
+
+		annotation SummarizationSetBy = User
+
+	column QTD_GERAL_DESOVA
+		dataType: double
+		isHidden
+		lineageTag: b985853a-6796-4d9b-93da-f7359d6e3154
+		sourceLineageTag: ed72fe36-3664-4c08-ba14-6b5f744cbc54
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: QTD_GERAL_DESOVA
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column QTD_DESOV_CONCLU_PRAZO
+		dataType: double
+		isHidden
+		lineageTag: f3ac367f-5b1b-4858-8136-0c3fc8f5f8a7
+		sourceLineageTag: f0fe8c00-560f-4b94-8a97-80edf2a67589
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: QTD_DESOV_CONCLU_PRAZO
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column QTD_DESOV_CONCLU_FORA_PRAZO
+		dataType: double
+		isHidden
+		lineageTag: dd7f9350-0249-4fb8-a555-5cf882a883ea
+		sourceLineageTag: 6c5c6ad4-06df-433f-8fe8-d12b6853cbb0
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: QTD_DESOV_CONCLU_FORA_PRAZO
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column PERCENT_DESOV_CONCLU
+		dataType: double
+		isHidden
+		lineageTag: 767b0db3-014b-477a-8fee-7d30db01acfb
+		sourceLineageTag: 962d9ce2-b7a5-4b5e-8b0d-59ccdcfd415f
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: PERCENT_DESOV_CONCLU
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column QTD_OS_FECHA_PRAZO
+		dataType: double
+		isHidden
+		lineageTag: b707ede8-521d-439b-b2a7-ededd2ae3b8a
+		sourceLineageTag: fd8bbbc4-207a-4bd0-a872-9d7d90e7ef8f
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: QTD_OS_FECHA_PRAZO
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column QTD_OS_FECHA_FORA_PRAZO
+		dataType: double
+		isHidden
+		lineageTag: 3c535395-196f-4f91-8a6b-97f908ccbe28
+		sourceLineageTag: 4ffa6864-2327-4c60-9d6d-ef3e0e5d7c31
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: QTD_OS_FECHA_FORA_PRAZO
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column PERCENT_OS_FECHA
+		dataType: double
+		isHidden
+		lineageTag: 73617125-7f86-4c37-b380-312c59557cbd
+		sourceLineageTag: ae3ffe95-2d5b-46f6-a6ac-67d949714b50
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: PERCENT_OS_FECHA
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TOTAL_OS_PRESENCA
+		dataType: double
+		isHidden
+		lineageTag: a8d0d83c-f172-4de2-8fe9-9d39faa9eba8
+		sourceLineageTag: a417b923-5130-4cb8-b2c3-2c73bd459599
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: TOTAL_OS_PRESENCA
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column QTD_PRESEN_ENV_PRAZO
+		dataType: double
+		isHidden
+		lineageTag: c1325542-8828-44f1-b98f-871bf23d97b9
+		sourceLineageTag: 8fcb10d0-0bba-4dca-935b-1ac505fedf97
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: QTD_PRESEN_ENV_PRAZO
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column QTD_PRESEN_ENV_FORA_PRAZO
+		dataType: double
+		isHidden
+		lineageTag: 22bb5a81-425e-4e2a-9a80-ef2ea1bc1666
+		sourceLineageTag: df83054c-88ca-4db4-9756-a2c665c36274
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: QTD_PRESEN_ENV_FORA_PRAZO
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column PERCENT_PRESEN_ENV
+		dataType: double
+		isHidden
+		lineageTag: 7877d101-d822-473d-978a-07aacfb8bbc1
+		sourceLineageTag: d1e58426-1354-4931-aa84-230bcc6e14d9
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: PERCENT_PRESEN_ENV
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column QTD_GERAL_OVA
+		dataType: double
+		isHidden
+		lineageTag: 2e11c946-477f-4c3e-9477-3be4d8d299c8
+		sourceLineageTag: e0cb20ba-a175-4b18-8a6a-293c6aa55a37
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: QTD_GERAL_OVA
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column VISTORIA
+		dataType: string
+		isHidden
+		lineageTag: bb6bba16-cd9a-47d0-84db-ca0a0594560f
+		sourceLineageTag: 67b79c36-5694-43b0-8428-dbdac1a5ee8b
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: VISTORIA
+
+		annotation SummarizationSetBy = User
+
+	column NCM_HASH
+		dataType: string
+		isHidden
+		lineageTag: ba428823-4799-4f1a-b651-9d0d18351f1c
+		sourceLineageTag: b6d836e7-3036-4128-9d84-4f387b385648
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: NCM_HASH
+
+		annotation SummarizationSetBy = User
+
+	partition '_Medidas Armazém' = entity
+		mode: directQuery
+		source
+			entityName: _Medidas Armazém
+			expressionSource: 'DirectQuery para AS – Modelo Operações Portuárias'
+

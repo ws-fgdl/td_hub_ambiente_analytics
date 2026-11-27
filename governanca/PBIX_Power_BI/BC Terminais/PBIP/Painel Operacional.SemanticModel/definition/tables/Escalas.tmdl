@@ -1,0 +1,705 @@
+table Escalas
+	lineageTag: ab445903-70fe-4b41-a401-bc1c6d304c8d
+	sourceLineageTag: e38cc108-8b0b-4a94-9798-6fb23ecd571a
+
+	column TEMPO_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: b8ae0be5-a8f3-43da-9f24-3d8e3015c2c7
+		sourceLineageTag: 0c3146e0-a018-4169-be81-068003e53d4b
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: TEMPO_ID
+
+		annotation SummarizationSetBy = User
+
+	column 'Viagem Cadastrada'
+		dataType: string
+		lineageTag: 067a7f37-43d9-40d3-ba60-ff9c89c39f8d
+		sourceLineageTag: 5796f5b8-e3c1-4d37-adb3-3443c32c513d
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Viagem Cadastrada
+
+		annotation SummarizationSetBy = User
+
+	column NAVIO_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: 99f84dad-52c2-4d0a-b2b8-599212676a89
+		sourceLineageTag: abeb8417-57fc-413d-af72-f5c113731b61
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: NAVIO_ID
+
+		annotation SummarizationSetBy = User
+
+	column Berço
+		dataType: string
+		lineageTag: 6a4bd461-5a3d-4540-84d9-98dad1e3af36
+		sourceLineageTag: 01141bf0-d5be-45b3-89c6-69c533cf7757
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Berço
+
+		annotation SummarizationSetBy = User
+
+	column ARM_ID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 1ea52a0c-c6e0-4488-81f0-899e4c59c0e3
+		sourceLineageTag: 8133be92-77f6-46b6-966a-e9f8e5b79d7e
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: ARM_ID
+
+		annotation SummarizationSetBy = User
+
+	column 'Ref Carrier Service ID'
+		dataType: string
+		isHidden
+		lineageTag: 125bd0a1-e9ca-45bc-a480-13ada74f8048
+		sourceLineageTag: e39f99a6-4d6b-4ab3-a062-4b788693b262
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Ref Carrier Service ID
+
+		annotation SummarizationSetBy = User
+
+	column 'Service Name'
+		dataType: string
+		isHidden
+		lineageTag: 2df0139c-fa61-4796-878e-5daf91744a51
+		sourceLineageTag: 9065615c-929c-4ecd-97c5-3150cd397912
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Service Name
+
+		annotation SummarizationSetBy = User
+
+	column 'Deadline Dry'
+		dataType: dateTime
+		formatString: General Number
+		lineageTag: 686f3676-129b-405b-b08f-8830f96bbf53
+		sourceLineageTag: 147701cd-fdd8-4036-95ae-443995b1f116
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Deadline Dry
+
+		annotation SummarizationSetBy = User
+
+	column 'Deadline Dry Format'
+		dataType: string
+		lineageTag: b3590f9d-d4ea-43b7-9d2e-f85c7eb4537a
+		sourceLineageTag: 07c3d707-f1f7-45b8-8126-1c161d8b96c2
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Deadline Dry Format
+
+		annotation SummarizationSetBy = User
+
+	column ETB
+		dataType: dateTime
+		formatString: General Number
+		lineageTag: 3caaf45e-0844-460c-85ac-2e670de8cc31
+		sourceLineageTag: e212005c-045b-4ffd-8d31-a4a569c01448
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: ETB
+
+		annotation SummarizationSetBy = User
+
+	column ETA
+		dataType: dateTime
+		formatString: General Number
+		lineageTag: 99f4df35-9535-430c-a536-7b652e6c4edb
+		sourceLineageTag: 2aa20059-e421-45ca-a3d6-e939d48165e8
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: ETA
+
+		annotation SummarizationSetBy = User
+
+	column ETD
+		dataType: dateTime
+		formatString: General Number
+		lineageTag: df3e8cc4-758e-49bd-907c-4559504a9d80
+		sourceLineageTag: b6da899a-0fbc-4143-9bb7-4d4adf18ea71
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: ETD
+
+		annotation SummarizationSetBy = User
+
+	column 'Situação N4'
+		dataType: string
+		lineageTag: b1b1c243-b74a-4612-90c5-c0866d36a4f1
+		sourceLineageTag: 696a864a-e1cf-487f-be80-3b8a0ce4f2a8
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Situação N4
+
+		annotation SummarizationSetBy = User
+
+	column 'Situação Traduzida'
+		dataType: string
+		lineageTag: 1017c506-60b5-4487-b942-95080508ed14
+		sourceLineageTag: f6ac68a9-3c87-49bb-800a-bae21513bac7
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Situação Traduzida
+
+		annotation SummarizationSetBy = User
+
+	column Tipo
+		dataType: string
+		lineageTag: b20c0244-ea0c-48ae-95e7-88e22953c98d
+		sourceLineageTag: a557c5a9-f295-402a-b128-f9dff8d160a5
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Tipo
+
+		annotation SummarizationSetBy = User
+
+	column País
+		dataType: string
+		lineageTag: 96ba1e5d-13d1-4e10-95b6-b5d7cceacf71
+		sourceLineageTag: 57d32e33-eee2-40d0-97df-4346de8d29c2
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: País
+
+		annotation SummarizationSetBy = User
+
+	column Comprimento
+		dataType: double
+		lineageTag: 7c6418d8-76f4-4c23-94b1-97bbdb577229
+		sourceLineageTag: a538769f-23b0-406d-ab25-4802219cd7ed
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Comprimento
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Largura
+		dataType: double
+		lineageTag: 79519504-671f-4b7e-8267-f043b7114db2
+		sourceLineageTag: fd77bdaf-a7d8-41a4-b1f1-6f99ca788409
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Largura
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Discharge
+		dataType: double
+		lineageTag: 6bbb313a-bd41-466d-9129-e47dd303a4e5
+		sourceLineageTag: 8a7bb5a1-0109-4b9e-aa21-9051be3a88ed
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Discharge
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Load
+		dataType: double
+		lineageTag: b1628e00-b87b-4db1-ab37-29436d8e5df8
+		sourceLineageTag: 2c0c6109-c549-44e6-aab8-05a1eeef67af
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Load
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Restow
+		dataType: double
+		lineageTag: 53d183de-1ba2-4632-9d16-dc6ab3261f3f
+		sourceLineageTag: 611beb16-4300-4281-a5ed-a33a9bd7e292
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Restow
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Shift
+		dataType: double
+		lineageTag: e25cd7b1-286c-4cc8-89ed-ef159c28134a
+		sourceLineageTag: cec540a1-60b9-4bfd-8197-1705ff9fc5ed
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Shift
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Movs Format'
+		dataType: double
+		lineageTag: 010ca288-6bae-4a77-8c02-2b879276b7aa
+		sourceLineageTag: dd87a8e5-3f5d-44f6-b522-a562c01ef181
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Movs Format
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Lloyds ID'
+		dataType: string
+		isHidden
+		lineageTag: 3a20142c-6d60-43d7-93ed-1138b60bce4a
+		sourceLineageTag: 6a94e289-8b65-4a61-be89-04f43ea9f3af
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Lloyds ID
+
+		annotation SummarizationSetBy = User
+
+	column 'Radio Call Sign'
+		dataType: string
+		isHidden
+		lineageTag: 5308667a-be8a-4d58-9c70-63676f9e8ca2
+		sourceLineageTag: dd90b88f-9ce5-488d-bee1-a739aeeff657
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Radio Call Sign
+
+		annotation SummarizationSetBy = User
+
+	column 'Vessel Rows'
+		dataType: string
+		lineageTag: 660135f5-4c4a-4ace-a1f8-d25105e4c05c
+		sourceLineageTag: eed50167-a676-452f-8a93-4326a835a2f0
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Vessel Rows
+
+		annotation SummarizationSetBy = User
+
+	column 'Porto Origem'
+		dataType: string
+		lineageTag: d30b02d4-1eb9-48d8-a89a-30bc2c4e8999
+		sourceLineageTag: bfce2b83-6cd0-4d53-9c0b-358904343b9f
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Porto Origem
+
+		annotation SummarizationSetBy = User
+
+	column 'Porto Destino'
+		dataType: string
+		lineageTag: a25883a0-f966-4627-a432-eb1a0ec916af
+		sourceLineageTag: 2df8c751-76d8-4080-b8c8-9b804733f77d
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Porto Destino
+
+		annotation SummarizationSetBy = User
+
+	column 'De Para'
+		dataType: string
+		lineageTag: 74174bae-d36e-4b8c-8121-11bdf8b70a61
+		sourceLineageTag: 238add3d-2e49-471f-b726-b66c6b4aee19
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: De Para
+
+		annotation SummarizationSetBy = User
+
+	column ATA
+		dataType: dateTime
+		formatString: General Number
+		lineageTag: fe78d387-a249-4054-9ce5-b7500cd35746
+		sourceLineageTag: 079104d9-afb4-4719-b735-543a104ed1a7
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: ATA
+
+		annotation SummarizationSetBy = User
+
+	column ATD
+		dataType: dateTime
+		formatString: General Number
+		lineageTag: ba9cf54d-4b3e-47b7-8bfd-9e24c99ce6ef
+		sourceLineageTag: 5da080f8-7274-4cce-9788-c09fa1a23851
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: ATD
+
+		annotation SummarizationSetBy = User
+
+	column 'Início Real'
+		dataType: dateTime
+		formatString: General Number
+		lineageTag: 226f317b-43a2-4971-bd36-30f5b8dd4a15
+		sourceLineageTag: 3f8a00ff-fd8e-49b9-b90f-e4c40114cbcf
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Início Real
+
+		annotation SummarizationSetBy = User
+
+	column 'Fim Real'
+		dataType: dateTime
+		formatString: General Number
+		lineageTag: b6fd7e4b-d71e-465b-8781-4efa918b43ce
+		sourceLineageTag: 47f52b0c-ad9c-4679-8ba3-583aedb88e22
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Fim Real
+
+		annotation SummarizationSetBy = User
+
+	column 'Desc Janela'
+		dataType: string
+		lineageTag: f4838d99-0d30-4a8a-abfa-47e2b3b2a71d
+		sourceLineageTag: 25493ffa-4a51-4842-bc36-385a8f13f8a3
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Desc Janela
+
+		annotation SummarizationSetBy = User
+
+	column 'Begin Receive Cheio'
+		dataType: dateTime
+		formatString: General Number
+		lineageTag: 7e2bbda9-0c26-4784-a6e2-53be62bc4c07
+		sourceLineageTag: 9559048b-fac7-4b8f-9018-b0238428eaee
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Begin Receive Cheio
+
+		annotation SummarizationSetBy = User
+
+	column 'Begin Receive Vazio'
+		dataType: dateTime
+		formatString: General Number
+		lineageTag: f42b2da6-bbe0-4480-adba-e9aadc6e1d57
+		sourceLineageTag: 9050bf9f-fbe9-4178-a6b6-25044f2930be
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Begin Receive Vazio
+
+		annotation SummarizationSetBy = User
+
+	column 'Escala Siscarga'
+		dataType: double
+		isHidden
+		lineageTag: d4dcf7e8-f982-4ed7-8e72-f9bccf63c6e0
+		sourceLineageTag: bcc3a2a5-14e2-48a4-8b14-edf0aba77850
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Escala Siscarga
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Pratico Bordo Atraca'
+		dataType: dateTime
+		formatString: General Number
+		lineageTag: 0d5dab24-57b0-4c2b-906e-619763ae3d36
+		sourceLineageTag: 4a748ba1-8ea9-41b8-aa71-6f6213a016cb
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Pratico Bordo Atraca
+
+		annotation SummarizationSetBy = User
+
+	column 'Pratico Bordo Desatraca'
+		dataType: dateTime
+		formatString: General Number
+		lineageTag: 0b45d789-80f2-43c2-beac-ca073ecd0d7f
+		sourceLineageTag: 8b7583a6-a767-4a1b-91f3-d481daab9a7f
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Pratico Bordo Desatraca
+
+		annotation SummarizationSetBy = User
+
+	column Liberação
+		dataType: dateTime
+		formatString: General Number
+		lineageTag: 82583db7-9530-44c8-8fba-b85b429571b1
+		sourceLineageTag: ab17fa58-7194-4d46-afd0-6e122f5c327f
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Liberação
+
+		annotation SummarizationSetBy = User
+
+	column 'Order Work'
+		dataType: double
+		lineageTag: 8957f0dd-8b2d-4635-967f-1a99dc7ae2da
+		sourceLineageTag: 4c19d011-5330-485e-8d6f-c3e8a74026ac
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Order Work
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Custdff Is Ocultar Web'
+		dataType: double
+		lineageTag: 0f9a15c2-ad6a-420d-b82b-b3e202c43021
+		sourceLineageTag: 5eb3c688-73bc-4534-9fb6-a67c8b109d73
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Custdff Is Ocultar Web
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Remoção
+		dataType: double
+		lineageTag: 822b1d30-499d-48db-8e0a-6fa7b21d562b
+		sourceLineageTag: 7ffac87b-ac8c-4df6-adcc-402fce1fbbb0
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Remoção
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Volume CG'
+		dataType: string
+		lineageTag: 3be931e3-c3c9-4765-b0a2-3e632974969a
+		sourceLineageTag: 8d27058f-b3aa-46f1-a9e7-8351e84b05a4
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Volume CG
+
+		annotation SummarizationSetBy = User
+
+	column 'Operação ID'
+		dataType: int64
+		formatString: 0
+		lineageTag: 7829ec79-3b51-450c-89a5-bfbc96df5100
+		sourceLineageTag: 7b28d4b2-7e16-4b0c-900b-70b3c8ff2440
+		dataCategory: Uncategorized
+		summarizeBy: count
+		sourceColumn: Operação ID
+
+		annotation SummarizationSetBy = User
+
+	column 'Carrier Mode'
+		dataType: string
+		lineageTag: 64068416-0926-442f-9e26-5f41c0348fc1
+		sourceLineageTag: d139a63f-c83f-41c7-94e0-0f460407b229
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Carrier Mode
+
+		annotation SummarizationSetBy = User
+
+	column 'VVD GKEY'
+		dataType: int64
+		formatString: 0
+		lineageTag: 9ea3719f-ca43-4530-b8e7-b184f198a5fe
+		sourceLineageTag: bbea123a-b32a-4e73-bc19-f9f7eac2d3a5
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: VVD GKEY
+
+		annotation SummarizationSetBy = User
+
+	column Janela
+		dataType: string
+		lineageTag: 9a17b51e-ae08-4405-a9ab-2f4ab3e968d5
+		sourceLineageTag: 23a8b8d8-3376-42be-9e9d-bb96eee25f5e
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Janela
+
+		annotation SummarizationSetBy = User
+
+	column 'ETA DATE'
+		dataType: dateTime
+		isHidden
+		formatString: Long Date
+		lineageTag: 4fc1c306-8815-4a33-9a37-36bc05ab9607
+		sourceLineageTag: abed7f12-7a79-4356-be66-d66cbedecaff
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: ETA DATE
+
+		annotation SummarizationSetBy = User
+
+	column 'ETB DATE'
+		dataType: dateTime
+		isHidden
+		formatString: Long Date
+		lineageTag: 8350d7b8-9fce-4f03-b686-f2ab5517d74a
+		sourceLineageTag: 606d769a-e345-4ed8-ab34-ff35ec835c3f
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: ETB DATE
+
+		annotation SummarizationSetBy = User
+
+	column 'Mot. Canc. N4'
+		dataType: string
+		lineageTag: 675debac-cc51-4c20-94b7-928ac20fde79
+		sourceLineageTag: ee2c5b8e-b15e-454d-a125-404518b72bb9
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Mot. Canc. N4
+
+		annotation SummarizationSetBy = User
+
+	column 'Mot. Canc. Detalhado'
+		dataType: string
+		lineageTag: d77d41ad-ad51-4422-b090-db384319b990
+		sourceLineageTag: 23f1206c-1671-4730-9000-a1e751eceb9a
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Mot. Canc. Detalhado
+
+		annotation SummarizationSetBy = User
+
+	column 'Motivo agrupado PT'
+		dataType: string
+		lineageTag: 43185377-c1a1-4371-b076-f280f9be23fb
+		sourceLineageTag: 12312a29-1305-411f-8c30-bac371109c62
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Motivo agrupado PT
+
+		annotation SummarizationSetBy = User
+
+	column 'Motivo PT'
+		dataType: string
+		lineageTag: 90c4dd6a-a7a3-4d40-bdf4-40de5e89ad60
+		sourceLineageTag: d8a80679-01c3-4bb0-b36c-d5eddf3e1c48
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Motivo PT
+
+		annotation SummarizationSetBy = User
+
+	column 'Motivo agrupado ENG'
+		dataType: string
+		lineageTag: 3b5934bc-fdea-45a7-ae30-c9660d05d47d
+		sourceLineageTag: c18c91f0-8cc5-4cb2-ac28-a2d9a0ef6fc2
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Motivo agrupado ENG
+
+		annotation SummarizationSetBy = User
+
+	column 'Motivo ENG'
+		dataType: string
+		lineageTag: f30337ff-7316-4aa2-895f-d96ef9133995
+		sourceLineageTag: c7560df7-5ad1-4d7e-921e-eb88f8e56059
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Motivo ENG
+
+		annotation SummarizationSetBy = User
+
+	column 'ETA Programação'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 68ee4514-3adb-4d2f-9740-1352368c6ddb
+		sourceLineageTag: 0b780b39-8311-4db9-95f4-50ff04f15bcc
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: ETA Programação
+
+		annotation SummarizationSetBy = User
+
+	column 'Escala ou Blank Sailing'
+		dataType: string
+		lineageTag: 1db67e10-8a77-42a4-ae14-10f9a0c1097a
+		sourceLineageTag: 10bb46a1-a7ee-43f5-93a4-0309eec58bd2
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Escala ou Blank Sailing
+
+		annotation SummarizationSetBy = User
+
+	column 'Periodicidade Blank Sailing'
+		dataType: string
+		isHidden
+		lineageTag: 6a5944ed-d074-4e07-9a26-51e01500fddf
+		sourceLineageTag: 4ca0a10e-c9f0-4837-8bbf-cdb5dde6dc94
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Periodicidade Blank Sailing
+
+		annotation SummarizationSetBy = User
+
+	column 'Dia Semana Blank Sailing'
+		dataType: string
+		isHidden
+		lineageTag: 0c8b1068-a375-4c1a-a4ca-a0bc396d99b0
+		sourceLineageTag: 904834bf-fa15-45b8-a43d-672920cbfecf
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Dia Semana Blank Sailing
+
+		annotation SummarizationSetBy = User
+
+	column 'Metodo Apuracao Blank Sailing'
+		dataType: string
+		lineageTag: 2a7ac8f3-98ea-40cc-9cf1-55a663bf122d
+		sourceLineageTag: 5a7cb53f-60e0-41ae-a5d5-28bdb59577a1
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Metodo Apuracao Blank Sailing
+
+		annotation SummarizationSetBy = User
+
+	column 'Viagem Realizada'
+		dataType: string
+		lineageTag: 2ea9776e-2a49-4396-bf23-568c720ef41f
+		sourceLineageTag: 0157bf94-bd65-4f53-bf92-7717f9463f2b
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Viagem Realizada
+
+		annotation SummarizationSetBy = User
+
+	column Classification
+		dataType: string
+		lineageTag: 05dfeed5-b0ff-48be-874d-4f498b08b6c0
+		sourceLineageTag: 33654e80-956f-4d9f-82fe-b459bc48bcf6
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Classification
+
+		annotation SummarizationSetBy = User
+
+	column Movs
+		dataType: double
+		lineageTag: 9bef94cc-6bc1-4f0b-a098-040da90a24c2
+		sourceLineageTag: abb767ee-ad36-40b9-a1bf-c5254a82b983
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Movs
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition Escalas = entity
+		mode: directQuery
+		source
+			entityName: Escalas
+			expressionSource: 'DirectQuery para AS – Modelo Operações Portuárias'
+

@@ -1,0 +1,222 @@
+table DW_FAT_PROD_ARMADOR
+	isHidden
+	lineageTag: e38d811f-fca1-4c0f-86c5-35e5cd0ab573
+	sourceLineageTag: 39876595-9c6c-41ff-bc0f-83817d70868a
+
+	measure Slicer_Possui_Produtividade_Armador_Sim_Não = EXTERNALMEASURE("Slicer_Possui_Produtividade_Armador_Sim_Não", STRING, "DirectQuery para AS – Modelo Operações Portuárias")
+		isHidden
+		lineageTag: 1d0870d8-1b47-4b25-b788-a7549d92dddb
+		sourceLineageTag: 39f04c48-991b-41f0-9c1b-5eb520e7f506
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isText":true}
+
+	column TEMPO_ID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 34425ae5-339f-48bc-b369-99d50a4a7c0a
+		sourceLineageTag: 89579443-5dfa-4984-9d5f-b59d11f0b236
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: TEMPO_ID
+
+		annotation SummarizationSetBy = User
+
+	column ARM_ID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 655b9863-1bf7-4080-912f-5d77eac6cd80
+		sourceLineageTag: 19032007-22f7-43dd-8a15-e35df69f6d0b
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: ARM_ID
+
+		annotation SummarizationSetBy = User
+
+	column T_BRUTO
+		dataType: double
+		isHidden
+		lineageTag: 637e5982-5136-48eb-b856-f07ea5bd2308
+		sourceLineageTag: 7d3d41eb-e58d-4013-8506-b83d7f6eaa16
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: T_BRUTO
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column T_PRADA
+		dataType: double
+		isHidden
+		lineageTag: 5045e0f6-3f7a-4363-87ae-e4b3de0baf3a
+		sourceLineageTag: 1cbcf2c3-a119-4403-883a-b7f80a36df5a
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: T_PRADA
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Q_CASTANHA
+		dataType: double
+		isHidden
+		lineageTag: acd737c3-e5fe-4869-8dcf-653b4c03ee04
+		sourceLineageTag: 77b1e581-d7a8-47d6-ada5-9d13d2dc5203
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Q_CASTANHA
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Q_MOV_OOG
+		dataType: double
+		isHidden
+		lineageTag: 96299657-0da8-47c1-a8dd-bd46981f023c
+		sourceLineageTag: 0c982cbe-4348-4f74-be49-02873df2b9c7
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Q_MOV_OOG
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Q_TAMPA
+		dataType: double
+		isHidden
+		lineageTag: 3eea2370-89e1-4e4f-820f-7aa48270d942
+		sourceLineageTag: c94223ea-6fe2-4591-b20e-4219fb0abd9e
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Q_TAMPA
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Q_TERNO
+		dataType: double
+		isHidden
+		lineageTag: 04d06491-d593-4d6c-96ec-6358336a41ac
+		sourceLineageTag: fb187a21-40af-4390-812c-814851780676
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Q_TERNO
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Q_MOV
+		dataType: double
+		isHidden
+		lineageTag: b7bb3bbc-cebc-4b7f-89aa-0b878a8b9b06
+		sourceLineageTag: 64ff3dce-fe15-4aea-abfb-5fd344b077f0
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Q_MOV
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Q_MOV_ABRATEC
+		dataType: double
+		isHidden
+		lineageTag: 7571587d-f004-478c-969a-88a5619c5015
+		sourceLineageTag: 2fb1943e-d67e-4c63-9a35-cc1e2cd8c6ac
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Q_MOV_ABRATEC
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TOE
+		dataType: double
+		isHidden
+		lineageTag: 8b934370-0c5b-4d15-9273-e886d951c22b
+		sourceLineageTag: c3ccac80-0294-4caf-9171-6d11b86de294
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: TOE
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column PROD_REALIZADA_LIQUIDA
+		dataType: double
+		isHidden
+		lineageTag: 24f3fd7b-67fe-48c1-b932-1a7d932066fd
+		sourceLineageTag: a24bc245-ae62-46e3-b411-5ef90d868578
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: PROD_REALIZADA_LIQUIDA
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column PROD_REALIZADA_BRUTA
+		dataType: double
+		isHidden
+		lineageTag: e18b4fb8-e32f-4b17-8425-5b9669c43847
+		sourceLineageTag: f31d23f0-243a-4130-9727-dea19f3542fe
+		dataCategory: Uncategorized
+		summarizeBy: average
+		sourceColumn: PROD_REALIZADA_BRUTA
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column PROD_ACORDADA
+		dataType: double
+		isHidden
+		lineageTag: 482f0b7a-f97d-4434-bea4-81ed4d9365a7
+		sourceLineageTag: 5e418ea8-acd9-4aa1-9d77-a434bc8243ec
+		dataCategory: Uncategorized
+		summarizeBy: average
+		sourceColumn: PROD_ACORDADA
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column COD_EMPR_SAP
+		dataType: string
+		isHidden
+		lineageTag: 81a69e53-3e26-4981-a820-e6b75a4478b1
+		sourceLineageTag: 75fd4a63-a72e-437b-87df-93225b23961e
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: COD_EMPR_SAP
+
+		annotation SummarizationSetBy = User
+
+	column LINHA_ID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 56dd24d6-0b3d-40f1-8d52-9d1278d5b067
+		sourceLineageTag: 5cfe8cfa-f4c6-43f8-a30d-376dda72fa4f
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: LINHA_ID
+
+		annotation SummarizationSetBy = User
+
+	partition DW_FAT_PROD_ARMADOR = entity
+		mode: directQuery
+		source
+			entityName: DW_FAT_PROD_ARMADOR
+			expressionSource: 'DirectQuery para AS – Modelo Operações Portuárias'
+

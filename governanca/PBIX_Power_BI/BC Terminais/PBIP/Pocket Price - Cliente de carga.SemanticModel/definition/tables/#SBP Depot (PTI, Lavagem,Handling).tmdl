@@ -1,0 +1,27 @@
+table '#SBP Depot (PTI, Lavagem,Handling)'
+	lineageTag: 3bc47ed6-45e9-4ae6-ac1a-83cdea851034
+
+	measure 'Valor #SBP Depot (PTI, Lavagem,Handling)' = SELECTEDVALUE('#SBP Depot (PTI, Lavagem,Handling)'[#SBP Depot (PTI, Lavagem,Handling)])
+		lineageTag: 59a55cb0-3238-40b3-80fb-6744d43d0c64
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#SBP Depot (PTI, Lavagem,Handling)'
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: f93ec62d-6d38-4c49-bb90-b768ef9e12d0
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition '#SBP Depot (PTI, Lavagem,Handling)' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 0.5, 0.0001)
+
+	annotation PBI_Id = 9ea0c9210ba741109b7d83ba82763281
+

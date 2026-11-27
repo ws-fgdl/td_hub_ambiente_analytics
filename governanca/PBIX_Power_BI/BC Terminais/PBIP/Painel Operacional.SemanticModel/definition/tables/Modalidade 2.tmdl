@@ -1,0 +1,49 @@
+table 'Modalidade 2'
+	lineageTag: ad029efb-a3ea-4583-85ac-c1b720857f9a
+	sourceLineageTag: 618e9a6e-e3e5-4a10-b79a-8d965a40bf31
+
+	measure 'Modalidades Selecionadas' = EXTERNALMEASURE("Modalidades Selecionadas", STRING, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 3667ac7b-e01c-4e95-863f-c72b03fbbc5a
+		sourceLineageTag: a48fefc0-81c0-4c17-9301-89f27200a9fe
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isText":true}
+
+	column 'Modalidade ID'
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		lineageTag: 495e74fc-517d-4a0f-b926-5ea840064e18
+		sourceLineageTag: bfe944c6-266c-4e96-9fd8-65a3f31b65ef
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Modalidade ID
+
+		annotation SummarizationSetBy = User
+
+	column 'Código Modalidade'
+		dataType: string
+		lineageTag: af77de52-f7fe-4a9c-9060-f24b4258e1dd
+		sourceLineageTag: 9725967e-d0ad-4239-9bfc-0b3f04d95fb2
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Código Modalidade
+
+		annotation SummarizationSetBy = User
+
+	column Modalidade
+		dataType: string
+		lineageTag: d3cd6397-fcd8-4cb0-a26d-757872284914
+		sourceLineageTag: 5ea15cdd-f1b0-442f-a841-3784ff189ed3
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Modalidade
+
+		annotation SummarizationSetBy = User
+
+	partition 'Modalidade 2' = entity
+		mode: directQuery
+		source
+			entityName: Modalidade
+			expressionSource: 'DirectQuery para AS – Modelo Operações Portuárias'
+

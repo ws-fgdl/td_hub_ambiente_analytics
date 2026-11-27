@@ -1,0 +1,1262 @@
+table '_Medidas Custo variavel e Container'
+	lineageTag: 5ac469a5-64c7-40b3-a8b5-76db04d256ec
+	sourceLineageTag: 8fd09a4a-d917-4553-a904-6812432c980d
+
+	measure Slicer_Possui_Custo_Variavel_e_Container_Sim_Não = EXTERNALMEASURE("Slicer_Possui_Custo_Variavel_e_Container_Sim_Não", STRING, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 745da17c-2342-4463-9508-2f490c603147
+		sourceLineageTag: 86c2763c-8ccd-4722-86fa-6bb1dc4fd846
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isText":true}
+
+	measure 'RL Realizada em Reais' = EXTERNALMEASURE("RL Realizada em Reais", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 5cd294fb-9a1a-4961-8d5c-1b28eed7d1be
+		sourceLineageTag: ae6193af-9f17-4ce9-9f6a-4c0804e31af7
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'RL Realizada em Dolares' = EXTERNALMEASURE("RL Realizada em Dolares", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: cc2fc298-a55a-4f0e-b58f-54119a362ea0
+		sourceLineageTag: 0f0781ee-abd3-43d4-b8b1-2420630cd81b
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'RL Orçado em Reais' = EXTERNALMEASURE("RL Orçado em Reais", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 16f15f00-61b6-4172-bc47-7881b383bcbe
+		sourceLineageTag: 09adc961-1d74-4e6a-8f57-bd8ad5d33c4f
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'RL Orçado em Dolares' = EXTERNALMEASURE("RL Orçado em Dolares", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: c3c574b8-14ac-4780-aeae-c6853aba26fb
+		sourceLineageTag: 32026a68-80cd-437b-9a12-1bbd83118259
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'CV Realizado em Reais' = EXTERNALMEASURE("CV Realizado em Reais", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: c1386cf8-fe94-4e8a-a4aa-582232f0acc0
+		sourceLineageTag: 76ad5668-b525-495a-8fad-4749908dfe44
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'CV Realizado em Dolares' = EXTERNALMEASURE("CV Realizado em Dolares", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 9bebb6b0-8fe5-4b14-90ef-f012a81c8bc8
+		sourceLineageTag: 7b826290-83ca-4766-ab75-e8d0b399d515
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'CV Orçado em Reais' = EXTERNALMEASURE("CV Orçado em Reais", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: dfd859c0-8d42-4b66-94e8-496c67a9d8dd
+		sourceLineageTag: a638d440-0be1-470d-a8dd-55a9ced7b676
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'CV Orçado em Dolares' = EXTERNALMEASURE("CV Orçado em Dolares", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: a0368044-d701-4927-b392-d0cff06e57c1
+		sourceLineageTag: 085f1cad-1a07-4a15-a2d5-6fb08f2d8b69
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Qtd de Cntrs Movimentos no Mês' = EXTERNALMEASURE("Qtd de Cntrs Movimentos no Mês", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: c3d9937b-aa77-474f-9786-4ba806e7df66
+		sourceLineageTag: fca67c10-6651-49e9-821b-ab6d4c2f042c
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Qtd de TEUs Movimentado no Mês' = EXTERNALMEASURE("Qtd de TEUs Movimentado no Mês", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 77ea976c-4c7d-41cb-ba4a-c1c05427125d
+		sourceLineageTag: aaaad97d-fa8a-48ab-a5d7-421705ba8630
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'RL/CNTR Realizado em Reais' = EXTERNALMEASURE("RL/CNTR Realizado em Reais", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		lineageTag: 3961a81c-c454-4dce-a7fb-57c22e0e02e8
+		sourceLineageTag: 40aa5304-f710-4287-9eb2-83c701dca42f
+		dataCategory: Uncategorized
+
+	measure 'RL/CNTR Realizado em Dolares' = EXTERNALMEASURE("RL/CNTR Realizado em Dolares", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		lineageTag: a4fdfac3-8d9d-48d1-b1ff-d07b33158c01
+		sourceLineageTag: 40838e36-5492-4237-af7b-bcc5ecafb043
+		dataCategory: Uncategorized
+
+	measure 'RL/CNTR Orçado em Reais' = EXTERNALMEASURE("RL/CNTR Orçado em Reais", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		lineageTag: 16ecea56-c45e-44a9-951f-e9084e7b1e2a
+		sourceLineageTag: e9b09642-9b11-4656-a07b-72d2c10accce
+		dataCategory: Uncategorized
+
+	measure 'RL/CNTR Orçado em Dolares' = EXTERNALMEASURE("RL/CNTR Orçado em Dolares", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		lineageTag: 30431597-f534-4a9a-84dd-50256b3c1371
+		sourceLineageTag: 4daf47ce-daeb-4a80-ba22-d66da0f9dadf
+		dataCategory: Uncategorized
+
+	measure 'CV/CNTR Realizado em Reais' = EXTERNALMEASURE("CV/CNTR Realizado em Reais", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		lineageTag: f6a2de51-3251-4e6d-bb51-c93fbd75380a
+		sourceLineageTag: 4ae0c3fd-d635-4b8c-9076-f99dd42d715f
+		dataCategory: Uncategorized
+
+	measure 'CV/CNTR Realizado em Dolares' = EXTERNALMEASURE("CV/CNTR Realizado em Dolares", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		lineageTag: ee5c1685-d2b5-44d1-8ab3-cc0ca067e22c
+		sourceLineageTag: 0bc60559-95e8-4c5b-bd9a-f0cd699eb0f8
+		dataCategory: Uncategorized
+
+	measure 'CV/CNTR Orçado em Reais' = EXTERNALMEASURE("CV/CNTR Orçado em Reais", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		lineageTag: e4bb8a13-f8bd-4c13-a075-237ded5a25f2
+		sourceLineageTag: 3218cc58-7664-4cca-bcec-811c7d801986
+		dataCategory: Uncategorized
+
+	measure 'CV/CNTR Orçado em Dolares' = EXTERNALMEASURE("CV/CNTR Orçado em Dolares", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		lineageTag: 57723662-502b-467c-95c7-5db923186c85
+		sourceLineageTag: bcec8a3b-acf1-4610-b265-4f6cecb33755
+		dataCategory: Uncategorized
+
+	measure 'RL Realizado por TEUS em Reais' = EXTERNALMEASURE("RL Realizado por TEUS em Reais", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 7bbc8c79-11a5-4a3e-a11b-54ccf9bd90a6
+		sourceLineageTag: b910b83d-e7c1-44c1-9c19-9f529233fe1f
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'RL Realizado por TEUs em Dolares' = EXTERNALMEASURE("RL Realizado por TEUs em Dolares", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 32467310-083e-4087-b149-e81f27bce128
+		sourceLineageTag: f7c29430-fd0c-4f57-b013-64c8a7ca4cca
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'RL Orçado por TEUs em Reais' = EXTERNALMEASURE("RL Orçado por TEUs em Reais", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: ac689b51-bb0c-4d6b-a921-fbe7082088a9
+		sourceLineageTag: 07db4e04-38ed-464e-a5c6-d9219c74fda8
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'RL Orçado por TEUs em Dolares' = EXTERNALMEASURE("RL Orçado por TEUs em Dolares", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 97b0a384-bc63-472b-8f80-5f560a34c713
+		sourceLineageTag: 28367b72-3c73-43f9-90e0-73118c463cdc
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'CV Realizado por TEUs em Reais' = EXTERNALMEASURE("CV Realizado por TEUs em Reais", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: d6753e80-84ab-454e-9089-4cdde615d738
+		sourceLineageTag: 7dd4ff7c-6edf-46e3-9e35-c237debc7b24
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'CV Realizado por TEUs em Dolares' = EXTERNALMEASURE("CV Realizado por TEUs em Dolares", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 8247482e-dd8a-4a9a-9c76-543e88ecb06f
+		sourceLineageTag: 581cf44e-1f28-4e30-b491-57c64d9a54a1
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'CV Orçado por TEUs em Reais' = EXTERNALMEASURE("CV Orçado por TEUs em Reais", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: f003b621-5261-4d2b-911c-f00167d85d83
+		sourceLineageTag: 4c70af97-8d79-4c49-ba15-442829ba7846
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'CV Orçado por TEUs em Dolares' = EXTERNALMEASURE("CV Orçado por TEUs em Dolares", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 84733fb1-38de-42ea-b6b3-b704efdaf903
+		sourceLineageTag: b9062367-244e-49fe-aab9-c7e57f70c498
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Qtd Orçado' = EXTERNALMEASURE("Qtd Orçado", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: c601496b-169f-4983-b4f1-a63435777035
+		sourceLineageTag: 4e13eae1-f38c-4602-a133-6dcecfb10249
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Qtd TEUS Orçado' = EXTERNALMEASURE("Qtd TEUS Orçado", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 30447cf9-eec1-4af3-a989-a380d5f4e514
+		sourceLineageTag: ff62de08-716d-4f3c-a65d-4829720af79b
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'RL Realizada em Reais YTD' = EXTERNALMEASURE("RL Realizada em Reais YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: YTD
+		lineageTag: 452f969e-afd0-4d30-83e6-03d3b80e3dd5
+		sourceLineageTag: 5aec2e5b-2e55-42f3-9acc-4a995dc03f43
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'RL Realizada em Reais PYTD' = EXTERNALMEASURE("RL Realizada em Reais PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PYTD
+		lineageTag: 3ccdda7a-83c0-45de-af6c-7d1b2c2da2a5
+		sourceLineageTag: 96862541-289e-48c9-b270-7c80e7964e8e
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'RL Realizada em Reais PY' = EXTERNALMEASURE("RL Realizada em Reais PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PY
+		lineageTag: c3ebd6e0-d610-4556-84dd-da9b5e4695fd
+		sourceLineageTag: 15e6edbb-f546-4c98-8f35-e088ae08a0c6
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'RL Realizada em Dolares YTD' = EXTERNALMEASURE("RL Realizada em Dolares YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: YTD
+		lineageTag: 1bf8e408-5ac3-4773-87b3-cbeaff9b8940
+		sourceLineageTag: ee2146a2-f5c9-456f-91de-878093ee27d8
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'RL Realizada em Dolares PYTD' = EXTERNALMEASURE("RL Realizada em Dolares PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PYTD
+		lineageTag: 3a1eb752-54ce-4e7c-88fd-be51d4c6c881
+		sourceLineageTag: a40b901e-f90e-427c-8a78-6e83976aecf0
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'RL Realizada em Dolares PY' = EXTERNALMEASURE("RL Realizada em Dolares PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PY
+		lineageTag: d88fba87-4024-49fd-89f0-4b31c1a43285
+		sourceLineageTag: 09dd3de6-3d9c-4ab8-9c02-1d77a1ce65cd
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'RL Orçado em Reais YTD' = EXTERNALMEASURE("RL Orçado em Reais YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: YTD
+		lineageTag: c8dc0ad4-6f3f-4369-a706-fef14c26d366
+		sourceLineageTag: c15a7cc1-682b-4a54-bee7-99281435e5b7
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'RL Orçado em Reais PYTD' = EXTERNALMEASURE("RL Orçado em Reais PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PYTD
+		lineageTag: ebc29070-0f94-4d29-9751-2f6374ba4270
+		sourceLineageTag: e5da6826-7323-4002-88c2-52a2a91fc6cc
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'RL Orçado em Reais PY' = EXTERNALMEASURE("RL Orçado em Reais PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PY
+		lineageTag: 64c6e31f-1b9d-43ff-9000-cc18ba5e5d21
+		sourceLineageTag: 78e48d0a-ae5f-45c3-b460-0099ddcb98a2
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'RL Orçado em Dolares YTD' = EXTERNALMEASURE("RL Orçado em Dolares YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: YTD
+		lineageTag: d14338de-7cc9-465e-b14a-1cf9ceffd261
+		sourceLineageTag: d70ad405-7433-47cb-8588-c7fdde72ff65
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'RL Orçado em Dolares PYTD' = EXTERNALMEASURE("RL Orçado em Dolares PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PYTD
+		lineageTag: f81eeb8e-7189-475f-9291-760256f0bbcd
+		sourceLineageTag: 06187d6c-63a5-4c14-862a-e5d36253ac61
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'RL Orçado em Dolares PY' = EXTERNALMEASURE("RL Orçado em Dolares PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PY
+		lineageTag: 55d3260e-64d6-4646-8a40-e172954cc276
+		sourceLineageTag: 9568cb71-d4d5-4f9a-8f7c-6242490ddd1d
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'CV Realizado em Reais YTD' = EXTERNALMEASURE("CV Realizado em Reais YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: YTD
+		lineageTag: 67c3b156-84e7-438c-a0c5-4d89faa02f7d
+		sourceLineageTag: 1a1c041d-15a3-4cdb-8c4e-7347468151f9
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'CV Realizado em Reais PYTD' = EXTERNALMEASURE("CV Realizado em Reais PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PYTD
+		lineageTag: 780b66e0-3ecb-4c9d-9164-caba8de576f3
+		sourceLineageTag: 949a6984-8c97-480d-abde-db91c2de45b4
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'CV Realizado em Reais PY' = EXTERNALMEASURE("CV Realizado em Reais PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PY
+		lineageTag: 533032f0-81e0-4c4c-94d7-4261bf23372e
+		sourceLineageTag: f7f9b9a5-ea56-42b3-b7bc-0a12449ec783
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'CV Realizado em Dolares YTD' = EXTERNALMEASURE("CV Realizado em Dolares YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: YTD
+		lineageTag: 6a30c215-5b63-4822-ba1c-47a2f7b74e5a
+		sourceLineageTag: 13122a63-91dc-4ec9-a766-4810d51d64d5
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'CV Realizado em Dolares PYTD' = EXTERNALMEASURE("CV Realizado em Dolares PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PYTD
+		lineageTag: 75458932-301f-46a3-9227-651f01edd0e5
+		sourceLineageTag: 30aa8acc-eef7-4a6e-8b2f-34e25713bea0
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'CV Realizado em Dolares PY' = EXTERNALMEASURE("CV Realizado em Dolares PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PY
+		lineageTag: 421b9c54-ab30-47b2-b1f9-5a60fc9e6260
+		sourceLineageTag: 893d9e89-cb7c-43c9-b9b0-70a6ef4d779b
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'CV Orçado em Reais YTD' = EXTERNALMEASURE("CV Orçado em Reais YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: YTD
+		lineageTag: 721b015e-6ba0-4d29-bccc-4502fe0129d2
+		sourceLineageTag: 15dbe554-f644-4556-af0e-6c4e5f3f2dce
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'CV Orçado em Reais PYTD' = EXTERNALMEASURE("CV Orçado em Reais PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PYTD
+		lineageTag: 4a397825-be4c-4023-9db7-06cab724d280
+		sourceLineageTag: b179c640-b11f-423b-af79-25669dc70995
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'CV Orçado em Reais PY' = EXTERNALMEASURE("CV Orçado em Reais PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PY
+		lineageTag: 3b4b6013-342b-4445-a283-c7f61e4f96ed
+		sourceLineageTag: 9a34a21d-9d06-4f90-911d-6e6ad2b9a29e
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'CV Orçado em Dolares YTD' = EXTERNALMEASURE("CV Orçado em Dolares YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: YTD
+		lineageTag: 5a649e39-66ce-49ef-aab2-ea0f8922f334
+		sourceLineageTag: 42772ad9-0f5c-438f-b4d5-2df44c7604d7
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'CV Orçado em Dolares PYTD' = EXTERNALMEASURE("CV Orçado em Dolares PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PYTD
+		lineageTag: 134a06c8-994b-43b5-b2dd-a93184c1acba
+		sourceLineageTag: 36cf6610-b8fe-44a6-ac4d-d1da5243936e
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'CV Orçado em Dolares PY' = EXTERNALMEASURE("CV Orçado em Dolares PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PY
+		lineageTag: 38248720-5d65-4138-b0df-0509929db6c0
+		sourceLineageTag: e0765371-e370-4614-af0e-5f2dcf92258c
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Qtd de Cntrs Movimentos no Mês YTD' = EXTERNALMEASURE("Qtd de Cntrs Movimentos no Mês YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: YTD
+		lineageTag: ed80adb5-9f48-4245-81e4-ec7dddb6e350
+		sourceLineageTag: 57c0a410-dff8-42f5-a5cd-71e50473f37d
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Qtd de Cntrs Movimentos no Mês PYTD' = EXTERNALMEASURE("Qtd de Cntrs Movimentos no Mês PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PYTD
+		lineageTag: 89307f78-0b8e-404f-8eb5-4520b89914ab
+		sourceLineageTag: 7b3a01b2-5e12-4b20-acdc-8949a59040b7
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Qtd de Cntrs Movimentos no Mês PY' = EXTERNALMEASURE("Qtd de Cntrs Movimentos no Mês PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PY
+		lineageTag: 0398693b-6bf8-4926-8525-cba791136222
+		sourceLineageTag: c3c968c4-5c2e-4f28-8e56-8ce2b6377f47
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Qtd de TEUs Movimentado no Mês YTD' = EXTERNALMEASURE("Qtd de TEUs Movimentado no Mês YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: YTD
+		lineageTag: ead84174-17b5-4b9f-8668-308d9ab7b7a3
+		sourceLineageTag: 6e7e5289-0684-4d76-95f7-363767ac9631
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Qtd de TEUs Movimentado no Mês PYTD' = EXTERNALMEASURE("Qtd de TEUs Movimentado no Mês PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PYTD
+		lineageTag: 7a4077fe-ab90-46e0-b06f-0d804788adc7
+		sourceLineageTag: f563e4ea-46de-42cf-a625-9f69b55623ef
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Qtd de TEUs Movimentado no Mês PY' = EXTERNALMEASURE("Qtd de TEUs Movimentado no Mês PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PY
+		lineageTag: 78d643b0-65b5-4a24-a4cd-4738e642bff2
+		sourceLineageTag: e75ca8e5-3d4a-4ce1-a15d-11fd5ced5fad
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'RL/CNTR Realizado em Reais YTD' = EXTERNALMEASURE("RL/CNTR Realizado em Reais YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		displayFolder: YTD
+		lineageTag: fcafccee-93f3-4397-ab5c-b2925d4edd38
+		sourceLineageTag: 905995ee-f423-4d44-8de6-d5b2ba39d22b
+		dataCategory: Uncategorized
+
+	measure 'RL/CNTR Realizado em Reais PYTD' = EXTERNALMEASURE("RL/CNTR Realizado em Reais PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		displayFolder: PYTD
+		lineageTag: 9f53ed62-31e2-4452-9fdb-e6da2c4e1230
+		sourceLineageTag: 599ec0e5-5a71-4b4c-92ba-242caa857114
+		dataCategory: Uncategorized
+
+	measure 'RL/CNTR Realizado em Reais PY' = EXTERNALMEASURE("RL/CNTR Realizado em Reais PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		displayFolder: PY
+		lineageTag: 33a6e2ef-4ec8-4328-9e17-800d677f79a8
+		sourceLineageTag: 18dce555-7945-4890-be80-12f54adbacc7
+		dataCategory: Uncategorized
+
+	measure 'RL/CNTR Realizado em Dolares YTD' = EXTERNALMEASURE("RL/CNTR Realizado em Dolares YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		displayFolder: YTD
+		lineageTag: 80394c1a-84fa-45ed-b11d-3a9ac86f83e9
+		sourceLineageTag: a7d2559e-bbb1-4cde-9b97-65d0379ae47c
+		dataCategory: Uncategorized
+
+	measure 'RL/CNTR Realizado em Dolares PYTD' = EXTERNALMEASURE("RL/CNTR Realizado em Dolares PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		displayFolder: PYTD
+		lineageTag: 0d38bdea-e2d9-409f-81bb-efc269c0b15a
+		sourceLineageTag: f21843da-fdbd-4ae4-9ecb-63b6f7ecd4d2
+		dataCategory: Uncategorized
+
+	measure 'RL/CNTR Realizado em Dolares PY' = EXTERNALMEASURE("RL/CNTR Realizado em Dolares PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		displayFolder: PY
+		lineageTag: 2a38aab3-60d9-4001-9f61-7bda591f92d5
+		sourceLineageTag: 7df838bb-ad9c-458c-8795-a24706056ca1
+		dataCategory: Uncategorized
+
+	measure 'RL/CNTR Orçado em Reais YTD' = EXTERNALMEASURE("RL/CNTR Orçado em Reais YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		displayFolder: YTD
+		lineageTag: 2d8710ca-afc9-4d15-9545-c59366029dc3
+		sourceLineageTag: d5400d1b-713e-422a-a9b7-31ddff400855
+		dataCategory: Uncategorized
+
+	measure 'RL/CNTR Orçado em Reais PYTD' = EXTERNALMEASURE("RL/CNTR Orçado em Reais PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		displayFolder: PYTD
+		lineageTag: 30250cb2-a986-4a63-8993-7903881702bf
+		sourceLineageTag: 653ea483-d546-4056-9645-bc9f2686c3e2
+		dataCategory: Uncategorized
+
+	measure 'RL/CNTR Orçado em Reais PY' = EXTERNALMEASURE("RL/CNTR Orçado em Reais PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		displayFolder: PY
+		lineageTag: 1ca072f1-c5ef-4446-a549-9b397672e61b
+		sourceLineageTag: f38436f2-8526-41da-8a46-e4476f3f1450
+		dataCategory: Uncategorized
+
+	measure 'RL/CNTR Orçado em Dolares YTD' = EXTERNALMEASURE("RL/CNTR Orçado em Dolares YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		displayFolder: YTD
+		lineageTag: a5c872b8-3a1f-40b0-b711-98770b24d4be
+		sourceLineageTag: ac80bb39-4b70-4c38-be45-72e80a2b06cb
+		dataCategory: Uncategorized
+
+	measure 'RL/CNTR Orçado em Dolares PYTD' = EXTERNALMEASURE("RL/CNTR Orçado em Dolares PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		displayFolder: PYTD
+		lineageTag: 4c8b897f-4e64-4e62-b61f-28b67dc2039d
+		sourceLineageTag: f361b70b-f519-46bb-a89e-e71d5c62b0cd
+		dataCategory: Uncategorized
+
+	measure 'RL/CNTR Orçado em Dolares PY' = EXTERNALMEASURE("RL/CNTR Orçado em Dolares PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		displayFolder: PY
+		lineageTag: 08e7fcdf-047b-44a9-abb4-fcc2e10ebee6
+		sourceLineageTag: 197e0e5d-decf-4ef5-9b24-59afe9509e40
+		dataCategory: Uncategorized
+
+	measure 'CV/CNTR Realizado em Reais YTD' = EXTERNALMEASURE("CV/CNTR Realizado em Reais YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		displayFolder: YTD
+		lineageTag: 90db77e4-79eb-4c5f-b727-e9fd03a99a64
+		sourceLineageTag: 0a85ec49-071b-406b-bcb9-518f0e6fdd95
+		dataCategory: Uncategorized
+
+	measure 'CV/CNTR Realizado em Reais PYTD' = EXTERNALMEASURE("CV/CNTR Realizado em Reais PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		displayFolder: PYTD
+		lineageTag: 375d50f5-12b3-434e-96ce-d5891b3af472
+		sourceLineageTag: e8f93ed9-5f59-43bd-b526-a4ad4c3b8b3b
+		dataCategory: Uncategorized
+
+	measure 'CV/CNTR Realizado em Reais PY' = EXTERNALMEASURE("CV/CNTR Realizado em Reais PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		displayFolder: PY
+		lineageTag: 06b58be5-4a78-4459-9793-e4227bcf3c06
+		sourceLineageTag: 53bc04b8-a68c-45f6-99ac-345ed34f5629
+		dataCategory: Uncategorized
+
+	measure 'CV/CNTR Realizado em Dolares YTD' = EXTERNALMEASURE("CV/CNTR Realizado em Dolares YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		displayFolder: YTD
+		lineageTag: 292497fa-b3b7-40a0-a52a-1da703debe17
+		sourceLineageTag: 28dd9024-d5a7-428c-9735-53c0003f1bbb
+		dataCategory: Uncategorized
+
+	measure 'CV/CNTR Realizado em Dolares PYTD' = EXTERNALMEASURE("CV/CNTR Realizado em Dolares PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		displayFolder: PYTD
+		lineageTag: 4926dfc7-ce2c-4a44-8470-2127784e9a77
+		sourceLineageTag: 3f259f89-bf10-49bb-81a7-11869cd1c816
+		dataCategory: Uncategorized
+
+	measure 'CV/CNTR Realizado em Dolares PY' = EXTERNALMEASURE("CV/CNTR Realizado em Dolares PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		displayFolder: PY
+		lineageTag: 519fd693-2e75-4282-820b-85800c2e9db1
+		sourceLineageTag: e5e47d40-b3d6-4bcf-b244-a17ebad90e95
+		dataCategory: Uncategorized
+
+	measure 'CV/CNTR Orçado em Reais YTD' = EXTERNALMEASURE("CV/CNTR Orçado em Reais YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		displayFolder: YTD
+		lineageTag: c2ea5434-ba2d-4f68-9f90-e58d89963a08
+		sourceLineageTag: e2421b6d-2e99-4bc5-afe0-0fe67824c312
+		dataCategory: Uncategorized
+
+	measure 'CV/CNTR Orçado em Reais PYTD' = EXTERNALMEASURE("CV/CNTR Orçado em Reais PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		displayFolder: PYTD
+		lineageTag: 293fe7d4-ecdc-4068-8664-7ebf9690e5e3
+		sourceLineageTag: ea0d3ccc-b329-4e50-89f3-8fad0391c5e4
+		dataCategory: Uncategorized
+
+	measure 'CV/CNTR Orçado em Reais PY' = EXTERNALMEASURE("CV/CNTR Orçado em Reais PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		displayFolder: PY
+		lineageTag: fa4cd4eb-b85b-48ce-b180-cce92f94c84a
+		sourceLineageTag: ff23a9b8-c954-4c8d-a668-20cdb68c6ae3
+		dataCategory: Uncategorized
+
+	measure 'CV/CNTR Orçado em Dolares YTD' = EXTERNALMEASURE("CV/CNTR Orçado em Dolares YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		displayFolder: YTD
+		lineageTag: 8eeac778-12f7-4b00-9232-0504bc1542c9
+		sourceLineageTag: c69706cf-9a93-4098-bc4e-5fbf6b766c0a
+		dataCategory: Uncategorized
+
+	measure 'CV/CNTR Orçado em Dolares PYTD' = EXTERNALMEASURE("CV/CNTR Orçado em Dolares PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		displayFolder: PYTD
+		lineageTag: 9d9d0c48-4177-4408-a41b-6610cc9c8efa
+		sourceLineageTag: bf35b29c-e28b-467f-b44d-0fb3bacb84b3
+		dataCategory: Uncategorized
+
+	measure 'CV/CNTR Orçado em Dolares PY' = EXTERNALMEASURE("CV/CNTR Orçado em Dolares PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		displayFolder: PY
+		lineageTag: ef5f96e0-44bd-4e13-813f-83667e285a10
+		sourceLineageTag: cd118fb2-ba66-495c-b445-72474f030b88
+		dataCategory: Uncategorized
+
+	measure 'RL Realizado por TEUS em Reais YTD' = EXTERNALMEASURE("RL Realizado por TEUS em Reais YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: YTD
+		lineageTag: 1280b6c2-9e63-4197-b21f-d03d2d19b4f0
+		sourceLineageTag: a300c493-08d6-4392-86b1-c92abd65fb93
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'RL Realizado por TEUS em Reais PYTD' = EXTERNALMEASURE("RL Realizado por TEUS em Reais PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PYTD
+		lineageTag: 680a7b57-9682-41a8-a443-7bb62865cb38
+		sourceLineageTag: 57f5e5e8-2724-4366-b278-6b92c63747e8
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'RL Realizado por TEUS em Reais PY' = EXTERNALMEASURE("RL Realizado por TEUS em Reais PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PY
+		lineageTag: 0ac25b75-5964-4432-9070-326f2daca375
+		sourceLineageTag: 0f6082c8-f621-44eb-b450-ba98c286bea9
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'RL Realizado por TEUs em Dolares YTD' = EXTERNALMEASURE("RL Realizado por TEUs em Dolares YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: YTD
+		lineageTag: b935a773-92a2-4979-a207-ec145cf6abfb
+		sourceLineageTag: 960f5c13-8180-4dc3-863a-00187ed19bc0
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'RL Realizado por TEUs em Dolares PYTD' = EXTERNALMEASURE("RL Realizado por TEUs em Dolares PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PYTD
+		lineageTag: 1a580b6b-a3f4-4033-80e5-554ccea64ace
+		sourceLineageTag: ae2ad07a-256d-4233-af23-d0d5327f9c06
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'RL Realizado por TEUs em Dolares PY' = EXTERNALMEASURE("RL Realizado por TEUs em Dolares PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PY
+		lineageTag: a44c8f83-d59a-4efd-b37a-ac09942f2eb3
+		sourceLineageTag: e77a5822-731b-4e38-b692-89c218c01afe
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'RL Orçado por TEUs em Reais YTD' = EXTERNALMEASURE("RL Orçado por TEUs em Reais YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: YTD
+		lineageTag: 4b98b465-f90e-4c76-a3ae-c81f12264593
+		sourceLineageTag: 87a04066-3946-4e22-ba8f-35e0026507f9
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'RL Orçado por TEUs em Reais PYTD' = EXTERNALMEASURE("RL Orçado por TEUs em Reais PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PYTD
+		lineageTag: e8232086-6f8c-42ea-90fb-1b7b43dc236b
+		sourceLineageTag: 6d482c96-c19f-40fd-bec0-569fa870fbea
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'RL Orçado por TEUs em Reais PY' = EXTERNALMEASURE("RL Orçado por TEUs em Reais PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PY
+		lineageTag: 0f8773c6-d9b1-4242-81f6-d8680b249443
+		sourceLineageTag: 0aa289fc-410f-47ff-b68e-452041e1faaa
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'RL Orçado por TEUs em Dolares YTD' = EXTERNALMEASURE("RL Orçado por TEUs em Dolares YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: YTD
+		lineageTag: aeb370df-7470-45ab-99fe-96c7d4a6e55a
+		sourceLineageTag: 02f941d5-528b-4c3a-a2ee-63e5bcf0aa2a
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'RL Orçado por TEUs em Dolares PYTD' = EXTERNALMEASURE("RL Orçado por TEUs em Dolares PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PYTD
+		lineageTag: c6e6fa2d-1400-413d-a7ec-2e47722f020d
+		sourceLineageTag: ae04585b-3eeb-4e11-9a5e-dfacdee1b2f2
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'RL Orçado por TEUs em Dolares PY' = EXTERNALMEASURE("RL Orçado por TEUs em Dolares PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PY
+		lineageTag: 44d01d0e-9729-44d3-82fc-37638cfeb448
+		sourceLineageTag: 8308b86a-c271-45a5-90b2-aa0fd14ebfcf
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'CV Realizado por TEUs em Reais YTD' = EXTERNALMEASURE("CV Realizado por TEUs em Reais YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: YTD
+		lineageTag: 0c004832-c866-44b6-9730-b9eef17a54bb
+		sourceLineageTag: 822da863-dc73-46a3-a577-3ccd71c2575c
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'CV Realizado por TEUs em Reais PYTD' = EXTERNALMEASURE("CV Realizado por TEUs em Reais PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PYTD
+		lineageTag: 0ec3525d-9d7f-4502-ac30-128034751af5
+		sourceLineageTag: 191784fd-12c6-441e-8752-9b78298cc7b7
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'CV Realizado por TEUs em Reais PY' = EXTERNALMEASURE("CV Realizado por TEUs em Reais PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PY
+		lineageTag: f5bd987e-d9e7-49c0-913b-ad2b8819d5f4
+		sourceLineageTag: 62ccbd05-b1b3-4976-9091-17cf7e2494eb
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'CV Realizado por TEUs em Dolares YTD' = EXTERNALMEASURE("CV Realizado por TEUs em Dolares YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: YTD
+		lineageTag: fd769f76-cfd6-460c-960f-b217bd0f34d4
+		sourceLineageTag: f79c8139-45fe-4228-85e7-2f39b3541c78
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'CV Realizado por TEUs em Dolares PYTD' = EXTERNALMEASURE("CV Realizado por TEUs em Dolares PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PYTD
+		lineageTag: 23ad00f9-7ce3-495a-a8f6-16bc657bc16b
+		sourceLineageTag: 71d3444d-6e1f-4f92-8fe6-d80c637c4a9c
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'CV Realizado por TEUs em Dolares PY' = EXTERNALMEASURE("CV Realizado por TEUs em Dolares PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PY
+		lineageTag: 86529601-9b1d-4aca-a13f-3cee102025fb
+		sourceLineageTag: e6e5a0f4-99f2-4b9f-833b-b9d5c02e325d
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'CV Orçado por TEUs em Reais YTD' = EXTERNALMEASURE("CV Orçado por TEUs em Reais YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: YTD
+		lineageTag: 4faf8ea8-396a-4c60-be28-78db5b66a954
+		sourceLineageTag: bb4afc5e-5c75-44d8-b27c-49b1b6a43c76
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'CV Orçado por TEUs em Reais PYTD' = EXTERNALMEASURE("CV Orçado por TEUs em Reais PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PYTD
+		lineageTag: 212c40e4-611b-44d2-9c8a-2d7678bde5fb
+		sourceLineageTag: 8c49e571-82f7-4f2d-a34b-a3f32bb15b40
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'CV Orçado por TEUs em Reais PY' = EXTERNALMEASURE("CV Orçado por TEUs em Reais PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PY
+		lineageTag: 8b34ce06-b2f5-4389-89bf-ea07a0a4f8b6
+		sourceLineageTag: aeabf76e-bdc8-45a2-8ce3-55e0b6ee7c60
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'CV Orçado por TEUs em Dolares YTD' = EXTERNALMEASURE("CV Orçado por TEUs em Dolares YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: YTD
+		lineageTag: 29617f72-1723-4457-a03d-e491c5c56950
+		sourceLineageTag: ca408851-914b-465c-8ee4-8ee32c0d3ca3
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'CV Orçado por TEUs em Dolares PYTD' = EXTERNALMEASURE("CV Orçado por TEUs em Dolares PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PYTD
+		lineageTag: d3fc22ed-0f8b-461f-8e49-ec8cd0cfbb3b
+		sourceLineageTag: f2cf41c6-e815-4bc8-937d-7ba15e903c14
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'CV Orçado por TEUs em Dolares PY' = EXTERNALMEASURE("CV Orçado por TEUs em Dolares PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PY
+		lineageTag: 4d3411d1-08f0-4aee-9a63-041e17636a5f
+		sourceLineageTag: e92be72b-2caf-4c55-9b1c-023f98127471
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Qtd Orçado YTD' = EXTERNALMEASURE("Qtd Orçado YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: YTD
+		lineageTag: 0f41b020-d06e-4ce1-8b75-5d8609654494
+		sourceLineageTag: 314e6dfd-49c0-4eca-977c-20c0b7778f7d
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Qtd Orçado PYTD' = EXTERNALMEASURE("Qtd Orçado PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PYTD
+		lineageTag: e91aa7d6-8ed1-47d2-b0bb-c598185350cc
+		sourceLineageTag: 67183067-e3cb-48e4-a63c-0ce32d49de4f
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Qtd Orçado PY' = EXTERNALMEASURE("Qtd Orçado PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PY
+		lineageTag: 1a5a7d20-c24d-443d-bf59-abfc5ed618d2
+		sourceLineageTag: 9749a580-cf0b-40d3-a3db-eb897ea72fd4
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Qtd TEUS Orçado YTD' = EXTERNALMEASURE("Qtd TEUS Orçado YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: YTD
+		lineageTag: 056db805-e747-4ab5-9927-c710660834ac
+		sourceLineageTag: 7f238017-01d4-4457-991a-7d95f2887cb3
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Qtd TEUS Orçado PYTD' = EXTERNALMEASURE("Qtd TEUS Orçado PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PYTD
+		lineageTag: cda69aba-734c-4149-a9de-9278fe3a5385
+		sourceLineageTag: 0f8d533b-fc78-4f09-a5b6-b6bb88723abe
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Qtd TEUS Orçado PY' = EXTERNALMEASURE("Qtd TEUS Orçado PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PY
+		lineageTag: 9a05f3b6-487d-47b7-ace7-753d41f977c0
+		sourceLineageTag: c27d17ba-bddb-45b0-b8a5-f5d3cf1b3ab9
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ID_INDICADORES_POR_MOVIMENTO
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 0dc9ea35-b3ad-49c0-9327-2d0f8e61f223
+		sourceLineageTag: 510b01f0-3ade-4fb8-a575-c296b9310fe0
+		dataCategory: Uncategorized
+		summarizeBy: count
+		sourceColumn: ID_INDICADORES_POR_MOVIMENTO
+
+		annotation SummarizationSetBy = User
+
+	column COD_EMPR_SAP
+		dataType: string
+		isHidden
+		lineageTag: 25e28d21-5bd4-4873-b101-ec39d137f0cc
+		sourceLineageTag: 5052aa05-f8d8-47e3-b6d8-8f5cce0ecad0
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: COD_EMPR_SAP
+
+		annotation SummarizationSetBy = User
+
+	column TEMPO_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: b7c2aea1-6718-440c-81c0-813a0f94997c
+		sourceLineageTag: 2f6f881c-d52b-4b67-b98d-4766577b1789
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: TEMPO_ID
+
+		annotation SummarizationSetBy = User
+
+	column RL_VALOR_REALIZADO_BRL
+		dataType: double
+		isHidden
+		lineageTag: 1667e652-154a-4075-951f-f5f2bf4394a9
+		sourceLineageTag: e3213c74-370b-4a18-8b15-324d59620551
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: RL_VALOR_REALIZADO_BRL
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column RL_VALOR_REALIZADO_USD
+		dataType: double
+		isHidden
+		lineageTag: 5e7a46d7-a591-4033-9f60-0edfe6cba64e
+		sourceLineageTag: c67d19de-daf9-4349-8927-1ff8dcea68f2
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: RL_VALOR_REALIZADO_USD
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column RL_VALOR_ORCADO_BRL
+		dataType: double
+		isHidden
+		lineageTag: ccce598e-6b3e-4c66-84d0-53e8680ab2bc
+		sourceLineageTag: 8fbe72c6-ed39-409b-9d34-b548403276aa
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: RL_VALOR_ORCADO_BRL
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column RL_VALOR_ORCADO_USD
+		dataType: double
+		isHidden
+		lineageTag: 705d2468-3d7c-46ad-9329-4c0f97f02303
+		sourceLineageTag: 4fb613a2-bf26-4fad-86b1-4fc6a33db30f
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: RL_VALOR_ORCADO_USD
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CV_VALOR_REALIZADO_BRL
+		dataType: double
+		isHidden
+		lineageTag: 28744442-5d48-4ff5-80d8-a86d8a23420c
+		sourceLineageTag: 4fecf84d-be91-42ac-86f0-2c7691ce47bf
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: CV_VALOR_REALIZADO_BRL
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CV_VALOR_REALIZADO_USD
+		dataType: double
+		isHidden
+		lineageTag: 97972a62-418a-4a14-9c81-b017d6551f8b
+		sourceLineageTag: b2d44143-3c7e-49f7-9fa7-89cb9fe317fb
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: CV_VALOR_REALIZADO_USD
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CV_VALOR_ORCADO_BRL
+		dataType: double
+		isHidden
+		lineageTag: 3fd1ac69-ee36-4a12-8528-610350b87e10
+		sourceLineageTag: 55903926-da5a-4344-bcba-7d9c930923af
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: CV_VALOR_ORCADO_BRL
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CV_VALOR_ORCADO_USD
+		dataType: double
+		isHidden
+		lineageTag: 7ded5daa-e4af-4649-945f-05ea087d51d8
+		sourceLineageTag: f54f462f-979b-4748-9511-a0de2287c490
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: CV_VALOR_ORCADO_USD
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column QTD_CNTRS
+		dataType: double
+		isHidden
+		lineageTag: 0e733bd0-99e7-4a94-bd77-f7abf2c091f5
+		sourceLineageTag: d38fc104-57ae-4f32-8aa1-5df43bca9874
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: QTD_CNTRS
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column QTD_TEUS
+		dataType: double
+		isHidden
+		lineageTag: 6a9a9833-ee9c-4dc0-be7b-1c5b8c829ea5
+		sourceLineageTag: be967a00-f06a-4583-84e5-e54c0c8dde98
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: QTD_TEUS
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column RL_REALIZADO_BRL_POR_CNTR
+		dataType: double
+		isHidden
+		lineageTag: a12a16c4-b67d-4474-a5a3-a30e0189b7da
+		sourceLineageTag: d30a8245-ce73-49c9-993f-6456f49ae9b3
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: RL_REALIZADO_BRL_POR_CNTR
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column RL_REALIZADO_USD_POR_CNTR
+		dataType: double
+		isHidden
+		lineageTag: 83a853db-ed01-4ff3-b34c-5ab7566c9fab
+		sourceLineageTag: 137b66d1-9300-439d-93d6-799e51b9cf7d
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: RL_REALIZADO_USD_POR_CNTR
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column RL_ORCADO_BRL_POR_CNTR
+		dataType: double
+		isHidden
+		lineageTag: a13de9c8-c591-418b-9f96-44e7c6551b21
+		sourceLineageTag: 1581ef80-8c9c-4e5c-8a2b-6a53c9922ebe
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: RL_ORCADO_BRL_POR_CNTR
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column RL_ORCADO_USD_POR_CNTR
+		dataType: double
+		isHidden
+		lineageTag: 1ec07435-eccb-4554-b05b-3261b29b77f6
+		sourceLineageTag: 5b516902-858e-4256-ab5f-3131a8c41393
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: RL_ORCADO_USD_POR_CNTR
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CV_REALIZADO_BRL_POR_CNTR
+		dataType: double
+		isHidden
+		lineageTag: 67b91f66-7d53-40e1-a2fd-4c33f59811cf
+		sourceLineageTag: 897ea142-1963-4a4a-8b1b-77217aba764a
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: CV_REALIZADO_BRL_POR_CNTR
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CV_REALIZADO_USD_POR_CNTR
+		dataType: double
+		isHidden
+		lineageTag: 5d0d1d84-2472-41ad-b968-1adbef4c3756
+		sourceLineageTag: bcd5d351-e1d7-4f62-aa7e-15d2ed3f9ec5
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: CV_REALIZADO_USD_POR_CNTR
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CV_ORCADO_BRL_POR_CNTR
+		dataType: double
+		isHidden
+		lineageTag: ea1c25b9-1ed4-47d9-9ec3-ea0908abb478
+		sourceLineageTag: 3145152a-4e5c-461e-b430-1b9ad1cdd3df
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: CV_ORCADO_BRL_POR_CNTR
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CV_ORCADO_USD_POR_CNTR
+		dataType: double
+		isHidden
+		lineageTag: 08d7a0c3-ef4b-4506-8545-c271d77a944e
+		sourceLineageTag: d9a99ee5-6c8e-4f69-8978-b8e1e6faad4b
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: CV_ORCADO_USD_POR_CNTR
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column RL_REALIZADO_BRL_POR_TEUS
+		dataType: double
+		isHidden
+		lineageTag: 7676dee8-f995-4a98-a334-84b65c1f8368
+		sourceLineageTag: 503bd4db-3947-4664-9c76-b7677277a9fb
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: RL_REALIZADO_BRL_POR_TEUS
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column RL_REALIZADO_USD_POR_TEUS
+		dataType: double
+		isHidden
+		lineageTag: d7e6b53f-ce05-4ac0-967e-46538247b6b0
+		sourceLineageTag: 69b9d79b-c3fb-4196-9aa7-b97b0eba4925
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: RL_REALIZADO_USD_POR_TEUS
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column RL_ORCADO_BRL_POR_TEUS
+		dataType: double
+		isHidden
+		lineageTag: 90e8bfb1-1aed-4f43-a601-540815c99fa1
+		sourceLineageTag: af8d6099-6f14-43bf-9647-68165109320c
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: RL_ORCADO_BRL_POR_TEUS
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column RL_ORCADO_USD_POR_TEUS
+		dataType: double
+		isHidden
+		lineageTag: 2e567395-87e8-4caf-8986-5c8d38f10de2
+		sourceLineageTag: ca9a84af-bb01-4d05-aa19-034df0aae942
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: RL_ORCADO_USD_POR_TEUS
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CV_REALIZADO_BRL_POR_TEUS
+		dataType: double
+		isHidden
+		lineageTag: 500acd4d-8da7-465d-a662-452453544306
+		sourceLineageTag: 8f79a141-967c-4d95-aea7-8651f3a0cf39
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: CV_REALIZADO_BRL_POR_TEUS
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CV_REALIZADO_USD_POR_TEUS
+		dataType: double
+		isHidden
+		lineageTag: 72a3afb4-6600-4d04-b316-8d8098a01ce4
+		sourceLineageTag: eca9746f-7aa6-407b-a637-4ea478366f98
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: CV_REALIZADO_USD_POR_TEUS
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CV_ORCADO_BRL_POR_TEUS
+		dataType: double
+		isHidden
+		lineageTag: 21cd8056-710c-42d5-b1b3-48639a923634
+		sourceLineageTag: 5f9c50eb-7089-47b5-93be-3c0445e0c2fe
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: CV_ORCADO_BRL_POR_TEUS
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CV_ORCADO_USD_POR_TEUS
+		dataType: double
+		isHidden
+		lineageTag: c88b526a-0f63-49e4-a26c-d3bf395a7469
+		sourceLineageTag: ab10bdbf-4403-4032-96ec-cf627d20ab8a
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: CV_ORCADO_USD_POR_TEUS
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column COD_DIVISAO_SAP
+		dataType: string
+		isHidden
+		lineageTag: cedbc125-c100-4377-bd4a-bb2aaeda6e3d
+		sourceLineageTag: a7f632de-c0a3-4674-b97b-1be2e00951a8
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: COD_DIVISAO_SAP
+
+		annotation SummarizationSetBy = User
+
+	column QTD_ORCADO
+		dataType: double
+		isHidden
+		lineageTag: 10bd092c-e1c4-4ebc-96a2-2655113b7a6e
+		sourceLineageTag: b0294bb5-a58e-46b5-9a00-0a9a82e34c26
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: QTD_ORCADO
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column QTD_TEUS_ORCADO
+		dataType: double
+		isHidden
+		lineageTag: d6d66dd2-df20-4d27-9899-db8971fbd1b0
+		sourceLineageTag: ce99ee6c-b048-41d0-a887-d150bc050510
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: QTD_TEUS_ORCADO
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '_Medidas Custo variavel e Container' = entity
+		mode: directQuery
+		source
+			entityName: _Medidas Custo variavel e Container
+			expressionSource: 'DirectQuery para AS – Modelo Operações Portuárias'
+

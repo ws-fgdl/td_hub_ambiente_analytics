@@ -1,0 +1,27 @@
+table '#Vol Remoção a Bordo Vazio'
+	lineageTag: d2f0ebd7-8c09-4ee6-a3af-f7fa1ae764fb
+
+	measure 'Valor #Vol Remoção a Bordo Vazio' = SELECTEDVALUE('#Vol Remoção a Bordo Vazio'[#Vol Remoção a Bordo Vazio])
+		lineageTag: f0cb21ca-a319-4ff0-bd78-7f6b4b261708
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#Vol Remoção a Bordo Vazio'
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 96aa1435-4709-4da7-a4bb-754dae77dd36
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition '#Vol Remoção a Bordo Vazio' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 1, 0.01)
+
+	annotation PBI_Id = f805b9f105984904aebc5a9965e75dfa
+

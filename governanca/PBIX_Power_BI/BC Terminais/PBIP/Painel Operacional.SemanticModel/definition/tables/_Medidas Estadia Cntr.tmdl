@@ -1,0 +1,257 @@
+table '_Medidas Estadia Cntr'
+	lineageTag: eca30e78-b190-40fa-9160-a2a5b9b36459
+	sourceLineageTag: 6bf705c1-5e16-4c50-9e2c-8c362daa5abb
+
+	measure 'Qtde Cntrs' = EXTERNALMEASURE("Qtde Cntrs", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 49ff75d4-eb27-414f-a561-ffd7e2835780
+		sourceLineageTag: 122b41a1-5851-4e86-8a99-4b7e0e16eabc
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Dias Estadia Cntr' = EXTERNALMEASURE("Dias Estadia Cntr", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 1fe122c8-3d48-4aae-8308-da6f9fa55968
+		sourceLineageTag: 66078ce8-0fd0-44da-9f34-70f7baf905bb
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Dias Estadia Cntr YTD' = EXTERNALMEASURE("Dias Estadia Cntr YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: YTD
+		lineageTag: 0be60db4-82d5-4b64-af5e-6946c1d6fdd2
+		sourceLineageTag: 994531df-e7b2-482a-9cf5-35798777688b
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Dias Estadia Cntr PYTD' = EXTERNALMEASURE("Dias Estadia Cntr PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PYTD
+		lineageTag: d9f5d774-3860-431c-9beb-bb2981f9c012
+		sourceLineageTag: 9fdb1f9f-f30f-42b8-b507-5df5af12ae6f
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Dias Estadia Cntr PY' = EXTERNALMEASURE("Dias Estadia Cntr PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PY
+		lineageTag: 60ff4cb0-49d1-450c-89dd-52d7514e5741
+		sourceLineageTag: 209aefeb-4ba9-40b5-b986-b0a3cbcf29d2
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Qtde Cntrs YTD' = EXTERNALMEASURE("Qtde Cntrs YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: YTD
+		lineageTag: 2cc872a0-5ff2-4ea0-9877-62b7bc3ac8f6
+		sourceLineageTag: e6e9d30d-a276-4aad-80f4-ac194d3f2eea
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Qtde Cntrs PYTD' = EXTERNALMEASURE("Qtde Cntrs PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PYTD
+		lineageTag: 11f2edf1-b1c4-4390-8cc1-a992eb6fe707
+		sourceLineageTag: 6de8a5da-c04e-4c68-94e1-3b6d09011a25
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Qtde Cntrs PY' = EXTERNALMEASURE("Qtde Cntrs PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PY
+		lineageTag: ab956559-168a-45a4-957a-7beb228bb593
+		sourceLineageTag: 194d750b-6ccf-4b27-bc15-1543b81134a3
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Slicer_Possui_Estadia_Cntr_Sim_Não = EXTERNALMEASURE("Slicer_Possui_Estadia_Cntr_Sim_Não", STRING, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 78f1c0f2-d74b-4ff3-b557-c26d3a3f568f
+		sourceLineageTag: e51616d2-67b0-4d72-a4d6-db9d9ba05f2a
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isText":true}
+
+	column FAT_ESTADIA_CNTR_ID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 66f6c9a8-648c-4ce9-bb8a-e27b56afbf72
+		sourceLineageTag: 640c78f9-506a-4395-9fcb-a5b454cf09b6
+		dataCategory: Uncategorized
+		summarizeBy: count
+		sourceColumn: FAT_ESTADIA_CNTR_ID
+
+		annotation SummarizationSetBy = User
+
+	column COD_EMPR_SAP
+		dataType: string
+		isHidden
+		lineageTag: d52f9617-32fc-4228-a4da-c779ed46aec0
+		sourceLineageTag: c284f666-6393-4bd6-9e12-0f9b8fd5e7e9
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: COD_EMPR_SAP
+
+		annotation SummarizationSetBy = User
+
+	column TEMPO_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: c5fd71c5-7f4d-4213-a7d5-8aca7627a294
+		sourceLineageTag: eebaf225-9f00-4fb3-bbb0-a54229b15fa1
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: TEMPO_ID
+
+		annotation SummarizationSetBy = User
+
+	column TAMANHO
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 05715cfe-c2ad-4a7e-a86a-635de34b256b
+		sourceLineageTag: 63351779-7efa-4525-b67e-9a63682248c1
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: TAMANHO
+
+		annotation SummarizationSetBy = User
+
+	column STATUS
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: d52ac657-a665-4d07-adf9-ae4e8b8e22c2
+		sourceLineageTag: 243a4cbc-374b-471c-afd8-f6159e938305
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: STATUS
+
+		annotation SummarizationSetBy = User
+
+	column MODALIDADE_ID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 3ccc674d-7004-49c5-a483-aa6e93feedfb
+		sourceLineageTag: fd1cafda-cecc-445c-921c-8596f0141276
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: MODALIDADE_ID
+
+		annotation SummarizationSetBy = User
+
+	column TIPO_CONTAINER_ID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: b578b68d-3e0e-4a86-81db-6ab8a0ab7071
+		sourceLineageTag: 77b98568-7287-4396-96fd-936a78d7de2b
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: TIPO_CONTAINER_ID
+
+		annotation SummarizationSetBy = User
+
+	column REEFER
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 894102ad-4a92-4151-9a37-7899164da1f9
+		sourceLineageTag: ff72c928-7eb7-4471-9706-d4d781b1cd59
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: REEFER
+
+		annotation SummarizationSetBy = User
+
+	column ARM_ID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 63b319eb-2286-4fd1-906c-d3b12e7a57a0
+		sourceLineageTag: 00b8e69e-9825-4f49-a66f-974450cad4a3
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: ARM_ID
+
+		annotation SummarizationSetBy = User
+
+	column COD_CLIENTE_SAP
+		dataType: string
+		isHidden
+		lineageTag: 9bc65b8f-5fe0-4f0b-b8cc-6f8cefacca0b
+		sourceLineageTag: 03ff317a-295d-4a63-a4f1-0485b70bc4b7
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: COD_CLIENTE_SAP
+
+		annotation SummarizationSetBy = User
+
+	column GRUPO_ID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 1f7962ed-fa35-462e-805e-c72c06a3315f
+		sourceLineageTag: 0d084846-58ae-4162-bd0f-3807c6f96632
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: GRUPO_ID
+
+		annotation SummarizationSetBy = User
+
+	column VENDEDOR_COMERC_ID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: d53b73f7-966d-44b8-a693-247c20d52f12
+		sourceLineageTag: d2082c00-2fa7-4333-901e-ad6a74b01b94
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: VENDEDOR_COMERC_ID
+
+		annotation SummarizationSetBy = User
+
+	column SEGMENTACAO_ID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 0c8fd83a-497e-4e78-9837-1e235cb97ff4
+		sourceLineageTag: 09a3bbda-d472-4996-8177-89e4b679d743
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: SEGMENTACAO_ID
+
+		annotation SummarizationSetBy = User
+
+	column QTD_CNTRS
+		dataType: double
+		isHidden
+		lineageTag: 4e125740-2570-474b-b9b9-3e9096b85b6b
+		sourceLineageTag: 24e73096-8725-457c-a324-f3f251ca45d8
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: QTD_CNTRS
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DIAS_ESTADIA
+		dataType: double
+		lineageTag: d5c86238-75ba-44ab-a5c3-aedfd80faa62
+		sourceLineageTag: ff5f0b0a-7351-4b70-9e21-1e704c166f3a
+		dataCategory: Uncategorized
+		summarizeBy: average
+		sourceColumn: DIAS_ESTADIA
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '_Medidas Estadia Cntr' = entity
+		mode: directQuery
+		source
+			entityName: _Medidas Estadia Cntr
+			expressionSource: 'DirectQuery para AS – Modelo Operações Portuárias'
+

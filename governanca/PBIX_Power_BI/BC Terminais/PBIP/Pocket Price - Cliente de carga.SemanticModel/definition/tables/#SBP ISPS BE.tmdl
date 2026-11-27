@@ -1,0 +1,27 @@
+table '#SBP ISPS BE'
+	lineageTag: 1fe6d118-db4f-452b-87f8-eb353425491d
+
+	measure 'Valor #SBP ISPS BE' = SELECTEDVALUE('#SBP ISPS BE'[#SBP ISPS])
+		lineageTag: 34c51820-57aa-4063-a225-bc8cd050190a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#SBP ISPS'
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 3a21c800-0949-4116-b1d7-f9be1ffed244
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition '#SBP ISPS BE' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 0.5, 0.0001)
+
+	annotation PBI_Id = 17e91dbdc9a846b8a5b48671b1313e40
+

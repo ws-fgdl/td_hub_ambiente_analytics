@@ -1,0 +1,1792 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "bb1f402e4b5b8bcc3e90",
+  "position": {
+    "x": 27.5,
+    "y": 3600,
+    "z": 256000,
+    "height": 425,
+    "width": 1970,
+    "tabOrder": 256000
+  },
+  "visual": {
+    "visualType": "pivotTable",
+    "query": {
+      "queryState": {
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bussola_comercial"
+                    }
+                  },
+                  "Property": "Agrupamento Subgrupo Princing"
+                }
+              },
+              "queryRef": "bussola_comercial.Agrupamento Subgrupo Princing",
+              "nativeQueryRef": "Sub Grupo Pricing",
+              "active": true,
+              "displayName": "Sub Grupo Pricing"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bussola_comercial"
+                    }
+                  },
+                  "Property": "servico"
+                }
+              },
+              "queryRef": "bussola_comercial.servico",
+              "nativeQueryRef": "servico",
+              "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bussola_comercial"
+                    }
+                  },
+                  "Property": "os"
+                }
+              },
+              "queryRef": "bussola_comercial.os",
+              "nativeQueryRef": "os",
+              "active": false
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "bussola_comercial"
+                        }
+                      },
+                      "Property": "servico"
+                    }
+                  },
+                  "Function": 5
+                }
+              },
+              "queryRef": "Min(bussola_comercial.servico)",
+              "nativeQueryRef": "Qtd OS",
+              "displayName": "Qtd OS"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "bussola_comercial"
+                        }
+                      },
+                      "Property": "dias_servico"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(bussola_comercial.dias_servico)",
+              "nativeQueryRef": "dias serviço",
+              "displayName": "dias serviço"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "bussola_comercial"
+                        }
+                      },
+                      "Property": "dias_isencao"
+                    }
+                  },
+                  "Function": 1
+                }
+              },
+              "queryRef": "Sum(bussola_comercial.dias_isencao)",
+              "nativeQueryRef": "Dias Isenção",
+              "displayName": "Dias Isenção"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "bussola_comercial"
+                        }
+                      },
+                      "Property": "dias_free_time"
+                    }
+                  },
+                  "Function": 1
+                }
+              },
+              "queryRef": "Sum(bussola_comercial.dias_free_time)",
+              "nativeQueryRef": "Dias Freetime",
+              "displayName": "Dias Freetime"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidas PP"
+                    }
+                  },
+                  "Property": "Volume Simulado"
+                }
+              },
+              "queryRef": "Medidas PP.Volume Simulado",
+              "nativeQueryRef": "Volume Simulado"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "bussola_comercial"
+                        }
+                      },
+                      "Property": "volumetria"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(bussola_comercial.volumetria)",
+              "nativeQueryRef": "Soma de volumetria"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidas PP"
+                    }
+                  },
+                  "Property": "price_p1"
+                }
+              },
+              "queryRef": "Medidas PP.price_p1",
+              "nativeQueryRef": "Preço P1",
+              "displayName": "Preço P1"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidas PP"
+                    }
+                  },
+                  "Property": "Preço P1 Simulado"
+                }
+              },
+              "queryRef": "Medidas PP.Preço P1 Simulado",
+              "nativeQueryRef": "Preço P1 Simulado"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "bussola_comercial"
+                        }
+                      },
+                      "Property": "periodo1"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(bussola_comercial.periodo1)",
+              "nativeQueryRef": "Dias P1",
+              "displayName": "Dias P1"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidas PP"
+                    }
+                  },
+                  "Property": "Periodo1_Simulado"
+                }
+              },
+              "queryRef": "Medidas PP.Periodo1_Simulado",
+              "nativeQueryRef": "Periodo1 Simulado",
+              "displayName": "Periodo1 Simulado"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidas PP"
+                    }
+                  },
+                  "Property": "price_p2"
+                }
+              },
+              "queryRef": "Medidas PP.price_p2",
+              "nativeQueryRef": "Preço P2",
+              "displayName": "Preço P2"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidas PP"
+                    }
+                  },
+                  "Property": "Preço P2 Simulado"
+                }
+              },
+              "queryRef": "Medidas PP.Preço P2 Simulado",
+              "nativeQueryRef": "Preço P2 Simulado"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "bussola_comercial"
+                        }
+                      },
+                      "Property": "periodo2"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(bussola_comercial.periodo2)",
+              "nativeQueryRef": "Dias P2",
+              "displayName": "Dias P2"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidas PP"
+                    }
+                  },
+                  "Property": "Periodo2_Simulado"
+                }
+              },
+              "queryRef": "Medidas PP.Periodo2_Simulado",
+              "nativeQueryRef": "Periodo2 Simulado",
+              "displayName": "Periodo2 Simulado"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidas PP"
+                    }
+                  },
+                  "Property": "price_p3"
+                }
+              },
+              "queryRef": "Medidas PP.price_p3",
+              "nativeQueryRef": "Preço P3 (TSV)",
+              "displayName": "Preço P3 (TSV)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidas PP"
+                    }
+                  },
+                  "Property": "Preço P3 Simulado"
+                }
+              },
+              "queryRef": "Medidas PP.Preço P3 Simulado",
+              "nativeQueryRef": "Preço P3 Simulado (TSV)",
+              "displayName": "Preço P3 Simulado (TSV)"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "bussola_comercial"
+                        }
+                      },
+                      "Property": "periodo3"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(bussola_comercial.periodo3)",
+              "nativeQueryRef": "Dias P3",
+              "displayName": "Dias P3"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidas PP"
+                    }
+                  },
+                  "Property": "Periodo3_Simulado"
+                }
+              },
+              "queryRef": "Medidas PP.Periodo3_Simulado",
+              "nativeQueryRef": "Periodo3 Simulado",
+              "displayName": "Periodo3 Simulado"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidas PP"
+                    }
+                  },
+                  "Property": "Faturamento Realizado Carga Exp"
+                }
+              },
+              "queryRef": "Medidas PP.Faturamento Realizado Carga Exp",
+              "nativeQueryRef": "Faturamento Realizado Carga",
+              "displayName": "Faturamento Realizado Carga"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidas PP"
+                    }
+                  },
+                  "Property": "Faturamento Simulado Carga Exp"
+                }
+              },
+              "queryRef": "Medidas PP.Faturamento Simulado Carga Exp",
+              "nativeQueryRef": "Faturamento Simulado Carga",
+              "displayName": "Faturamento Simulado Carga"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidas PP"
+                    }
+                  },
+                  "Property": "Δ Fat. Carga Exp"
+                }
+              },
+              "queryRef": "Medidas PP.Δ Fat. Carga Exp",
+              "nativeQueryRef": "Δ Fat. Carga",
+              "displayName": "Δ Fat. Carga"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "bussola_comercial"
+                      }
+                    },
+                    "Property": "volumetria"
+                  }
+                },
+                "Function": 0
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "expansionStates": [
+      {
+        "roles": [
+          "Rows"
+        ],
+        "levels": [
+          {
+            "queryRefs": [
+              "bussola_comercial.Agrupamento Subgrupo Princing"
+            ],
+            "isCollapsed": true,
+            "identityKeys": [
+              {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bussola_comercial"
+                    }
+                  },
+                  "Property": "Agrupamento Subgrupo Princing"
+                }
+              }
+            ],
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "bussola_comercial.servico"
+            ],
+            "isCollapsed": true,
+            "identityKeys": [
+              {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bussola_comercial"
+                    }
+                  },
+                  "Property": "servico"
+                }
+              }
+            ],
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "bussola_comercial.os"
+            ],
+            "isCollapsed": true,
+            "isPinned": true
+          }
+        ],
+        "root": {
+          "children": [
+            {
+              "identityValues": [
+                {
+                  "Literal": {
+                    "Value": "'Armazenagem Cntr Cheio'"
+                  }
+                }
+              ],
+              "isToggled": true
+            },
+            {
+              "identityValues": [
+                {
+                  "Literal": {
+                    "Value": "'Armazenagem Cntr Cheio'"
+                  }
+                }
+              ],
+              "isToggled": true
+            }
+          ]
+        }
+      }
+    ],
+    "objects": {
+      "columnHeaders": [
+        {
+          "properties": {
+            "autoSizeColumnWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'wf_standard-font, helvetica, arial, sans-serif'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "13D"
+                }
+              }
+            },
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#001C43'"
+                    }
+                  }
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Left'"
+                }
+              }
+            },
+            "titleAlignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Left'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "values": [
+        {
+          "properties": {
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'wf_standard-font, helvetica, arial, sans-serif'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "12D"
+                }
+              }
+            },
+            "valuesOnRow": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "grid": [
+        {
+          "properties": {
+            "gridHorizontal": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "135.66663275826517D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Medidas.Variação Acum. Vol Ano"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "147.33331637912988D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Medidas.Variação Acum. Tckt Méd Ano"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "571.9560289796277D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Calendario1.Date.Variation.Hierarquia de datas.Ano"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "88D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Medidas PP.Preço P1 Simulado"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "82D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Medidas PP.Preço P2 Simulado"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "70.39480724324926D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(bussola_comercial.dias_servico)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "83.70624735580313D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Medidas PP.Volume Simulado"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "77.01555460406065D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(bussola_comercial.dias_isencao)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "88D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(bussola_comercial.dias_free_time)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "84.50003452936654D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Medidas PP.Preço P3 Simulado"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "63.666631547206D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Medidas PP.price_p3"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "100.66665977901772D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Medidas PP.Periodo1_Simulado"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "75.99995193297528D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Medidas PP.Periodo3_Simulado"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "84.33329142874767D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Medidas PP.Periodo2_Simulado"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "109.32976643388957D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Medidas PP.Faturamento Realizado Carga Exp"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "115.66353873018564D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Medidas PP.Faturamento Simulado Carga Exp"
+          }
+        }
+      ],
+      "rowHeaders": [
+        {
+          "properties": {
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 3,
+                      "Percent": -0.5
+                    }
+                  }
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'wf_standard-font, helvetica, arial, sans-serif'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "13D"
+                }
+              }
+            },
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#ffffff'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "rowTotal": [
+        {
+          "properties": {
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 3,
+                      "Percent": -0.5
+                    }
+                  }
+                }
+              }
+            },
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#FFFFFF'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnTotal": [
+        {
+          "properties": {
+            "applyToHeaders": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "titleWrap": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#001c43'"
+                    }
+                  }
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "84D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "stylePreset": [
+        {
+          "properties": {
+            "name": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Sparse'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "divider": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualTooltip": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "type": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Default'"
+                }
+              }
+            },
+            "background": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 1,
+                      "Percent": 0.4
+                    }
+                  }
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "Filter29d90f6fb8002694ba34",
+        "ordinal": 0,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Serviço"
+              }
+            },
+            "Property": "Categoria"
+          }
+        },
+        "type": "Advanced",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "s",
+              "Entity": "Serviço",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Not": {
+                  "Expression": {
+                    "Comparison": {
+                      "ComparisonKind": 0,
+                      "Left": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Source": "s"
+                            }
+                          },
+                          "Property": "Categoria"
+                        }
+                      },
+                      "Right": {
+                        "Literal": {
+                          "Value": "'Básicos Importação'"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User",
+        "objects": {
+          "general": [
+            {
+              "properties": {}
+            }
+          ]
+        }
+      },
+      {
+        "name": "4f51b3d2e32b42cc7b92",
+        "ordinal": 1,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "bussola_comercial"
+              }
+            },
+            "Property": "Agrupamento Serviço"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      },
+      {
+        "name": "96284542c8d0c3b36939",
+        "ordinal": 2,
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "bussola_comercial"
+                  }
+                },
+                "Property": "periodo1"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "81ab9140ce02510aab80",
+        "ordinal": 3,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Medidas PP"
+              }
+            },
+            "Property": "Dias P1 Simulado"
+          }
+        },
+        "type": "Advanced",
+        "howCreated": "User"
+      },
+      {
+        "name": "063c85c148d8094a0a29",
+        "ordinal": 4,
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "bussola_comercial"
+                  }
+                },
+                "Property": "periodo2"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "07dac20ebd902b4abe6a",
+        "ordinal": 5,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Medidas PP"
+              }
+            },
+            "Property": "Dias P2 Simulado"
+          }
+        },
+        "type": "Advanced",
+        "howCreated": "User"
+      },
+      {
+        "name": "1ebda77d755cd4b6aa4b",
+        "ordinal": 6,
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "bussola_comercial"
+                  }
+                },
+                "Property": "periodo3"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "f754ee303e008772d06c",
+        "ordinal": 7,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Medidas PP"
+              }
+            },
+            "Property": "Dias P3 Simulado"
+          }
+        },
+        "type": "Advanced",
+        "howCreated": "User"
+      },
+      {
+        "name": "552cc563181a36b8e0b9",
+        "ordinal": 8,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Medidas PP"
+              }
+            },
+            "Property": "fat calculado table"
+          }
+        },
+        "type": "Advanced",
+        "howCreated": "User"
+      },
+      {
+        "name": "8c8370d715a7452866d8",
+        "ordinal": 9,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Medidas PP"
+              }
+            },
+            "Property": "price_p1"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "c60624460550dbe40c26",
+        "ordinal": 10,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Medidas PP"
+              }
+            },
+            "Property": "Preço P1 Simulado"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "96a051a0a5bcd1967641",
+        "ordinal": 11,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Medidas PP"
+              }
+            },
+            "Property": "price_p2"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "991e2fa3493d3bcd327e",
+        "ordinal": 12,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Medidas PP"
+              }
+            },
+            "Property": "Preço P2 Simulado"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "d87aa6dfaa43e0d3b284",
+        "ordinal": 13,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Medidas PP"
+              }
+            },
+            "Property": "price_p3"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "2b0e86251ea881b9013c",
+        "ordinal": 14,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Medidas PP"
+              }
+            },
+            "Property": "Preço P3 Simulado"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "e39f309b6594c0dea1c9",
+        "ordinal": 15,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Medidas PP"
+              }
+            },
+            "Property": "Projeção Faturamento Simulador table"
+          }
+        },
+        "type": "Advanced",
+        "howCreated": "User"
+      },
+      {
+        "name": "f4f82ff6585acae6663b",
+        "ordinal": 16,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "bussola_comercial"
+              }
+            },
+            "Property": "servico"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "67364cfbe7accb960acf",
+        "ordinal": 17,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "bussola_comercial"
+              }
+            },
+            "Property": "Agrupamento Subgrupo Princing"
+          }
+        },
+        "type": "Advanced",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "b",
+              "Entity": "bussola_comercial",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Or": {
+                  "Left": {
+                    "Comparison": {
+                      "ComparisonKind": 0,
+                      "Left": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Source": "b"
+                            }
+                          },
+                          "Property": "Agrupamento Subgrupo Princing"
+                        }
+                      },
+                      "Right": {
+                        "Literal": {
+                          "Value": "'Armazenagem Cntr Cheio'"
+                        }
+                      }
+                    }
+                  },
+                  "Right": {
+                    "Comparison": {
+                      "ComparisonKind": 0,
+                      "Left": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Source": "b"
+                            }
+                          },
+                          "Property": "Agrupamento Subgrupo Princing"
+                        }
+                      },
+                      "Right": {
+                        "Literal": {
+                          "Value": "'Armazenagem Carga Exportação'"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "9fba1344a4c6b2435c3e",
+        "ordinal": 18,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Medidas PP"
+              }
+            },
+            "Property": "Δ Fat."
+          }
+        },
+        "type": "Advanced",
+        "howCreated": "User"
+      },
+      {
+        "name": "f7d5015e3654fed288f0",
+        "ordinal": 19,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Medidas PP"
+              }
+            },
+            "Property": "Volume Simulado"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "223891ab102fd5131d13",
+        "ordinal": 20,
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "bussola_comercial"
+                  }
+                },
+                "Property": "volume"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced",
+        "howCreated": "User"
+      },
+      {
+        "name": "bc6f28c7443cf3b36744",
+        "ordinal": 21,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "bussola_comercial"
+              }
+            },
+            "Property": "cliente"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      },
+      {
+        "name": "0177bea74f5aa302f729",
+        "ordinal": 22,
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "bussola_comercial"
+                  }
+                },
+                "Property": "chave"
+              }
+            },
+            "Function": 5
+          }
+        },
+        "type": "Advanced",
+        "howCreated": "User"
+      },
+      {
+        "name": "6e98a5bbb23bc7cd7577",
+        "ordinal": 23,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "bussola_comercial"
+              }
+            },
+            "Property": "container"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      },
+      {
+        "name": "57ab4e9bc51e39c7b319",
+        "ordinal": 24,
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "bussola_comercial"
+                  }
+                },
+                "Property": "dias_servico"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "2679aaa3890bb9f555e3",
+        "ordinal": 25,
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "bussola_comercial"
+                  }
+                },
+                "Property": "container"
+              }
+            },
+            "Function": 5
+          }
+        },
+        "type": "Advanced",
+        "howCreated": "User"
+      },
+      {
+        "name": "3c4aa23414909c55b1f0",
+        "ordinal": 26,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "bussola_comercial"
+              }
+            },
+            "Property": "contrato_id"
+          }
+        },
+        "type": "Advanced",
+        "howCreated": "User"
+      },
+      {
+        "name": "67cd89f459d258e62881",
+        "ordinal": 27,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Medidas PP"
+              }
+            },
+            "Property": "Δ Fat. Armazenagem Armador"
+          }
+        },
+        "type": "Advanced",
+        "howCreated": "User"
+      },
+      {
+        "name": "3e68b45f1ffcbf7fde33",
+        "ordinal": 28,
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "bussola_comercial"
+                  }
+                },
+                "Property": "servico"
+              }
+            },
+            "Function": 5
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "17e87ac0db65034e449d",
+        "ordinal": 29,
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "bussola_comercial"
+                  }
+                },
+                "Property": "dias_isencao"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced",
+        "howCreated": "User"
+      },
+      {
+        "name": "36c9b530c93e29b77849",
+        "ordinal": 30,
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "bussola_comercial"
+                  }
+                },
+                "Property": "dias_free_time"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced",
+        "howCreated": "User"
+      },
+      {
+        "name": "aa72822a1ecfc4bbead1",
+        "ordinal": 31,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Medidas PP"
+              }
+            },
+            "Property": "Faturamento Realizado Armador"
+          }
+        },
+        "type": "Advanced",
+        "howCreated": "User"
+      },
+      {
+        "name": "fb88c1464b100329b4b0",
+        "ordinal": 32,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Medidas PP"
+              }
+            },
+            "Property": "Faturamento Simulado Armador"
+          }
+        },
+        "type": "Advanced",
+        "howCreated": "User"
+      },
+      {
+        "name": "b9f02a78c669660cbf7b",
+        "ordinal": 33,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "bussola_comercial"
+              }
+            },
+            "Property": "Agrupamento Serviço"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      },
+      {
+        "name": "afa5554f6b7d548419fb",
+        "ordinal": 34,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "bussola_comercial"
+              }
+            },
+            "Property": "os"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "f50e3ff309d98a09b45b",
+        "ordinal": 35,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Medidas PP"
+              }
+            },
+            "Property": "Faturamento Simulado Armador 2"
+          }
+        },
+        "type": "Advanced",
+        "howCreated": "User"
+      }
+    ],
+    "filterSortOrder": "Custom"
+  }
+}

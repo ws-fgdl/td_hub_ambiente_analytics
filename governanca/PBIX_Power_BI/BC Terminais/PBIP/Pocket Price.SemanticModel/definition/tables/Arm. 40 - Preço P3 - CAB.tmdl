@@ -1,0 +1,27 @@
+table 'Arm. 40 - Preço P3 - CAB'
+	lineageTag: 5a0efbec-db74-4439-8c4d-06257cba230a
+
+	measure 'Valor Arm. 40 - Preço P3 - CAB' = SELECTEDVALUE('Arm. 40 - Preço P3 - CAB'[Arm. 40 - Preço P3 - CAB])
+		lineageTag: 130e343c-79a9-411b-b7d6-288126c4b1bb
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Arm. 40 - Preço P3 - CAB'
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 38a6b704-8c96-4662-8fe9-7c9643ce0e44
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition 'Arm. 40 - Preço P3 - CAB' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 1, 0.001)
+
+	annotation PBI_Id = 322fc79834954adba346cf5579e6b0ba
+

@@ -1,0 +1,32 @@
+table 'Grupo Mercadoria'
+	lineageTag: 4c3f5915-3689-4fc4-b7e5-ebb91e8ef0dd
+	sourceLineageTag: c51198b0-96dc-436d-aa44-8681d7d8de8d
+
+	column 'ID Grupo Mercadoria'
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		lineageTag: 68023cd5-569a-4314-aae1-a3c9590d355d
+		sourceLineageTag: e44f7aee-08ac-4282-bffb-e8036d6dcf1f
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: ID Grupo Mercadoria
+
+		annotation SummarizationSetBy = User
+
+	column 'Grupo Mercadoria'
+		dataType: string
+		lineageTag: 24079a1d-f90d-4b54-ad70-38288db6ac78
+		sourceLineageTag: 45051b48-9357-4ad7-9ca6-db9330a0f17d
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Grupo Mercadoria
+
+		annotation SummarizationSetBy = User
+
+	partition 'Grupo Mercadoria' = entity
+		mode: directQuery
+		source
+			entityName: Grupo Mercadoria
+			expressionSource: 'DirectQuery para AS – Modelo Operações Portuárias'
+

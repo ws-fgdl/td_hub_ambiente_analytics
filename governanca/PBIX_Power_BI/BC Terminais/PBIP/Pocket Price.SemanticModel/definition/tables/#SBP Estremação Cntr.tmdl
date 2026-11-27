@@ -1,0 +1,28 @@
+table '#SBP Estremação Cntr'
+	lineageTag: d39f63d2-4946-46d1-ab17-f39febe0e128
+
+	measure 'Valor #SBP Estremação Cntr' = SELECTEDVALUE('#SBP Estremação Cntr'[#SBP Estremação Cntr])
+		lineageTag: 59120af7-1626-4729-9335-2b548e4a8d0d
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#SBP Estremação Cntr'
+		lineageTag: f6487a7a-cd2f-4628-808e-13d4bf52a1e3
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '#SBP Estremação Cntr' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 0.5, 0.0001)
+
+	annotation PBI_Id = d42e1ee03d3149c9a87ac36c281a736e
+

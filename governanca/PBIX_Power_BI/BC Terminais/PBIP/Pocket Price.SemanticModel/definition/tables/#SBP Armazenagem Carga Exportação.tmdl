@@ -1,0 +1,27 @@
+table '#SBP Armazenagem Carga Exportação'
+	lineageTag: bbbbfe4d-1f89-4640-b3a6-a6a0be7408e4
+
+	measure 'Valor #SBP Armazenagem Carga Exportação' = SELECTEDVALUE('#SBP Armazenagem Carga Exportação'[#SBP Armazenagem Carga Exportação])
+		lineageTag: 7c738d1c-f696-4d1c-974e-3a4494c4ae63
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#SBP Armazenagem Carga Exportação'
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: b7ee2399-ef66-4927-a0d0-936c53831fad
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition '#SBP Armazenagem Carga Exportação' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 0.5, 0.0001)
+
+	annotation PBI_Id = 14dc7de044ba489bb83bb034afe60cf9
+

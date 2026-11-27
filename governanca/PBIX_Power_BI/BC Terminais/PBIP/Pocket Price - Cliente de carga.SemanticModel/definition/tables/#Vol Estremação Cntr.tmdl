@@ -1,0 +1,28 @@
+table '#Vol Estremação Cntr'
+	lineageTag: c7bc6365-c167-4f88-b1dc-b271d803b3ac
+
+	measure 'Valor #Vol Estremação Cntr' = SELECTEDVALUE('#Vol Estremação Cntr'[#Vol Estremação Cntr])
+		lineageTag: bff32370-4f53-43ed-9457-6c9299690b16
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#Vol Estremação Cntr'
+		lineageTag: 90c8c004-fa11-41d2-af5b-7d387425ebea
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '#Vol Estremação Cntr' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 1, 0.001)
+
+	annotation PBI_Id = 661bf0d3e7924d4380d2e328a54b9089
+

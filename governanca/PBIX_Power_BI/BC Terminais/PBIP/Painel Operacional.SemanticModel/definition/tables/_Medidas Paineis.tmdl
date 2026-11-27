@@ -1,0 +1,42 @@
+table '_Medidas Paineis'
+	lineageTag: 6b5b148c-e10f-4f64-b88d-4e709b7281ff
+	sourceLineageTag: 814cde4a-53cf-46f2-81cb-534bd54b4897
+
+	measure 'Titulo Tabela Top25 PY e CY' = EXTERNALMEASURE("Titulo Tabela Top25 PY e CY", STRING, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: d61f520b-97e3-4b23-84ac-29ce4ca7e7d9
+		sourceLineageTag: 89d740bb-9314-449c-bc53-cb189c6138d3
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isText":true}
+
+	measure 'Titulo CY x PY YTD' = EXTERNALMEASURE("Titulo CY x PY YTD", STRING, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: e4cbe152-53e5-402c-8306-19640d9b565b
+		sourceLineageTag: 05dafa73-2e8c-4c6f-8443-df591c34b9c9
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isText":true}
+
+	measure 'Valor Receita mais W017' = EXTERNALMEASURE("Valor Receita mais W017", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		lineageTag: 16236831-76f2-4127-8a1e-48403786e129
+		sourceLineageTag: eab50176-0302-4673-bd0a-20babceebcf4
+		dataCategory: Uncategorized
+
+	column 'Coluna 1'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 169c25e1-5cd2-4093-98b9-57d9d2a7c1ff
+		sourceLineageTag: 5dae076b-63cf-4698-be7b-391525e16525
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Coluna 1
+
+		annotation SummarizationSetBy = User
+
+	partition '_Medidas Paineis' = entity
+		mode: directQuery
+		source
+			entityName: _Medidas Paineis
+			expressionSource: 'DirectQuery para AS – Modelo Operações Portuárias'
+

@@ -1,0 +1,32 @@
+table Segmentação
+	lineageTag: f8334420-d8df-41aa-810e-e74f85c260a4
+	sourceLineageTag: 22c8bf20-c825-46b4-ab86-9bacc063f5cc
+
+	column 'Segmentação ID'
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		lineageTag: ef460212-0619-45f7-be1a-80dfea616f06
+		sourceLineageTag: 3d244bb0-a0f9-4e73-aab7-705c5a066009
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Segmentação ID
+
+		annotation SummarizationSetBy = User
+
+	column Segmentação
+		dataType: string
+		lineageTag: 4092ebc1-b48f-4bd1-bc55-be30a2a1240b
+		sourceLineageTag: 68fb4fd9-3b9f-4f18-a5e5-fd367dff1459
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Segmentação
+
+		annotation SummarizationSetBy = User
+
+	partition Segmentação = entity
+		mode: directQuery
+		source
+			entityName: Segmentação
+			expressionSource: 'DirectQuery para AS – Modelo Operações Portuárias'
+

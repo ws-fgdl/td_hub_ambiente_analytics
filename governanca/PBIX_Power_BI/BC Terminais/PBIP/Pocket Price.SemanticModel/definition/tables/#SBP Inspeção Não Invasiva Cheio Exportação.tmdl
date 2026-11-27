@@ -1,0 +1,27 @@
+table '#SBP Inspeção Não Invasiva Cheio Exportação'
+	lineageTag: 579699e2-8567-4e87-bab4-f50f240de54b
+
+	measure 'Valor #SBP Inspeção Não Invasiva Cheio Exportação' = SELECTEDVALUE('#SBP Inspeção Não Invasiva Cheio Exportação'[#SBP Inspeção Não Invasiva Cheio Exportação])
+		lineageTag: 7f0241c1-a5db-42a8-9382-de5854a93145
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#SBP Inspeção Não Invasiva Cheio Exportação'
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: daaf8fa6-32dd-49ad-bf96-0946364d499a
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition '#SBP Inspeção Não Invasiva Cheio Exportação' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 0.5, 0.0001)
+
+	annotation PBI_Id = 5eef1d3cd8ee4213bcdee5fb3413010f
+

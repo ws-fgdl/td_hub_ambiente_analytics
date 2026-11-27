@@ -1,0 +1,27 @@
+table '#Vol Cargas Especiais'
+	lineageTag: d01f798b-5ab3-4179-91c3-2c5be4c5ba58
+
+	measure 'Valor #Vol Cargas Especiais' = SELECTEDVALUE('#Vol Cargas Especiais'[#Vol Cargas Especiais])
+		lineageTag: bb07b9ea-baf5-4be0-889c-a2bbcc8b9098
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#Vol Cargas Especiais'
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 67f2caf4-a343-4cf9-84e4-948a06e72e7d
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition '#Vol Cargas Especiais' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 1, 0.01)
+
+	annotation PBI_Id = 51678b08842044f2a9dba1a665ab6d22
+

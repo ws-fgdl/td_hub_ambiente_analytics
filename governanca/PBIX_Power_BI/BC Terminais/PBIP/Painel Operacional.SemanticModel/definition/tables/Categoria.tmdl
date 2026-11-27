@@ -1,0 +1,42 @@
+table Categoria
+	lineageTag: 39472a69-4cde-49c0-81b4-5b1c6fe8d9ec
+	sourceLineageTag: 4adbb678-e8f0-4a22-b71c-e36e22f8d7d1
+
+	column 'Categoria ID'
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		lineageTag: cbbb8c74-492d-4507-ba8e-2657751a556e
+		sourceLineageTag: 597e58e3-64ed-4e5f-829d-427f53d97ec2
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Categoria ID
+
+		annotation SummarizationSetBy = User
+
+	column 'Código Categoria'
+		dataType: string
+		lineageTag: 6f39b797-211e-4d79-97a4-61f14d10209d
+		sourceLineageTag: 9f4c7eb9-bd02-430f-acd9-6a2b31768877
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Código Categoria
+
+		annotation SummarizationSetBy = User
+
+	column Categoria
+		dataType: string
+		lineageTag: 2f0db5c7-f959-4bfa-936c-7749e474b945
+		sourceLineageTag: 3d5a2f50-1304-4207-b541-de3cd4416011
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Categoria
+
+		annotation SummarizationSetBy = User
+
+	partition Categoria = entity
+		mode: directQuery
+		source
+			entityName: Categoria
+			expressionSource: 'DirectQuery para AS – Modelo Operações Portuárias'
+

@@ -1,0 +1,168 @@
+table dataliner_exp
+	lineageTag: e252f8a9-a4a8-4821-a44a-1db1f537490a
+
+	column dates_long_haul_yyyy
+		dataType: int64
+		formatString: 0
+		lineageTag: 16e91cf8-d84f-492f-a492-95e4c4711b4f
+		summarizeBy: sum
+		sourceColumn: dates_long_haul_yyyy
+
+		annotation SummarizationSetBy = Automatic
+
+	column place_and_ports_pol_name
+		dataType: string
+		lineageTag: 6ea36670-5738-4ec2-854f-e5a45560e2d4
+		summarizeBy: none
+		sourceColumn: place_and_ports_pol_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column place_and_ports_pomo_name
+		dataType: string
+		lineageTag: 0d825404-a4de-4412-8195-ddfb6b692de1
+		summarizeBy: none
+		sourceColumn: place_and_ports_pomo_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column company_shipper_type
+		dataType: string
+		lineageTag: a1b792c2-a437-4f70-9af1-b7fece9aee53
+		summarizeBy: none
+		sourceColumn: company_shipper_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column company_shipper_shipper_name
+		dataType: string
+		lineageTag: 83a60d18-be78-4f01-8de2-b8ec1cd6cfde
+		summarizeBy: none
+		sourceColumn: company_shipper_shipper_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column company_shipper_state
+		dataType: string
+		lineageTag: 67a16c6b-1cb8-42e9-b9c4-a95f75fbdc98
+		summarizeBy: none
+		sourceColumn: company_shipper_state
+
+		annotation SummarizationSetBy = Automatic
+
+	column company_shipper_city
+		dataType: string
+		lineageTag: fea2c40b-7525-4302-8718-7607f3b91e3e
+		summarizeBy: none
+		sourceColumn: company_shipper_city
+
+		annotation SummarizationSetBy = Automatic
+
+	column service_service_name
+		dataType: string
+		lineageTag: ec2d8839-6083-494f-b084-6b5a569d20d1
+		summarizeBy: none
+		sourceColumn: service_service_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column carrier_carrier_name
+		dataType: string
+		lineageTag: f0c415af-b89b-4736-b48b-36e15e850ce6
+		summarizeBy: none
+		sourceColumn: carrier_carrier_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column measures_teu
+		dataType: double
+		lineageTag: 21014ec5-e9ca-4588-898e-ce53046e7223
+		summarizeBy: sum
+		sourceColumn: measures_teu
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column measures_c20_plus_c40
+		dataType: double
+		lineageTag: aa07212e-073a-4ccf-a074-9a7ca23e9ed8
+		summarizeBy: sum
+		sourceColumn: measures_c20_plus_c40
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column dates_long_haul_mm
+		dataType: int64
+		formatString: 0
+		lineageTag: 765220ae-6189-47cc-8af8-12f3a2093357
+		summarizeBy: sum
+		sourceColumn: dates_long_haul_mm
+
+		annotation SummarizationSetBy = Automatic
+
+	column teu
+		dataType: double
+		lineageTag: da1cfd93-ea1d-4652-b5df-692e732b5706
+		summarizeBy: sum
+		sourceColumn: teu
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column cnt
+		dataType: double
+		lineageTag: 622dbd51-e1a4-4d27-a3e7-245e7a50d3c2
+		summarizeBy: sum
+		sourceColumn: cnt
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TEUS =
+			
+			SWITCH(TRUE(),
+			dataliner_exp[dates_long_haul_yyyy] >= 2024, dataliner_exp[teu],
+			dataliner_exp[dates_long_haul_yyyy] < 2024, dataliner_exp[measures_teu]
+			)
+		lineageTag: 79b54ec0-2c7f-4783-bd9e-732f82137d29
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CNTR =
+			
+			
+			SWITCH(TRUE(),
+			dataliner_exp[dates_long_haul_yyyy] >= 2024, dataliner_exp[cnt],
+			dataliner_exp[dates_long_haul_yyyy] < 2024, dataliner_exp[measures_c20_plus_c40]
+			)
+		lineageTag: 2b80cf09-0995-4c4d-89a6-3bb1bcb94d74
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition dataliner_exp = m
+		mode: import
+		source =
+				let
+				    Fonte = PowerPlatform.Dataflows(null),
+				    Workspaces = Fonte{[Id="Workspaces"]}[Data],
+				    #"bcd54b55-e85f-4c30-a169-bfbf18f90f30" = Workspaces{[workspaceId="bcd54b55-e85f-4c30-a169-bfbf18f90f30"]}[Data],
+				    #"6100f1d7-8c40-4899-a3f9-53380565d150" = #"bcd54b55-e85f-4c30-a169-bfbf18f90f30"{[dataflowId="6100f1d7-8c40-4899-a3f9-53380565d150"]}[Data],
+				    Consulta_ = #"6100f1d7-8c40-4899-a3f9-53380565d150"{[entity="Consulta",version=""]}[Data]
+				in
+				    Consulta_
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

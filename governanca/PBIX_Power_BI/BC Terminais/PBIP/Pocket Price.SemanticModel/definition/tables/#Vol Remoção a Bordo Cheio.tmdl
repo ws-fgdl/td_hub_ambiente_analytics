@@ -1,0 +1,27 @@
+table '#Vol Remoção a Bordo Cheio'
+	lineageTag: 742115e3-27ae-47ff-8399-08251fde4c4c
+
+	measure 'Valor #Vol Remoção a Bordo Cheio' = SELECTEDVALUE('#Vol Remoção a Bordo Cheio'[#Vol Remoção a Bordo Cheio])
+		lineageTag: 3635454c-5580-4ec1-a153-36b7a2d89fbc
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#Vol Remoção a Bordo Cheio'
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: f8ed1fbe-1082-4616-81d0-2118b1ebaaef
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition '#Vol Remoção a Bordo Cheio' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 5, 0.01)
+
+	annotation PBI_Id = 51ea45fbf07749d5998fb449e996f806
+

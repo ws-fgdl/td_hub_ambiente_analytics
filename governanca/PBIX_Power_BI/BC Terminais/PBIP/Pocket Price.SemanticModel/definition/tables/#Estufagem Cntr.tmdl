@@ -1,0 +1,28 @@
+table '#Estufagem Cntr'
+	lineageTag: 2c2a525e-6875-4afd-a000-abb28c0c76c2
+
+	measure 'Valor #Estufagem Cntr' = SELECTEDVALUE('#Estufagem Cntr'[#Estufagem Cntr])
+		lineageTag: c59add04-ebe5-46f4-9410-51163aade887
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#Estufagem Cntr'
+		lineageTag: ea401b1d-afe0-42ac-afcb-9bed7eab87d1
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '#Estufagem Cntr' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 1, 0.001)
+
+	annotation PBI_Id = ce91389d01ae4d9a8f3541c3ab163350
+

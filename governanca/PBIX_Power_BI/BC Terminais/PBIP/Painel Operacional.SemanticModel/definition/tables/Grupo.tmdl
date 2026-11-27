@@ -1,0 +1,32 @@
+table Grupo
+	lineageTag: 953b3fc9-2da3-49f6-9ade-b7c060e022d1
+	sourceLineageTag: fd2c7348-9fc1-4450-a7ab-92a9eb651d4f
+
+	column 'Grupo ID'
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		lineageTag: 20f0fe56-42ea-40ee-be8d-834ff0ece4d7
+		sourceLineageTag: 186ff5fe-f9ad-4fbf-b54a-5aa68f2de8e3
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Grupo ID
+
+		annotation SummarizationSetBy = User
+
+	column Grupo
+		dataType: string
+		lineageTag: 5ff4aefe-d5fa-4cb9-a1bf-dbdb09708ffb
+		sourceLineageTag: 8b69fcdf-7de8-4f8c-8f07-445b9c6480fc
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Grupo
+
+		annotation SummarizationSetBy = User
+
+	partition Grupo = entity
+		mode: directQuery
+		source
+			entityName: Grupo
+			expressionSource: 'DirectQuery para AS – Modelo Operações Portuárias'
+

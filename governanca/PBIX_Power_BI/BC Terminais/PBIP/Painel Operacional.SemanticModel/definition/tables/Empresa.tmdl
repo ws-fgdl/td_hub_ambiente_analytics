@@ -1,0 +1,172 @@
+table Empresa
+	lineageTag: a6e15dc1-b394-4f38-b1b2-f181847e0e56
+	sourceLineageTag: 7d12b8b2-b7e4-4efd-b458-3f6b24ba521f
+
+	measure 'Empresas Selecionadas' = EXTERNALMEASURE("Empresas Selecionadas", STRING, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: cc01225e-fb4e-44a6-b7a5-4e1ee38e570d
+		sourceLineageTag: df8dd6c3-5ee1-4202-98be-5d7d23bc3b85
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isText":true}
+
+	measure 'Cod Empresas Selecionadas' = EXTERNALMEASURE("Cod Empresas Selecionadas", STRING, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 46eec54f-7e7b-4413-acd9-d7ed92209444
+		sourceLineageTag: e978f178-6e71-4555-9112-aa99cc524fb3
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isText":true}
+
+	column 'Código Empresa'
+		dataType: string
+		isNullable: false
+		lineageTag: 56e9d78c-e0a1-4d10-8a3d-8fb7c7b65f51
+		sourceLineageTag: f0b8e3ea-5f5d-4fd2-ad96-ca48f40aba78
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Código Empresa
+
+		annotation SummarizationSetBy = User
+
+	column NUM_EMP_CORP
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 7ba82752-770f-403a-9336-4105a624f756
+		sourceLineageTag: 289d9fb3-93f8-4535-bf59-607f1894b73b
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: NUM_EMP_CORP
+
+		annotation SummarizationSetBy = User
+
+	column EPRGRP_ID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 91ca7cc4-e708-4e79-9b74-0767d30d90dc
+		sourceLineageTag: 14b3895f-f9b9-4cea-b34f-aeaf69a7a6a5
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: EPRGRP_ID
+
+		annotation SummarizationSetBy = User
+
+	column NM_EMPR_GRUPO
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 936499fd-c9ff-4e91-a63c-65f69866dc8a
+		sourceLineageTag: c5629c7f-cb4c-4422-a870-81aa57f130f6
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: NM_EMPR_GRUPO
+
+		annotation SummarizationSetBy = User
+
+	column DSC_EMPR_GRUPO
+		dataType: string
+		isHidden
+		lineageTag: 3fa31984-bf43-4e0a-a2c1-2bfc0b79d10b
+		sourceLineageTag: 9d30af95-091e-4a23-8931-2995aaf0d4b7
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: DSC_EMPR_GRUPO
+
+		annotation SummarizationSetBy = User
+
+	column 'Razão Social'
+		dataType: string
+		lineageTag: 44130359-6da4-4ed1-9a55-3523e2a488c7
+		sourceLineageTag: da33cc6a-65d7-4e88-9b2e-40eac6dc5f44
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Razão Social
+
+		annotation SummarizationSetBy = User
+
+	column 'Razão Social Completa'
+		dataType: string
+		lineageTag: a2f00cf1-a1c4-4f09-a1ea-7db174b2ddcf
+		sourceLineageTag: aef75940-10c0-4ca2-b420-6f99f73a1886
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Razão Social Completa
+
+		annotation SummarizationSetBy = User
+
+	column TIP_EMPRESA
+		dataType: string
+		isHidden
+		lineageTag: bff78068-d162-4b8d-9248-36468d45d75e
+		sourceLineageTag: 505a0358-5158-4878-97d1-9c84ceb1c949
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: TIP_EMPRESA
+
+		annotation SummarizationSetBy = User
+
+	column PERC_PARTIC_WS
+		dataType: double
+		isHidden
+		lineageTag: bbb9ec32-5f38-4aec-9db9-bec21ff56b96
+		sourceLineageTag: e310f76a-aa55-4e28-b0f3-c0a152420a49
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: PERC_PARTIC_WS
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DAT_INCL_REG
+		dataType: dateTime
+		isHidden
+		formatString: General Number
+		lineageTag: 04b56696-b3f6-4633-af55-bd85f933c631
+		sourceLineageTag: 85782d8d-048b-44c1-a279-f6a35c682d73
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: DAT_INCL_REG
+
+		annotation SummarizationSetBy = User
+
+	column CH_USR_INCL_REG
+		dataType: string
+		isHidden
+		lineageTag: 724c960c-ed21-4db9-b35e-3c7a53274705
+		sourceLineageTag: 663b4e1d-74e6-43d8-9e54-23e04e8fb451
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: CH_USR_INCL_REG
+
+		annotation SummarizationSetBy = User
+
+	column DAT_ALT_REG
+		dataType: dateTime
+		isHidden
+		formatString: General Number
+		lineageTag: ab046328-1de8-4a34-bc06-eb88bde20cda
+		sourceLineageTag: 6b571de2-a773-4a4b-ab42-ef79fde10000
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: DAT_ALT_REG
+
+		annotation SummarizationSetBy = User
+
+	column CH_USR_ALT_REG
+		dataType: string
+		isHidden
+		lineageTag: 15f815cb-8d3a-4219-b8db-a6d5af41258d
+		sourceLineageTag: 21c4f36c-7b1d-41e8-928c-ad1b1d420639
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: CH_USR_ALT_REG
+
+		annotation SummarizationSetBy = User
+
+	partition Empresa = entity
+		mode: directQuery
+		source
+			entityName: Empresa
+			expressionSource: 'DirectQuery para AS – Modelo Operações Portuárias'
+

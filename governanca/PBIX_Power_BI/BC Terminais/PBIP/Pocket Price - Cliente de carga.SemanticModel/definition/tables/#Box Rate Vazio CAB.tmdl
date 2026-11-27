@@ -1,0 +1,28 @@
+table '#Box Rate Vazio CAB'
+	lineageTag: 398447a1-1195-41ee-b717-7b05483ccc16
+
+	measure 'Valor #Box Rate Vazio CAB' = SELECTEDVALUE('#Box Rate Vazio CAB'[#Box Rate Vazio CAB])
+		lineageTag: 3847aa99-056a-4d4c-8dbc-e61cd4f24e3a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#Box Rate Vazio CAB'
+		lineageTag: 07504507-1768-462a-a278-c1b5979d27ef
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '#Box Rate Vazio CAB' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 1, 0.001)
+
+	annotation PBI_Id = 1438adc1795e4a1db596329eef35280f
+

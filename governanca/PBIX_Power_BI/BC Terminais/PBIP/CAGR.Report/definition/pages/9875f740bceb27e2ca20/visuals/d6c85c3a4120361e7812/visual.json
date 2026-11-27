@@ -1,0 +1,952 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "d6c85c3a4120361e7812",
+  "position": {
+    "x": 32,
+    "y": 192.00000000000003,
+    "z": 7000,
+    "height": 416,
+    "width": 1200,
+    "tabOrder": 7000
+  },
+  "visual": {
+    "visualType": "pivotTable",
+    "query": {
+      "queryState": {
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Calendario1"
+                    }
+                  },
+                  "Property": "Ano Calendario"
+                }
+              },
+              "queryRef": "Calendario1.Ano Calendario",
+              "nativeQueryRef": "Ano",
+              "active": true,
+              "displayName": "Ano"
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidas CAGR"
+                    }
+                  },
+                  "Property": "Flag_Price"
+                }
+              },
+              "queryRef": "Medidas CAGR.Flag_Price",
+              "nativeQueryRef": "Preço Negociado",
+              "displayName": "Preço Negociado"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidas CAGR"
+                    }
+                  },
+                  "Property": "% ∆ Reajuste"
+                }
+              },
+              "queryRef": "Medidas CAGR.% ∆ Reajuste",
+              "nativeQueryRef": "% ∆ Reajuste"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidas CAGR"
+                    }
+                  },
+                  "Property": "IPCA YOY"
+                }
+              },
+              "queryRef": "Medidas CAGR.IPCA YOY",
+              "nativeQueryRef": "IPCA Período",
+              "displayName": "IPCA Período"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidas CAGR"
+                    }
+                  },
+                  "Property": "IGPM YOY"
+                }
+              },
+              "queryRef": "Medidas CAGR.IGPM YOY",
+              "nativeQueryRef": "IGPM Período",
+              "displayName": "IGPM Período"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidas CAGR"
+                    }
+                  },
+                  "Property": "Média IPCA+IGPM"
+                }
+              },
+              "queryRef": "Medidas CAGR.Média IPCA+IGPM",
+              "nativeQueryRef": "Média IPCA+IGPM"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidas CAGR"
+                    }
+                  },
+                  "Property": "Dólar Médio ano"
+                }
+              },
+              "queryRef": "Medidas CAGR.Dólar Médio ano",
+              "nativeQueryRef": "Dólar Médio ano"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidas CAGR"
+                    }
+                  },
+                  "Property": "Reajuste_IPCA_Acumulado"
+                }
+              },
+              "queryRef": "Medidas CAGR.Reajuste_IPCA_Acumulado",
+              "nativeQueryRef": "Negociado x Reajuste IPCA",
+              "displayName": "Negociado x Reajuste IPCA"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidas CAGR"
+                    }
+                  },
+                  "Property": "Reajuste_IGPM_Acumulado"
+                }
+              },
+              "queryRef": "Medidas CAGR.Reajuste_IGPM_Acumulado",
+              "nativeQueryRef": "Negociado x Reajuste IGPM",
+              "displayName": "Negociado x Reajuste IGPM"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidas CAGR"
+                    }
+                  },
+                  "Property": "Reajuste_Media_IPCA_IGPM_Acumulado"
+                }
+              },
+              "queryRef": "Medidas CAGR.Reajuste_Media_IPCA_IGPM_Acumulado",
+              "nativeQueryRef": "Negociado x Media IPCA IGPM",
+              "displayName": "Negociado x Media IPCA IGPM"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Calendario1"
+                  }
+                },
+                "Property": "Ano Calendario"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "columnHeaders": [
+        {
+          "properties": {
+            "autoSizeColumnWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Arial'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "14D"
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#001C43'"
+                    }
+                  }
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            },
+            "outlineStyle": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "outlineColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": -0.1
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "values": [
+        {
+          "properties": {
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Arial'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "13D"
+                }
+              }
+            },
+            "wordWrap": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "fontColorPrimary": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#FFFFFF'"
+                    }
+                  }
+                }
+              }
+            },
+            "fontColorSecondary": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#FFFFFF'"
+                    }
+                  }
+                }
+              }
+            },
+            "backColorPrimary": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#808E9C'"
+                    }
+                  }
+                }
+              }
+            },
+            "backColorSecondary": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#001C43'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "grid": [
+        {
+          "properties": {
+            "gridHorizontal": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "gridHorizontalColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#808E9C'"
+                    }
+                  }
+                }
+              }
+            },
+            "outlineColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": -0.1
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "117.61224139165294D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "calendario.data.Variation.Hierarquia de datas.Mês"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "63.326531477631264D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "bussola_comercial.un"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "83.23003228439218D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Medidas CAGR.Dólar Médio ano"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "130.0395179947042D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Medidas CAGR.Média IPCA+IGPM"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "113.8228243276101D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Medidas CAGR.% ∆ Reajuste"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "122.93453983823198D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Medidas CAGR.Reajuste_IPCA_Acumulado"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "131.5752688172043D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Medidas CAGR.Reajuste_IGPM_Acumulado"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "133.81854018694514D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Medidas CAGR.Reajuste_Media_IPCA_IGPM_Acumulado"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "117.33333151292959D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Medidas CAGR.IPCA YOY"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "120.19661822893562D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Medidas CAGR.IGPM YOY"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "124.71143133903934D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Calendario1.Ano Calendario"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "111.16583356922492D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Medidas CAGR.Flag_Price"
+          }
+        }
+      ],
+      "subTotals": [
+        {
+          "properties": {
+            "columnSubtotals": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "rowSubtotals": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "perRowLevel": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "rowHeaders": [
+        {
+          "properties": {
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Arial'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "13D"
+                }
+              }
+            },
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#001C43'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {
+            "layout": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Compact'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "blankRows": [
+        {
+          "properties": {
+            "showBlankRows": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnTotal": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "12D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "rowTotal": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "12D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "titleWrap": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#1E444A'"
+                    }
+                  }
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "stylePreset": [
+        {
+          "properties": {
+            "name": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Sparse'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "divider": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualTooltip": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "type": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Default'"
+                }
+              }
+            },
+            "background": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 1,
+                      "Percent": 0.4
+                    }
+                  }
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "78a91dafba2d0768721b",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Calendario1"
+              }
+            },
+            "Property": "Ano Calendario"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "11f71847c1e1b428e492",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Medidas CAGR"
+              }
+            },
+            "Property": "Flag_Price"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "1836931124e8a6520a32",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Medidas CAGR"
+              }
+            },
+            "Property": "% ∆ Reajuste"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "b31d79fc28e7fa2ec4b7",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Medidas CAGR"
+              }
+            },
+            "Property": "IPCA YOY"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "dbca561f50738527253b",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Medidas CAGR"
+              }
+            },
+            "Property": "IGPM YOY"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "7264513144c2fbd8ab1f",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Medidas CAGR"
+              }
+            },
+            "Property": "Média IPCA+IGPM"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "e6c0f7752d8db2327474",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Medidas CAGR"
+              }
+            },
+            "Property": "Dólar Médio ano"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "cfe58ea23228207b43fc",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Medidas CAGR"
+              }
+            },
+            "Property": "Reajuste_IPCA_Acumulado"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "7ba7810b84d6531439cf",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Medidas CAGR"
+              }
+            },
+            "Property": "Reajuste_IGPM_Acumulado"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "0408eb711ea96d3631b2",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Medidas CAGR"
+              }
+            },
+            "Property": "Reajuste_Media_IPCA_IGPM_Acumulado"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

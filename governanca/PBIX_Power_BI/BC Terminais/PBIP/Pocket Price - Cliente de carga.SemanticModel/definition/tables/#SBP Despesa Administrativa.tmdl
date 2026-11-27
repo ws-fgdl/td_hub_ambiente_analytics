@@ -1,0 +1,27 @@
+table '#SBP Despesa Administrativa'
+	lineageTag: 3d64520a-2f95-4156-b4be-c719b42b6313
+
+	measure 'Valor #SBP Despesa Administrativa' = SELECTEDVALUE('#SBP Despesa Administrativa'[#SBP Despesa Administrativa])
+		lineageTag: 4cdbecce-6ebf-46e6-be45-18aa7f4d6625
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#SBP Despesa Administrativa'
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: a684b8ff-6c79-487d-bed6-e5aa2d5991db
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition '#SBP Despesa Administrativa' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 0.5, 0.001)
+
+	annotation PBI_Id = 8e3505a9a0b042499eb1d197b7405638
+

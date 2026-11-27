@@ -1,0 +1,65 @@
+table SalesForce_Unificada
+	lineageTag: d4e60148-317d-48f6-b895-67c45089ca57
+
+	column codigo_sap
+		formatString: 0
+		lineageTag: 65462c0e-fc5b-4ab5-b0f5-65b729ad8d51
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [codigo_sap]
+
+		annotation SummarizationSetBy = Automatic
+
+	column grupo_economico
+		lineageTag: dd90cc00-5e2d-4412-b0be-ee05c52ffd19
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [grupo_economico]
+
+		annotation SummarizationSetBy = Automatic
+
+	column grupo_comercial
+		lineageTag: 09d8485d-e9e4-463b-8cd0-2da65c934ece
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [grupo_comercial]
+
+		annotation SummarizationSetBy = Automatic
+
+	column origem
+		lineageTag: e4c6f47c-27b2-4c60-b54c-277fc4bb891f
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [origem]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition SalesForce_Unificada = calculated
+		mode: import
+		source =
+				
+				UNION(
+				    -- 1. Todos os registros da dim_carteira_comercial
+				    SELECTCOLUMNS(
+				        'dim_carteira_comercial',
+				        "codigo_sap", 'dim_carteira_comercial'[codigo_sap],
+				        "grupo_economico", 'dim_carteira_comercial'[grupo_economico],
+				        "grupo_comercial", 'dim_carteira_comercial'[grupo_comercial],
+				        "origem", "Carteira Comercial"
+				    ),
+				
+				    -- 2. Somente registros do Salesforce com códigos SAP que NÃO estão na carteira comercial
+				    SELECTCOLUMNS(
+				        FILTER(
+				            'salesforce (2)',
+				            NOT 'salesforce (2)'[Codigo SAP] IN VALUES('dim_carteira_comercial'[codigo_sap])
+				        ),
+				        "codigo_sap", 'salesforce (2)'[Codigo SAP],
+				        "grupo_economico", 'salesforce (2)'[Grupo_Economico],
+				        "grupo_comercial", 'salesforce (2)'[Grupo Comercial],  -- se quiser deixar em branco
+				        "origem", "Salesforce"
+				    )
+				)
+
+	annotation PBI_Id = 2e77c4aeff96464b91a4cc6412b33d3e
+

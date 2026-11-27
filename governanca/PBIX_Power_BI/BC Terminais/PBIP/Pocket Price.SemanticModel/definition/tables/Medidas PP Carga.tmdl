@@ -1,0 +1,38 @@
+table 'Medidas PP Carga'
+	lineageTag: 3a7176a6-7792-47f6-bb9b-501a78c49ef9
+
+	measure 'fat calculado isinscope' =
+			IF(
+			AND(ISINSCOPE('bussola_comercial'[servico]),SELECTEDVALUE(bussola_comercial[Agrupamento Subgrupo Princing]) <> "Fiel Depósito"),
+			[Price] *[Volume/Qtd.] //Quantidade
+			,
+			BLANK() // Retorna em branco caso contrário
+			)
+		lineageTag: 3c576ac9-3bc5-42e0-a6c5-a1fd73634c86
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'fat calculado final' =
+			
+			SUMX(VALUES(bussola_comercial[servico]),
+			[fat calculado isinscope] // + [Faturamento Realizado Carga]
+			)
+		lineageTag: a4fcbe78-3b04-43ef-a89c-2c036df66f1b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TESTE
+		isHidden
+		lineageTag: 0184c86c-27ed-4129-971a-ff6739d8f714
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [TESTE]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Medidas PP Carga' = calculated
+		mode: import
+		source = ROW("TESTE","TESTE")
+
+	annotation PBI_Id = 7d9321765472449bb1b17373be156aa7
+

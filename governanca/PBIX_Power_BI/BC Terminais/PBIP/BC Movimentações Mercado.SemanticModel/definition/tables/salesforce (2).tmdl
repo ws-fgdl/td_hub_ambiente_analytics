@@ -1,0 +1,159 @@
+table 'salesforce (2)'
+	lineageTag: 7a1cf133-ba6d-43d2-871d-8e865ed85ca3
+
+	column Grupo_Economico = ```
+			
+			IF(
+			    NOT(ISBLANK(LOOKUPVALUE('dim_carteira_comercial'[grupo_economico], 'dim_carteira_comercial'[codigo_sap], 'salesforce (2)'[Codigo SAP]))),
+			    LOOKUPVALUE('dim_carteira_comercial'[grupo_economico], 'dim_carteira_comercial'[codigo_sap], 'salesforce (2)'[Codigo SAP]), IF('salesforce (2)'[Grupo Economico] = BLANK(), 'salesforce (2)'[Razão Social], 
+			    'salesforce (2)'[Grupo Economico]
+			))
+			```
+		lineageTag: a3a5ac9a-0502-4ae4-b623-1a8eb40a44c9
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'pb_tipo de cliente' = ```
+			
+			
+			    IF(LOOKUPVALUE('dim_carteira_comercial'[Armador/Cliente Carga], 'dim_carteira_comercial'[codigo_sap], 'salesforce (2)'[Codigo SAP])= BLANK(), "Cliente Carga", LOOKUPVALUE('dim_carteira_comercial'[Armador/Cliente Carga], 'dim_carteira_comercial'[codigo_sap], 'salesforce (2)'[Codigo SAP])  )
+			```
+		lineageTag: 75bd429c-547b-4f20-b1f1-fff59cbe83f2
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Id
+		dataType: string
+		lineageTag: 8ab21e71-f767-4691-a5e6-4fd02c23222d
+		summarizeBy: none
+		sourceColumn: Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column ParentId
+		dataType: string
+		lineageTag: cb0dd49a-3b0f-43bb-894a-ba02c77ed77f
+		summarizeBy: none
+		sourceColumn: ParentId
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Grupo Economico'
+		dataType: string
+		lineageTag: 8c9d349d-cc94-498b-b2f0-67a787c93ce9
+		summarizeBy: none
+		sourceColumn: Grupo Economico
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Grupo Comercial'
+		dataType: string
+		lineageTag: 5d88fd0f-4d3b-445f-810f-f3ea56d78b70
+		summarizeBy: none
+		sourceColumn: Grupo Comercial
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cidade
+		dataType: string
+		lineageTag: 50422350-8395-444d-9852-b4be20c245a2
+		summarizeBy: none
+		sourceColumn: Cidade
+
+		annotation SummarizationSetBy = Automatic
+
+	column País
+		dataType: string
+		lineageTag: 982e5644-5224-4bf6-9086-b1d2099a3ae2
+		summarizeBy: none
+		sourceColumn: País
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Código Postal'
+		dataType: string
+		lineageTag: 0453b15f-0e0f-4a27-9655-42e88e97aded
+		summarizeBy: none
+		sourceColumn: Código Postal
+
+		annotation SummarizationSetBy = Automatic
+
+	column Estado
+		dataType: string
+		lineageTag: 8e00dea1-e464-4ee6-96e1-94f7a4c57479
+		summarizeBy: none
+		sourceColumn: Estado
+
+		annotation SummarizationSetBy = Automatic
+
+	column Endereço
+		dataType: string
+		lineageTag: 2f1bb0d8-ac86-477e-9ece-c22d31f932ff
+		summarizeBy: none
+		sourceColumn: Endereço
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Razão Social'
+		dataType: string
+		lineageTag: 1482b888-a372-450a-a361-8eca747c10ec
+		summarizeBy: none
+		sourceColumn: Razão Social
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Codigo SAP'
+		dataType: string
+		lineageTag: 6ab8b3ea-9c31-45b4-a9a4-7314dcca89e1
+		summarizeBy: none
+		sourceColumn: Codigo SAP
+
+		annotation SummarizationSetBy = Automatic
+
+	column CNPJ
+		dataType: string
+		lineageTag: 2749c9c5-f0e7-47aa-82df-4c0aea8f4f4e
+		summarizeBy: none
+		sourceColumn: CNPJ
+
+		annotation SummarizationSetBy = Automatic
+
+	column CPF
+		dataType: string
+		lineageTag: 7fb8a876-4e6e-4863-b06a-875e9173969f
+		summarizeBy: none
+		sourceColumn: CPF
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'DUNS Number'
+		dataType: string
+		lineageTag: fb6d7243-7d0e-461d-b8d2-c50acd2c28e3
+		summarizeBy: none
+		sourceColumn: DUNS Number
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'salesforce (2)' = m
+		mode: import
+		source =
+				let
+				    Fonte = PowerPlatform.Dataflows([]),
+				    Workspaces = Fonte{[Id="Workspaces"]}[Data],
+				    #"bcd54b55-e85f-4c30-a169-bfbf18f90f30" = Workspaces{[workspaceId="bcd54b55-e85f-4c30-a169-bfbf18f90f30"]}[Data],
+				    #"e5f851f1-87f1-4400-ab7a-8f88dfc387f5" = #"bcd54b55-e85f-4c30-a169-bfbf18f90f30"{[dataflowId="e5f851f1-87f1-4400-ab7a-8f88dfc387f5"]}[Data],
+				    salesforce_ = #"e5f851f1-87f1-4400-ab7a-8f88dfc387f5"{[entity="salesforce",version=""]}[Data],
+				    #"Colunas Renomeadas" = Table.RenameColumns(salesforce_,{{"id", "Id"}, {"parentid", "ParentId"}, {"grupo_economico", "Grupo Economico"}, {"grupo_comercial", "Grupo Comercial"}, {"cidade", "Cidade"}, {"pais", "País"}, {"codigo_postal", "Código Postal"}, {"estado", "Estado"}, {"endereço", "Endereço"}, {"razao_social", "Razão Social"}, {"codigo_sap", "Codigo SAP"}, {"cnpj", "CNPJ"}, {"cpf", "CPF"}, {"duns_number", "DUNS Number"}}),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Colunas Renomeadas", {{"Codigo SAP", type text}}),
+				    RemoverZeroscCodSap = Table.TransformColumns(#"Tipo Alterado", {"Codigo SAP", each if Text.Start(_, 2) = "00" then Text.Middle(_, 2) else _}),
+				    #"Tipo Alterado1" = Table.TransformColumnTypes(RemoverZeroscCodSap,{{"Codigo SAP", type text}}),
+				    #"Erros Removidos" = Table.RemoveRowsWithErrors(#"Tipo Alterado1", {"Codigo SAP"})
+				in
+				    #"Erros Removidos"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

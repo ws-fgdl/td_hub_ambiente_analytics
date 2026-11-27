@@ -1,0 +1,28 @@
+table '#Box Rate Vazio TRA'
+	lineageTag: 4fb85292-db73-4359-bb84-ba21c9e48c86
+
+	measure 'Valor #Box Rate Vazio TRA' = SELECTEDVALUE('#Box Rate Vazio TRA'[#Box Rate Vazio TRA])
+		lineageTag: 34ab744e-0250-4848-a21f-666fe6cdf078
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#Box Rate Vazio TRA'
+		lineageTag: e10a836c-505a-4972-9f9e-35db95169713
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '#Box Rate Vazio TRA' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 1, 0.001)
+
+	annotation PBI_Id = bd56478edcc54360902f07df4b23a56d
+

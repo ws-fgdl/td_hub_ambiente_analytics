@@ -1,0 +1,28 @@
+table '#Fornecimento de Água'
+	lineageTag: 13a52e5b-fc2c-443e-a357-96c4c90be305
+
+	measure 'Valor #Fornecimento de Água' = SELECTEDVALUE('#Fornecimento de Água'[#Fornecimento de Água])
+		lineageTag: 47a892bb-b89c-442e-b14f-abb3d41a8282
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#Fornecimento de Água'
+		lineageTag: fae72bbf-6e98-4d4d-b448-9eb382819555
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '#Fornecimento de Água' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 1, 0.001)
+
+	annotation PBI_Id = 2d3d4c28e1a74deb9afec4cd0cb6c214
+

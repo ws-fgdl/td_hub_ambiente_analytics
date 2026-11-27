@@ -1,0 +1,1245 @@
+table 'Medidas PP Carga'
+	lineageTag: 3a7176a6-7792-47f6-bb9b-501a78c49ef9
+
+	measure 'fat calculado isinscope' =
+			IF(
+			AND(ISINSCOPE('bussola_comercial'[servico]),
+			AND(SELECTEDVALUE(bussola_comercial[Agrupamento Subgrupo Princing]) <> "Fiel Depósito", SELECTEDVALUE(bussola_comercial[Agrupamento Subgrupo Princing]) <> "Armazenagem Cntr Cheio")),
+			[Price] *[Volume/Qtd.] //Quantidade
+			,
+			BLANK() // Retorna em branco caso contrário
+			)
+		lineageTag: 3c576ac9-3bc5-42e0-a6c5-a1fd73634c86
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'fat calculado final' =
+			
+			SUMX(VALUES(bussola_comercial[servico]),
+			[fat calculado isinscope]  + [Faturamento Realizado Carga] + [Faturamento Realizado Carga Exp]
+			)
+		lineageTag: a4fcbe78-3b04-43ef-a89c-2c036df66f1b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Simulalação Preço Subgrupo' = ```
+			
+			
+			[Price3] *
+			AVERAGEX(
+			    'bussola_comercial',
+			    1 +
+			        SWITCH (
+			            TRUE (),
+			
+			            //-------------------------------------------
+			            // BÁSICOS IMPORTAÇÃO
+			            //-------------------------------------------
+			            'bussola_comercial'[Agrupamento Subgrupo Princing] = "Vistoria Não Invasiva Cheio Importação", [Valor #Vistoria Não Invasiva Cheio Importação],
+			            'bussola_comercial'[Agrupamento Subgrupo Princing] = "Inspeção Não Invasiva Cheio Importação", [Valor #Inspeção Não Invasiva Cheio Importação],
+			            'bussola_comercial'[Agrupamento Subgrupo Princing] = "Levante Cntr Importação", [Valor #Levante Cntr Importação],
+			            'bussola_comercial'[Agrupamento Subgrupo Princing] = "Carga de Projeto", [Valor #Carga de Projeto],
+			            'bussola_comercial'[Agrupamento Subgrupo Princing] = "Pesagem Cntr Importação Recepção", [Valor #Pesagem Cntr Importação Recepção],
+			
+			            -- Separação Importação/Exportação
+			            AND('bussola_comercial'[Agrupamento Serviço] = "Básicos Importação",'bussola_comercial'[Agrupamento Subgrupo Princing] = "ISPS"), [Valor #ISPS Importação],
+			            AND('bussola_comercial'[Agrupamento Serviço] = "Básicos Importação",'bussola_comercial'[Agrupamento Subgrupo Princing] = "Presença de Carga"), [Valor #Presença de Carga Importação],
+			            AND('bussola_comercial'[Agrupamento Serviço] = "Básicos Importação",'bussola_comercial'[Agrupamento Subgrupo Princing] = "Gerenciamento de Risco Importação"), [Valor #Gerenciamento de Risco Importação],
+			            
+			
+			            'bussola_comercial'[Agrupamento Subgrupo Princing] = "Utilização de Área Especial", [Valor #Utilização de Área Especial],
+			            'bussola_comercial'[Agrupamento Subgrupo Princing] = "Vistoria Não Invasiva LCL", [Valor #Vistoria Não Invasiva LCL],
+			            'bussola_comercial'[Agrupamento Subgrupo Princing] = "Entrega Cntr Vazio", [Valor #Entrega Cntr Vazia],
+			            'bussola_comercial'[Agrupamento Subgrupo Princing] = "ISPS LCL", [Valor #ISPS LCL],
+			            'bussola_comercial'[Agrupamento Subgrupo Princing] = "DSA", [Valor #DSA],
+			            'bussola_comercial'[Agrupamento Subgrupo Princing] = "Carregamento Manual", [Valor #Carregamento Manual],
+			            'bussola_comercial'[Agrupamento Subgrupo Princing] = "Carregamento Mecanizado", [Valor #Carregamento Mecanizado],
+			            'bussola_comercial'[Agrupamento Subgrupo Princing] = "Pesagem Cntr Importação Recepção LCL", [Valor #Pesagem Cntr Importação Recepção LCL],
+			            'bussola_comercial'[Agrupamento Subgrupo Princing] = "Estufagem Cntr", [Valor #Estufagem Cntr],
+			            'bussola_comercial'[Agrupamento Subgrupo Princing] = "Outros Importação", [Valor #Outros Importação],
+			            'bussola_comercial'[Agrupamento Subgrupo Princing] = "Inspeção Não Invasiva Vazio Importação", [Valor #Inspeção Não Invasiva Vazio Importação],
+			
+			
+			            //-------------------------------------------
+			            // BÁSICOS EXPORTAÇÃO
+			            //-------------------------------------------
+			            'bussola_comercial'[Agrupamento Subgrupo Princing] = "Vistoria Não Invasiva Cheio Exportação", [Valor #Vistoria Não Invasiva Cheio Exportação],
+			            AND('bussola_comercial'[Agrupamento Serviço] = "Básicos Exportação",'bussola_comercial'[Agrupamento Subgrupo Princing] = "ISPS"), [Valor #ISPS Exportação],
+			            'bussola_comercial'[Agrupamento Subgrupo Princing] = "Inspeção Não Invasiva Cheio Exportação", [Valor #Inspeção Não Invasiva Cheio Exportação],
+			
+			            -- Separação Importação/Exportação
+			            AND('bussola_comercial'[Agrupamento Serviço] = "Básicos Exportação",'bussola_comercial'[Agrupamento Subgrupo Princing] = "Presença de Carga"), [Valor #Presença de Carga Exportação],
+			            AND('bussola_comercial'[Agrupamento Serviço] = "Básicos Exportação",'bussola_comercial'[Agrupamento Subgrupo Princing] = "Gerenciamento de Risco Exportação"), [Valor #Gerenciamento de Risco Exportação],
+			            AND('bussola_comercial'[Agrupamento Serviço] = "Básicos Exportação",'bussola_comercial'[Agrupamento Subgrupo Princing] = "Estremação Cntr"), [Valor #Estremação Cntr],
+			            
+			
+			            'bussola_comercial'[Agrupamento Subgrupo Princing] = "Pesagem Exportação CCT", [Valor #Pesagem Exportação CCT],
+			            'bussola_comercial'[Agrupamento Subgrupo Princing] = "Estremação Cntr", [Valor #Estremação Cntr],
+			            'bussola_comercial'[Agrupamento Subgrupo Princing] = "Pesagem Cntr", [Valor #Pesagem Cntr],
+			            'bussola_comercial'[Agrupamento Subgrupo Princing] = "Monitoramento Cntr Reefer Exportação", [Valor #Monitoramento Cntr Reefer Exportação],
+			
+			
+			            //-------------------------------------------
+			            // OUTROS SERVIÇOS
+			            //-------------------------------------------
+			            'bussola_comercial'[Agrupamento Subgrupo Princing] = "Carga Geral", [Valor #Carga Geral],
+			            'bussola_comercial'[Agrupamento Subgrupo Princing] = "Manuseio Extra/Realocações/Transferência Lote", [Valor #Manuseio Extra/Realocações/Transferência Lote],
+			            'bussola_comercial'[Agrupamento Subgrupo Princing] = "Transferência de Lote", [Valor #Transferência de Lote],
+			            'bussola_comercial'[Agrupamento Subgrupo Princing] = "Outros", [Valor #Outros],
+			            'bussola_comercial'[Agrupamento Subgrupo Princing] = "Pesagem Cntr", [Valor #Pesagem Cntr],
+			            'bussola_comercial'[Agrupamento Subgrupo Princing] = "Agendamento", [Valor #Agendamento],
+			            'bussola_comercial'[Agrupamento Subgrupo Princing] = "Despesa Administrativa", [Valor #Despesa Administrativa],
+			            AND('bussola_comercial'[Agrupamento Serviço] = "Outros Serviços",'bussola_comercial'[Agrupamento Subgrupo Princing] = "Manuseio Cntr Vistoria"), [Valor #Manuseio Cntr Vistoria],
+			            'bussola_comercial'[Agrupamento Subgrupo Princing] = "Carga de Projeto", [Valor #Carga de Projeto],
+			            'bussola_comercial'[Agrupamento Subgrupo Princing] = "Overtime", [Valor #Overtime],
+			            'bussola_comercial'[Agrupamento Subgrupo Princing] = "Manuseio Cntr (Vistoria, Expurgo, labels)", [Valor #Manuseio Cntr (Vistoria, Expurgo, labels)],
+			            'bussola_comercial'[Agrupamento Subgrupo Princing] = "Registro Fotográfico", [Valor #Registro Fotográfico],
+			
+			
+			            //-------------------------------------------
+			            // SERVIÇOS DE ARMAZÉM
+			            //-------------------------------------------
+			            'bussola_comercial'[Agrupamento Subgrupo Princing] = "Desconsolidação LCL", [Valor #Desconsolidação LCL],
+			            AND('bussola_comercial'[Agrupamento Serviço] = "Serviços de Armazém",'bussola_comercial'[Agrupamento Subgrupo Princing] = "Manuseio Cntr Vistoria"), [Valor #Manuseio Cntr Vistoria 2],
+			            'bussola_comercial'[Agrupamento Subgrupo Princing] = "Estufagem Mecanizada", [Valor #Estufagem Mecanizada],
+			            AND('bussola_comercial'[Agrupamento Serviço] = "Serviços de Armazém",'bussola_comercial'[Agrupamento Subgrupo Princing] = "Estremação Cntr"), [Valor #Estremação Cntr Importação],
+			            'bussola_comercial'[Agrupamento Subgrupo Princing] = "Desova Mecanizada", [Valor #Desova Mecanizada],
+			            'bussola_comercial'[Agrupamento Subgrupo Princing] = "Levante Carga Importação Mecanizada", [Valor #Levante Carga Importação Mecanizada],
+			            'bussola_comercial'[Agrupamento Subgrupo Princing] = "Desova Manual", [Valor #Desova Manual],
+			            'bussola_comercial'[Agrupamento Subgrupo Princing] = "Estufagem Manual", [Valor #Estufagem Manual],
+			            'bussola_comercial'[Agrupamento Subgrupo Princing] = "Vistoria Invasiva em Plataforma", [Valor #Vistoria Invasiva em Plataforma],
+			            'bussola_comercial'[Agrupamento Subgrupo Princing] = "Levante Carga Importação Manual", [Valor #Levante Carga Importação Manual],
+			            'bussola_comercial'[Agrupamento Subgrupo Princing] = "Busca Cntr Vazio", [Valor #Busca Cntr Vazio],
+			            'bussola_comercial'[Agrupamento Subgrupo Princing] = "Outros Armazém", [Valor #Outros Armazém],
+			            'bussola_comercial'[Agrupamento Subgrupo Princing] = "Manuseio Carga Importação", [Valor #Manuseio Carga Importação],
+			            'bussola_comercial'[Agrupamento Subgrupo Princing] = "Registro Fotográfico Armazém", [Valor #Registro Fotográfico Armazém],
+			            'bussola_comercial'[Agrupamento Subgrupo Princing] = "Pesagem Mercadoria Importação", [Valor #Pesagem Mercadoria Importação],
+			            'bussola_comercial'[Agrupamento Subgrupo Princing] = "Levante Carga Exportação", [Valor #Levante Carga Exportação],
+			            'bussola_comercial'[Agrupamento Subgrupo Princing] = "Entrega Cntr Vazio Armazém", [Valor #Entrega Cntr Vazio Armazém],
+			
+			
+			            //-------------------------------------------
+			            // OPERAÇÃO NAVIO
+			            //-------------------------------------------
+			            'bussola_comercial'[Agrupamento Subgrupo Princing] = "Inciso XIV", [Valor #Inciso XIV],
+			            'bussola_comercial'[Agrupamento Subgrupo Princing] = "Box Rate Cheio LC", [Valor #Box Rate Cheio LC],
+			            'bussola_comercial'[Agrupamento Subgrupo Princing] = "Outros Operação Navio", [Valor #Outros Operação Navio],
+			            'bussola_comercial'[Agrupamento Subgrupo Princing] = "Box Rate Vazio LC", [Valor #Box Rate Vazio LC],
+			            'bussola_comercial'[Agrupamento Subgrupo Princing] = "Ocupação Cais Acostagem", [Valor #Ocupação Cais Acostagem],
+			            'bussola_comercial'[Agrupamento Subgrupo Princing] = "Armazenagem Cntr Vazios", [Valor #Armazenagem Cntr Vazios],
+			            'bussola_comercial'[Agrupamento Subgrupo Princing] = "Carga de Projeto", [Valor #Carga de Projeto],
+			            'bussola_comercial'[Agrupamento Subgrupo Princing] = "Carga Geral", [Valor #Carga Geral],
+			            'bussola_comercial'[Agrupamento Subgrupo Princing] = "Remoção por Terra Cheio", [Valor #Remoção por Terra Cheio],
+			            'bussola_comercial'[Agrupamento Subgrupo Princing] = "Cargas Especiais", [Valor #Cargas Especiais],
+			            'bussola_comercial'[Agrupamento Subgrupo Princing] = "ISPS Operação Navio", [Valor #ISPS Operação Navio],
+			            'bussola_comercial'[Agrupamento Subgrupo Princing] = "Box Rate Cheio TRA", [Valor #Box Rate Cheio TRA],
+			            'bussola_comercial'[Agrupamento Subgrupo Princing] = "Fornecimento de Água", [Valor #Fornecimento de Água],
+			            'bussola_comercial'[Agrupamento Subgrupo Princing] = "Box Rate Vazio TRA", [Valor #Box Rate Vazio TRA],
+			            'bussola_comercial'[Agrupamento Subgrupo Princing] = "Remoção por Terra Vazio", [Valor #Remoção por Terra Vazio],
+			            'bussola_comercial'[Agrupamento Subgrupo Princing] = "Out of Gauge Cargo", [Valor #Out of Gauge Cargo],
+			            'bussola_comercial'[Agrupamento Subgrupo Princing] = "Vistoria Não Invasiva Vazios", [Valor #Vistoria Não Invasiva Vazios],
+			            'bussola_comercial'[Agrupamento Subgrupo Princing] = "Remoção a Bordo Vazio", [Valor #Remoção a Bordo Vazio],
+			            'bussola_comercial'[Agrupamento Subgrupo Princing] = "Box Rate Cheio CAB", [Valor #Box Rate Cheio CAB],
+			            'bussola_comercial'[Agrupamento Subgrupo Princing] = "Box Rate Vazio CAB", [Valor #Box Rate Vazio CAB],
+			
+			
+			            //-------------------------------------------
+			            // REEFER
+			            //-------------------------------------------
+			            'bussola_comercial'[Agrupamento Subgrupo Princing] = "Fornecimento de Energia Cntr Reefer", [Valor #Fornecimento de Energia Cntr Reefer],
+			            'bussola_comercial'[Agrupamento Subgrupo Princing] = "Monitoramento Cntr Reefer", [Valor #Monitoramento Cntr Reefer],
+			            'bussola_comercial'[Agrupamento Subgrupo Princing] = "Inspeção Cntr", [Valor #Inspeção Cntr],
+			
+			            
+			            //-------------------------------------------
+			            // OPERAÇÃO NAVIO OOG
+			            //-------------------------------------------
+			            'bussola_comercial'[Agrupamento Subgrupo Princing] = "Out of Gauge Cargo OOG", [Valor #Out of Gauge Cargo OOG],
+			
+			
+			            //-------------------------------------------
+			            // DEFAULT
+			            //-------------------------------------------
+			            0
+			        )
+			)
+			
+			```
+		lineageTag: 00100ed0-5cda-46c3-9b2c-0f2b7f62ae10
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Pocket_price_1 =
+			
+			VAR projFS = ([volume])*(([Simulalação Preço Subgrupo]
+			+ [Simulação Preço Grupo]
+			))-[fat calculado final]
+			
+			RETURN
+			projFS/[fat calculado final]-1
+		lineageTag: 972aa1e2-5041-4b32-b958-740526c01c3b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Simulador de Preço Carga' =
+			
+			IFERROR(IF(
+			    (1+[Pocket_price_1])*[Price3]<-1,
+			    0,
+			    (1+[Pocket_price_1])*[Price3]
+			),BLANK())
+		lineageTag: cdcba3ff-405a-47ac-803f-062ed1ec426d
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Simulação Preço Grupo' = ```
+			
+			[Price3] *
+			AVERAGEX(
+			    'bussola_comercial',
+			    1 +
+			        (
+			            SWITCH (
+			                TRUE (),
+			
+			                // -------- Grupos principais conforme aparecem na matriz --------
+			                'bussola_comercial'[Agrupamento Serviço] = "Básicos Importação", [Valor #Básicos Importação],
+			                'bussola_comercial'[Agrupamento Serviço] = "Básicos Exportação", [Valor #Básicos Exportação],
+			                'bussola_comercial'[Agrupamento Serviço] = "Outros Serviços", [Valor #Outros Serviços],
+			                'bussola_comercial'[Agrupamento Serviço] = "Reefer", [Valor #Reefer],
+			                'bussola_comercial'[Agrupamento Serviço] = "Operação Navio", [Valor #Operação Navio],
+			                'bussola_comercial'[Agrupamento Serviço] = "Serviços de Armazém", [Valor #Serviços de Armazém],
+			             //   'bussola_comercial'[Agrupamento Serviço] = "Básicos Cabotagem", [Valor Básicos Cabotagem],
+			             //   'bussola_comercial'[Agrupamento Serviço] = "Básicos Transbordo", [Valor Básicos Transbordo],
+			                 'bussola_comercial'[Agrupamento Serviço] = "Operação Navio OOG", [Valor #Operação Navio OOG],
+			
+			                // -------- Caso não encontre o grupo --------
+			                BLANK(), 0,
+			
+			                // -------- Default --------
+			                1
+			            )
+			        )
+			)
+			
+			```
+		lineageTag: 304c9e18-9094-4dd7-857a-66b7625b6b86
+
+	measure 'Simulalação Volume Subgrupo' = ```
+			
+			
+			var vVolume = SUMX(
+			        'bussola_comercial',
+			        'bussola_comercial'[volume]
+			        * (
+			            1
+			            + SWITCH (
+			                TRUE (),
+			            //-------------------------------------------
+			            // BÁSICOS IMPORTAÇÃO
+			            //-------------------------------------------
+			            // 'bussola_comercial'[Agrupamento Subgrupo Princing] = "Vistoria Não Invasiva Cheio Importação", [Valor #Vol Vistoria Não Invasiva Cheio Importação],
+			            // 'bussola_comercial'[Agrupamento Subgrupo Princing] = "Inspeção Não Invasiva Cheio Importação", [Valor #Vol Inspeção Não Invasiva Cheio Importação],
+			            // 'bussola_comercial'[Agrupamento Subgrupo Princing] = "Levante Cntr Importação", [Valor #Vol Levante Cntr Importação],
+			            // 'bussola_comercial'[Agrupamento Subgrupo Princing] = "Carga de Projeto", [Valor #Vol Carga de Projeto],
+			            // 'bussola_comercial'[Agrupamento Subgrupo Princing] = "Pesagem Cntr Importação Recepção", [Valor #Vol Pesagem Cntr Importação Recepção],
+			
+			            // -- Separação Importação/Exportação
+			            // 'bussola_comercial'[Agrupamento Subgrupo Princing] = "ISPS Importação", [Valor #Vol ISPS Importação],
+			            // 'bussola_comercial'[Agrupamento Subgrupo Princing] = "Presença de Carga Importação", [Valor #Vol Presença de Carga Importação],
+			            // 'bussola_comercial'[Agrupamento Subgrupo Princing] = "Gerenciamento de Risco Importação", [Valor #Vol Gerenciamento de Risco Importação],
+			
+			            // 'bussola_comercial'[Agrupamento Subgrupo Princing] = "Utilização de Área Especial", [Valor #Vol Utilização de Área Especial],
+			            // 'bussola_comercial'[Agrupamento Subgrupo Princing] = "Vistoria Não Invasiva LCL", [Valor #Vol Vistoria Não Invasiva LCL],
+			            // 'bussola_comercial'[Agrupamento Subgrupo Princing] = "Entrega Cntr Vazia", [Valor #Vol Entrega Cntr Vazia],
+			            // 'bussola_comercial'[Agrupamento Subgrupo Princing] = "ISPS LCL", [Valor #Vol ISPS LCL],
+			            // 'bussola_comercial'[Agrupamento Subgrupo Princing] = "DSA", [Valor #Vol DSA],
+			            // 'bussola_comercial'[Agrupamento Subgrupo Princing] = "Carregamento Manual", [Valor #Vol Carregamento Manual],
+			            // 'bussola_comercial'[Agrupamento Subgrupo Princing] = "Carregamento Mecanizado", [Valor #Vol Carregamento Mecanizado],
+			            // 'bussola_comercial'[Agrupamento Subgrupo Princing] = "Pesagem Cntr Importação Recepção LCL", [Valor #Vol Pesagem Cntr Importação Recepção LCL],
+			            // 'bussola_comercial'[Agrupamento Subgrupo Princing] = "Estufagem Cntr", [Valor #Vol Estufagem Cntr],
+			            // 'bussola_comercial'[Agrupamento Subgrupo Princing] = "Outros Importação", [Valor #Vol Outros Importação],
+			            // 'bussola_comercial'[Agrupamento Subgrupo Princing] = "Inspeção Não Invasiva Vazio Importação", [Valor #Vol Inspeção Não Invasiva Vazio Importação],
+			
+			
+			            //-------------------------------------------
+			            // BÁSICOS EXPORTAÇÃO
+			            //-------------------------------------------
+			            'bussola_comercial'[Agrupamento Subgrupo Princing] = "Vistoria Não Invasiva Cheio Exportação", [Valor #Vol Vistoria Não Invasiva Cheio Exportação],
+			            AND('bussola_comercial'[Agrupamento Serviço] = "Básicos Exportação",'bussola_comercial'[Agrupamento Subgrupo Princing] = "ISPS"), [Valor #Vol ISPS Exportação],
+			            'bussola_comercial'[Agrupamento Subgrupo Princing] = "Inspeção Não Invasiva Cheio Exportação", [Valor #Vol Inspeção Não Invasiva Cheio Exportação],
+			
+			            -- Separação Importação/Exportação
+			            'bussola_comercial'[Agrupamento Subgrupo Princing] = "Presença de Carga Exportação", [Valor #Vol Presença de Carga Exportação],
+			            'bussola_comercial'[Agrupamento Subgrupo Princing] = "Gerenciamento de Risco Exportação", [Valor #Vol Gerenciamento de Risco Exportação],
+			
+			            'bussola_comercial'[Agrupamento Subgrupo Princing] = "Pesagem Exportação CCT", [Valor #Vol Pesagem Exportação CCT],
+			            'bussola_comercial'[Agrupamento Subgrupo Princing] = "Estremação Cntr", [Valor #Vol Estremação Cntr],
+			            'bussola_comercial'[Agrupamento Subgrupo Princing] = "Pesagem Cntr", [Valor #Vol Pesagem Cntr],
+			            'bussola_comercial'[Agrupamento Subgrupo Princing] = "Monitoramento Cntr Reefer Exportação", [Valor #Vol Monitoramento Cntr Reefer Exportação]
+			
+			
+			            //-------------------------------------------
+			            // OUTROS SERVIÇOS
+			            //-------------------------------------------
+			            // 'bussola_comercial'[Agrupamento Subgrupo Princing] = "Carga Geral", [Valor #Vol Carga Geral],
+			            // 'bussola_comercial'[Agrupamento Subgrupo Princing] = "Manuseio Extra/Realocações/Transferência Lote", [Valor #Vol Manuseio Extra/Realocações/Transferência Lote],
+			            // 'bussola_comercial'[Agrupamento Subgrupo Princing] = "Transferência de Lote", [Valor #Vol Transferência de Lote],
+			            // 'bussola_comercial'[Agrupamento Subgrupo Princing] = "Outros", [Valor #Vol Outros],
+			            // 'bussola_comercial'[Agrupamento Subgrupo Princing] = "Pesagem Cntr", [Valor #Vol Pesagem Cntr],
+			            // 'bussola_comercial'[Agrupamento Subgrupo Princing] = "Agendamento", [Valor #Vol Agendamento],
+			            // 'bussola_comercial'[Agrupamento Subgrupo Princing] = "Despesa Administrativa", [Valor #Vol Despesa Administrativa],
+			            // 'bussola_comercial'[Agrupamento Subgrupo Princing] = "Manuseio Cntr Vistoria", [Valor #Vol Manuseio Cntr Vistoria],
+			            // 'bussola_comercial'[Agrupamento Subgrupo Princing] = "Carga de Projeto", [Valor #Vol Carga de Projeto],
+			            // 'bussola_comercial'[Agrupamento Subgrupo Princing] = "Overtime", [Valor #Vol Overtime],
+			            // 'bussola_comercial'[Agrupamento Subgrupo Princing] = "Manuseio Cntr (Vistoria, Expurgo, labels)", [Valor #Vol Manuseio Cntr (Vistoria, Expurgo, labels)],
+			            // 'bussola_comercial'[Agrupamento Subgrupo Princing] = "Registro Fotográfico", [Valor #Vol Registro Fotográfico],
+			
+			
+			            // //-------------------------------------------
+			            // // SERVIÇOS DE ARMAZÉM
+			            // //-------------------------------------------
+			            // 'bussola_comercial'[Agrupamento Subgrupo Princing] = "Desconsolidação LCL", [Valor #Vol Desconsolidação LCL],
+			            // 'bussola_comercial'[Agrupamento Subgrupo Princing] = "Manuseio Cntr Vistoria", [Valor #Vol Manuseio Cntr Vistoria],
+			            // 'bussola_comercial'[Agrupamento Subgrupo Princing] = "Estufagem Mecanizada", [Valor #Vol Estufagem Mecanizada],
+			            // 'bussola_comercial'[Agrupamento Subgrupo Princing] = "Desova Mecanizada", [Valor #Vol Desova Mecanizada],
+			            // 'bussola_comercial'[Agrupamento Subgrupo Princing] = "Levante Carga Importação Mecanizada", [Valor #Vol Levante Carga Importação Mecanizada],
+			            // 'bussola_comercial'[Agrupamento Subgrupo Princing] = "Desova Manual", [Valor #Vol Desova Manual],
+			            // 'bussola_comercial'[Agrupamento Subgrupo Princing] = "Estufagem Manual", [Valor #Vol Estufagem Manual],
+			            // 'bussola_comercial'[Agrupamento Subgrupo Princing] = "Vistoria Invasiva em Plataforma", [Valor #Vol Vistoria Invasiva em Plataforma],
+			            // 'bussola_comercial'[Agrupamento Subgrupo Princing] = "Levante Carga Importação Manual", [Valor #Vol Levante Carga Importação Manual],
+			            // 'bussola_comercial'[Agrupamento Subgrupo Princing] = "Busca Cntr Vazio", [Valor #Vol Busca Cntr Vazio],
+			            // 'bussola_comercial'[Agrupamento Subgrupo Princing] = "Outros Armazém", [Valor #Vol Outros Armazém],
+			            // 'bussola_comercial'[Agrupamento Subgrupo Princing] = "Manuseio Carga Importação", [Valor #Vol Manuseio Carga Importação],
+			            // 'bussola_comercial'[Agrupamento Subgrupo Princing] = "Registro Fotográfico Armazém", [Valor #Vol Registro Fotográfico Armazém],
+			            // 'bussola_comercial'[Agrupamento Subgrupo Princing] = "Pesagem Mercadoria Importação", [Valor #Vol Pesagem Mercadoria Importação],
+			            // 'bussola_comercial'[Agrupamento Subgrupo Princing] = "Levante Carga Exportação", [Valor #Vol Levante Carga Exportação],
+			            // 'bussola_comercial'[Agrupamento Subgrupo Princing] = "Entrega Cntr Vazio Armazém", [Valor #Vol Entrega Cntr Vazio Armazém],
+			
+			
+			            // //-------------------------------------------
+			            // // OPERAÇÃO NAVIO
+			            // //-------------------------------------------
+			            // 'bussola_comercial'[Agrupamento Subgrupo Princing] = "Inciso XIV", [Valor #Vol Inciso XIV],
+			            // 'bussola_comercial'[Agrupamento Subgrupo Princing] = "Box Rate Cheio LC", [Valor #Vol Box Rate Cheio LC],
+			            // 'bussola_comercial'[Agrupamento Subgrupo Princing] = "Outros Operação Navio", [Valor #Vol Outros Operação Navio],
+			            // 'bussola_comercial'[Agrupamento Subgrupo Princing] = "Box Rate Vazio LC", [Valor #Vol Box Rate Vazio LC],
+			            // 'bussola_comercial'[Agrupamento Subgrupo Princing] = "Ocupação Cais Acostagem", [Valor #Vol Ocupação Cais Acostagem],
+			            // 'bussola_comercial'[Agrupamento Subgrupo Princing] = "Armazenagem Cntr Vazios", [Valor #Vol Armazenagem Cntr Vazios],
+			            // 'bussola_comercial'[Agrupamento Subgrupo Princing] = "Carga de Projeto", [Valor #Vol Carga de Projeto],
+			            // 'bussola_comercial'[Agrupamento Subgrupo Princing] = "Carga Geral", [Valor #Vol Carga Geral],
+			            // 'bussola_comercial'[Agrupamento Subgrupo Princing] = "Remoção por Terra Cheio", [Valor #Vol Remoção por Terra Cheio],
+			            // 'bussola_comercial'[Agrupamento Subgrupo Princing] = "Cargas Especiais", [Valor #Vol Cargas Especiais],
+			            // 'bussola_comercial'[Agrupamento Subgrupo Princing] = "ISPS Operação Navio", [Valor #Vol ISPS Operação Navio],
+			            // 'bussola_comercial'[Agrupamento Subgrupo Princing] = "Box Rate Cheio TRA", [Valor #Vol Box Rate Cheio TRA],
+			            // 'bussola_comercial'[Agrupamento Subgrupo Princing] = "Fornecimento de Água", [Valor #Vol Fornecimento de Água],
+			            // 'bussola_comercial'[Agrupamento Subgrupo Princing] = "Box Rate Vazio TRA", [Valor #Vol Box Rate Vazio TRA],
+			            // 'bussola_comercial'[Agrupamento Subgrupo Princing] = "Remoção por Terra Vazio", [Valor #Vol Remoção por Terra Vazio],
+			            // 'bussola_comercial'[Agrupamento Subgrupo Princing] = "Out of Gauge Cargo", [Valor #Vol Out of Gauge Cargo],
+			            // 'bussola_comercial'[Agrupamento Subgrupo Princing] = "Vistoria Não Invasiva Vazios", [Valor #Vol Vistoria Não Invasiva Vazios],
+			            // 'bussola_comercial'[Agrupamento Subgrupo Princing] = "Remoção a Bordo Vazio", [Valor #Vol Remoção a Bordo Vazio],
+			            // 'bussola_comercial'[Agrupamento Subgrupo Princing] = "Box Rate Cheio CAB", [Valor #Vol Box Rate Cheio CAB],
+			            // 'bussola_comercial'[Agrupamento Subgrupo Princing] = "Box Rate Vazio CAB", [Valor #Vol Box Rate Vazio CAB],
+			
+			
+			            // //-------------------------------------------
+			            // // REEFER
+			            // //-------------------------------------------
+			            // 'bussola_comercial'[Agrupamento Subgrupo Princing] = "Fornecimento de Energia Cntr Reefer", [Valor #Vol Fornecimento de Energia Cntr Reefer],
+			            // 'bussola_comercial'[Agrupamento Subgrupo Princing] = "Monitoramento Cntr Reefer", [Valor #Vol Monitoramento Cntr Reefer],
+			            // 'bussola_comercial'[Agrupamento Subgrupo Princing] = "Inspeção Cntr", [Valor #Vol Inspeção Cntr],
+			
+			
+			            // //-------------------------------------------
+			            // // OPERAÇÃO NAVIO OOG
+			            // //-------------------------------------------
+			            // 'bussola_comercial'[Agrupamento Subgrupo Princing] = "Out of Gauge Cargo OOG", [Valor #Vol Out of Gauge Cargo OOG],
+			
+			
+			            //-------------------------------------------
+			            // DEFAULT
+			            //-------------------------------------------
+			            
+			        )
+			)
+			
+			        - 
+			            SWITCH (TRUE (),
+			
+			            //Dias Isenção
+			            'bussola_comercial'[Agrupamento Subgrupo Princing] = "Fornecimento de Energia Cntr Reefer", [Valor Dias Isenção - Fornec. Energia (Carga)],
+			            'bussola_comercial'[Agrupamento Subgrupo Princing] = "Monitoramento Cntr Reefer", [Valor Monit. Energia - Dias Isenção 2],
+			            'bussola_comercial'[Agrupamento Subgrupo Princing] = "Armazenagem Cntr Cheio", [Valor Arm. Cheio Exp - Isenção Carga],
+			
+			        0
+			) 
+			)
+			
+			RETURN
+			IF(vVolume<0,0,vVolume)
+			
+			```
+		lineageTag: 3d560be0-34d2-43cf-8cd9-940e6e493535
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Simulação Volume Grupo' = ```
+			
+			var vVolume = sumX (
+			        'bussola_comercial',
+			        'bussola_comercial'[volume]
+			        * (
+			            1
+			            + SWITCH (
+			                TRUE (),
+			             //   'bussola_comercial'[Agrupamento Serviço] = "Básicos Cabotagem", [Valor Vol Básicos Cabotagem],
+			                'bussola_comercial'[Agrupamento Serviço] = "Básicos Exportação", [Valor #Vol Básicos Exportação],
+			                'bussola_comercial'[Agrupamento Serviço] = "Básicos Importação", [Valor #Vol Básicos Importação],
+			             //   'bussola_comercial'[Agrupamento Serviço] = "Básicos Transbordo", [Valor Vol Básicos Transbordo],
+			                'bussola_comercial'[Agrupamento Serviço] = "Operação Navio", [Valor #Vol Operação Navio],
+			                'bussola_comercial'[Agrupamento Serviço] = "Operação Navio OOG", [Valor #Vol Operação Navio OOG],
+			                'bussola_comercial'[Agrupamento Serviço] = "Outros Serviços", [Valor #Vol Outros Serviços],
+			                'bussola_comercial'[Agrupamento Serviço] = "Reefer", [Valor #Vol Reefer],
+			                'bussola_comercial'[Agrupamento Serviço] = "Serviços de Armazém", [Valor #Vol Serviços de Armazém],
+			                'bussola_comercial'[Agrupamento Serviço] = BLANK(), 0,
+			                0
+			            )
+			            
+			
+			        )
+			        
+			        )
+			RETURN
+			IF(vVolume<0,0,vVolume)
+			```
+		lineageTag: 614f8e0a-72e1-454e-9951-ce88621d0bb3
+
+	measure 'Variação Volume Carga' =
+			((
+			    (
+			    ([Simulação Volume Grupo]+[Simulalação Volume Subgrupo])-2*[volume]
+			    )
+			    +[volume])/[volume])-1
+		lineageTag: 58b30aa5-3f9f-481e-8abf-cdf209aa9552
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Simulador de Volume Carga' = (1+[Variação Volume Carga])*[volume]
+		formatString: #,0
+		lineageTag: c9ea7d40-2729-4c16-9f09-cda15c7eebae
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Projeção Faturamento Simulador Carga' = ```
+			
+			
+			VAR projFS =
+			    ([Simulação Volume Grupo] + [Simulalação Volume Subgrupo] - [volume]) *
+			    ([Simulalação Preço Subgrupo] + [Simulação Preço Grupo] - [Price3])
+			    + [Faturamento Simulado Carga]
+			
+			VAR result =
+			    IF(
+			AND(ISINSCOPE('bussola_comercial'[servico]),
+			AND(AND(SELECTEDVALUE(bussola_comercial[Agrupamento Subgrupo Princing]) <> "Fiel Depósito", SELECTEDVALUE(bussola_comercial[Agrupamento Subgrupo Princing]) <> "Armazenagem Cntr Cheio"),SELECTEDVALUE(bussola_comercial[Agrupamento Subgrupo Princing]) <> "Armazenagem Carga Importação")),
+			
+			        IF(
+			            projFS < 0,
+			            0,
+			            projFS
+			        ),
+			        BLANK()
+			    )
+			
+			RETURN
+			result
+			
+			```
+		lineageTag: cecaf1cc-2960-40f2-a7d1-d6d402dd2e87
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Projeção Faturamento Simulador Final' =
+			
+			
+			SUMX(VALUES(bussola_comercial[servico]),
+			[Projeção Faturamento Simulador Carga] + [Faturamento Simulado Carga Exp] + [Faturamento Simulado Carga 2]
+			)
+		lineageTag: 133a5f12-f027-4a7d-9886-23b08a8b3ba8
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Projeção Simulada Carga' = ```
+			
+			var data_max = MAX(bussola_comercial[competencia])
+			var result = 
+			
+			            IF(
+			                MAX(Calendario2[Date])>data_max,
+			                CALCULATE([Projeção Faturamento Simulador Final], DATEADD(Calendario2[Date],-'Meses contratuais'[Período contratual],MONTH)),
+			                [fat calculado final]
+			            )
+			
+			return result
+			```
+		lineageTag: 017a0482-ab09-4519-b33e-de892820d4d5
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Simulador de Volume PP Carga' =
+			
+			IF(
+			ISINSCOPE('bussola_comercial'[servico]),
+			(1+[Variação Volume Carga])*[Volume PP Carga],
+			BLANK()
+			)
+		lineageTag: ec265a08-dad3-440c-9603-6d55b664214e
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Simulador de Volume PP final' =
+			
+			SUMX(VALUES(bussola_comercial[servico]),
+			[Simulador de Volume PP Carga]
+			)
+		lineageTag: 78404023-4eb8-4414-9269-8fafaadd7cf4
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Pocket Price Carga' =
+			
+			([Projeção Faturamento Simulador Final]/[Simulador de Volume PP final])/([fat calculado final]/[Volume PP Carga])-1
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 924587c7-98e6-46de-a0d1-2579decfc824
+
+	measure 'Variação de Vol. Carga' =
+			
+			[Simulador de Volume PP final]/[Volume PP Carga] -1
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: e709b4d0-3140-4c35-b894-48fed66b0991
+
+	measure 'Variação Faturamento Carga' = ([Projeção Faturamento Simulador Final]/[fat calculado final])-1
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 00a80fba-3995-48df-b579-19719cf142a2
+
+	measure 'Δ faturamento' = [Projeção Faturamento Simulador Final] - [fat calculado final]
+		lineageTag: 434b2f38-3731-49c4-bba1-19df50d3094e
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Volume PP Carga' = ```
+			
+			VAR _tsv =
+			    CALCULATE (
+			        SUM ( bussola_comercial[volume] ),
+			        bussola_comercial[Agrupamento Subgrupo Princing]
+			            IN {
+			                "Inspeção Não Invasiva Cheio Exportação",
+			                "Inspeção Não Invasiva Cheio Importação"
+			            }
+			    )
+			VAR _trg =
+			    CALCULATE (
+			        SUM ( bussola_comercial[volume] ),
+			        bussola_comercial[Agrupamento Subgrupo Princing] IN { "ISPS" }
+			    )
+			RETURN
+			SWITCH (
+			    TRUE(),
+			    SELECTEDVALUE ( bussola_comercial[un] ) = "TRG", _trg,
+			    _tsv
+			)
+			
+			```
+		lineageTag: 7d910225-fa1b-48a1-aa30-04285ab97bfb
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Volume Simulado Carga IMP' = ```
+			
+			// Parâmetros de freetime
+			VAR _freetime_param_default       = [Valor #Freetime]
+			VAR _freetime_param_vazio_imp     = [#Param Dias Freetime Vazio Imp (selecionado)]
+			VAR _freetime_param_vazio_exp     = [#Param Dias Freetime Vazio Exp (selecionado)]
+			// Parâmetros de isenção
+			VAR _dias_isencao_param_default   = [Valor #Dias Isenção]
+			VAR _dias_isencao_param_vazio_imp = [#Param Dias Isenção Vazio Imp (selecionado)]
+			VAR _dias_isencao_param_vazio_exp = [#Param Dias Isenção Vazio Exp (selecionado)]
+			// Parâmetros de ajuste de volume
+			VAR _perc_ajuste_volume_cheio     = [Valor #% Ajuste Vlume]
+			VAR _perc_ajuste_volume_vazio     = [#Param % ajuste volume Arm Cntr Vazio (selecionado)]
+			
+			RETURN
+			SUMX
+			( bussola_comercial
+			, VAR _servico               = bussola_comercial[servico]
+			  VAR _sub_grupo_princing    = bussola_comercial[Agrupamento Subgrupo Princing]
+			  // Variáveis do tipo "flag"
+			  VAR _sinalizador_cheio     = _sub_grupo_princing IN {"Armazenagem Cntr Cheio" , "Armazenagem Cntr Cheio BT" }
+			  VAR _sinalizador_vazio     = _sub_grupo_princing IN {"Armazenagem Cntr Vazios", "Armazenagem Cntr Vazios BT"}
+			  VAR _sinalizador_vazio_imp = _sinalizador_vazio //&& CONTAINSSTRING(_servico, "IMP")
+			  VAR _sinalizador_vazio_exp = _sinalizador_vazio //&& CONTAINSSTRING(_servico, "EXP")
+			  
+			  // Para freetime e isenção: se parâmetro estiver em branco, considerar o realizado.
+			  VAR _freetime_param =
+			    SWITCH
+			    ( TRUE()
+			    , _sinalizador_vazio_imp, _freetime_param_vazio_imp
+			    , _sinalizador_vazio_exp, _freetime_param_vazio_exp
+			    , _freetime_param_default
+			    )
+			  VAR _dias_isencao_param =
+			    SWITCH
+			    ( TRUE()
+			    , _sinalizador_vazio_imp, _dias_isencao_param_vazio_imp
+			    , _sinalizador_vazio_exp, _dias_isencao_param_vazio_exp
+			    , _dias_isencao_param_default
+			    )
+			
+			  VAR _freetime = IF(ISBLANK(_freetime_param), bussola_comercial[dias_free_time], _freetime_param)
+			  VAR _dias_servico = bussola_comercial[dias_servico]
+			  VAR _perc_ajuste_volume =
+			    SWITCH
+			    ( TRUE()
+			    , _sinalizador_vazio, _perc_ajuste_volume_vazio
+			    , _sinalizador_cheio, _perc_ajuste_volume_cheio
+			    , 0
+			    )
+			
+			    VAR _dias_isencao = IF(ISBLANK(_dias_isencao_param), bussola_comercial[dias_isencao], _dias_isencao_param)
+			
+			  // Se dias de serviço for menor que freetime, retornar zero; caso contrário, calcular os dias de serviço considerando os de isenção.
+			  VAR _dias_servico_ajustado =
+			      IF ( _dias_servico <= _freetime
+			         , 0
+			         , VAR _dias_isencao = IF(ISBLANK(_dias_isencao_param), bussola_comercial[dias_isencao], _dias_isencao_param)
+			           RETURN
+			           IF ( _dias_isencao > _dias_servico
+			              , 0
+			              , _dias_servico - _dias_isencao
+			              )
+			         )
+			
+			    VAR _volume_simulado = IF(_dias_servico <= _freetime , 0, IF(_dias_servico < _dias_isencao, 0, _dias_servico - _dias_isencao))
+			    
+			  RETURN
+			  ROUNDup(_volume_simulado* (1 + _perc_ajuste_volume), 0)
+			)
+			```
+		lineageTag: 5526c3b8-2202-4ea4-b509-084ecf79525c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Dias P1 Simulado Carga Imp' = ```
+			
+			// Premissas consideradas para obter os valores dos parâmetros; o percentual retorna zero quando nada foi informado; os outros retornam BLANK().
+			VAR _freetime_param     = [Valor #Freetime]
+			VAR _dias_isencao_param = [Valor #Dias Isenção]
+			VAR _perc_ajuste_volume_cheio = [Valor #% Ajuste Vlume]
+			VAR _perc_ajuste_volume_vazio = [#Param % ajuste volume Arm Cntr Vazio (selecionado)]
+			 
+			RETURN
+			SUMX
+			( bussola_comercial
+			, VAR _periodo1_contrato = bussola_comercial[periodo1_contrato]
+			    VAR _un = bussola_comercial[un] 
+			  RETURN
+			  IF ( ISBLANK(_periodo1_contrato)
+			     , BLANK()
+			     , // Verificar a quantidade de dias em freetime. Se o parâmetro estiver em branco, considerar o realizado.
+			       VAR _freetime = IF(ISBLANK(_freetime_param), if(ISBLANK(bussola_comercial[dias_free_time]),0,bussola_comercial[dias_free_time]), _freetime_param)
+			       VAR _dias_servico = bussola_comercial[dias_servico]
+			       VAR _sub_grupo_princing = bussola_comercial[Agrupamento Subgrupo Princing]
+			       VAR _perc_ajuste_volume =
+			         SWITCH
+			         ( TRUE()
+			         , (_sub_grupo_princing IN {"Armazenagem Cntr Vazios", "Armazenagem Cntr Vazios BT"}), _perc_ajuste_volume_vazio
+			         , (_sub_grupo_princing IN {"Armazenagem Cntr Cheio" , "Armazenagem Cntr Cheio BT", "Armazenagem Carga Importação" }), _perc_ajuste_volume_cheio
+			         , 0
+			         )
+			       // Se dias de serviço for menor que freetime, retornar zero; caso contrário, calcular os dias de serviço considerando os de isenção.
+			       VAR _dias_servico_ajustado =
+			           IF ( _dias_servico <= _freetime
+			              , 0
+			              , VAR _dias_isencao = IF(ISBLANK(_dias_isencao_param), bussola_comercial[dias_isencao], _dias_isencao_param)
+			                RETURN
+			                IF ( _dias_isencao > _dias_servico
+			                   , 0
+			                   , _dias_servico - _dias_isencao
+			                   )
+			              )
+			       RETURN 
+			       IF ( _dias_servico_ajustado = 0
+			          , 0
+			          , VAR _volume_simulado = ROUND(_dias_servico_ajustado * (1 + _perc_ajuste_volume), 0)
+			 
+			            var _is_trg_armador = bussola_comercial[un] = "TRG" //&& CONTAINSSTRING(bussola_comercial[servico], "EXP")
+			 
+			            var _is_trg_carga = bussola_comercial[un] = "TRG" && RELATED(salesforce[Armador/Cliente Carga]) = "Cliente Carga" //&& CONTAINSSTRING(bussola_comercial[servico], "IMP") 
+			 
+			            var _is_trg_vazio = bussola_comercial[un] = "TRG" && _sub_grupo_princing IN {"Armazenagem Cntr Vazios", "Armazenagem Cntr Vazios BT"}
+			 
+			            var _is_tsv_armador = bussola_comercial[un] = "TSV" && RELATED(salesforce[Armador/Cliente Carga]) = "Armador" //&& CONTAINSSTRING(bussola_comercial[servico], "EXP")
+			 
+			            var _is_tsv_carga = bussola_comercial[un] = "TSV" && RELATED(salesforce[Armador/Cliente Carga]) = "Cliente Carga" //&& CONTAINSSTRING(bussola_comercial[servico], "IMP")
+			
+			 
+			 
+			            RETURN
+			 
+			            SWITCH(
+			                TRUE(),
+			                    //Filtro TSV Armador e TSV Carga
+			                    _is_tsv_armador || _is_tsv_carga || _is_trg_vazio, 1,
+			 
+			                    //Filtro TRG vazio
+			                    //_is_trg_vazio && _is_trg_armador,1,
+			 
+			                    _is_trg_carga,IF(_volume_simulado > _periodo1_contrato, _periodo1_contrato, _volume_simulado),
+			 
+			                    //Filtro TRG Cheio e TRG Carga   
+			                    _is_trg_armador ,IF(_volume_simulado > _periodo1_contrato, _periodo1_contrato, _volume_simulado),
+			 
+			                    //ELSE
+			                    0
+			            )
+			 
+			 
+			        //     IF ( bussola_comercial[un] = "TSV"
+			        //        , IF(_volume_simulado > 0, 1, 0)
+			        //        //Filtro TRG Armador
+			        //        , IF(_sub_grupo_princing IN {"Armazenagem Cntr Vazios", "Armazenagem Cntr Vazios BT"}
+			        //        , IF(_volume_simulado > 0, 1, 0)
+			 
+			        //         //Filtro TRG Carga
+			        //        , IF(_sub_grupo_princing IN {"Armazenagem Cntr Cheio"} && bussola_comercial[un]="TRG"
+			        //        , IF(_volume_simulado > _periodo1_contrato, _periodo1_contrato, _volume_simulado)
+			        //        )
+			        //        )
+			 
+			        //   )
+			     )
+			)
+			 
+			)
+			```
+		lineageTag: 91c21420-77ff-47eb-8c2d-4c5a8f997a05
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Dias P2 Simulado Carga Imp' = ```
+			
+			// Premissas consideradas para obter os valores dos parâmetros; o percentual retorna zero quando nada foi informado; os outros retornam BLANK().
+			VAR _freetime_param     = [Valor #Freetime]
+			VAR _dias_isencao_param = [Valor #Dias Isenção]
+			VAR _perc_ajuste_volume_cheio = [Valor #% Ajuste Vlume]
+			VAR _perc_ajuste_volume_vazio = [#Param % ajuste volume Arm Cntr Vazio (selecionado)]
+			 
+			RETURN
+			SUMX
+			( bussola_comercial
+			, VAR _periodo2_contrato = bussola_comercial[periodo2_contrato]
+			  RETURN
+			  IF ( ISBLANK(_periodo2_contrato)
+			     , BLANK()
+			     , // Verificar a quantidade de dias em freetime. Se o parâmetro estiver em branco, considerar o realizado.
+			       VAR _freetime = IF(ISBLANK(_freetime_param), bussola_comercial[dias_free_time], _freetime_param)
+			       VAR _dias_servico = bussola_comercial[dias_servico]
+			       VAR _sub_grupo_princing = bussola_comercial[Agrupamento Subgrupo Princing]
+			       VAR _perc_ajuste_volume =
+			         SWITCH
+			         ( TRUE()
+			         , (_sub_grupo_princing IN {"Armazenagem Cntr Vazios", "Armazenagem Cntr Vazios BT"}), _perc_ajuste_volume_vazio
+			         , (_sub_grupo_princing IN {"Armazenagem Cntr Cheio" , "Armazenagem Cntr Cheio BT", "Armazenagem Carga Importação" }), _perc_ajuste_volume_cheio
+			         , 0
+			         )
+			       // Se dias de serviço for menor que freetime, retornar zero; caso contrário, calcular os dias de serviço considerando os de isenção.
+			       VAR _dias_servico_ajustado =
+			           IF ( _dias_servico <= _freetime
+			              , 0
+			              , VAR _dias_isencao = IF(ISBLANK(_dias_isencao_param), bussola_comercial[dias_isencao], _dias_isencao_param)
+			                RETURN
+			                IF ( _dias_isencao > _dias_servico
+			                   , 0
+			                   , _dias_servico - _dias_isencao
+			                   )
+			              )
+			       RETURN
+			       IF ( _dias_servico_ajustado = 0
+			          , 0
+			          , VAR _volume_simulado = ROUND(_dias_servico_ajustado * (1 + _perc_ajuste_volume), 0)
+			          
+			            VAR _saldo_volume = _volume_simulado - bussola_comercial[periodo1_contrato]
+			            VAR _un = bussola_comercial[un]
+			 
+			            var _is_trg_armador = bussola_comercial[un] = "TRG" && CONTAINSSTRING(bussola_comercial[servico], "EXP")
+			 
+			            var _is_trg_carga = bussola_comercial[un] = "TRG" && CONTAINSSTRING(bussola_comercial[servico], "IMP") && RELATED(salesforce[Armador/Cliente Carga]) = "Cliente Carga"
+			 
+			            var _is_trg_vazio = bussola_comercial[un] = "TRG" && _sub_grupo_princing IN {"Armazenagem Cntr Vazios", "Armazenagem Cntr Vazios BT"}
+			 
+			            // var _is_tsv_armador = bussola_comercial[un] = "TSV" && CONTAINSSTRING(bussola_comercial[servico], "EXP")
+			
+			            var _is_tsv_armador = bussola_comercial[un] = "TSV" && RELATED(salesforce[Armador/Cliente Carga]) = "Armador"
+			 
+			            var _is_tsv_carga = bussola_comercial[un] = "TSV" && CONTAINSSTRING(bussola_comercial[servico], "IMP") && RELATED(salesforce[Armador/Cliente Carga]) = "Cliente Carga"
+			 
+			            RETURN
+			             
+			          SWITCH(
+			                TRUE(),
+			 
+			                    //Filtro TSV Armador
+			                    _is_tsv_armador && _saldo_volume > 0, 1,
+			 
+			                    //Filtro TRG vazio
+			                    _is_trg_vazio,  if(_saldo_volume > 0, ROUNDUP(DIVIDE(_saldo_volume,_periodo2_contrato),0),0),
+			 
+			                    //Filtro TRG Carga
+			                    _is_trg_carga, if(_saldo_volume <=0,0,IF(_saldo_volume > _periodo2_contrato, _periodo2_contrato, _saldo_volume)),
+			 
+			                    //Filtro TRG Cheio
+			                    _is_trg_armador && _saldo_volume > 0, _saldo_volume,
+			                   
+			                    //Filtro de TSV Carga
+			                    // _is_tsv_carga && _saldo_volume > bussola_comercial[periodo1_contrato] + bussola_comercial[dias_portas_p1],1,0)
+			                    _is_tsv_carga && _saldo_volume > 0,1,0)
+			          )
+			  )
+			)
+			
+			
+			```
+		lineageTag: 136d04a5-cc11-4aac-9d3e-1a29d873702f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Dias P3 Simulado Carga Imp' = ```
+			
+			// Premissas consideradas para obter os valores dos parâmetros; o percentual retorna zero quando nada foi informado; os outros retornam BLANK().
+			VAR _freetime_param     = [Valor #Freetime]
+			VAR _dias_isencao_param = [Valor #Dias Isenção]
+			VAR _perc_ajuste_volume_cheio = [Valor #% Ajuste Vlume]
+			VAR _perc_ajuste_volume_vazio = [#Param % ajuste volume Arm Cntr Vazio (selecionado)]
+			
+			RETURN
+			SUMX
+			( bussola_comercial
+			//, IF ( bussola_comercial[un] = "TRG"
+			//     , BLANK()
+			     , VAR _periodo3_contrato_ = bussola_comercial[periodo3_contrato]
+			       RETURN
+			       IF ( ISBLANK(_periodo3_contrato_)
+			          , BLANK()
+			          , // Verificar a quantidade de dias em freetime. Se o parâmetro estiver em branco, considerar o realizado.
+			            VAR _freetime = IF(ISBLANK(_freetime_param), bussola_comercial[dias_free_time], _freetime_param)
+			            VAR _dias_servico = bussola_comercial[dias_servico]
+			            VAR _sub_grupo_princing = bussola_comercial[Agrupamento Subgrupo Princing]
+			            VAR _perc_ajuste_volume =
+			              SWITCH
+			              ( TRUE()
+			              , (_sub_grupo_princing IN {"Armazenagem Cntr Vazios", "Armazenagem Cntr Vazios BT"}), _perc_ajuste_volume_vazio
+			              , (_sub_grupo_princing IN {"Armazenagem Cntr Cheio" , "Armazenagem Cntr Cheio BT", "Armazenagem Carga Importação" }), _perc_ajuste_volume_cheio
+			              , 0
+			              )
+			            // Se dias de serviço for menor que freetime, retornar zero; caso contrário, calcular os dias de serviço considerando os de isenção.
+			            VAR _dias_servico_ajustado =
+			                IF ( _dias_servico <= _freetime
+			                   , 0
+			                   , VAR _dias_isencao = IF(ISBLANK(_dias_isencao_param), bussola_comercial[dias_isencao], _dias_isencao_param)
+			                     RETURN
+			                     IF ( _dias_isencao > _dias_servico
+			                        , 0
+			                        , _dias_servico - _dias_isencao
+			                        )
+			                   )
+			            RETURN
+			            IF ( _dias_servico_ajustado = 0
+			               , 0
+			               , VAR _volume_simulado = ROUND(_dias_servico_ajustado * (1 + _perc_ajuste_volume), 0)
+			               
+			                 VAR _saldo_volume = _volume_simulado - bussola_comercial[periodo1_contrato] - bussola_comercial[periodo2_contrato]
+			
+			                 VAR _saldo_volume_TSVCarga = _saldo_volume-bussola_comercial[dias_portas_p2]
+			
+			            var _is_trg_armador = bussola_comercial[un] = "TRG" //&& CONTAINSSTRING(bussola_comercial[servico], "EXP")
+			
+			            var _is_trg_carga = bussola_comercial[un] = "TRG" && RELATED(salesforce[Armador/Cliente Carga]) = "Cliente Carga" //&& CONTAINSSTRING(bussola_comercial[servico], "IMP")
+			
+			            var _is_trg_vazio = bussola_comercial[un] = "TRG" && _sub_grupo_princing IN {"Armazenagem Cntr Vazios", "Armazenagem Cntr Vazios BT"}
+			
+			            var _is_tsv_armador = bussola_comercial[un] = "TSV" && RELATED(salesforce[Armador/Cliente Carga]) = "Armador" //&& CONTAINSSTRING(bussola_comercial[servico], "EXP")
+			
+			            var _is_tsv_carga = bussola_comercial[un] = "TSV" && RELATED(salesforce[Armador/Cliente Carga]) = "Cliente Carga" //&& CONTAINSSTRING(bussola_comercial[servico], "IMP")
+			
+			
+			
+			                 RETURN
+			
+			SWITCH(
+			                TRUE(),
+			
+			                     //Filtro TSV Armador
+			                    _is_tsv_armador && _saldo_volume > 0, ROUNDUP(DIVIDE(_saldo_volume,_periodo3_contrato_),0),
+			
+			                    //Filtro TRG Carga
+			                    _is_trg_carga, if(_saldo_volume<=0,0,IF(_saldo_volume > _periodo3_contrato_, _periodo3_contrato_, _saldo_volume)),
+			
+			                    //Filtro de TSV Carga
+			                     _is_tsv_carga && _saldo_volume_TSVCarga > 0,ROUNDUP(DIVIDE(_saldo_volume_TSVCarga,_periodo3_contrato_),0)
+			               
+			
+			
+			                    // bussola_comercial[un] = "TSV" && _saldo_volume > 0, 1,
+			
+			                    // //Filtro TRG Armador (esse filtro está fazendo o cálculo de CARGA)
+			                    // bussola_comercial[un] = "TRG" && (_sub_grupo_princing IN {"Armazenagem Cntr Vazios", "Armazenagem Cntr Vazios BT"}), _saldo_volume - (bussola_comercial[periodo1_contrato] + bussola_comercial[periodo2_contrato]),
+			                    
+			                    // //formula original que já estava
+			                    // _saldo_volume > 0, ROUNDUP(DIVIDE(_saldo_volume, bussola_comercial[periodo3_contrato]),0)
+			                    
+			                    //ELSE
+			                    ,0
+			             
+			          )
+			     )
+			)
+			
+			
+			             
+			//)
+			)
+			```
+		lineageTag: 74826f10-2148-4aac-8a43-0f228efa343a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Dias P4 Simulado Carga Imp' = ```
+			
+			// Premissas consideradas para obter os valores dos parâmetros; o percentual retorna zero quando nada foi informado; os outros retornam BLANK().
+			VAR _freetime_param     = [Valor #Freetime]
+			VAR _dias_isencao_param = [Valor #Dias Isenção]
+			VAR _perc_ajuste_volume_cheio = [Valor #% Ajuste Vlume]
+			VAR _perc_ajuste_volume_vazio = [#Param % ajuste volume Arm Cntr Vazio (selecionado)]
+			
+			RETURN
+			SUMX
+			( bussola_comercial
+			//, IF ( bussola_comercial[un] = "TRG"
+			//     , BLANK()
+			     , VAR _periodo4_contrato = bussola_comercial[periodo4_contrato]
+			       RETURN
+			       IF ( ISBLANK(_periodo4_contrato)
+			          , BLANK()
+			          , // Verificar a quantidade de dias em freetime. Se o parâmetro estiver em branco, considerar o realizado.
+			            VAR _freetime = IF(ISBLANK(_freetime_param), bussola_comercial[dias_free_time], _freetime_param)
+			            VAR _dias_servico = bussola_comercial[dias_servico]
+			            VAR _sub_grupo_princing = bussola_comercial[Agrupamento Subgrupo Princing]
+			            VAR _perc_ajuste_volume =
+			              SWITCH
+			              ( TRUE()
+			              , (_sub_grupo_princing IN {"Armazenagem Cntr Vazios", "Armazenagem Cntr Vazios BT"}), _perc_ajuste_volume_vazio
+			              , (_sub_grupo_princing IN {"Armazenagem Cntr Cheio" , "Armazenagem Cntr Cheio BT", "Armazenagem Carga Importação"}), _perc_ajuste_volume_cheio
+			              , 0
+			              )
+			            // Se dias de serviço for menor que freetime, retornar zero; caso contrário, calcular os dias de serviço considerando os de isenção.
+			            VAR _dias_servico_ajustado =
+			                IF ( _dias_servico <= _freetime
+			                   , 0
+			                   , VAR _dias_isencao = IF(ISBLANK(_dias_isencao_param), bussola_comercial[dias_isencao], _dias_isencao_param)
+			                     RETURN
+			                     IF ( _dias_isencao > _dias_servico
+			                        , 0
+			                        , _dias_servico - _dias_isencao
+			                        )
+			                   )
+			            RETURN
+			            IF ( _dias_servico_ajustado = 0
+			               , 0
+			               , VAR _volume_simulado = ROUND(_dias_servico_ajustado * (1 + _perc_ajuste_volume), 0)
+			                 VAR _saldo_volume = _volume_simulado - bussola_comercial[periodo1_contrato] - bussola_comercial[periodo2_contrato] - bussola_comercial[periodo3_contrato]
+			                 VAR _saldo_volume_TSVCarga = _saldo_volume-bussola_comercial[dias_portas_p2]
+			            
+			            var _is_trg_carga = bussola_comercial[un] = "TRG" && CONTAINSSTRING(bussola_comercial[servico], "IMP") && RELATED(salesforce[Armador/Cliente Carga]) = "Cliente Carga"
+			
+			                 RETURN
+			
+			SWITCH(
+			                TRUE(),
+			
+			                   
+			
+			                    //Filtro TRG Carga
+			                    _is_trg_carga,  if(_saldo_volume > 0,_saldo_volume,0), 0)
+			
+			                    
+			               
+			
+			
+			                    // bussola_comercial[un] = "TSV" && _saldo_volume > 0, 1,
+			
+			                    // //Filtro TRG Armador (esse filtro está fazendo o cálculo de CARGA)
+			                    // bussola_comercial[un] = "TRG" && (_sub_grupo_princing IN {"Armazenagem Cntr Vazios", "Armazenagem Cntr Vazios BT"}), _saldo_volume - (bussola_comercial[periodo1_contrato] + bussola_comercial[periodo2_contrato]),
+			                    
+			                    // //formula original que já estava
+			                    // _saldo_volume > 0, ROUNDUP(DIVIDE(_saldo_volume, bussola_comercial[periodo3_contrato]),0)
+			                    
+			                    //ELSE
+			                    //,0
+			             
+			          )
+			     )
+			)         
+			
+			```
+		lineageTag: e85023ad-992d-4664-aa46-5120dee1ad8f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Faturamento Simulado Carga 2' = ```
+			
+			// Parâmetros de freetime
+			VAR _freetime_param_default           = [Valor #Freetime]
+			VAR _freetime_param_vazio_imp         = [#Param Dias Freetime Vazio Imp (selecionado)]
+			VAR _freetime_param_vazio_exp         = [#Param Dias Freetime Vazio Exp (selecionado)]
+			// Parâmetros de isenção
+			VAR _dias_isencao_param_default       = [Valor #Dias Isenção]
+			VAR _dias_isencao_param_vazio_imp     = [#Param Dias Isenção Vazio Imp (selecionado)]
+			VAR _dias_isencao_param_vazio_exp     = [#Param Dias Isenção Vazio Exp (selecionado)]
+			// Parâmetros de ajuste de volume
+			VAR _perc_ajuste_volume_cheio         = [Valor #% Ajuste Vlume]
+			VAR _perc_ajuste_volume_vazio         = [#Param % ajuste volume Arm Cntr Vazio (selecionado)]
+			VAR _perc_ajuste_cif                  = [Valor #% ajuste CIF Cheio Imp]
+			VAR _perc_ajuste_gris                 = [Valor #% GRIS]
+			
+			// Parâmetros de valor mínimo
+			VAR _param_valor_min_p1               = [Valor #Val Min P1]
+			VAR _param_valor_min_p2               = [Valor #Val Min P2]
+			VAR _param_valor_min_p3               = [Valor #Val Min P3]
+			VAR _param_valor_min_p4               = [Valor #Val Min P4]
+			
+			
+			// Parâmetros de cif
+			VAR _param_cif_p1                     = [Valor #% CIF por dia P1]
+			VAR _param_cif_p2                     = [Valor #% CIF por dia P2]
+			VAR _param_cif_p3                     = [Valor #% CIF por dia P3]
+			VAR _param_cif_p4                     = [Valor % CIF por dia P4]
+			
+			
+			// Outros parâmetros de ajuste de preços
+			VAR _param_valor_ad_ogg               = [Valor #Arm. Cheio Imp - Adicional OOG]
+			VAR _param_valor_arm_cheio_imp_ad_carg_especial = [Valor #Arm. Cheio Imp - Adicional Carga Especial] 
+			
+			
+			
+			RETURN
+			SUMX
+			( bussola_comercial
+			, // Valores dos campos
+			  VAR _un                    = bussola_comercial[un]
+			  VAR _tam_container         = bussola_comercial[tamanho_container]
+			  VAR _cif                   = bussola_comercial[cif]
+			  VAR _imo                   = bussola_comercial[imo]
+			  VAR _oog                   = bussola_comercial[oog]
+			  VAR _sub_grupo_princing    = bussola_comercial[Agrupamento Subgrupo Princing]
+			  VAR _tabela_publica        = bussola_comercial[tabela_publica]
+			  VAR _periodo1_contrato     = bussola_comercial[periodo1_contrato]
+			  VAR _periodo2_contrato     = bussola_comercial[periodo2_contrato]
+			  VAR _periodo3_contrato     = bussola_comercial[periodo3_contrato]
+			  VAR _preco1                = COALESCE(bussola_comercial[price_p1], _tabela_publica, 0)
+			  VAR _preco2                = COALESCE(bussola_comercial[price_p2], _tabela_publica, 0)
+			  VAR _preco3                = COALESCE(bussola_comercial[price_p3], _tabela_publica, 0)
+			  VAR _dias_servico          = bussola_comercial[dias_servico]
+			  VAR _servico               = bussola_comercial[servico]
+			  VAR _volume                = bussola_comercial[volume]
+			  VAR _perc_cif_1            = bussola_comercial[perc_cif_periodo1]
+			  VAR _perc_cif_2            = bussola_comercial[perc_cif_periodo2]
+			  VAR _perc_cif_3            = bussola_comercial[perc_cif_periodo3]
+			  VAR _perc_cif_4            = bussola_comercial[perc_cif_periodo4]
+			
+			  //calculo de contrato_min
+			  VAR _valor_min_1           = if(ISBLANK(_param_valor_min_p1), bussola_comercial[valor_minimo_periodo1],_param_valor_min_p1)
+			  VAR _valor_min_2           = if(ISBLANK(_param_valor_min_p2), bussola_comercial[valor_minimo_periodo2],_param_valor_min_p2)
+			  VAR _valor_min_3           = if(ISBLANK(_param_valor_min_p3), bussola_comercial[valor_minimo_periodo3],_param_valor_min_p3)
+			  VAR _valor_min_4           = if(ISBLANK(_param_valor_min_p4), bussola_comercial[valor_minimo_periodo4],_param_valor_min_p4)
+			  VAR _periodo1              = bussola_comercial[periodo1]
+			  VAR _periodo2              = bussola_comercial[periodo2]
+			  VAR _periodo3              = bussola_comercial[periodo3]
+			  VAR _periodo4              = bussola_comercial[periodo4]
+			  // Variáveis do tipo "flag"
+			  VAR _sinalizador_cheio     = _sub_grupo_princing IN {"Armazenagem Cntr Cheio" , "Armazenagem Cntr Cheio BT" }
+			  VAR _sinalizador_vazio     = _sub_grupo_princing IN {"Armazenagem Cntr Vazios", "Armazenagem Cntr Vazios BT"}
+			  VAR _sinalizador_vazio_imp = _sinalizador_vazio && CONTAINSSTRING(_servico, "IMP")
+			  VAR _sinalizador_vazio_exp = _sinalizador_vazio && CONTAINSSTRING(_servico, "EXP")
+			
+			  // Para freetime e isenção: se parâmetro estiver em branco, considerar o realizado.
+			  VAR _freetime_param =  _freetime_param_default
+			    // SWITCH
+			    // ( TRUE()
+			    // , _sinalizador_vazio_imp, _freetime_param_vazio_imp
+			    // , _sinalizador_vazio_exp, _freetime_param_vazio_exp
+			    // , _freetime_param_default
+			    // )
+			  
+			  VAR _dias_isencao_param =  _dias_isencao_param_default
+			    // SWITCH
+			    // ( TRUE()
+			    // , _sinalizador_vazio_imp, _dias_isencao_param_vazio_imp
+			    // , _sinalizador_vazio_exp, _dias_isencao_param_vazio_exp
+			    // , _dias_isencao_param_default
+			    // )
+			  
+			  VAR _freetime     = IF(ISBLANK(_freetime_param)    , bussola_comercial[dias_free_time], _freetime_param)
+			  
+			  VAR _dias_isencao = IF(ISBLANK(_dias_isencao_param), bussola_comercial[dias_isencao]  , _dias_isencao_param)
+			
+			  //Parâmetro de dias simulado
+			 
+			  VAR _is_trg_armador = bussola_comercial[un] = "TRG" && CONTAINSSTRING(bussola_comercial[servico], "EXP")
+			 
+			  VAR _is_trg_carga = bussola_comercial[un] = "TRG" && CONTAINSSTRING(bussola_comercial[servico], "IMP")
+			 
+			  VAR _is_trg_vazio = bussola_comercial[un] = "TRG" && _sub_grupo_princing IN {"Armazenagem Cntr Vazios", "Armazenagem Cntr Vazios BT"}
+			 
+			  VAR _is_tsv_armador = bussola_comercial[un] = "TSV" && CONTAINSSTRING(bussola_comercial[servico], "EXP")
+			 
+			  VAR _is_tsv_carga = bussola_comercial[un] = "TSV" && CONTAINSSTRING(bussola_comercial[servico], "IMP")
+			
+			  // Calcular dias de serviço considerando freetime e isenção
+			  VAR _dias_servico_ajustado =
+			    IF ( _dias_servico <= _freetime
+			        , 0
+			        , IF ( _dias_isencao > _dias_servico
+			            , 0
+			            , _dias_servico - _dias_isencao
+			            )
+			        )
+			  // Aplicar ajuste de volume
+			  VAR _perc_ajuste_volume = _perc_ajuste_volume_cheio
+			  //   SWITCH
+			  //   ( TRUE()
+			  //   , (_sinalizador_vazio), _perc_ajuste_volume_vazio
+			  //   , (_sinalizador_cheio), _perc_ajuste_volume_cheio
+			  //   , 0
+			  //   )
+			  
+			  
+			  //VAR _volume_simulado =  _dias_servico_ajustado
+			  VAR _volume_simulado = ROUND(_dias_servico_ajustado * (1 + _perc_ajuste_volume), 0)
+			  
+			/* Ajuste Christiano Chamma em 17/12/2025 - não estava utilizando volume_simulado abaixo e sim volume
+			  VAR _saldo_volume = _volume - bussola_comercial[periodo1_contrato]
+			  VAR _saldo_volume_p3 = _volume - bussola_comercial[periodo1_contrato] - bussola_comercial[periodo2_contrato]
+			*/  
+			  VAR _saldo_volume_temp = _volume_simulado - bussola_comercial[periodo1_contrato]
+			  VAR _saldo_volume = if(_saldo_volume_temp < 0, 0, _saldo_volume_temp)
+			  VAR _saldo_volume_p3_temp = _volume_simulado - bussola_comercial[periodo1_contrato] - bussola_comercial[periodo2_contrato]
+			  VAR _saldo_volume_p3 = if(_saldo_volume_p3_temp < 0, 0, _saldo_volume_p3_temp)
+			
+			  VAR _saldo_volume_TSVCarga_temp = _saldo_volume_p3-bussola_comercial[dias_portas_p2]
+			  VAR _saldo_volume_TSVCarga = if(_saldo_volume_TSVCarga_temp < 0, 0, _saldo_volume_TSVCarga_temp)
+			
+			
+			VAR _dias_p1_simulado =
+			
+			SWITCH(
+			    TRUE(),
+			        //Filtro TSV Armador e TSV Carga
+			         _is_tsv_carga, 1,
+			
+			        //Filtro TRG Cheio e TRG Carga   
+			        _is_trg_carga ,IF(_volume_simulado > _periodo1_contrato, _periodo1_contrato, _volume_simulado),
+			
+			        //ELSE
+			        0)
+			
+			
+			  VAR _dias_p2_simulado =
+			    
+			    SWITCH(
+			      TRUE(),
+			
+			        //Filtro TRG Carga
+			        _is_trg_carga, IF(_saldo_volume > _periodo2_contrato, _periodo2_contrato, _saldo_volume),
+			     
+			        //Filtro de TSV Carga
+			          _is_tsv_carga && _saldo_volume > bussola_comercial[periodo1_contrato] + bussola_comercial[dias_portas_p1],1,0)
+			
+			/* Ajuste Christiano Chamma em 17/12/2025 - ver OS 32589553 deveria dar 1 no dias_periodo3 e estava dando 0
+			  VAR _dias_p3_simulado =
+			
+			    SWITCH(
+			      TRUE();
+			
+			      //Filtro TRG Carga
+			      _is_trg_carga; IF(_saldo_volume_p3 > _periodo3_contrato; _periodo3_contrato; 0);
+			
+			      //Filtro de TSV Carga
+			        _is_tsv_carga && _saldo_volume_TSVCarga > 0;ROUNDUP(DIVIDE(_saldo_volume_TSVCarga;_periodo3_contrato);0)) */       
+			  VAR _dias_p3_simulado =
+			
+			    SWITCH(
+			      TRUE(),
+			
+			      //Filtro TRG Carga
+			      _is_trg_carga, IF(_saldo_volume_p3 > _periodo3_contrato, _periodo3_contrato, _saldo_volume_p3),
+			
+			      //Filtro de TSV Carga
+			        _is_tsv_carga && _saldo_volume_TSVCarga > 0,ROUNDUP(DIVIDE(_saldo_volume_TSVCarga,_periodo3_contrato),0))
+			
+			/* Ajuste Christiano Chamma em 17/12/2025 - não estava utilizando volume_simulado abaixo e sim volume
+			  VAR _saldo_volume_TRG = [volume] -_periodo1_contrato - _periodo2_contrato - _periodo3_contrato
+			*/
+			  VAR _saldo_volume_TRG_temp = _volume_simulado -_periodo1_contrato - _periodo2_contrato - _periodo3_contrato
+			  VAR _saldo_volume_TRG = if(_saldo_volume_TRG_temp < 0, 0, _saldo_volume_TRG_temp)
+			  
+			//Foi criada ontem 02/02/2025
+			
+			    VAR _dias_p4_simulado = IF(_saldo_volume_TRG > 0, _saldo_volume_TRG, 0)
+			  
+			    VAR _cif_simulado = _cif * (1 + _perc_ajuste_cif + _perc_ajuste_gris)
+			
+			    VAR _min_contrato_simulado =    
+			       IF(_periodo4 > 0, _valor_min_4, IF(_periodo3 > 0 , _valor_min_3, IF(_periodo2 > 0, _valor_min_2, _valor_min_1)))
+			
+			       VAR _cif_total_simulado = _cif_simulado  * ((_dias_p1_simulado * IF(ISBLANK(_param_cif_p1), _perc_cif_1,_param_cif_p1)) + (_dias_p2_simulado * IF(ISBLANK(_param_cif_p2),_perc_cif_2,_param_cif_p2)) + (_dias_p3_simulado * IF(ISBLANK(_param_cif_p3),_perc_cif_3,_param_cif_p3)) + ( _dias_p4_simulado * IF(ISBLANK(_param_cif_p4),_perc_cif_4,_param_cif_p4)))
+			
+			    VAR _cif_simu_add = _cif_total_simulado * (1 + IF(_oog = "SIM", COALESCE(_param_valor_ad_ogg,bussola_comercial[Adic_oog]), 0) + IF( _imo = "SIM", COALESCE(_param_valor_arm_cheio_imp_ad_carg_especial,bussola_comercial[Adic_carga_especial]),0))
+			
+			    VAR _faturamento_simulado = IF(_dias_servico_ajustado <= 0,
+			0,
+			IF(_cif_simu_add > _min_contrato_simulado, _cif_simu_add, _min_contrato_simulado))
+			 
+			  VAR teste = 
+			_cif_simulado  * ((0 * _dias_p1_simulado * IF(ISBLANK(_param_cif_p1), _perc_cif_1,_param_cif_p1)) + (0 * _dias_p2_simulado * IF(ISBLANK(_param_cif_p2),_perc_cif_2,_param_cif_p2)) + (1 * _dias_p3_simulado * IF(ISBLANK(_param_cif_p3),_perc_cif_3,_param_cif_p3)) + (0 * _dias_p4_simulado * IF(ISBLANK(_param_cif_p4),_perc_cif_4,_param_cif_p4)))
+			
+			 RETURN 
+			 _faturamento_simulado
+			)
+			
+			
+			```
+		lineageTag: 74169ed3-6cc9-4cf0-a068-6c0353e9b400
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Δ Fat. Armazenagem Carga 2' = [Faturamento Simulado Carga 2] - [Faturamento Realizado Carga]
+		lineageTag: dfccdcf3-b042-4b87-8e4b-52baeaf6630f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TESTE
+		isHidden
+		lineageTag: 0184c86c-27ed-4129-971a-ff6739d8f714
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [TESTE]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Medidas PP Carga' = calculated
+		mode: import
+		source = ROW("TESTE","TESTE")
+
+	annotation PBI_Id = 7d9321765472449bb1b17373be156aa7
+

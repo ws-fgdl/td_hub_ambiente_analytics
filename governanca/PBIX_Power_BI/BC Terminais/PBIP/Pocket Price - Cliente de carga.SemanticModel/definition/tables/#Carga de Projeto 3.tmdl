@@ -1,0 +1,28 @@
+table '#Carga de Projeto 3'
+	lineageTag: a38b3725-8651-4448-afa1-9a0658c18d65
+
+	measure 'Valor #Carga de Projeto 3' = SELECTEDVALUE('#Carga de Projeto 3'[#Carga de Projeto])
+		lineageTag: 1ec0569a-ac3b-4fdc-9aa7-c9021d1fceee
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#Carga de Projeto'
+		lineageTag: 6f7b771a-7b29-4fcf-aa53-518caf9b2d81
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '#Carga de Projeto 3' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 1, 0.001)
+
+	annotation PBI_Id = da58a2aa6aef467ea306ab5e5a819a0b
+

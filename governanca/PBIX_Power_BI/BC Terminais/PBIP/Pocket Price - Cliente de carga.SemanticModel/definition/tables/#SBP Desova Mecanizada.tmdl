@@ -1,0 +1,27 @@
+table '#SBP Desova Mecanizada'
+	lineageTag: 3e074781-a78a-412d-8230-4bbb597f5f27
+
+	measure 'Valor #SBP Desova Mecanizada' = SELECTEDVALUE('#SBP Desova Mecanizada'[#SBP Desova Mecanizada])
+		lineageTag: e1c29c0d-6417-4c74-9d7e-6abc80ec18b6
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#SBP Desova Mecanizada'
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 959a9b77-3a60-4b9a-a844-52c332cf4296
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition '#SBP Desova Mecanizada' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 0.5, 0.0001)
+
+	annotation PBI_Id = d1eaeac4322642c297cea789c91252ec
+

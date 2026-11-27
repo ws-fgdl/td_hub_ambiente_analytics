@@ -1,0 +1,374 @@
+table dataliner_consolidado
+	lineageTag: a171a53d-235c-4ff5-bcab-e36ff0db2493
+
+	column ANO
+		formatString: 0
+		lineageTag: 3e37204e-820f-436b-96c8-efb5b991d649
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [ANO]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'PORTO EMBARQUE/DESCARGA'
+		lineageTag: 0b985628-43b4-4f77-b0a6-f20465ab5e45
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [PORTO EMBARQUE/DESCARGA]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'PORTO ORIGEM/DESTINO'
+		lineageTag: 85dcdd87-46d6-4086-be00-720843be4168
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [PORTO ORIGEM/DESTINO]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'TIPO EXPORTADOR/IMPORTADOR'
+		lineageTag: cdeb2861-b979-456d-bc71-a703a9b74e5c
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [TIPO EXPORTADOR/IMPORTADOR]
+
+		annotation SummarizationSetBy = Automatic
+
+	column EXPORTADOR/IMPORTADOR
+		lineageTag: 601a8f0b-e1c4-49cd-8869-46d5c4ab3d5e
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [EXPORTADOR/IMPORTADOR]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'UF EXPORTADOR/IMPORTADOR'
+		lineageTag: 466f8df9-f18a-4b25-8d02-c406d7d41a92
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [UF EXPORTADOR/IMPORTADOR]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'CIDADE EXPORTADOR/IMPORTADOR'
+		lineageTag: 51255ac0-3451-4bd0-a172-bcf7b6a50b22
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [CIDADE EXPORTADOR/IMPORTADOR]
+
+		annotation SummarizationSetBy = Automatic
+
+	column LINHA
+		lineageTag: b2c42e36-c1f4-48d4-bcbe-46a3eaf7a252
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [LINHA]
+
+		annotation SummarizationSetBy = Automatic
+
+	column ARMADOR
+		lineageTag: beafe0a5-c827-4351-8050-f98c69b7f4f4
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [ARMADOR]
+
+		annotation SummarizationSetBy = Automatic
+
+	column TEU
+		lineageTag: 3ef3a16b-fdb6-4dc7-8ffc-f09a0061bda2
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [TEU]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CNTR
+		lineageTag: 8a7c1207-8202-467b-a071-61255bde32f0
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [CNTR]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column MODALIDADE
+		lineageTag: 1c2aa1a5-cf7c-415b-af87-16f13b83b450
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [MODALIDADE]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'AGRUPAMENTO DE LINHA' =
+			
+			SWITCH(
+			    TRUE(),
+			    ISBLANK(dataliner_consolidado[LINHA]) || dataliner_consolidado[LINHA] = "", "Não Identificado",
+			    dataliner_consolidado[LINHA] IN {"ABAC / CONOSUR", "ABAC / CONOSUR / CON"}, "ABAC/CONOSUR",
+			    dataliner_consolidado[LINHA] IN {"AMAZGRUPO ONE FEEDER / CX1"}, "AMAZONE FEEDER",
+			    dataliner_consolidado[LINHA] IN {"AMERICAS SERVICE"}, "AMERICAS SERVICE (EXTRA CALL)",
+			    dataliner_consolidado[LINHA] IN {"Atlantic North-South Service (ANS)"}, "ANS",
+			    dataliner_consolidado[LINHA] IN {"ARGENTINA FEEDER III / PATAGONIA FEEDER"}, "ARGENTINA FEEDER III",
+			    dataliner_consolidado[LINHA] IN {"ASAS / ESA / SEAS / ASIA / SA2 / SA3", "Far East - South America Service (ESA)"}, "ASAS (ESA/SEAS/ASIA) SL I",
+			    dataliner_consolidado[LINHA] IN {"ASAX - SERVICE"}, "ASAX",
+			    dataliner_consolidado[LINHA] IN {"ASIA SOUTH AMERICA EAST COAST (ASE)"}, "ASE",
+			    dataliner_consolidado[LINHA] IN {"BRAZIL CABOTAGE SLING 1 / ALCT1 / SMN"}, "BRAZIL CABOTAGE SLING 1 (ALCT1)",
+			    dataliner_consolidado[LINHA] IN {"BRAZIL CABOTAGE SLING 2 / ALCT 2"}, "BRAZIL CABOTAGE SLING 2 (ALCT2)",
+			    dataliner_consolidado[LINHA] IN {"BRAZIL CABOTAGE SLING 3 / PARANA RIVER FEEDER"}, "BRAZIL CABOTAGE SLING 3",
+			    dataliner_consolidado[LINHA] IN {"BRAZIL CABOTAGE SLING 5"}, "BRAZIL CABOTAGE SLING 5",
+			    dataliner_consolidado[LINHA] IN {"BRAZIL EXPRESS 2 / MAOSHTTL"}, "BRAZIL EXPRESS 2",
+			    dataliner_consolidado[LINHA] IN {"CARIOCA SERVICE"}, "CARIOCA",
+			    dataliner_consolidado[LINHA] IN {"DELMAS SAMWAF"}, "SAMWAF",
+			    dataliner_consolidado[LINHA] IN {"Far East - South America Service (ESA)"}, "ASAS (ESA/SEAS/ASIA) SL I",
+			    dataliner_consolidado[LINHA] IN {"FIL"}, "FIL (FAR EAST-INDIA-LATIN AMERICA)",
+			    dataliner_consolidado[LINHA] IN {"PACIFIC EAST COAST 2"}, "EXTRA CALL",
+			    dataliner_consolidado[LINHA] IN {"FRENCH GUYANA / NORTH BRAZIL", "FRENCH GUYANA / NORTH BRAZIL / NEFGUI"}, "FRENCH GUYANA / NORTH BRAZIL",
+			    dataliner_consolidado[LINHA] IN {"GS1 / USGUF / ANG / GULFEX"}, "GS1/USGUF (GULF)",
+			    dataliner_consolidado[LINHA] IN {"LATIN EAST COAST EUROPE EXPRESS / LUX / EEX / ESE2"}, "LATIN EAST COAST EUROPE EXPRESS-LUX",
+			    dataliner_consolidado[LINHA] IN {"MANAUS"}, "MANAUS FEEDER",
+			    dataliner_consolidado[LINHA] IN {"MED-SAEC / MSE / SAM / SUC / WMED-NEW"}, "MED-SAEC/MSE",
+			    dataliner_consolidado[LINHA] IN {"SPAIN / SAEC SERVICE"}, "MSC SPAIN",
+			    dataliner_consolidado[LINHA] IN {"NEO BOSSA NOVA / SIRIUS", "SIRIUS"}, "NEO BOSSA/SIRIUS (BOSSA NOVA)",
+			    dataliner_consolidado[LINHA] IN {"NEW ASIA I / ASE / AX2 / NEOASAS"}, "NEW ASIA I",
+			    dataliner_consolidado[LINHA] IN {"NEW IPANEMA / AS2 / SX1"}, "NEW IPANEMA",
+			    dataliner_consolidado[LINHA] IN {"NHX SERVICE 2"}, "NHX SERVICE 3",
+			    dataliner_consolidado[LINHA] IN {"NORTH EUROPE / WEST AFRICA / SOUTH AMERICA LINE", "NORTH EUROPE/SOUTH AMERICA LINE"}, "NORTH EUROPE/WEST AFRICA/SOUTH AMERICA LINE",
+			    dataliner_consolidado[LINHA] IN {"NWC / ECX", "NWC / SAECS I SERVICE", "NWC / SAECS II SERVICE"}, "NWC/ECX (MSC EUROPA)",
+			    dataliner_consolidado[LINHA] IN {"NEW SAFRAN", "PLATE EXPRESS / ESE / NEOSAMBA / SAFRAN1", "SAFRAN"}, "PLATE EXPRESS",
+			    dataliner_consolidado[LINHA] IN {"SAMWAF / SAT"}, "SAMWAF",
+			    dataliner_consolidado[LINHA] IN {"SAN ANTONIO EXPRESS / SAEX", "SAN ANTONIO EXPRESS / SAEX / SAN ANTONIO ESTE"}, "SAN ANTONIO EXPRESS - SAEX",
+			    dataliner_consolidado[LINHA] IN {"USGULF/SAEC", "USGULF/SAEC/SAX"}, "SAX",
+			    dataliner_consolidado[LINHA] IN {"SEAS1"}, "SEAS2",
+			    dataliner_consolidado[LINHA] IN {"SINO SOUTH AMERICA / ESA2 / SEAS2", "SINO SOUTH AMERICA / ESA3 / SEAS2"}, "SINO SOUTH AMERICA - SSA",
+			    dataliner_consolidado[LINHA] IN {"SOUTH AMERICA/WEST AFRICA SERVICE"}, "SOUTH AMERICA/WEST AFRICA SERVICE",
+			    dataliner_consolidado[LINHA] IN {"SOUTH ATLANTIC / PLATAMRC / PLATA / SAS"}, "SOUTH ATLANTIC (LOG-IN)",
+			    dataliner_consolidado[LINHA] IN {"TANGO / SEC"}, "TANGO",
+			    dataliner_consolidado[LINHA] IN {"USEC-SAEC / SUM / USA / XNS"}, "USEC-SAEC/XNS (MSC USA)",
+			    dataliner_consolidado[LINHA] IN {"WMED / SAEC II SERVICE"}, "WMED",
+			    dataliner_consolidado[LINHA] IN {"ZGT"}, "ZIM GULF TOUCAN",
+			    dataliner_consolidado[LINHA]
+			)
+		lineageTag: f6a873eb-73cb-48de-9818-cd6187dae719
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'PORTO ORIGEM/DEST. SIGLA' =
+			
+			SWITCH(
+			    TRUE(),
+			    dataliner_consolidado[PORTO ORIGEM/DESTINO] IN {"BELEM"}, "BEL",
+			    dataliner_consolidado[PORTO ORIGEM/DESTINO] IN {"FORTALEZA"}, "FOR",
+			    dataliner_consolidado[PORTO ORIGEM/DESTINO] IN {"IMBITUBA"}, "IBB",
+			    dataliner_consolidado[PORTO ORIGEM/DESTINO] IN {"ITAGUAI"}, "IGI",
+			    dataliner_consolidado[PORTO ORIGEM/DESTINO] IN {"ITAJAI"}, "ITJ",
+			    dataliner_consolidado[PORTO ORIGEM/DESTINO] IN {"ITAPOA"}, "IOA",
+			    dataliner_consolidado[PORTO ORIGEM/DESTINO] IN {"MANAUS"}, "MAO",
+			    dataliner_consolidado[PORTO ORIGEM/DESTINO] IN {"NATAL"}, "NAT",
+			    dataliner_consolidado[PORTO ORIGEM/DESTINO] IN {"NAVEGANTES"}, "NVT",
+			    dataliner_consolidado[PORTO ORIGEM/DESTINO] IN {"PARANAGUA"}, "PNG",
+			    dataliner_consolidado[PORTO ORIGEM/DESTINO] IN {"PECEM"}, "PEC",
+			    dataliner_consolidado[PORTO ORIGEM/DESTINO] IN {"PORTOCEL"}, "RCH",
+			    dataliner_consolidado[PORTO ORIGEM/DESTINO] IN {"RIO DE JANEIRO"}, "RIO",
+			    dataliner_consolidado[PORTO ORIGEM/DESTINO] IN {"RIO GRANDE"}, "RIG",
+			    dataliner_consolidado[PORTO ORIGEM/DESTINO] IN {"SALVADOR"}, "SSA",
+			    dataliner_consolidado[PORTO ORIGEM/DESTINO] IN {"SANTAREM"}, "STM",
+			    dataliner_consolidado[PORTO ORIGEM/DESTINO] IN {"SANTOS"}, "SSZ",
+			    dataliner_consolidado[PORTO ORIGEM/DESTINO] IN {"SAO FRANCISCO DO SUL"}, "SFS",
+			    dataliner_consolidado[PORTO ORIGEM/DESTINO] IN {"SUAPE"}, "SUA",
+			    dataliner_consolidado[PORTO ORIGEM/DESTINO] IN {"VILA DO CONDE"}, "VDC",
+			    dataliner_consolidado[PORTO ORIGEM/DESTINO] IN {"VITORIA"}, "VIX",
+			    dataliner_consolidado[PORTO ORIGEM/DESTINO]
+			    )
+		lineageTag: ef682ad6-4262-4149-a7b0-f7cfef13c1d3
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'AGRUPAMENTO DE ARMADOR' =
+			
+			SWITCH(
+			    TRUE(),
+			    dataliner_consolidado[ARMADOR] IN {"ANL"}, "ANL",
+			    dataliner_consolidado[ARMADOR] IN {"BBC CHARTERING"}, "BBC",
+			    dataliner_consolidado[ARMADOR] IN {"CMA-CGM", "APL", "DELMAS", "MERCOSUL LINE"}, "GRUPO CMA-CGM",
+			    dataliner_consolidado[ARMADOR] IN {"COSCO", "OOCL", "CHINA SHIPPING", "TIANJIN COSCO SHIPPING"}, "GRUPO COSCO",
+			    dataliner_consolidado[ARMADOR] IN {"EVERGREEN", "EMS"}, "GRUPO EVERGREEN",
+			    dataliner_consolidado[ARMADOR] IN {"GRIMALDI LINE"}, "GRIMALDI",
+			    dataliner_consolidado[ARMADOR] IN {"HANJIN", "SENATOR"}, "HANJIN",
+			    dataliner_consolidado[ARMADOR] IN {"HANSA STAR LINE", "HANSA HEAVY LIFT GMBH"}, "HANSA STAR",
+			    dataliner_consolidado[ARMADOR] IN {"HAPAG LLOYD", "CSAV", "LIBRA", "TMM LINES", "CP SHIPS", "MONTEMAR", "LYKES LINES", "LIBRA URUGUAY", "PETRO TANK", "UNITED ARAB UASC", "NOBLEZA NAVIERA SA", "NORASIA CONTAINER LINE", "SUDAMERICANA AUSTRAL", "ARPEZ SA NAVEGACION", "NORSUL", "NILE DUTCH"}, "GRUPO HAPAG",
+			    dataliner_consolidado[ARMADOR] IN {"HYUNDAI MERCHANT MARINE"}, "HMM",
+			    dataliner_consolidado[ARMADOR] IN {"KIOS SA"}, "KIOS",
+			    dataliner_consolidado[ARMADOR] IN {"LOG IN LOGISTICA SA", "DOCENAVE"}, "GRUPO LOG-IN",
+			    dataliner_consolidado[ARMADOR] IN {"MDL FORWARDING"}, "M-LINE",
+			    dataliner_consolidado[ARMADOR] IN {"MAERSK LINE", "SEALAND", "P&O NEDLLOYD", "SAFMARINE", "OCEAN MARINE MERCOSUL","HAMBURG-SUD", "ALIANCA", "YBARRA CGM SUD", "CCNI"}, "GRUPO MAERSK",
+			    dataliner_consolidado[ARMADOR] IN {"MARFRET"}, "MARFRET",
+			    dataliner_consolidado[ARMADOR] IN {"MARUBA SCA"}, "MARUBA",
+			    dataliner_consolidado[ARMADOR] IN {"MELFI MARINE CORP"}, "MELFI MARINE",
+			    dataliner_consolidado[ARMADOR] IN {"MSC"}, "GRUPO MSC",
+			    dataliner_consolidado[ARMADOR] IN {"NIVER LINES"}, "NIVER LINE",
+			    dataliner_consolidado[ARMADOR] IN {"ONE", "NYK LINE", "MITSUI OSK LINES", "K LINE"}, "GRUPO ONE",
+			    dataliner_consolidado[ARMADOR] IN {"PIL"}, "PIL",
+			    dataliner_consolidado[ARMADOR] IN {"RICKMERS LINE"}, "RICKMERS LINE",
+			    dataliner_consolidado[ARMADOR] IN {"SAAS LINE"}, "SAAS",
+			    dataliner_consolidado[ARMADOR] IN {"SEALEAD"}, "SEALEAD",
+			    dataliner_consolidado[ARMADOR] IN {"SPLIETHOFFS"}, "SPLIETHOFFS",
+			    dataliner_consolidado[ARMADOR] IN {"TRAMACO SA"}, "TRAMACO",
+			    dataliner_consolidado[ARMADOR] IN {"VESSEL SA"}, "VESSEL",
+			    dataliner_consolidado[ARMADOR] IN {"REEL SHIPPING"}, "VUXX",
+			    dataliner_consolidado[ARMADOR] IN {"WAN HAI"}, "WAN HAI",
+			    dataliner_consolidado[ARMADOR] IN {"YANG MING LINE"}, "YANG MING",
+			    dataliner_consolidado[ARMADOR] IN {"ZIM"}, "GRUPO ZIM",
+			    dataliner_consolidado[ARMADOR] IN {"MAESTRO SHIPMANAGEMENT", "C TRANSPORT MARITIME SA", "COSTA CONTAINER", "GRANDI TRAGHETTI", "CLAN SA", "GLOBAL TRANSP.OCEANICO", "NORDANA LINE", "HATSU MARINE", "CONTSHIP", "CLIPPER SHIPPING LINES", "WALLENIUS WILHELMSEN", "NIGERIA AMERICA LINE", "KENT LINE LTD", "WORLD WIDE REEER", "ASSOC TRANSPORT LINE", "ITALIA LINE", "INCORPORATED SHIPPING", "CEC SHIPMANAGEMENT NL", "GREEN REEFERS", "OCEANBULK LINE LTD", "TROPICAL SHIPPING CORP.", "CORN FLOWER", "ESLAMAR SA", "SEATRADE GROUP", "PORT LINE", "BS MARITIME", "STX PAN OCEAN", "STAR REEFERS", "DN G SHIPPING", "LONDON SHIP.MANAGERS", "UNDISCLOSED INTERESTS", "ARCTIC REEFER", "GLOBAL AFRICAN SERVICE", "F LAEISZ SCHIFFAHRTS", "SAGA FOREST", "INTERSEE SCHIFFAHRTS", "LIN LINES INC", "CLIPPER GROUP", "THORCO SHIPPING SA", "INTERMARINE", "G.A. LINE", "TBS SHIPPING SERVICES", "SEA BROTHERHOOD", "W BOCKSTIEGEL REEDEREI", "AKTINA ENTERPRISES SA", "ENERCON GMBH", "ATLANTIC CHARTERING SA", "JUMBO SHIPPING", "IMUSA", "WESTFAL-LARSEN", "SAL HEAVY LIFT GMBH", "CONCORD NAVIGATION", "BELUGA SHIPPING GMBH", "KAHN SCHEEPVAART B.V.", "CANDLER SCHIFFAHRT GMBH", "SAFARGO SHIPPING", "HONG FU SHIPPING", "SAGA WELCO AS", "NEPTUNIA", "DEL BENE", "PARFINA MARITIMA", "EUROATLANTIC", "OAKSEAS TRANSPORTES MAR", "JSM SHIPPING GMBH & CO", "FERRY LINEAS ARGENTINAS", "SCANSCOT SHIP SERV", "ANTARES NAVIERA", "NORGISTICS CONTAINER", "BELUGA CHATERING GMBH", "BRAZTRANS", "FLINTER GRONINGEN BV", "COPANU", "COMERCIAL MARIT OCEANIC", "GEARBULK", "BELUGA GENCHART BV", "RPTD SOLD UNDISCLOSED I", "WANI NORSE MANAGEMENT", "NORBULK SHIPPING UK LTD", "TRINITAS MAR CARRIERS", "EMIRATES SHIPPING LINE", "SAGA SHIP HOLDING", "F LAEISZ  SCHIFFAHRTS", "WORLD WIDE REEFER"}, "OUTROS",
+			    BLANK()
+			)
+		lineageTag: 3b445e7c-7fa9-4cd3-813e-771b5e39bd0f
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'PORTO EMB./DESEMB. SIGLA' = ```
+			
+			SWITCH(
+			    TRUE(),
+			    dataliner_consolidado[PORTO EMBARQUE/DESCARGA] IN {"BELEM"}, "BEL",
+			    dataliner_consolidado[PORTO EMBARQUE/DESCARGA] IN {"FORTALEZA"}, "FOR",
+			    dataliner_consolidado[PORTO EMBARQUE/DESCARGA] IN {"IMBITUBA"}, "IBB",
+			    dataliner_consolidado[PORTO EMBARQUE/DESCARGA] IN {"ITAGUAI"}, "IGI",
+			    dataliner_consolidado[PORTO EMBARQUE/DESCARGA] IN {"ITAJAI"}, "ITJ",
+			    dataliner_consolidado[PORTO EMBARQUE/DESCARGA] IN {"ITAPOA"}, "IOA",
+			    dataliner_consolidado[PORTO EMBARQUE/DESCARGA] IN {"MANAUS"}, "MAO",
+			    dataliner_consolidado[PORTO EMBARQUE/DESCARGA] IN {"NATAL"}, "NAT",
+			    dataliner_consolidado[PORTO EMBARQUE/DESCARGA] IN {"NAVEGANTES"}, "NVT",
+			    dataliner_consolidado[PORTO EMBARQUE/DESCARGA] IN {"PARANAGUA"}, "PNG",
+			    dataliner_consolidado[PORTO EMBARQUE/DESCARGA] IN {"PECEM"}, "PEC",
+			    dataliner_consolidado[PORTO EMBARQUE/DESCARGA] IN {"PORTOCEL"}, "RCH",
+			    dataliner_consolidado[PORTO EMBARQUE/DESCARGA] IN {"RIO DE JANEIRO"}, "RIO",
+			    dataliner_consolidado[PORTO EMBARQUE/DESCARGA] IN {"RIO GRANDE"}, "RIG",
+			    dataliner_consolidado[PORTO EMBARQUE/DESCARGA] IN {"SALVADOR"}, "SSA",
+			    dataliner_consolidado[PORTO EMBARQUE/DESCARGA] IN {"SANTAREM"}, "STM",
+			    dataliner_consolidado[PORTO EMBARQUE/DESCARGA] IN {"SANTOS"}, "SSZ",
+			    dataliner_consolidado[PORTO EMBARQUE/DESCARGA] IN {"SAO FRANCISCO DO SUL"}, "SFS",
+			    dataliner_consolidado[PORTO EMBARQUE/DESCARGA] IN {"SUAPE"}, "SUA",
+			    dataliner_consolidado[PORTO EMBARQUE/DESCARGA] IN {"VILA DO CONDE"}, "VDC",
+			    dataliner_consolidado[PORTO EMBARQUE/DESCARGA] IN {"VITORIA"}, "VIX",
+			    dataliner_consolidado[PORTO EMBARQUE/DESCARGA]
+			    )
+			
+			```
+		lineageTag: 28e9a5e4-9cfd-4b8b-9c07-6d7780a9a8a8
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column MÊS
+		lineageTag: 076a29db-f28b-4751-9e9d-009d851ba38e
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [MÊS]
+
+		annotation SummarizationSetBy = Automatic
+
+	column MÊS_NUM
+		lineageTag: aa8372f6-be7f-4663-8c82-2d258f62a251
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [MÊS_NUM]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CATEGORIA =
+			
+			SWITCH(
+			    TRUE(),
+			    'dataliner_consolidado'[PORTO EMBARQUE/DESCARGA] = 'dataliner_consolidado'[PORTO ORIGEM/DESTINO], 'dataliner_consolidado'[MODALIDADE],
+			    'dataliner_consolidado'[MODALIDADE] = "EXPORTAÇÃO", "EMBARQUE TRANSBORDO",
+			    "DESCARGA TRANSBORDO"
+			)
+		lineageTag: ae0eb66f-800e-43a2-aec5-e330d8aa200f
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'MARKET SHARE' =
+			
+			SWITCH(
+			    TRUE(),
+			    dataliner_consolidado[PORTO ORIGEM/DEST. SIGLA] IN {"RIG"}, "RIG",
+			    "CONCORRENTES"
+			)
+		lineageTag: e23b60f5-9258-4f61-8958-9805e112362f
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dataliner_consolidado = calculated
+		mode: import
+		source = ```
+				
+				FILTER(
+				    UNION(
+				        SELECTCOLUMNS(
+				            dataliner_exp,
+				            "ANO", dataliner_exp[dates_long_haul_yyyy],
+				            "MÊS", IF(
+				                dataliner_exp[dates_long_haul_mm] > 0, 
+				                FORMAT(DATE(dataliner_exp[dates_long_haul_yyyy], dataliner_exp[dates_long_haul_mm], 1), "Mmm"), 
+				                BLANK()
+				            ),
+				            "MÊS_NUM", IF(
+				                dataliner_exp[dates_long_haul_mm] > 0, 
+				                dataliner_exp[dates_long_haul_mm], 
+				                BLANK()
+				            ),
+				            "PORTO EMBARQUE/DESCARGA", dataliner_exp[place_and_ports_pol_name],
+				            "PORTO ORIGEM/DESTINO", dataliner_exp[place_and_ports_pomo_name],
+				            "TIPO EXPORTADOR/IMPORTADOR", dataliner_exp[company_shipper_type],
+				            "EXPORTADOR/IMPORTADOR", dataliner_exp[company_shipper_shipper_name],
+				            "UF EXPORTADOR/IMPORTADOR", dataliner_exp[company_shipper_state],
+				            "CIDADE EXPORTADOR/IMPORTADOR", dataliner_exp[company_shipper_city],
+				            "LINHA", dataliner_exp[service_service_name],
+				            "ARMADOR", dataliner_exp[carrier_carrier_name],
+				            "TEU", dataliner_exp[TEUS],
+				            "CNTR", dataliner_exp[CNTR],
+				            "MODALIDADE", "EXPORTAÇÃO"
+				        ),
+				        SELECTCOLUMNS(
+				            dataliner_imp,
+				            "ANO", dataliner_imp[dates_long_haul_yyyy],
+				            "MÊS", IF(
+				                dataliner_imp[dates_long_haul_mm] > 0, 
+				                FORMAT(DATE(dataliner_imp[dates_long_haul_yyyy], dataliner_imp[dates_long_haul_mm], 1), "Mmm"), 
+				                BLANK()
+				            ),
+				            "MÊS_NUM", IF(
+				                dataliner_imp[dates_long_haul_mm] > 0, 
+				                dataliner_imp[dates_long_haul_mm], 
+				                BLANK()
+				            ),
+				            "PORTO EMBARQUE/DESCARGA", dataliner_imp[place_and_ports_pod_name],
+				            "PORTO ORIGEM/DESTINO", dataliner_imp[place_and_ports_pomd_name],
+				            "TIPO EXPORTADOR/IMPORTADOR", dataliner_imp[company_consignee_type],
+				            "EXPORTADOR/IMPORTADOR", dataliner_imp[company_consignee_consignee_name],
+				            "UF EXPORTADOR/IMPORTADOR", dataliner_imp[company_consignee_state],
+				            "CIDADE EXPORTADOR/IMPORTADOR", dataliner_imp[company_consignee_city],
+				            "LINHA", dataliner_imp[service_service_name],
+				            "ARMADOR", dataliner_imp[carrier_carrier_name],
+				            "TEU", dataliner_imp[TEUS],
+				            "CNTR", dataliner_imp[CNTR],
+				            "MODALIDADE", "IMPORTAÇÃO"
+				        )
+				    ),
+				    [TEU] <> 0
+				)
+				
+				```
+
+	annotation PBI_Id = 6e8ea7654b77418280f8745531b7d6a1
+

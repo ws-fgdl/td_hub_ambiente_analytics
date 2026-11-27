@@ -1,0 +1,28 @@
+table '#Arm. Vazios - Preço P3 (selecionado) - CAB'
+	lineageTag: af91f148-13e7-48eb-a422-710a8afed247
+
+	measure '#Arm. Vazios - Preço P3 (selecionado) - CAB' = SELECTEDVALUE('#Arm. Vazios - Preço P3 (selecionado) - CAB'[percentual])
+		lineageTag: 192a3799-c4ae-43ae-b1d7-a1c8f6831c25
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column percentual
+		lineageTag: 7c8cc11a-005c-4ce0-b56b-d5916a2f3de5
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '#Arm. Vazios - Preço P3 (selecionado) - CAB' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 1, 0.001)
+
+	annotation PBI_Id = f530dc57ab474d0db50fd91a6714350b
+

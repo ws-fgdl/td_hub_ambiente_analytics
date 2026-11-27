@@ -1,0 +1,26 @@
+table 'Monit. Energia - Dias Isenção Carga'
+	lineageTag: f21367ed-1490-46e9-b7cf-a3e7f05924fa
+
+	measure 'Valor Monit. Energia - Dias Isenção 2' = SELECTEDVALUE('Monit. Energia - Dias Isenção Carga'[Monit. Energia - Dias Isenção])
+		formatString: 0
+		lineageTag: 70733cd6-500b-42ec-8c95-e1f15fa31a13
+
+	column 'Monit. Energia - Dias Isenção'
+		formatString: 0
+		lineageTag: a2eab63b-bf15-411b-ae76-b6d93862613e
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition 'Monit. Energia - Dias Isenção Carga' = calculated
+		mode: import
+		source = GENERATESERIES(-30, 30, 1)
+
+	annotation PBI_Id = f6eb76678f8f4d2b85639a7c3ff0e384
+

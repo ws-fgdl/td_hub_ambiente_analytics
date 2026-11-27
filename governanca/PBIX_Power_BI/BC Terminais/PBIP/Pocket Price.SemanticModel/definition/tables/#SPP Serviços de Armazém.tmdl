@@ -1,0 +1,27 @@
+table '#SPP Serviços de Armazém'
+	lineageTag: 8d1131f3-0137-4ee1-b0c3-3a8ab1db045e
+
+	measure 'Valor Serviços de Armazém' = SELECTEDVALUE('#SPP Serviços de Armazém'[Serviços de Armazém])
+		lineageTag: 5db76e37-bdb6-4120-a0d2-f30f852d47d9
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Serviços de Armazém'
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 379ffd30-f38a-45ba-9487-e77a9444f977
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition '#SPP Serviços de Armazém' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 0.5, 0.0001)
+
+	annotation PBI_Id = 7e77e0ceee3d473abb11ae168d06bbbd
+

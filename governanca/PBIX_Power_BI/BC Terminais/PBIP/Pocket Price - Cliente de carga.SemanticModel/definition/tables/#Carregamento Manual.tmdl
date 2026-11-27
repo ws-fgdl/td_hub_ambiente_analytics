@@ -1,0 +1,28 @@
+table '#Carregamento Manual'
+	lineageTag: f985448f-fcc9-4302-b213-8b73d6b326c5
+
+	measure 'Valor #Carregamento Manual' = SELECTEDVALUE('#Carregamento Manual'[#Carregamento Manual])
+		lineageTag: d7d0a82d-01f7-43a5-a407-9e17e863c7e2
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#Carregamento Manual'
+		lineageTag: ef503552-5c0b-40be-a14a-fc58494be970
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '#Carregamento Manual' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 1, 0.001)
+
+	annotation PBI_Id = 27b7e93de93d4b23b5e382c2da4b2014
+

@@ -1,0 +1,32 @@
+table Faina
+	lineageTag: 5f30a1bb-fc35-4aac-a436-98deb1949bfd
+	sourceLineageTag: 1985f101-30ed-436f-9536-a55571447af1
+
+	column 'Faina ID'
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		lineageTag: 6ce060db-abb5-45a8-9491-4769b357c9c4
+		sourceLineageTag: be4ab8b0-83fc-4874-b871-5dafc0aa40b9
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Faina ID
+
+		annotation SummarizationSetBy = User
+
+	column Faina
+		dataType: string
+		lineageTag: 76a098c9-ded8-4402-85e1-fa5e6dd82898
+		sourceLineageTag: 5f088633-3bee-4673-831b-cc3c625a2a63
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Faina
+
+		annotation SummarizationSetBy = User
+
+	partition Faina = entity
+		mode: directQuery
+		source
+			entityName: Faina
+			expressionSource: 'DirectQuery para AS – Modelo Operações Portuárias'
+

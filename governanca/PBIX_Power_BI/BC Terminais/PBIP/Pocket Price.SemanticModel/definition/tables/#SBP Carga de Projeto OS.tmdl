@@ -1,0 +1,28 @@
+table '#SBP Carga de Projeto OS'
+	lineageTag: a2f15e7c-7861-4293-895b-5972806001b1
+
+	measure 'Valor #SBP Carga de Projeto OS' = SELECTEDVALUE('#SBP Carga de Projeto OS'[#SBP Carga de Projeto OS])
+		lineageTag: 91aacefe-8656-454a-b12e-9a7da2d0e0b5
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#SBP Carga de Projeto OS'
+		lineageTag: 6ffdb7a0-0e3a-4fb4-b00c-0776a49dbb33
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '#SBP Carga de Projeto OS' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 0.5, 0.0001)
+
+	annotation PBI_Id = ee4f25c2ccaf42f38bc9352e58f4311c
+

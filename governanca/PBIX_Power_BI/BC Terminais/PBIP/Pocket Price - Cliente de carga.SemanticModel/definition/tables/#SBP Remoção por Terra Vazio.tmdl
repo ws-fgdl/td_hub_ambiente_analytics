@@ -1,0 +1,27 @@
+table '#SBP Remoção por Terra Vazio'
+	lineageTag: 526e8790-640c-40b4-bc0a-4eeed5b7e159
+
+	measure 'Valor #SBP Remoção por Terra Vazio' = SELECTEDVALUE('#SBP Remoção por Terra Vazio'[#SBP Remoção por Terra Vazio])
+		lineageTag: 3f13e09e-0672-4c86-9b22-034e1bf71289
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#SBP Remoção por Terra Vazio'
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 2c547bb9-0406-4b7d-a70f-92aefdd8109e
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition '#SBP Remoção por Terra Vazio' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 4, 0.001)
+
+	annotation PBI_Id = 7e13045502884d4dbec6471139c8d584
+

@@ -1,0 +1,28 @@
+table '#Estufagem Manual'
+	lineageTag: 224c4b54-a244-4003-8b4e-eadacd1957ef
+
+	measure 'Valor #Estufagem Manual' = SELECTEDVALUE('#Estufagem Manual'[#Estufagem Manual])
+		lineageTag: 8f27004d-d5bb-4ee2-a17d-35b6e4d429aa
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#Estufagem Manual'
+		lineageTag: e44f2e97-5b25-44da-9a6a-4ed8334e8bf0
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '#Estufagem Manual' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 1, 0.001)
+
+	annotation PBI_Id = b64570fa7ea54fb5825b41c3342d5dd6
+

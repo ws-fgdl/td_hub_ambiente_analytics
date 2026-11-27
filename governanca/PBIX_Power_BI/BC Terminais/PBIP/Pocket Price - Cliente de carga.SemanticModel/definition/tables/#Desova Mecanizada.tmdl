@@ -1,0 +1,28 @@
+table '#Desova Mecanizada'
+	lineageTag: 3e348e60-9b00-4d67-8b08-492ec948627e
+
+	measure 'Valor #Desova Mecanizada' = SELECTEDVALUE('#Desova Mecanizada'[#Desova Mecanizada])
+		lineageTag: cb9156a7-169e-4c3c-8730-a9669ba1a3f0
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#Desova Mecanizada'
+		lineageTag: 7680949b-3f77-47fb-a7ce-12fc56862c5e
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '#Desova Mecanizada' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 1, 0.001)
+
+	annotation PBI_Id = be92bb591f484d439e4ceb61f3503db6
+

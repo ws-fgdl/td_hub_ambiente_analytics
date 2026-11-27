@@ -1,0 +1,27 @@
+table '#SBP Desconsolidação LCL'
+	lineageTag: b2e69f90-fe9e-4d2e-a07b-e368a3527e87
+
+	measure 'Valor #SBP Desconsolidação LCL' = SELECTEDVALUE('#SBP Desconsolidação LCL'[#SBP Desconsolidação LCL])
+		lineageTag: ec8dd157-526b-4bcc-a766-a853360df299
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#SBP Desconsolidação LCL'
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: b317d1fe-23fb-4dee-8fa2-bc902727e799
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition '#SBP Desconsolidação LCL' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 0.5, 0.0001)
+
+	annotation PBI_Id = d0d59595dfda4e75beb2630d816148df
+

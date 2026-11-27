@@ -1,0 +1,26 @@
+table '#Param Dias Freetime Vazio (selecionado)'
+	lineageTag: a29d66d4-09da-4ec0-8275-a6634607895f
+
+	measure 'Valor #Param Dias Freetime Vazio (selecionado)' = SELECTEDVALUE('#Param Dias Freetime Vazio (selecionado)'[#Param Dias Freetime Vazio (selecionado)])
+		formatString: 0
+		lineageTag: db1b247a-8362-400c-81c3-dbb31b5f20c2
+
+	column '#Param Dias Freetime Vazio (selecionado)'
+		formatString: 0
+		lineageTag: 7aca05c8-3ff3-46b6-b643-48c25d878a01
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition '#Param Dias Freetime Vazio (selecionado)' = calculated
+		mode: import
+		source = GENERATESERIES(0, 100, 1)
+
+	annotation PBI_Id = f160559675364286a35d0fe29245bf65
+

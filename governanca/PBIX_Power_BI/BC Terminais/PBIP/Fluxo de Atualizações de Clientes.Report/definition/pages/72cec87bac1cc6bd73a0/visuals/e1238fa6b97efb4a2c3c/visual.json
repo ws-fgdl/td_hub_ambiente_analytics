@@ -1,0 +1,224 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
+  "name": "e1238fa6b97efb4a2c3c",
+  "position": {
+    "x": 22.222222222222221,
+    "y": 733.33333333333337,
+    "z": 7001,
+    "height": 438.88888888888891,
+    "width": 852.77777777777783,
+    "tabOrder": 7001
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "aws_bussola_comercial"
+                    }
+                  },
+                  "Property": "cobrar_de_sap"
+                }
+              },
+              "queryRef": "aws_bussola_comercial.cobrar_de_sap",
+              "nativeQueryRef": "cobrar_de_sap"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "aws_bussola_comercial"
+                    }
+                  },
+                  "Property": "cobrar_de"
+                }
+              },
+              "queryRef": "aws_bussola_comercial.cobrar_de",
+              "nativeQueryRef": "cobrar_de"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "aws_bussola_comercial"
+                    }
+                  },
+                  "Property": "grupo_economico_ter"
+                }
+              },
+              "queryRef": "aws_bussola_comercial.grupo_economico_ter",
+              "nativeQueryRef": "grupo_economico_ter"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_carteira_comercial"
+                    }
+                  },
+                  "Property": "cnpj"
+                }
+              },
+              "queryRef": "dim_carteira_comercial.cnpj",
+              "nativeQueryRef": "cnpj"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "salesforce"
+                    }
+                  },
+                  "Property": "CNPJ"
+                }
+              },
+              "queryRef": "salesforce.CNPJ",
+              "nativeQueryRef": "CNPJ"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "aws_bussola_comercial"
+                  }
+                },
+                "Property": "cobrar_de_sap"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "5866417b647eaba054a7",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "aws_bussola_comercial"
+              }
+            },
+            "Property": "grupo_economico_ter"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "a",
+              "Entity": "aws_bussola_comercial",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "a"
+                          }
+                        },
+                        "Property": "grupo_economico_ter"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "null"
+                        }
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "e2c5eda6617b1e078050",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "aws_bussola_comercial"
+              }
+            },
+            "Property": "cobrar_de_sap"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "684183f9b7c0c1a3b258",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "aws_bussola_comercial"
+              }
+            },
+            "Property": "cobrar_de"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "26d1a796d11a0b15bc74",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "dim_carteira_comercial"
+              }
+            },
+            "Property": "cnpj"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "daa9aa10d8407e9fdd8d",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "salesforce"
+              }
+            },
+            "Property": "CNPJ"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
+  }
+}

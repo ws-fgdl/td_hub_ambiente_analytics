@@ -1,0 +1,28 @@
+table '#ISPS LCL'
+	lineageTag: e905e53f-31e6-436a-97f9-026486a18785
+
+	measure 'Valor #ISPS LCL' = SELECTEDVALUE('#ISPS LCL'[#ISPS LCL])
+		lineageTag: b0333b9d-d1b0-4bc3-806a-a198edc293c8
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#ISPS LCL'
+		lineageTag: 9fb5f402-36ae-4386-bdaf-5e188df5a3b5
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '#ISPS LCL' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 1, 0.001)
+
+	annotation PBI_Id = 1f6395f99f07438280aaec770dfdafe9
+

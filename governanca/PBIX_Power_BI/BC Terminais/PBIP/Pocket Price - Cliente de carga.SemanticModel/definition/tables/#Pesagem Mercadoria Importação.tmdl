@@ -1,0 +1,28 @@
+table '#Pesagem Mercadoria Importação'
+	lineageTag: 3e454dc2-26c4-41cd-b2d6-4a541016025c
+
+	measure 'Valor #Pesagem Mercadoria Importação' = SELECTEDVALUE('#Pesagem Mercadoria Importação'[#Pesagem Mercadoria Importação])
+		lineageTag: 29a320df-352f-4b1b-96e6-be2903288654
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#Pesagem Mercadoria Importação'
+		lineageTag: d8bd1c93-9aeb-4d55-8b42-aafa82fd798a
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '#Pesagem Mercadoria Importação' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 1, 0.001)
+
+	annotation PBI_Id = a28afc4d599347fe93e61a55b38e6fba
+

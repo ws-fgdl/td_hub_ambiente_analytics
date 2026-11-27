@@ -1,0 +1,28 @@
+table #Reefer
+	lineageTag: bc1e88a9-e7fe-435c-a4e1-f503b3043e7e
+
+	measure 'Valor #Reefer' = SELECTEDVALUE('#Reefer'[#Reefer])
+		lineageTag: ec3deba5-f46c-481d-99ae-842695c806a5
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column #Reefer
+		lineageTag: 585d1081-6f10-4639-8fa3-326396ec19af
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition #Reefer = calculated
+		mode: import
+		source = GENERATESERIES(-1, 1, 0.001)
+
+	annotation PBI_Id = 0510597b323d4cfe93e1c7ca0c11aa4e
+

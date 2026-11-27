@@ -1,0 +1,28 @@
+table 'Armaz. Vazio Vol. P3'
+	lineageTag: 0bdd9438-d222-4652-90e9-1381549620ff
+
+	measure 'Valor Armaz. Vazio Vol. P3' = SELECTEDVALUE('Armaz. Vazio Vol. P3'[Armaz. Vazio Vol. P3])
+		lineageTag: 3774db2e-8622-429f-886f-6a44690bd61d
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Armaz. Vazio Vol. P3'
+		lineageTag: 9a9f482c-98eb-4e9c-a197-7112243c10a6
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'Armaz. Vazio Vol. P3' = calculated
+		mode: import
+		source = GENERATESERIES(-30, 30, 1)
+
+	annotation PBI_Id = 21ca04754aa846c7b7611476802acd9c
+

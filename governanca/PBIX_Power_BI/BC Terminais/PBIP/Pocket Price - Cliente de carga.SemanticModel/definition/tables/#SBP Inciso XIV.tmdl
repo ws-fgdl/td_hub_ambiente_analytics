@@ -1,0 +1,27 @@
+table '#SBP Inciso XIV'
+	lineageTag: 203ff580-6059-455f-9a0b-5a91c46227f6
+
+	measure 'Valor #SBP Inciso XIV' = SELECTEDVALUE('#SBP Inciso XIV'[#SBP Inciso XIV])
+		lineageTag: 2bea08b4-96d6-4bb3-bffb-ef9c39f725a3
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#SBP Inciso XIV'
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 7f8dd753-252d-4e89-bf72-85d80a118686
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition '#SBP Inciso XIV' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 0.5, 0.0001)
+
+	annotation PBI_Id = 9c1f5dfbf4054ddc90a4ea856303d814
+

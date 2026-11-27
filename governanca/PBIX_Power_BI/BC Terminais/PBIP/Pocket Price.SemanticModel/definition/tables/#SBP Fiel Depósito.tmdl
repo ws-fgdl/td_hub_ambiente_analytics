@@ -1,0 +1,27 @@
+table '#SBP Fiel Depósito'
+	lineageTag: f31d0d41-0c70-48d0-a07d-c0bc5f64d87e
+
+	measure 'Valor #SBP Fiel Depósito' = SELECTEDVALUE('#SBP Fiel Depósito'[#SBP Fiel Depósito])
+		lineageTag: 017c264c-d663-4420-abfe-574da5412ba1
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#SBP Fiel Depósito'
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 9d9df06a-06ac-4e7f-9ecb-b2f5a3d3d4f3
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition '#SBP Fiel Depósito' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 0.5, 0.0001)
+
+	annotation PBI_Id = 38b3fc66e4254268bfae3554c51839c7
+

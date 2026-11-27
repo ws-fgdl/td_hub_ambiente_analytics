@@ -1,0 +1,28 @@
+table '#SBP Utilização de Área Especial'
+	lineageTag: 2f2d307d-ae9e-400c-912c-7a90a60fb9ca
+
+	measure 'Valor #SBP Utilização de Área Especial' = SELECTEDVALUE('#SBP Utilização de Área Especial'[#SBP Utilização de Área Especial])
+		lineageTag: d25cef20-cdc3-4581-90c1-a7bfe6a6a135
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#SBP Utilização de Área Especial'
+		lineageTag: 9c6c2555-130f-4304-818f-1ab9c4aca118
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '#SBP Utilização de Área Especial' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 0.5, 0.0001)
+
+	annotation PBI_Id = a06eb3162a1745a99b47ba16c594ed97
+

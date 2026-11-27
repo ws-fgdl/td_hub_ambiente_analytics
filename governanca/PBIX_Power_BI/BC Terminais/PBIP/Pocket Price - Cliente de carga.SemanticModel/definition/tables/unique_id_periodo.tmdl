@@ -1,0 +1,31 @@
+table unique_id_periodo
+	lineageTag: b45c674a-d140-4e0b-b451-5daeb98f7643
+
+	column id_periodo
+		lineageTag: 59be423b-3f22-46e4-abda-5e8d8f65baf9
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: contratos[id_periodo]
+
+		annotation SummarizationSetBy = Automatic
+
+	column adic_carga_perigosa
+		lineageTag: 908d7fe9-28c3-4dda-a389-cd021a2b98c4
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [adic_carga_perigosa]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition unique_id_periodo = calculated
+		mode: import
+		source =
+				
+				SUMMARIZECOLUMNS(contratos[id_periodo],
+				"adic_carga_perigosa", FIRSTNONBLANKVALUE(contratos[data_criacao_tabela], SELECTEDVALUE(contratos[adic_carga_perigosa]))
+				)
+
+	annotation PBI_Id = 8e84c02fc22d454083f5b811582065b2
+

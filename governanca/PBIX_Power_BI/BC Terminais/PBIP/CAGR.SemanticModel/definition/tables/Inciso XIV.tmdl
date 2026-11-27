@@ -1,0 +1,131 @@
+table 'Inciso XIV'
+	lineageTag: ed5b023e-74c9-401e-bc4f-8d0508f68ee5
+
+	column valor_negociado
+		lineageTag: 1313492d-dc14-48ee-8d07-150b245e3c2f
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [valor_negociado]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Agrupamento Subgrupo Princing'
+		lineageTag: 65db6a67-b643-40f8-8060-05c871a4ec45
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: contratos[Agrupamento Subgrupo Princing]
+
+		annotation SummarizationSetBy = Automatic
+
+	column chave
+		lineageTag: 961c3006-fa91-4bcd-ad2c-4f13bdeca762
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: contratos[chave]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Tipo_Inciso_XIV = ```
+			
+			IF(
+			    AND(CONTAINSSTRING('Inciso XIV'[chave], " CAB"),CONTAINSSTRING('Inciso XIV'[chave], "CH")),
+			    "Inciso XIV CAB CH",
+			
+			    IF( AND(CONTAINSSTRING('Inciso XIV'[chave], " CAB"),CONTAINSSTRING('Inciso XIV'[chave], "VZ")),
+			    "Inciso XIV CAB VZ",
+			
+			    
+			    IF( AND(NOT(CONTAINSSTRING('Inciso XIV'[chave], " CAB")),CONTAINSSTRING('Inciso XIV'[chave], "CH")),
+			
+			    "Inciso XIV LC CH",
+			
+			    "Inciso XIV LC VZ"
+			
+			)))
+			
+			```
+		lineageTag: 51cec7c8-a9c6-4e06-b712-a574148022bc
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Box Rate' =
+			
+			
+			IF( 'Inciso XIV'[Tipo_Inciso_XIV] = "Inciso XIV CAB",
+			"Box Rate CAB",
+			    IF('Inciso XIV'[Tipo_Inciso_XIV] = "Inciso XIV LC",
+			    "Box Rate LC",
+			        IF('Inciso XIV'[Agrupamento Subgrupo Princing] IN {"Box Rate Vazio CAB", "Box Rate Cheio CAB"},
+			        "Box Rate CAB",
+			            IF('Inciso XIV'[Agrupamento Subgrupo Princing] IN {"Box Rate Cheio LC", "Box Rate Cheio TRA", "Box Rate Vazio LC", "Box Rate Cheio TRA BT", "Box Rate Vazio TRA", "Box Rate Vazio TRA BT"},
+			            "Box Rate LC",
+			            BLANK())
+			        )
+			    )
+			)
+		lineageTag: 43a26c3c-a7e6-4d3e-a0e0-7eb505096262
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column inicio_vigencia
+		formatString: General Date
+		lineageTag: f8291a93-14b4-407c-a6b5-c08563c31e87
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: contratos[inicio_vigencia]
+
+		variation Variation
+			isDefault
+			relationship: 47bf3617-01ec-4914-9b30-f651fec5dbca
+			defaultHierarchy: LocalDateTable_48a1b2f3-8ab4-4a76-951a-a63274fe2fb4.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column dtvalor = 'Inciso XIV'[inicio_vigencia]
+		dataType: int64
+		formatString: 0
+		lineageTag: fc6db30d-f82d-4361-a8ce-e7072f374e1c
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column grupo_economico_ter
+		lineageTag: ddc0dece-fc1a-47ea-ac53-5d879b40d682
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: contratos[grupo_economico_ter]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ano
+		lineageTag: 0decc97b-ee1d-4c51-abf4-645cb5e16cb9
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: LocalDateTable_9cc49ec1-a97c-492f-89e3-85496bcdcfb3[Ano]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Inciso XIV' = calculated
+		mode: import
+		source =
+				
+				ADDCOLUMNS(
+				    SUMMARIZE(
+				    FILTER(contratos,
+				    contratos[Agrupamento Subgrupo Princing] = "Inciso XIV" &&
+				    contratos[un] = "TSV"),
+				    contratos[inicio_vigencia].[Ano],
+				    contratos[inicio_vigencia],
+				    contratos[Agrupamento Subgrupo Princing],
+				    contratos[chave],
+				    contratos[grupo_economico_ter]),
+				    "valor_negociado",
+				    [Preço Médio]
+				)
+
+	annotation PBI_Id = 3bea97c7bf434a96aa4a37497197856d
+

@@ -1,0 +1,27 @@
+table '#SBP Carregamento Manual'
+	lineageTag: 2ca92bf9-213a-4e82-ba8b-9d6497a4ca59
+
+	measure 'Valor #SBP Carregamento Manual' = SELECTEDVALUE('#SBP Carregamento Manual'[#SBP Carregamento Manual])
+		lineageTag: 0ee85ba8-d20d-4484-877c-76188f03d80f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#SBP Carregamento Manual'
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 4cfdb333-4a4f-46ba-aa11-8f283d80aaff
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition '#SBP Carregamento Manual' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 0.5, 0.0001)
+
+	annotation PBI_Id = 434af8959ff841d3a197164e5c5d508f
+

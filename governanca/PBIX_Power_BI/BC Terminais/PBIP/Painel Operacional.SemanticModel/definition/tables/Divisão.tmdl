@@ -1,0 +1,50 @@
+table Divisão
+	lineageTag: 3e8d0b2b-1222-46c7-91cd-fc75a80657c0
+	sourceLineageTag: 75675825-a33b-43c1-a5cd-1a4befeff158
+
+	measure 'Divisões Selecionados' = EXTERNALMEASURE("Divisões Selecionados", STRING, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: d04c6a99-0b8b-483b-b512-db4681a165c4
+		sourceLineageTag: 4d13f26e-c8b4-4d59-80b7-939780ba50fb
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isText":true}
+
+	column UNDADMGRP_ID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: b88071e3-6a15-4574-a13c-d68c920b9a09
+		sourceLineageTag: 0dc23521-c6d7-4fbd-b3a6-7c24ce51b8e9
+		dataCategory: Uncategorized
+		summarizeBy: count
+		sourceColumn: UNDADMGRP_ID
+
+		annotation SummarizationSetBy = User
+
+	column 'Código Divisão'
+		dataType: string
+		isNullable: false
+		lineageTag: fef48613-a5ab-49c8-987c-9d30b100497b
+		sourceLineageTag: 89760258-61fc-46ea-92d5-709ffdb6b015
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Código Divisão
+
+		annotation SummarizationSetBy = User
+
+	column Divisão
+		dataType: string
+		lineageTag: 5143c13a-d1f4-4062-bd59-1e04244476d0
+		sourceLineageTag: cbcec1b6-02dc-40d9-b640-a8db9f484d72
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Divisão
+
+		annotation SummarizationSetBy = User
+
+	partition Divisão = entity
+		mode: directQuery
+		source
+			entityName: Divisão
+			expressionSource: 'DirectQuery para AS – Modelo Operações Portuárias'
+

@@ -1,0 +1,244 @@
+table Despachante
+	lineageTag: 624c1b10-04e7-414c-afc4-3b5dd0c4c2ad
+	sourceLineageTag: e1caecbb-dc5b-4388-8232-e977b9921916
+
+	column 'Código Cliente Despachante'
+		dataType: string
+		isNullable: false
+		lineageTag: b3d95435-80df-4d72-98e6-d309ff184ef1
+		sourceLineageTag: e56adaee-5f71-4e87-9ec7-630b504c1e28
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Código Cliente Despachante
+
+		annotation SummarizationSetBy = User
+
+	column Despachante
+		dataType: string
+		lineageTag: 1c30afca-e549-4645-a2b4-b837540c67fb
+		sourceLineageTag: 02852a16-300f-4f82-b3e9-b6deee77c5f7
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Despachante
+
+		annotation SummarizationSetBy = User
+
+	column NOME_FANTASIA_CLIENTE
+		dataType: string
+		isHidden
+		lineageTag: 7d1ca53d-5a44-41a3-ab47-08da25e337ec
+		sourceLineageTag: 0bcf55cc-6431-4fbc-9ffd-f7db07e4136e
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: NOME_FANTASIA_CLIENTE
+
+		annotation SummarizationSetBy = User
+
+	column ENDERECO_CLIENTE
+		dataType: string
+		isHidden
+		lineageTag: a4f431cc-b79d-4d6c-b217-c614f1764067
+		sourceLineageTag: 3d69af5d-36ac-448b-9cda-c5dc0bb9dc75
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: ENDERECO_CLIENTE
+
+		annotation SummarizationSetBy = User
+
+	column LOGRADOURO_CLIENTE
+		dataType: string
+		isHidden
+		lineageTag: 82156c43-39ef-4e41-ac66-30230e51a4a7
+		sourceLineageTag: b053b4f0-9d45-43a7-b9c9-e3bd0452a7b7
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: LOGRADOURO_CLIENTE
+
+		annotation SummarizationSetBy = User
+
+	column LOGRADOURO_CLIENTE_GRANDE_USR
+		dataType: string
+		isHidden
+		lineageTag: 61b7df10-e4f4-44f4-a45c-7e39389411de
+		sourceLineageTag: 9ed8a3f3-e517-42ae-bb14-9e4d835e24af
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: LOGRADOURO_CLIENTE_GRANDE_USR
+
+		annotation SummarizationSetBy = User
+
+	column CEP_CLIENTE
+		dataType: string
+		isHidden
+		lineageTag: b9039a3a-f7af-4734-8cd4-ebb8b19ebf9a
+		sourceLineageTag: 0ef52c90-3bd2-4705-aea8-0f05f6752bd6
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: CEP_CLIENTE
+
+		annotation SummarizationSetBy = User
+
+	column UF_CLIENTE
+		dataType: string
+		isHidden
+		lineageTag: 77d0deb9-c794-4542-ae91-5cebb78d5770
+		sourceLineageTag: 1def522f-923c-4967-8800-7fa1938718b7
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: UF_CLIENTE
+
+		annotation SummarizationSetBy = User
+
+	column BAIRRO_CLIENTE
+		dataType: string
+		isHidden
+		lineageTag: 9129067b-f67f-4943-87b9-5b88be9acfd4
+		sourceLineageTag: e4a66db3-f08f-4e5c-8dc1-a3177f9818ba
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: BAIRRO_CLIENTE
+
+		annotation SummarizationSetBy = User
+
+	column COD_MUNICIPIO_IBGE
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 39a0e9a1-389d-4c1e-83e0-7fafe6983dfc
+		sourceLineageTag: 7ddd70fc-2df9-4bad-b853-c47171381349
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: COD_MUNICIPIO_IBGE
+
+		annotation SummarizationSetBy = User
+
+	column CIDADE_CLIENTE
+		dataType: string
+		isHidden
+		lineageTag: ce61eb72-7bfd-4f65-b8de-9bd65a06e615
+		sourceLineageTag: 2df772f1-fc32-4ef6-9be1-1540a4c189d6
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: CIDADE_CLIENTE
+
+		annotation SummarizationSetBy = User
+
+	column CPF_CLIENTE
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 70fb7652-aed6-4e52-b63b-a6df2e61dadf
+		sourceLineageTag: 6a28151b-c4f8-4960-ae2b-07063d3edc5a
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: CPF_CLIENTE
+
+		annotation SummarizationSetBy = User
+
+	column RAD_CGC_CLIENTE
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: d4182dbd-4b04-4f05-9492-790527c77fa9
+		sourceLineageTag: 1bfa20ed-1743-4103-8474-0bcf17f0d93b
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: RAD_CGC_CLIENTE
+
+		annotation SummarizationSetBy = User
+
+	column COMPL_CGC_CLIENTE
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 5479c374-4d83-411a-a3e0-e8f6fbeb8236
+		sourceLineageTag: a5168ad0-d5ce-4756-9803-8eff06c52550
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: COMPL_CGC_CLIENTE
+
+		annotation SummarizationSetBy = User
+
+	column CNPJ_FORMAT_CLIENTE
+		dataType: string
+		isHidden
+		lineageTag: eed5663e-a1cb-4056-8dd4-21f5388c21bd
+		sourceLineageTag: 65ad8bb5-1494-426b-9e44-901f2ced9df2
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: CNPJ_FORMAT_CLIENTE
+
+		annotation SummarizationSetBy = User
+
+	column CPF_FORMAT_CLIENTE
+		dataType: string
+		isHidden
+		lineageTag: ef01e47a-00dd-469e-8ab3-dbdaa743999f
+		sourceLineageTag: aa6b9794-25b9-45b0-9ab9-22182bce7823
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: CPF_FORMAT_CLIENTE
+
+		annotation SummarizationSetBy = User
+
+	column DAT_INCL_REG
+		dataType: string
+		isHidden
+		lineageTag: 2921e597-fdbf-4006-aa17-3e6fdc5c3f8d
+		sourceLineageTag: 9ccadc88-b591-4cf7-b697-533b5ea5592a
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: DAT_INCL_REG
+
+		annotation SummarizationSetBy = User
+
+	column CH_USR_INCL_REG
+		dataType: string
+		isHidden
+		lineageTag: e5488dba-bd40-4ad0-a6bb-ddaf5f28f71a
+		sourceLineageTag: f5120c86-0b20-4d5e-87d2-f3de77f6c23c
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: CH_USR_INCL_REG
+
+		annotation SummarizationSetBy = User
+
+	column DAT_ALT_REG
+		dataType: string
+		isHidden
+		lineageTag: cb9345f6-e134-4a34-b48c-06482772cc01
+		sourceLineageTag: 9270aa09-e3ef-4ac3-9880-9fbb58bba5ad
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: DAT_ALT_REG
+
+		annotation SummarizationSetBy = User
+
+	column CH_USR_ALT_REG
+		dataType: string
+		isHidden
+		lineageTag: 09a77551-0af6-47cb-bba8-0ac62fbbc34c
+		sourceLineageTag: 0a6f159c-1ed0-4f67-babf-b9ac2f309810
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: CH_USR_ALT_REG
+
+		annotation SummarizationSetBy = User
+
+	column TIP_CLIENTE
+		dataType: string
+		isHidden
+		lineageTag: 26ed185e-ee13-4f57-88aa-e13e5d246795
+		sourceLineageTag: ee5ec16d-15ae-4900-843a-e34be1eb8dfe
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: TIP_CLIENTE
+
+		annotation SummarizationSetBy = User
+
+	partition Despachante = entity
+		mode: directQuery
+		source
+			entityName: Despachante
+			expressionSource: 'DirectQuery para AS – Modelo Operações Portuárias'
+

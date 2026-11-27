@@ -1,0 +1,27 @@
+table '#SBP Levante Cntr Importação'
+	lineageTag: fad632ae-cbc4-4ca4-bca7-b933f8c48eea
+
+	measure 'Valor #SBP Levante Cntr Importação' = SELECTEDVALUE('#SBP Levante Cntr Importação'[#SBP Levante Cntr Importação])
+		lineageTag: 92afeef4-14de-4e4f-a597-22f8ca0be302
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#SBP Levante Cntr Importação'
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: ea4980e7-98c8-4cb7-ad99-bd9fafef56e7
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition '#SBP Levante Cntr Importação' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 0.5, 0.0001)
+
+	annotation PBI_Id = fa4fa9b9786148b086862b781db5cc0b
+

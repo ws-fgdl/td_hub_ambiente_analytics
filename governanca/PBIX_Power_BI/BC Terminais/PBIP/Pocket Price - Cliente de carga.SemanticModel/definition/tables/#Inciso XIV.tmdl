@@ -1,0 +1,28 @@
+table '#Inciso XIV'
+	lineageTag: 4106f156-e9da-46e9-b3f3-d6e56da5fc50
+
+	measure 'Valor #Inciso XIV' = SELECTEDVALUE('#Inciso XIV'[#Inciso XIV])
+		lineageTag: b55319c2-35bf-4975-8a78-24cb699bc78a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#Inciso XIV'
+		lineageTag: 54784a91-b8d3-4c82-9128-e4066b42dac8
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '#Inciso XIV' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 1, 0.001)
+
+	annotation PBI_Id = d2edd5466a4e446e815194b781952014
+

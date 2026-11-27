@@ -1,0 +1,541 @@
+table 'Tabela Pública'
+	lineageTag: a15b20fa-73e2-4fb3-b3da-ff40f0bb90ac
+
+	column un
+		dataType: string
+		lineageTag: 851eb667-29ef-4c04-96f8-ce70440bd268
+		summarizeBy: none
+		sourceColumn: un
+
+		annotation SummarizationSetBy = Automatic
+
+	column clibrs_id
+		dataType: string
+		lineageTag: a21b46fa-180e-433e-bc73-576e528af302
+		summarizeBy: none
+		sourceColumn: clibrs_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column cod_cliente_sap
+		dataType: string
+		lineageTag: a68484d1-fee0-4e45-9c9d-007b9f397165
+		summarizeBy: none
+		sourceColumn: cod_cliente_sap
+
+		annotation SummarizationSetBy = Automatic
+
+	column cd_tipo_contrato
+		dataType: string
+		lineageTag: 0ad7c0c3-f4c7-4723-9336-57c2c9b11866
+		summarizeBy: none
+		sourceColumn: cd_tipo_contrato
+
+		annotation SummarizationSetBy = Automatic
+
+	column dsc_tipo_contrato
+		dataType: string
+		lineageTag: 0c458fad-e0d9-4049-b9f9-7fcb7660a6d5
+		summarizeBy: none
+		sourceColumn: dsc_tipo_contrato
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_cliente
+		dataType: string
+		lineageTag: 656071d2-9550-4544-9da9-4a9ca070e5b1
+		summarizeBy: none
+		sourceColumn: id_cliente
+
+		annotation SummarizationSetBy = Automatic
+
+	column cliente_cnpj
+		dataType: string
+		lineageTag: 585956e2-c125-4a91-a7db-c2f705e4a8f2
+		summarizeBy: none
+		sourceColumn: cliente_cnpj
+
+		annotation SummarizationSetBy = Automatic
+
+	column cliente
+		dataType: string
+		lineageTag: 3e8ed71f-b0db-484a-91c5-c30b36754e21
+		summarizeBy: none
+		sourceColumn: cliente
+
+		annotation SummarizationSetBy = Automatic
+
+	column arm_id
+		dataType: string
+		lineageTag: 68227522-e416-4d54-aa3d-cb0276cc3e86
+		summarizeBy: none
+		sourceColumn: arm_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column cod_armador
+		dataType: string
+		lineageTag: 37dd51f7-4609-453a-b65b-9e68a7621f9f
+		summarizeBy: none
+		sourceColumn: cod_armador
+
+		annotation SummarizationSetBy = Automatic
+
+	column armador
+		dataType: string
+		lineageTag: 68d4be60-f5f9-4d88-863a-b95c74b5625f
+		summarizeBy: none
+		sourceColumn: armador
+
+		annotation SummarizationSetBy = Automatic
+
+	column cod_contrato
+		dataType: string
+		lineageTag: 929a140a-7618-4728-b72d-363524bb5a71
+		summarizeBy: none
+		sourceColumn: cod_contrato
+
+		annotation SummarizationSetBy = Automatic
+
+	column contrato
+		dataType: string
+		lineageTag: 000c05e1-808e-4976-9d1a-24e25c188bac
+		summarizeBy: none
+		sourceColumn: contrato
+
+		annotation SummarizationSetBy = Automatic
+
+	column cod_situacao
+		dataType: string
+		lineageTag: e9789964-d990-470b-bba6-2985d6ba0940
+		summarizeBy: none
+		sourceColumn: cod_situacao
+
+		annotation SummarizationSetBy = Automatic
+
+	column situacao
+		dataType: string
+		lineageTag: 036f28c6-338c-424c-b555-4146cafef499
+		summarizeBy: none
+		sourceColumn: situacao
+
+		annotation SummarizationSetBy = Automatic
+
+	column cod_tabela
+		dataType: string
+		lineageTag: f0fb3dfb-b29a-4e3c-99aa-4a2655816717
+		summarizeBy: none
+		sourceColumn: cod_tabela
+
+		annotation SummarizationSetBy = Automatic
+
+	column tabela
+		dataType: string
+		lineageTag: dd6bf616-fa15-4246-938b-0d23b54ca3ee
+		summarizeBy: none
+		sourceColumn: tabela
+
+		annotation SummarizationSetBy = Automatic
+
+	column cd_tipo_servico
+		dataType: string
+		lineageTag: 273961be-a090-496e-8b7f-a0a5f5b5dbee
+		summarizeBy: none
+		sourceColumn: cd_tipo_servico
+
+		annotation SummarizationSetBy = Automatic
+
+	column cod_servico
+		dataType: string
+		lineageTag: 865e1479-894a-43e1-9395-8ac4e795a9f9
+		summarizeBy: none
+		sourceColumn: cod_servico
+
+		annotation SummarizationSetBy = Automatic
+
+	column servico
+		dataType: string
+		lineageTag: 55c0dafa-d261-44b2-a557-3fe2926d5a36
+		summarizeBy: none
+		sourceColumn: servico
+
+		annotation SummarizationSetBy = Automatic
+
+	column valor_minimo_tabela
+		dataType: string
+		lineageTag: 0ac81ff3-d752-4f64-b973-80193d3e3299
+		summarizeBy: none
+		sourceColumn: valor_minimo_tabela
+
+		annotation SummarizationSetBy = Automatic
+
+	column periodo
+		dataType: string
+		lineageTag: 2a15af31-c168-49a3-9127-7f4d29ea14ef
+		summarizeBy: none
+		sourceColumn: periodo
+
+		annotation SummarizationSetBy = Automatic
+
+	column valor_minimo_periodo
+		dataType: double
+		lineageTag: 198504d6-536a-4a94-9f41-444d0d74e592
+		summarizeBy: sum
+		sourceColumn: valor_minimo_periodo
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column inicio_vigencia
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 9cf3ff5f-c4ff-47bb-980a-36ad9b415e09
+		summarizeBy: none
+		sourceColumn: inicio_vigencia
+
+		variation Variation
+			isDefault
+			relationship: 17e16f06-cecc-460e-aed1-801fd7abd9b9
+			defaultHierarchy: LocalDateTable_d991b592-4e10-40fe-88af-3677445eb8e6.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column fim_vigencia
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 4d6f1857-0676-4eed-a7d9-e44e52b45fd3
+		summarizeBy: none
+		sourceColumn: fim_vigencia
+
+		variation Variation
+			isDefault
+			relationship: 5ede0b89-013f-4b91-81e5-ab01c651e056
+			defaultHierarchy: LocalDateTable_e2c7655d-d84c-4255-b040-db2d08bceec0.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column vigencia
+		dataType: string
+		lineageTag: 9f4c82f1-76b3-4e88-b1f4-be1dac65d462
+		summarizeBy: none
+		sourceColumn: vigencia
+
+		annotation SummarizationSetBy = Automatic
+
+	column dias_free_time
+		dataType: string
+		lineageTag: f3c07deb-c654-4236-bb90-7fe6e0221087
+		summarizeBy: none
+		sourceColumn: dias_free_time
+
+		annotation SummarizationSetBy = Automatic
+
+	column adic_carga_perigosa
+		dataType: string
+		lineageTag: d36885af-6ce0-4dcc-887f-d95a7651cec4
+		summarizeBy: none
+		sourceColumn: adic_carga_perigosa
+
+		annotation SummarizationSetBy = Automatic
+
+	column adic_mercadoria_especial
+		dataType: string
+		lineageTag: a4ce08e9-7c32-4601-8630-577859342e6e
+		summarizeBy: none
+		sourceColumn: adic_mercadoria_especial
+
+		annotation SummarizationSetBy = Automatic
+
+	column perc_seguro_tabela
+		dataType: string
+		lineageTag: a09b6f98-15e7-437a-8601-22927e522b89
+		summarizeBy: none
+		sourceColumn: perc_seguro_tabela
+
+		annotation SummarizationSetBy = Automatic
+
+	column perc_seguro_periodo
+		dataType: string
+		lineageTag: 02f9f7a8-5b0f-45a7-8de8-415e3120d390
+		summarizeBy: none
+		sourceColumn: perc_seguro_periodo
+
+		annotation SummarizationSetBy = Automatic
+
+	column flag_isencao
+		dataType: string
+		lineageTag: b09e1800-982f-4f00-93f2-05a5bfb60159
+		summarizeBy: none
+		sourceColumn: flag_isencao
+
+		annotation SummarizationSetBy = Automatic
+
+	column percentual_desconto
+		dataType: string
+		lineageTag: 38288446-5e80-48d0-9e83-32f3630157e6
+		summarizeBy: none
+		sourceColumn: percentual_desconto
+
+		annotation SummarizationSetBy = Automatic
+
+	column forma_pagamento
+		dataType: string
+		lineageTag: 46da0570-4e42-469d-81ff-d44b510a522e
+		summarizeBy: none
+		sourceColumn: forma_pagamento
+
+		annotation SummarizationSetBy = Automatic
+
+	column dias_periodo
+		dataType: double
+		lineageTag: d834d395-d155-4064-ac22-a2272f27b6ff
+		summarizeBy: sum
+		sourceColumn: dias_periodo
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column data_criacao_tabela
+		dataType: string
+		lineageTag: cd8dd100-6b70-4cc9-987f-fb30c03f8400
+		summarizeBy: none
+		sourceColumn: data_criacao_tabela
+
+		annotation SummarizationSetBy = Automatic
+
+	column grupo_cliente
+		dataType: string
+		lineageTag: 2a1ee3d7-ace6-4afc-a0b2-91d9159dd814
+		summarizeBy: none
+		sourceColumn: grupo_cliente
+
+		annotation SummarizationSetBy = Automatic
+
+	column grupo_armador
+		dataType: string
+		lineageTag: afee74d9-ef0f-42ab-a72e-8e62672d3479
+		summarizeBy: none
+		sourceColumn: grupo_armador
+
+		annotation SummarizationSetBy = Automatic
+
+	column grupo_cobrar_de
+		dataType: string
+		lineageTag: cbd31e4a-e791-4817-8871-ad96dbaed162
+		summarizeBy: none
+		sourceColumn: grupo_cobrar_de
+
+		annotation SummarizationSetBy = Automatic
+
+	column cod_contrato_servico = 'Tabela Pública'[cod_contrato]&'Tabela Pública'[cd_tipo_servico]&'Tabela Pública'[un]
+		lineageTag: a890c96f-d7b4-4c1c-bee4-500ea4de019b
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column chave = 'Tabela Pública'[servico]&'Tabela Pública'[un]
+		lineageTag: 3681da4a-c2ae-4d87-9f87-b34b4d9fc25c
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column dias_isencao
+		dataType: string
+		lineageTag: 963f531b-ad6d-4279-acb8-4f3d6535cec8
+		summarizeBy: none
+		sourceColumn: dias_isencao
+
+		annotation SummarizationSetBy = Automatic
+
+	column dias_portas
+		dataType: string
+		lineageTag: 0c8a9b30-c804-4c8b-94ac-5945fc67719c
+		summarizeBy: none
+		sourceColumn: dias_portas
+
+		annotation SummarizationSetBy = Automatic
+
+	column percent_desconto
+		dataType: string
+		lineageTag: 166f6398-80c6-40af-9dce-1f8d63d53884
+		summarizeBy: none
+		sourceColumn: percent_desconto
+
+		annotation SummarizationSetBy = Automatic
+
+	column valor_nao_numerico
+		dataType: string
+		lineageTag: ede31f62-edd5-4e73-b345-9a10ad9d824e
+		summarizeBy: none
+		sourceColumn: valor_nao_numerico
+
+		annotation SummarizationSetBy = Automatic
+
+	column tipo_tabela
+		dataType: string
+		lineageTag: 85a4019d-120d-4a4a-98e2-43b3de11c657
+		summarizeBy: none
+		sourceColumn: tipo_tabela
+
+		annotation SummarizationSetBy = Automatic
+
+	column valor
+		dataType: double
+		lineageTag: 21f1b59d-a5ca-4b21-942b-1b24e8cc85f9
+		summarizeBy: sum
+		sourceColumn: valor
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column id_periodo = 'Tabela Pública'[cod_contrato_servico] & 'Tabela Pública'[periodo]
+		lineageTag: 78fd7be9-0c5a-4336-9221-8e953ceb22fd
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_p1 = 'Tabela Pública'[cod_contrato_servico]&1
+		lineageTag: afc804de-7ee8-4199-b74f-6dfa2cd3abc5
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_p2 = 'Tabela Pública'[cod_contrato_servico]&2
+		lineageTag: 8f96cef0-2ed4-44c3-9339-510ce3596460
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_p3 = 'Tabela Pública'[cod_contrato_servico]&3
+		lineageTag: 70e51286-e250-4e45-8344-435b6318338c
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_p4 = 'Tabela Pública'[cod_contrato_servico]&4
+		lineageTag: 2bf80ac3-ca8c-4580-8ead-fc1e0979671a
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_serv_contrato =
+			
+			// Fausto - 2025-08-26
+			'Tabela Pública'[cod_contrato] & 'Tabela Pública'[cd_tipo_servico] & 'Tabela Pública'[un]
+		lineageTag: dac979cb-e819-4b74-bbce-7913a1995190
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Qtd_Repeticoes =
+			
+			CALCULATE(
+			    COUNTROWS('Tabela Pública'),
+			    FILTER(
+			        'Tabela Pública',
+			        'Tabela Pública'[id_periodo] = EARLIER('Tabela Pública'[id_periodo])
+			    )
+			)
+		formatString: 0
+		lineageTag: 7d449a6e-b1f4-46eb-b061-987f0341c153
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column Sequencial =
+			
+			RANKX(
+			    FILTER(
+			        ALL('Tabela Pública'),
+			        'Tabela Pública'[id_periodo] = EARLIER('Tabela Pública'[id_periodo])
+			    ),
+			    'Tabela Pública'[data_criacao_tabela],
+			    ,
+			    ASC,
+			    DENSE
+			)
+		formatString: 0
+		lineageTag: a752b678-b6c5-4b75-af63-55ea76e98186
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column Personalizar
+		dataType: string
+		lineageTag: c0f14128-b8a8-4a60-b341-f173a010cc68
+		summarizeBy: none
+		sourceColumn: Personalizar
+
+		annotation SummarizationSetBy = Automatic
+
+	column NUMERACAO_SEQUENCIAL
+		dataType: string
+		lineageTag: 1a01a0a6-f0f1-48c8-94fd-5b5438880acc
+		summarizeBy: none
+		sourceColumn: NUMERACAO_SEQUENCIAL
+
+		annotation SummarizationSetBy = Automatic
+
+	column etl_updated_at
+		dataType: string
+		lineageTag: 6cc0b43c-2489-4f0b-9853-179379558422
+		summarizeBy: none
+		sourceColumn: etl_updated_at
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Tabela Pública' = m
+		mode: import
+		source = ```
+				let
+				    Origem = PowerPlatform.Dataflows([]),
+				    Navegação = Origem{[Id = "Workspaces"]}[Data],
+				    #"Navegação 1" = Navegação{[workspaceId = "bcd54b55-e85f-4c30-a169-bfbf18f90f30"]}[Data],
+				    #"Navegação 2" = #"Navegação 1"{[dataflowId = "db21c979-872a-4339-a1f0-74e09afefa00"]}[Data],
+				    #"Navegação 3" = #"Navegação 2"{[entity = "dim_bc_tecons_contratos_teste", version = ""]}[Data],
+				    #"Linhas Filtradas" = Table.SelectRows(#"Navegação 3", each Text.Contains([tabela], "TABELA GERAL") or Text.Contains([tabela], "TABELA PUBLICA")),
+				    #"Valor Substituído" = Table.ReplaceValue(#"Linhas Filtradas",".",",",Replacer.ReplaceText,{"valor_numerico"}),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Valor Substituído",{{"valor_numerico", type number}}),
+				    #"Colunas Renomeadas" = Table.RenameColumns(#"Tipo Alterado",{{"valor_numerico", "valor"}}),
+				    #"Tipo Alterado1" = Table.TransformColumnTypes(#"Colunas Renomeadas",{{"arm_id", type text}, {"armador", type text}, {"cod_armador", type text}}),
+				    #"Colunas Removidas" = Table.RemoveColumns(#"Tipo Alterado1",{"valor"}),
+				    #"Colunas Renomeadas1" = Table.RenameColumns(#"Colunas Removidas",{{"multiplicador_cif", "valor"}}),
+				    #"Personalização Adicionada" = Table.AddColumn(#"Colunas Renomeadas1", "Personalizar", each Text.From(if [cod_contrato] = null then "" else [cod_contrato]) & 
+				    Text.From(if [cd_tipo_servico] = null then "" else [cd_tipo_servico]) & 
+				    (if [un] = null then "" else [un]) & 
+				    Text.From(if [periodo] = null then "" else [periodo])),
+				    #"Tipo Alterado2" = Table.TransformColumnTypes(#"Personalização Adicionada",{{"Personalizar", type text}}),
+				
+				    #"Agrupar e Adicionar Index" = Table.Group(
+				         #"Tipo Alterado2",
+				         {"Personalizar"},
+				          {{"Dados", each Table.AddIndexColumn(_, "NUMERACAO_SEQUENCIAL", 1, 1)}}
+				
+				    ),
+				
+				    #"Expandir Tabela" = Table.ExpandTableColumn(
+				        #"Agrupar e Adicionar Index",
+				        "Dados", 
+				         List.RemoveItems(Table.ColumnNames(#"Tipo Alterado2"), {"Personalizar"}) &  {"NUMERACAO_SEQUENCIAL"}
+				        ),
+				
+				        #"Tipo Alterado3" = Table.TransformColumnTypes((#"Expandir Tabela"),{{"arm_id", type text}, {"armador", type text}, {"cod_armador", type text}}),
+				    #"Tipo Alterado4" = Table.TransformColumnTypes(#"Tipo Alterado3",{{"dias_periodo", type number}, {"valor", type number}, {"fim_vigencia", type date}, {"inicio_vigencia", type date}, {"un", type text}}),
+				    #"Linhas Filtradas1" = Table.SelectRows(#"Tipo Alterado4", each ([NUMERACAO_SEQUENCIAL] = 1))
+				in
+				     #"Linhas Filtradas1"
+				```
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

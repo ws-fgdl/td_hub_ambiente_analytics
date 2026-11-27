@@ -1,0 +1,114 @@
+relationship 28cc63f5-cffe-4612-aa84-034b94bf2244
+	fromColumn: bussola_comercial.dt_valor
+	toColumn: Calendario2.dt_valor
+
+relationship 34a77949-32af-48b2-923b-e8194ed4fbae
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: contratos.cod_contrato
+	toColumn: bussola_comercial.contrato_id
+
+relationship 27a2ee26-6b6e-4c40-bbc1-1af9d675618d
+	fromColumn: bussola_comercial.dt_valor
+	toColumn: Calendario1.dt_valor
+
+relationship e0bbfde3-59d9-484a-b59e-43ef9581f677
+	fromColumn: bussola_comercial.chave1
+	toColumn: Serviço.Chave
+
+relationship afccb616-d3d8-71f6-9ec7-8a712b53b4e7
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: bussola_comercial.cod_contrato_servico
+	toColumn: 'Tabela Pública'.cod_contrato_servico
+
+relationship e80ebacd-0e03-a836-5a22-29eda3b3c375
+	fromColumn: bussola_comercial.status_container
+	toColumn: STATUS_CNTR.status_container
+
+relationship 58bb8a7b-68d2-951a-5e65-18c6b75a899d
+	isActive: false
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: contratos.servico
+	toColumn: Serviço.'Sub Grupo Pricing'
+
+relationship 73da3c8c-a2e9-f40c-0f70-1c1faf2d5465
+	fromColumn: bussola_comercial.cobrar_de_sap
+	toColumn: salesforce.codigo_sap
+
+relationship 8068134a-5245-45b7-a4f9-a8cf8afb10cf
+	joinOnDateBehavior: datePartOnly
+	fromColumn: bussola_comercial.competencia
+	toColumn: LocalDateTable_a9b5a4c2-38a3-4dbd-bb3b-e3d5b4b21b47.Date
+
+relationship 0e7f5a77-baed-4303-bb3f-490f5940c65a
+	joinOnDateBehavior: datePartOnly
+	fromColumn: bussola_comercial.data_do_inicio_do_evento
+	toColumn: LocalDateTable_fd1389e1-44a1-4177-8a84-531eb8031e78.Date
+
+relationship c63d83e8-d4d9-4831-a017-07dd34d626fc
+	joinOnDateBehavior: datePartOnly
+	fromColumn: bussola_comercial.data_do_fim_do_evento
+	toColumn: LocalDateTable_e92c48af-00a0-43b7-88ff-b65dbb0fafc6.Date
+
+relationship 9fdc766e-cfea-4004-8c2b-35bd94dd4bdb
+	joinOnDateBehavior: datePartOnly
+	fromColumn: bussola_comercial.etl_updated_at
+	toColumn: LocalDateTable_d4bf95a1-e65b-4033-9637-b82113e88ef1.Date
+
+relationship f47e2191-795e-46a3-9deb-0279d7668a33
+	joinOnDateBehavior: datePartOnly
+	fromColumn: contratos.inicio_vigencia
+	toColumn: LocalDateTable_67b1fa0b-fc7d-46aa-8fd4-a7a296f0beca.Date
+
+relationship 907aba72-13e8-439b-92dd-ddfc95998399
+	joinOnDateBehavior: datePartOnly
+	fromColumn: contratos.fim_vigencia
+	toColumn: LocalDateTable_113212ab-730c-40c3-8752-8a922eb521da.Date
+
+relationship 24d4ef0b-9543-4d91-bf0f-6735f64c7724
+	joinOnDateBehavior: datePartOnly
+	fromColumn: contratos.data_criacao_tabela
+	toColumn: LocalDateTable_ee169e45-9fd1-4f22-a1b9-9052b2429003.Date
+
+relationship a8312f00-fbed-4e5d-9131-3bb5f545a09f
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Calendario2.Date
+	toColumn: LocalDateTable_c02d4627-c49b-463a-a1df-26b0b401c73e.Date
+
+relationship f650b31a-4e07-428f-8de7-472620382a92
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Calendario2.Ano-Mês
+	toColumn: LocalDateTable_a4b3bf09-8be9-4cef-926e-f2b35d0fa399.Date
+
+relationship e686dabe-0ff0-479c-93b5-dd768b9308b5
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Calendario1.Date
+	toColumn: LocalDateTable_745a410c-ac71-4d22-9d5e-a5c38171e576.Date
+
+relationship 17e16f06-cecc-460e-aed1-801fd7abd9b9
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Tabela Pública'.inicio_vigencia
+	toColumn: LocalDateTable_d991b592-4e10-40fe-88af-3677445eb8e6.Date
+
+relationship 5ede0b89-013f-4b91-81e5-ab01c651e056
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Tabela Pública'.fim_vigencia
+	toColumn: LocalDateTable_e2c7655d-d84c-4255-b040-db2d08bceec0.Date
+
+relationship 2c231f2c-92b6-4632-a298-97e615c4d5c5
+	joinOnDateBehavior: datePartOnly
+	fromColumn: dim_custos_serv_trg.VIG_DE
+	toColumn: LocalDateTable_7db7ce86-0535-4352-a7b6-31e89b0606cd.Date
+
+relationship 0fe766b5-a477-4703-aba7-20cd3f7142c0
+	joinOnDateBehavior: datePartOnly
+	fromColumn: dim_custos_serv_trg.VIG_ATE
+	toColumn: LocalDateTable_a5c5da49-36a9-472d-8843-808bd9c800f0.Date
+
+relationship ceedb548-19cc-4b49-8a6a-503cb96c61b9
+	joinOnDateBehavior: datePartOnly
+	fromColumn: contratos.etl_updated_at
+	toColumn: LocalDateTable_fa1db214-3555-4be4-ad53-148283b5a813.Date
+

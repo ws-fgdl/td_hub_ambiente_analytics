@@ -1,0 +1,147 @@
+table salesforce
+	lineageTag: 076b2c46-b49f-430d-b009-2c0263701335
+
+	column id
+		dataType: string
+		lineageTag: 57bda3ce-254a-46c6-aa43-11acbd0586f9
+		summarizeBy: none
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+	column parentid
+		dataType: string
+		lineageTag: bd1bae4b-98cc-4a45-aab7-f60ec9d67789
+		summarizeBy: none
+		sourceColumn: parentid
+
+		annotation SummarizationSetBy = Automatic
+
+	column cidade
+		dataType: string
+		lineageTag: a5c42b64-8ef1-4130-b811-41c8133b0d5a
+		summarizeBy: none
+		sourceColumn: cidade
+
+		annotation SummarizationSetBy = Automatic
+
+	column pais
+		dataType: string
+		lineageTag: 6d10457a-5385-4712-96fd-cd6379aa40c1
+		summarizeBy: none
+		sourceColumn: pais
+
+		annotation SummarizationSetBy = Automatic
+
+	column estado
+		dataType: string
+		lineageTag: 1d64ad71-9377-4510-97ea-343e62a9873e
+		summarizeBy: none
+		sourceColumn: estado
+
+		annotation SummarizationSetBy = Automatic
+
+	column cnpj
+		dataType: string
+		lineageTag: 35a0e21e-a3cd-4484-8113-1477f70112c0
+		summarizeBy: none
+		sourceColumn: cnpj
+
+		annotation SummarizationSetBy = Automatic
+
+	column cpf
+		dataType: string
+		lineageTag: 6bbab81c-7bdd-491c-aec4-61f211f68e49
+		summarizeBy: none
+		sourceColumn: cpf
+
+		annotation SummarizationSetBy = Automatic
+
+	column grupo_economico
+		dataType: string
+		lineageTag: 1f8173ab-1eb2-4116-9af0-887e259e58e4
+		summarizeBy: none
+		sourceColumn: grupo_economico
+
+		annotation SummarizationSetBy = Automatic
+
+	column grupo_comercial
+		dataType: string
+		lineageTag: 61f41a9e-1b85-49e8-8827-1e20f3037ce8
+		summarizeBy: none
+		sourceColumn: grupo_comercial
+
+		annotation SummarizationSetBy = Automatic
+
+	column codigo_postal
+		dataType: string
+		lineageTag: 757d4d73-7716-435e-b175-ab80d1b1382b
+		summarizeBy: none
+		sourceColumn: codigo_postal
+
+		annotation SummarizationSetBy = Automatic
+
+	column endereço
+		dataType: string
+		lineageTag: 046bb773-f117-4951-9592-1b0b1d326f54
+		summarizeBy: none
+		sourceColumn: endereço
+
+		annotation SummarizationSetBy = Automatic
+
+	column razao_social
+		dataType: string
+		lineageTag: cf66cf5f-9acd-4c01-8b40-c08b06298cb0
+		summarizeBy: none
+		sourceColumn: razao_social
+
+		annotation SummarizationSetBy = Automatic
+
+	column codigo_sap
+		dataType: int64
+		formatString: 0
+		lineageTag: bed5da7a-76df-4bd0-97f7-6fe571ca9386
+		summarizeBy: none
+		sourceColumn: codigo_sap
+
+		annotation SummarizationSetBy = Automatic
+
+	column duns_number
+		dataType: string
+		lineageTag: 42755ea7-3267-4670-8c38-f9fb1a792ce9
+		summarizeBy: none
+		sourceColumn: duns_number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Armador/Cliente Carga'
+		dataType: string
+		lineageTag: 6ca9abc2-f263-4a63-8368-7c16b9274627
+		summarizeBy: none
+		sourceColumn: Armador/Cliente Carga
+
+		annotation SummarizationSetBy = Automatic
+
+	partition salesforce = m
+		mode: import
+		source =
+				let
+				    Fonte = PowerPlatform.Dataflows(null),
+				    Workspaces = Fonte{[Id="Workspaces"]}[Data],
+				    #"bcd54b55-e85f-4c30-a169-bfbf18f90f30" = Workspaces{[workspaceId="bcd54b55-e85f-4c30-a169-bfbf18f90f30"]}[Data],
+				    #"4f905621-8575-46ce-b391-82061f44bc12" = #"bcd54b55-e85f-4c30-a169-bfbf18f90f30"{[dataflowId="4f905621-8575-46ce-b391-82061f44bc12"]}[Data],
+				    Salesforce_ = #"4f905621-8575-46ce-b391-82061f44bc12"{[entity="Salesforce_ter",version=""]}[Data],
+				    #"Tipo Alterado" = Table.TransformColumnTypes(Salesforce_,{{"parentid", type text}, {"cidade", type text}, {"pais", type text}, {"estado", type text}, {"cnpj", type text}, {"cpf", type text}, {"grupo_economico", type text}, {"grupo_comercial", type text}, {"codigo_postal", type text}, {"endereço", type text}, {"razao_social", type text}, {"codigo_sap", Int64.Type}, {"duns_number", type text}, {"Armador/Cliente Carga", type text}}),
+				    #"Tipo Alterado1" = Table.TransformColumnTypes(#"Tipo Alterado",{{"id", type text}, {"parentid", type any}, {"cidade", type any}, {"pais", type any}, {"estado", type any}, {"cnpj", type any}, {"cpf", type any}, {"grupo_economico", type text}, {"grupo_comercial", type text}, {"codigo_postal", type any}, {"endereço", type any}, {"razao_social", type text}, {"codigo_sap", type text}, {"duns_number", type any}}),
+				    #"Erros Removidos" = Table.RemoveRowsWithErrors(#"Tipo Alterado1", {"codigo_sap"}),
+				    #"Duplicatas Removidas" = Table.Distinct(#"Erros Removidos", {"codigo_sap"}),
+				    #"Tipo Alterado2" = Table.TransformColumnTypes(#"Duplicatas Removidas",{{"codigo_sap", Int64.Type}}),
+				    Personalizar1 = Table.SelectRows(
+				    #"Tipo Alterado2", each [codigo_sap] <> null and [codigo_sap] <> "")
+				in
+				    Personalizar1
+
+	annotation PBI_ResultType = Exception
+
+	annotation PBI_NavigationStepName = Navegação
+

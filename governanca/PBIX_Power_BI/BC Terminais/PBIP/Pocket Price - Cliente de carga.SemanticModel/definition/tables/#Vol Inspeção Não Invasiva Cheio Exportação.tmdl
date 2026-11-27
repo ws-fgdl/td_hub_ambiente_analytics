@@ -1,0 +1,28 @@
+table '#Vol Inspeção Não Invasiva Cheio Exportação'
+	lineageTag: 3ca380a9-b65e-4b62-b163-11f685740d9a
+
+	measure 'Valor #Vol Inspeção Não Invasiva Cheio Exportação' = SELECTEDVALUE('#Vol Inspeção Não Invasiva Cheio Exportação'[#Vol Inspeção Não Invasiva Cheio Exportação])
+		lineageTag: ddaae53f-6619-47c5-9475-38e1e9e58c32
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#Vol Inspeção Não Invasiva Cheio Exportação'
+		lineageTag: 9a4771e1-c907-4851-b1d6-ae82ece6a62b
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '#Vol Inspeção Não Invasiva Cheio Exportação' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 1, 0.001)
+
+	annotation PBI_Id = 3b8191013d2b44fd9b1cb6692c3d646a
+

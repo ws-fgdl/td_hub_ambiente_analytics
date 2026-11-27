@@ -1,0 +1,54 @@
+table grupo_arm
+	lineageTag: f0ce7937-93f6-415c-81a1-931205ac7f72
+
+	column ARM_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: a8770baf-5b46-407d-90b8-420872781314
+		summarizeBy: count
+		sourceColumn: ARM_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column DSC_GRUPO_ARMADOR
+		dataType: string
+		lineageTag: 46492956-74eb-4241-8658-dafb4913a45d
+		summarizeBy: none
+		sourceColumn: DSC_GRUPO_ARMADOR
+
+		annotation SummarizationSetBy = Automatic
+
+	column COD_ARMADOR
+		dataType: string
+		lineageTag: 5ad375cf-e5bd-4861-ab63-914df4757629
+		summarizeBy: none
+		sourceColumn: COD_ARMADOR
+
+		annotation SummarizationSetBy = Automatic
+
+	column DSC_ARMADOR
+		dataType: string
+		lineageTag: d5df18c6-74a5-4796-ab0a-80552d33a121
+		summarizeBy: none
+		sourceColumn: DSC_ARMADOR
+
+		annotation SummarizationSetBy = Automatic
+
+	partition grupo_arm = m
+		mode: import
+		source =
+				let
+				    Fonte = PowerPlatform.Dataflows(null),
+				    Workspaces = Fonte{[Id="Workspaces"]}[Data],
+				    #"bcd54b55-e85f-4c30-a169-bfbf18f90f30" = Workspaces{[workspaceId="bcd54b55-e85f-4c30-a169-bfbf18f90f30"]}[Data],
+				    #"377ed392-4d05-488c-bcef-6200502c4822" = #"bcd54b55-e85f-4c30-a169-bfbf18f90f30"{[dataflowId="377ed392-4d05-488c-bcef-6200502c4822"]}[Data],
+				    GRUPO_ARM_ = #"377ed392-4d05-488c-bcef-6200502c4822"{[entity="GRUPO_ARM",version=""]}[Data],
+				    #"Cabeçalhos Promovidos" = Table.PromoteHeaders(GRUPO_ARM_, [PromoteAllScalars=true]),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Cabeçalhos Promovidos",{{"ARM_ID", Int64.Type}, {"DSC_GRUPO_ARMADOR", type text}, {"COD_ARMADOR", type text}, {"DSC_ARMADOR", type text}})
+				in
+				    #"Tipo Alterado"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navegação
+

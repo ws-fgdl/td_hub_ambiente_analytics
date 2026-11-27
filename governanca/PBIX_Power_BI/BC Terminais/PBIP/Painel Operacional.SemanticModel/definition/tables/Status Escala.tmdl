@@ -1,0 +1,42 @@
+table 'Status Escala'
+	lineageTag: 0018e558-7cbc-49ed-a2fc-002bba9f0423
+	sourceLineageTag: dada3389-57d6-4bbc-b648-a8c36872ab66
+
+	column SITUACAO_TRADUZIDA
+		dataType: string
+		isHidden
+		isNullable: false
+		lineageTag: 3d553f78-cb98-4795-bc6a-f031a1513f27
+		sourceLineageTag: b8b4da48-ca11-491c-a1ef-9f5edd0426bc
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: SITUACAO_TRADUZIDA
+
+		annotation SummarizationSetBy = User
+
+	column 'Status Escala PT'
+		dataType: string
+		lineageTag: ba128068-fcea-4b18-9dc6-57bc11b8bae0
+		sourceLineageTag: ad53e7ba-e40d-475c-a777-ef2f95b7199f
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Status Escala PT
+
+		annotation SummarizationSetBy = User
+
+	column 'Status Escala ENG'
+		dataType: string
+		lineageTag: bc9e0fb6-384b-4880-b3e8-22f77ddbeae7
+		sourceLineageTag: e8cca46e-20c8-429f-9ebb-a0fb1e94d547
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Status Escala ENG
+
+		annotation SummarizationSetBy = User
+
+	partition 'Status Escala' = entity
+		mode: directQuery
+		source
+			entityName: Status Escala
+			expressionSource: 'DirectQuery para AS – Modelo Operações Portuárias'
+

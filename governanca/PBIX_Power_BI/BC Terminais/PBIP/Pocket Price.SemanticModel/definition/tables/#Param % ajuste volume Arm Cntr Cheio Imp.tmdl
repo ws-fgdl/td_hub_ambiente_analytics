@@ -1,0 +1,29 @@
+table '#Param % ajuste volume Arm Cntr Cheio Imp'
+	lineageTag: 3c1d4cf2-0a53-4b7a-8776-baf2d0213fa0
+
+	measure 'Valor Param % ajuste volume Arm Cntr Cheio Imp (selecionado)' = SELECTEDVALUE('#Param % ajuste volume Arm Cntr Cheio Imp'[Param % ajuste volume Arm Cntr Cheio Imp])
+		formatString: "R$"\ #,0.###############;-"R$"\ #,0.###############;"R$"\ #,0.###############
+		lineageTag: a352d258-5b75-498f-9f2c-b51ca925d2e3
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	column 'Param % ajuste volume Arm Cntr Cheio Imp'
+		lineageTag: 1d82f52f-463d-428a-a068-8f386755220d
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '#Param % ajuste volume Arm Cntr Cheio Imp' = calculated
+		mode: import
+		source = GENERATESERIES(CURRENCY(-1), CURRENCY(1), CURRENCY(0.01))
+
+	annotation PBI_Id = e58f2e9a386841c6b2410c1b83ae9ef2
+

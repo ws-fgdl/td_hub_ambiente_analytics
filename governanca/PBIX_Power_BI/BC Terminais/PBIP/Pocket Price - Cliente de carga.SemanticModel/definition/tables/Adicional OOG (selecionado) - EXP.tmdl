@@ -1,0 +1,27 @@
+table 'Adicional OOG (selecionado) - EXP'
+	lineageTag: 00ff3ba1-cf27-4c12-8a26-26460a133230
+
+	measure 'Valor Adicional OOG (selecionado) - EXP' = SELECTEDVALUE('Adicional OOG (selecionado) - EXP'[Adicional OOG (selecionado) - EXP])
+		lineageTag: 04940940-19a3-4e60-95f5-ab7de4edfa0a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Adicional OOG (selecionado) - EXP'
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 4baf8399-4944-4d46-8fa9-3d4ccf4fdbcb
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition 'Adicional OOG (selecionado) - EXP' = calculated
+		mode: import
+		source = GENERATESERIES(0, 1, 0.01)
+
+	annotation PBI_Id = 011680f6764b4093a5aa8b453d4fcfbb
+

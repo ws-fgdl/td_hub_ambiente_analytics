@@ -1,0 +1,564 @@
+table 'Medidas RI'
+	lineageTag: 477dc581-9384-42e1-a90b-c35d666242f2
+
+	measure 'Vol TEU' = ```
+			SUM(Movimentacao_CNTR[QNT TEU])
+			
+			```
+		lineageTag: a9685b08-1ed2-4334-b123-82df97a23cef
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Teus_YTM = ```
+			
+			VAR vUltimoAno = YEAR(MAX(Calendario1[Date]))
+			VAR vUltimoMesContexto = MONTH(MAXX(ALL(Calendario1), Calendario1[Date]))
+			
+			RETURN
+			SUMX(
+			    VALUES(Calendario1[Ano Calendario]),
+			    CALCULATE( 
+			        [Vol TEU],
+			        FILTER(
+			            Calendario1,
+			            Calendario1[Ano Calendario] = Calendario1[Ano Calendario] &&
+			            Calendario1[Numero Mes] <= vUltimoMesContexto
+			        )
+			    )
+			)
+			```
+		lineageTag: 04adcadc-b764-47bf-b141-387a53fdd247
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Vol_YTM_AnoAnterior = ```
+			
+			VAR vUltimaData = MAX('Calendario1'[Date]) // Última data presente na base
+			RETURN
+			CALCULATE(
+			    [Vol TEU],
+			    FILTER(
+			        ALL('Calendario1'),
+			        'Calendario1'[Ano Calendario] = YEAR(vUltimaData) - 1 && // Filtro para o ano anterior
+			        'Calendario1'[Date] <= DATE(YEAR(vUltimaData) - 1, 
+			        MONTH(vUltimaData), 
+			        DAY(vUltimaData)) // Filtro para o dia correspondente ao último dia presente na base, mas no ano anterior
+			    )
+			)
+			
+			```
+		lineageTag: c6739534-5968-4311-b2af-80f9f42df465
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Vol_YTM_AnoAtual = ```
+			
+			VAR vUltimaData = MAX('Calendario1'[Date]) // Última data presente na base
+			RETURN
+			CALCULATE(
+			    [Vol TEU],
+			    FILTER(
+			        ALL('Calendario1'),
+			        'Calendario1'[Ano Calendario] = YEAR(vUltimaData) && // Filtro para o ano anterior
+			        'Calendario1'[Date] <= DATE(YEAR(vUltimaData), 
+			        MONTH(vUltimaData), 
+			        DAY(vUltimaData)) // Filtro para o dia correspondente ao último dia presente na base, mas no ano anterior
+			    )
+			)
+			```
+		lineageTag: 8bc0fb5d-e94f-4ce7-8463-0cc28ba52630
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Δ YTM' = IFERROR(DIVIDE(([Vol_YTM_AnoAtual] - [Vol_YTM_AnoAnterior]),[Vol_YTM_AnoAnterior]), "0%")
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 1c9b2e24-25e0-4f5d-912d-55c6a82e99dd
+
+	measure Teus_ultimo_Mes_AnoAtual =
+			
+			VAR vUltimaData = MAX(Calendario1[Date])
+			VAR vUltimoAno = YEAR(vUltimaData)
+			VAR vUltimoMes = MONTH(vUltimaData)
+			VAR vUltimoDia = DAY(vUltimaData)
+			
+			RETURN
+			    CALCULATE(
+			        [Vol TEU],
+			        YEAR(Calendario1[Date]) = vUltimoAno &&
+			        MONTH(Calendario1[Date]) = vUltimoMes &&
+			        DAY(Calendario1[Date]) <= vUltimoDia
+			    )
+		lineageTag: a890e786-b2e8-46c0-be77-4bf4ea07ed08
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Teus_ultimo_Mes_AnoAnterior =
+			
+			VAR vUltimaData = MAX(Calendario1[Date])
+			VAR vUltimoAno = YEAR(vUltimaData)-1
+			VAR vUltimoMes = MONTH(vUltimaData)
+			VAR vUltimoDia = DAY(vUltimaData)
+			
+			RETURN
+			    CALCULATE(
+			        [Vol TEU],
+			        FILTER(
+			            ALL(Calendario1),
+			            YEAR(Calendario1[Date]) = vUltimoAno &&
+			            MONTH(Calendario1[Date]) = vUltimoMes &&
+			            DAY(Calendario1[Date]) <= vUltimoDia
+			        )
+			    )
+		lineageTag: 97703dc8-6b27-432b-a6b8-82c1957a044a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Δ ultimo_mes' = DIVIDE(([Teus_ultimo_Mes_AnoAtual] - [Teus_ultimo_Mes_AnoAnterior]),[Teus_ultimo_Mes_AnoAnterior])
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 7d2d0335-d742-4c71-aaea-3153024201a0
+
+	measure Teus_YTM_2 = ```
+			
+			
+			VAR vUltimoAno = YEAR(MAX(Movimentacao_CNTR[Data]))
+			VAR vUltimoMesContexto = MONTH(MAX(Movimentacao_CNTR[Data])) - [menos]
+			
+			RETURN
+			SUMX(
+			    VALUES(Movimentacao_CNTR[ano]),
+			    CALCULATE( 
+			        [Vol TEU],
+			        FILTER(
+			            Movimentacao_CNTR,
+			            Movimentacao_CNTR[ano] = Movimentacao_CNTR[ano] &&
+			            Movimentacao_CNTR[numero mes] <= vUltimoMesContexto
+			        )
+			    )
+			)
+			```
+		lineageTag: 3d78177d-741f-46da-863c-94d3ffe8b371
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure data = ```
+			
+			VAR vUltimoAno = YEAR(MAX(Calendario1[Date]))
+			VAR vUltimoMesContexto = MONTH(MAXX(ALL(Calendario1), Calendario1[Date])) 
+			
+			return  " Atualizado até 0" & vUltimoMesContexto-1 & "/" & vUltimoAno
+			
+			
+			```
+		lineageTag: 53dc2021-f5ef-493e-9543-a8c059aaf029
+
+	measure 'Vol YTM 2023_2' =
+			
+			CALCULATE([Teus_YTM_2],
+			Calendario1[Ano Calendario] = MAX(Calendario1[Ano Calendario])-1
+			)
+		lineageTag: 5eca654a-cf43-46d6-90db-afed43835ce3
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure menos = ```
+			
+			 
+			VAR vUltimoAno = MAX(Movimentacao_CNTR[ano])
+			VAR vMaiorMesUltimoAno  = MAXX(FILTER(Movimentacao_CNTR, YEAR(Movimentacao_CNTR[Data]) = vUltimoAno), MONTH(Movimentacao_CNTR[Data]))
+			
+			VAR ultimo_mes = MAX(Calendario1[Numero Mes])
+			
+			RETURN ultimo_mes - vMaiorMesUltimoAno
+			
+			
+			
+			```
+		formatString: 0
+		lineageTag: 4f142ac8-e522-45dd-9678-6cc78262065e
+
+	measure ultimomes = ```
+			
+			 
+			VAR vUltimoAno = YEAR(MAX(Calendario1[Date]))
+			return  MAXX(FILTER(Calendario1, YEAR(Calendario1[Date]) = vUltimoAno), MONTH(Calendario1[Date]))
+			```
+		formatString: 0
+		lineageTag: d712f0da-7a29-4434-8074-74ed7416b785
+
+	measure 'data 2' =
+			
+			VAR vUltimoAno = YEAR(MAX(Calendario1[Date]))
+			VAR vUltimoMesContexto = MONTH(MAXX(ALL(Calendario1), Calendario1[Date])) -2
+			
+			return  "Atualizado até 0" & vUltimoMesContexto & "/" & vUltimoAno
+		lineageTag: 8e72685d-d285-4c9e-90c4-592f3e537349
+
+	measure 'TEU YOY' =
+			
+			CALCULATE(
+			    [Vol TEU],
+			    DATEADD( Calendario1[Date], 12, MONTH)
+			)
+		lineageTag: 6dbf1b03-06cc-4e85-8284-4352e83c5b30
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'delta mensal' = IF([TEU YOY] = BLANK(), BLANK(), ([TEU YOY] - [Vol TEU]) / [Vol TEU])
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 694d7f5c-422f-462b-bbdf-931b5c73ed35
+
+	measure 'Vol YTM 2022' = ```
+			
+			CALCULATE([Teus_YTM],
+			Calendario1[Ano Calendario] = MAX(Calendario1[Ano Calendario])-2
+			)
+			
+			```
+		formatString: 0
+		lineageTag: be7c4e03-6e79-4d93-9b9c-ae9994f39ef3
+
+	measure 'Teus Contagem diária' = ```
+			
+			VAR vUltimaData = CALCULATE( 
+			    MAX(Calendario1[Date]), 
+			    ALLSELECTED(Calendario1)  // Para responder aos filtros visuais aplicados
+			)
+			VAR vUltimoMesContexto = MONTH(MAXX(ALL(Calendario1),Calendario1[Date]))
+			VAR vUltimoMesContexto2 = MONTH(vUltimaData)
+			VAR vUltimoAno = YEAR(vUltimaData)
+			
+			RETURN
+			CALCULATE(
+			    [Vol TEU],
+			    // Filtro para pegar o volume apenas para o último mês
+			    FILTER(
+			        Calendario1, 
+			        Calendario1[Numero Mes] = vUltimoMesContexto2
+			    ),
+			    // Filtro para pegar os últimos três anos, utilizando VALUES para garantir valores únicos por ano
+			    FILTER(
+			        Calendario1, 
+			        Calendario1[Ano Calendario] IN VALUES(Calendario1[Ano Calendario]) &&
+			        Calendario1[Ano Calendario] IN {vUltimoAno, vUltimoAno-1, vUltimoAno-2}
+			    ),
+			    // Filtro para pegar apenas os dias até o último dia do mês
+			    FILTER(
+			        Calendario1, 
+			        IF(
+			            Calendario1[Numero Mes] = vUltimoMesContexto,
+			            DAY(Calendario1[Date]) <= DAY(vUltimaData) - 1,
+			            TRUE()
+			        )
+			    )
+			)
+			
+			
+			
+			
+			```
+		lineageTag: 1a5fa467-d7ac-43a6-a4f9-e16630db8a00
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure data0 =
+			
+			MAXX(ALL(Movimentacao_CNTR), Movimentacao_CNTR[Data])
+		formatString: Short Date
+		lineageTag: 7e82f267-6d70-438f-84e7-596a84babff5
+
+	measure 'Δ YTM navio' = DIVIDE(([Navio Vol YTM 2024] - [Navio YTM 2023]),[Navio YTM 2023])
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: b3b8775c-ee71-4b5e-b011-c9d1eab50633
+
+	measure 'Navios Contagem diária' = ```
+			
+			VAR vUltimaData = CALCULATE( 
+			    MAX(Calendario1[Date]), 
+			    ALLSELECTED(Calendario1)  // Para responder aos filtros visuais aplicados
+			)
+			VAR vUltimoMesContexto = MONTH(MAXX(ALL(Calendario1),Calendario1[Date]))
+			VAR vUltimoMesContexto2 = MONTH(vUltimaData)
+			VAR vUltimoAno = YEAR(vUltimaData)
+			
+			RETURN
+			CALCULATE(
+			    DISTINCTCOUNT(Movimentacao_CNTR[OPERAÇÃO POR NAVIO]),
+			    // Filtro para pegar o volume apenas para o último mês
+			    FILTER(
+			        Calendario1, 
+			        Calendario1[Numero Mes] = vUltimoMesContexto2
+			    ),
+			    // Filtro para pegar os últimos três anos, utilizando VALUES para garantir valores únicos por ano
+			    FILTER(
+			        Calendario1, 
+			        Calendario1[Ano Calendario] IN VALUES(Calendario1[Ano Calendario]) &&
+			        Calendario1[Ano Calendario] IN {vUltimoAno, vUltimoAno-1, vUltimoAno-2}
+			    ),
+			    // Filtro para pegar apenas os dias até o último dia do mês
+			    FILTER(
+			        Calendario1, 
+			        IF(
+			            Calendario1[Numero Mes] = vUltimoMesContexto,
+			            DAY(Calendario1[Date]) <= DAY(vUltimaData) - 1,
+			            TRUE()
+			        )
+			    )
+			)
+			```
+		formatString: 0
+		lineageTag: ddf3a5c0-071d-4be0-8c3d-ccbf8c9d3b82
+
+	measure 'Consignação Média Acumulada' = ```
+			
+			 
+			VAR vUltimaData = CALCULATE( 
+			    MAX(Calendario1[Date]), 
+			    ALLSELECTED(Calendario1)  // Para responder aos filtros visuais aplicados
+			)
+			VAR vUltimoMesContexto = MONTH(MAXX(ALL(Calendario1),Calendario1[Date]))
+			VAR vUltimoMesContexto2 = MONTH(vUltimaData)
+			VAR vUltimoAno = YEAR(vUltimaData)
+			
+			RETURN
+			 CALCULATE(
+			    ([Acumulado Vol cntnr MTD] / [Acumulado qntd navio MTD]),
+			    
+			    // Filtro para pegar os últimos três anos, utilizando VALUES para garantir valores únicos por ano
+			    FILTER(
+			        Calendario1, 
+			        Calendario1[Ano Calendario] IN VALUES(Calendario1[Ano Calendario]) &&
+			        Calendario1[Ano Calendario] IN {vUltimoAno, vUltimoAno-1, vUltimoAno-2}
+			    ))
+			    // Filtro para pegar apenas os dias até o último dia do mês
+			
+			
+			
+			
+			
+			
+			```
+		lineageTag: 8a8298f8-8bf3-4673-ab99-18ff24bd8c91
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Qntd navio_ultimo_mes_2023' =
+			
+			VAR vUltimaData = MAX(Calendario1[Date])
+			VAR vUltimoAno = YEAR(vUltimaData)-1
+			VAR vUltimoMes = MONTH(vUltimaData)
+			VAR vUltimoDia = DAY(vUltimaData)-1
+			
+			RETURN
+			    CALCULATE(
+			        DISTINCTCOUNT(Movimentacao_CNTR[OPERAÇÃO POR NAVIO]),
+			        YEAR(Calendario1[Date]) = vUltimoAno &&
+			        MONTH(Calendario1[Date]) = vUltimoMes &&
+			        DAY(Calendario1[Date]) <= vUltimoDia
+			    )
+		formatString: 0
+		lineageTag: 07a8eb8c-ffee-497a-a484-f86993c16454
+
+	measure 'Qntd navio_ultimo_mes_2024' =
+			
+			VAR vUltimaData = MAX(Calendario1[Date])
+			VAR vUltimoAno = YEAR(vUltimaData)
+			VAR vUltimoMes = MONTH(vUltimaData)
+			VAR vUltimoDia = DAY(vUltimaData)
+			
+			RETURN
+			    CALCULATE(
+			        DISTINCTCOUNT(Movimentacao_CNTR[OPERAÇÃO POR NAVIO]),
+			        YEAR(Calendario1[Date]) = vUltimoAno &&
+			        MONTH(Calendario1[Date]) = vUltimoMes &&
+			        DAY(Calendario1[Date]) <= vUltimoDia
+			    )
+		formatString: 0
+		lineageTag: 8c8a9f5f-5236-42c7-bf3b-832777799fd2
+
+	measure 'Navio YTM 2023' =
+			
+			VAR vUltimaData = MAX(Calendario1[Date])
+			VAR vUltimoAno = YEAR(vUltimaData) - 1
+			VAR vUltimoDia = DAY(vUltimaData) - 1
+			VAR vUltimoMes = MONTH(vUltimaData)
+			RETURN
+			CALCULATE(
+			    DISTINCTCOUNT(Movimentacao_CNTR[OPERAÇÃO POR NAVIO]),
+			    FILTER(
+			        ALL('Calendario1'),
+			        'Calendario1'[Ano Calendario] = vUltimoAno &&
+			        'Calendario1'[Date] <= DATE(vUltimoAno, vUltimoMes, vUltimoDia)
+			    )
+			)
+		formatString: 0
+		lineageTag: e0d1c8ff-03c5-4870-a645-834e5584f294
+
+	measure 'Navio Vol YTM 2024' =
+			
+			CALCULATE(
+			    DISTINCTCOUNT(Movimentacao_CNTR[OPERAÇÃO POR NAVIO]),
+			    DATESYTD(Calendario1[Date])
+			)
+		formatString: 0
+		lineageTag: 3b7f309b-eb9d-4551-a416-51b7ea10a29a
+
+	measure 'Δ ultimo_mes navio' = DIVIDE(([Qntd navio_ultimo_mes_2024] - [Qntd navio_ultimo_mes_2023]),[Qntd navio_ultimo_mes_2023])
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 251e930f-bc4c-408c-ae08-b6907c6185eb
+
+	measure 'Acumulado Vol cntnr MTD' = ```
+			
+			
+			VAR vUltimoDiaContexto = MAX(Calendario1[Date])
+			VAR vAcumulado =
+			CALCULATE(
+			    [Volume de Container],
+			        ALL(Calendario1),
+			        Calendario1[Date] <= vUltimoDiaContexto
+			    )
+			
+			RETURN
+			vAcumulado
+			
+			```
+		lineageTag: f0ef45f3-8e99-4afc-9c3d-ec67c7718d91
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Acumulado qntd navio MTD' =
+			
+			
+			VAR vUltimoDiaContexto = MAX(Calendario1[Date])
+			VAR vAcumulado =
+			CALCULATE(
+			    DISTINCTCOUNT(Movimentacao_CNTR[OPERAÇÃO POR NAVIO]),
+			        ALL(Calendario1),
+			        Calendario1[Date] <= vUltimoDiaContexto
+			    )
+			
+			RETURN
+			vAcumulado
+		formatString: 0
+		lineageTag: c328018f-4625-417e-b93b-67c8dfe6f87e
+
+	measure 'Consignação Média' = ```
+			
+			
+			    [Volume de Container] / DISTINCTCOUNT(Movimentacao_CNTR[OPERAÇÃO POR NAVIO])
+			    
+			  
+			```
+		lineageTag: 315b4e42-b943-4ed6-83fc-0bc2c916890f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure ExibirAnoMesMaisRecente = ```
+			
+			VAR UltimaData = CALCULATE(MAX(Movimentacao_CNTR[Data]), ALL('Movimentacao_CNTR'))
+			VAR UltimoAno = YEAR(UltimaData)
+			VAR UltimoMes = MONTH(UltimaData)
+			
+			RETURN 
+			    IF(
+			        CALCULATE(
+			            COUNTROWS('Movimentacao_CNTR'),
+			            FILTER(
+			                'Movimentacao_CNTR',
+			                YEAR(Movimentacao_CNTR[Data]) = UltimoAno &&
+			                MONTH(Movimentacao_CNTR[Data]) <= UltimoMes
+			                )
+			        ) > 0,
+			        1,
+			        0
+			    )
+			```
+		formatString: 0
+		lineageTag: 2ce0907f-67dd-46b3-9c14-62ce832fabcd
+
+	measure Legenda_MesAnoAtual = UPPER(FORMAT(MAX(Calendario1[Date]), "MMM/YY"))
+		displayFolder: Titulo
+		lineageTag: c835ce05-9e96-460a-9b88-f2e84777e3c8
+
+	measure Legenda_Modalidade = ```
+			"MODALIDADE" 
+			```
+		displayFolder: Titulo
+		lineageTag: f3aa2c92-44b2-42b5-8fa6-a68ff009d529
+
+	measure Legenda_MesAnoAnterior = UPPER(FORMAT(EDATE(MAX(Calendario1[Date]), -12), "MMM/YY"))
+		displayFolder: Titulo
+		lineageTag: f93f2b9c-3adb-4156-9b75-2c63c3876dd7
+
+	measure Legenda_Δ(%) = "Δ(%)"
+		displayFolder: Titulo
+		lineageTag: d6f717e4-b881-4a93-a457-7fe4242a8255
+
+	measure Legenda_YTM = "YTM"
+		displayFolder: Titulo
+		lineageTag: 5f1397a6-0390-4eed-b2e3-6234274041ec
+
+	measure Legenda_YTM-1 = "YTM-1"
+		displayFolder: Titulo
+		lineageTag: 8ef95938-5833-4432-90fb-34970074502a
+
+	measure Legenda_MesAnoAtual_eng = ```
+			UPPER(FORMAT(MAX(Calendario1[Date]), "MMM/YY", "en-US"))
+			
+			```
+		displayFolder: Titulo
+		lineageTag: 00c75433-488e-42f9-a38f-0886d79fea55
+
+	measure Legenda_MesAnoAnterior_eng = UPPER(FORMAT(EDATE(MAX(Calendario1[Date]), -12), "MMM/YY", "en-US"))
+		displayFolder: Titulo
+		lineageTag: 715323a9-7751-4ae6-b5e9-27e143202c75
+
+	measure 'Legenda_Δ YTM(%)' = "Δ YTM(%)"
+		displayFolder: Titulo
+		lineageTag: 02038c90-332b-4db6-8ba6-e56bff510c11
+
+	measure Legenda_Linha = "LINHA MARITIMA"
+		displayFolder: Titulo
+		lineageTag: ab9b9739-f094-4cb0-a65d-4244cb7a5d33
+
+	measure Legenda_Modalidade_eng = ```
+			"MODALITY" 
+			```
+		displayFolder: Titulo
+		lineageTag: 4a8cf684-07ea-4eae-bebc-2219ee6e0848
+
+	measure Legenda_Linha_eng = "MARITIME LINE"
+		displayFolder: Titulo
+		lineageTag: 5182edf2-1b90-4a9e-96a5-3c2ab2e8c9b2
+
+	measure FiltroTresAnos = ```
+			
+			VAR DataMaxima = CALCULATE(MAX(Movimentacao_CNTR[Data]), ALL(Calendario1))
+			VAR AnoAtual = YEAR(DataMaxima)
+			VAR AnoDaLinha = MAX(Calendario1[Year]) -- Ou sua coluna de ano correspondente
+			
+			RETURN
+			IF(
+			    AnoDaLinha >= AnoAtual - 2 && AnoDaLinha <= AnoAtual, 
+			    1, 
+			    0
+			)
+			```
+		formatString: 0
+		lineageTag: a71b75c8-0c09-4180-9d47-40dece434f78
+
+	column Column
+		isHidden
+		formatString: 0
+		lineageTag: 2811a814-acd7-487b-8986-866c1299fe8b
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Column]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Medidas RI' = calculated
+		mode: import
+		source = Row("Column", BLANK())
+
+	annotation PBI_Id = be7650584a834f6e8c84c04e25951e7b
+

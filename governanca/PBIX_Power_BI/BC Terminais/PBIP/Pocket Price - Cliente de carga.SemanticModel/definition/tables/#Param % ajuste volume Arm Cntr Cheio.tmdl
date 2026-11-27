@@ -1,0 +1,27 @@
+table '#Param % ajuste volume Arm Cntr Cheio'
+	lineageTag: 3c038ef6-8d8d-44db-ac49-357e354d189e
+
+	/// Parâmetro de simulação: percentual de ajuste do volume
+	measure '#Param % ajuste volume Arm Cntr Cheio (selecionado)' = SELECTEDVALUE('#Param % ajuste volume Arm Cntr Cheio'[percentual], 0)
+		formatString: #,0%;-#,0%;#,0%
+		lineageTag: 31f73e53-f4c1-4baf-8578-48cdf8ba8d77
+
+	column percentual
+		formatString: 0%;-0%;0%
+		lineageTag: 1800ad35-8a2d-48ac-8e45-8a406ac315ef
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition '#Param % ajuste volume Arm Cntr Cheio' = calculated
+		mode: import
+		source = GENERATESERIES(CURRENCY(-1), CURRENCY(1), CURRENCY(0.01))
+
+	annotation PBI_Id = b4985972dab04f89a664e33f1b3fe538
+

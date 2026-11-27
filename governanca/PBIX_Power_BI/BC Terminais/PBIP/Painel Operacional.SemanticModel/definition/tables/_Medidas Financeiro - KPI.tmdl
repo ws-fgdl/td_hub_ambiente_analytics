@@ -1,0 +1,765 @@
+table '_Medidas Financeiro - KPI'
+	lineageTag: 2ad7b727-ded3-434b-9fad-252cf9da92a5
+	sourceLineageTag: d60c20c5-8bba-4335-b242-8f3095bad188
+
+	measure Slicer_Possui_Financeiro_KPI_Sim_Não = EXTERNALMEASURE("Slicer_Possui_Financeiro_KPI_Sim_Não", STRING, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 08e45fcc-bf35-4e09-8927-dfeedff600c0
+		sourceLineageTag: 2d0641dd-eef1-46d6-a817-d1ffbc374740
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isText":true}
+
+	measure 'Período Médio de Cobrança (dias)' = EXTERNALMEASURE("Período Médio de Cobrança (dias)", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 982898bb-5960-463a-937a-3385243121a9
+		sourceLineageTag: 49b18233-8b0c-48fc-9f23-67e12ef4ad45
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'PMC (dias) - Clientes Venc. 0-5 dias' = EXTERNALMEASURE("PMC (dias) - Clientes Venc. 0-5 dias", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: d002f61a-987d-44a1-bc96-5d288073aa8e
+		sourceLineageTag: 4b118385-7463-4198-bec9-307f7be9d101
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'PMC (dias) - Clientes Venc. 06-30 dias' = EXTERNALMEASURE("PMC (dias) - Clientes Venc. 06-30 dias", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 27a05ce0-27fd-497d-9aae-87c0196a4aeb
+		sourceLineageTag: 89799a31-23ee-47fe-b920-e046fd2c2ded
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'PMC (dias) - Clientes Venc. 31-90 dias' = EXTERNALMEASURE("PMC (dias) - Clientes Venc. 31-90 dias", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: c7c3b411-31aa-4560-948a-5572eaf8a478
+		sourceLineageTag: d2b46bc4-2edb-466e-b9d4-f7dc358911e3
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'PMC (dias) - Clientes Venc. 91-180 dias' = EXTERNALMEASURE("PMC (dias) - Clientes Venc. 91-180 dias", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 4aa651f3-cc14-467c-8a58-df3021a7328b
+		sourceLineageTag: e936c700-3605-46e9-a676-06cc5eb834f7
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'PMC (dias) - Clientes Venc. + de 180 dias' = EXTERNALMEASURE("PMC (dias) - Clientes Venc. + de 180 dias", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 0d3a7beb-a158-43fb-bd4e-cca0a659af05
+		sourceLineageTag: 5f69ac8a-64f3-433b-860b-71a68a1540ea
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'CAR (%)' = EXTERNALMEASURE("CAR (%)", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: e2d432c4-2148-46c2-9924-eb566c5db23f
+		sourceLineageTag: 0a04220f-e072-4607-a4e3-b137827a7da2
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'CAR + PDD (Financeiro)' = EXTERNALMEASURE("CAR + PDD (Financeiro)", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 5b06b7c7-fe7c-4ed7-93bd-c29546ea6f9c
+		sourceLineageTag: 707284a1-bf08-4930-8eba-156ac0873505
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure KGIRO = EXTERNALMEASURE("KGIRO", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 1b30f0c0-6c3d-412a-a758-837b7cd0dd0c
+		sourceLineageTag: cae36d0f-53aa-48ce-993d-745690534252
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Rec/Red CAR (Financeiro)' = EXTERNALMEASURE("Rec/Red CAR (Financeiro)", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 6751b8c8-00ec-44e1-bcd3-22085e40a497
+		sourceLineageTag: 489a2fb9-4f33-448a-b703-501e047bbc69
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Prazo Médio de Recebimento' = EXTERNALMEASURE("Prazo Médio de Recebimento", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 5db65b17-dcf4-4ee1-8503-ea29221ef68a
+		sourceLineageTag: b7beca2f-3219-440c-84a8-7c36980b8703
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'CAR+PDD(Armadores+Carga)/Rec.Bruta-Geral' = EXTERNALMEASURE("CAR+PDD(Armadores+Carga)/Rec.Bruta-Geral", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: cf6930a2-e509-40a5-aa5a-9d0778b24cc2
+		sourceLineageTag: f141d02f-8df6-4f40-bca2-fc849be9893d
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'CAR Carteira Própria' = EXTERNALMEASURE("CAR Carteira Própria", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 711f402a-9d91-408b-ad09-bce573880034
+		sourceLineageTag: 3be684dd-aa89-4d7e-b0bf-deedea5febe3
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'CAR+PDD(Armadores+Carga)/Rec.Bruta-Ger.Com.' = EXTERNALMEASURE("CAR+PDD(Armadores+Carga)/Rec.Bruta-Ger.Com.", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 99421100-20fc-4662-977e-7234fefc0100
+		sourceLineageTag: 0280ec96-923b-43a2-b9e0-7b2a64fb00fb
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'CAR+PDD(Carga)/Rec.Bruta- Ger.Comercial' = EXTERNALMEASURE("CAR+PDD(Carga)/Rec.Bruta- Ger.Comercial", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: fae26c57-8a0a-4424-8819-88a42a0442f8
+		sourceLineageTag: 047514ed-11e3-4101-b127-19a38efbb631
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure CAR = EXTERNALMEASURE("CAR", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: dcd13234-ff3b-44b0-8d01-6b3222ab254d
+		sourceLineageTag: 6b088ea4-4fa8-48f9-b170-c34172074ed7
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Período Médio de Cobrança (dias) PY' = EXTERNALMEASURE("Período Médio de Cobrança (dias) PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PY
+		lineageTag: d8d5c566-b7ae-4c98-ba74-3c33a6ad5414
+		sourceLineageTag: 3583f4b3-3228-4a19-8c01-15ed88e2143c
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Período Médio de Cobrança (dias) PYTD' = EXTERNALMEASURE("Período Médio de Cobrança (dias) PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PYTD
+		lineageTag: fa620ec6-3b8d-4c60-8270-6ff3bb49bca9
+		sourceLineageTag: 3840b13f-9eae-4e64-8189-1a3bc9b2541c
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Período Médio de Cobrança (dias) YTD' = EXTERNALMEASURE("Período Médio de Cobrança (dias) YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: YTD
+		lineageTag: aa20d116-1bf0-4616-bd6f-8830532fed7f
+		sourceLineageTag: 76a302d1-c59f-4788-a97c-27a1c6f7d0c2
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'PMC (dias) - Clientes Venc. 0-5 dias PY' = EXTERNALMEASURE("PMC (dias) - Clientes Venc. 0-5 dias PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PY
+		lineageTag: 1c79c44c-cfb7-4fda-a204-09bdb36a6147
+		sourceLineageTag: a06af417-2961-47a4-9c34-66422afd7f4f
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'PMC (dias) - Clientes Venc. 0-5 dias PYTD' = EXTERNALMEASURE("PMC (dias) - Clientes Venc. 0-5 dias PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PYTD
+		lineageTag: 3e6240ae-e104-4d7a-9997-66ce1c769066
+		sourceLineageTag: 1efb94c2-6199-4f7b-a7db-605b3bc893dc
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'PMC (dias) - Clientes Venc. 0-5 dias YTD' = EXTERNALMEASURE("PMC (dias) - Clientes Venc. 0-5 dias YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: YTD
+		lineageTag: de57df76-5e20-4667-8c95-e7beb32a9198
+		sourceLineageTag: dbe24d0b-5adc-41bd-88db-c7330b29091a
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'PMC (dias) - Clientes Venc. 06-30 dias PY' = EXTERNALMEASURE("PMC (dias) - Clientes Venc. 06-30 dias PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PY
+		lineageTag: 856b30ec-d2f6-43a7-829c-74520f1a157d
+		sourceLineageTag: 2cd81c78-4e0c-45d3-8077-6bdbf2e6352c
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'PMC (dias) - Clientes Venc. 06-30 dias PYTD' = EXTERNALMEASURE("PMC (dias) - Clientes Venc. 06-30 dias PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PYTD
+		lineageTag: 00087c5a-0552-4b07-bf46-dc4ad0d89089
+		sourceLineageTag: 5fedc439-8e94-4465-a08e-f24a645c5283
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'PMC (dias) - Clientes Venc. 06-30 dias YTD' = EXTERNALMEASURE("PMC (dias) - Clientes Venc. 06-30 dias YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: YTD
+		lineageTag: cdd28d73-fdd2-48dd-84f1-637b214d51fe
+		sourceLineageTag: e4ca7908-8760-4f91-9804-9ee6ece02c19
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'PMC (dias) - Clientes Venc. 31-90 dias PY' = EXTERNALMEASURE("PMC (dias) - Clientes Venc. 31-90 dias PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PY
+		lineageTag: 4eb60855-13af-41ed-9db4-0fc23edd0aa6
+		sourceLineageTag: 5011691a-664f-464b-911a-b19e152b932b
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'PMC (dias) - Clientes Venc. 31-90 dias PYTD' = EXTERNALMEASURE("PMC (dias) - Clientes Venc. 31-90 dias PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PYTD
+		lineageTag: 19787f96-56c5-42d4-9a18-3e13d68ba842
+		sourceLineageTag: 8cbf9f50-1d64-472e-9daa-f07b1e847bae
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'PMC (dias) - Clientes Venc. 31-90 dias YTD' = EXTERNALMEASURE("PMC (dias) - Clientes Venc. 31-90 dias YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: YTD
+		lineageTag: 0cc6bfa6-7b29-42d0-9765-31a24f633c66
+		sourceLineageTag: 3f659dae-cd78-46df-9fd5-39ad83946272
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'PMC (dias) - Clientes Venc. 91-180 dias PY' = EXTERNALMEASURE("PMC (dias) - Clientes Venc. 91-180 dias PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PY
+		lineageTag: 8f0af512-50db-4946-994b-b0741d619255
+		sourceLineageTag: 3b90bf9b-f9fa-4d61-8915-d42e41118599
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'PMC (dias) - Clientes Venc. 91-180 dias PYTD' = EXTERNALMEASURE("PMC (dias) - Clientes Venc. 91-180 dias PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PYTD
+		lineageTag: 14cfe5db-945b-40c1-be99-b8c6502e3176
+		sourceLineageTag: 58168d0c-5f2c-469d-ab1c-25d69524186f
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'PMC (dias) - Clientes Venc. 91-180 dias YTD' = EXTERNALMEASURE("PMC (dias) - Clientes Venc. 91-180 dias YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: YTD
+		lineageTag: f3ed7c55-ff6e-4d0f-8228-2977e3c9e969
+		sourceLineageTag: b2474a91-1820-4893-a6d0-883127499393
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'PMC (dias) - Clientes Venc. + de 180 dias PY' = EXTERNALMEASURE("PMC (dias) - Clientes Venc. + de 180 dias PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PY
+		lineageTag: 82163ac9-9489-48cf-86bd-0f51bab12b0c
+		sourceLineageTag: b581d32a-a4d5-4ed6-8e05-732be4c31b4d
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'PMC (dias) - Clientes Venc. + de 180 dias PYTD' = EXTERNALMEASURE("PMC (dias) - Clientes Venc. + de 180 dias PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PYTD
+		lineageTag: 2ea79b97-d0b9-4c7f-b581-bf6a84f671a5
+		sourceLineageTag: b96487eb-e398-4f31-b0a6-c9bf27214eea
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'PMC (dias) - Clientes Venc. + de 180 dias YTD' = EXTERNALMEASURE("PMC (dias) - Clientes Venc. + de 180 dias YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: YTD
+		lineageTag: b5243538-914b-4290-b9b2-8f4251a32f4e
+		sourceLineageTag: af8c9783-eb64-40df-83d4-aefcbcde7fc3
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'CAR (%) PY' = EXTERNALMEASURE("CAR (%) PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PY
+		lineageTag: 34c93710-0400-4a7a-b524-c4e2a72e1e14
+		sourceLineageTag: 0f8eeeaa-d84a-47de-8249-ed2484129ef6
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'CAR (%) PYTD' = EXTERNALMEASURE("CAR (%) PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PYTD
+		lineageTag: 120a6065-e30f-42fb-a62c-620107aa02ad
+		sourceLineageTag: 2f7aec22-1fca-4966-bbd3-f01f79560eea
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'CAR (%) YTD' = EXTERNALMEASURE("CAR (%) YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: YTD
+		lineageTag: 5c1d9e46-9591-4db3-887c-2ad405a4387d
+		sourceLineageTag: 6314e226-53c0-4807-b2a9-48c3ff545b11
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'CAR + PDD (Financeiro) PY' = EXTERNALMEASURE("CAR + PDD (Financeiro) PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PY
+		lineageTag: 0a4251d8-d41e-40ea-aa5f-442c77d851ba
+		sourceLineageTag: b9ff33ef-97eb-4fc6-bef3-e26f95dacac5
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'CAR + PDD (Financeiro) PYTD' = EXTERNALMEASURE("CAR + PDD (Financeiro) PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PYTD
+		lineageTag: fc11993b-8741-4884-8bad-b43b1e64f305
+		sourceLineageTag: 1cb18731-f76a-4b6b-96b1-3d247c5367b9
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'CAR + PDD (Financeiro) YTD' = EXTERNALMEASURE("CAR + PDD (Financeiro) YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: YTD
+		lineageTag: 0a5bfd16-4af3-434b-9835-dbc6f94cb9d2
+		sourceLineageTag: b4e229af-7dec-4691-9bed-919c19ff9d5a
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'KGIRO PY' = EXTERNALMEASURE("KGIRO PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PY
+		lineageTag: 9848c233-9311-4783-9d34-d334e6f5aafc
+		sourceLineageTag: bee1df77-b837-4fdf-9a65-725ff19643ef
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'KGIRO PYTD' = EXTERNALMEASURE("KGIRO PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PYTD
+		lineageTag: 7064c734-61f9-4cf2-8403-981ee3502623
+		sourceLineageTag: 6017d8f0-1f40-4491-939c-f6ac8a577126
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'KGIRO YTD' = EXTERNALMEASURE("KGIRO YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: YTD
+		lineageTag: bd2d08e6-a645-40f3-8c93-305b47fae3c3
+		sourceLineageTag: 1bc6fb51-3ac2-443b-a1c6-51c099f6e55d
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Rec/Red CAR (Financeiro) PY' = EXTERNALMEASURE("Rec/Red CAR (Financeiro) PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PY
+		lineageTag: 10dd0d2e-2642-4648-a52f-bdf3e3f46c24
+		sourceLineageTag: d1ebbbd7-9dac-439c-8f40-604e25d779ea
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Rec/Red CAR (Financeiro) PYTD' = EXTERNALMEASURE("Rec/Red CAR (Financeiro) PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PYTD
+		lineageTag: d218ef8f-f051-4523-9ea1-4f3e0f09a6c4
+		sourceLineageTag: 34260888-417b-4986-bd99-c7b8b8800c3d
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Rec/Red CAR (Financeiro) YTD' = EXTERNALMEASURE("Rec/Red CAR (Financeiro) YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: YTD
+		lineageTag: 99f9aba3-045f-4e99-9a24-19beac150242
+		sourceLineageTag: db863514-79c5-412a-8d9c-957e36e33fdb
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Prazo Médio de Recebimento PY' = EXTERNALMEASURE("Prazo Médio de Recebimento PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PY
+		lineageTag: 272d53d2-792b-42d2-8b9b-4e0c4c666bcc
+		sourceLineageTag: 1d71f773-e1cc-4ab9-9018-1b0131f3343a
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Prazo Médio de Recebimento PYTD' = EXTERNALMEASURE("Prazo Médio de Recebimento PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PYTD
+		lineageTag: 15251594-0ff8-476d-8762-c0275ec113c4
+		sourceLineageTag: 81284978-3671-4ac6-9697-92abf8954e38
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Prazo Médio de Recebimento YTD' = EXTERNALMEASURE("Prazo Médio de Recebimento YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: YTD
+		lineageTag: 86dd6f60-8cae-480a-9f6c-89c27cbab36a
+		sourceLineageTag: 2c440ec5-bd96-472f-9bc8-5098522bd750
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'CAR+PDD(Armadores+Carga)/Rec.Bruta-Geral PY' = EXTERNALMEASURE("CAR+PDD(Armadores+Carga)/Rec.Bruta-Geral PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PY
+		lineageTag: df7465ca-d2e4-4234-94dc-5cec4f044914
+		sourceLineageTag: 77f6f4e1-2a20-4ca4-ba7e-96d6c073c09b
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'CAR+PDD(Armadores+Carga)/Rec.Bruta-Geral PYTD' = EXTERNALMEASURE("CAR+PDD(Armadores+Carga)/Rec.Bruta-Geral PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PYTD
+		lineageTag: d0b7c1b1-423a-4b42-bc1e-8cc67faaa2ef
+		sourceLineageTag: 54ffee23-8c3e-4bf4-b16b-c395e5d6107f
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'CAR+PDD(Armadores+Carga)/Rec.Bruta-Geral YTD' = EXTERNALMEASURE("CAR+PDD(Armadores+Carga)/Rec.Bruta-Geral YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: YTD
+		lineageTag: 9718c51d-cef3-421b-abad-797a0a7154d6
+		sourceLineageTag: 9c0cb574-dace-47f5-8168-49ec7504d79a
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'CAR Carteira Própria PY' = EXTERNALMEASURE("CAR Carteira Própria PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PY
+		lineageTag: 1b50a130-7774-456d-8d94-364dd0115ce0
+		sourceLineageTag: 0040ca74-264d-45b4-95d0-bbc21800308d
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'CAR Carteira Própria PYTD' = EXTERNALMEASURE("CAR Carteira Própria PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PYTD
+		lineageTag: 711c2be5-4874-4446-b14a-e1638eb76698
+		sourceLineageTag: 167d952f-14b1-4ba7-8c2c-ca433e47f415
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'CAR Carteira Própria YTD' = EXTERNALMEASURE("CAR Carteira Própria YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: YTD
+		lineageTag: 4d470052-eed3-44d7-ad41-816a881d6d3b
+		sourceLineageTag: 36026f3a-b228-4185-b6e1-e48b644d9981
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'CAR+PDD(Armadores+Carga)/Rec.Bruta-Ger.Com. PY' = EXTERNALMEASURE("CAR+PDD(Armadores+Carga)/Rec.Bruta-Ger.Com. PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PY
+		lineageTag: 1a11c76e-51d2-4a1a-95f3-3e3b1995deff
+		sourceLineageTag: 766c7e26-f30d-4826-abba-40c1b052a8f5
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'CAR+PDD(Armadores+Carga)/Rec.Bruta-Ger.Com. PYTD' = EXTERNALMEASURE("CAR+PDD(Armadores+Carga)/Rec.Bruta-Ger.Com. PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PYTD
+		lineageTag: 5e80038d-ba90-4641-b113-eed911ea053c
+		sourceLineageTag: 52eb142b-8a12-43fb-a49e-234167538096
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'CAR+PDD(Armadores+Carga)/Rec.Bruta-Ger.Com. YTD' = EXTERNALMEASURE("CAR+PDD(Armadores+Carga)/Rec.Bruta-Ger.Com. YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: YTD
+		lineageTag: b198de40-2841-4095-8857-09b1ad1f62c9
+		sourceLineageTag: 3f5c4a35-1a45-47b1-b15a-071be5f5ad86
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'CAR+PDD(Carga)/Rec.Bruta- Ger.Comercial PY' = EXTERNALMEASURE("CAR+PDD(Carga)/Rec.Bruta- Ger.Comercial PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PY
+		lineageTag: 89474e79-e10b-4982-9d97-b23c98999ea8
+		sourceLineageTag: 418e3547-e827-4be4-8bab-3886a2dba09e
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'CAR+PDD(Carga)/Rec.Bruta- Ger.Comercial PYTD' = EXTERNALMEASURE("CAR+PDD(Carga)/Rec.Bruta- Ger.Comercial PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PYTD
+		lineageTag: 425c6096-8955-4f84-821c-44bf76038653
+		sourceLineageTag: 767bfe9d-8c71-437a-b653-9597d6a1b9bd
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'CAR+PDD(Carga)/Rec.Bruta- Ger.Comercial YTD' = EXTERNALMEASURE("CAR+PDD(Carga)/Rec.Bruta- Ger.Comercial YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: YTD
+		lineageTag: 3f8189d8-1f44-4c72-8d8a-6c676c58759d
+		sourceLineageTag: 6dcd18ac-632a-4bb1-afdb-8d70eb2c0ecf
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'CAR PY' = EXTERNALMEASURE("CAR PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PY
+		lineageTag: e0433bb6-9f52-4328-9416-9ed7cb6427a2
+		sourceLineageTag: a663ffce-1ea0-41f9-9db0-ba4d8faff076
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'CAR PYTD' = EXTERNALMEASURE("CAR PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PYTD
+		lineageTag: 549dd047-63c5-47fb-ad1a-5a26c4f3d43b
+		sourceLineageTag: a26cbd07-a2e1-487e-9229-1eb545814271
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'CAR YTD' = EXTERNALMEASURE("CAR YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: YTD
+		lineageTag: 175c832b-35e0-4a41-9b66-1159857f3cb9
+		sourceLineageTag: b2c1014f-d57d-4295-8e17-c6e505e17242
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column COD_EMPRESA_SAP
+		dataType: string
+		isHidden
+		lineageTag: 3edfb55b-af99-47d1-a0e9-029231d9093a
+		sourceLineageTag: 6f388c27-f816-488f-9e00-e147048057a5
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: COD_EMPRESA_SAP
+
+		annotation SummarizationSetBy = User
+
+	column COD_CLIENTE_SAP
+		dataType: string
+		isHidden
+		lineageTag: 60b7fc5c-e509-47bd-8522-245d9f22c439
+		sourceLineageTag: 72521c12-c8c7-4bd3-8dbf-a0111666bfea
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: COD_CLIENTE_SAP
+
+		annotation SummarizationSetBy = User
+
+	column COD_DIVISAO_SAP
+		dataType: string
+		isHidden
+		lineageTag: e5773b44-bb76-4011-8105-844bc08ce133
+		sourceLineageTag: 71209bbe-c453-4fc3-8c4e-04033dd86171
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: COD_DIVISAO_SAP
+
+		annotation SummarizationSetBy = User
+
+	column TEMPO_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: 19d56bdb-6692-4617-ae07-fdcb8ba66780
+		sourceLineageTag: abe228ab-caa7-4911-b29c-47bc8c173c14
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: TEMPO_ID
+
+		annotation SummarizationSetBy = User
+
+	column KPI001
+		dataType: double
+		isHidden
+		lineageTag: 61901cab-78ef-4a03-8f8a-257a250229f0
+		sourceLineageTag: 64ba22b4-f67c-4175-857d-37a2e0e81904
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: KPI001
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column KPI001A
+		dataType: double
+		isHidden
+		lineageTag: 918170d7-8f0a-4503-86ea-48e0e19b1da4
+		sourceLineageTag: 5dd456e2-521f-457e-b583-835566daebe2
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: KPI001A
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column KPI001B
+		dataType: double
+		isHidden
+		lineageTag: d6336353-be46-4448-adb7-39a31505b117
+		sourceLineageTag: c65d7df4-9971-472d-8b39-dc51734d6281
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: KPI001B
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column KPI001C
+		dataType: double
+		isHidden
+		lineageTag: 83d8b55d-ef20-495e-8779-9b950a6a800e
+		sourceLineageTag: 6e166bee-ce9c-4031-9679-7a5fd50042cf
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: KPI001C
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column KPI001D
+		dataType: double
+		isHidden
+		lineageTag: 914f8084-60f4-4e66-8b16-4010e10842ed
+		sourceLineageTag: e1bb434b-6ce9-4011-a882-eda6bdd8acad
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: KPI001D
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column KPI001E
+		dataType: double
+		isHidden
+		lineageTag: cf593a52-9b7d-441e-b7fd-669b79a65fdf
+		sourceLineageTag: 72ce3a14-7e93-4ad0-8c5b-86b362612216
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: KPI001E
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column KPI009
+		dataType: double
+		isHidden
+		lineageTag: 247b294d-7944-4408-8055-502a57a36194
+		sourceLineageTag: ba17763c-bed5-4c6e-83a2-31ed0494cc9b
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: KPI009
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column KPI011
+		dataType: double
+		isHidden
+		lineageTag: 5449093c-60b0-4a00-8911-4f598f0e2449
+		sourceLineageTag: 46a605e2-0713-4c34-8f03-de7b48b88574
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: KPI011
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column KPI012
+		dataType: double
+		isHidden
+		lineageTag: c19224c8-8856-4e02-9095-6c673ac065d6
+		sourceLineageTag: 7a26d6b6-d17e-4904-a360-9996840f2c21
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: KPI012
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column KPI014
+		dataType: double
+		isHidden
+		lineageTag: 48b9ad7a-9882-4f2c-bb18-2b57a897886b
+		sourceLineageTag: bf9b00ac-a679-4596-9434-1551878dc03f
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: KPI014
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column KPI015
+		dataType: double
+		isHidden
+		lineageTag: b277d4dc-9fc1-41d1-93dc-5be300b8bfb4
+		sourceLineageTag: 83008b91-493a-490d-9d0e-99efad1f5a24
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: KPI015
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column KPI035
+		dataType: double
+		isHidden
+		lineageTag: beedfe42-0721-429a-973e-96a2af125a9c
+		sourceLineageTag: facfd26c-3aaa-4ace-b4c1-d9ae56337839
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: KPI035
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column KPI036
+		dataType: double
+		isHidden
+		lineageTag: 39f1a2a4-8ff0-4bbe-aa28-250a2feb9b4c
+		sourceLineageTag: fd0aedef-a1fe-4322-bf8e-3884780b4dfb
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: KPI036
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column KPI044
+		dataType: double
+		isHidden
+		lineageTag: 7ddc8426-88a8-442a-af5a-876a6f36f8b8
+		sourceLineageTag: 0c978297-7d5a-4ca8-ac90-ac1d8fed8705
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: KPI044
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column KPI045
+		dataType: double
+		isHidden
+		lineageTag: 6da5e846-9241-4a1d-b64b-15143894544b
+		sourceLineageTag: f67e1e04-6655-490a-8a0e-1f5b8cf4c1bd
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: KPI045
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column KPI061
+		dataType: double
+		isHidden
+		lineageTag: 47b7ba61-7042-48e7-a76a-3877da401df4
+		sourceLineageTag: 8d71ba01-9786-47f7-ab3d-7870e5be1155
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: KPI061
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '_Medidas Financeiro - KPI' = entity
+		mode: directQuery
+		source
+			entityName: _Medidas Financeiro - KPI
+			expressionSource: 'DirectQuery para AS – Modelo Operações Portuárias'
+

@@ -1,0 +1,28 @@
+table '#Entrega Cntr Vazia'
+	lineageTag: 7e7e7a8d-722c-42a4-8185-c0e25c906818
+
+	measure 'Valor #Entrega Cntr Vazia' = SELECTEDVALUE('#Entrega Cntr Vazia'[#Entrega Cntr Vazia])
+		lineageTag: 3a61946c-c5f6-46f4-a426-77bfee9b8a5a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#Entrega Cntr Vazia'
+		lineageTag: 8a40ddd3-e864-4fda-9301-dfef560ca262
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '#Entrega Cntr Vazia' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 1, 0.001)
+
+	annotation PBI_Id = cb859c20813a4b6499c37eb21973f39a
+

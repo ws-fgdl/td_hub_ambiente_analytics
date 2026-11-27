@@ -1,0 +1,91 @@
+table '_Medidas Performance de Escalas'
+	lineageTag: 0f4cefa1-b5b9-451b-8023-be286c714621
+	sourceLineageTag: a643da95-3cfc-4fa7-bfd7-4294fc16627d
+
+	measure Slicer_Possui_Escala_Sim_Não = EXTERNALMEASURE("Slicer_Possui_Escala_Sim_Não", STRING, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 4b4207fa-674e-4993-b384-7d00fc9ad935
+		sourceLineageTag: 5a532198-2626-44c8-9efc-0b0ce6e72fe3
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isText":true}
+
+	measure 'Qtd Escalas' = EXTERNALMEASURE("Qtd Escalas", INTEGER, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: 0
+		lineageTag: 37869913-2816-40ab-8f2b-12ea91bed52d
+		sourceLineageTag: 9c3eb53b-f127-4752-8e65-b10a43b16161
+		dataCategory: Uncategorized
+
+	measure 'Qtd Movs' = EXTERNALMEASURE("Qtd Movs", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 7c9e52d2-1060-4031-820f-eef614248ec8
+		sourceLineageTag: c4298ea9-7e44-4512-98d4-e747c4d89bd5
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Qtd Escalas PY' = EXTERNALMEASURE("Qtd Escalas PY", INTEGER, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: 0
+		lineageTag: 52e3d9ad-8a23-4cd2-abcb-4b4814088c3a
+		sourceLineageTag: 780abe5b-d802-4e55-bc7d-7e78df6569d3
+		dataCategory: Uncategorized
+
+	measure 'Qtd Escalas PYTD' = EXTERNALMEASURE("Qtd Escalas PYTD", INTEGER, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: 0
+		lineageTag: d2b14681-9d8b-4680-a454-8a7e583c562f
+		sourceLineageTag: 4a18a9d7-1b59-4aa9-84b7-df6f8dc44ced
+		dataCategory: Uncategorized
+
+	measure 'Qtd Escalas YTD' = EXTERNALMEASURE("Qtd Escalas YTD", INTEGER, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: 0
+		lineageTag: eaeb0304-e689-418f-b88f-9d92092add8e
+		sourceLineageTag: 6dfb4542-5639-4f18-afb6-57b25dc1e284
+		dataCategory: Uncategorized
+
+	measure 'Qtd Movs PY' = EXTERNALMEASURE("Qtd Movs PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: f3d54a61-6f87-4b3f-8ff0-430e9ced1618
+		sourceLineageTag: ea9fb64e-df16-4826-be11-a166eb6fc3b0
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Qtd Movs PYTD' = EXTERNALMEASURE("Qtd Movs PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: e11a8d28-f27d-4b7e-aa9f-bc64a47a7ce4
+		sourceLineageTag: 7de59bb9-deb9-48b6-8d90-b7bd3fbb6339
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Qtd Movs YTD' = EXTERNALMEASURE("Qtd Movs YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 2871d6c1-8243-4eaf-ab0f-67cb48202c4d
+		sourceLineageTag: d88c6736-a206-42cc-a5bf-c61556de0c80
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ColunaDummy
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 36cb7178-70f1-4ced-a351-329400316d38
+		sourceLineageTag: 920aabc0-4475-4639-90e1-1774b0620dbf
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: ColunaDummy
+
+		annotation SummarizationSetBy = User
+
+	column Assunto
+		dataType: string
+		lineageTag: 7cc959cf-49ce-4560-b457-f0e75cf3e04c
+		sourceLineageTag: cb1f6263-72b8-4c50-9ed2-0811ebbb6d7d
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Assunto
+
+		annotation SummarizationSetBy = User
+
+	partition '_Medidas Performance de Escalas' = entity
+		mode: directQuery
+		source
+			entityName: _Medidas Performance de Escalas
+			expressionSource: 'DirectQuery para AS – Modelo Operações Portuárias'
+

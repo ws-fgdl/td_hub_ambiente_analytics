@@ -1,0 +1,21 @@
+table 'Tipo DI'
+	lineageTag: 266aa115-8270-4527-ba7f-4069b128a32b
+	sourceLineageTag: b9f79a63-32b3-48ea-b6df-07588d7223bd
+
+	column 'Tipo DI'
+		dataType: string
+		isNullable: false
+		lineageTag: 23f232eb-679d-439f-9c34-08c1005179a8
+		sourceLineageTag: 4dd1cce8-6482-4297-9615-a97cadff7de8
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Tipo DI
+
+		annotation SummarizationSetBy = User
+
+	partition 'Tipo DI' = entity
+		mode: directQuery
+		source
+			entityName: Tipo DI
+			expressionSource: 'DirectQuery para AS – Modelo Operações Portuárias'
+

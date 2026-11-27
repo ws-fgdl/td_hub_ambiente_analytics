@@ -1,0 +1,948 @@
+table 'Medidas CAGR'
+	lineageTag: fe32eb30-9643-4fb5-b086-7ad91074aa33
+
+	measure 'Preço Médio' = ```
+			
+			VAR ultPriceAtual = CALCULATE(
+			    LASTNONBLANK(
+			        contratos[valor],
+			        MAX(contratos[inicio_vigencia])
+			    ),
+			    FILTER(
+			        'contratos',
+			        contratos[inicio_vigencia] = MAX(contratos[inicio_vigencia])
+			    )
+			)
+			
+			VAR AnoCorrente = MAX(Calendario1[Ano Calendario])
+			
+			// Verificação mais robusta se "GRUPO HMM" está filtrado
+			VAR GrupoHMMEstaSendoFiltrado =
+			    NOT ISEMPTY(
+			        FILTER(
+			            ALLSELECTED(contratos[grupo_economico_ter]), // Considera apenas os valores selecionados no filtro atual para esta coluna
+			            contratos[grupo_economico_ter] = "GRUPO HMM"
+			        )
+			    )
+			    // Alternativa que também pode ser testada se a acima falhar:
+			    // VAR GrupoHMMEstaSendoFiltrado = "GRUPO HMM" IN VALUES(contratos[grupo_economico_ter])
+			
+			// Lógicas para calcular o preço do ano anterior (estas já sabemos que funcionam isoladamente)
+			VAR AnoAnteriorParaCalculo = AnoCorrente - 1
+			VAR UltimaDataNoAnoAnterior_CalcInterno =
+			    CALCULATE(
+			        MAX(contratos[inicio_vigencia]),
+			        FILTER(
+			            ALL(contratos), // Começa com todos os contratos para aplicar filtros específicos
+			            contratos[inicio_vigencia] >= DATE(AnoAnteriorParaCalculo, 1, 1) &&
+			            contratos[inicio_vigencia] <= DATE(AnoAnteriorParaCalculo, 12, 31) &&
+			            contratos[grupo_economico_ter] = "GRUPO HMM" // Filtra explicitamente por HMM
+			        ),
+			        REMOVEFILTERS(Calendario1[Ano Calendario])
+			    )
+			
+			VAR PrecoFinalDoAnoAnterior_CalcInterno =
+			    IF(
+			        NOT ISBLANK(UltimaDataNoAnoAnterior_CalcInterno),
+			        CALCULATE(
+			            LASTNONBLANK(
+			                contratos[valor],
+			                MAX(contratos[inicio_vigencia])
+			            ),
+			            FILTER(
+			                ALL(contratos), // Começa com todos os contratos
+			                contratos[inicio_vigencia] = UltimaDataNoAnoAnterior_CalcInterno &&
+			                contratos[grupo_economico_ter] = "GRUPO HMM" // Filtra explicitamente por HMM
+			            ),
+			            REMOVEFILTERS(Calendario1[Ano Calendario])
+			        ),
+			        BLANK()
+			    )
+			
+			// Condições para o IF Principal
+			VAR CondicaoAnoCorreto = (AnoCorrente >= 2025) -- Hoje é 14/05/2025
+			VAR CondicaoPrecoAtualEstaBranco = ISBLANK(ultPriceAtual)
+			
+			RETURN
+			IF(
+			    GrupoHMMEstaSendoFiltrado &&      -- Condição 1: GRUPO HMM está realmente filtrado?
+			    CondicaoAnoCorreto &&             -- Condição 2: Ano 2025 ou posterior
+			    CondicaoPrecoAtualEstaBranco,     -- Condição 3: Preço do ano corrente está em branco
+			
+			    PrecoFinalDoAnoAnterior_CalcInterno, // Se tudo OK, retorna o preço de 2024 (4500)
+			
+			    ultPriceAtual // Caso contrário, retorna o preço original do ano corrente
+			)
+			
+			```
+		displayFolder: Price
+		lineageTag: 04c63f6c-e4d0-4fb6-a46f-068a6e58655a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Preço YOY' =
+			
+			CALCULATE(
+			    [Preço Médio],
+			    DATEADD( Calendario1[Date], -1, YEAR)
+			)
+		displayFolder: Price
+		lineageTag: d51b7fac-d0c6-4835-b229-2c1f19df1643
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '% ∆ Reajuste' = ```
+			
+			
+			VAR a = DIVIDE([Flag_Price]-[Price teste], [Price teste]) 
+			
+			RETURN
+			IF(a = -1, BLANK(),a)
+			
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: ecd65d39-dc06-4edc-840f-2509b62e00a2
+
+	measure 'IGPM Período' = ```
+			
+			VAR ano = YEAR(MAX(Calendario1[Date]))
+			VAR MES = MONTH(MAXX(ALL(Calendario1),Calendario1[Date]))
+			VAR ano2 = YEAR(MAXX(ALL(Calendario1[Date]), Calendario1[Date]))
+			var ipca_dezembro = CALCULATE(
+			    MAX('df_indices_mercado'[Acum. 12 meses IGPM]), 
+			    MONTH(Calendario1[Date]) = SELECTEDVALUE('Meses CAGR'[Número do Mês]) && YEAR(Calendario1[Date]) = ano
+			)
+			return 
+			ipca_dezembro
+			// if( ipca_dezembro = BLANK(), 
+			// 3.53/100, ipca_dezembro)
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Índices
+		lineageTag: 868d6a3c-384f-4085-9c8e-2cac05239104
+
+	measure 'IPCA Período' = ```
+			
+			VAR ano = YEAR(MAX(Calendario1[Date]))
+			VAR MES = MONTH(MAXX(ALL(Calendario1),Calendario1[Date]))
+			VAR ano2 = YEAR(MAXX(ALL(Calendario1[Date]), Calendario1[Date]))
+			var ipca_dezembro = CALCULATE(
+			    MAX('df_indices_mercado'[Acum. 12 meses IPCA]), 
+			    MONTH(Calendario1[Date]) = SELECTEDVALUE('Meses CAGR'[Número do Mês]) && YEAR(Calendario1[Date]) = ano
+			)
+			return 
+			ipca_dezembro
+			// if( ipca_dezembro = BLANK(), 
+			// 3.53/100, ipca_dezembro)
+			
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Índices
+		lineageTag: 39e81682-6b59-429c-ac3d-0e3060e4463f
+
+	measure 'Dólar Médio ano' = AVERAGE(df_dolar_ptaxvenda[Valor])
+		lineageTag: 6099e760-e369-4721-8a4b-57138f91de47
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Média IPCA+IGPM' = ([IPCA YOY]+[IGPM YOY])/2
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Índices
+		lineageTag: ff2fefbe-a466-4c58-9f7f-1ecc2e4dc1c0
+
+	measure '% ∆ Negociado x Media IPCA IGPM' = ```
+			
+			VAR AnoMin = MIN('Calendario1'[Ano Calendario])
+			VAR AnoMax = MAX('Calendario1'[Ano Calendario])
+			VAR ValorFinalIpca = 
+			CALCULATE(
+			    [Reajuste_Media_IPCA_IGPM_Acumulado], 'Calendario1'[Ano Calendario] = AnoMax)
+			
+			VAR ValorFinal = 
+			CALCULATE(
+			    [Flag_Price], 'Calendario1'[Ano Calendario] = AnoMax)
+			VAR NumAnos = (AnoMax - AnoMin) 
+			
+			RETURN 
+			IFERROR(
+			    (ValorFinal - ValorFinalIpca)/ValorFinal,
+			"Verificar nulos"
+			)
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Índices
+		lineageTag: 6719704a-a9f1-4d00-87ee-4632d96c86f7
+
+	measure 'Reajuste IPCA' = [Preço YOY]*(1+[IPCA Período])
+		displayFolder: Índices
+		lineageTag: 760cc930-ae64-4349-b080-a7b01ab89f37
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Serviço x Média IPCA_IGPM' = IFERROR(([% ∆ Negociado x Media IPCA IGPM]-[Preço Médio])/[% ∆ Negociado x Media IPCA IGPM],BLANK())
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Índices
+		lineageTag: 224c337a-b5c9-46fd-a55d-2037497d0aac
+
+	measure CAGR = ```
+			
+			VAR AnoMin = MIN('Calendario1'[Ano Calendario])
+			VAR AnoMax = MAX('Calendario1'[Ano Calendario])
+			VAR ValorInicial = 
+			CALCULATE(
+			    [Flag_Price], 'Calendario1'[Ano Calendario] = AnoMin)
+			
+			VAR ValorFinal = 
+			CALCULATE(
+			    [Flag_Price], 'Calendario1'[Ano Calendario] = AnoMax)
+			VAR NumAnos = (AnoMax - AnoMin) 
+			
+			RETURN 
+			IFERROR(
+			    IF(
+			    NumAnos > 0, 
+			    ( (ValorFinal / ValorInicial) ^ (1 / NumAnos) ) - 1, 
+			    BLANK()
+			),
+			"Verificar nulos"
+			)
+			
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 618576f9-ac46-4b26-b673-8552990c0acc
+
+	measure 'Preço x Reajuste IPCA' = ```
+			
+			IFERROR(
+			    ([Reajuste IPCA]-[Preço Médio])/[Reajuste IPCA],BLANK()
+			    
+			    )
+			
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Índices
+		lineageTag: be9a09a4-22c6-4f45-8191-049936e87355
+
+	measure 'IPCA YOY' = ```
+			
+			VAR indice12 = CALCULATE(
+			    [IPCA Período],
+			    DATEADD( Calendario1[Date], -1, YEAR)
+			)
+			
+			RETURN
+			// IF(
+			//     SELECTEDVALUE('Meses CAGR'[Número do Mês]) = 12,
+			//     indice12,
+			//     [IPCA Período]
+			// )
+			[IPCA Período]
+			
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Índices
+		lineageTag: baa4e2a0-8d33-459d-9d1d-9b5430a4f7f2
+
+	measure Reajuste_IPCA_Acumulado = ```
+			
+			VAR AnoMin = SELECTEDVALUE('Anos Inflação'[Ano])
+			VAR AnoAtual = SELECTEDVALUE(Calendario1[Ano Calendario])
+			
+			-- Definição do preço inicial (2020)
+			VAR PrecoInicial = CALCULATE([Flag_Price_YOY], Calendario1[Ano Calendario] = AnoMin)
+			
+			-- Definição dos IPCA para cada ano
+			VAR Ipca2020 = CALCULATE([IPCA YOY], Calendario1[Ano Calendario] = AnoMin)
+			VAR Ipca2021 = CALCULATE([IPCA YOY], Calendario1[Ano Calendario] = AnoMin + 1)
+			VAR Ipca2022 = CALCULATE([IPCA YOY], Calendario1[Ano Calendario] = AnoMin + 2)
+			VAR Ipca2023 = CALCULATE([IPCA YOY], Calendario1[Ano Calendario] = AnoMin + 3)
+			VAR Ipca2024 = CALCULATE([IPCA YOY], Calendario1[Ano Calendario] = AnoMin + 4)
+			VAR Ipca2025 = CALCULATE([IPCA YOY], Calendario1[Ano Calendario] = AnoMin + 5)
+			VAR Ipca2026 = CALCULATE([IPCA YOY], Calendario1[Ano Calendario] = AnoMin + 6)
+			VAR Ipca2027 = CALCULATE([IPCA YOY], Calendario1[Ano Calendario] = AnoMin + 7)
+			
+			-- Cálculo do reajuste acumulado ano a ano
+			VAR Preco2021 = PrecoInicial * (1 + Ipca2020)
+			VAR Preco2022 = Preco2021 * (1 + Ipca2021)
+			VAR Preco2023 = Preco2022 * (1 + Ipca2022)
+			VAR Preco2024 = Preco2023 * (1 + Ipca2023)
+			VAR Preco2025 = Preco2024 * (1 + Ipca2024)
+			VAR Preco2026 = Preco2025 * (1 + Ipca2025)
+			VAR Preco2027 = Preco2026 * (1 + Ipca2026)
+			VAR Preco2028 = Preco2027 * (1 + Ipca2027)
+			
+			RETURN 
+			    SWITCH(
+			        TRUE(),
+			        SELECTEDVALUE(Calendario1[Ano Calendario]) = AnoMin, Preco2021,
+			        SELECTEDVALUE(Calendario1[Ano Calendario]) = AnoMin + 1, Preco2022,
+			        SELECTEDVALUE(Calendario1[Ano Calendario]) = AnoMin + 2, Preco2023,
+			        SELECTEDVALUE(Calendario1[Ano Calendario]) = AnoMin + 3, Preco2024,
+			        SELECTEDVALUE(Calendario1[Ano Calendario]) = AnoMin + 4, Preco2025,
+			        SELECTEDVALUE(Calendario1[Ano Calendario]) = AnoMin + 5, Preco2026,
+			        SELECTEDVALUE(Calendario1[Ano Calendario]) = AnoMin + 6, Preco2027,
+			        SELECTEDVALUE(Calendario1[Ano Calendario]) = AnoMin + 7, Preco2028,
+			        BLANK()
+			    )
+			```
+		displayFolder: Índices
+		lineageTag: 294173ac-3b42-4b2b-8e72-ebe1c864a814
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Reajuste_IGPM_Acumulado = ```
+			
+			VAR AnoMin = SELECTEDVALUE('Anos Inflação'[Ano])
+			VAR AnoAtual = SELECTEDVALUE(Calendario1[Ano Calendario])
+			
+			-- Definição do preço inicial (2020)
+			VAR PrecoInicial = CALCULATE([Flag_Price_YOY], Calendario1[Ano Calendario] = AnoMin)
+			
+			-- Definição dos IPCA para cada ano
+			VAR Ipca2020 = CALCULATE([IGPM YOY], Calendario1[Ano Calendario] = AnoMin)
+			VAR Ipca2021 = CALCULATE([IGPM YOY], Calendario1[Ano Calendario] = AnoMin + 1)
+			VAR Ipca2022 = CALCULATE([IGPM YOY], Calendario1[Ano Calendario] = AnoMin + 2)
+			VAR Ipca2023 = CALCULATE([IGPM YOY], Calendario1[Ano Calendario] = AnoMin + 3)
+			VAR Ipca2024 = CALCULATE([IGPM YOY], Calendario1[Ano Calendario] = AnoMin + 4)
+			VAR Ipca2025 = CALCULATE([IGPM YOY], Calendario1[Ano Calendario] = AnoMin + 5)
+			VAR Ipca2026 = CALCULATE([IGPM YOY], Calendario1[Ano Calendario] = AnoMin + 6)
+			VAR Ipca2027 = CALCULATE([IGPM YOY], Calendario1[Ano Calendario] = AnoMin + 7)
+			
+			-- Cálculo do reajuste acumulado ano a ano
+			VAR Preco2021 = PrecoInicial * (1 + Ipca2020)
+			VAR Preco2022 = Preco2021 * (1 + Ipca2021)
+			VAR Preco2023 = Preco2022 * (1 + Ipca2022)
+			VAR Preco2024 = Preco2023 * (1 + Ipca2023)
+			VAR Preco2025 = Preco2024 * (1 + Ipca2024)
+			VAR Preco2026 = Preco2025 * (1 + Ipca2025)
+			VAR Preco2027 = Preco2026 * (1 + Ipca2026)
+			VAR Preco2028 = Preco2027 * (1 + Ipca2027)
+			
+			RETURN 
+			    SWITCH(
+			        TRUE(),
+			        SELECTEDVALUE(Calendario1[Ano Calendario]) = AnoMin, Preco2021,
+			        SELECTEDVALUE(Calendario1[Ano Calendario]) = AnoMin + 1, Preco2022,
+			        SELECTEDVALUE(Calendario1[Ano Calendario]) = AnoMin + 2, Preco2023,
+			        SELECTEDVALUE(Calendario1[Ano Calendario]) = AnoMin + 3, Preco2024,
+			        SELECTEDVALUE(Calendario1[Ano Calendario]) = AnoMin + 4, Preco2025,
+			        SELECTEDVALUE(Calendario1[Ano Calendario]) = AnoMin + 5, Preco2026,
+			        SELECTEDVALUE(Calendario1[Ano Calendario]) = AnoMin + 6, Preco2027,
+			        SELECTEDVALUE(Calendario1[Ano Calendario]) = AnoMin + 7, Preco2028,
+			        BLANK()
+			    )
+			```
+		formatString: #,0.00
+		displayFolder: Índices
+		lineageTag: 9acceca4-ac43-4783-9713-035829edd6c3
+
+	measure 'IGPM YOY' =
+			
+			VAR indice12 = CALCULATE(
+			    [IGPM Período],
+			    DATEADD( Calendario1[Date], -1, YEAR)
+			)
+			
+			RETURN
+			// IF(
+			//     SELECTEDVALUE('Meses CAGR'[Número do Mês]) = 12,
+			//     indice12,
+			//     [IGPM Período]
+			// )
+			[IGPM Período]
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Índices
+		lineageTag: 375005d2-498a-4b61-bfe7-aece1a64461f
+
+	measure Reajuste_Media_IPCA_IGPM_Acumulado = ```
+			
+			VAR AnoMin = SELECTEDVALUE('Anos Inflação'[Ano])
+			VAR AnoAtual = SELECTEDVALUE(Calendario1[Ano Calendario])
+			
+			-- Definição do preço inicial (2020)
+			VAR PrecoInicial = CALCULATE([Flag_Price_YOY], Calendario1[Ano Calendario] = AnoMin)
+			
+			-- Definição dos IPCA para cada ano
+			VAR Ipca2020 = CALCULATE(([IGPM YOY]+ [IPCA YOY])/2, Calendario1[Ano Calendario] = AnoMin)
+			VAR Ipca2021 = CALCULATE(([IGPM YOY]+ [IPCA YOY])/2, Calendario1[Ano Calendario] = AnoMin + 1)
+			VAR Ipca2022 = CALCULATE(([IGPM YOY]+ [IPCA YOY])/2, Calendario1[Ano Calendario] = AnoMin + 2)
+			VAR Ipca2023 = CALCULATE(([IGPM YOY]+ [IPCA YOY])/2, Calendario1[Ano Calendario] = AnoMin + 3)
+			VAR Ipca2024 = CALCULATE(([IGPM YOY]+ [IPCA YOY])/2, Calendario1[Ano Calendario] = AnoMin + 4)
+			VAR Ipca2025 = CALCULATE(([IGPM YOY]+ [IPCA YOY])/2, Calendario1[Ano Calendario] = AnoMin + 5)
+			VAR Ipca2026 = CALCULATE(([IGPM YOY]+ [IPCA YOY])/2, Calendario1[Ano Calendario] = AnoMin + 6)
+			VAR Ipca2027 = CALCULATE(([IGPM YOY]+ [IPCA YOY])/2, Calendario1[Ano Calendario] = AnoMin + 7)
+			
+			-- Cálculo do reajuste acumulado ano a ano
+			VAR Preco2021 = PrecoInicial * (1 + Ipca2020)
+			VAR Preco2022 = Preco2021 * (1 + Ipca2021)
+			VAR Preco2023 = Preco2022 * (1 + Ipca2022)
+			VAR Preco2024 = Preco2023 * (1 + Ipca2023)
+			VAR Preco2025 = Preco2024 * (1 + Ipca2024)
+			VAR Preco2026 = Preco2025 * (1 + Ipca2025)
+			VAR Preco2027 = Preco2026 * (1 + Ipca2026)
+			VAR Preco2028 = Preco2027 * (1 + Ipca2027)
+			
+			RETURN 
+			    SWITCH(
+			        TRUE(),
+			        SELECTEDVALUE(Calendario1[Ano Calendario]) = AnoMin, Preco2021,
+			        SELECTEDVALUE(Calendario1[Ano Calendario]) = AnoMin + 1, Preco2022,
+			        SELECTEDVALUE(Calendario1[Ano Calendario]) = AnoMin + 2, Preco2023,
+			        SELECTEDVALUE(Calendario1[Ano Calendario]) = AnoMin + 3, Preco2024,
+			        SELECTEDVALUE(Calendario1[Ano Calendario]) = AnoMin + 4, Preco2025,
+			        SELECTEDVALUE(Calendario1[Ano Calendario]) = AnoMin + 5, Preco2026,
+			        SELECTEDVALUE(Calendario1[Ano Calendario]) = AnoMin + 6, Preco2027,
+			        SELECTEDVALUE(Calendario1[Ano Calendario]) = AnoMin + 7, Preco2028,
+			        BLANK()
+			    )
+			```
+		displayFolder: Índices
+		lineageTag: c2575f9e-140f-4756-840f-92dafe6192b9
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '% ∆ Negociado x IPCA' = ```
+			
+			VAR AnoMin = MIN('Calendario1'[Ano Calendario])
+			VAR AnoMax = MAX('Calendario1'[Ano Calendario])
+			VAR ValorFinalIpca = 
+			CALCULATE(
+			    [Reajuste_IPCA_Acumulado], 'Calendario1'[Ano Calendario] = AnoMax)
+			
+			VAR ValorFinal = 
+			CALCULATE(
+			    [Flag_Price], 'Calendario1'[Ano Calendario] = AnoMax)
+			VAR NumAnos = (AnoMax - AnoMin) 
+			
+			RETURN 
+			IFERROR(
+			    (ValorFinal - ValorFinalIpca)/ValorFinal,
+			"Verificar nulos"
+			)
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Índices
+		lineageTag: 185f7b39-340a-4caa-8f02-4ab9a5cec127
+
+	measure '% ∆ Negociado x IGPM' = ```
+			
+			VAR AnoMin = MIN('Calendario1'[Ano Calendario])
+			VAR AnoMax = MAX('Calendario1'[Ano Calendario])
+			VAR ValorFinalIpca = 
+			CALCULATE(
+			    [Reajuste_IGPM_Acumulado], 'Calendario1'[Ano Calendario] = AnoMax)
+			
+			VAR ValorFinal = 
+			CALCULATE(
+			    [Flag_Price], 'Calendario1'[Ano Calendario] = AnoMax)
+			VAR NumAnos = (AnoMax - AnoMin) 
+			
+			RETURN 
+			IFERROR(
+			    (ValorFinal - ValorFinalIpca)/ValorFinal,
+			"Verificar nulos"
+			)
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Índices
+		lineageTag: 463ce4a9-ea3e-402f-a7fa-c0adce9bda5e
+
+	measure Inframar =
+			
+			IF(
+			    [Preço Médio] = BLANK(),
+			    BLANK(),
+			    AVERAGE(Tabela_Inframar[Price])
+			)
+		displayFolder: Inciso/Inframar
+		lineageTag: 3531b707-6fec-4af2-86d1-b1aa31eca207
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Preço Neg. YOY' = ```
+			
+			IF(
+			    [Preço Med. YOY] = BLANK(),
+			    BLANK(),
+			            IF(
+			                AND(AND(SELECTEDVALUE(UN[un])="TRG",SELECTEDVALUE('SalesForce_Unificada'[grupo_economico])="GRUPO HAPAG"),SELECTEDVALUE(contratos[inicio_vigencia])>date(2020,1,1)),
+			                [Preço Med. YOY],
+			                [Preço Med. YOY]-[Inframar YOY]
+			            )
+			)
+			
+			```
+		displayFolder: Price
+		lineageTag: b2a45452-809a-4c0e-aa8e-f394639cab66
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Preço Negociado' =
+			
+			IF(
+			    [Preço Médio] = BLANK(),
+			    BLANK(),
+			            IF(
+			                AND(AND(SELECTEDVALUE(UN[un])="TRG",SELECTEDVALUE('SalesForce_Unificada'[grupo_economico])="GRUPO HAPAG"),SELECTEDVALUE(contratos[inicio_vigencia])>date(2020,1,1)),
+			                [Preço Médio],
+			                [Preço Médio]
+			                -[Inframar]
+			            )
+			)
+			// *
+			//     SWITCH(
+			//         TRUE(),
+			//         AND(
+			//             AND(
+			//             AND(
+			//             SELECTEDVALUE(SalesForce_Unificada[grupo_economico]) = "GRUPO MAERSK",
+			//             SELECTEDVALUE(UN[UN]) = "TSV"),
+			//         SELECTEDVALUE(contratos[Agrupamento Subgrupo Princing]) IN {"Box Rate Cheio LC", "Box Rate Vazio LC"}
+			//         ),
+			//         SELECTEDVALUE(Calendario1[Ano Calendario])<2025
+			//         ),
+			//             0.955,
+			//         1
+			//     )
+		displayFolder: Price
+		lineageTag: c45eeca9-f235-45a1-bdc4-61dfb8defe59
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Preço Med. YOY' = ```
+			
+			VAR AnoAnterior = MAX(Calendario1[Ano Calendario]) - 1
+			
+			VAR UltimaDataAnoAnterior =
+			    CALCULATE(
+			        MAX(contratos[inicio_vigencia]),
+			        contratos[inicio_vigencia] <= DATE(AnoAnterior,12,31),
+			        contratos[inicio_vigencia] >= DATE(AnoAnterior,1,1),
+			        REMOVEFILTERS(Calendario1)
+			    )
+			
+			VAR UltimoPrecoAnoAnterior =
+			    CALCULATE(
+			        LASTNONBLANK(
+			            contratos[valor],
+			            MAX(contratos[inicio_vigencia])
+			        ),
+			        contratos[inicio_vigencia] = UltimaDataAnoAnterior,
+			        REMOVEFILTERS(Calendario1)
+			    )
+			
+			RETURN
+			UltimoPrecoAnoAnterior
+			
+			
+			```
+		displayFolder: Price
+		lineageTag: 4a716205-5b64-4419-9f3c-54af238e6da4
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Inframar YOY' =
+			
+			IF(
+			    [Preço Médio] = BLANK(),
+			    BLANK(),
+			    AVERAGE(Tabela_Inframar[Price_Ano_Anterior])
+			)
+		displayFolder: Inciso/Inframar
+		lineageTag: 9a58b516-8b07-42e2-9841-dfcccd8ce883
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Inciso XIV' = ```
+			
+			VAR tipoServico = SELECTEDVALUE('contratos'[Tipo Inciso])
+			VAR subgrupo = SELECTEDVALUE('contratos'[Agrupamento Subgrupo Princing])
+			
+			-- Último valor para Inciso XIV CAB
+			VAR ultDataIncisoXIVCAB_CH =
+			    CALCULATE(
+			        MAX('contratos'[inicio_vigencia]),
+			        REMOVEFILTERS(contratos[Agrupamento Subgrupo Princing]),
+			        'contratos'[Tipo Inciso] = "Inciso XIV CAB CH"
+			    )
+			
+			VAR ultDataIncisoXIVCAB_VZ =
+			    CALCULATE(
+			        MAX('contratos'[inicio_vigencia]),
+			        REMOVEFILTERS(contratos[Agrupamento Subgrupo Princing]),
+			        'contratos'[Tipo Inciso] = "Inciso XIV CAB VZ"
+			    )    
+			
+			VAR ultPriceCAB_CH = 
+			    CALCULATE(
+			        LASTNONBLANK('contratos'[valor], MAX(contratos[inicio_vigencia])),
+			        REMOVEFILTERS(contratos[Agrupamento Subgrupo Princing]),
+			        'contratos'[Tipo Inciso] = "Inciso XIV CAB CH",
+			        'contratos'[inicio_vigencia] = ultDataIncisoXIVCAB_CH
+			    )
+			
+			VAR ultPriceCAB_VZ = 
+			    CALCULATE(
+			        LASTNONBLANK('contratos'[valor], MAX(contratos[inicio_vigencia])),
+			        REMOVEFILTERS(contratos[Agrupamento Subgrupo Princing]),
+			        'contratos'[Tipo Inciso] = "Inciso XIV CAB VZ",
+			        'contratos'[inicio_vigencia] = ultDataIncisoXIVCAB_VZ
+			    )
+			
+			-- Último valor para Inciso XIV LC
+			VAR ultDataIncisoXIVLC_CH =
+			    CALCULATE(
+			        MAX('contratos'[inicio_vigencia]),
+			        REMOVEFILTERS(contratos[Agrupamento Subgrupo Princing]),
+			        'contratos'[Tipo Inciso] = "Inciso XIV LC CH"
+			    )
+			
+			VAR ultDataIncisoXIVLC_VZ =
+			    CALCULATE(
+			        MAX('contratos'[inicio_vigencia]),
+			        REMOVEFILTERS(contratos[Agrupamento Subgrupo Princing]),
+			        'contratos'[Tipo Inciso] = "Inciso XIV LC VZ"
+			    )
+			
+			VAR ultPriceLC_CH = 
+			    CALCULATE(
+			        LASTNONBLANK('contratos'[valor], MAX(contratos[inicio_vigencia])),
+			        REMOVEFILTERS(contratos[Agrupamento Subgrupo Princing]),
+			        'contratos'[Tipo Inciso] = "Inciso XIV LC CH",
+			        'contratos'[inicio_vigencia] = ultDataIncisoXIVLC_CH
+			    )
+			
+			VAR ultPriceLC_VZ = 
+			    CALCULATE(
+			        LASTNONBLANK('contratos'[valor], MAX(contratos[inicio_vigencia])),
+			        REMOVEFILTERS(contratos[Agrupamento Subgrupo Princing]),
+			        'contratos'[Tipo Inciso] = "Inciso XIV LC VZ",
+			        'contratos'[inicio_vigencia] = ultDataIncisoXIVLC_VZ
+			    )    
+			
+			RETURN
+			    SWITCH(
+			        TRUE(),
+			        subgrupo IN {
+			            "Box Rate Cheio LC"
+			        }, ultPriceLC_CH,
+			        subgrupo IN {
+			            "Box Rate Vazio LC"
+			        },ultPriceLC_VZ,
+			        subgrupo IN {
+			            "Box Rate Cheio CAB"
+			        }, ultPriceCAB_CH,
+			        subgrupo IN {
+			            "Box Rate Vazio CAB"
+			        }, ultPriceCAB_VZ,
+			        BLANK()
+			    )
+			
+			
+			```
+		displayFolder: Inciso/Inframar
+		lineageTag: 845bd299-6281-4663-ab6b-7bc9f3bef72f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Preço + Inciso XIV' = [Preço Negociado]+[Inciso XIV]
+		displayFolder: Price
+		lineageTag: 92b136f9-a74a-44d4-ad62-511071dbc178
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Flag_Price = ```
+			SWITCH(SELECTEDVALUE(Flag_Inciso_XIV[Inciso XIV]),
+			"NÃO",[Preço Negociado],
+			"SIM", [Preço + Inciso XIV],
+			 
+			[Preço Negociado])
+			
+			*
+			    SWITCH(
+			        TRUE(),
+			        AND(
+			            AND(
+			            AND(
+			            SELECTEDVALUE(SalesForce_Unificada[grupo_economico]) = "GRUPO MAERSK",
+			            SELECTEDVALUE(UN[UN]) = "TSV"),
+			        SELECTEDVALUE(contratos[Agrupamento Subgrupo Princing]) IN {"Box Rate Cheio LC", "Box Rate Vazio LC", "Box Rate Vazio TRA", "Box Rate Cheio TRA"}
+			        ),
+			        SELECTEDVALUE(Calendario1[Ano Calendario])<2025
+			        ),
+			            0.955,
+			        1
+			    )
+			    *
+			    [percent_price]
+			```
+		displayFolder: Price
+		lineageTag: 99c833c8-a5c6-4e29-87d8-5f51bb0031a4
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Inciso XIV YOY' = ```
+			
+			VAR AnoAnterior = MAX(Calendario1[Ano Calendario]) - 1
+			
+			VAR UltimaDataAnoAnterior =
+			    CALCULATE(
+			        MAX(contratos[inicio_vigencia]),
+			        contratos[inicio_vigencia] <= DATE(AnoAnterior,12,31),
+			        contratos[inicio_vigencia] >= DATE(AnoAnterior,1,1),
+			        REMOVEFILTERS(Calendario1)
+			    )
+			
+			VAR tipoServico = SELECTEDVALUE('contratos'[Tipo Inciso])
+			VAR subgrupo = SELECTEDVALUE('contratos'[Agrupamento Subgrupo Princing])
+			
+			-- Último valor para Inciso XIV CAB
+			VAR ultDataIncisoXIVCAB_CH =
+			    CALCULATE(
+			        MAX('contratos'[inicio_vigencia]),
+			        REMOVEFILTERS(contratos[Agrupamento Subgrupo Princing]),
+			        REMOVEFILTERS(Calendario1),
+			        'contratos'[Tipo Inciso] = "Inciso XIV CAB CH",
+			        contratos[inicio_vigencia] = UltimaDataAnoAnterior
+			    )
+			
+			VAR ultDataIncisoXIVCAB_VZ =
+			    CALCULATE(
+			        MAX('contratos'[inicio_vigencia]),
+			        REMOVEFILTERS(contratos[Agrupamento Subgrupo Princing]),
+			        REMOVEFILTERS(Calendario1),
+			        'contratos'[Tipo Inciso] = "Inciso XIV CAB VZ",
+			        contratos[inicio_vigencia] = UltimaDataAnoAnterior
+			    )    
+			
+			VAR ultPriceCAB_CH = 
+			    CALCULATE(
+			        LASTNONBLANK('contratos'[valor], MAX(contratos[inicio_vigencia])),
+			        REMOVEFILTERS(contratos[Agrupamento Subgrupo Princing]),
+			        REMOVEFILTERS(Calendario1),
+			        'contratos'[Tipo Inciso] = "Inciso XIV CAB CH",
+			        'contratos'[inicio_vigencia] = ultDataIncisoXIVCAB_CH
+			    )
+			
+			VAR ultPriceCAB_VZ = 
+			    CALCULATE(
+			        LASTNONBLANK('contratos'[valor], MAX(contratos[inicio_vigencia])),
+			        REMOVEFILTERS(contratos[Agrupamento Subgrupo Princing]),
+			        REMOVEFILTERS(Calendario1),
+			        'contratos'[Tipo Inciso] = "Inciso XIV CAB VZ",
+			        'contratos'[inicio_vigencia] = ultDataIncisoXIVCAB_VZ
+			    )
+			
+			-- Último valor para Inciso XIV LC
+			VAR ultDataIncisoXIVLC_CH =
+			    CALCULATE(
+			        MAX('contratos'[inicio_vigencia]),
+			        REMOVEFILTERS(contratos[Agrupamento Subgrupo Princing]),
+			        REMOVEFILTERS(Calendario1),
+			        'contratos'[Tipo Inciso] = "Inciso XIV LC CH",
+			        contratos[inicio_vigencia] = UltimaDataAnoAnterior
+			    )
+			
+			VAR ultDataIncisoXIVLC_VZ =
+			    CALCULATE(
+			        MAX('contratos'[inicio_vigencia]),
+			        REMOVEFILTERS(contratos[Agrupamento Subgrupo Princing]),
+			        REMOVEFILTERS(Calendario1),
+			        'contratos'[Tipo Inciso] = "Inciso XIV LC VZ",
+			        contratos[inicio_vigencia] = UltimaDataAnoAnterior
+			    )
+			
+			VAR ultPriceLC_CH = 
+			    CALCULATE(
+			        LASTNONBLANK('contratos'[valor], MAX(contratos[inicio_vigencia])),
+			        REMOVEFILTERS(contratos[Agrupamento Subgrupo Princing]),
+			        REMOVEFILTERS(Calendario1),
+			        'contratos'[Tipo Inciso] = "Inciso XIV LC CH",
+			        'contratos'[inicio_vigencia] = ultDataIncisoXIVLC_CH
+			    )
+			
+			VAR ultPriceLC_VZ = 
+			    CALCULATE(
+			        LASTNONBLANK('contratos'[valor], MAX(contratos[inicio_vigencia])),
+			        REMOVEFILTERS(contratos[Agrupamento Subgrupo Princing]),
+			        REMOVEFILTERS(Calendario1),
+			        'contratos'[Tipo Inciso] = "Inciso XIV LC VZ",
+			        'contratos'[inicio_vigencia] = ultDataIncisoXIVLC_VZ
+			    )    
+			
+			RETURN
+			    SWITCH(
+			        TRUE(),
+			        subgrupo IN {
+			            "Box Rate Cheio LC"
+			        }, ultPriceLC_CH,
+			        subgrupo IN {
+			            "Box Rate Vazio LC"
+			        },ultPriceLC_VZ,
+			        subgrupo IN {
+			            "Box Rate Cheio CAB"
+			        }, ultPriceCAB_CH,
+			        subgrupo IN {
+			            "Box Rate Vazio CAB"
+			        }, ultPriceCAB_VZ,
+			        BLANK()
+			    )
+			
+			
+			```
+		displayFolder: Inciso/Inframar
+		lineageTag: d66614e8-919c-4468-bca3-ca284067d846
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Preço + Inciso XIV YOY' = [Preço Neg. YOY]+[Inciso XIV YOY]
+		displayFolder: Price
+		lineageTag: 5220f096-d981-405d-ac80-af710a011027
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Flag_Price_YOY = ```
+			SWITCH(SELECTEDVALUE(Flag_Inciso_XIV[Inciso XIV]),
+			"NÃO",[Preço Neg. YOY],
+			"SIM", [Preço + Inciso XIV YOY],
+			 
+			[Preço Neg. YOY])
+			
+			*
+			    SWITCH(
+			        TRUE(),
+			        AND(
+			            AND(
+			            AND(
+			            SELECTEDVALUE(SalesForce_Unificada[grupo_economico]) = "GRUPO MAERSK",
+			            SELECTEDVALUE(UN[UN]) = "TSV"),
+			        SELECTEDVALUE(contratos[Agrupamento Subgrupo Princing]) IN {"Box Rate Cheio LC", "Box Rate Vazio LC", "Box Rate Vazio TRA", "Box Rate Cheio TRA"}
+			        ),
+			        SELECTEDVALUE(Calendario1[Ano Calendario])<2025
+			        ),
+			            0.955,
+			        1
+			    )
+			    *
+			    [percent_price]
+			```
+		formatString: 0.00
+		displayFolder: Price
+		lineageTag: 02ef2c06-df94-4ca6-b237-8db91e6579b6
+
+	measure Faturamento = SUM(contratos[valor])
+		lineageTag: b728dd5c-b824-4bd5-b073-cfdf8a331ed6
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Desconto Maersk TSV' = ```
+			
+			[Flag_Price] *
+			    SWITCH(
+			        TRUE(),
+			        AND(
+			            AND(
+			            AND(
+			            SELECTEDVALUE(SalesForce_Unificada[grupo_economico]) = "GRUPO MAERSK",
+			            SELECTEDVALUE(UN[UN]) = "TSV"),
+			        SELECTEDVALUE(contratos[Agrupamento Subgrupo Princing]) IN {"Box Rate Cheio LC", "Box Rate Vazio LC"}
+			        ),
+			        SELECTEDVALUE(Calendario1[Ano Calendario])<2025
+			        ),
+			            0.955,
+			        1
+			    )
+			
+			```
+		lineageTag: 2755fac0-a20e-4d0c-964b-aa22cbd62124
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Price teste' =
+			
+			CALCULATE(
+			    [Flag_Price],
+			    REMOVEFILTERS(Calendario1[Ano Calendario]),
+			    DATEADD(Calendario1[date], -1, YEAR)
+			)
+		formatString: #,0.00
+		displayFolder: Price
+		lineageTag: 4c11c917-2a29-48a0-a441-0763ccecc037
+
+	measure percent_price = ```
+			
+			VAR _un = SELECTEDVALUE(UN[UN])
+			VAR _grupo_economico = SELECTEDVALUE(SalesForce_Unificada[grupo_economico])
+			VAR _razao_social = SELECTEDVALUE(dim_carteira_comercial[razao_social])
+			VAR _ano_calendario = SELECTEDVALUE(Calendario1[Ano Calendario])
+			VAR _sub_categoria = SELECTEDVALUE(contratos[Agrupamento Subgrupo Princing])
+			
+			VAR _valor_padrao = 
+			    IF(
+			        ISBLANK([Preço Médio]),
+			        BLANK(),
+			        AVERAGE(table_percent_price[percent_price])
+			    )
+			
+			RETURN
+			    SWITCH(
+			        TRUE(),
+			        _ano_calendario = 2026, 1,
+			        _ano_calendario = BLANK(), BLANK(),
+			        -- Condição 1: TRG
+			        _un = "TRG" && _grupo_economico = "GRUPO LOG-IN", 0.8775,
+			        _un = "TRG" && _grupo_economico = "GRUPO CMA CGM" && _sub_categoria = "Box Rate Cheio CAB", 0.8775,
+			        _un = "TRG" && _grupo_economico = "GRUPO CMA CGM" && _sub_categoria = "Box Rate Vazio CAB", 0.8775,
+			        _un = "TRG" && _grupo_economico = "GRUPO MAERSK" && _sub_categoria = "Box Rate Cheio CAB", 0.8775,
+			        _un = "TRG" && _grupo_economico = "GRUPO MAERSK" && _sub_categoria = "Box Rate Vazio CAB", 0.8775,
+			        
+			        -- Condição 2: TSV
+			        _un = "TSV" && _razao_social = "MERCOSUL LINE NAVEGACAO E LOGISTICALTDA", 0.8575,
+			        _un = "TSV" && _grupo_economico = "GRUPO LOG-IN", 0.8575,
+			        _un = "TSV" && _grupo_economico = "GRUPO CMA CGM" && _sub_categoria = "Box Rate Cheio CAB", 0.8575,
+			        _un = "TSV" && _grupo_economico = "GRUPO CMA CGM" && _sub_categoria = "Box Rate Vazio CAB", 0.8575,
+			        _un = "TSV" && _grupo_economico = "GRUPO MAERSK" && _sub_categoria = "Box Rate Cheio CAB", 0.8575,
+			        _un = "TSV" && _grupo_economico = "GRUPO MAERSK" && _sub_categoria = "Box Rate Vazio CAB", 0.8575,
+			        
+			        -- Caso não atenda a nenhuma das exceções acima
+			        _valor_padrao
+			    )
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Price
+		lineageTag: 130b0e77-b652-4424-9b2a-64f61fada4cd
+
+	measure liquid_price =
+			
+			[Preço Médio]*[percent_price]
+		displayFolder: Price
+		lineageTag: 745b090a-82ca-4af0-87e3-cbe53ca8022b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Preço Med YOY2' =
+			
+			CALCULATE(
+			    [Preço Médio],
+			    DATEADD(Calendario1[Date], -1, YEAR)
+			)
+		displayFolder: Price
+		lineageTag: 046fb157-7b2b-4501-a4bc-7d7cdf9a37bb
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Teste
+		isHidden
+		lineageTag: d1d5187f-5ef3-48f9-a107-bcaf6f4b1c1c
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Teste]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Medidas CAGR' = calculated
+		mode: import
+		source = ROW("Teste","Teste")
+
+	annotation PBI_Id = 8d2ab95643e04b8982ecd81ab30af86a
+

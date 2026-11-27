@@ -1,0 +1,28 @@
+table '#SBP Box Rate Vazio TRA BT'
+	lineageTag: 7ccbdbb6-d9f9-4c4b-9b54-506cb72a3029
+
+	measure 'Valor #SBP Box Rate Vazio TRA BT' = SELECTEDVALUE('#SBP Box Rate Vazio TRA BT'[#SBP Box Rate Vazio TRA BT])
+		lineageTag: d934d177-725c-4a22-aa1c-ebcb81046823
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#SBP Box Rate Vazio TRA BT'
+		lineageTag: c55cd11a-0ef3-4f54-b88b-c7a1657fa2b4
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '#SBP Box Rate Vazio TRA BT' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 0.5, 0.0001)
+
+	annotation PBI_Id = 7855200a3b2d4826b72461cbfc704265
+

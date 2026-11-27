@@ -1,0 +1,32 @@
+table 'Flag Computa ABRATEC'
+	lineageTag: 71151f78-72e9-440d-b0cd-ac47d221e289
+	sourceLineageTag: cb54d468-9c2d-4b84-92cf-abc2fdc1159d
+
+	column 'Flag Computa ABRATEC'
+		dataType: string
+		lineageTag: 1596159a-5624-4a85-84fe-032700a50456
+		sourceLineageTag: 0ce4df14-fdb4-4b69-b87b-0f16523d232e
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Flag Computa ABRATEC
+
+		annotation SummarizationSetBy = User
+
+	column 'ID Flag Computa ABRATEC'
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		lineageTag: 702cf71a-f43c-4e62-aeb0-8ea8ccc1f484
+		sourceLineageTag: 4825ca88-7145-474c-89fb-9364564d9877
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: ID Flag Computa ABRATEC
+
+		annotation SummarizationSetBy = User
+
+	partition 'Flag Computa ABRATEC' = entity
+		mode: directQuery
+		source
+			entityName: Flag Computa ABRATEC
+			expressionSource: 'DirectQuery para AS – Modelo Operações Portuárias'
+

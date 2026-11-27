@@ -1,0 +1,27 @@
+table '#SBP DSA'
+	lineageTag: 03d11cd0-cf77-43e4-a3d2-bb8ea5551a6e
+
+	measure 'Valor #SBP DSA' = SELECTEDVALUE('#SBP DSA'[#SBP DSA])
+		lineageTag: 2d66759d-b041-4107-ba78-d31639a78d20
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#SBP DSA'
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 60641362-0a16-4266-859a-f57e33f77b42
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition '#SBP DSA' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 0.5, 0.0001)
+
+	annotation PBI_Id = a554716d424e4133b8c16966e0532f54
+

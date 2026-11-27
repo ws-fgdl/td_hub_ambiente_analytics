@@ -1,0 +1,20 @@
+table '#Param BoxRate_Int'
+	lineageTag: f8d24380-20e7-4bd1-b7f4-a2064776fef0
+
+	column Value
+		formatString: 0
+		lineageTag: 74017516-7553-4821-81fb-e2fe7380d0ca
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Value]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition '#Param BoxRate_Int' = calculated
+		mode: import
+		source =
+				
+				GENERATESERIES(-10000, 50000, 1)
+
+	annotation PBI_Id = 6208e247b4a4417396b63d29cff82d8d
+

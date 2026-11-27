@@ -1,0 +1,34 @@
+table '#SBP Box Rate Vazio CAB'
+	lineageTag: ea47c597-30f7-418a-89f8-3e4fa8009efe
+
+	measure 'Valor #SBP Box Rate Vazio CAB' = ```
+			
+			VAR p =
+			    SELECTEDVALUE ( '#SBP Box Rate Vazio CAB'[#SBP Box Rate Vazio CAB] )
+			RETURN
+			    DIVIDE ( COALESCE ( p, 0 ), 10000 )
+			
+			```
+		lineageTag: 28b8ba8f-f618-4087-9f90-82019e50a3f4
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#SBP Box Rate Vazio CAB'
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: b8cdd98e-f47d-44d1-9473-7da338252570
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition '#SBP Box Rate Vazio CAB' = calculated
+		mode: import
+		source = GENERATESERIES(-10000, 5000, 1)
+
+	annotation PBI_Id = cd2dfdb2965e4f7b92e7148c5ace1480
+

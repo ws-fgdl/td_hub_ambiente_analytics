@@ -1,0 +1,28 @@
+table '#Busca Cntr Vazio'
+	lineageTag: 848ac6b3-8df8-4bd8-8bf2-3f484d5ebf81
+
+	measure 'Valor #Busca Cntr Vazio' = SELECTEDVALUE('#Busca Cntr Vazio'[#Coleta Cntr Vazio])
+		lineageTag: b5d87a9d-08f6-4499-9d47-71ce423f8e45
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#Coleta Cntr Vazio'
+		lineageTag: 470fb465-04b6-435a-97dd-6f79c17f3db2
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '#Busca Cntr Vazio' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 1, 0.001)
+
+	annotation PBI_Id = b73e4c4557594c189ed7adeecc681d94
+

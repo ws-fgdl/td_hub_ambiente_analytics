@@ -1,0 +1,27 @@
+table '#SBP Transferência de Lote'
+	lineageTag: 3ff49670-6486-4156-8b9d-5c1da7505689
+
+	measure 'Valor #SBP Transferência de Lote' = SELECTEDVALUE('#SBP Transferência de Lote'[#SBP Transferência de Lote])
+		lineageTag: 81f1704c-6937-4a10-9ab7-43e38262f36b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#SBP Transferência de Lote'
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 74c3f182-3388-4fd0-9351-ffcb63fd5d12
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition '#SBP Transferência de Lote' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 0.5, 0.0001)
+
+	annotation PBI_Id = d9870f8826854f558430f60d55ed0e2f
+

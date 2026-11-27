@@ -1,0 +1,27 @@
+table '#Vol Outros'
+	lineageTag: 3adc502d-a48e-4414-af53-ddaeb64cd8d7
+
+	measure 'Valor #Vol Outros' = SELECTEDVALUE('#Vol Outros'[#Vol Outros])
+		lineageTag: 592bc3f3-9dcf-47e4-aa28-11c463bc583f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#Vol Outros'
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 8636a135-9cdf-4595-b157-f532118f4270
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition '#Vol Outros' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 1, 0.01)
+
+	annotation PBI_Id = 283662468699481f8fed0f3e4172d808
+

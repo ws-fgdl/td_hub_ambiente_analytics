@@ -1,0 +1,28 @@
+table '#Armazenagem Cntr Vazios'
+	lineageTag: 674def3b-f48e-465d-b1f0-504c317a26f2
+
+	measure 'Valor #Armazenagem Cntr Vazios' = SELECTEDVALUE('#Armazenagem Cntr Vazios'[#Armazenagem Cntr Vazios])
+		lineageTag: 3b87be67-e075-4c75-af7f-f15f2c15eec3
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#Armazenagem Cntr Vazios'
+		lineageTag: f69871b0-b40d-4206-a704-9e6ee01567fa
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '#Armazenagem Cntr Vazios' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 1, 0.001)
+
+	annotation PBI_Id = 4c13684e56714720a9e80e3f23ffe3b1
+

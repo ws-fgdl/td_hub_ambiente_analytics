@@ -1,0 +1,43 @@
+expression 'Erros em tsv_movimentacao_cntr_daily' =
+		let
+		Fonte = aws_tsv_movimentacao_cntr_daily,
+		  #"Incompatibilidades de Tipo Detectadas" = let
+		    tableWithOnlyPrimitiveTypes = Table.SelectColumns(Fonte, Table.ColumnsOfType(Fonte, {type nullable number, type nullable text, type nullable logical, type nullable date, type nullable datetime, type nullable datetimezone, type nullable time, type nullable duration})),
+		    recordTypeFields = Type.RecordFields(Type.TableRow(Value.Type(tableWithOnlyPrimitiveTypes))),
+		    fieldNames = Record.FieldNames(recordTypeFields),
+		    fieldTypes = List.Transform(Record.ToList(recordTypeFields), each [Type]),
+		    pairs = List.Transform(List.Positions(fieldNames), (i) => {fieldNames{i}, (v) => if v = null or Value.Is(v, fieldTypes{i}) then v else error [Message = "O tipo do valor não corresponde ao tipo da coluna.", Detail = v], fieldTypes{i}})
+		in
+		    Table.TransformColumns(Fonte, pairs),
+		  #"Índice Adicionado" = Table.AddIndexColumn(#"Incompatibilidades de Tipo Detectadas", "Número da Linha" ,1),
+		  #"Erros Mantidos" = Table.SelectRowsWithErrors(#"Índice Adicionado", {"cod_cliente_sap", "dt_operacao", "dsc_dt_operacao", "navio_viagem", "nome_navio", "cd_linha", "dsc_linha", "operacao", "tipo_ope", "modalidade", "cd_porto", "porto_origem_opl", "pais_porto_origem", "porto_embarque_pol", "pais_porto_embarque", "porto_descarga_pod", "pais_porto_descarga", "porto_destino_opl", "pais_porto_desitino", "tamanho", "tipo", "status", "flag_perig", "flag_refrig", "flag_carga", "cd_iso", "cd_imo", "ncm", "mercadoria", "dsc_cliente_tecon", "grupo", "radical_cnpj", "dsc_armador", "cntr", "qtd_box", "qtd_teus", "operacao_id", "cod_modalidade", "hstmv", "hstmv2", "cod_documento2", "cod_eadi_id2", "cod_razao2", "cod_cliente_sap2"}),
+		  #"Colunas Reordenadas" = Table.ReorderColumns(#"Erros Mantidos", {"Número da Linha", "cod_cliente_sap", "dt_operacao", "dsc_dt_operacao", "navio_viagem", "nome_navio", "cd_linha", "dsc_linha", "operacao", "tipo_ope", "modalidade", "cd_porto", "porto_origem_opl", "pais_porto_origem", "porto_embarque_pol", "pais_porto_embarque", "porto_descarga_pod", "pais_porto_descarga", "porto_destino_opl", "pais_porto_desitino", "tamanho", "tipo", "status", "flag_perig", "flag_refrig", "flag_carga", "cd_iso", "cd_imo", "ncm", "mercadoria", "dsc_cliente_tecon", "grupo", "radical_cnpj", "dsc_armador", "cntr", "qtd_box", "qtd_teus", "operacao_id", "cod_modalidade", "hstmv", "hstmv2", "cod_documento2", "cod_eadi_id2", "cod_razao2", "cod_cliente_sap2"})
+		in
+		  #"Colunas Reordenadas"
+	lineageTag: 47b0d170-99a7-457b-a87b-7972c57e83d7
+	queryGroup: 'Erros na Consulta - 30/08/2024 14:59:51'
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+
+expression aws_tsv_movimentacao_cntr_daily =
+		let
+		    Fonte = PowerPlatform.Dataflows(null),
+		    Workspaces = Fonte{[Id="Workspaces"]}[Data],
+		    #"bcd54b55-e85f-4c30-a169-bfbf18f90f30" = Workspaces{[workspaceId="bcd54b55-e85f-4c30-a169-bfbf18f90f30"]}[Data],
+		    #"3eb59ef5-8b86-432b-8846-a02448d9bf51" = #"bcd54b55-e85f-4c30-a169-bfbf18f90f30"{[dataflowId="3eb59ef5-8b86-432b-8846-a02448d9bf51"]}[Data],
+		    tsv_movimentacao_cntr_daily_ = #"3eb59ef5-8b86-432b-8846-a02448d9bf51"{[entity="tsv_movimentacao_cntr_daily",version=""]}[Data],
+		    #"Tipo Alterado" = Table.TransformColumnTypes(tsv_movimentacao_cntr_daily_, {{"cod_cliente_sap", type text}, {"cod_cliente_sap2", type text}, {"cod_sap_byname", type text} }),
+		    RemoverZeroscCodClieneSap = Table.TransformColumns(#"Tipo Alterado", {"cod_cliente_sap", each if Text.Start(_, 2) = "00" then Text.Middle(_, 2) else _}),
+		    RemoverZeroscCodClieneSap2 = Table.TransformColumns(RemoverZeroscCodClieneSap, {"cod_cliente_sap2", each if Text.Start(_, 2) = "00" then Text.Middle(_, 2) else _}),
+		    RemoverZeroscCodSapByName = Table.TransformColumns(RemoverZeroscCodClieneSap2, {"cod_sap_byname", each if Text.Start(_, 2) = "00" then Text.Middle(_, 2) else _}),
+		    #"Tipo Alterado1" = Table.TransformColumnTypes(RemoverZeroscCodSapByName,{{"cod_cliente_sap", type text}, {"cod_cliente_sap2", type text}, {"cod_sap_byname", type text}})
+		in
+		    #"Tipo Alterado1"
+	lineageTag: 73bf54cf-5537-4a5e-9fb7-ab5d29e7b5ca
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

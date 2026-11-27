@@ -1,0 +1,28 @@
+table '#% GRIS'
+	lineageTag: 9010165b-93a6-427d-a371-e1293c13bd0a
+
+	measure 'Valor #% GRIS' = SELECTEDVALUE('#% GRIS'[#% GRIS])
+		lineageTag: b24d53c3-dfba-408c-8a71-07f9d0ec68b5
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#% GRIS'
+		lineageTag: abdb2289-9a38-46c7-9fc7-dd1f1b42663d
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '#% GRIS' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 1, 0.01)
+
+	annotation PBI_Id = 53167b2a659e4db18a3f66af8d7f7c40
+

@@ -1,0 +1,27 @@
+table '#Vol Bundle'
+	lineageTag: 08de86ab-24e5-4563-b63e-c85426c3f03f
+
+	measure 'Valor #Vol Bundle' = SELECTEDVALUE('#Vol Bundle'[#Vol Bundle])
+		lineageTag: 4782913f-5a58-4714-8edb-6be51b10f455
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#Vol Bundle'
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: b07fd25f-f0ef-4828-875f-66c5873237e2
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition '#Vol Bundle' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 1, 0.01)
+
+	annotation PBI_Id = b71f8f5d95334f3187fe260839118ad2
+

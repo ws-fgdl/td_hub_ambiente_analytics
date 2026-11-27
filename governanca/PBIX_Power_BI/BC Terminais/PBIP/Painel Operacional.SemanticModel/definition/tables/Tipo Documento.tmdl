@@ -1,0 +1,43 @@
+table 'Tipo Documento'
+	lineageTag: 3b50c901-dcdb-4d29-9b8d-95bcb6745474
+	sourceLineageTag: fec4bcac-9df8-47d6-92b3-f3dddd6fcc4c
+
+	column TIPO_DOCUMENTO_ID
+		dataType: int64
+		isHidden
+		isNullable: false
+		formatString: 0
+		lineageTag: 1cb4ee7d-1ab2-4d86-b09d-03035e481066
+		sourceLineageTag: 1bf87714-c8b9-4253-9c1b-a0e5b54afe17
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: TIPO_DOCUMENTO_ID
+
+		annotation SummarizationSetBy = User
+
+	column 'Tipo Documento Código'
+		dataType: string
+		lineageTag: 08c4f21e-c1ea-4dc7-a927-711ab9897b37
+		sourceLineageTag: 3927e4d5-d0cc-4cf0-954c-c510ce70e266
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Tipo Documento Código
+
+		annotation SummarizationSetBy = User
+
+	column 'Tipo Documento'
+		dataType: string
+		lineageTag: fef67086-918c-4c97-8d0b-7ab8e10bf4ce
+		sourceLineageTag: 831f0172-3728-416e-b811-3575eeeb04e0
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Tipo Documento
+
+		annotation SummarizationSetBy = User
+
+	partition 'Tipo Documento' = entity
+		mode: directQuery
+		source
+			entityName: Tipo Documento
+			expressionSource: 'DirectQuery para AS – Modelo Operações Portuárias'
+

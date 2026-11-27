@@ -1,0 +1,28 @@
+table '#SBP Bundle BT'
+	lineageTag: d25399fb-a459-43a7-9f2a-b892259c1f03
+
+	measure 'Valor #SBP Bundle BT' = SELECTEDVALUE('#SBP Bundle BT'[#SBP Bundle BT])
+		lineageTag: bb67ce46-4542-4638-afd3-855ce1c6099d
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#SBP Bundle BT'
+		lineageTag: 46a7b4be-203f-4bf4-bc3e-76178ab5dad3
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '#SBP Bundle BT' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 0.5, 0.0001)
+
+	annotation PBI_Id = 6d26f7c535854fc78ff0081631feb923
+

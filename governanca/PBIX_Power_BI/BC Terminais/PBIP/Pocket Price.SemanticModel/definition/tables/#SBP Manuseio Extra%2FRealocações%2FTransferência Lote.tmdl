@@ -1,0 +1,27 @@
+table '#SBP Manuseio Extra/Realocações/Transferência Lote'
+	lineageTag: f93c22e4-34c5-4d70-a1cc-4b3d4de112ab
+
+	measure 'Valor #SBP Manuseio Extra/Realocações/Transferência Lote' = SELECTEDVALUE('#SBP Manuseio Extra/Realocações/Transferência Lote'[#SBP Manuseio Extra/Realocações/Transferência Lote])
+		lineageTag: f9ed32a1-aea5-484f-8cef-71cbb43d8deb
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#SBP Manuseio Extra/Realocações/Transferência Lote'
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 1fb10e15-075a-4998-8acd-fddd94da516b
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition '#SBP Manuseio Extra/Realocações/Transferência Lote' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 0.5, 0.0001)
+
+	annotation PBI_Id = f8c3ada6978f4f898eabbe425d18957f
+

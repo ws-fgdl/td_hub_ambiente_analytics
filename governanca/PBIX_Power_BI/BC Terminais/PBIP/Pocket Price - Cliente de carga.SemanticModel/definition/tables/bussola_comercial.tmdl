@@ -1,0 +1,2149 @@
+table bussola_comercial
+	lineageTag: 66494aea-ea19-42ba-8c35-22b24923b7d2
+
+	column un
+		dataType: string
+		lineageTag: 0f51d15c-9fba-43c4-8979-9832faf5da1c
+		summarizeBy: none
+		sourceColumn: un
+
+		annotation SummarizationSetBy = Automatic
+
+	column duracao
+		dataType: int64
+		formatString: 0
+		lineageTag: 21cd167a-daf9-437c-be3c-59319a032672
+		summarizeBy: sum
+		sourceColumn: duracao
+
+		annotation SummarizationSetBy = Automatic
+
+	column volumetria
+		dataType: int64
+		lineageTag: d3f16873-aabb-4bc3-a2e4-f8cece754947
+		summarizeBy: sum
+		sourceColumn: volumetria
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column tipo_de_volume
+		dataType: string
+		lineageTag: ac6785dc-961a-43cc-928d-99eeae2d6b63
+		summarizeBy: none
+		sourceColumn: tipo_de_volume
+
+		annotation SummarizationSetBy = Automatic
+
+	column movimento
+		dataType: string
+		lineageTag: 0f3e0168-c07a-4460-b1a7-a3988cd0feb5
+		summarizeBy: none
+		sourceColumn: movimento
+
+		annotation SummarizationSetBy = Automatic
+
+	column tipo_de_movimento
+		dataType: string
+		lineageTag: 46860cb1-7d0e-4d29-b760-295bc38cb834
+		summarizeBy: none
+		sourceColumn: tipo_de_movimento
+
+		annotation SummarizationSetBy = Automatic
+
+	column navio
+		dataType: string
+		lineageTag: b61f7d70-bf6d-4fe8-b91d-2ba04ff0c1fa
+		summarizeBy: none
+		sourceColumn: navio
+
+		annotation SummarizationSetBy = Automatic
+
+	column owner
+		dataType: string
+		lineageTag: b9a73fdf-b866-48ab-a1be-a4875237adda
+		summarizeBy: none
+		sourceColumn: owner
+
+		annotation SummarizationSetBy = Automatic
+
+	column servico
+		dataType: string
+		lineageTag: 948c8b8d-7d97-431c-809c-b58e32a0ebfc
+		summarizeBy: none
+		sourceColumn: servico
+
+		annotation SummarizationSetBy = Automatic
+
+	column cliente
+		dataType: string
+		lineageTag: 7be74c91-c58a-4861-adcf-2c5316c814fb
+		summarizeBy: none
+		sourceColumn: cliente
+
+		annotation SummarizationSetBy = Automatic
+
+	column cliente_sap
+		dataType: string
+		lineageTag: 95464b7c-0b08-4535-a416-c8e95a599989
+		summarizeBy: none
+		sourceColumn: cliente_sap
+
+		annotation SummarizationSetBy = Automatic
+
+	column grupo_economico
+		dataType: string
+		lineageTag: 39f146d4-efb6-401a-9bc9-b9f055ad11ed
+		summarizeBy: none
+		sourceColumn: grupo_economico
+
+		annotation SummarizationSetBy = Automatic
+
+	column valor_faturado_brl
+		dataType: double
+		lineageTag: 0f2b7b07-b88b-47e4-8ba0-43d9d601de7a
+		summarizeBy: sum
+		sourceColumn: valor_faturado_brl
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column cif
+		dataType: double
+		lineageTag: 644105b7-721d-4d0b-a7f2-d0eef96fb3d1
+		summarizeBy: sum
+		sourceColumn: cif
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column tamanho_container
+		dataType: string
+		lineageTag: 83f98b79-aff0-40ab-9391-be5a6f36ccf1
+		summarizeBy: none
+		sourceColumn: tamanho_container
+
+		annotation SummarizationSetBy = Automatic
+
+	column status_container
+		dataType: string
+		lineageTag: d413a9ac-521d-4dd2-a88a-a5bf1e6488e0
+		summarizeBy: none
+		sourceColumn: status_container
+
+		annotation SummarizationSetBy = Automatic
+
+	column caracteristica_do_container
+		dataType: string
+		lineageTag: e0920c6f-b290-433f-bce1-ea0d874fd4d9
+		summarizeBy: none
+		sourceColumn: caracteristica_do_container
+
+		annotation SummarizationSetBy = Automatic
+
+	column imo
+		dataType: string
+		lineageTag: 45c49653-93d8-4c53-9df5-3036d861c4c0
+		summarizeBy: none
+		sourceColumn: imo
+
+		annotation SummarizationSetBy = Automatic
+
+	column oog
+		dataType: string
+		lineageTag: 4517d7c3-6de5-48a0-a672-5f32ee21a34e
+		summarizeBy: none
+		sourceColumn: oog
+
+		annotation SummarizationSetBy = Automatic
+
+	column situacao_pf
+		dataType: string
+		lineageTag: cafc431c-1560-4d85-85e6-5d2522c50a33
+		summarizeBy: none
+		sourceColumn: situacao_pf
+
+		annotation SummarizationSetBy = Automatic
+
+	column ncm
+		dataType: string
+		lineageTag: d8a70e30-7741-4ed6-9ec3-1ae09d2eccbd
+		summarizeBy: none
+		sourceColumn: ncm
+
+		annotation SummarizationSetBy = Automatic
+
+	column competencia
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: f60e6db4-79b3-4aec-9f40-6a3ad5d5426a
+		summarizeBy: none
+		sourceColumn: competencia
+
+		variation Variation
+			isDefault
+			relationship: 37872287-2a22-42b3-83f5-aeda4dea280f
+			defaultHierarchy: LocalDateTable_3b6f30e3-697d-4e4c-b0bc-c009ef7f405d.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column data_do_inicio_do_evento
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 95fa7c31-1893-431c-8b17-ffab62319a54
+		summarizeBy: none
+		sourceColumn: data_do_inicio_do_evento
+
+		variation Variation
+			isDefault
+			relationship: d762c95f-118e-4de8-9b98-18a778b499e3
+			defaultHierarchy: LocalDateTable_afa5a82b-9a28-4f71-90e5-cd05bf178883.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column data_do_fim_do_evento
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 34cbdcb2-e250-4d50-8441-18f465eaac6b
+		summarizeBy: none
+		sourceColumn: data_do_fim_do_evento
+
+		variation Variation
+			isDefault
+			relationship: 4716d328-b732-4a51-96c7-167c16e87186
+			defaultHierarchy: LocalDateTable_a874c2f8-09df-4680-a475-518ea74d0192.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Concat = bussola_comercial[cliente]&bussola_comercial[servico]
+		lineageTag: a7c3cebd-7e72-4d2f-b3cd-b3cff7e4fc10
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column dt_valor = ```
+			
+			IF(ISBLANK(bussola_comercial[competencia]), 
+			bussola_comercial[data_do_inicio_do_evento],
+			bussola_comercial[competencia]
+			)
+			```
+		dataType: int64
+		formatString: 0
+		lineageTag: aac91c3c-1dea-4b99-a543-17cb899e6a0e
+		summarizeBy: none
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column cobrar_de
+		dataType: string
+		lineageTag: 68d5499c-aee3-49f2-ab7b-383072330cc4
+		summarizeBy: none
+		sourceColumn: cobrar_de
+
+		annotation SummarizationSetBy = Automatic
+
+	column contrato_id
+		dataType: double
+		formatString: 0
+		lineageTag: 3f32ecb0-eb29-4780-ba93-f9a7f71d8438
+		summarizeBy: none
+		sourceColumn: contrato_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column CONT_MOV = ```
+			LOOKUPVALUE(
+			    'Serviço'[CONT_MOV],
+			    'Serviço'[Chave],
+			    bussola_comercial[chave1]
+			    
+			    )
+			```
+		lineageTag: c2ef877b-4481-4376-a0de-91d66054eb61
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column NOME_MOV = ```
+			LOOKUPVALUE(
+			    'Serviço'[NOME_MOV],
+			    'Serviço'[Chave],
+			    bussola_comercial[chave1]
+			    
+			    )
+			```
+		lineageTag: e954a022-6b5a-4d98-a7b8-6b8c98a2384a
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Duração em dia' =
+			IF(OR(bussola_comercial[data_do_fim_do_evento] = BLANK(), bussola_comercial[data_do_inicio_do_evento] = BLANK()), BLANK(),
+			 IF(bussola_comercial[datafim<datainicio] = "ERRADO", BLANK(),
+			 IF(DATEDIFF(bussola_comercial[data_do_inicio_do_evento], bussola_comercial[data_do_fim_do_evento], DAY) = 0, 1,
+			 DATEDIFF(bussola_comercial[data_do_inicio_do_evento], bussola_comercial[data_do_fim_do_evento], DAY))))
+		lineageTag: 45276dd8-5069-42fe-a559-22c9ea8218ea
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column datafim<datainicio = if(bussola_comercial[data_do_fim_do_evento]<bussola_comercial[data_do_inicio_do_evento], "ERRADO", "CERTO")
+		lineageTag: f9c86881-6792-461f-9dc5-25ef1c2df9b8
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Serv. Impactado/Tempo' = ```
+			LOOKUPVALUE(
+			    'Serviço'[Serviço é especial (carga de projeto ou salvatagem) ou é impactado por tempo?],
+			    'Serviço'[Chave],
+			    bussola_comercial[chave1]
+			    
+			    )
+			```
+		lineageTag: eca23eb7-9f7f-432e-8e94-5e03ee5e58f0
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ticket2 = ```
+			
+			    IF(bussola_comercial[Serv. Impactado/Tempo]="SIM", IF(bussola_comercial[Duração em dia] = BLANK(),bussola_comercial[valor_faturado_brl],bussola_comercial[valor_faturado_brl]/bussola_comercial[Duração em dia]), bussola_comercial[valor_faturado_brl])
+			```
+		lineageTag: 86e8ab3a-0a7d-462d-8ec8-a338d648e5d7
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Agrupamento Serviço' = ```
+			LOOKUPVALUE(
+			    'Serviço'[Categoria],
+			    'Serviço'[Chave],
+			    bussola_comercial[chave1]
+			    
+			    )
+			```
+		lineageTag: da0ce0d5-1b4f-43ff-9e50-3f2f93342f4f
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column chave1 = bussola_comercial[servico] & bussola_comercial[un]
+		lineageTag: 327f6db8-a92d-4f98-a293-08e803947c30
+		summarizeBy: none
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Agrupamento Subgrupo Princing' = ```
+			LOOKUPVALUE(
+			    'Serviço'[Sub Grupo Pricing],
+			    'Serviço'[Chave],
+			    bussola_comercial[chave1]
+			    
+			    )
+			```
+		lineageTag: 7e889709-c8b6-4c32-a939-182f03ae3df6
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Dias dif' = bussola_comercial[data_do_fim_do_evento]-bussola_comercial[data_do_inicio_do_evento]
+		dataType: int64
+		formatString: 0
+		lineageTag: c24269bc-10b7-4410-bdfb-426dc545bc8d
+		summarizeBy: sum
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column cod_contrato_servico = bussola_comercial[contrato_id]&bussola_comercial[cod_servico]&bussola_comercial[un]
+		lineageTag: 352d2f44-b90d-4d81-99f5-3ecccf0c25c4
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column tabela_publica = ```
+			
+			VAR price = CALCULATE(
+			        AVERAGE('Tabela Pública'[valor]),
+			        FILTER(
+			            'Tabela Pública',
+			            bussola_comercial[chave1] = 'Tabela Pública'[chave]
+			        ),
+			        DATESBETWEEN(bussola_comercial[data_do_fim_do_evento],MIN('Tabela Pública'[inicio_vigencia]),MAX('Tabela Pública'[fim_vigencia]))
+			        
+			)
+			
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    bussola_comercial[Agrupamento Subgrupo Princing] IN {"Fiel Depósito"},price/100,
+			    price
+			)
+			```
+		formatString: #,0.0000
+		lineageTag: c3484e4a-d24f-494f-aa58-66aa5e65c495
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column cod_servico = ```
+			
+			
+			LOOKUPVALUE(
+			    'tabela cod servico'[cod_servico],
+			    'tabela cod servico'[chave],
+			    bussola_comercial[chave1]
+			    
+			    )
+			```
+		lineageTag: 81ddec0f-9a2d-49c8-b050-495d89a8ed69
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column cobrar_de_sap
+		dataType: string
+		lineageTag: 3ca67ece-68e3-4f01-965e-8bdcd53b67af
+		summarizeBy: none
+		sourceColumn: cobrar_de_sap
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_valor_negociado = YEAR(bussola_comercial[data_do_fim_do_evento])&bussola_comercial[cod_servico]&bussola_comercial[cobrar_de_sap]&bussola_comercial[un]
+		lineageTag: d851e93a-d257-4e5e-acc6-eb629cefb280
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column duracao_em_dias
+		dataType: int64
+		formatString: 0
+		lineageTag: 85826d00-9fa8-4097-9b7e-16d22f646912
+		summarizeBy: sum
+		sourceColumn: duracao_em_dias
+
+		annotation SummarizationSetBy = Automatic
+
+	column chave
+		dataType: string
+		lineageTag: ee9b31f9-f3ec-48c3-b843-f0b74678f660
+		summarizeBy: none
+		sourceColumn: chave
+
+		annotation SummarizationSetBy = Automatic
+
+	column ticket
+		dataType: double
+		lineageTag: 37ec1adc-6cd4-41fc-92a8-b84478ff46b8
+		summarizeBy: sum
+		sourceColumn: ticket
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column qtd
+		dataType: double
+		lineageTag: 4fd1fb03-f86a-409b-ae63-366f6e92430b
+		summarizeBy: sum
+		sourceColumn: qtd
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column dias_permanencia_reais
+		dataType: double
+		formatString: 0
+		lineageTag: 2e541628-e4a2-46d2-85a1-85e11255ff1b
+		summarizeBy: sum
+		sourceColumn: dias_permanencia_reais
+
+		annotation SummarizationSetBy = Automatic
+
+	column dias_servico
+		dataType: double
+		formatString: #,0
+		lineageTag: 32d34687-fb8a-4dba-ab08-6e42f12a313f
+		summarizeBy: sum
+		sourceColumn: dias_servico
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_serv_contrato = bussola_comercial[contrato_id]&bussola_comercial[cod_servico]&bussola_comercial[un]
+		lineageTag: d0673269-03bc-4b95-9b23-4f60f5755f53
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column valor_negociado = ```
+			
+			
+			VAR lookup_default = CALCULATE(
+			        AVERAGE(contratos[valor]),
+			        FILTER(
+			            Contratos,
+			            Contratos[id_serv_contrato] = bussola_comercial[id_serv_contrato]
+			        )
+			    )
+			
+			var lookup_reefer = CALCULATE(
+			        MAX(contratos[valor]),
+			        FILTER(
+			            Contratos,
+			            Contratos[id_serv_contrato] = bussola_comercial[id_serv_contrato]
+			        )
+			    )
+			
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    bussola_comercial[Agrupamento Subgrupo Princing] IN {"Armazenagem Cntr Cheio","Armazenagem Cntr Vazios", "Armazenagem Cntr Vazios BT"}, BLANK(),
+			    bussola_comercial[Agrupamento Serviço] IN {"Reefer"},lookup_reefer,
+			    bussola_comercial[Agrupamento Subgrupo Princing] IN {"Fiel Depósito"},lookup_default/100,
+			    lookup_default
+			)
+			 
+			    // IF(bussola_comercial[Agrupamento Subgrupo Princing] IN {"Armazenagem Cntr Cheio","Armazenagem Cntr Vazios", "Armazenagem Cntr Vazios BT"},
+			    
+			    // BLANK(),
+			
+			    // IF(bussola_comercial[Agrupamento Serviço] IN {"Reefer"},
+			
+			    // CALCULATE(
+			    //     MAX(contratos[valor]),
+			    //     FILTER(
+			    //         Contratos,
+			    //         Contratos[id_serv_contrato] = bussola_comercial[id_serv_contrato]
+			    //     )
+			    // ),
+			
+			    // CALCULATE(
+			    //     AVERAGE(contratos[valor]),
+			    //     FILTER(
+			    //         Contratos,
+			    //         Contratos[id_serv_contrato] = bussola_comercial[id_serv_contrato]
+			    //     )
+			    // )
+			
+			    // ))
+			
+			```
+		lineageTag: cec22aa1-3a25-4de9-947f-11c3b9c140d4
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column flag_isencao =
+			
+			LOOKUPVALUE(contratos[flag_isencao],
+			contratos[id_serv_contrato],
+			bussola_comercial[id_serv_contrato]
+			)
+		lineageTag: ab93688b-2c32-465a-a5e5-aaa0f596db02
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column dias_isencao =
+			
+			VAR p_Cont = LOOKUPVALUE(contratos[dias_isencao],
+			contratos[id_serv_contrato],
+			bussola_comercial[id_serv_contrato]
+			)
+			
+			VAR p_table = LOOKUPVALUE('Tabela Pública'[dias_isencao],
+			'Tabela Pública'[id_serv_contrato],
+			bussola_comercial[id_serv_contrato]
+			)
+			
+			RETURN
+			IF( p_Cont = BLANK(), p_table, p_Cont)
+		lineageTag: bbbc0078-c4ca-471d-a08b-79638d305a5d
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column volume = ```
+			
+			
+			VAR _dias_servico   = 'bussola_comercial'[dias_servico]
+			VAR _dias_isencao   = 'bussola_comercial'[dias_isencao]
+			VAR _dias_free_time = 'bussola_comercial'[dias_free_time]
+			
+			RETURN
+			IF ( 'bussola_comercial'[Agrupamento Subgrupo Princing] IN {"Armazenagem Cntr Cheio", "Armazenagem Cntr Vazios", "Armazenagem Cntr Vazios BT", "Fornecimento de Energia Cntr Reefer", "Monitoramento Cntr Reefer", "Armazenagem Carga Importação"}
+			   , IF (_dias_free_time >= _dias_servico
+			        , 0
+			        , VAR _dias_servico_ajustado = _dias_servico - _dias_isencao
+			          RETURN IF(_dias_servico_ajustado < 0, 0, _dias_servico_ajustado)
+			        )
+			   , 'bussola_comercial'[qtd]
+			   )
+			
+			// VAR vDif = 'bussola_comercial'[dias_servico]-bussola_comercial[dias_isencao]
+			
+			// RETURN
+			// IF('bussola_comercial'[Agrupamento Subgrupo Princing] IN { "Fornecimento de Energia Cntr Reefer", "Monitoramento Cntr Reefer"},
+			// IF(vDif<0,0,vDif),
+			
+			// IF('bussola_comercial'[Agrupamento Subgrupo Princing] IN {"Armazenagem Cntr Cheio","Armazenagem Cntr Vazios","Armazenagem Cntr Vazios BT"},
+			// IF(vDif<0,0,vDif),
+			    
+			// 'bussola_comercial'[qtd])
+			// )
+			
+			```
+		lineageTag: 6549ab91-b0a8-4fc5-ba42-8d6a6f198879
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column tipo_precificacao = ```
+			//Campo para definir se o serviço possui o contrato ou não
+			
+			VAR pContrato = LOOKUPVALUE(contratos[id_serv_contrato], // Variável que procura se o serviço possui contrato
+			contratos[id_serv_contrato],
+			bussola_comercial[id_serv_contrato])
+			
+			RETURN
+			IF(pContrato = BLANK(),  //Lógica para identificar quando o serviço possui contrato
+			"Tabela Pública",
+			"Possui contrato"
+			)
+			
+			```
+		lineageTag: 5a7189ac-efdd-43b3-820e-6271a09be2db
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column cost_serv =
+			
+			LOOKUPVALUE('Custos TRG 06_2024'[CUSTO],
+			'Custos TRG 06_2024'[COD_SERV],
+			bussola_comercial[cod_servico])
+		lineageTag: d89a00a8-7302-4ab0-b619-91c9067e2883
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column dias_free_time = ```
+			
+			VAR p_Cont = LOOKUPVALUE(contratos[dias_free_time],
+			contratos[id_serv_contrato],
+			bussola_comercial[id_serv_contrato]
+			)
+			
+			VAR p_table = LOOKUPVALUE('Tabela Pública'[dias_free_time],
+			'Tabela Pública'[id_serv_contrato],
+			bussola_comercial[id_serv_contrato]
+			)
+			
+			RETURN
+			IF( p_Cont = BLANK(), p_table, p_Cont)
+			
+			```
+		lineageTag: f8f2a49c-ee41-4fd5-9418-c840a53e3cf8
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_p1 = bussola_comercial[id_serv_contrato]&1
+		lineageTag: f42c470e-22b8-465d-8748-dded5f6957c9
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_p2 = bussola_comercial[id_serv_contrato]&2
+		lineageTag: 00b05391-db14-462c-a4ab-e75b8ed370f3
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_p3 = bussola_comercial[id_serv_contrato]&3
+		lineageTag: 797e54ec-1f65-4998-aa4e-be749b6d9aed
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column price_p1 = ```
+			
+			
+			VAR vPrice = CALCULATE(
+			        AVERAGE(contratos[valor]),
+			        FILTER(
+			            Contratos,
+			            contratos[id_periodo] = bussola_comercial[id_p1]
+			        )
+			    )
+			
+			VAR vPrice_tabp = CALCULATE(
+			        AVERAGE('Tabela Pública'[valor]),
+			        FILTER(
+			            'Tabela Pública',
+			            'Tabela Pública'[id_periodo] = bussola_comercial[id_p1]
+			        )
+			)
+			
+			RETURN
+			    IF(bussola_comercial[Agrupamento Subgrupo Princing] IN {"Armazenagem Cntr Cheio","Armazenagem Cntr Vazios","Armazenagem Cntr Vazios BT"},
+			        IF(
+			            vPrice = BLANK(),
+			                vPrice_tabp,
+			                vPrice)
+			 )  
+			    
+			```
+		lineageTag: 322143fd-6c53-4a33-aba1-02f9f7b391cd
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column price_p2 = ```
+			
+			
+			var price_p2 = 
+			IF(bussola_comercial[Agrupamento Subgrupo Princing] IN {"Armazenagem Cntr Cheio","Armazenagem Cntr Vazios","Armazenagem Cntr Vazios BT"},
+			CALCULATE(
+			        AVERAGE(contratos[valor]),
+			        FILTER(
+			            Contratos,
+			            contratos[id_periodo] = bussola_comercial[id_p2]
+			        )
+			    ),
+			    BLANK())
+			
+			
+			VAR vPrice_tabp = 
+			IF(bussola_comercial[Agrupamento Subgrupo Princing] IN {"Armazenagem Cntr Cheio","Armazenagem Cntr Vazios","Armazenagem Cntr Vazios BT"},
+			CALCULATE(
+			        AVERAGE('Tabela Pública'[valor]),
+			        FILTER(
+			            'Tabela Pública',
+			            'Tabela Pública'[id_periodo] = bussola_comercial[id_p2]
+			        )
+			),
+			    BLANK())
+			
+			
+			
+			RETURN
+			
+			    IF(
+			        ISBLANK(price_p2),
+			            IF(ISBLANK(vPrice_tabp), bussola_comercial[price_p1],vPrice_tabp),price_p2)
+			                
+			    
+			        
+			```
+		lineageTag: b50532f3-4bf7-46fc-963d-6d3479815a82
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column price_p3 = ```
+			
+			
+			var price_p3 = 
+			IF(bussola_comercial[Agrupamento Subgrupo Princing] IN {"Armazenagem Cntr Cheio","Armazenagem Cntr Vazios","Armazenagem Cntr Vazios BT"},
+			CALCULATE(
+			        AVERAGE(contratos[valor]),
+			        FILTER(
+			            Contratos,
+			            contratos[id_periodo] = bussola_comercial[id_p3]
+			        )
+			    ),
+			    BLANK())
+			
+			VAR vPrice_tabp = 
+			IF(bussola_comercial[Agrupamento Subgrupo Princing] IN {"Armazenagem Cntr Cheio","Armazenagem Cntr Vazios","Armazenagem Cntr Vazios BT"},
+			CALCULATE(
+			        AVERAGE('Tabela Pública'[valor]),
+			        FILTER(
+			            'Tabela Pública',
+			            'Tabela Pública'[id_periodo] = bussola_comercial[id_p3]
+			        )
+			),
+			    BLANK())
+			
+			
+			
+			RETURN
+			
+			    IF(
+			        ISBLANK(price_p3),
+			            IF(ISBLANK(vPrice_tabp), bussola_comercial[price_p2], vPrice_tabp), price_p3)
+			                
+			```
+		lineageTag: da42eb45-519f-453b-9e6a-f0c726d2eca5
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column periodo1 = ```
+			
+			
+			VAR rest = bussola_comercial[volume]-(bussola_comercial[volume]-bussola_comercial[periodo1_contrato])
+			
+			var _is_trg = bussola_comercial[un] = "TRG" 
+			
+			var _is_tsv = bussola_comercial[un] = "TSV"
+			
+			RETURN 
+			
+			    // IF(
+			    //     bussola_comercial[Agrupamento Subgrupo Princing] IN {"Armazenagem Cntr Vazios","Armazenagem Cntr Vazios BT","Armazenagem Cntr Cheio"},
+			    //         IF(_is_tsv, IF(bussola_comercial[volume]<=bussola_comercial[periodo1_contrato],IF(bussola_comercial[volume]>0,1,0),IF(rest<=bussola_comercial[periodo1_contrato],1,0)),
+			    //             IF(_is_trg, IF(
+			    //         bussola_comercial[volume]>bussola_comercial[periodo1_contrato],bussola_comercial[periodo1_contrato],bussola_comercial[volume]
+			    //     ))))
+			                
+			IF(
+			    AND('bussola_comercial'[Agrupamento Subgrupo Princing] IN {"Armazenagem Cntr Cheio", "Armazenagem Carga Importação"},bussola_comercial[un]="TRG"),
+			
+			    IF(
+			        bussola_comercial[periodo1_contrato] = BLANK(),
+			        bussola_comercial[volume],
+			        IF(
+			            bussola_comercial[volume]>bussola_comercial[periodo1_contrato],bussola_comercial[periodo1_contrato],bussola_comercial[volume]
+			        )
+			    ),
+			
+			
+			IF(
+			    bussola_comercial[Agrupamento Subgrupo Princing] IN {"Armazenagem Cntr Vazios","Armazenagem Cntr Vazios BT","Armazenagem Cntr Cheio", "Armazenagem Carga Importação"},
+			    IF(
+			        bussola_comercial[periodo1_contrato] = BLANK(),
+			        bussola_comercial[volume],
+			        IF(
+			            bussola_comercial[volume]<=bussola_comercial[periodo1_contrato],IF(bussola_comercial[volume]>0,1,0),IF(rest<=bussola_comercial[periodo1_contrato],1,0)
+			        )
+			    )
+			    
+			        ,
+			    BLANK()
+			))
+			
+			
+			
+			// )))))
+			```
+		lineageTag: 982f4ced-8bda-473c-9725-5be1c628fe64
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column periodo2 = ```
+			
+			var _dias_p1_realizado = IF(bussola_comercial[volume] > bussola_comercial[periodo1_contrato], bussola_comercial[periodo1_contrato], bussola_comercial[volume])
+			
+			var _saldo_volume1 = bussola_comercial[volume] - _dias_p1_realizado 
+			
+			var rest = bussola_comercial[volume]-(bussola_comercial[volume]-(bussola_comercial[volume]-bussola_comercial[periodo1_contrato]))
+			
+			var rest2 = rest - (rest-bussola_comercial[periodo2_contrato])
+			
+			var _sub_grupo_princing = bussola_comercial[Agrupamento Subgrupo Princing]
+			
+			//variável para verificar contexto 
+			
+			            var _is_trg_armador = bussola_comercial[un] = "TRG" && CONTAINSSTRING(bussola_comercial[servico], "EXP")
+			 
+			            var _is_trg_carga = bussola_comercial[un] = "TRG" && CONTAINSSTRING(bussola_comercial[servico], "IMP") && RELATED(salesforce[Armador/Cliente Carga]) = "Cliente Carga"
+			 
+			            var _is_trg_vazio = bussola_comercial[un] = "TRG" && _sub_grupo_princing IN {"Armazenagem Cntr Vazios", "Armazenagem Cntr Vazios BT"}
+			 
+			            // var _is_tsv_armador = bussola_comercial[un] = "TSV" && CONTAINSSTRING(bussola_comercial[servico], "EXP")
+			
+			            var _is_tsv_armador = bussola_comercial[un] = "TSV" && RELATED(salesforce[Armador/Cliente Carga]) = "Armador"
+			 
+			            var _is_tsv_carga = bussola_comercial[un] = "TSV" && RELATED(salesforce[Armador/Cliente Carga]) = "Cliente Carga"
+			            // && CONTAINSSTRING(bussola_comercial[servico], "IMP")
+			
+			RETURN
+			
+			    SWITCH(
+			    TRUE(),
+			
+			        //CONDIÇÃO TRG ARMADOR
+			    //_is_trg_armador,  IF(_saldo_volume1 > bussola_comercial[periodo2_contrato], bussola_comercial[periodo2_contrato], -_saldo_volume1),
+			
+			     //CONDIÇÃO TSV ARMADOR
+			    _is_tsv_armador, IF(_saldo_volume1 > 0,1,0),
+			
+			    //CONDIÇÃO TRG VAZIO
+			    _is_trg_vazio, ROUNDUP(DIVIDE(_saldo_volume1,bussola_comercial[periodo2_contrato]),0),
+			
+			    //CONDIÇÃO TRG CHEIO 
+			    _is_trg_armador, _saldo_volume1,
+			
+			    //CONDIÇÃO TRG CARGA
+			    _is_trg_carga, IF(_saldo_volume1 > bussola_comercial[periodo2_contrato], bussola_comercial[periodo2_contrato],  _saldo_volume1),
+			
+			    //CONDIÇÃO TSV CARGA
+			    // _is_tsv_carga, IF(_saldo_volume1 > bussola_comercial[periodo1_contrato] + bussola_comercial[dias_portas_p1],1,0),
+			    _is_tsv_carga && _saldo_volume1 > 0,1,
+			
+			
+			     //ORIGINAL
+			    // AND('bussola_comercial'[Agrupamento Subgrupo Princing] IN {"Armazenagem Cntr Cheio"}, 
+			    //     bussola_comercial[un] = "TRG" &&
+			    //     bussola_comercial[periodo2_contrato] <> BLANK()),
+			
+			    //     IF(_is_tsv,
+			    //         IF(rest > bussola_comercial[periodo2_contrato], 
+			    //            IF(rest2 < 0, 0, rest2), 
+			    //            IF(rest < 0, 0, rest)),
+			    //         IF(rest < 0, 0, rest)),
+			
+			    //     IF(rest < 0, 0, rest),
+			    
+			    // AND('bussola_comercial'[Agrupamento Subgrupo Princing] IN {"Armazenagem Cntr Vazios", "Armazenagem Cntr Vazios BT", "Armazenagem Cntr Cheio"},
+			    //     bussola_comercial[periodo2_contrato] <> BLANK()),
+			    //     IF(_is_tsv,
+			    //         IF(rest > bussola_comercial[periodo2_contrato], 
+			    //            ROUNDUP(IF(rest - (rest - bussola_comercial[periodo2_contrato]) <= bussola_comercial[periodo2_contrato], 1, 0), 0), 
+			    //            ROUNDUP(IF(rest > 0, 
+			    //                      IF(AND(rest / bussola_comercial[periodo2_contrato] > 1, bussola_comercial[periodo3_contrato] = BLANK()), 
+			    //                         rest / bussola_comercial[periodo2_contrato], 
+			    //                         1), 
+			    //                      0), 0)),
+			    //         IF(rest > 0, 
+			    //            ROUNDUP(IF(AND(rest / bussola_comercial[periodo2_contrato] > 1, bussola_comercial[periodo3_contrato] = BLANK()), 
+			    //                      rest / bussola_comercial[periodo2_contrato], 
+			    //                      1), 0), 
+			    //            0)),
+			    
+			    //ELSE
+			    BLANK()
+			)
+			```
+		lineageTag: 67b1e0b3-1455-444c-9220-ffe52556a9ab
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column periodo3 = ```
+			
+			
+			--SE([@[Saldo Volume P2 realizado]] <= 0, 0, ARREDONDAR.PARA.CIMA([@[Saldo Volume P2 realizado]] / [@[periodo3_contrato]], 0))
+			
+			VAR rest = (bussola_comercial[volume] - (bussola_comercial[periodo1_contrato] + bussola_comercial[periodo2_contrato]))
+			
+			VAR rest2 = (bussola_comercial[volume] - (bussola_comercial[periodo1] + bussola_comercial[periodo2]))
+			
+			VAR _DIAS_P1_REALIZADO = IF(bussola_comercial[volume] > bussola_comercial[periodo1_contrato], bussola_comercial[periodo1_contrato], bussola_comercial[volume])
+			
+			VAR _SALDO_VOLUME_P1 = bussola_comercial[volume] - _DIAS_P1_REALIZADO
+			
+			VAR _DIAS_P2_REALIZADO = IF(bussola_comercial[volume] <= bussola_comercial[periodo1_contrato], 0, IF(bussola_comercial[periodo2_contrato] < _SALDO_VOLUME_P1, bussola_comercial[periodo2_contrato], _SALDO_VOLUME_P1))
+			
+			VAR _SALDO_VOLUME_P2 = bussola_comercial[volume] - _DIAS_P1_REALIZADO - _DIAS_P2_REALIZADO
+			
+			var _is_trg_carga = bussola_comercial[un] = "TRG" && CONTAINSSTRING(bussola_comercial[servico], "IMP") && RELATED(salesforce[Armador/Cliente Carga]) = "Cliente Carga"
+			
+			var _is_tsv = bussola_comercial[un] = "TSV"
+			RETURN
+			IF(
+			    // CONDIÇÃO TRG ARMADOR
+			    //_is_trg_armador, 0,
+			    
+			    // CONDIÇÃO TRG CARGA
+			    _is_trg_carga,
+			        IF(_SALDO_VOLUME_P2 <= bussola_comercial[periodo3_contrato], _SALDO_VOLUME_P2, bussola_comercial[periodo3_contrato]),
+			
+			    // CONDIÇÃO TSV 
+			    IF(_is_tsv,
+			        IF(_SALDO_VOLUME_P2 > 0,ROUNDUP(DIVIDE(_SALDO_VOLUME_P2,bussola_comercial[periodo3_contrato]),0),0),
+			        
+			        //ORIGINAL
+			        IFERROR(
+			            IF(
+			                AND('bussola_comercial'[Agrupamento Subgrupo Princing] IN {"Armazenagem Cntr Cheio", "Armazenagem Carga Importação"}, bussola_comercial[un] = "TRG"),
+			                IF(rest2 < 0, 0, rest2),
+			                
+			                IF('bussola_comercial'[Agrupamento Subgrupo Princing] IN {"Armazenagem Cntr Vazios", "Armazenagem Cntr Vazios BT", "Armazenagem Cntr Cheio", "Armazenagem Carga Importação"},
+			                    IF(bussola_comercial[periodo2] > 1, 
+			                        BLANK(),
+			                        ROUNDUP(
+			                            IF(rest > 0, 
+			                                rest / ROUNDUP(
+			                                    IF(bussola_comercial[periodo3_contrato] = BLANK(),
+			                                        IF(bussola_comercial[periodo2_contrato] = BLANK(),
+			                                            bussola_comercial[periodo1_contrato],
+			                                            bussola_comercial[periodo2_contrato]),
+			                                        bussola_comercial[periodo3_contrato]),
+			                                    0),
+			                                0),
+			                            0)
+			                    ),
+			                    0
+			                )
+			            ),
+			            0
+			        )
+			    )
+			)
+			```
+		lineageTag: ae898658-01de-4036-af38-b0abfcdd49a1
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column periodo1_contrato =
+			
+			IF ( bussola_comercial[Agrupamento Subgrupo Princing] IN {"Armazenagem Cntr Cheio","Armazenagem Cntr Vazios","Armazenagem Cntr Vazios BT", "Armazenagem Carga Importação"},
+			    IF(bussola_comercial[periodo1_contrato_contrato] = BLANK(),
+			    bussola_comercial[periodo1_contrato_tabp],
+			    bussola_comercial[periodo1_contrato_contrato])
+			   , BLANK()
+			)
+		lineageTag: e33fc333-30e7-4309-82b4-986994191d3b
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column periodo2_contrato =
+			
+			IF ( bussola_comercial[Agrupamento Subgrupo Princing] IN {"Armazenagem Cntr Cheio","Armazenagem Cntr Vazios","Armazenagem Cntr Vazios BT", "Armazenagem Carga Importação"},
+			
+			    COALESCE(
+			        bussola_comercial[periodo2_contrato_contrato],
+			        bussola_comercial[periodo2_contrato_tabp],
+			        bussola_comercial[periodo1_contrato]
+			    )
+			)
+		lineageTag: 6bc998e3-40b7-4efb-9aa2-6d95c8b54e8b
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column periodo3_contrato =
+			
+			IF ( bussola_comercial[Agrupamento Subgrupo Princing] IN {"Armazenagem Cntr Cheio","Armazenagem Cntr Vazios","Armazenagem Cntr Vazios BT"},
+			
+			    COALESCE(
+			        bussola_comercial[periodo3_contrato_contrato],
+			        bussola_comercial[periodo3_contrato_tabp],
+			        bussola_comercial[periodo2_contrato]
+			    )
+			)
+		lineageTag: 01b97ce0-109e-43bb-a8aa-a1281e3ce630
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ad_carga_especial =
+			
+			var procv = LOOKUPVALUE(contratos[adic_mercadoria_especial],
+			contratos[id_serv_contrato],
+			bussola_comercial[id_serv_contrato])
+			
+			RETURN
+			IF(bussola_comercial[Agrupamento Subgrupo Princing] IN {"Armazenagem Cntr Cheio","Armazenagem Cntr Vazios","Armazenagem Cntr Vazios BT"},
+			IF(procv<>BLANK(),"Carga Especial",BLANK()),
+			BLANK()
+			)
+		lineageTag: c0b1fc43-f053-46c5-9864-9a8c85bd174b
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Precficação USD' = ```
+			
+			
+			IF(
+			    bussola_comercial[servico] 
+			    IN {
+			        "DESEMBARQUE DE CNTR CHEIO TRA",
+			        "DESEMBARQUE DE CNTR VAZIO TRA",  
+			        "EMBARQUE DE CNTR CHEIO TRA", 
+			        "EMBARQUE DE CNTR VAZIO TRA",
+			        "HORA PARADA POR TERNO HORA (CABOTAGEM)", 
+			        "HORA PARADA POR TERNO HORA (LONGO CURSO)"},
+			    "USD",
+			    "R$"
+			)
+			
+			```
+		lineageTag: d202bb15-4e9f-4a9c-9ad4-e334ff1e7d08
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_p4 = bussola_comercial[id_serv_contrato] & 4
+		lineageTag: aaf58f25-c26b-4363-824b-f9ce7c48ce1b
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column periodo4_contrato =
+			
+			IF ( bussola_comercial[Agrupamento Subgrupo Princing] IN {"Armazenagem Cntr Cheio","Armazenagem Cntr Vazios","Armazenagem Cntr Vazios BT", "Armazenagem Carga Importação"},
+			
+			    COALESCE(
+			        bussola_comercial[periodo4_contrato_contrato],
+			        bussola_comercial[periodo4_contrato_contrato],
+			        bussola_comercial[periodo3_contrato]
+			    )
+			)
+		lineageTag: f14daddf-49ef-4d1b-9ff0-8b965f25079f
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column valor_minimo_periodo1 = ```
+			
+			
+			VAR Valor_Min_Contrato = CALCULATE(
+			        AVERAGE(contratos[valor_minimo_periodo]),
+			        FILTER(
+			            Contratos,
+			            contratos[id_periodo] = bussola_comercial[id_p1]
+			        )
+			    )
+			
+			VAR Valor_Min_TabP = CALCULATE(
+			        AVERAGE('Tabela Pública'[valor_minimo_periodo]),
+			        FILTER(
+			            'Tabela Pública',
+			            'Tabela Pública'[id_periodo] = bussola_comercial[id_p1]
+			        )
+			)
+			
+			VAR valor_min_tabela = 
+			LOOKUPVALUE(
+			    contratos[valor_minimo_tabela],
+			    contratos[id_serv_contrato],
+			    bussola_comercial[id_serv_contrato]
+			)
+			
+			RETURN
+			SWITCH(
+			    TRUE(),
+			        bussola_comercial[Agrupamento Subgrupo Princing] IN {"Armazenagem Cntr Cheio","Armazenagem Cntr Vazios","Armazenagem Cntr Vazios BT", "Armazenagem Carga Importação"},
+			        IF(
+			            Valor_Min_Contrato = BLANK(),
+			                Valor_Min_TabP,
+			                Valor_Min_Contrato),
+			        bussola_comercial[Agrupamento Subgrupo Princing] IN {"Fiel Depósito"}, valor_min_tabela
+			)
+			
+			
+			-- IF(bussola_comercial[Agrupamento Subgrupo Princing] IN {"Armazenagem Cntr Cheio","Armazenagem Cntr Vazios","Armazenagem Cntr Vazios BT"} && bussola_comercial[un]="TSV",
+			--LOOKUPVALUE(contratos[valor],
+			--contratos[id_periodo],
+			--bussola_comercial[id_p1]),
+			--IF(bussola_comercial[Agrupamento Subgrupo Princing] IN {"Armazenagem Cntr Cheio","Armazenagem Cntr Vazios","Armazenagem Cntr Vazios BT"},
+			--LOOKUPVALUE('Tabela Pública'[dias_periodo],
+			--'Tabela Pública'[id_periodo],
+			--bussola_comercial[id_p1],
+			--BLANK()
+			--)
+			--)
+			
+			```
+		lineageTag: a1d868d8-0f6b-4cce-9539-76d5b283d09a
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column valor_minimo_periodo2 = ```
+			
+			
+			var _valor_minimo_periodo2 = 
+			IF(bussola_comercial[Agrupamento Subgrupo Princing] IN {"Armazenagem Cntr Cheio","Armazenagem Cntr Vazios","Armazenagem Cntr Vazios BT", "Armazenagem Carga Importação"},
+			CALCULATE(
+			        AVERAGE(contratos[valor_minimo_periodo]),
+			        FILTER(
+			            Contratos,
+			            contratos[id_periodo] = bussola_comercial[id_p2]
+			        )
+			    ),
+			    BLANK())
+			
+			
+			VAR Valor_Min_TabP = 
+			IF(bussola_comercial[Agrupamento Subgrupo Princing] IN {"Armazenagem Cntr Cheio","Armazenagem Cntr Vazios","Armazenagem Cntr Vazios BT", "Armazenagem Carga Importação"},
+			CALCULATE(
+			        AVERAGE('Tabela Pública'[valor_minimo_periodo]),
+			        FILTER(
+			            'Tabela Pública',
+			            'Tabela Pública'[id_periodo] = bussola_comercial[id_p2]
+			        )
+			),
+			    BLANK())
+			
+			
+			RETURN
+			
+			    IF(
+			        ISBLANK(_valor_minimo_periodo2),
+			            IF(ISBLANK(Valor_Min_TabP), bussola_comercial[valor_minimo_periodo1],Valor_Min_TabP),_valor_minimo_periodo2)
+			
+			-- IF(bussola_comercial[Agrupamento Subgrupo Princing] IN {"Armazenagem Cntr Cheio","Armazenagem Cntr Vazios","Armazenagem Cntr Vazios BT"} && bussola_comercial[un]="TSV",
+			--LOOKUPVALUE(contratos[valor],
+			--contratos[id_periodo],
+			--bussola_comercial[id_p1]),
+			--IF(bussola_comercial[Agrupamento Subgrupo Princing] IN {"Armazenagem Cntr Cheio","Armazenagem Cntr Vazios","Armazenagem Cntr Vazios BT"},
+			--LOOKUPVALUE('Tabela Pública'[dias_periodo],
+			--'Tabela Pública'[id_periodo],
+			--bussola_comercial[id_p1],
+			--BLANK()
+			--)
+			--)
+			```
+		lineageTag: bcb1fc03-a6ec-4889-962a-2ebb0b01d2b2
+		summarizeBy: average
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column valor_minimo_periodo3 = ```
+			
+			
+			var _valor_minimo_periodo3 = 
+			IF(bussola_comercial[Agrupamento Subgrupo Princing] IN {"Armazenagem Cntr Cheio","Armazenagem Cntr Vazios","Armazenagem Cntr Vazios BT", "Armazenagem Carga Importação"},
+			CALCULATE(
+			        AVERAGE(contratos[valor_minimo_periodo]),
+			        FILTER(
+			            Contratos,
+			            contratos[id_periodo] = bussola_comercial[id_p3]
+			        )
+			    ),
+			    BLANK())
+			
+			
+			VAR Valor_Min_TabP = 
+			IF(bussola_comercial[Agrupamento Subgrupo Princing] IN {"Armazenagem Cntr Cheio","Armazenagem Cntr Vazios","Armazenagem Cntr Vazios BT", "Armazenagem Carga Importação"},
+			CALCULATE(
+			        AVERAGE('Tabela Pública'[valor_minimo_periodo]),
+			        FILTER(
+			            'Tabela Pública',
+			            'Tabela Pública'[id_periodo] = bussola_comercial[id_p3]
+			        )
+			),
+			    BLANK())
+			
+			
+			
+			RETURN
+			
+			    IF(
+			        ISBLANK(_valor_minimo_periodo3),
+			            IF(ISBLANK(Valor_Min_TabP), bussola_comercial[valor_minimo_periodo2],Valor_Min_TabP),_valor_minimo_periodo3)
+			
+			-- IF(bussola_comercial[Agrupamento Subgrupo Princing] IN {"Armazenagem Cntr Cheio","Armazenagem Cntr Vazios","Armazenagem Cntr Vazios BT"} && bussola_comercial[un]="TSV",
+			--LOOKUPVALUE(contratos[valor],
+			--contratos[id_periodo],
+			--bussola_comercial[id_p1]),
+			--IF(bussola_comercial[Agrupamento Subgrupo Princing] IN {"Armazenagem Cntr Cheio","Armazenagem Cntr Vazios","Armazenagem Cntr Vazios BT"},
+			--LOOKUPVALUE('Tabela Pública'[dias_periodo],
+			--'Tabela Pública'[id_periodo],
+			--bussola_comercial[id_p1],
+			--BLANK()
+			--)
+			--)
+			```
+		lineageTag: a623a265-5d18-490a-83e8-f452c78e3f95
+		summarizeBy: average
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column valor_minimo_periodo4 = ```
+			
+			
+			var _valor_minimo_periodo4 = 
+			IF(bussola_comercial[Agrupamento Subgrupo Princing] IN {"Armazenagem Cntr Cheio","Armazenagem Cntr Vazios","Armazenagem Cntr Vazios BT", "Armazenagem Carga Importação"},
+			CALCULATE(
+			        AVERAGE(contratos[valor_minimo_periodo]),
+			        FILTER(
+			            Contratos,
+			            contratos[id_periodo] = bussola_comercial[id_p4]
+			        )
+			    ),
+			    BLANK())
+			
+			
+			VAR Valor_Min_TabP = 
+			IF(bussola_comercial[Agrupamento Subgrupo Princing] IN {"Armazenagem Cntr Cheio","Armazenagem Cntr Vazios","Armazenagem Cntr Vazios BT", "Armazenagem Carga Importação"},
+			CALCULATE(
+			        AVERAGE('Tabela Pública'[valor_minimo_periodo]),
+			        FILTER(
+			            'Tabela Pública',
+			            'Tabela Pública'[id_periodo] = bussola_comercial[id_p4]
+			        )
+			),
+			    BLANK())
+			
+			
+			
+			RETURN
+			
+			    IF(
+			        ISBLANK(_valor_minimo_periodo4),
+			            IF(ISBLANK(Valor_Min_TabP), bussola_comercial[valor_minimo_periodo3],Valor_Min_TabP),_valor_minimo_periodo4)
+			
+			-- IF(bussola_comercial[Agrupamento Subgrupo Princing] IN {"Armazenagem Cntr Cheio","Armazenagem Cntr Vazios","Armazenagem Cntr Vazios BT"} && bussola_comercial[un]="TSV",
+			--LOOKUPVALUE(contratos[valor],
+			--contratos[id_periodo],
+			--bussola_comercial[id_p1]),
+			--IF(bussola_comercial[Agrupamento Subgrupo Princing] IN {"Armazenagem Cntr Cheio","Armazenagem Cntr Vazios","Armazenagem Cntr Vazios BT"},
+			--LOOKUPVALUE('Tabela Pública'[dias_periodo],
+			--'Tabela Pública'[id_periodo],
+			--bussola_comercial[id_p1],
+			--BLANK()
+			--)
+			--)
+			```
+		lineageTag: ba48863e-fec0-400c-ac96-694ff8a75711
+		summarizeBy: average
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column perc_cif_periodo1 = ```
+			
+			
+			VAR PERC_1 = IF ( bussola_comercial[Agrupamento Subgrupo Princing] IN {"Armazenagem Cntr Cheio","Armazenagem Cntr Vazios","Armazenagem Cntr Vazios BT", "Armazenagem Carga Importação"},
+			    IF(bussola_comercial[perc_cif_periodo1_contrato] = BLANK(),
+			    bussola_comercial[perc_cif_periodo1_tabp],
+			    bussola_comercial[perc_cif_periodo1_contrato])
+			   , BLANK()
+			)
+			
+			RETURN 
+			
+			SWITCH(TRUE(),
+			AND(bussola_comercial[grupo_economico_ter] = "GRUPO RANDON", bussola_comercial[Agrupamento Subgrupo Princing] = "Fiel Depósito"),
+			DIVIDE(PERC_1,10000,0),
+			DIVIDE(PERC_1,100,0)
+			)
+			```
+		formatString: 0.0000%;-0.0000%;0.0000%
+		lineageTag: 4347ae06-d627-4384-811c-36491772e424
+		summarizeBy: average
+
+		annotation SummarizationSetBy = User
+
+	column perc_cif_periodo2 = ```
+			
+			
+			VAR PERC_2 = IF ( bussola_comercial[Agrupamento Subgrupo Princing] IN {"Armazenagem Cntr Cheio","Armazenagem Cntr Vazios","Armazenagem Cntr Vazios BT", "Armazenagem Carga Importação"},
+			    IF(bussola_comercial[perc_cif_periodo2_contrato] = BLANK(),
+			    bussola_comercial[perc_cif_periodo2_tabp],
+			    bussola_comercial[perc_cif_periodo2_contrato])
+			   , BLANK()
+			)
+			
+			RETURN 
+			SWITCH(TRUE(),
+			AND(bussola_comercial[grupo_economico_ter] = "GRUPO RANDON", bussola_comercial[Agrupamento Subgrupo Princing] = "Fiel Depósito"),
+			DIVIDE(PERC_2,10000,0),
+			DIVIDE(PERC_2,100,0)
+			)
+			```
+		formatString: 0.0000%;-0.0000%;0.0000%
+		lineageTag: 01f3c10f-c8d3-4fe6-8c11-9deeb1429d31
+		summarizeBy: average
+
+		annotation SummarizationSetBy = User
+
+	column perc_cif_periodo3 =
+			
+			
+			
+			VAR PERC_3 = IF ( bussola_comercial[Agrupamento Subgrupo Princing] IN {"Armazenagem Cntr Cheio","Armazenagem Cntr Vazios","Armazenagem Cntr Vazios BT", "Armazenagem Carga Importação"},
+			    IF(bussola_comercial[perc_cif_periodo2_contrato] = BLANK(),
+			    bussola_comercial[perc_cif_periodo3_tabp],
+			    bussola_comercial[perc_cif_periodo3_contrato])
+			   , BLANK()
+			)
+			
+			RETURN
+			
+			SWITCH(TRUE(),
+			AND(bussola_comercial[grupo_economico_ter] = "GRUPO RANDON", bussola_comercial[Agrupamento Subgrupo Princing] = "Fiel Depósito"),
+			DIVIDE(PERC_3,10000,0),
+			DIVIDE(PERC_3,100,0)
+			)
+		formatString: 0.0000%;-0.0000%;0.0000%
+		lineageTag: f025d2c5-931d-4ad8-b4ec-a3826303a11d
+		summarizeBy: average
+
+		annotation SummarizationSetBy = User
+
+	column perc_cif_periodo4 =
+			
+			
+			VAR PERC_4 = IF ( bussola_comercial[Agrupamento Subgrupo Princing] IN {"Armazenagem Cntr Cheio","Armazenagem Cntr Vazios","Armazenagem Cntr Vazios BT", "Armazenagem Carga Importação"},
+			    IF(bussola_comercial[perc_cif_periodo2_contrato] = BLANK(),
+			    bussola_comercial[perc_cif_periodo4_tabp],
+			    bussola_comercial[perc_cif_periodo4_contrato])
+			   , BLANK()
+			)
+			
+			RETURN
+			
+			SWITCH(TRUE(),
+			AND(bussola_comercial[grupo_economico_ter] = "GRUPO RANDON", bussola_comercial[Agrupamento Subgrupo Princing] = "Fiel Depósito"),
+			DIVIDE(PERC_4,10000,0),
+			DIVIDE(PERC_4,100,0)
+			)
+		formatString: 0.0000%;-0.0000%;0.0000%
+		lineageTag: cb076db3-c2b4-45df-952b-04d6d40e070e
+		summarizeBy: average
+
+		annotation SummarizationSetBy = User
+
+	column periodo4 = ```
+			
+			
+			VAR _DIAS_P1_REALIZADO = 
+			    IF(bussola_comercial[volume] > bussola_comercial[periodo1_contrato],
+			        bussola_comercial[periodo1_contrato], 
+			        bussola_comercial[volume])
+			
+			VAR _SALDO_VOLUME1_REALIZADO = bussola_comercial[volume] - _DIAS_P1_REALIZADO
+			
+			VAR _DIAS_P2_REALIZADO = 
+			    IF(bussola_comercial[volume] <= bussola_comercial[periodo1_contrato],
+			        0, 
+			            IF(bussola_comercial[periodo2_contrato] < _SALDO_VOLUME1_REALIZADO, 
+			                bussola_comercial[periodo2_contrato], _SALDO_VOLUME1_REALIZADO))
+			
+			VAR _SALDO_VOLUME2_REALIZADO = bussola_comercial[volume] - _DIAS_P1_REALIZADO - _DIAS_P2_REALIZADO
+			
+			
+			
+			VAR _DIAS_P3_REALIZADO = 
+			    IF(_SALDO_VOLUME2_REALIZADO <= 0, 
+			        0, 
+			            IF(_SALDO_VOLUME2_REALIZADO < bussola_comercial[periodo3_contrato],
+			                _SALDO_VOLUME2_REALIZADO, bussola_comercial[periodo3_contrato]))
+			                
+			VAR _SALDO_VOLUME3_REALIZADO = bussola_comercial[volume] - _DIAS_P1_REALIZADO - _DIAS_P2_REALIZADO - _DIAS_P3_REALIZADO
+			
+			var _is_trg_armador = bussola_comercial[un] = "TRG" && CONTAINSSTRING(bussola_comercial[servico], "EXP")
+			
+			var _is_trg_carga = bussola_comercial[un] = "TRG" && CONTAINSSTRING(bussola_comercial[servico], "IMP") && RELATED(salesforce[Armador/Cliente Carga]) = "Cliente Carga"
+			
+			var _is_tsv = bussola_comercial[un] = "TSV"
+			
+			RETURN 
+			
+			    SWITCH(
+			        TRUE(),
+			
+			        //TRG CARGA
+			        _is_trg_carga, ROUNDUP(IF(_SALDO_VOLUME3_REALIZADO <= 0, 0, _SALDO_VOLUME3_REALIZADO),0),
+			
+			        0)
+			```
+		lineageTag: 09379cd5-9d8d-4140-9304-602bc31352a7
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column dias_portas_p1 =
+			
+			IF ( bussola_comercial[Agrupamento Subgrupo Princing] IN {"Armazenagem Cntr Cheio","Armazenagem Cntr Vazios","Armazenagem Cntr Vazios BT"}
+			   , LOOKUPVALUE
+			     ( contratos[dias_portas]
+			     , contratos[id_periodo]
+			     , bussola_comercial[id_p1]
+			     ),
+			IF(bussola_comercial[Agrupamento Subgrupo Princing] IN {"Armazenagem Cntr Cheio","Armazenagem Cntr Vazios","Armazenagem Cntr Vazios BT"},
+			LOOKUPVALUE('Tabela Pública'[dias_periodo],
+			'Tabela Pública'[id_periodo],
+			bussola_comercial[id_p1],
+			BLANK()
+			)
+			))
+		lineageTag: e2acff6e-4cb5-483c-89e6-5db779ab1d3d
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column dias_portas_p2 = ```
+			
+			IF ( bussola_comercial[Agrupamento Subgrupo Princing] IN {"Armazenagem Cntr Cheio","Armazenagem Cntr Vazios","Armazenagem Cntr Vazios BT"}
+			   , IF ( ISBLANK(bussola_comercial[periodo2_contrato])
+			        , BLANK()
+			        , COALESCE
+			          ( LOOKUPVALUE
+			            ( contratos[dias_portas]
+			            , contratos[id_periodo]
+			            , bussola_comercial[id_p2]
+			            )
+			          , bussola_comercial[dias_portas_p1]
+			          )
+			        )
+			   , BLANK()
+			   )
+			
+			```
+		lineageTag: 927f3358-7182-4240-a567-05fdaa4fc850
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column os
+		dataType: double
+		lineageTag: c8c1a0ad-95d7-4b5a-a8ee-f4ed64de8176
+		summarizeBy: sum
+		sourceColumn: os
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column descontos
+		dataType: string
+		lineageTag: 31635f44-f093-41b2-bb37-3083aae378c8
+		summarizeBy: none
+		sourceColumn: descontos
+
+		annotation SummarizationSetBy = Automatic
+
+	column descontos_pos_execucao
+		dataType: string
+		lineageTag: bd5443af-bd5a-4aa7-9b60-ef6a5403e52b
+		summarizeBy: none
+		sourceColumn: descontos_pos_execucao
+
+		annotation SummarizationSetBy = Automatic
+
+	column isencoes
+		dataType: string
+		lineageTag: 26f457ca-bb6a-4b18-8f05-4de26ae0a409
+		summarizeBy: none
+		sourceColumn: isencoes
+
+		annotation SummarizationSetBy = Automatic
+
+	column periodo1_contrato_contrato = ```
+			
+			    IF ( bussola_comercial[Agrupamento Subgrupo Princing] IN {"Armazenagem Cntr Cheio","Armazenagem Cntr Vazios","Armazenagem Cntr Vazios BT", "Armazenagem Carga Importação"}
+			   , 
+			     LOOKUPVALUE
+			     ( contratos[dias_periodo]
+			     , contratos[id_periodo]
+			     , bussola_comercial[id_p1]
+			     ),
+			     BLANK())
+			```
+		lineageTag: 84b8885b-7312-48b9-b10c-1faaa7c70ee0
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column periodo1_contrato_tabp = ```
+			
+			
+			  LOOKUPVALUE
+			     ( 'Tabela Pública'[dias_periodo]
+			     , 'Tabela Pública'[id_periodo]
+			     , bussola_comercial[id_p1]
+			     )
+			```
+		lineageTag: fdea570f-69ac-491d-875f-8df3c9a67e8b
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column periodo2_contrato_contrato = ```
+			
+			    IF ( bussola_comercial[Agrupamento Subgrupo Princing] IN {"Armazenagem Cntr Cheio","Armazenagem Cntr Vazios","Armazenagem Cntr Vazios BT", "Armazenagem Carga Importação"}
+			   , 
+			     LOOKUPVALUE
+			     ( contratos[dias_periodo]
+			     , contratos[id_periodo]
+			     , bussola_comercial[id_p2]
+			     ),
+			     BLANK())
+			```
+		lineageTag: 08c17953-f977-4b26-84ab-cb074ce3bd17
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column periodo2_contrato_tabp = ```
+			
+			
+			  LOOKUPVALUE
+			     ( 'Tabela Pública'[dias_periodo]
+			     , 'Tabela Pública'[id_periodo]
+			     , bussola_comercial[id_p2]
+			     )
+			```
+		lineageTag: 92088661-1ca9-4be9-82e6-94b382d85571
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column periodo3_contrato_contrato = ```
+			
+			    IF ( bussola_comercial[Agrupamento Subgrupo Princing] IN {"Armazenagem Cntr Cheio","Armazenagem Cntr Vazios","Armazenagem Cntr Vazios BT", "Armazenagem Carga Importação"}
+			   , 
+			     LOOKUPVALUE
+			     ( contratos[dias_periodo]
+			     , contratos[id_periodo]
+			     , bussola_comercial[id_p3]
+			     ),
+			     BLANK())
+			```
+		lineageTag: 223e7312-fbfc-4446-a99c-3739a3d58484
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column periodo3_contrato_tabp = ```
+			
+			
+			  LOOKUPVALUE
+			     ( 'Tabela Pública'[dias_periodo]
+			     , 'Tabela Pública'[id_periodo]
+			     , bussola_comercial[id_p3]
+			     )
+			```
+		lineageTag: 7aea7b92-03a7-48ea-868f-1b0be7fb0499
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column price_p4 = ```
+			
+			
+			var price_p4 = 
+			IF(bussola_comercial[Agrupamento Subgrupo Princing] IN {"Armazenagem Cntr Cheio","Armazenagem Cntr Vazios","Armazenagem Cntr Vazios BT"},
+			CALCULATE(
+			        AVERAGE(contratos[valor]),
+			        FILTER(
+			            Contratos,
+			            contratos[id_periodo] = bussola_comercial[id_p4]
+			        )
+			    ),
+			    BLANK())
+			
+			VAR vPrice_tabp = 
+			IF(bussola_comercial[Agrupamento Subgrupo Princing] IN {"Armazenagem Cntr Cheio","Armazenagem Cntr Vazios","Armazenagem Cntr Vazios BT"},
+			CALCULATE(
+			        AVERAGE('Tabela Pública'[valor]),
+			        FILTER(
+			            'Tabela Pública',
+			            'Tabela Pública'[id_periodo] = bussola_comercial[id_p4]
+			        )
+			),
+			    BLANK())
+			
+			
+			
+			RETURN
+			
+			    IF(
+			        ISBLANK(price_p4),
+			            IF(ISBLANK(vPrice_tabp), bussola_comercial[price_p2], vPrice_tabp), price_p4)
+			                
+			```
+		lineageTag: 33c38d57-1db3-4a93-9388-73380b2c5386
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column periodo4_contrato_contrato = ```
+			
+			    IF ( bussola_comercial[Agrupamento Subgrupo Princing] IN {"Armazenagem Cntr Cheio","Armazenagem Cntr Vazios","Armazenagem Cntr Vazios BT", "Armazenagem Carga Importação"}
+			   , 
+			     LOOKUPVALUE
+			     ( contratos[dias_periodo]
+			     , contratos[id_periodo]
+			     , bussola_comercial[id_p4]
+			     ),
+			     BLANK())
+			```
+		lineageTag: dc62180a-7271-4fdc-bd34-b602f362c963
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column periodo4_contrato_tabp = ```
+			
+			
+			  LOOKUPVALUE
+			     ( 'Tabela Pública'[dias_periodo]
+			     , 'Tabela Pública'[id_periodo]
+			     , bussola_comercial[id_p4]
+			     )
+			```
+		lineageTag: e3569194-1582-4986-bce0-3f76824e2173
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column perc_cif_periodo1_contrato = ```
+			
+			 var a =   IF ( bussola_comercial[Agrupamento Subgrupo Princing] IN {"Armazenagem Cntr Cheio","Armazenagem Cntr Vazios","Armazenagem Cntr Vazios BT", "Armazenagem Carga Importação"}
+			   , 
+			     LOOKUPVALUE
+			     ( contratos[valor]
+			     , contratos[id_periodo]
+			     , bussola_comercial[id_p1]
+			     ),
+			     BLANK())
+			
+			return if(a>1,a/100,a)    
+			```
+		lineageTag: 5d6c379f-15cc-4aaa-adff-54d2a980183c
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column perc_cif_periodo1_tabp = ```
+			
+			var a =    IF ( bussola_comercial[Agrupamento Subgrupo Princing] IN {"Armazenagem Cntr Cheio","Armazenagem Cntr Vazios","Armazenagem Cntr Vazios BT", "Armazenagem Carga Importação"}
+			   , 
+			     LOOKUPVALUE
+			     ( 'Tabela Pública'[valor]
+			     , 'Tabela Pública'[id_periodo]
+			     , bussola_comercial[id_p1]
+			     ),
+			     BLANK())
+			
+			return 
+			
+			SWITCH(TRUE(),
+			AND(bussola_comercial[grupo_economico_ter] = "GRUPO RANDON", bussola_comercial[Agrupamento Subgrupo Princing] = "Fiel Depósito"),
+			if(a>1,a/10000,a),
+			if(a>1,a/100,a)
+			)
+			```
+		lineageTag: a683efa0-c9fc-44b3-883e-6b2645851bb7
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column perc_cif_periodo2_contrato = ```
+			
+			 var a =   IF ( bussola_comercial[Agrupamento Subgrupo Princing] IN {"Armazenagem Cntr Cheio","Armazenagem Cntr Vazios","Armazenagem Cntr Vazios BT", "Armazenagem Carga Importação"}
+			   , 
+			     LOOKUPVALUE
+			     ( contratos[valor]
+			     , contratos[id_periodo]
+			     , bussola_comercial[id_p2]
+			     ),
+			     BLANK())
+			return 
+			
+			SWITCH(TRUE(),
+			AND(bussola_comercial[grupo_economico_ter] = "GRUPO RANDON", bussola_comercial[Agrupamento Subgrupo Princing] = "Fiel Depósito"),
+			if(a>1,a/10000,a),
+			if(a>1,a/100,a)
+			)
+			
+			```
+		lineageTag: 02d71a1f-b47d-42d5-bdd6-e8e25b2e597a
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column perc_cif_periodo2_tabp = ```
+			
+			var a =    IF ( bussola_comercial[Agrupamento Subgrupo Princing] IN {"Armazenagem Cntr Cheio","Armazenagem Cntr Vazios","Armazenagem Cntr Vazios BT", "Armazenagem Carga Importação"}
+			   , 
+			     LOOKUPVALUE
+			     ( 'Tabela Pública'[valor]
+			     , 'Tabela Pública'[id_periodo]
+			     , bussola_comercial[id_p2]
+			     ),
+			     BLANK())
+			return 
+			
+			SWITCH(TRUE(),
+			AND(bussola_comercial[grupo_economico_ter] = "GRUPO RANDON", bussola_comercial[Agrupamento Subgrupo Princing] = "Fiel Depósito"),
+			if(a>1,a/10000,a),
+			if(a>1,a/100,a)
+			)
+			```
+		lineageTag: c6fbf182-667d-479c-84eb-fca4da38e0c7
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column perc_cif_periodo3_contrato = ```
+			
+			var a =    IF ( bussola_comercial[Agrupamento Subgrupo Princing] IN {"Armazenagem Cntr Cheio","Armazenagem Cntr Vazios","Armazenagem Cntr Vazios BT", "Armazenagem Carga Importação"}
+			   , 
+			     LOOKUPVALUE
+			     ( contratos[valor]
+			     , contratos[id_periodo]
+			     , bussola_comercial[id_p3]
+			     ),
+			     BLANK())
+			
+			return 
+			
+			SWITCH(TRUE(),
+			AND(bussola_comercial[grupo_economico_ter] = "GRUPO RANDON", bussola_comercial[Agrupamento Subgrupo Princing] = "Fiel Depósito"),
+			if(a>1,a/10000,a),
+			if(a>1,a/100,a)
+			)
+			```
+		lineageTag: 8eac4783-c33e-4ec6-bb22-2bdf70b7bfe9
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column perc_cif_periodo3_tabp = ```
+			
+			var a =    IF ( bussola_comercial[Agrupamento Subgrupo Princing] IN {"Armazenagem Cntr Cheio","Armazenagem Cntr Vazios","Armazenagem Cntr Vazios BT", "Armazenagem Carga Importação"}
+			   , 
+			     LOOKUPVALUE
+			     ( 'Tabela Pública'[valor]
+			     , 'Tabela Pública'[id_periodo]
+			     , bussola_comercial[id_p3]
+			     ),
+			     BLANK())
+			
+			return 
+			
+			SWITCH(TRUE(),
+			AND(bussola_comercial[grupo_economico_ter] = "GRUPO RANDON", bussola_comercial[Agrupamento Subgrupo Princing] = "Fiel Depósito"),
+			if(a>1,a/10000,a),
+			if(a>1,a/100,a)
+			)
+			```
+		lineageTag: 4f09ddb2-4c1e-40b1-ac31-0d5b7cad1d32
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column perc_cif_periodo4_contrato = ```
+			
+			 var a =   IF ( bussola_comercial[Agrupamento Subgrupo Princing] IN {"Armazenagem Cntr Cheio","Armazenagem Cntr Vazios","Armazenagem Cntr Vazios BT", "Armazenagem Carga Importação"}
+			   , 
+			     LOOKUPVALUE
+			     ( contratos[valor]
+			     , contratos[id_periodo]
+			     , bussola_comercial[id_p4]
+			     ),
+			     BLANK())
+			
+			  return 
+			    
+			SWITCH(TRUE(),
+			AND(bussola_comercial[grupo_economico_ter] = "GRUPO RANDON", bussola_comercial[Agrupamento Subgrupo Princing] = "Fiel Depósito"),
+			if(a>1,a/10000,a),
+			if(a>1,a/100,a)
+			)
+			```
+		lineageTag: 34472778-a466-44dc-bd6d-dbc7f284b37a
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column perc_cif_periodo4_tabp = ```
+			
+			var a  =  IF ( bussola_comercial[Agrupamento Subgrupo Princing] IN {"Armazenagem Cntr Cheio","Armazenagem Cntr Vazios","Armazenagem Cntr Vazios BT", "Armazenagem Carga Importação"}
+			   , 
+			     LOOKUPVALUE
+			     ( 'Tabela Pública'[valor]
+			     , 'Tabela Pública'[id_periodo]
+			     , bussola_comercial[id_p4]
+			     ),
+			     BLANK())
+			
+			return 
+			
+			
+			SWITCH(TRUE(),
+			AND(bussola_comercial[grupo_economico_ter] = "GRUPO RANDON", bussola_comercial[Agrupamento Subgrupo Princing] = "Fiel Depósito"),
+			if(a>1,a/10000,a),
+			if(a>1,a/100,a)
+			)
+			```
+		lineageTag: 90911af4-eee4-4f9d-be59-e67a2bee0d6a
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Adic_carga_especial_cnt =
+			
+			
+			LOOKUPVALUE(unique_id_periodo[adic_carga_perigosa],
+			unique_id_periodo[id_periodo],
+			bussola_comercial[id_p1])
+		lineageTag: b604a3f8-f924-40cb-867c-837e3d81b806
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Adic_carga_especial_tabp =
+			
+			
+			LOOKUPVALUE('Tabela Pública'[adic_carga_perigosa],
+			'Tabela Pública'[id_periodo],
+			bussola_comercial[id_p1])
+		dataType: double
+		lineageTag: cdfac4dd-0179-4233-9ea1-80af5e6b464b
+		summarizeBy: sum
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Adic_carga_especial =
+			
+			
+			IF ( bussola_comercial[Agrupamento Subgrupo Princing] IN {"Armazenagem Cntr Cheio","Armazenagem Cntr Vazios","Armazenagem Cntr Vazios BT"},
+			    IF(bussola_comercial[Adic_carga_especial_cnt] = BLANK(),
+			    bussola_comercial[Adic_carga_especial_tabp]/100,
+			    bussola_comercial[Adic_carga_especial_cnt]/100)
+			   , BLANK()
+			)
+		lineageTag: 7513f653-627b-4db4-afaa-2e8a7e1d1d6c
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Adic_oog_tabp =
+			
+			
+			LOOKUPVALUE('Tabela Pública'[adic_mercadoria_especial],
+			'Tabela Pública'[id_periodo],
+			bussola_comercial[id_p1])
+		dataType: double
+		lineageTag: e2d09136-9434-4734-8085-da53a678c07e
+		summarizeBy: sum
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Adic_oog_cnt =
+			
+			
+			LOOKUPVALUE(contratos[adic_mercadoria_especial],
+			contratos[id_periodo],
+			bussola_comercial[id_p1])
+		lineageTag: a079fad0-b22e-4ad5-9147-14310cdd2af3
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Adic_oog =
+			
+			
+			IF ( bussola_comercial[Agrupamento Subgrupo Princing] IN {"Armazenagem Cntr Cheio","Armazenagem Cntr Vazios","Armazenagem Cntr Vazios BT"},
+			    IF(bussola_comercial[Adic_oog_cnt] = BLANK(),
+			    bussola_comercial[Adic_oog_tabp]/100,
+			    bussola_comercial[Adic_oog_cnt]/100)
+			   , BLANK()
+			)
+		lineageTag: 3d5d20da-dafa-4beb-8288-49c07689eed5
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column servico_maritimo
+		dataType: string
+		lineageTag: 06e5fcec-ecbf-4780-9fd7-d1a657bea9a1
+		summarizeBy: none
+		sourceColumn: servico_maritimo
+
+		annotation SummarizationSetBy = Automatic
+
+	column grupo_economico_ter =
+			
+			LOOKUPVALUE(
+			    salesforce[grupo_economico],
+			    salesforce[codigo_sap],
+			    bussola_comercial[cobrar_de_sap]
+			)
+		lineageTag: a6f185cd-b738-419f-95e5-2f43f2d2316e
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column servico_especial
+		dataType: string
+		lineageTag: f960e5e2-6947-432f-96ca-dee8651d7942
+		summarizeBy: none
+		sourceColumn: servico_especial
+
+		annotation SummarizationSetBy = Automatic
+
+	column hstmv_id
+		dataType: string
+		lineageTag: 3f498feb-93a0-49db-82f5-43e9e5e7e6bb
+		summarizeBy: none
+		sourceColumn: hstmv_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column valor_nf_armexp
+		dataType: double
+		lineageTag: bbcbcf87-58f2-47a7-b32b-c229ed7868b8
+		summarizeBy: sum
+		sourceColumn: valor_nf_armexp
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column etl_updated_at
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 91c8f3a1-ac79-4cfc-8619-ab9d90fc0887
+		summarizeBy: none
+		sourceColumn: etl_updated_at
+
+		variation Variation
+			isDefault
+			relationship: 12f036e4-4d82-4b0c-bdf5-164da3adc729
+			defaultHierarchy: LocalDateTable_17a8410a-f895-466b-b9bd-932010db2f5e.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	partition bussola_comercial = m
+		mode: import
+		source =
+				let
+				    Origem = PowerPlatform.Dataflows([]),
+				    #"Navegação 1" = Origem{[Id = "Workspaces"]}[Data],
+				    #"Navegação 2" = #"Navegação 1"{[workspaceId = "bcd54b55-e85f-4c30-a169-bfbf18f90f30"]}[Data],
+				    #"Navegação 3" = #"Navegação 2"{[dataflowId = "0de8319e-2c86-41d9-ad77-36914bd520af"]}[Data],
+				    Navegação = #"Navegação 3"{[entity = "fct_bc_tecons_pocketprice (2)", version = ""]}[Data],
+				
+				    #"Tipo Alterado" =
+				        Table.TransformColumnTypes(
+				            Navegação,
+				            {{"competencia", type date}, {"data_do_inicio_do_evento", type date}, {"data_do_fim_do_evento", type date}}
+				        ),
+				
+				    DataAtual = Date.From(DateTime.LocalNow()),
+				    DataInicio = Date.AddMonths(DataAtual, -12),
+				
+				    #"Últimos 12 Meses" =
+				        Table.SelectRows(
+				            #"Tipo Alterado",
+				            each
+				                [data_do_inicio_do_evento] <> null
+				                and [data_do_inicio_do_evento] >= DataInicio
+				                and [data_do_inicio_do_evento] <= DataAtual
+				        ),
+				    Personalizar1 = Table.TransformColumnTypes(#"Últimos 12 Meses", { {"competencia", type date}, {"data_do_inicio_do_evento", type date}, {"data_do_fim_do_evento", type date}}),
+				    Personalizar2 = Table.RemoveColumns(Personalizar1, {"divisao", "n_doc_nf", "valor_da_nf", "valor_provisionado", "commodity", "container"}),
+				    #"Linhas Filtradas1" = Table.SelectRows(Personalizar2, each ([situacao_pf] = "FATURADO" or [situacao_pf] = "ISENTO"))
+				in
+				    #"Linhas Filtradas1"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navegação
+

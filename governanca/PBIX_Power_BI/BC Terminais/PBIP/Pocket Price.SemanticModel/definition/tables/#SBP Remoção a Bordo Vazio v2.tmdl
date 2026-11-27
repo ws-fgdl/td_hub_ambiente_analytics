@@ -1,0 +1,37 @@
+table '#SBP Remoção a Bordo Vazio v2'
+	lineageTag: 072ff3bd-0c4c-4235-a2e5-70302025eadf
+
+	measure 'Valor #SBP Remoção a Bordo Vazio v2' =
+			
+			MIN('#SBP Remoção a Bordo Vazio v2'[RemocaoDecimal])
+		lineageTag: 253ce1d8-48b6-469d-8650-fab6e4c51a86
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Value
+		formatString: 0
+		lineageTag: 01e2783e-3968-4550-a724-369bf452204a
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Value]
+
+		annotation SummarizationSetBy = Automatic
+
+	column RemocaoDecimal = DIVIDE('#SBP Remoção a Bordo Vazio v2'[Value], 10000)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 679ffedd-e8b6-4401-9805-d07f8b9beadb
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	partition '#SBP Remoção a Bordo Vazio v2' = calculated
+		mode: import
+		source =
+				
+				SELECTCOLUMNS(
+				    '#Param BoxRate_Int',
+				    "Value", '#Param BoxRate_Int'[Value]
+				)
+
+	annotation PBI_Id = c03a4636e1804e7ea555e4ce7e3ffa1f
+

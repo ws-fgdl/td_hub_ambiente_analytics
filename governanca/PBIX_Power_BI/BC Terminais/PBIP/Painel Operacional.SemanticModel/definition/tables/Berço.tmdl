@@ -1,0 +1,42 @@
+table Berço
+	lineageTag: 29924676-4d4f-47a0-8fa5-98000940fbb5
+	sourceLineageTag: aaefda13-0b3d-46a1-b0ff-f5c431dffb23
+
+	column 'Berço ID'
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		lineageTag: e05a6270-6c57-450f-8ef9-339bbbd51bba
+		sourceLineageTag: 24520985-4369-4f1f-bfdf-c2da935e7c11
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Berço ID
+
+		annotation SummarizationSetBy = User
+
+	column 'Código Berço'
+		dataType: string
+		lineageTag: cb78f0ba-0996-43fc-bb6d-8b5860101af9
+		sourceLineageTag: 8a08b60d-5621-4a5b-8e1d-d52706373e2c
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Código Berço
+
+		annotation SummarizationSetBy = User
+
+	column Berço
+		dataType: string
+		lineageTag: 494ecad9-5c0c-4c99-b940-ff5c66b8b36f
+		sourceLineageTag: 88f51d44-e243-4dd8-80f4-b683ce11ff44
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Berço
+
+		annotation SummarizationSetBy = User
+
+	partition Berço = entity
+		mode: directQuery
+		source
+			entityName: Berço
+			expressionSource: 'DirectQuery para AS – Modelo Operações Portuárias'
+

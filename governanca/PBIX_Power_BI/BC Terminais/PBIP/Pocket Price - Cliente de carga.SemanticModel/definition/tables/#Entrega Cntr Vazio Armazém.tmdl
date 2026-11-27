@@ -1,0 +1,28 @@
+table '#Entrega Cntr Vazio Armazém'
+	lineageTag: e188f864-6924-4175-9ac7-a0085754607c
+
+	measure 'Valor #Entrega Cntr Vazio Armazém' = SELECTEDVALUE('#Entrega Cntr Vazio Armazém'[#Entrega Cntr Vazio Armazém])
+		lineageTag: c2d67135-49ad-4109-80e5-b3b83da30367
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#Entrega Cntr Vazio Armazém'
+		lineageTag: 50399a01-82c0-4e66-aebc-e3b8d2580f23
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '#Entrega Cntr Vazio Armazém' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 1, 0.001)
+
+	annotation PBI_Id = c7da0ea273db44eab3f08b9d45159324
+

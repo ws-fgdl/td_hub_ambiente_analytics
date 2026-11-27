@@ -1,0 +1,39 @@
+table grupo_id
+	lineageTag: 1e78b1f2-b986-4b85-aaa8-a0ecf0625521
+
+	column GRUPO_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: b9e722d1-e344-4d98-a9e1-7cc679659dd8
+		summarizeBy: count
+		sourceColumn: GRUPO_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column DSC_GRUPO
+		dataType: string
+		lineageTag: 622b37a9-907e-4889-b50c-c7e3d1c699d2
+		summarizeBy: none
+		sourceColumn: DSC_GRUPO
+
+		annotation SummarizationSetBy = Automatic
+
+	partition grupo_id = m
+		mode: import
+		source =
+				let
+				    Fonte = PowerPlatform.Dataflows(null),
+				    Workspaces = Fonte{[Id="Workspaces"]}[Data],
+				    #"bcd54b55-e85f-4c30-a169-bfbf18f90f30" = Workspaces{[workspaceId="bcd54b55-e85f-4c30-a169-bfbf18f90f30"]}[Data],
+				    #"2c06f3f8-5fc0-49c2-b8e6-afbe26e3f46d" = #"bcd54b55-e85f-4c30-a169-bfbf18f90f30"{[dataflowId="2c06f3f8-5fc0-49c2-b8e6-afbe26e3f46d"]}[Data],
+				    Grupo_ID_ = #"2c06f3f8-5fc0-49c2-b8e6-afbe26e3f46d"{[entity="Grupo_ID",version=""]}[Data],
+				    #"Cabeçalhos Promovidos" = Table.PromoteHeaders(Grupo_ID_, [PromoteAllScalars=true]),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Cabeçalhos Promovidos",{{"GRUPO_ID", Int64.Type}, {"DSC_GRUPO", type text}}),
+				    #"Linhas Filtradas" = Table.SelectRows(#"Tipo Alterado", each [GRUPO_ID] <> null and [GRUPO_ID] <> "")
+				in
+				    #"Linhas Filtradas"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

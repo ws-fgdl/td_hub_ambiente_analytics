@@ -1,0 +1,28 @@
+table '#SBP Vistoria Não Invasiva LCL'
+	lineageTag: a0485542-5e7e-4b4c-9844-1a4dc3368938
+
+	measure 'Valor #SBP Vistoria Não Invasiva LCL' = SELECTEDVALUE('#SBP Vistoria Não Invasiva LCL'[#SBP Vistoria Não Invasiva LCL])
+		lineageTag: 6e09fa3f-3aa8-4cad-94e8-20f239684428
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#SBP Vistoria Não Invasiva LCL'
+		lineageTag: 1f6eb9f6-7193-4065-83c3-e2dc0668f43b
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '#SBP Vistoria Não Invasiva LCL' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 0.5, 0.0001)
+
+	annotation PBI_Id = cbf058f0c3b6480188fb871079b560c8
+

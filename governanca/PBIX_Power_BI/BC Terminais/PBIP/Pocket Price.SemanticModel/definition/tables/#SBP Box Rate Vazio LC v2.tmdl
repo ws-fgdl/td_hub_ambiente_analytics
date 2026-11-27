@@ -1,0 +1,37 @@
+table '#SBP Box Rate Vazio LC v2'
+	lineageTag: db1fac75-ff66-466c-8db1-c6a5cafe3fe1
+
+	measure 'Valor #SBP Box Rate Vazio LC v2' =
+			
+			COALESCE(SELECTEDVALUE('#SBP Box Rate Vazio LC v2'[BoxRateDecimal]), 0)
+		lineageTag: 413d4065-c822-4427-9261-c4bcf3650462
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Value
+		formatString: 0
+		lineageTag: c98e3a45-9fe2-4acc-b9a8-cecd09a74a19
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Value]
+
+		annotation SummarizationSetBy = Automatic
+
+	column BoxRateDecimal = DIVIDE('#SBP Box Rate Vazio LC v2'[Value], 10000)
+		formatString: 0.0000%;-0.0000%;0.0000%
+		lineageTag: de1ca253-1327-4adb-b00f-bffb6843da4e
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	partition '#SBP Box Rate Vazio LC v2' = calculated
+		mode: import
+		source =
+				
+				SELECTCOLUMNS(
+				    '#Param BoxRate_Int',
+				    "Value", '#Param BoxRate_Int'[Value]
+				)
+
+	annotation PBI_Id = 1c32efe2ad5a4234a91980d622a3376c
+

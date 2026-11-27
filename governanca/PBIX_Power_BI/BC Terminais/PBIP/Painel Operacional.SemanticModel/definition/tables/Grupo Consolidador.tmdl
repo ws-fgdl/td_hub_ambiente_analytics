@@ -1,0 +1,32 @@
+table 'Grupo Consolidador'
+	lineageTag: ab14660e-5008-417d-a56c-afc198332455
+	sourceLineageTag: 3249f3cb-621c-4ddc-b405-356da4bcc774
+
+	column 'Grupo Consolidador ID'
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		lineageTag: 643a3326-b210-46f5-bd9a-4e13d4badb04
+		sourceLineageTag: 33b025fb-451d-4b07-b41f-5dce9b206054
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Grupo Consolidador ID
+
+		annotation SummarizationSetBy = User
+
+	column 'Grupo Consolidador'
+		dataType: string
+		lineageTag: 46827883-aa84-4926-bf82-2dda5104288f
+		sourceLineageTag: 0ccc5ff4-7f97-403e-b74d-b829e84dbb44
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Grupo Consolidador
+
+		annotation SummarizationSetBy = User
+
+	partition 'Grupo Consolidador' = entity
+		mode: directQuery
+		source
+			entityName: Grupo Consolidador
+			expressionSource: 'DirectQuery para AS – Modelo Operações Portuárias'
+

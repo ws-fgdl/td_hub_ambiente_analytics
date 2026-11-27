@@ -1,0 +1,28 @@
+table '#ISPS Exportação'
+	lineageTag: 7cb007d2-7cab-4c40-80f4-8f2fa4bf35e5
+
+	measure 'Valor #ISPS Exportação' = SELECTEDVALUE('#ISPS Exportação'[#ISPS Exportação])
+		lineageTag: cd52f637-5092-4437-b5c7-1757d8db2a91
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#ISPS Exportação'
+		lineageTag: 680ea56e-b129-4faa-ba05-6f6609e0aa75
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '#ISPS Exportação' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 1, 0.001)
+
+	annotation PBI_Id = d60ffa2bcbee4de98e1b0864d1a4a4a9
+

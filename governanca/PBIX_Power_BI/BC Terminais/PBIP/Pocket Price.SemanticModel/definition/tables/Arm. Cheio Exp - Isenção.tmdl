@@ -1,0 +1,26 @@
+table 'Arm. Cheio Exp - Isenção'
+	lineageTag: a4661925-23cb-43d7-8ed5-c6155f2ddd61
+
+	measure 'Valor Arm. Cheio Exp - Isenção' = SELECTEDVALUE('Arm. Cheio Exp - Isenção'[Arm. Cheio Exp - Isenção])
+		formatString: 0
+		lineageTag: f1ea09c1-cb12-425f-9bb8-31b13a12ce43
+
+	column 'Arm. Cheio Exp - Isenção'
+		formatString: 0
+		lineageTag: 3cd26983-ba42-4cc0-b439-07c53ac412bd
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition 'Arm. Cheio Exp - Isenção' = calculated
+		mode: import
+		source = GENERATESERIES(-30, 30, 1)
+
+	annotation PBI_Id = caac1cc5c98749eba562f437d8f829c0
+

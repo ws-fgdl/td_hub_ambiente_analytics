@@ -1,0 +1,889 @@
+table '_Medidas Movimento'
+	lineageTag: 53b28f31-b66e-4a0e-bc75-2eb6e01bc2cf
+	sourceLineageTag: 771441be-3b33-4273-b3b6-08f9851d8ad8
+
+	measure 'Qtd Container YTD' = EXTERNALMEASURE("Qtd Container YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		displayFolder: YTD
+		lineageTag: 6b0d06c6-7afe-4e5f-b71a-bf683391cc59
+		sourceLineageTag: c68b1d12-4c42-4b20-9a91-4e090e25b4b8
+		dataCategory: Uncategorized
+
+	measure 'Teus YTD' = EXTERNALMEASURE("Teus YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		displayFolder: YTD
+		lineageTag: e136eb18-dc65-4d93-957b-de5175f1feec
+		sourceLineageTag: 06e7edb1-4283-4c78-8556-5f2d764b7b52
+		dataCategory: Uncategorized
+
+	measure 'Teus YTD Passado' = EXTERNALMEASURE("Teus YTD Passado", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		displayFolder: PYTD
+		lineageTag: af6b6188-9273-4b2b-a774-bb423ed9bf84
+		sourceLineageTag: c2eb8d00-d76a-4be8-b41d-a29c55e600ad
+		dataCategory: Uncategorized
+
+	measure 'Qtd Container YTD Passado' = EXTERNALMEASURE("Qtd Container YTD Passado", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		displayFolder: PYTD
+		lineageTag: bee5504d-f6d6-4f71-a2c3-fb02a219e3fe
+		sourceLineageTag: 6f9bb488-5255-4e03-9ed4-148499eadd84
+		dataCategory: Uncategorized
+
+	measure 'Teus Passado' = EXTERNALMEASURE("Teus Passado", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		displayFolder: PY
+		lineageTag: 6b1f9579-74af-4113-ac4c-7b7da5a65317
+		sourceLineageTag: ba3b7ea9-35d0-4255-85ef-3189abbea3a1
+		dataCategory: Uncategorized
+
+	measure 'Qtd Container Passado' = EXTERNALMEASURE("Qtd Container Passado", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		displayFolder: PY
+		lineageTag: a77300b9-6e62-49c4-9088-ffb8baf47500
+		sourceLineageTag: e1f2ef2a-7168-42ba-9c10-b7534e0ce2f5
+		dataCategory: Uncategorized
+
+	measure 'Qtd Operações' = EXTERNALMEASURE("Qtd Operações", INTEGER, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		lineageTag: d77dbcb2-8d7d-4d14-ae1b-4e6176817b24
+		sourceLineageTag: a1d06c99-0a85-4d14-a4d0-78f24afa70a9
+		dataCategory: Uncategorized
+
+	measure 'Delta Qtd Container Ano Anterior' = EXTERNALMEASURE("Delta Qtd Container Ano Anterior", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 8468e4fa-7fe6-40d6-a390-e54f3190263f
+		sourceLineageTag: 72d4d9cc-3cc5-4079-8bbd-bac9675f992b
+		dataCategory: Uncategorized
+
+	measure Slicer_Possui_Movimento_Sim_Não = EXTERNALMEASURE("Slicer_Possui_Movimento_Sim_Não", STRING, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 0f506597-5370-43c2-8658-efb046ff0a0a
+		sourceLineageTag: cd05becb-a5bf-4b7f-8352-a90fc03b30a0
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isText":true}
+
+	measure Peso = EXTERNALMEASURE("Peso", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		lineageTag: 4f043465-f555-4647-9bda-c7a97b270ec8
+		sourceLineageTag: 2f98a04f-055e-44a2-b8a0-beb229b0c478
+		dataCategory: Uncategorized
+
+	measure 'Peso Liquido' = EXTERNALMEASURE("Peso Liquido", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		lineageTag: 55e3b31f-365f-4727-9f08-7605552c69a1
+		sourceLineageTag: e6c705eb-9b34-485f-a839-9ba17a873e59
+		dataCategory: Uncategorized
+
+	measure 'Qtd Container' = EXTERNALMEASURE("Qtd Container", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		lineageTag: 7f9b0f58-8d53-42fa-bbdf-e373354eb002
+		sourceLineageTag: 5c2f0333-adc5-4daf-bec6-17bf68107f55
+		dataCategory: Uncategorized
+
+	measure Teus = EXTERNALMEASURE("Teus", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		lineageTag: 4ce7ac16-1892-458a-92fd-8a44647d84cc
+		sourceLineageTag: 368aed4b-18ea-4c78-a4df-411928bec741
+		dataCategory: Uncategorized
+
+	measure 'Max Tempo Movimento' = EXTERNALMEASURE("Max Tempo Movimento", DATETIME, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: General Number
+		lineageTag: 2e362209-a3e0-4de2-9a22-80df5acec114
+		sourceLineageTag: 0a56ddd6-6151-43da-a328-2f97d264038f
+		dataCategory: Uncategorized
+
+	measure 'Max Mes Ano Movimento' = EXTERNALMEASURE("Max Mes Ano Movimento", STRING, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 118b21b5-9ce1-4d9d-ae13-65733e73efda
+		sourceLineageTag: c7351aa0-7b3e-4cdf-b806-b3dafe1e15a8
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isText":true}
+
+	measure 'Δ CNT' = EXTERNALMEASURE("Δ CNT", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		lineageTag: b534b77b-654f-48a0-b52a-2580fe85ad6c
+		sourceLineageTag: 2224de08-2405-4c89-b9da-a2c5d1af1bf5
+		dataCategory: Uncategorized
+
+	measure 'Δ% CNT' = EXTERNALMEASURE("Δ% CNT", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: 0%;-0%;0%
+		lineageTag: 2fc4b3b6-49ac-48f1-bd66-b5b0c0d28e5e
+		sourceLineageTag: 6bab151f-da10-496b-8a86-96e998960fd0
+		dataCategory: Uncategorized
+
+	measure 'Δ CNT YTD' = EXTERNALMEASURE("Δ CNT YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		lineageTag: b5c6f29e-4ed7-4ccc-aa24-3b954d09a512
+		sourceLineageTag: b293ffc4-2f0b-41e3-a4ca-7c5d812469d4
+		dataCategory: Uncategorized
+
+	measure 'Δ% CNT YTD' = EXTERNALMEASURE("Δ% CNT YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: 0%;-0%;0%
+		lineageTag: 6600bd67-5b71-468c-8765-9e8d5348f96f
+		sourceLineageTag: 4a9292fc-110d-4d65-bd7a-7ee5f06c9555
+		dataCategory: Uncategorized
+
+	measure 'Δ Teu' = EXTERNALMEASURE("Δ Teu", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		lineageTag: 134e1be0-f2c7-4f12-b865-e5d6a154a4a6
+		sourceLineageTag: faaefffa-84e5-4e75-85ac-ad6a5e93d9b3
+		dataCategory: Uncategorized
+
+	measure 'Δ% Teu' = EXTERNALMEASURE("Δ% Teu", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: 0%;-0%;0%
+		lineageTag: 00a5fdeb-a36b-43af-85df-1a7e31c99596
+		sourceLineageTag: 5a7071f4-8fef-488d-ac96-3fb03d9a9041
+		dataCategory: Uncategorized
+
+	measure 'Δ Teu YTD' = EXTERNALMEASURE("Δ Teu YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		lineageTag: 8a38e25a-f985-42a2-9d30-2a7d4fe15e6e
+		sourceLineageTag: d61ff4c9-e28d-465b-8fdc-8fdcbc817206
+		dataCategory: Uncategorized
+
+	measure 'Δ% Teu YTD' = EXTERNALMEASURE("Δ% Teu YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: 0%;-0%;0%
+		lineageTag: b806a75c-02ad-448c-ab1b-330707ae4c10
+		sourceLineageTag: 75d31f1a-bc81-4577-8d67-b8bda5ef9f77
+		dataCategory: Uncategorized
+
+	measure 'Qtd Container s1000' = EXTERNALMEASURE("Qtd Container s1000", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		lineageTag: 173972a9-b979-4c05-ad2b-28fed921af82
+		sourceLineageTag: 037b9034-0718-4957-8838-4ec4ebc267db
+		dataCategory: Uncategorized
+
+	measure 'Média Cntr por Mês' = EXTERNALMEASURE("Média Cntr por Mês", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		lineageTag: fc600283-4755-4d21-acb9-6687c53241ea
+		sourceLineageTag: 080fd8e8-36cd-4fd6-a007-1dad554034fd
+		dataCategory: Uncategorized
+
+	measure 'Qtd Container por 3' = EXTERNALMEASURE("Qtd Container por 3", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		lineageTag: 91ffb54c-8773-4750-aaf8-4ab047e7fb10
+		sourceLineageTag: 95f2ac7c-5292-47ac-9a2b-a10b8050b4db
+		dataCategory: Uncategorized
+
+	measure 'Consignação média mov' = EXTERNALMEASURE("Consignação média mov", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 8bcac8d5-5fae-4ae8-a6c7-dd5ebe80b2fa
+		sourceLineageTag: aa25dc11-84b6-47e3-ab98-166cf491e901
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Teus_ultimo_Mes_AnoAnterior_oficial =
+			
+			VAR vUltimaData = MAX('_Medidas Movimento'[Data Movimento])
+			VAR vUltimoAno = YEAR(vUltimaData)-1
+			VAR vUltimoMes = MONTH(vUltimaData)
+			VAR vUltimoDia = DAY(vUltimaData)
+			
+			RETURN
+			    CALCULATE(
+			        '_Medidas Movimento'[Teus],
+			        FILTER(
+			            ALL('_Medidas Movimento'),
+			            YEAR('_Medidas Movimento'[Data Movimento]) = vUltimoAno &&
+			            MONTH('_Medidas Movimento'[Data Movimento]) = vUltimoMes &&
+			            DAY('_Medidas Movimento'[Data Movimento]) <= vUltimoDia
+			        )
+			    )
+		lineageTag: cf7c98ea-e11b-4d4f-a97f-b70e2f9ebeb6
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Vol_YTM_AnoAnterior_oficial = ```
+			
+			VAR vUltimaData = MAX('_Medidas Movimento'[Data Movimento]) // Última data presente na base
+			RETURN
+			CALCULATE(
+			    '_Medidas Movimento'[Teus],
+			    FILTER(
+			        ALL('_Medidas Movimento'),
+			        YEAR('_Medidas Movimento'[Data Movimento]) = YEAR(vUltimaData) - 1 && // Filtro para o ano anterior
+			       '_Medidas Movimento'[Data Movimento] <= DATE(YEAR(vUltimaData) - 1, 
+			        MONTH(vUltimaData), 
+			        DAY(vUltimaData)) // Filtro para o dia correspondente ao último dia presente na base, mas no ano anterior
+			    )
+			)
+			```
+		lineageTag: f30d28b9-bc0e-411b-b506-9dca0dd6987d
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Vol_YTM_AnoAnterior_oficial2 = ```
+			
+			VAR vUltimaData = MAX(_Tempo[Data]) // Última data presente na base
+			RETURN
+			CALCULATE(
+			    '_Medidas Movimento'[Teus],
+			    FILTER(
+			        ALL(_Tempo),
+			        _Tempo[#Ano] = YEAR(vUltimaData) - 1 && // Filtro para o ano anterior
+			        _Tempo[Data] <= DATE(YEAR(vUltimaData) - 1, 
+			        MONTH(vUltimaData), 
+			        DAY(vUltimaData)) // Filtro para o dia correspondente ao último dia presente na base, mas no ano anterior
+			    )
+			)
+			```
+		lineageTag: 8c6e90a5-e503-420a-809a-8d910f618469
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Teus_ultimo_Mes_AnoAnterior_oficial2 = ```
+			
+			VAR vUltimaData = MAX(_Tempo[Data])
+			VAR vUltimoAno = YEAR(vUltimaData)-1
+			VAR vUltimoMes = MONTH(vUltimaData)
+			VAR vUltimoDia = DAY(vUltimaData)
+			
+			RETURN
+			    CALCULATE(
+			        '_Medidas Movimento'[Teus],
+			
+			            
+			            YEAR(_Tempo[Data]) = vUltimoAno ,
+			            MONTH(_Tempo[Data]) = vUltimoMes ,
+			            DAY(_Tempo[Data]) <= vUltimoDia
+			        )
+			    
+			```
+		lineageTag: 4d1ee49e-9d27-40fc-91f8-87c9b8fcd910
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure teus_ytd_ano_anterior = ```
+			
+			var data_max = (year(today()) -1) *10000 + month(today())*100 + day(today()) 
+			var data_min = (year(today()) -1) *10000 + 100 + 1 
+			
+			return calculate(sum('_Medidas Movimento'[QTD_TEUS]),_Tempo[TEMPO_ID] >=data_min ,_Tempo[TEMPO_ID]<=data_max)
+			```
+		lineageTag: a34f715a-f6c0-4e74-8587-25fed1edfcd0
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure teus_mes_ano_anterior = ```
+			
+			var data_max = (year(today()) -1) *10000 + month(today())*100 + day(today()) 
+			var data_min = (year(today()) -1) *10000 + month(today())*100 + 1 
+			
+			return CALCULATE(sum('_Medidas Movimento'[QTD_TEUS]),
+			_Tempo[TEMPO_ID]>=data_min,
+			 _Tempo[TEMPO_ID] <= data_max
+			)
+			```
+		lineageTag: d28a995a-6b48-4ed2-a0f7-b7424b2a0cd8
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure teus_mes_ano_atual = ```
+			
+			var data_max = (year(today())) *10000 + month(today())*100 + day(today()) 
+			var data_min = (year(today())) *10000 + month(today())*100 + 1 
+			
+			return CALCULATE(sum('_Medidas Movimento'[QTD_TEUS]),
+			_Tempo[TEMPO_ID]>=data_min,
+			 _Tempo[TEMPO_ID] <= data_max
+			)
+			```
+		lineageTag: 6d6f669a-7612-4674-8918-0b399df1a32f
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure teus_ytd_ano_atual = ```
+			
+			var data_max = (year(today())) *10000 + month(today())*100 + day(today()) 
+			var data_min = (year(today())) *10000 + 100 + 1 
+			
+			return calculate(sum('_Medidas Movimento'[QTD_TEUS]),_Tempo[TEMPO_ID] >=data_min ,_Tempo[TEMPO_ID]<=data_max)
+			```
+		lineageTag: 70142827-b43e-4efe-b31f-28115361a846
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure data00 =
+			
+			MAXX(ALL('_Medidas Movimento'), '_Medidas Movimento'[Data Movimento])
+		formatString: Short Date
+		lineageTag: 022f48e8-c5c6-426d-98e8-6ba0532489c9
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+	column FAT_MOVIMENTO_ID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: ca37342a-7c93-4d7d-877f-c302d1075498
+		sourceLineageTag: 68e9d3fb-1f0c-498d-9644-8a6f6ddeb204
+		dataCategory: Uncategorized
+		summarizeBy: count
+		sourceColumn: FAT_MOVIMENTO_ID
+
+		annotation SummarizationSetBy = User
+
+	column COD_EMPR_SAP
+		dataType: string
+		isHidden
+		lineageTag: d3c2a171-749d-4b35-a6db-d09357507736
+		sourceLineageTag: 68047f10-1d87-4fec-900b-cdac9d392307
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: COD_EMPR_SAP
+
+		annotation SummarizationSetBy = User
+
+	column TEMPO_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: d6301f98-3453-4718-907f-9ff16d7675d7
+		sourceLineageTag: 345f84b2-83d3-4daa-a41a-683873f73999
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: TEMPO_ID
+
+		annotation SummarizationSetBy = User
+
+	column MOVIMENTO_ID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 4de4b481-f2b6-403a-988e-ce1163d6b9f1
+		sourceLineageTag: 09d58e00-3a8b-4d45-8e80-b1f99be200ee
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: MOVIMENTO_ID
+
+		annotation SummarizationSetBy = User
+
+	column COD_SAP_TRANSPORTADORA
+		dataType: string
+		isHidden
+		lineageTag: 7ae29937-ec0b-49d4-a9b1-08570d603c32
+		sourceLineageTag: d45da07d-14f6-4b0b-8168-74497fa907e5
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: COD_SAP_TRANSPORTADORA
+
+		annotation SummarizationSetBy = User
+
+	column COD_SAP_CONSOLIDADOR
+		dataType: string
+		isHidden
+		lineageTag: 72a64747-d5d8-484a-9246-a3160c665eda
+		sourceLineageTag: 5cbe0ba7-7ca7-42ba-8c49-e8b82f95e1ae
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: COD_SAP_CONSOLIDADOR
+
+		annotation SummarizationSetBy = User
+
+	column COD_SAP_DESCONSOLIDADOR
+		dataType: string
+		isHidden
+		lineageTag: 55fa4e68-ca30-423d-a6bb-34f5e8401484
+		sourceLineageTag: c32b25bb-79c8-408c-819c-13646a424e14
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: COD_SAP_DESCONSOLIDADOR
+
+		annotation SummarizationSetBy = User
+
+	column COD_SAP_DESPACHANTE
+		dataType: string
+		isHidden
+		lineageTag: ec338d8d-d1d0-4534-b0bf-2c617f7d6868
+		sourceLineageTag: b1c868e2-026f-4de1-ad56-cbe2cd810f1c
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: COD_SAP_DESPACHANTE
+
+		annotation SummarizationSetBy = User
+
+	column TIPO_CONTAINER_ID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 9891fb4f-77d4-4801-af30-600d276cddc8
+		sourceLineageTag: 682e8272-9ebd-4b23-9615-8e7b9c868b13
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: TIPO_CONTAINER_ID
+
+		annotation SummarizationSetBy = User
+
+	column TAMANHO_ID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 3963ac3d-8814-4f20-a80f-a26a3d5ae299
+		sourceLineageTag: d8f2c58a-24e6-466d-accd-1fc9d0aba2b2
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: TAMANHO_ID
+
+		annotation SummarizationSetBy = User
+
+	column STATUS_CNTR_ID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 95c49a9f-deac-4634-8e56-09375923decd
+		sourceLineageTag: bf695619-5a06-4b1d-8ff0-8625d57005fe
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: STATUS_CNTR_ID
+
+		annotation SummarizationSetBy = User
+
+	column MODALIDADE_ID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: dc4097e8-9f43-4d4c-b28c-ac8fc9767459
+		sourceLineageTag: 2f9361a4-8d4a-4609-8471-3338ba6ed810
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: MODALIDADE_ID
+
+		annotation SummarizationSetBy = User
+
+	column CATEGORIA_ID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 48a499a5-dceb-4d63-af70-9706acbaff90
+		sourceLineageTag: c80b6245-3222-4b27-9bdf-29410a7c0187
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: CATEGORIA_ID
+
+		annotation SummarizationSetBy = User
+
+	column COD_CLIENTE_SAP
+		dataType: string
+		isHidden
+		lineageTag: 5fc4ce66-bbf5-4231-bf6c-9aff28575b00
+		sourceLineageTag: c3608e67-b54c-46b5-b0ac-7bd5a255ce15
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: COD_CLIENTE_SAP
+
+		annotation SummarizationSetBy = User
+
+	column DETALHES_CLIENTE_ID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 353e484b-d8bd-49d9-b1ee-c4eeffcbc7db
+		sourceLineageTag: 1805e11d-08bf-4879-a9f1-cb11db3faa70
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: DETALHES_CLIENTE_ID
+
+		annotation SummarizationSetBy = User
+
+	column GRUPO_ID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 51d90931-0daf-4e30-a25e-791542ee9ea0
+		sourceLineageTag: da84f357-8e5e-410c-bf0f-db0855be6ae4
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: GRUPO_ID
+
+		annotation SummarizationSetBy = User
+
+	column VENDEDOR_COMERC_ID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 127a2d01-8cc3-4b3c-b54b-3fbd6b91cec5
+		sourceLineageTag: 78c329a7-eccb-4c4e-8b8d-cc979146bc8e
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: VENDEDOR_COMERC_ID
+
+		annotation SummarizationSetBy = User
+
+	column SEGMENTACAO_ID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 6170d951-4c93-47bf-b5d5-aae5256687a3
+		sourceLineageTag: 05bc4f64-f268-49db-a661-48d30002c4b8
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: SEGMENTACAO_ID
+
+		annotation SummarizationSetBy = User
+
+	column ARM_ID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 66e2a50b-46be-4f1a-901f-70de857618cb
+		sourceLineageTag: 87cdd868-e8b4-424b-af87-8631fb4bd144
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: ARM_ID
+
+		annotation SummarizationSetBy = User
+
+	column OPERACAO_ID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 78f856eb-b8f4-4676-846e-be4f0a907f41
+		sourceLineageTag: bb7cc25a-e58f-4dcc-a560-78f2b76fd0e5
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: OPERACAO_ID
+
+		annotation SummarizationSetBy = User
+
+	column NAVIO_ID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 77ef6e42-bd32-44d6-a6c3-131353cb4bbc
+		sourceLineageTag: 975b6b62-5de5-4355-8451-95518505e9c5
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: NAVIO_ID
+
+		annotation SummarizationSetBy = User
+
+	column ARM_ID_NAVIO
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: ab56e014-8283-4054-8889-f3c00d6c748c
+		sourceLineageTag: 2cd3061d-5c0a-4ea1-ac2b-0a9574a440ca
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: ARM_ID_NAVIO
+
+		annotation SummarizationSetBy = User
+
+	column TIPO_VIAGEM_ID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 6af626e6-68c5-4048-b380-9f702c437222
+		sourceLineageTag: 5853f3e4-e492-4a13-984c-e3d8799f6742
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: TIPO_VIAGEM_ID
+
+		annotation SummarizationSetBy = User
+
+	column BERCO_ID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 72a9b5b4-a314-476c-8344-6d4c2e8a769d
+		sourceLineageTag: d9c483d8-20b7-44eb-b6c0-322e5afc63b5
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: BERCO_ID
+
+		annotation SummarizationSetBy = User
+
+	column LINHA_ID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 7b82eed4-06dc-49be-8c24-e86aa7afe28e
+		sourceLineageTag: 08dfd31a-1ee2-45ed-9faa-40c5f5a42731
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: LINHA_ID
+
+		annotation SummarizationSetBy = User
+
+	column PORTO_ORIGEM_ID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: da0a34db-8465-43bb-9e69-a38605fba915
+		sourceLineageTag: 107e8e7a-7b5a-4afa-bdc2-542d15516125
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: PORTO_ORIGEM_ID
+
+		annotation SummarizationSetBy = User
+
+	column PORTO_DESCARGA_ID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: e419a79e-3a87-4607-aa92-9a68dcb73e88
+		sourceLineageTag: 4d37b786-ef29-431e-9709-6dbf4c22f708
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: PORTO_DESCARGA_ID
+
+		annotation SummarizationSetBy = User
+
+	column PORTO_EMBARQUE_ID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 4a42a06a-75a5-43ab-9129-a6fdba3bf169
+		sourceLineageTag: f5d7fa16-054f-43b4-8896-df5702ba7ea3
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: PORTO_EMBARQUE_ID
+
+		annotation SummarizationSetBy = User
+
+	column DESTINO_ID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 73f17e4d-cee8-47b0-b36b-5c44cc9304e0
+		sourceLineageTag: 04d33298-987d-4d13-a63e-860b4fe8f8ba
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: DESTINO_ID
+
+		annotation SummarizationSetBy = User
+
+	column REEFER
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 7fb23de9-2351-4b9f-8b38-ff4b083ff863
+		sourceLineageTag: c7e0492d-db88-4ce2-bfd3-4678bdd5eb6e
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: REEFER
+
+		annotation SummarizationSetBy = User
+
+	column PERIGOSO
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 2e02a1f7-b418-45b9-884a-fb384322a11c
+		sourceLineageTag: 4885c02d-d233-4960-b8c6-c5f6451fca55
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: PERIGOSO
+
+		annotation SummarizationSetBy = User
+
+	column OVERTIME
+		dataType: int64
+		formatString: 0
+		lineageTag: 10dcfafa-053c-43d6-b1ef-75bf8fb8d597
+		sourceLineageTag: c4f1056d-512b-48cf-a20f-dd0cb91615ec
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: OVERTIME
+
+		annotation SummarizationSetBy = User
+
+	column OOG
+		dataType: int64
+		formatString: 0
+		lineageTag: b7d68739-aab0-402f-a451-528aaf7d8ec8
+		sourceLineageTag: aea222b1-66b1-43d2-bede-fe9eb2067218
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: OOG
+
+		annotation SummarizationSetBy = User
+
+	column EQUIPTO_ID
+		dataType: string
+		isHidden
+		lineageTag: 9489db14-3e49-4532-bf62-d3f9f4cea4e3
+		sourceLineageTag: b15becd9-cc43-419b-a497-6439455e8cdc
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: EQUIPTO_ID
+
+		annotation SummarizationSetBy = User
+
+	column TERNO
+		dataType: string
+		lineageTag: 66ae1f0a-e29b-49ea-ada3-466d30722306
+		sourceLineageTag: 4aa1518a-92cf-4855-a799-461122ad2d55
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: TERNO
+
+		annotation SummarizationSetBy = User
+
+	column QTD_CNTRS
+		dataType: double
+		isHidden
+		formatString: #,0.00
+		lineageTag: 158c128d-8d01-4bdc-b4f6-bddbc947d094
+		sourceLineageTag: 11370618-50f9-4ed5-b21b-8b2081198a48
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: QTD_CNTRS
+
+		annotation SummarizationSetBy = User
+
+	column QTD_TEUS
+		dataType: double
+		isHidden
+		formatString: #,0.00
+		lineageTag: dc78ff8d-2ba3-4a3f-b873-e27fb79f0353
+		sourceLineageTag: 6f33106e-2997-4fb4-9f19-b3ae9a05b7c7
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: QTD_TEUS
+
+		annotation SummarizationSetBy = User
+
+	column COLPESO
+		dataType: double
+		isHidden
+		formatString: #,0.00
+		lineageTag: 0eecbf0b-14be-48b0-a55e-51a5d8d96f34
+		sourceLineageTag: 41e72d9f-fbfb-45d8-8fbe-0810ab9dd528
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: COLPESO
+
+		annotation SummarizationSetBy = User
+
+	column REGIAO_ID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: b1bedd0a-5a68-4786-b13c-68b2d53bd4b7
+		sourceLineageTag: f4d27f68-3fcf-4533-9535-9211131f73cf
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: REGIAO_ID
+
+		annotation SummarizationSetBy = User
+
+	column PESO_LIQUIDO
+		dataType: double
+		isHidden
+		formatString: #,0.00
+		lineageTag: 33fcb348-d0df-4186-890d-48c964966e91
+		sourceLineageTag: 40091ed1-1b83-40f8-8235-752e3d5a9a91
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: PESO_LIQUIDO
+
+		annotation SummarizationSetBy = User
+
+	column PAIS_PORTO_ORIGEM_ID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: d93a31ea-d976-4f96-8c8c-95805376c968
+		sourceLineageTag: 5a58be5b-6634-4696-b844-b9347f6b45c3
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: PAIS_PORTO_ORIGEM_ID
+
+		annotation SummarizationSetBy = User
+
+	column PAIS_PORTO_DESCARGA_ID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: b7d40e8e-b2e7-441d-8cba-40d73081f1c7
+		sourceLineageTag: 66e37687-837d-4a90-905b-6686b510c557
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: PAIS_PORTO_DESCARGA_ID
+
+		annotation SummarizationSetBy = User
+
+	column PAIS_PORTO_EMBARQUE_ID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: db29089b-452a-4771-b455-fd4fe64b77fd
+		sourceLineageTag: 60b6a39a-d94f-47eb-ba3e-3fb9e3b79794
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: PAIS_PORTO_EMBARQUE_ID
+
+		annotation SummarizationSetBy = User
+
+	column PAIS_DESTINO_ID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 483ade3e-62bf-4143-a969-ab20787f9bb4
+		sourceLineageTag: 98cc546e-a309-42ea-bb59-054223228115
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: PAIS_DESTINO_ID
+
+		annotation SummarizationSetBy = User
+
+	column TRADE
+		dataType: string
+		isHidden
+		lineageTag: db383b72-32e7-40d0-b082-5a335c27730b
+		sourceLineageTag: 84f7e6c0-c36b-4458-aea6-a7043d0d22a7
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: TRADE
+
+		annotation SummarizationSetBy = User
+
+	column NCM_HASH
+		dataType: string
+		isHidden
+		lineageTag: bb0b266f-01a1-49c7-9f9f-a8b81d77880b
+		sourceLineageTag: df98fb11-dde3-43a3-99f6-2a92f36e2076
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: NCM_HASH
+
+		annotation SummarizationSetBy = User
+
+	column 'Data Movimento'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: c14e7920-4e66-483d-86f6-ad6301fcb781
+		sourceLineageTag: f8729083-2c88-4bd2-a4b5-808a11268be9
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Data Movimento
+
+		changedProperty = FormatString
+
+		annotation SummarizationSetBy = User
+
+	partition '_Medidas Movimento' = entity
+		mode: directQuery
+		source
+			entityName: _Medidas Movimento
+			expressionSource: 'DirectQuery para AS – Modelo Operações Portuárias'
+

@@ -1,0 +1,32 @@
+table 'Flag Produtividade N4'
+	lineageTag: 70a680e1-ceac-4fa5-bd7b-dff5e8d46227
+	sourceLineageTag: 9a3344aa-9abc-402b-b28d-6c9cf199b35f
+
+	column 'Flag Produtividade N4'
+		dataType: string
+		lineageTag: a49c3855-a484-4813-8822-ea0e7271bf2c
+		sourceLineageTag: c45617fc-6f23-42b7-b694-c84d5ec71643
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Flag Produtividade N4
+
+		annotation SummarizationSetBy = User
+
+	column 'ID Flag Produtividade N4'
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		lineageTag: 0248fc32-5803-400c-abf2-f4f4ba51fdeb
+		sourceLineageTag: 541ab4bc-3b90-4ae6-b591-9c3ff7026358
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: ID Flag Produtividade N4
+
+		annotation SummarizationSetBy = User
+
+	partition 'Flag Produtividade N4' = entity
+		mode: directQuery
+		source
+			entityName: Flag Produtividade N4
+			expressionSource: 'DirectQuery para AS – Modelo Operações Portuárias'
+

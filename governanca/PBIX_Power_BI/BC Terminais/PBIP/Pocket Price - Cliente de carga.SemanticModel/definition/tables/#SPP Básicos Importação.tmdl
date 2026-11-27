@@ -1,0 +1,27 @@
+table '#SPP Básicos Importação'
+	lineageTag: 71abcbec-e6ac-48ad-9517-907d070832cf
+
+	measure 'Valor Básicos Importação' = SELECTEDVALUE('#SPP Básicos Importação'[Básicos Importação])
+		lineageTag: c1e99af7-9167-4418-9e0a-b02fdfda9d00
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Básicos Importação'
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: c5305755-b8e2-453d-9366-51be38064fa9
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition '#SPP Básicos Importação' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 0.5, 0.0001)
+
+	annotation PBI_Id = 39084f42afdd47179dcf7c2fe1e57dfc
+

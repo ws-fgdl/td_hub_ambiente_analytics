@@ -1,0 +1,47 @@
+table 'Meses CAGR'
+	lineageTag: 3978f8ee-78cb-42be-8d23-da25b19e3240
+
+	column Mês
+		lineageTag: 28e446d9-026d-464f-be66-6d27609a2c13
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Mês]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Número do Mês'
+		formatString: 0
+		lineageTag: 2b9cc0f7-01f5-4831-9bb5-a41faedc600d
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Número do Mês]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Meses CAGR' = calculated
+		mode: import
+		source = ```
+				
+				DATATABLE(
+				    "Mês", STRING,
+				    "Número do Mês", INTEGER,
+				    {
+				        {"Janeiro", 1},
+				        {"Fevereiro", 2},
+				        {"Março", 3},
+				        {"Abril", 4},
+				        {"Maio", 5},
+				        {"Junho", 6},
+				        {"Julho", 7},
+				        {"Agosto", 8},
+				        {"Setembro", 9},
+				        {"Outubro", 10},
+				        {"Novembro", 11},
+				        {"Dezembro", 12}
+				    }
+				)
+				
+				```
+
+	annotation PBI_Id = 4e6c2f5c9b8c4736b9165bea356d2866
+

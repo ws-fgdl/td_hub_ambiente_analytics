@@ -1,0 +1,28 @@
+table '#Manuseio Cntr Vistoria'
+	lineageTag: 6607b3c2-693e-4f79-83fb-62ff4550cd99
+
+	measure 'Valor #Manuseio Cntr Vistoria' = SELECTEDVALUE('#Manuseio Cntr Vistoria'[#Manuseio Cntr Vistoria])
+		lineageTag: 98b06837-e923-4909-ab95-990c8fe76505
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#Manuseio Cntr Vistoria'
+		lineageTag: 3dbb9f1d-93ef-4bc8-a72a-c19dca04e7e6
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '#Manuseio Cntr Vistoria' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 1, 0.001)
+
+	annotation PBI_Id = b9898fbcf7a24ff19be3ea0d71086ea5
+

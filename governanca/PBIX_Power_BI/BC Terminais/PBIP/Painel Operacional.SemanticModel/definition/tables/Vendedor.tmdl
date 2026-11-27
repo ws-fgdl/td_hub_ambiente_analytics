@@ -1,0 +1,32 @@
+table Vendedor
+	lineageTag: 316ea9c8-b2e4-431e-bf78-04e5a06becd8
+	sourceLineageTag: 80ddde67-fb79-4903-94b2-9816ceff8d7c
+
+	column 'Vendedor ID'
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		lineageTag: 48a5afa7-7d9d-4d44-80dc-92550cf97f7d
+		sourceLineageTag: 7c71a29a-377d-4688-a7be-891f77e9d86d
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Vendedor ID
+
+		annotation SummarizationSetBy = User
+
+	column Vendedor
+		dataType: string
+		lineageTag: 5566d19a-57bf-4e24-a91b-d7b50a65f2bf
+		sourceLineageTag: 3c6f5422-ecfc-4405-874f-96bc94164794
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Vendedor
+
+		annotation SummarizationSetBy = User
+
+	partition Vendedor = entity
+		mode: directQuery
+		source
+			entityName: Vendedor
+			expressionSource: 'DirectQuery para AS – Modelo Operações Portuárias'
+

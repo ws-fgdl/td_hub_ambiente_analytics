@@ -1,0 +1,42 @@
+table Regime
+	lineageTag: 5a4f35c0-c0b1-4ec3-a14e-219aacce6107
+	sourceLineageTag: 5d60c7c3-0f56-465a-a1f6-2c631272883e
+
+	column 'Regime ID'
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		lineageTag: 5c02668d-2034-4e83-b59e-814f63e97a49
+		sourceLineageTag: 13760a3a-cb3d-495d-a788-076af12d50ea
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Regime ID
+
+		annotation SummarizationSetBy = User
+
+	column 'Regime Código'
+		dataType: string
+		lineageTag: bf3e35f3-f63f-4c2c-9fe4-7dbfe66befbd
+		sourceLineageTag: 9b0e261b-8fdd-4bfd-9e09-12837c348bb8
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Regime Código
+
+		annotation SummarizationSetBy = User
+
+	column Regime
+		dataType: string
+		lineageTag: cc5783e6-0919-4b7c-9afd-59528f641a5e
+		sourceLineageTag: 13e09b5a-8392-47a3-929e-5040c36bedce
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Regime
+
+		annotation SummarizationSetBy = User
+
+	partition Regime = entity
+		mode: directQuery
+		source
+			entityName: Regime
+			expressionSource: 'DirectQuery para AS – Modelo Operações Portuárias'
+

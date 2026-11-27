@@ -1,0 +1,28 @@
+table '#Gerenciamento de Risco Importação'
+	lineageTag: 48adbfc1-a0dd-44e9-9618-b3dd7069c48a
+
+	measure 'Valor #Gerenciamento de Risco Importação' = SELECTEDVALUE('#Gerenciamento de Risco Importação'[#Gerenciamento de Risco Importação])
+		lineageTag: 604c8b54-a56d-48b2-94f0-8af42e3ee589
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#Gerenciamento de Risco Importação'
+		lineageTag: 2e893b4e-7ac2-4e8f-89e3-66222781f81e
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '#Gerenciamento de Risco Importação' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 1, 0.001)
+
+	annotation PBI_Id = 68f54745dacb41499dc4a9f2a9f41d11
+

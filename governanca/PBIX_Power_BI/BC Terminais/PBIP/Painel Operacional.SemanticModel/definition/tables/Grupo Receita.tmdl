@@ -1,0 +1,32 @@
+table 'Grupo Receita'
+	lineageTag: 7ee6af44-e09f-432e-9c49-1f942fcbe396
+	sourceLineageTag: 74920096-a066-4d25-9eea-813b4846071e
+
+	column 'Grupo Receita ID'
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		lineageTag: 99c8a147-6153-42cc-a238-2519c39602f8
+		sourceLineageTag: 7c6f5c23-ff98-4644-81fa-d98b077afe3f
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Grupo Receita ID
+
+		annotation SummarizationSetBy = User
+
+	column 'Grupo Receita'
+		dataType: string
+		lineageTag: 2384d0ac-53f6-4075-83f8-e4ebefa2315a
+		sourceLineageTag: 1748c9b7-debe-42b3-badb-ec111601d3a7
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Grupo Receita
+
+		annotation SummarizationSetBy = User
+
+	partition 'Grupo Receita' = entity
+		mode: directQuery
+		source
+			entityName: Grupo Receita
+			expressionSource: 'DirectQuery para AS – Modelo Operações Portuárias'
+

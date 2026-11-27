@@ -1,0 +1,28 @@
+table #Outros
+	lineageTag: 7f734ae2-a4ab-48cf-baa8-e32abd35299d
+
+	measure 'Valor #Outros' = SELECTEDVALUE('#Outros'[#Outros])
+		lineageTag: e7e6234a-a9d0-4c58-ae65-f42e96b666c8
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column #Outros
+		lineageTag: da29e886-b165-40d3-b2cc-8877a8c5e0a9
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition #Outros = calculated
+		mode: import
+		source = GENERATESERIES(-1, 1, 0.001)
+
+	annotation PBI_Id = 69492b6371cd4d9997ba995b619392f6
+

@@ -1,0 +1,32 @@
+table Bitrem
+	lineageTag: 8be654ca-e451-4295-b2db-a3f1988e2da5
+	sourceLineageTag: 847626f0-e390-4011-af39-1cea055158cd
+
+	column Bitrem
+		dataType: string
+		lineageTag: 7520b5f7-d752-461a-93eb-0a6156f3b61c
+		sourceLineageTag: e68b3a59-c0a5-4097-82f3-356d8cc95d5e
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Bitrem
+
+		annotation SummarizationSetBy = User
+
+	column 'ID Bitrem'
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		lineageTag: 833238f4-5ffe-4dd8-a776-0dbc90e71ec6
+		sourceLineageTag: 02aab8ba-6583-449c-a4e0-4291a4e44033
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: ID Bitrem
+
+		annotation SummarizationSetBy = User
+
+	partition Bitrem = entity
+		mode: directQuery
+		source
+			entityName: Bitrem
+			expressionSource: 'DirectQuery para AS – Modelo Operações Portuárias'
+

@@ -1,0 +1,28 @@
+table '#Param % ajuste volume Arm Cntr Vazio (selecionado) - TRA'
+	lineageTag: 92b27ffa-ab8a-4455-ad11-48be3e1eb060
+
+	measure '#Param % ajuste volume Arm Cntr Vazio (selecionado) - TRA' = SELECTEDVALUE('#Param % ajuste volume Arm Cntr Vazio (selecionado) - TRA'[percentual])
+		lineageTag: 013e24c2-edde-4385-bea8-0c08b709469c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column percentual
+		lineageTag: eb71de2c-4833-4f09-ab8e-44babefeac66
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '#Param % ajuste volume Arm Cntr Vazio (selecionado) - TRA' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 1, 0.01)
+
+	annotation PBI_Id = 67a92811d82c4388bdf0be763597f927
+

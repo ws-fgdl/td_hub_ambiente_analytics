@@ -1,0 +1,28 @@
+table '#SBP Outros OS'
+	lineageTag: 219bde44-cef3-47b1-b5b3-704829573d66
+
+	measure 'Valor #SBP Outros OS' = SELECTEDVALUE('#SBP Outros OS'[#SBP Outros OS])
+		lineageTag: 0d51fc1f-129c-4b84-998f-9e0592625819
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#SBP Outros OS'
+		lineageTag: 814b7efd-8895-4370-b303-d540f42c86b4
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '#SBP Outros OS' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 0.5, 0.0001)
+
+	annotation PBI_Id = 004fd389aabe459aab615bb396fb2a0e
+

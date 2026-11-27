@@ -1,0 +1,29 @@
+table '#Param % GRIS'
+	lineageTag: 8195f284-5203-4632-8420-8165e44e4a15
+
+	measure 'Valor Param % GRIS (selecionado)' = SELECTEDVALUE('#Param % GRIS'[Param % GRIS])
+		formatString: "R$"\ #,0.###############;-"R$"\ #,0.###############;"R$"\ #,0.###############
+		lineageTag: c44d5c35-2af4-4012-abad-e3fcd6296e1b
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	column 'Param % GRIS'
+		lineageTag: 0c9e994c-1790-4b74-901d-f201258ccee7
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '#Param % GRIS' = calculated
+		mode: import
+		source = GENERATESERIES(CURRENCY(-1), CURRENCY(1), CURRENCY(0.01))
+
+	annotation PBI_Id = 11b9c46d080f49d28489aceb1133fa27
+

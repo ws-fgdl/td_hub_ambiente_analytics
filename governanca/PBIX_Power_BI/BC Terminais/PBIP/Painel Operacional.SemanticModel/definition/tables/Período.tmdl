@@ -1,0 +1,21 @@
+table Período
+	lineageTag: a966e50c-1332-45e1-9bcb-468d6e25d3ac
+	sourceLineageTag: 8581acfc-2cf5-4514-8952-4deca6097d47
+
+	column Período
+		dataType: string
+		isNullable: false
+		lineageTag: e3a26aef-e435-4447-879a-d0dab4bb072c
+		sourceLineageTag: 401adc96-32b8-460b-8cd4-1c993d8df945
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Período
+
+		annotation SummarizationSetBy = User
+
+	partition Período = entity
+		mode: directQuery
+		source
+			entityName: Período
+			expressionSource: 'DirectQuery para AS – Modelo Operações Portuárias'
+

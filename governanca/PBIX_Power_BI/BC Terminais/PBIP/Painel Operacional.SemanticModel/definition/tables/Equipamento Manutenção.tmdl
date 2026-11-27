@@ -1,0 +1,62 @@
+table 'Equipamento Manutenção'
+	lineageTag: cf0f541a-27d1-4a15-bf1b-77f5d91a42a0
+	sourceLineageTag: a6559dd0-f040-4651-9e8e-34c07630096e
+
+	column 'Código Equipamento'
+		dataType: string
+		isNullable: false
+		lineageTag: a3e09b3d-6447-492d-8744-8d11a99482a4
+		sourceLineageTag: 140c01fd-b4b9-4c0a-ac91-5d1fcda3f6c5
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Código Equipamento
+
+		annotation SummarizationSetBy = User
+
+	column Equipamento
+		dataType: string
+		lineageTag: 48289bb5-3e5f-4687-aa2e-9ef9ad657115
+		sourceLineageTag: c8aa45ab-38e3-49e5-829c-4bc663a3a9d6
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Equipamento
+
+		annotation SummarizationSetBy = User
+
+	column 'Código Tipo Equipamento'
+		dataType: string
+		lineageTag: acd6efcd-1afb-4e1a-92b4-929edcde2592
+		sourceLineageTag: 6eb033ae-67e2-47f7-be7f-de744f6412ea
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Código Tipo Equipamento
+
+		annotation SummarizationSetBy = User
+
+	column 'Tipo Equipamento'
+		dataType: string
+		lineageTag: 54a88c41-a164-4058-b23e-2b3d8f400d0c
+		sourceLineageTag: 7914c7eb-0149-4c6b-8b18-87fd77d0a14d
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Tipo Equipamento
+
+		annotation SummarizationSetBy = User
+
+	column DSC_LOCAL
+		dataType: string
+		isHidden
+		lineageTag: 5c4a853e-b302-4bed-bb61-3422b5461742
+		sourceLineageTag: 55856dd8-51be-46e6-a572-07da55ac3f74
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: DSC_LOCAL
+
+		annotation SummarizationSetBy = User
+
+	partition 'Equipamento Manutenção' = entity
+		mode: directQuery
+		source
+			entityName: Equipamento Manutenção
+			expressionSource: 'DirectQuery para AS – Modelo Operações Portuárias'
+

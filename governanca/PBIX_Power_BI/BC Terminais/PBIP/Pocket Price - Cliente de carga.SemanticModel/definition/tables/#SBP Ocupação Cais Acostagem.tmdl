@@ -1,0 +1,27 @@
+table '#SBP Ocupação Cais Acostagem'
+	lineageTag: d3eabfd0-affe-4036-8448-b5ec140f129d
+
+	measure 'Valor #SBP Ocupação Cais Acostagem' = SELECTEDVALUE('#SBP Ocupação Cais Acostagem'[#SBP Ocupação Cais Acostagem])
+		lineageTag: 8a440919-d832-4dd6-988a-6daaec732a29
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#SBP Ocupação Cais Acostagem'
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: b43da2c1-41bc-4c09-bc1e-87ab30390f79
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition '#SBP Ocupação Cais Acostagem' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 0.5, 0.0001)
+
+	annotation PBI_Id = 573a51638d2a4f5b9a54e4a1285ff44f
+

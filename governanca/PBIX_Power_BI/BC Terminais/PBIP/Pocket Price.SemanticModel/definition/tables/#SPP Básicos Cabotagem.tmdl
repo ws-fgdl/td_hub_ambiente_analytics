@@ -1,0 +1,27 @@
+table '#SPP Básicos Cabotagem'
+	lineageTag: 6b90abc1-b450-4177-b64b-ac47756d247a
+
+	measure 'Valor Básicos Cabotagem' = SELECTEDVALUE('#SPP Básicos Cabotagem'[Básicos Cabotagem])
+		lineageTag: 12a5ed70-ea6b-469d-a474-9c0fc87297d5
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Básicos Cabotagem'
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 671fa980-a18a-475a-83f3-7c1bc7618594
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition '#SPP Básicos Cabotagem' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 0.5, 0.0001)
+
+	annotation PBI_Id = b505c5a025af4365aa20b2c06ede8544
+

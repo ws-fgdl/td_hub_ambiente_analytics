@@ -1,0 +1,28 @@
+table '#Básicos Exportação'
+	lineageTag: 9447dcf1-17f0-4880-b43b-a9e9c8111bf1
+
+	measure 'Valor #Básicos Exportação' = SELECTEDVALUE('#Básicos Exportação'[#Básicos Exportação])
+		lineageTag: cd1addb9-ec38-442c-9798-852174056b23
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#Básicos Exportação'
+		lineageTag: a57a5c47-03a8-48cf-a941-de9765e1ccb4
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '#Básicos Exportação' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 1, 0.001)
+
+	annotation PBI_Id = 7facf488d908431cad7a7f18953cef1b
+

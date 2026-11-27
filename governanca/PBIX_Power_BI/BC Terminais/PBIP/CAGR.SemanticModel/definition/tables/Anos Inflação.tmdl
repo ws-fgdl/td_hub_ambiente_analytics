@@ -1,0 +1,34 @@
+table 'Anos Inflação'
+	lineageTag: 65ffeba9-97e9-4239-9503-caace7f3aab9
+
+	column Value
+		formatString: 0
+		lineageTag: c6853050-ff4e-4c7f-aca1-d8430ca2c629
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Value]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ano
+		formatString: 0
+		lineageTag: 17f12be0-b285-449d-b672-ba4778a453d4
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Ano]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Anos Inflação' = calculated
+		mode: import
+		source = ```
+				
+				ADDCOLUMNS(
+				    GENERATESERIES(2017, YEAR(TODAY()), 1),
+				    "Ano", [Value]
+				)
+				
+				```
+
+	annotation PBI_Id = 7d2fb914173a4533971564f8bcfae582
+

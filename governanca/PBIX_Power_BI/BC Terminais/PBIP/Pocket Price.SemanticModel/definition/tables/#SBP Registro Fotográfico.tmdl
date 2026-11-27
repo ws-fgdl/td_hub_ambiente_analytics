@@ -1,0 +1,28 @@
+table '#SBP Registro Fotográfico'
+	lineageTag: 7d6eb819-2943-401d-8f3f-968337c73e94
+
+	measure 'Valor #SBP Registro Fotográfico' = SELECTEDVALUE('#SBP Registro Fotográfico'[#SBP Registro Fotográfico])
+		lineageTag: c0c69918-51c6-425e-9aed-e463a0664a86
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#SBP Registro Fotográfico'
+		lineageTag: 6c385006-8180-4d4c-9933-7780d5211124
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '#SBP Registro Fotográfico' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 0.5, 0.0001)
+
+	annotation PBI_Id = 9919c87352b44ce6b639e9f97097da99
+

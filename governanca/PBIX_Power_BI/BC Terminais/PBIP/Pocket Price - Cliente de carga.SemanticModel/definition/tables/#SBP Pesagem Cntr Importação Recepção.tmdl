@@ -1,0 +1,27 @@
+table '#SBP Pesagem Cntr Importação Recepção'
+	lineageTag: 70d718f9-fd6f-4c7f-97c3-b105404e5f3a
+
+	measure 'Valor #SBP Pesagem Cntr Importação Recepção' = SELECTEDVALUE('#SBP Pesagem Cntr Importação Recepção'[#SBP Pesagem Cntr Importação Recepção])
+		lineageTag: 31794f2a-08dd-4fb1-9614-5467a64d7714
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#SBP Pesagem Cntr Importação Recepção'
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 7d538806-33d6-4d49-932b-d1aa62c94ede
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition '#SBP Pesagem Cntr Importação Recepção' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 0.5, 0.0001)
+
+	annotation PBI_Id = 8fe945a273d748cdbc390d662dd15dd9
+

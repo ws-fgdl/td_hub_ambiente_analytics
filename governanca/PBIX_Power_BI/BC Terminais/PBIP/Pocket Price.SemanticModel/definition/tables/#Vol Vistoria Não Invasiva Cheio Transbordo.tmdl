@@ -1,0 +1,28 @@
+table '#Vol Vistoria Não Invasiva Cheio Transbordo'
+	lineageTag: d9742a4f-5d72-4bad-a202-cd1569459c46
+
+	measure 'Valor #Vol Vistoria Não Invasiva Cheio Transbordo' = SELECTEDVALUE('#Vol Vistoria Não Invasiva Cheio Transbordo'[#Vol Vistoria Não Invasiva Cheio Transbordo])
+		lineageTag: 04b98d93-f4dc-40fc-b9be-bd32c7f165da
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#Vol Vistoria Não Invasiva Cheio Transbordo'
+		lineageTag: cf585560-7ec3-466b-bf41-afbadbf67062
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '#Vol Vistoria Não Invasiva Cheio Transbordo' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 1, 0.01)
+
+	annotation PBI_Id = 5a5d546e2f5440ebb6e3596c0e3477ca
+

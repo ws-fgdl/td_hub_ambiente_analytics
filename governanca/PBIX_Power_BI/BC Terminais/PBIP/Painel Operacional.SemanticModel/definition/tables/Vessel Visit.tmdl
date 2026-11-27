@@ -1,0 +1,273 @@
+table 'Vessel Visit'
+	lineageTag: 348d1252-aacd-4e37-a84b-b56252e92a39
+	sourceLineageTag: b82a213b-7a6f-400e-b5f9-46c1cbbc38ee
+
+	column 'Operação ID'
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		lineageTag: 5e06c040-0724-4984-8d7c-3f78bdba6739
+		sourceLineageTag: f71849d2-01da-4c6f-8510-5c780d3f418b
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Operação ID
+
+		annotation SummarizationSetBy = User
+
+	column Operação
+		dataType: string
+		lineageTag: c7b289be-1ef1-4e01-a80b-ee3fb8e76a6d
+		sourceLineageTag: 4cef6469-6379-4d7a-8ab3-17d071b6aa73
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Operação
+
+		annotation SummarizationSetBy = User
+
+	column Viagem
+		dataType: string
+		lineageTag: 44fbebd2-6a46-41c4-ba0f-9e84a3bb28cb
+		sourceLineageTag: 6f41f90c-53ff-46d3-88f3-08a2b4533c7a
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Viagem
+
+		annotation SummarizationSetBy = User
+
+	column 'Tipo Viagem'
+		dataType: string
+		lineageTag: 573969ce-94d5-43b9-aa2c-fb8939c3df7a
+		sourceLineageTag: d7590579-ea8d-4c34-8855-8412d9843696
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Tipo Viagem
+
+		annotation SummarizationSetBy = User
+
+	column BERCO_TRMCNT_TRMCNT_ID
+		dataType: string
+		lineageTag: 901a52cb-6fda-40b6-9b75-862c5e93a3c0
+		sourceLineageTag: 50cad05b-d2fb-41f1-96f1-efb7756597c9
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: BERCO_TRMCNT_TRMCNT_ID
+
+		annotation SummarizationSetBy = User
+
+	column 'Berço Código'
+		dataType: string
+		lineageTag: 2cd76c08-1262-46d9-8159-3ea240cc38ca
+		sourceLineageTag: 3ddd7d81-d0c5-4a1c-87c1-7cafd948da4b
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Berço Código
+
+		annotation SummarizationSetBy = User
+
+	column Berço
+		dataType: string
+		lineageTag: 0459d814-6627-4fcb-8647-c5f8f211ed6e
+		sourceLineageTag: e4671452-d5fc-42f4-b1d3-e6929fd7477c
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Berço
+
+		annotation SummarizationSetBy = User
+
+	column 'Navio Viagem'
+		dataType: string
+		lineageTag: da21bf0a-64b3-437d-ad56-fe7c66c9bf3c
+		sourceLineageTag: 70935114-cfa8-40d8-b9d2-6478b0609d38
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Navio Viagem
+
+		annotation SummarizationSetBy = User
+
+	column IMO
+		dataType: string
+		lineageTag: e0f5c17e-31d1-4db5-8a4c-ad07215bd2f0
+		sourceLineageTag: d887fe47-f2b8-4cad-8195-cf632bac9683
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: IMO
+
+		annotation SummarizationSetBy = User
+
+	column 'Cod Linha'
+		dataType: string
+		lineageTag: 3561f911-c5d1-405b-87b7-113f1f1db555
+		sourceLineageTag: 5f1068fa-3c07-456e-b354-0098a66c5a1f
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Cod Linha
+
+		annotation SummarizationSetBy = User
+
+	column Linha
+		dataType: string
+		lineageTag: 42000a0f-263b-4369-b46a-46c328a837b0
+		sourceLineageTag: 1c250972-36f7-413a-a4fc-abb786c019c2
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Linha
+
+		annotation SummarizationSetBy = User
+
+	column 'Dt Encerr RF'
+		dataType: dateTime
+		formatString: General Number
+		lineageTag: 791e5352-0f8e-47bb-bfcb-753db52e514c
+		sourceLineageTag: 23be8cbf-c7a7-48bb-b98e-7bc97dbc5528
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Dt Encerr RF
+
+		annotation SummarizationSetBy = User
+
+	column 'Dt Desatrac'
+		dataType: dateTime
+		formatString: General Number
+		lineageTag: 4db9c22b-ebe8-42e1-aa48-93dacc5ac99b
+		sourceLineageTag: 14ca01b1-2c78-4bf0-a856-4a189f5417c4
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Dt Desatrac
+
+		annotation SummarizationSetBy = User
+
+	column 'Dt Desatrac RF'
+		dataType: dateTime
+		formatString: General Number
+		lineageTag: ac256bdf-b0c3-4c9d-875f-b51f8ed47823
+		sourceLineageTag: df68c710-420d-46fc-8745-7dc28cfa0eda
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Dt Desatrac RF
+
+		annotation SummarizationSetBy = User
+
+	column Situação
+		dataType: string
+		lineageTag: 48c74e30-d70a-48b1-b504-3404467c4e77
+		sourceLineageTag: 1927664d-44ca-4e5c-819b-273eb28710ce
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Situação
+
+		annotation SummarizationSetBy = User
+
+	column 'Dt Carta Encerramento'
+		dataType: dateTime
+		formatString: General Number
+		lineageTag: 6aaf1683-4d80-4097-983c-767561bca75b
+		sourceLineageTag: 9b02083e-d8c4-4bd6-ab7e-9b030f67f9a5
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Dt Carta Encerramento
+
+		annotation SummarizationSetBy = User
+
+	column 'Dt Prevta Atracação'
+		dataType: dateTime
+		formatString: General Number
+		lineageTag: a79d3ab7-88fc-48ad-8927-e7ef9bc2d7fa
+		sourceLineageTag: 01eef6be-39a6-497c-a8e3-f5865b280bac
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Dt Prevta Atracação
+
+		annotation SummarizationSetBy = User
+
+	column 'Dt Real Atracação'
+		dataType: dateTime
+		formatString: General Number
+		lineageTag: a95f79c8-bdd3-4114-91f8-45e3a5012b61
+		sourceLineageTag: 2612f4d7-c984-4159-8c33-bcdb5f56814b
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Dt Real Atracação
+
+		annotation SummarizationSetBy = User
+
+	column 'Dt Real Partida'
+		dataType: dateTime
+		formatString: General Number
+		lineageTag: 229eb51c-2044-4517-89ee-f542cbe22c33
+		sourceLineageTag: d3173c38-3470-42b2-a5e6-53d06c7b4691
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Dt Real Partida
+
+		annotation SummarizationSetBy = User
+
+	column 'Dt Inicio Oper Real'
+		dataType: dateTime
+		formatString: General Number
+		lineageTag: b59dd12d-5e1b-426e-a38a-57b384e3ae02
+		sourceLineageTag: 29e15c06-9c7c-4661-acc4-8a08047b4893
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Dt Inicio Oper Real
+
+		annotation SummarizationSetBy = User
+
+	column 'Dt Fim Oper Real'
+		dataType: dateTime
+		formatString: General Number
+		lineageTag: 9a9876df-92a7-4b2a-a97a-773c393a5fc4
+		sourceLineageTag: 7a2ba32d-683a-452f-a997-64b27bff7b29
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Dt Fim Oper Real
+
+		annotation SummarizationSetBy = User
+
+	column 'Dt Lib Emb'
+		dataType: dateTime
+		formatString: General Number
+		lineageTag: c241ef9e-be4d-4c9b-9dcb-4db41a58ea55
+		sourceLineageTag: 683a4f2a-e808-42cc-a04f-bba963b7bc3b
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Dt Lib Emb
+
+		annotation SummarizationSetBy = User
+
+	column Janela
+		dataType: string
+		lineageTag: e484a13e-b448-4c35-8e57-c0474e584744
+		sourceLineageTag: 5e3758c1-ada1-487b-864b-fa2944f815fc
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Janela
+
+		annotation SummarizationSetBy = User
+
+	column 'Dt Carga BI'
+		dataType: dateTime
+		formatString: General Number
+		lineageTag: f3bc6ab0-7e33-43c6-ba06-ce22d7395bc7
+		sourceLineageTag: 274ddd9c-2f4b-412c-bc04-f0de064f7dd0
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Dt Carga BI
+
+		annotation SummarizationSetBy = User
+
+	column COD_OPERACAO_B2B
+		dataType: string
+		lineageTag: 474d1123-ab06-4fbc-acef-86c9e5554156
+		sourceLineageTag: c1a862ec-1589-4960-a5ff-b4a00cc37012
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: COD_OPERACAO_B2B
+
+		annotation SummarizationSetBy = User
+
+	partition 'Vessel Visit' = entity
+		mode: directQuery
+		source
+			entityName: Vessel Visit
+			expressionSource: 'DirectQuery para AS – Modelo Operações Portuárias'
+

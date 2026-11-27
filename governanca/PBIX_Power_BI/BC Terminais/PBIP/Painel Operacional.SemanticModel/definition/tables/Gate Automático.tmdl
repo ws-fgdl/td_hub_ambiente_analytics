@@ -1,0 +1,32 @@
+table 'Gate Automático'
+	lineageTag: d8676c9d-9652-4663-bc85-59981bbe7d75
+	sourceLineageTag: ab1c57f1-98fc-47c5-83a6-90bc3581937d
+
+	column 'Gate Automático'
+		dataType: string
+		lineageTag: 3205d664-23f6-45ec-b1ce-82305ec364f2
+		sourceLineageTag: 4b6afa6a-cbd4-4bdf-958f-c1b07e403d66
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Gate Automático
+
+		annotation SummarizationSetBy = User
+
+	column 'ID Gate Automático'
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		lineageTag: 2566e5cd-c096-4595-914a-5d0f02798db2
+		sourceLineageTag: 39648104-1435-4c20-8f77-9b7f4885b3c5
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: ID Gate Automático
+
+		annotation SummarizationSetBy = User
+
+	partition 'Gate Automático' = entity
+		mode: directQuery
+		source
+			entityName: Gate Automático
+			expressionSource: 'DirectQuery para AS – Modelo Operações Portuárias'
+

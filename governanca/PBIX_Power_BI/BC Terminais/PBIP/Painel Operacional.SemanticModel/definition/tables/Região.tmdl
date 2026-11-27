@@ -1,0 +1,66 @@
+table Região
+	lineageTag: 545cf27c-7158-48a7-aef8-3801b8399158
+	sourceLineageTag: 74c51ad6-b586-41bc-974d-d0f2cae19546
+
+	column COD_CLIENTE_SAP
+		dataType: string
+		isHidden
+		isNullable: false
+		lineageTag: 9d4c5fba-e5c9-450b-8f36-15bd59a26f8d
+		sourceLineageTag: 530e8e5b-3b94-4692-ab4c-1fea3cc52742
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: COD_CLIENTE_SAP
+
+		annotation SummarizationSetBy = User
+
+	column Região
+		dataType: string
+		lineageTag: f6a9275b-0c35-4aa8-8f94-54631810e995
+		sourceLineageTag: 9abb7b13-5aee-4bee-a0d5-2515bb054590
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Região
+
+		annotation SummarizationSetBy = User
+
+	column UF_CLIENTE
+		dataType: string
+		isHidden
+		lineageTag: d532da1d-f24b-4e77-a9f1-c57706a0d0b2
+		sourceLineageTag: ec5533c3-e5c2-4a37-8785-49ffb9bc8e46
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: UF_CLIENTE
+
+		annotation SummarizationSetBy = User
+
+	column CIDADE_CLIENTE
+		dataType: string
+		isHidden
+		lineageTag: be9df9e3-aec1-42fe-9d94-ac6c7dd8efdc
+		sourceLineageTag: 0f51a8ea-4a91-4e93-bbb8-c88874b8b9b1
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: CIDADE_CLIENTE
+
+		annotation SummarizationSetBy = User
+
+	column DH_CARGA
+		dataType: dateTime
+		isHidden
+		formatString: General Number
+		lineageTag: 2603869e-3b12-4422-ab74-7ead3959bda2
+		sourceLineageTag: 23435bcc-c89a-4f26-b1ec-5c808c41aa34
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: DH_CARGA
+
+		annotation SummarizationSetBy = User
+
+	partition Região = entity
+		mode: directQuery
+		source
+			entityName: Região
+			expressionSource: 'DirectQuery para AS – Modelo Operações Portuárias'
+

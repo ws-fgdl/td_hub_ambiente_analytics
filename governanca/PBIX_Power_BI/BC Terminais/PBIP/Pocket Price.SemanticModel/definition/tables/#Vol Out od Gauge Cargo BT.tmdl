@@ -1,0 +1,28 @@
+table '#Vol Out od Gauge Cargo BT'
+	lineageTag: 0c1f3b94-f7e1-4211-a931-5eded3ebab62
+
+	measure 'Valor #Vol Out od Gauge Cargo BT' = SELECTEDVALUE('#Vol Out od Gauge Cargo BT'[#Vol Out od Gauge Cargo BT])
+		lineageTag: f65f115c-23d7-46f9-a72b-4b0127bcb258
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#Vol Out od Gauge Cargo BT'
+		lineageTag: 37abe892-d6c1-4f0b-9bf9-4086ac0e81e5
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '#Vol Out od Gauge Cargo BT' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 1, 0.01)
+
+	annotation PBI_Id = a70c1785bf6e4778b3160e611a2a0a04
+

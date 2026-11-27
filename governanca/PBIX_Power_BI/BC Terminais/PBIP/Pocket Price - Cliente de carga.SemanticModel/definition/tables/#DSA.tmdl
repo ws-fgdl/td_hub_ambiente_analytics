@@ -1,0 +1,28 @@
+table #DSA
+	lineageTag: 20ca4927-1c75-485e-82ed-58cb5c1c460c
+
+	measure 'Valor #DSA' = SELECTEDVALUE('#DSA'[#DSA])
+		lineageTag: 9a7b9b7a-f1ab-4b1c-8b25-6f14cf6512aa
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column #DSA
+		lineageTag: 51bda9bc-19d6-4d07-8b32-9cf4a4999dd7
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition #DSA = calculated
+		mode: import
+		source = GENERATESERIES(-1, 1, 0.001)
+
+	annotation PBI_Id = 8b3b851fcef641b9b17841e509e5d4ab
+

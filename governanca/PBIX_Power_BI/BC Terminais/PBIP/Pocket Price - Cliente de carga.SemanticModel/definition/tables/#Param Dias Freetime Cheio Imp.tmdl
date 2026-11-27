@@ -1,0 +1,26 @@
+table '#Param Dias Freetime Cheio Imp'
+	lineageTag: 5a1432e9-eb0c-4eea-97c5-8822621d24e8
+
+	measure 'Valor #Param Dias Freetime Cheio Imp (selecionado)' = SELECTEDVALUE('#Param Dias Freetime Cheio Imp'[#Param Dias Freetime Cheio Imp])
+		formatString: 0
+		lineageTag: 1c500aa1-a5e2-499b-b8cb-7f47fce2c6c9
+
+	column '#Param Dias Freetime Cheio Imp'
+		formatString: 0
+		lineageTag: d5b90d64-6764-47dc-bc32-9ca4266ddc4e
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition '#Param Dias Freetime Cheio Imp' = calculated
+		mode: import
+		source = GENERATESERIES(0, 60, 1)
+
+	annotation PBI_Id = 3ee859ba5b7a496d83b993503a0e3749
+

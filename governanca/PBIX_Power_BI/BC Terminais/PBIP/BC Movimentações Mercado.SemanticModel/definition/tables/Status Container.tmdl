@@ -1,0 +1,22 @@
+table 'Status Container'
+	lineageTag: b6964063-ba61-469b-8289-d88ebd85878d
+
+	column 'Status Container'
+		lineageTag: 7812ae33-79cb-43a7-b0da-9fdb99091fa2
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Status Container]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Status Container' = calculated
+		mode: import
+		source = ```
+				UNION(
+				    ROW("Status Container", "CHEIO"), 
+				    ROW("Status Container", "VAZIO")
+				    )
+				```
+
+	annotation PBI_Id = 04e9eabe60e64625aa60bfe147f773a4
+

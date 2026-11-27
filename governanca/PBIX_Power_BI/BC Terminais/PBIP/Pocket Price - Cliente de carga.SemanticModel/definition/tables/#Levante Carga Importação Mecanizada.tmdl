@@ -1,0 +1,28 @@
+table '#Levante Carga Importação Mecanizada'
+	lineageTag: 4515d1e2-d096-459a-bc1e-6db1e1306fc8
+
+	measure 'Valor #Levante Carga Importação Mecanizada' = SELECTEDVALUE('#Levante Carga Importação Mecanizada'[#Levante Carga Importação Mecanizada])
+		lineageTag: 04d50f62-aa2d-46fa-bd7c-a383ac2759f7
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#Levante Carga Importação Mecanizada'
+		lineageTag: f25a9c8e-1181-4a86-ae58-3744d9c7d1be
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '#Levante Carga Importação Mecanizada' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 1, 0.001)
+
+	annotation PBI_Id = 65beb8366ae3484c8f064608a4403eac
+

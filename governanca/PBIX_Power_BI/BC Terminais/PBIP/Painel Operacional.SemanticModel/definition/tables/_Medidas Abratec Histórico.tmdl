@@ -1,0 +1,147 @@
+table '_Medidas Abratec Histórico'
+	lineageTag: bc0b4231-09cd-457f-a0b1-1cf05d60a2ad
+	sourceLineageTag: 6c013e5b-d50a-4b76-9262-ccbddee81917
+
+	column TEMPO_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: d17c4042-e3e3-48c4-9dcd-a81973af0292
+		sourceLineageTag: 6e4567b9-26e4-4157-b691-f5f51715a9b3
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: TEMPO_ID
+
+		annotation SummarizationSetBy = User
+
+	column Expectation
+		dataType: double
+		lineageTag: ade5fbca-0ce0-46bb-9d16-1c0d7d231eb6
+		sourceLineageTag: 126119d2-4efd-448d-a11a-e131b0db991c
+		dataCategory: Uncategorized
+		summarizeBy: average
+		sourceColumn: Expectation
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Operation Time'
+		dataType: double
+		lineageTag: 59d0d442-d9db-418c-b6af-f30a2af534c3
+		sourceLineageTag: cd9294fe-e4d0-4dab-a3a1-31f69a217597
+		dataCategory: Uncategorized
+		summarizeBy: average
+		sourceColumn: Operation Time
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Berthed
+		dataType: double
+		lineageTag: c25c231c-501a-40af-ba72-8852b6d17b90
+		sourceLineageTag: 270f5207-2258-41ba-8c4c-9e62153475b4
+		dataCategory: Uncategorized
+		summarizeBy: average
+		sourceColumn: Berthed
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Berth Occupancy'
+		dataType: double
+		lineageTag: a3fc17da-f7e1-4ccf-9a9b-ee9f3d9129cf
+		sourceLineageTag: 64e66b7c-3773-4805-bfdc-0a21b170c33c
+		dataCategory: Uncategorized
+		summarizeBy: average
+		sourceColumn: Berth Occupancy
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Average Productivity'
+		dataType: double
+		lineageTag: 16b9ca98-b78c-4f2d-a56e-10d6ed5fe3ce
+		sourceLineageTag: 81f1c394-59e8-46d4-827c-d1508c26f473
+		dataCategory: Uncategorized
+		summarizeBy: average
+		sourceColumn: Average Productivity
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Maximum Productivity'
+		dataType: double
+		lineageTag: 729152bc-4c21-4ff5-ac4e-ab8bd84f550e
+		sourceLineageTag: 7f4ce58c-3cf4-4331-9272-6ccbf14109b0
+		dataCategory: Uncategorized
+		summarizeBy: max
+		sourceColumn: Maximum Productivity
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Vessel (Max Prod.)'
+		dataType: string
+		lineageTag: 9fb3d43a-31ab-4f44-b74f-e984f8206d4c
+		sourceLineageTag: fa3b228c-7676-4434-bde5-ae834ee67529
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Vessel (Max Prod.)
+
+		annotation SummarizationSetBy = User
+
+	column 'Line (Max Prod.)'
+		dataType: string
+		lineageTag: 10b6c554-2b2e-4d29-8497-40f9056fe401
+		sourceLineageTag: f859c70f-7a14-49d3-b85e-04f7fad318d7
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Line (Max Prod.)
+
+		annotation SummarizationSetBy = User
+
+	column 'Moves (Max Prod.)'
+		dataType: double
+		lineageTag: 981509d6-072f-4a79-b9e6-84f89568624c
+		sourceLineageTag: d56cf8fe-3274-418e-8e2e-1107bdb34204
+		dataCategory: Uncategorized
+		summarizeBy: max
+		sourceColumn: Moves (Max Prod.)
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DT_ULT_CARGA
+		dataType: dateTime
+		isHidden
+		formatString: General Number
+		lineageTag: 77bde3aa-7511-4006-b53f-bb78bfad8d89
+		sourceLineageTag: a445ff32-fb84-49fc-bbc2-a8ecad368f71
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: DT_ULT_CARGA
+
+		annotation SummarizationSetBy = User
+
+	column Chave
+		dataType: string
+		lineageTag: e349f7ca-2e00-4b21-bbb4-54a10ef8a835
+		sourceLineageTag: 0ac67c4e-b0b0-4ce7-8ec5-7909f4e78015
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Chave
+
+		annotation SummarizationSetBy = User
+
+	partition '_Medidas Abratec Histórico' = entity
+		mode: directQuery
+		source
+			entityName: _Medidas Abratec Histórico
+			expressionSource: 'DirectQuery para AS – Modelo Operações Portuárias'
+

@@ -1,0 +1,21 @@
+table 'Grupo Armador IM'
+	lineageTag: 5cf39b55-a3c3-42f9-95f8-b1f9e808b280
+	sourceLineageTag: 202a0d98-5853-49b4-ab13-cac939af5724
+
+	column 'Grupo Armador IM'
+		dataType: string
+		isNullable: false
+		lineageTag: 0ad0d67b-28bc-449f-a383-6dbefa2da3a5
+		sourceLineageTag: 4c5dd38e-e9ca-445b-bf8b-e84ba6d9825b
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Grupo Armador IM
+
+		annotation SummarizationSetBy = User
+
+	partition 'Grupo Armador IM' = entity
+		mode: directQuery
+		source
+			entityName: Grupo Armador IM
+			expressionSource: 'DirectQuery para AS – Modelo Operações Portuárias'
+

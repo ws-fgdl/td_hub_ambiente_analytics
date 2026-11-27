@@ -1,0 +1,27 @@
+table 'Adicional OOG (selecionado) - CAB'
+	lineageTag: 7db3b834-a787-48a2-a57b-4888b8a1e61e
+
+	measure 'Valor Adicional OOG (selecionado) - CAB' = SELECTEDVALUE('Adicional OOG (selecionado) - CAB'[Adicional OOG (selecionado) - CAB])
+		lineageTag: e18aab60-7e16-41ad-8530-c5863f4984cb
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Adicional OOG (selecionado) - CAB'
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 863c2bd9-4d96-488f-b77f-765f84abc4f0
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition 'Adicional OOG (selecionado) - CAB' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 1, 0.001)
+
+	annotation PBI_Id = 91d9a904939548cd99cf47dd6d63349d
+

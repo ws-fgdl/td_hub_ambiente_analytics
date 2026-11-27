@@ -1,0 +1,42 @@
+table Localidade
+	lineageTag: 54bbceb0-85b0-4de3-b43f-136ae5907cdb
+	sourceLineageTag: 12070ad2-bbfc-4fca-84dd-8dbe38ae484b
+
+	column 'Localidade ID'
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		lineageTag: 80a47db1-a164-4144-bdbf-5994dbb41e7f
+		sourceLineageTag: 6ce64c53-5312-4585-8dac-ce54d331420e
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Localidade ID
+
+		annotation SummarizationSetBy = User
+
+	column 'Localidade Código'
+		dataType: string
+		lineageTag: ea73e0e9-a35e-46e7-8ddb-b308197fb298
+		sourceLineageTag: 28dd5068-619b-4a2e-87ad-1ef2634119a3
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Localidade Código
+
+		annotation SummarizationSetBy = User
+
+	column Localidade
+		dataType: string
+		lineageTag: 7ec64298-e171-463e-8b01-d0c30709a2b5
+		sourceLineageTag: ef002b79-fd7c-4067-9a41-40c47bd53abb
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Localidade
+
+		annotation SummarizationSetBy = User
+
+	partition Localidade = entity
+		mode: directQuery
+		source
+			entityName: Localidade
+			expressionSource: 'DirectQuery para AS – Modelo Operações Portuárias'
+

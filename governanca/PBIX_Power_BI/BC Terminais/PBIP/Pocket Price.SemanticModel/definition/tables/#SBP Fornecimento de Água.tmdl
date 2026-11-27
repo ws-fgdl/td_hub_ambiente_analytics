@@ -1,0 +1,27 @@
+table '#SBP Fornecimento de Água'
+	lineageTag: 90cb60ad-4bc2-40cd-b0d0-dc407ac561e0
+
+	measure 'Valor #SBP Fornecimento de Água' = SELECTEDVALUE('#SBP Fornecimento de Água'[#SBP Fornecimento de Água])
+		lineageTag: acb48e06-e661-4d57-a200-f216f4cdcbcd
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#SBP Fornecimento de Água'
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: f1a79990-7e6d-4cd3-ba35-63998e71d81a
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition '#SBP Fornecimento de Água' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 0.5, 0.0001)
+
+	annotation PBI_Id = 4b67dae4bc06421ea8b39978829b29b1
+

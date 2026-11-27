@@ -1,0 +1,28 @@
+table '#Ocupação Cais Acostagem'
+	lineageTag: c57baf80-5494-4fb7-9b3a-60844c5541f0
+
+	measure 'Valor #Ocupação Cais Acostagem' = SELECTEDVALUE('#Ocupação Cais Acostagem'[#Ocupação Cais Acostagem])
+		lineageTag: 940e5706-e056-41ae-a722-59c6dc4261e4
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#Ocupação Cais Acostagem'
+		lineageTag: 94c29c72-df2b-4abb-bdf3-4ccbef2eac08
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '#Ocupação Cais Acostagem' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 1, 0.001)
+
+	annotation PBI_Id = 1a656224ec2a477b8550e118b799004b
+

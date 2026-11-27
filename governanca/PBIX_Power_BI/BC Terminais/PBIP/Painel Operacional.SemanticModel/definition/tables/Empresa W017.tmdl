@@ -1,0 +1,148 @@
+table 'Empresa W017'
+	lineageTag: 90662541-0ed2-444c-8bef-e73dcc3020eb
+	sourceLineageTag: cfd85cb3-d78b-4861-8826-2e9fd5e742f3
+
+	column 'Código Empresa'
+		dataType: string
+		isNullable: false
+		lineageTag: 013ea54c-cae9-4b6a-8387-fd39197fc1b4
+		sourceLineageTag: bfb4622c-cfb7-42d0-be4b-42d1de9d41b2
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Código Empresa
+
+		annotation SummarizationSetBy = User
+
+	column NUM_EMP_CORP
+		dataType: int64
+		formatString: 0
+		lineageTag: 281a22f7-f203-4036-b6c1-396c05096af3
+		sourceLineageTag: 689ac87a-294e-4b73-ad4e-6774c6693e5c
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: NUM_EMP_CORP
+
+		annotation SummarizationSetBy = User
+
+	column EPRGRP_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: cf045810-7704-451d-856c-3b2282ee8be3
+		sourceLineageTag: 1703d187-9c24-4518-988c-8d8716507680
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: EPRGRP_ID
+
+		annotation SummarizationSetBy = User
+
+	column NM_EMPR_GRUPO
+		dataType: int64
+		formatString: 0
+		lineageTag: 040c7a52-2096-4e60-b512-836dc5ea3e08
+		sourceLineageTag: d410fe99-c610-4929-a8f2-23c8d1a0f213
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: NM_EMPR_GRUPO
+
+		annotation SummarizationSetBy = User
+
+	column DSC_EMPR_GRUPO
+		dataType: string
+		lineageTag: 38701d45-6e8e-4c4a-9612-20288aeaf17f
+		sourceLineageTag: 75c71c67-1390-48c1-a5ce-6c627fdb9dbc
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: DSC_EMPR_GRUPO
+
+		annotation SummarizationSetBy = User
+
+	column 'Razão Social'
+		dataType: string
+		lineageTag: 26d974e0-81c5-493c-8307-95cea65dcf4e
+		sourceLineageTag: cae2c25c-2a1b-402f-a1cd-d7fbf0167a4f
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Razão Social
+
+		annotation SummarizationSetBy = User
+
+	column 'Razão Social Completa'
+		dataType: string
+		lineageTag: 20700a37-808c-4175-912d-dfc04df44ee2
+		sourceLineageTag: 1b7dd794-e9f6-43e9-9b89-ee422631fc9c
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Razão Social Completa
+
+		annotation SummarizationSetBy = User
+
+	column TIP_EMPRESA
+		dataType: string
+		lineageTag: 3b4a4b76-6be4-4a96-bfd9-50bd4b748407
+		sourceLineageTag: 49c9e7a9-b14e-4be4-9366-445ae283a6e8
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: TIP_EMPRESA
+
+		annotation SummarizationSetBy = User
+
+	column PERC_PARTIC_WS
+		dataType: double
+		lineageTag: 670e9240-56b9-4756-812b-71a76cf426ed
+		sourceLineageTag: 0d50b670-9da9-4728-be83-078c5025320a
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: PERC_PARTIC_WS
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DAT_INCL_REG
+		dataType: dateTime
+		formatString: General Number
+		lineageTag: 78326761-4e3c-421c-adc9-f7d5bb4e0d73
+		sourceLineageTag: 31900738-4623-4c9e-9dad-2b0764e5e092
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: DAT_INCL_REG
+
+		annotation SummarizationSetBy = User
+
+	column CH_USR_INCL_REG
+		dataType: string
+		lineageTag: b92ae3fe-8484-4d63-bf75-61c57de7787f
+		sourceLineageTag: 764ea56b-5a7a-4cee-a726-a84979a36d49
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: CH_USR_INCL_REG
+
+		annotation SummarizationSetBy = User
+
+	column DAT_ALT_REG
+		dataType: dateTime
+		formatString: General Number
+		lineageTag: df679b5d-d0a8-43d1-bd4c-c4c41b5485f9
+		sourceLineageTag: 51c1027e-2957-42da-8087-8e28c639559f
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: DAT_ALT_REG
+
+		annotation SummarizationSetBy = User
+
+	column CH_USR_ALT_REG
+		dataType: string
+		lineageTag: 42294a1c-5493-45d0-a441-cb25de73ba53
+		sourceLineageTag: 3f40e341-7f26-43f1-92e6-4d433076966a
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: CH_USR_ALT_REG
+
+		annotation SummarizationSetBy = User
+
+	partition 'Empresa W017' = entity
+		mode: directQuery
+		source
+			entityName: Empresa W017
+			expressionSource: 'DirectQuery para AS – Modelo Operações Portuárias'
+

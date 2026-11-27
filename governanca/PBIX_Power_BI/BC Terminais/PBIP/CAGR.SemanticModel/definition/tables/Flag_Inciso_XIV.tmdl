@@ -1,0 +1,20 @@
+table Flag_Inciso_XIV
+	lineageTag: 68adfccb-13ef-4192-beca-4b3849dc54c7
+
+	column 'Inciso XIV'
+		lineageTag: 0f5724bc-807d-4a23-918c-9d21f6e84df0
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Inciso XIV]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Flag_Inciso_XIV = calculated
+		mode: import
+		source =
+				UNION(ROW("Inciso XIV", "SIM")
+				, ROW("Inciso XIV", "NÃO")
+				)
+
+	annotation PBI_Id = a56ec35bc34f4902ab2dcccb4573db88
+

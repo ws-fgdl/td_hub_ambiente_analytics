@@ -1,0 +1,32 @@
+table 'Tipo Viagem'
+	lineageTag: 4226354b-87be-4f78-8dff-0f39d57d327c
+	sourceLineageTag: 5c433d7d-3d44-4a1a-88ff-8a2248de1a0c
+
+	column 'Tipo Viagem ID'
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		lineageTag: feb0cbe4-ab4c-4cc5-a1c1-b540d8b2385c
+		sourceLineageTag: dbed6d5d-eab7-4b8d-9bf8-36840e512ab9
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Tipo Viagem ID
+
+		annotation SummarizationSetBy = User
+
+	column 'Tipo Viagem'
+		dataType: string
+		lineageTag: a878a464-972d-43ef-887d-8e6b0d10674f
+		sourceLineageTag: da9a719f-a3a9-4dd7-a95c-1bab54e77bc0
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Tipo Viagem
+
+		annotation SummarizationSetBy = User
+
+	partition 'Tipo Viagem' = entity
+		mode: directQuery
+		source
+			entityName: Tipo Viagem
+			expressionSource: 'DirectQuery para AS – Modelo Operações Portuárias'
+

@@ -1,0 +1,27 @@
+table '#SBP Levante Carga Importação Manual'
+	lineageTag: 70606bcf-4512-4351-b331-ed85acc296a0
+
+	measure 'Valor #SBP Levante Carga Importação Manual' = SELECTEDVALUE('#SBP Levante Carga Importação Manual'[#SBP Levante Carga Importação Manual])
+		lineageTag: cc8b1b7d-1552-46a5-8bc1-be166c039b28
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#SBP Levante Carga Importação Manual'
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 80dcd037-06b2-40f1-a681-04aa9f77c01b
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition '#SBP Levante Carga Importação Manual' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 0.5, 0.0001)
+
+	annotation PBI_Id = b94548dbce6d4d60bf8f71d198a937a1
+

@@ -1,0 +1,49 @@
+table Movimento
+	lineageTag: b4e884af-f482-442e-bee9-6a1d919e1b53
+	sourceLineageTag: fcb81f8d-09ac-4351-b5c2-cf403275519e
+
+	measure 'Movimentos Selecionados' = EXTERNALMEASURE("Movimentos Selecionados", STRING, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: fa03e478-3a70-4cc7-9405-4848eb9c3f1f
+		sourceLineageTag: c63c8db3-94d6-4536-90b1-8e9b2588a872
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isText":true}
+
+	column 'Movimento ID'
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		lineageTag: b8a1e27d-b030-402b-a685-bdcfeecc3755
+		sourceLineageTag: 97c79483-f341-43c5-9082-9222f8ade0f0
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Movimento ID
+
+		annotation SummarizationSetBy = User
+
+	column Movimento
+		dataType: string
+		lineageTag: ecd0f7af-8da7-483a-9ba6-83e0d4127f86
+		sourceLineageTag: 62431354-0484-475b-aaa3-e5deefe8227f
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Movimento
+
+		annotation SummarizationSetBy = User
+
+	column Fluxo
+		dataType: string
+		lineageTag: fa982038-bc13-4035-9a99-3ae50d3f39c6
+		sourceLineageTag: e0271705-4678-48aa-af24-2df7a3c11d0f
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Fluxo
+
+		annotation SummarizationSetBy = User
+
+	partition Movimento = entity
+		mode: directQuery
+		source
+			entityName: Movimento
+			expressionSource: 'DirectQuery para AS – Modelo Operações Portuárias'
+

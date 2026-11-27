@@ -1,0 +1,26 @@
+table 'Dias Isenção - Fornec. Energia'
+	lineageTag: 42c28498-3f5b-4380-9a49-49bdd501fb4a
+
+	measure 'Valor Fornec. Energia - Dias Isenção' = SELECTEDVALUE('Dias Isenção - Fornec. Energia'[Fornec. Energia - Dias Isenção])
+		formatString: 0
+		lineageTag: d8d67736-78b4-4d4a-aebf-d1f7327b7298
+
+	column 'Fornec. Energia - Dias Isenção'
+		formatString: 0
+		lineageTag: 51389923-48fa-4384-8e32-f512ccc034fd
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition 'Dias Isenção - Fornec. Energia' = calculated
+		mode: import
+		source = GENERATESERIES(-30, 30, 1)
+
+	annotation PBI_Id = af0b448e63324d33807274283eec0165
+

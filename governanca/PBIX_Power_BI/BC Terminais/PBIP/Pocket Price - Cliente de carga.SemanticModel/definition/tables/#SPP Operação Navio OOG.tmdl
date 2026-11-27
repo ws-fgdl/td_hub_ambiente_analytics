@@ -1,0 +1,27 @@
+table '#SPP Operação Navio OOG'
+	lineageTag: a6a695e2-939c-416c-8684-661ee13c81d2
+
+	measure 'Valor Operação Navio OOG' = SELECTEDVALUE('#SPP Operação Navio OOG'[Operação Navio OOG])
+		lineageTag: 0689f49c-4db3-4d69-97c4-89fa724b4f2d
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Operação Navio OOG'
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 9db00ffb-eb60-458a-8d2c-ed770cc6b0ef
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition '#SPP Operação Navio OOG' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 0.5, 0.0001)
+
+	annotation PBI_Id = fae3ce13be814d3582f52fb92971a75e
+

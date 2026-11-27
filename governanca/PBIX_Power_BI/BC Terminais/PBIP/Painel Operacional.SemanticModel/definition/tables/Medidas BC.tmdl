@@ -1,0 +1,1190 @@
+table 'Medidas BC'
+	lineageTag: a3027dec-d488-4068-946e-61b5eccbaf72
+
+	measure 'Ranking Histórico' = RANKX(ALL('salesforce'[Grupo_Economico]),[Faturamento])
+		formatString: 0
+		lineageTag: 8edd6076-c7ea-49d8-9923-53bd8a6040b6
+
+	measure Faturamento = SUM(aws_bussola_comercial[valor_faturado_brl])
+		formatString: #,0
+		lineageTag: 108ce995-ada2-4615-b25a-e3fb7dd67d95
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Flag_T.M.' = ```
+			IFERROR(SWITCH(SELECTEDVALUE(Flag_vol[Volume]),
+			
+			"Volume de Serviço",[Ticket Médio],
+			"Volume de Container", [Faturamento]/[Volume de Container],
+			 
+			[Ticket Médio]),BLANK())
+			```
+		lineageTag: b0bada51-aa8b-40d2-a383-ce57af2c809e
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Ticket Médio' = AVERAGE(aws_bussola_comercial[Ticket2])
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: fcfbf520-da00-44a5-a2b4-7784d3381bff
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure 'Volume de Container' = ```
+			
+			 
+			ROUND(SUM(Movimentacao_CNTR[Mov_CNTR]),0)
+			
+			```
+		formatString: #,0
+		lineageTag: 71a564d5-e1c6-48a0-a792-377d294c3adc
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure Flag_Vision = ```
+			SWITCH(SELECTEDVALUE(Flag_vision[Visão]),
+			"Ticket Médio",[Flag_T.M.],
+			"Faturamento",[Faturamento],
+			"Volume",[Flag_Vol],
+			 
+			[Faturamento])
+			```
+		lineageTag: fb88e678-3126-468d-a559-85064294b275
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Flag_Vol = ```
+			SWITCH(SELECTEDVALUE(Flag_vol[Volume]),
+			"Volume de Serviço",[Volume de Serviços],
+			"Volume de Container", [Volume de Container],
+			 
+			[Volume de Serviços])
+			```
+		formatString: #,0
+		lineageTag: 6a9526ef-04e2-4af9-9f8d-5ae1e8988377
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Volume de Serviços' = COUNT(aws_bussola_comercial[os])
+		formatString: 0
+		lineageTag: cf8edced-4bb2-4dfa-8d0d-5bff196175f7
+
+	measure Flag_índice =
+			SWITCH(SELECTEDVALUE(Flag_table[Índice]),
+			"IPCA",[IPCA ACUM Partindo de Zero],
+			"ITRG",[ITRG ACUM Partindo de Zero],
+			"IGPM",[IGPM ACUM Partindo de Zero],
+			"INPC",[INPC ACUM Partindo de Zero],
+			"ITSV", [ITSV ACUM Partindo de Zero],
+			"IFAK", [FRETE ACUM Partindo de Zero],
+			"ITWS", [ITWS ACUM Partindo de Zero],
+			"IUSD", [IUSD],
+			[IPCA ACUM Partindo de Zero])
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: e4707b13-f91d-4a3a-961c-91249033aeec
+
+	measure 'FRETE SUM' = SUM('df_indices_mercado'[Indice_Frete_WCSA])
+		lineageTag: 809f1708-13b5-49bc-b790-4edb35cee75f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'IGP-M SUM' = SUM('df_indices_mercado'[IGP-M])
+		lineageTag: 66975ee6-cc37-412e-9bc2-bd0eaf138e19
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'INPC SUM' = SUM('df_indices_mercado'[INPC])
+		lineageTag: e951f83e-156e-4fff-9814-ec50968f2457
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'IPCA SUM' = SUM('df_indices_mercado'[IPCA])
+		lineageTag: 581bb2cf-608e-4fc5-8b05-ef3b2e875e6d
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'ITRG SUM' = SUM('df_indices_mercado'[Indice_TRG])
+		lineageTag: 8fe9a1d8-53bc-4fd7-9774-3f44c33ff350
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'ITSV SUM' = SUM('df_indices_mercado'[Indice_TSV])
+		lineageTag: 8b36834f-39f2-487b-9a10-937778c19f7c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'ITWS SUM' =
+			
+			([ITRG SUM]*[%Fat. TRG])+([ITSV SUM]*[%Fat. TSV])
+		lineageTag: 0f1384cb-7659-428a-9e92-d27c7b80887c
+
+	measure '%Fat. TRG' =
+			
+			
+			CALCULATE([Faturamento],
+			aws_bussola_comercial[un] = "TRG",
+			ALLSELECTED(Calendario1))/
+			CALCULATE([Faturamento],
+			ALLSELECTED(Calendario1))
+		lineageTag: 18daa94e-9d43-46ee-8c5c-f7f3b49a87e9
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '%Fat. TSV' =
+			
+			CALCULATE([Faturamento],
+			aws_bussola_comercial[un] = "TSV",
+			ALLSELECTED(Calendario1))/
+			CALCULATE([Faturamento],
+			ALLSELECTED(Calendario1))
+		lineageTag: 2783db70-dad1-4780-8a1c-ab8ee24891bd
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'FRETE ACUM Partindo de Zero' = ```
+			
+			VAR AcumuladoOriginal = 
+			    CALCULATE(
+			        PRODUCTX(
+			            FILTER(
+			                ALL(Calendario1[Date].[Date]),
+			                Calendario1[Date].[Date] <= MAX(Calendario1[Date])
+			            ),
+			            (1+[FRETE SUM]/100)
+			        )-1
+			    )
+			
+			VAR ValorInicial = 
+			    CALCULATE(
+			        PRODUCTX(
+			            FILTER(
+			                ALL(Calendario1[Date].[Date]),
+			                Calendario1[Date].[Date] = MIN(Calendario1[Date])
+			            ),
+			            (1+[FRETE SUM]/100)
+			        )-1
+			    )
+			
+			RETURN
+			    IF(AcumuladoOriginal - ValorInicial = 0 , BLANK(),AcumuladoOriginal - ValorInicial)
+			```
+		lineageTag: 71db26bd-92b7-45e2-806c-37221e3bf53c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'IGPM ACUM Partindo de Zero' = ```
+			
+			VAR AcumuladoOriginal = 
+			    CALCULATE(
+			        PRODUCTX(
+			            FILTER(
+			                ALL(Calendario1[Date].[Date]),
+			                Calendario1[Date].[Date] <= MAX(Calendario1[Date])
+			            ),
+			            (1+[IGP-M SUM]/100)
+			        )-1
+			    )
+			
+			VAR ValorInicial = 
+			    CALCULATE(
+			        PRODUCTX(
+			            FILTER(
+			                ALL(Calendario1[Date].[Date]),
+			                Calendario1[Date].[Date] = MIN(Calendario1[Date])
+			            ),
+			            (1+[IGP-M SUM]/100)
+			        )-1
+			    )
+			
+			RETURN
+			    IF(AcumuladoOriginal - ValorInicial = 0 , BLANK(),AcumuladoOriginal - ValorInicial)
+			```
+		lineageTag: df382166-efca-44a5-8ba1-651466bf11a1
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'INPC ACUM Partindo de Zero' = ```
+			
+			VAR AcumuladoOriginal = 
+			    CALCULATE(
+			        PRODUCTX(
+			            FILTER(
+			                ALL(Calendario1[Date].[Date]),
+			                Calendario1[Date].[Date] <= MAX(Calendario1[Date])
+			            ),
+			            (1+[INPC SUM]/100)
+			        )-1
+			    )
+			
+			VAR ValorInicial = 
+			    CALCULATE(
+			        PRODUCTX(
+			            FILTER(
+			                ALL(Calendario1[Date].[Date]),
+			                Calendario1[Date].[Date] = MIN(Calendario1[Date])
+			            ),
+			            (1+[INPC SUM]/100)
+			        )-1
+			    )
+			
+			RETURN
+			    IF(AcumuladoOriginal - ValorInicial = 0 , BLANK(),AcumuladoOriginal - ValorInicial)
+			```
+		lineageTag: 69c514e2-19c9-45db-8117-49aa87b44bba
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'IPCA ACUM Partindo de Zero' = ```
+			
+			VAR AcumuladoOriginal = 
+			    CALCULATE(
+			        PRODUCTX(
+			            FILTER(
+			                ALL(Calendario1[Date].[Date]),
+			                Calendario1[Date].[Date] <= MAX(Calendario1[Date]) 
+			            ),
+			            (1+[IPCA SUM]/100)
+			        )-1
+			        
+			    )
+			
+			VAR ValorInicial = 
+			    CALCULATE(
+			        PRODUCTX(
+			            FILTER(
+			                ALL(Calendario1[Date].[Date]),
+			                Calendario1[Date].[Date] = MIN(Calendario1[Date])
+			            ),
+			            (1+[IPCA SUM]/100)
+			        )-1
+			        
+			    )
+			
+			RETURN 
+			
+			    IF(AcumuladoOriginal - ValorInicial = 0 , BLANK(),
+			   AcumuladoOriginal - ValorInicial)
+			
+			```
+		lineageTag: 7d03722a-cf6a-40e3-a12f-81cb717a9f2a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'ITRG ACUM Partindo de Zero' = ```
+			
+			VAR AcumuladoOriginal = 
+			    CALCULATE(
+			        PRODUCTX(
+			            FILTER(
+			                ALL(Calendario1[Date].[Date]),
+			                Calendario1[Date].[Date] <= MAX(Calendario1[Date])
+			            ),
+			            (1+[ITRG SUM])
+			        )-1
+			    )
+			
+			VAR ValorInicial = 
+			    CALCULATE(
+			        PRODUCTX(
+			            FILTER(
+			                ALL(Calendario1[Date].[Date]),
+			                Calendario1[Date].[Date] = MIN(Calendario1[Date])
+			            ),
+			            (1+[ITRG SUM])
+			        )-1
+			    )
+			
+			RETURN
+			    IF(AcumuladoOriginal - ValorInicial = 0 , BLANK(),AcumuladoOriginal - ValorInicial)
+			```
+		lineageTag: 37a23ff3-b6de-410e-aacd-9625995e1ae0
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'ITSV ACUM Partindo de Zero' = ```
+			
+			VAR AcumuladoOriginal = 
+			    CALCULATE(
+			        PRODUCTX(
+			            FILTER(
+			                ALL(Calendario1[Date].[Date]),
+			                Calendario1[Date].[Date] <= MAX(Calendario1[Date])
+			            ),
+			            (1+[ITSV SUM])
+			        )-1
+			    )
+			
+			VAR ValorInicial = 
+			    CALCULATE(
+			        PRODUCTX(
+			            FILTER(
+			                ALL(Calendario1[Date].[Date]),
+			                Calendario1[Date].[Date] = MIN(Calendario1[Date])
+			            ),
+			            (1+[ITSV SUM])
+			        )-1
+			    )
+			
+			RETURN
+			    IF(AcumuladoOriginal - ValorInicial = 0 , BLANK(),AcumuladoOriginal - ValorInicial)
+			```
+		lineageTag: eafbfb8b-ce10-49ea-a725-82abcf8422c6
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'ITWS ACUM Partindo de Zero' = ```
+			
+			VAR AcumuladoOriginal = 
+			    CALCULATE(
+			        PRODUCTX(
+			            FILTER(
+			                ALL(Calendario1[Date].[Date]),
+			                Calendario1[Date].[Date] <= MAX(Calendario1[Date])
+			            ),
+			            (1+[ITWS SUM])
+			        )-1
+			    )
+			
+			VAR ValorInicial = 
+			    CALCULATE(
+			        PRODUCTX(
+			            FILTER(
+			                ALL(Calendario1[Date].[Date]),
+			                Calendario1[Date].[Date] = MIN(Calendario1[Date])
+			            ),
+			            (1+[ITWS SUM])
+			        )-1
+			    )
+			
+			RETURN
+			    IF(AcumuladoOriginal - ValorInicial = 0 , BLANK(),AcumuladoOriginal - ValorInicial)
+			```
+		lineageTag: 1d18fdc0-2f68-4529-962e-441f6cb222ee
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure IUSD = ```
+			
+			VAR PrimeiroMes = 
+			CALCULATE(
+			        [Dolar Fechamento Mes],
+			        ALL(Calendario1),
+			        MONTH(Calendario1[Date]) = MONTH(MINX(ALLSELECTED(Calendario1),Calendario1[Date])),
+			        YEAR(Calendario1[Date]) = YEAR(MINX(ALLSELECTED(Calendario1),Calendario1[Date]))
+			)
+			RETURN
+			IF( DIVIDE([Dolar Fechamento Mes]-PrimeiroMes,PrimeiroMes) = -1, BLANK(),DIVIDE([Dolar Fechamento Mes]-PrimeiroMes,PrimeiroMes))
+			```
+		lineageTag: b36c0db1-3f19-496f-b6e4-70174cdf2426
+
+	measure 'Dolar Fechamento Mes' = ```
+			
+			VAR menorData = MIN(Calendario1[Date].[Date])
+			VAR maiorMes = MONTH(LASTDATE(Calendario1[Date]))
+			VAR maiordia = DAY(LASTDATE('df_dolar_ptaxvenda'[Data]))
+			VAR maiorAno = YEAR(LASTDATE(Calendario1[Date]))
+			
+			
+			RETURN
+			
+			IF( DATE(maiorAno, maiorMes,1) < SELECTEDVALUE(Calendario1[Date]), BLANK(),CALCULATE(
+			        LASTNONBLANKVALUE('df_dolar_ptaxvenda'[Valor],MAX('df_dolar_ptaxvenda'[Valor])),
+			        MONTH(Calendario1[Date]) = maiorMes && YEAR(Calendario1[Date]) = maiorAno && DAY(Calendario1[Date]) = maiordia
+			        
+			    )
+			)
+			```
+		lineageTag: d261a9e6-3cc6-45c6-b9f6-373fd2ac2212
+
+	measure Flag_delta = ```
+			
+			SWITCH(SELECTEDVALUE(Flag_delta[Delta]),
+			"Delta Faturamento",[Flag_Delta_Faturamento],
+			"Delta Ticket Médio",[Flag_Delta_T.M],
+			"Delta Volume",[Flag_Delta_Volume],
+			 
+			[Variação Acum. Tckt Méd])
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: eeb9dfbe-a075-4832-909d-151200ecfc17
+
+	measure 'Variação Acum. Fat.' = ```
+			
+			VAR PrimeiroMes = 
+			CALCULATE(
+			        [Faturamento],
+			        ALL(Calendario1),
+			        MONTH(Calendario1[Date]) = MONTH(MINX(ALLSELECTED(Calendario1),Calendario1[Date])),
+			        YEAR(Calendario1[Date]) = YEAR(MINX(ALLSELECTED(Calendario1),Calendario1[Date]))
+			)
+			RETURN
+			IF( DIVIDE([Faturamento]-PrimeiroMes,PrimeiroMes) = -1, BLANK(),DIVIDE([Faturamento]-PrimeiroMes,PrimeiroMes))
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: dddfc62e-d3b3-4aa2-ae03-bc99b9029c05
+
+	measure 'Variação Acum. Tckt Méd' = ```
+			
+			VAR PrimeiroMes = 
+			CALCULATE(
+			        [Flag_T.M.],
+			        ALLSELECTED(Calendario1),
+			        MONTH(Calendario1[Date]) = MONTH(MINX(ALLSELECTED(Calendario1),Calendario1[Date])),
+			        YEAR(Calendario1[Date]) = YEAR(MINX(ALLSELECTED(Calendario1),Calendario1[Date]))
+			)
+			RETURN
+			IF( DIVIDE([Flag_T.M.]-PrimeiroMes,PrimeiroMes) = -1, BLANK(),DIVIDE([Flag_T.M.]-PrimeiroMes,PrimeiroMes))
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 25791ccd-2c8d-4704-aa1d-36abcdc0926d
+
+	measure 'Variação Acum. Vol.' = ```
+			
+			VAR PrimeiroMes = 
+			CALCULATE(
+			        [Flag_Vol],
+			        ALL(Calendario1),
+			        MONTH(Calendario1[Date]) = MONTH(MINX(ALLSELECTED(Calendario1),Calendario1[Date])),
+			        YEAR(Calendario1[Date]) = YEAR(MINX(ALLSELECTED(Calendario1),Calendario1[Date]))
+			)
+			RETURN
+			IF( DIVIDE([Flag_Vol]-PrimeiroMes,PrimeiroMes) = -1, BLANK(),DIVIDE([Flag_Vol]-PrimeiroMes,PrimeiroMes))
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 590fdfc3-e077-4061-bc73-d3da1742c703
+
+	measure 'delta vision firstyear vs. last year' = (([lastyear vision]-[firstyear vision])/[firstyear vision])
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 09ac1d9f-df14-4828-9ed3-c497da5df1a2
+
+	measure 'lastyear vision' = ```
+			
+			VAR maiorData = max(Calendario1[Date].[Date])
+			VAR maiorMes = MONTH(MAXX(ALLSELECTED(Calendario1),Calendario1[Date]))
+			VAR maiorAno = YEAR(MAXX(ALLSELECTED(Calendario1),Calendario1[Date]))
+			
+			RETURN
+			
+			IF( DATE(maiorAno,maiorMes,1) < SELECTEDVALUE(Calendario1[Date]), BLANK(),CALCULATE(
+			        [Flag_Vision],
+			        YEAR(Calendario1[Date]) = maiorAno
+			        
+			    )
+			)
+			```
+		lineageTag: 88eccfdf-2a7f-46a6-9aa5-86036ffb3084
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'firstyear vision' = ```
+			
+			VAR menorData = MIN(Calendario1[Date].[Date])
+			VAR menorMes = MONTH(MINX(ALLSELECTED(Calendario1),Calendario1[Date]))
+			VAR menorAno = YEAR(MINX(ALLSELECTED(Calendario1),Calendario1[Date]))
+			
+			RETURN
+			
+			IF( DATE(menorAno,menorMes,1) < SELECTEDVALUE(Calendario1[Date]), BLANK(),CALCULATE(
+			        [Flag_Vision],
+			        YEAR(Calendario1[Date]) = menorAno
+			        
+			    )
+			)
+			```
+		lineageTag: 519ea1c7-d7f3-48e7-9508-51a44e0616ee
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'last year indice' = IF([delta vision firstyear vs. last year] = BLANK(),BLANK(), [Flag_índice] )
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 240c7243-3de9-40ea-9fb7-019f26325d2e
+
+	measure 'variação em ano inflacionária' = [delta vision firstyear vs. last year] - [last year indice]
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 54b131f3-aa1f-4aae-b97e-e3fa6b3a05d9
+
+	measure 'Projeção Ticket Médio' = ```
+			
+			var data_max = MAX(Calendario1[Date])
+			var result = 
+			            IF(
+			                MAX(Calendario2[Date])>data_max,
+			                CALCULATE([Flag_T.M.]*([IPCA Acum 12M previsto]),DATEADD(Calendario2[Date],-1,YEAR)),
+			                [Flag_T.M.]
+			            )
+			return result
+			```
+		lineageTag: e2a582a6-9a0d-4844-91fd-d20169c6fe07
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'IPCA Acum 12M previsto' =
+			
+			AVERAGE('df_indices_mercado'[Multiplicador Acum 12 meses IPCA])
+		lineageTag: 03fdebc4-8c04-42db-abca-f01d56368adc
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Proj. Fat. Otimista ano2' = ```
+			
+			var data_max = MAX(Calendario1[Date])
+			var result = 
+			            IF(
+			                MAX(Calendario2[Date])>EDATE(data_max,+12),
+			                CALCULATE([Projeção Faturamento Otimista]*([IPCA Acum 12M previsto]),DATEADD(Calendario2[Date],-1,YEAR)),
+			                [Projeção Faturamento Otimista]
+			            )
+			return result
+			```
+		lineageTag: a31f7ad7-1aa8-4df7-bb87-c5c90496fcf2
+
+	measure 'Proj. Fat. Otimista ano3' = ```
+			
+			var data_max = MAX(Calendario1[Date])
+			var result = 
+			            IF(
+			                MAX(Calendario2[Date])>EDATE(data_max,+12),
+			                CALCULATE([Proj. Fat. Otimista ano2]*([IPCA Acum 12M previsto]),DATEADD(Calendario2[Date],-1,YEAR)),
+			                [Proj. Fat. Otimista ano2]
+			            )
+			return result
+			```
+		lineageTag: 4f6aba82-ff4b-47bb-b523-513c815a59c5
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Proj. Fat. Pessimista ano2' = ```
+			
+			var data_max = MAX(Calendario1[Date])
+			var result = 
+			            IF(
+			                MAX(Calendario2[Date])>EDATE(data_max,+12),
+			                CALCULATE([Projeção Faturamento Pessimista]*([IPCA Acum 12M previsto]),DATEADD(Calendario2[Date],-1,YEAR)),
+			                [Projeção Faturamento Pessimista]
+			            )
+			return result
+			```
+		lineageTag: 91dc8e4d-2b39-49bc-8157-5b748510d4f1
+
+	measure 'Proj. Fat. Pessimista ano3' = ```
+			
+			var data_max = MAX(Calendario1[Date])
+			var result = 
+			            IF(
+			                MAX(Calendario2[Date])>EDATE(data_max,+12),
+			                CALCULATE([Proj. Fat. Pessimista ano2]*([IPCA Acum 12M previsto])*0.97,DATEADD(Calendario2[Date],-1,YEAR)),
+			                [Proj. Fat. Pessimista ano2]
+			            )
+			return result
+			```
+		lineageTag: e4d42b93-5fda-4683-955f-7a87f3cd2d70
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Projeção ano2' = ```
+			
+			var data_max = MAX(Calendario1[Date])
+			var result = 
+			            IF(
+			                MAX(Calendario2[Date])>EDATE(data_max,+12),
+			                CALCULATE([Projeção Faturamento]*([IPCA Acum 12M previsto]),DATEADD(Calendario2[Date],-1,YEAR)),
+			                [Projeção Faturamento]
+			            )
+			return result
+			```
+		lineageTag: 4d52d89e-eb64-45fd-a9ae-a0005e17f0c6
+
+	measure 'Projeção ano3' = ```
+			
+			var data_max = MAX(Calendario1[Date])
+			var result = 
+			            IF(
+			                MAX(Calendario2[Date])>EDATE(data_max,+12),
+			                CALCULATE([Projeção ano2]*([IPCA Acum 12M previsto]),DATEADD(Calendario2[Date],-1,YEAR)),
+			                [Projeção ano2]
+			            )
+			return result
+			```
+		lineageTag: 75b39130-ee5f-45c5-88b6-95c2259b8012
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Projeção Faturamento' = ```
+			
+			var data_max = MAX(Calendario1[Date])
+			var teste = USERCULTURE()
+			var result = 
+			            IF(
+			                MAX(Calendario2[Date])>data_max,
+			                CALCULATE([Faturamento]*([IPCA Acum 12M previsto]),
+			                DATEADD(Calendario2[Date],-1,YEAR)
+			                ),
+			                [Faturamento]
+			            )
+			            
+			return result
+			```
+		lineageTag: 6bcc5185-0f4a-4f18-936e-01635eef0be5
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Projeção Faturamento Otimista' = ```
+			
+			var data_max = MAX(Calendario1[Date])
+			var result = 
+			            IF(
+			                MAX(Calendario2[Date])>data_max,
+			                CALCULATE(([IPCA Acum 12M previsto otimista])*[Flag_T.M.]*[Vol. Otimista table]*1.06,DATEADD(Calendario2[Date],-2,YEAR)),
+			                [Faturamento]
+			            )
+			return result
+			```
+		lineageTag: 3be8ab05-db42-46ef-802f-5836c05e1ed4
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Projeção Faturamento Pessimista' = ```
+			
+			var data_max = MAX(Calendario1[Date])
+			var result = 
+			            IF(
+			                MAX(Calendario2[Date])>data_max,
+			                CALCULATE([Flag_T.M.]*([IPCA Acum 12M previsto])*[Vol. Pessimista table],DATEADD(Calendario2[Date],-1,YEAR)),
+			                [Faturamento]
+			            )
+			return result
+			```
+		lineageTag: 3be60e65-cf85-4527-9b34-e5aa3b8cff12
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Vol. Otimista' = ```
+			
+			CALCULATE(
+			MAXX(
+			    ADDCOLUMNS(
+			        SUMMARIZE(
+			            Calendario2,
+			            Calendario2[Date].[Ano]
+			            
+			        ),
+			        "volume",
+			        [Flag_Vol]
+			    )
+			    ,If([volume]>1, [volume], BLANK())
+			),
+			Calendario2[Numero Mes] = SELECTEDVALUE(Calendario2[Numero Mes]),
+			ALL(Calendario2)
+			)
+			```
+		formatString: 0
+		lineageTag: 7e29b458-d5b2-4bc9-b369-0812fb05ccc5
+
+	measure 'Vol. Otimista table' =
+			
+			// Medida para somar os valores dos maiores/menores volumes também anualmente
+			SUMX(
+			    VALUES(Calendario2[Numero Mes]),
+			    [Vol. Otimista]
+			)
+		formatString: 0
+		lineageTag: 345dfe3a-8230-4168-b0b3-51c482803ea3
+
+	measure 'Vol. Pessimista' = ```
+			
+			CALCULATE(
+			MINX(
+			    ADDCOLUMNS(
+			        SUMMARIZE(
+			            Calendario2,
+			            Calendario2[Date].[Ano]
+			            
+			        ),
+			        "volume",
+			        [Flag_Vol]
+			    )
+			    ,If([volume]>1, [volume], BLANK())
+			),
+			Calendario2[Numero Mes] = SELECTEDVALUE(Calendario2[Numero Mes]),
+			ALL(Calendario2)
+			)
+			```
+		formatString: 0
+		lineageTag: 0a9a50a5-7889-4d24-b8e1-56b5f5d079df
+
+	measure 'Vol. Pessimista table' =
+			
+			// Medida para somar os valores dos maiores/menores volumes também anualmente
+			SUMX(
+			    VALUES(Calendario2[Numero Mes]),
+			    [Vol. Pessimista]
+			)
+		formatString: 0
+		lineageTag: acdd2080-c154-4c2e-8b0b-6f6918ef51a7
+
+	measure 'IPCA Acum 12M previsto otimista' =
+			
+			LASTNONBLANKVALUE('df_indices_mercado'[Multiplicador Acum 12 meses IPCA],MIN('df_indices_mercado'[Multiplicador Acum 12 meses IPCA]))
+		lineageTag: 7ba4d67f-5978-4c13-9489-a44f8c3e5fd5
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'IPCA Acum 12m' = ```
+			
+			 VAR  IPCA12m = CALCULATE(
+			        PRODUCTX(
+			            FILTER(
+			                ALL(Calendario1[Date].[Date]),
+			                Calendario1[Date].[Date] <= MAX(Calendario1[Date])
+			            ),
+			            (1+[IPCA SUM]/100)
+			        )-1,
+			        DATEADD(Calendario1[Date],-1,YEAR))
+			RETURN
+			IF(IPCA12m = 0,BLANK(),IPCA12m)
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: c9435465-8fdc-45bb-936f-bd6ca6e45f42
+
+	measure 'Ticket Médio CNTR' = [Faturamento]/[Volume de Container]
+		lineageTag: 6dd84983-84e1-4b6f-b725-ae6b083166a6
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'IPCA teste' =
+			CALCULATE(
+			    [IPCA SUM],
+			    FILTER(ALLSELECTED(Calendario1[Date].[Date]),
+			    Calendario1[Date].[Date] <= MAX(Calendario1[Date]))
+			)
+		lineageTag: 8c7bf02e-79d6-4da5-85d4-5505bf6aaf2b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Projeção Faturamento Otimista ano 3' = IF([Proj. Fat. Otimista ano3]<[Projeção ano3],[Projeção ano3],[Proj. Fat. Otimista ano3])
+		lineageTag: f6694bc0-5e4e-4f95-9cb1-bf20784c7a72
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Vol_comparativo =
+			
+			CALCULATE(
+			    [Flag_Vol],
+			    DATEADD(Calendario1[Date],-1,YEAR)
+			)
+		lineageTag: 7117bf18-5e0e-41f7-80c1-391b16955899
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Fat_comparativo =
+			
+			CALCULATE(
+			    [Faturamento],
+			    DATEADD(Calendario1[Date],-1,YEAR)
+			)
+		lineageTag: fa318ddd-54a2-451d-aefc-825a3624a1cc
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Year to month' =
+			
+			VAR maiorData = MAX( Calendario1[Date])
+			VAR data12MesesAnterior = EDATE(maiorData, -MONTH(MAX(aws_bussola_comercial[data_do_fim_do_evento])))
+			RETURN
+			CALCULATE(
+			    [Faturamento],
+			    YEAR(Calendario1[Date]) = YEAR(data12MesesAnterior))
+		lineageTag: d9d1ea15-59df-4dec-893e-8009b9dbdd1c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Fat YTD' =
+			
+			VAR vUltimoAno = YEAR(MAX(Calendario1[Date]))
+			VAR vUltimoMesContexto = MONTH(MAXX(ALL(Calendario1), Calendario1[Date]))
+			VAR vDia = DAY(MAXX(ALL(Calendario1), Calendario1[Date]))-1
+			
+			RETURN
+			    CALCULATE(
+			        [fat+prov],
+			        FILTER(
+			            Calendario1,
+			            Calendario1[Date] <= DATE(vUltimoAno,vUltimoMesContexto,vDia)
+			        )
+			    )
+		lineageTag: 1942f0a4-0bda-4cb4-8c15-0eb778ae957a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Vigencia = IF(SELECTEDVALUE(agrp_contratos[fim_vigencia]) > TODAY(), 1,0)
+		formatString: 0
+		lineageTag: 56626d13-f4be-43ff-9647-cb79ce2f6ea8
+
+	measure Fat_YTD_AnoAnterior =
+			
+			CALCULATE(
+			    [Fat YTD],
+			    Calendario1[Ano Calendario] = MAX(Calendario1[Ano Calendario])-1
+			)
+		formatString: #,0.00
+		lineageTag: 423d2fa9-8249-42a0-b7ef-0e4a88d95f03
+
+	measure Fat_YTD_AnoAtual =
+			
+			CALCULATE(
+			    [Fat YTD],
+			    Calendario1[Ano Calendario] = MAX(Calendario1[Ano Calendario])
+			)
+		formatString: #,0.00
+		lineageTag: e98e73bb-53ea-48ce-a6ec-84f464d7cd84
+
+	measure 'Δ Fat. YTD' = IFERROR(([Fat_YTD_AnoAtual] - [Fat_YTD_AnoAnterior]) /[Fat_YTD_AnoAnterior], BLANK())
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: a468436c-63e7-4015-b3e2-8decd9792f15
+
+	measure 'Vol. YTD' =
+			
+			VAR vUltimoAno = YEAR(MAX(Calendario1[Date]))
+			VAR vUltimoMesContexto = MONTH(MAXX(ALL(Calendario1), Calendario1[Date]))
+			VAR vDia = DAY(MAXX(ALL(Calendario1), Calendario1[Date]))
+			
+			RETURN
+			SUMX(
+			    VALUES(Calendario1[Ano Calendario]),
+			    CALCULATE(
+			        [Flag_Vol],
+			        FILTER(
+			            Calendario1,
+			            Calendario1[Date].[Ano] = Calendario1[Ano Calendario] &&
+			            Calendario1[Date].[MonthNo] <= vUltimoMesContexto &&
+			            Calendario1[Date].[Dia] < vDia
+			        )
+			    )
+			)
+		lineageTag: a0f05383-bc22-4fd4-9ea9-5ee3a063f815
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Vol YTD 2023' =
+			
+			CALCULATE([Vol. YTD],
+			Calendario1[Ano Calendario] = MAX(Calendario1[Ano Calendario])-1
+			)
+		formatString: #,0
+		lineageTag: 5121d858-1c06-4812-81bb-6b767ba91090
+
+	measure 'Vol YTD 2024' =
+			
+			CALCULATE([Vol. YTD],
+			Calendario1[Ano Calendario] = MAX(Calendario1[Ano Calendario])
+			)
+		formatString: #,0
+		lineageTag: 524b3304-73aa-4f33-bafb-8bf24b80a730
+
+	measure blank = BLANK()
+		formatString: 0
+		lineageTag: 6c4f8924-0709-4eb0-be1f-e5d4003a96fd
+
+	measure 'Δ Vol. YTD' =
+			
+			
+			IFERROR(
+			[Vol YTD 2024]/[Vol YTD 2023]-1, BLANK())
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: cccd29d2-d093-4509-97fa-8bff217ac4a4
+
+	measure 'Fat YTD Anterior' =
+			
+			CALCULATE([Fat YTD],
+			DATEADD(Calendario1[Date], -1, YEAR)
+			)
+		lineageTag: e362527c-1d51-427e-baac-95dc29e9adbb
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Variação Percentual YTD' = ```
+			
+			VAR AnoAtual = MAX(Calendario1[Ano Calendario])
+			VAR FatAtual = [Fat YTD]
+			VAR FatAnterior = [Fat YTD Anterior]
+			
+			RETURN
+			IF(
+			    AnoAtual = 2018,
+			    BLANK(),
+			    IF(
+			        ISBLANK(FatAnterior),
+			        BLANK(),
+			        DIVIDE(FatAtual - FatAnterior, FatAnterior, 0)
+			    )
+			)
+			
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 217fda92-0773-459a-8ec5-c9fc8b2c2c3c
+
+	measure '% CAR sobre Fat.' = ```
+			
+			 var Acumulado12Meses = 
+			CALCULATE(
+			    [fat+prov],
+			    ALL(Calendario1[Date]),
+			    DATESINPERIOD(
+			        Calendario1[Date], 
+			        LASTDATE(Calendario1[Date]), 
+			        -12, 
+			        MONTH
+			    )
+			)
+			
+			RETURN
+			 IFERROR([Valor Montante Interno]/Acumulado12Meses,0)
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 058af8a8-dc1e-44af-8b83-e4d9f563c1ae
+
+	measure diferenca_vol = [Volume de Serviços] - [Volume de Container]
+		lineageTag: b7a73e59-5d66-45ec-8b54-b268e0de7633
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure delta_vol = ([Volume de Serviços]-[Volume de Container])/[Volume de Container]
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 140ae9d4-d3f6-4f23-9704-5eeda1ee5c03
+
+	measure 'delta vol' = 0
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: c65c7479-6c4b-48cb-8c9b-8810813f89be
+
+	measure 'Ranking Volume' = RANKX(ALL('Movimentacao_CNTR'[DSC GRUPO ARMADOR]),[Flag_Vol])
+		formatString: 0
+		lineageTag: bfb6cfee-ad81-4533-a67b-02db71af0919
+
+	measure 'Vol YTD' =
+			
+			VAR vUltimoAno = YEAR(MAX(Calendario1[Date]))
+			VAR vUltimoMesContexto = MONTH(MAXX(ALL(Calendario1), Calendario1[Date]))
+			VAR vDia = DAY(MAXX(ALL(Calendario1), Calendario1[Date]))-1
+			
+			RETURN
+			    CALCULATE(
+			        [Flag_Vol],
+			        FILTER(
+			            Calendario1,
+			            Calendario1[Date] <= DATE(vUltimoAno,vUltimoMesContexto,vDia)
+			        )
+			    )
+		formatString: 0
+		lineageTag: 76e47c59-19fd-48b1-8387-e5a6515f6eac
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Variação Percentual Vol YTD' =
+			
+			VAR AnoAtual = MAX(Calendario1[Ano Calendario])
+			VAR FatAtual = [Vol YTD]
+			VAR FatAnterior = [Vol YTD Anterior]
+			
+			RETURN
+			IF(
+			    AnoAtual = 2018,
+			    BLANK(),
+			    IF(
+			        ISBLANK(FatAnterior),
+			        BLANK(),
+			        DIVIDE(FatAtual - FatAnterior, FatAnterior, 0)
+			    )
+			)
+		lineageTag: af9089a7-8f69-444d-a7fd-9ccae2ca5835
+
+	measure 'Vol YTD Anterior' =
+			
+			CALCULATE([Vol YTD],
+			DATEADD(Calendario1[Date], -1, YEAR)
+			)
+		lineageTag: d047493b-d838-41d8-98f3-4cae3217cccc
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Ranking Volume GC' = RANKX(ALL(dim_carteira_comercial[grupo_economico]),[Flag_Vol])
+		formatString: 0
+		lineageTag: 1aaafb97-20c9-4666-89d4-9dab2c461a7d
+
+	measure 'Vol YTD CNTR' =
+			
+			VAR vUltimoAno = YEAR(MAX(Calendario1[Date]))
+			VAR vUltimoMesContexto = MONTH(MAXX(ALL(Calendario1), Calendario1[Date]))
+			
+			RETURN
+			SUMX(
+			    VALUES(Calendario1[Ano Calendario]),
+			    CALCULATE(
+			        [Volume de Container],
+			        FILTER(
+			            Calendario1,
+			            Calendario1[Ano Calendario] = Calendario1[Ano Calendario] &&
+			            Calendario1[Numero Mes] < vUltimoMesContexto
+			        )
+			    )
+			)
+		formatString: #,0
+		lineageTag: 56f6556f-81ba-4254-88ee-cbd26bb2d868
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Vol YTD Anterior CNTR' =
+			
+			CALCULATE([Vol YTD CNTR],
+			DATEADD(Calendario1[Date], -1, YEAR)
+			)
+		lineageTag: 2be75049-01b9-4993-8095-b3147e210eec
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Variação Percentual Vol YTD CNTR' =
+			
+			VAR AnoAtual = MAX(Calendario1[Ano Calendario])
+			VAR FatAtual = [Vol YTD CNTR]
+			VAR FatAnterior = [Vol YTD Anterior CNTR]
+			
+			RETURN
+			IF(
+			    AnoAtual = 2018,
+			    BLANK(),
+			    IF(
+			        ISBLANK(FatAnterior),
+			        BLANK(),
+			        DIVIDE(FatAtual - FatAnterior, FatAnterior, 0)
+			    )
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 4aff189d-6a94-4c45-9215-a52aeb03902d
+
+	measure 'Vol YTD 2023 CNTR' =
+			
+			CALCULATE([Vol. YTD CNTR],
+			Calendario1[Ano Calendario] = MAX(Calendario1[Ano Calendario])-1
+			)
+		formatString: #,0
+		lineageTag: 6cf06a58-a0ff-4fed-b575-2223a6bc2780
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Vol. YTD CNTR' =
+			
+			VAR vUltimoAno = YEAR(MAX(Calendario1[Date]))
+			VAR vUltimoMesContexto = MONTH(MAXX(ALL(Calendario1), Calendario1[Date]))
+			
+			RETURN
+			SUMX(
+			    VALUES(Calendario1[Ano Calendario]),
+			    CALCULATE(
+			        [Volume de Container],
+			        FILTER(
+			            Calendario1,
+			            Calendario1[Ano Calendario] = Calendario1[Ano Calendario] &&
+			            Calendario1[Numero Mes] < vUltimoMesContexto
+			        )
+			    )
+			)
+		lineageTag: de81dd09-2d8c-4b47-b9fa-d3fc6fdc6952
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Medida 2'
+		lineageTag: 03b8b427-2a8c-48c3-96cf-cf1937301654
+
+		annotation 43dbc3e8-3a1c-4b6f-9923-b49ff7d6691c = True
+
+	measure 'Vol YTD 2024 CNTR' =
+			
+			CALCULATE([Vol. YTD CNTR],
+			Calendario1[Ano Calendario] = MAX(Calendario1[Ano Calendario])
+			)
+		formatString: #,0
+		lineageTag: e09fa3b7-3ac9-42cb-a072-bffb492820ba
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Δ Vol. YTD CNTR' = IFERROR([Vol YTD 2024 CNTR]/[Vol YTD 2023 CNTR]-1,"-")
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: e130802a-28d6-4839-83dc-a1b55ae42824
+
+	measure 'Ranking Volume CNTR' = RANKX(ALL('Movimentacao_CNTR'[DSC GRUPO ARMADOR]),[Volume de Container])
+		formatString: 0
+		lineageTag: fa97f379-752d-4187-aa62-f909a1396e71
+
+	measure provisao = SUM(aws_provisao[valor_total])
+		lineageTag: 74d6743f-ce56-4ce1-b5fa-0bcfada13669
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure fat+prov = [Faturamento] + [provisao]
+		lineageTag: 927468a3-b045-431e-98f6-3bcc1d1bf831
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'valor ponderado pmr' = SUM(pmr_pmv[POND_PMV])/SUM(pmr_pmv[valor])
+		lineageTag: c5bcf913-41a0-4db3-8b13-0d3ff683e81c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'valor ponderado pmv' = (SUM(pmr_pmv[POND_PMR]))/(SUM(pmr_pmv[valor]))
+		lineageTag: 08a1de16-8bc5-4ad1-9a49-65ac3f343022
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Rank Lin. Marítima' = ```
+			SELECTEDVALUE(Movimentacao_CNTR[Rank Lin. Marítima])
+			
+			```
+		formatString: 0
+		lineageTag: 7e96b868-e588-4536-9924-10d875935eb1
+
+	measure 'check arm' = IF(AND([Vol YTD 2023 CNTR] = BLANK(), [Vol YTD 2024 CNTR] = BLANK()),"Não aparecer","Aparecer")
+		lineageTag: e52e0914-ad63-4cbe-95f8-d1f51943b425
+
+	measure Flag_Vol_overview = ```
+			SWITCH(SELECTEDVALUE(Flag_vol[Volume]),
+			"Volume de Serviço",[Volume de Serviços],
+			"Volume de Container", 
+			IF(
+			    SELECTEDVALUE('salesforce (2)'[pb_tipo de cliente])="Armador",
+			    BLANK(),
+			    [Volume de Container]),
+			 
+			[Volume de Serviços])
+			```
+		lineageTag: 56dc03dc-a075-4ae1-b31d-b6d1ccef5800
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Valor Montante Interno' =
+			
+			CALCULATE(
+			    SUM(aws_aging[val_montante_interno]),
+			    aws_aging[dat_vencimento] < TODAY()
+			)
+		lineageTag: 226d05f8-8b72-48e6-8cce-72f7792a443d
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Medida
+		lineageTag: bd7b581a-cbe1-44f4-a219-3ca2cde13141
+
+		annotation 43dbc3e8-3a1c-4b6f-9923-b49ff7d6691c = True
+
+	column BC
+		isHidden
+		lineageTag: 72df0d8c-0784-4110-95ca-2a4aa7e02c9f
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [BC]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Medidas BC' = calculated
+		mode: import
+		source = ROW("BC","TESTE")
+
+	annotation PBI_Id = a9200583da964a4ba40d5097d2f73ea3
+

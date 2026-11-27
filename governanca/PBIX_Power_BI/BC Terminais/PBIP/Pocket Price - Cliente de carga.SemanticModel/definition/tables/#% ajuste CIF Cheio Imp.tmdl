@@ -1,0 +1,28 @@
+table '#% ajuste CIF Cheio Imp'
+	lineageTag: d1e0e1eb-41cf-48e8-bc77-cbd8ece57678
+
+	measure 'Valor #% ajuste CIF Cheio Imp' = SELECTEDVALUE('#% ajuste CIF Cheio Imp'[#% ajuste CIF Cheio Imp])
+		lineageTag: fd496069-f162-4222-bfb1-6622f121eb2b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#% ajuste CIF Cheio Imp'
+		lineageTag: fd66b969-e873-4313-a742-f821f2447d73
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '#% ajuste CIF Cheio Imp' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 1, 0.01)
+
+	annotation PBI_Id = 705f2f974ba847d3a74b014bb0d4892e
+

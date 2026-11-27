@@ -1,0 +1,26 @@
+table #Freetime
+	lineageTag: 88e6d136-9af2-4190-aef0-296b5ff29d66
+
+	measure 'Valor #Freetime' = SELECTEDVALUE('#Freetime'[#Freetime])
+		formatString: 0
+		lineageTag: 56a5b946-9d3c-499b-b861-bd12df8eb9ee
+
+	column #Freetime
+		formatString: 0
+		lineageTag: d2426be0-3a64-4dc1-b013-115c5b23f16e
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition #Freetime = calculated
+		mode: import
+		source = GENERATESERIES(0, 60, 1)
+
+	annotation PBI_Id = 6c04a6d25fd6454391d303bed8274832
+

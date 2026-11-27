@@ -1,0 +1,28 @@
+table '#Vol Serviços de Armazém'
+	lineageTag: ba8fcce0-1d8b-4ff5-9a44-46938605b54b
+
+	measure 'Valor #Vol Serviços de Armazém' = SELECTEDVALUE('#Vol Serviços de Armazém'[#Vol Serviços de Armazém])
+		lineageTag: 9fcb39fb-2708-4481-a7c5-ae79ae28024b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#Vol Serviços de Armazém'
+		lineageTag: a265ce9a-2c4e-487b-8a89-3eca7d402cd1
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '#Vol Serviços de Armazém' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 1, 0.001)
+
+	annotation PBI_Id = f05dc1ff3c4543a69b7831c8347bc271
+

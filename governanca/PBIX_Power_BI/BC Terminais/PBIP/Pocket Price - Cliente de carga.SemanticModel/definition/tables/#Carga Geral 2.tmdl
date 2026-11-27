@@ -1,0 +1,28 @@
+table '#Carga Geral 2'
+	lineageTag: e4211569-5d76-4b14-bf3b-a5d98fa28eb1
+
+	measure 'Valor #Carga Geral 2' = SELECTEDVALUE('#Carga Geral 2'[#Carga Geral])
+		lineageTag: 8a256b56-24fe-4143-801f-00b188bbb712
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#Carga Geral'
+		lineageTag: 65c56701-4b7a-4dcb-bbb3-d09bb5024158
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '#Carga Geral 2' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 1, 0.001)
+
+	annotation PBI_Id = 68f33a02c9804d05b56a86506560dd1a
+

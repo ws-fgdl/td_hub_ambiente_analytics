@@ -1,0 +1,43 @@
+table 'País Destino'
+	lineageTag: 63738875-2f8f-4dee-9d33-8a02d128fba0
+	sourceLineageTag: a1cb8f49-eaab-4107-a401-2926f764612d
+
+	column ID_PAIS
+		dataType: int64
+		isHidden
+		isNullable: false
+		formatString: 0
+		lineageTag: fc591f84-438d-40b1-bb55-698e33fbb621
+		sourceLineageTag: e02dfc93-5e59-4eae-bd5a-08464b67c87a
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: ID_PAIS
+
+		annotation SummarizationSetBy = User
+
+	column 'Código País Destino'
+		dataType: string
+		lineageTag: 4040b3ac-1cad-4cea-b759-da0f486285a9
+		sourceLineageTag: bdda1d68-6d20-499f-a922-b936efe6bfc0
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Código País Destino
+
+		annotation SummarizationSetBy = User
+
+	column 'País Destino'
+		dataType: string
+		lineageTag: a36d3135-b595-4e34-9a3f-6c799869ce18
+		sourceLineageTag: 7d4da1e6-4275-4ec6-be81-344b8e868033
+		dataCategory: Country
+		summarizeBy: none
+		sourceColumn: País Destino
+
+		annotation SummarizationSetBy = User
+
+	partition 'País Destino' = entity
+		mode: directQuery
+		source
+			entityName: País Destino
+			expressionSource: 'DirectQuery para AS – Modelo Operações Portuárias'
+

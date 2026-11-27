@@ -1,0 +1,28 @@
+table '#Vol Armazenagem Cntr Vazio BT'
+	lineageTag: 2d58978e-1486-49f8-8e8e-29f7dfe70b94
+
+	measure 'Valor #Vol Armazenagem Cntr Vazio BT' = SELECTEDVALUE('#Vol Armazenagem Cntr Vazio BT'[#Vol Armazenagem Cntr Vazio BT])
+		lineageTag: 715c18f8-0a6a-463c-9fb3-374db9d5a84c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#Vol Armazenagem Cntr Vazio BT'
+		lineageTag: 605e83cc-dfda-4cac-b4e7-cd6e34ffcb24
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '#Vol Armazenagem Cntr Vazio BT' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 1, 0.01)
+
+	annotation PBI_Id = 2763e44d74594f3ebe388d7229cb9443
+

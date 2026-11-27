@@ -1,0 +1,28 @@
+table '#ISPS Operação Navio'
+	lineageTag: 45f75686-3e02-4fd0-acd0-4038a79b8318
+
+	measure 'Valor #ISPS Operação Navio' = SELECTEDVALUE('#ISPS Operação Navio'[#ISPS Operação Navio])
+		lineageTag: f0201e1f-5e63-4128-8fe6-93959c85b452
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#ISPS Operação Navio'
+		lineageTag: af98f908-52f2-48f6-bae0-bee7017acca5
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '#ISPS Operação Navio' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 1, 0.001)
+
+	annotation PBI_Id = 48bcfcb751314f919293e340c647131a
+

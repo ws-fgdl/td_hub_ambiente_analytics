@@ -1,0 +1,27 @@
+table '#SBP Desova Manual'
+	lineageTag: 851a46c6-7f5c-4a73-a3e8-e2c59e3a39ce
+
+	measure 'Valor Desova Manual' = SELECTEDVALUE('#SBP Desova Manual'[Parâmetro])
+		lineageTag: 3f5acda3-9194-4863-be4f-f274953ad318
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Parâmetro
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 97022b38-0a39-4adb-addd-4fa748fc5b6e
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition '#SBP Desova Manual' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 0.5, 0.0001)
+
+	annotation PBI_Id = 00f3724149f143afb0b78060ad279217
+

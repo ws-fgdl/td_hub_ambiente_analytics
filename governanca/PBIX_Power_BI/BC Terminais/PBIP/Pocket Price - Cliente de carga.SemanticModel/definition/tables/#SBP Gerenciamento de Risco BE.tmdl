@@ -1,0 +1,27 @@
+table '#SBP Gerenciamento de Risco BE'
+	lineageTag: 6cbe24bb-0c12-4362-99de-e8c2e70f8707
+
+	measure 'Valor #SBP Gerenciamento de Risco BE' = SELECTEDVALUE('#SBP Gerenciamento de Risco BE'[#SBP Gerenciamento de Risco])
+		lineageTag: ea592998-2f56-482a-8557-deab0101ba56
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#SBP Gerenciamento de Risco'
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: d51a12bb-1d88-4dab-8e2a-efe8325fbcec
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition '#SBP Gerenciamento de Risco BE' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 0.5, 0.0001)
+
+	annotation PBI_Id = 9792c37daa9a4dcdbc69669dd3c9f561
+

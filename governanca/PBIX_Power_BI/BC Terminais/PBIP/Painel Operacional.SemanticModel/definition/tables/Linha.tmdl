@@ -1,0 +1,81 @@
+table Linha
+	lineageTag: ed494c42-4732-4239-a909-052804acb1c7
+	sourceLineageTag: 33532d6c-5957-4dd5-8391-feba2b38d70e
+
+	measure 'Linhas Selecionados' = EXTERNALMEASURE("Linhas Selecionados", STRING, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 8bdf431e-baeb-40f0-af28-6729b35c0848
+		sourceLineageTag: 967de8ed-3ac3-46d2-89ee-23cf210cef79
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isText":true}
+
+	column 'ID Linha'
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		lineageTag: 4f126b3c-166b-471c-8162-dd8d57e18ce7
+		sourceLineageTag: fb2ede3f-ad74-4492-9c4c-ba73d1bdc686
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: ID Linha
+
+		annotation SummarizationSetBy = User
+
+	column 'Código Linha'
+		dataType: string
+		isNullable: false
+		lineageTag: e624a096-51bf-4027-82f9-e0903fe9ecb9
+		sourceLineageTag: 726a4739-147e-4c5d-8451-218c86cba63f
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Código Linha
+
+		annotation SummarizationSetBy = User
+
+	column Linha
+		dataType: string
+		lineageTag: 7eef2a9b-2ae6-4eda-b135-a5efe58d4d4a
+		sourceLineageTag: 19316a8d-6e28-4af4-93d7-b80ba6144efe
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Linha
+
+		annotation SummarizationSetBy = User
+
+	column Trade
+		dataType: string
+		isHidden
+		lineageTag: c6ee4da3-f27e-4189-a831-fa3a94b2d738
+		sourceLineageTag: 5d3c372e-ac41-4edc-bdb3-b9ff3f2d323a
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Trade
+
+		annotation SummarizationSetBy = User
+
+	column 'Linha IM'
+		dataType: string
+		lineageTag: 53376fdf-3464-4ff2-b3fc-bcc0e6fdca2c
+		sourceLineageTag: 2eec7589-552d-42bf-8178-f56b1dbeb1fb
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Linha IM
+
+		annotation SummarizationSetBy = User
+
+	column 'Trade IM'
+		dataType: string
+		lineageTag: d369f58f-5608-4ed5-9100-e2997248418b
+		sourceLineageTag: 8515f33d-4540-4c54-a240-a83e5f07590e
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Trade IM
+
+		annotation SummarizationSetBy = User
+
+	partition Linha = entity
+		mode: directQuery
+		source
+			entityName: Linha
+			expressionSource: 'DirectQuery para AS – Modelo Operações Portuárias'
+

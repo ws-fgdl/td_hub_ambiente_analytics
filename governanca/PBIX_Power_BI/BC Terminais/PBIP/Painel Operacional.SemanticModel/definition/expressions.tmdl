@@ -1,0 +1,11 @@
+expression 'DirectQuery para AS – Modelo Operações Portuárias' =
+		let
+		    Source = AnalysisServices.Database("powerbi://api.powerbi.com/v1.0/myorg/TRG%20MS", "Modelo Operações Portuárias"),
+		    Cubes = Table.Combine(Source[Data]),
+		    Cube = Cubes{[Id="Model", Kind="Cube"]}[Data]
+		in
+		    Cube
+	lineageTag: d8b3cfe0-b080-485c-aa4c-7009ec4283d8
+
+	annotation PBI_IncludeFutureArtifacts = True
+

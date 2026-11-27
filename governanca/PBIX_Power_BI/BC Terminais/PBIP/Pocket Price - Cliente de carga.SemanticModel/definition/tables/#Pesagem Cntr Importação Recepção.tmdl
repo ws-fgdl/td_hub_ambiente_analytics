@@ -1,0 +1,28 @@
+table '#Pesagem Cntr Importação Recepção'
+	lineageTag: 492aacbe-9e7c-42df-b718-d66ba23ae7e2
+
+	measure 'Valor #Pesagem Cntr Importação Recepção' = SELECTEDVALUE('#Pesagem Cntr Importação Recepção'[#Pesagem Cntr Importação Recepção])
+		lineageTag: 8ea1534f-4c8a-4fce-84c6-fa1086d285b8
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#Pesagem Cntr Importação Recepção'
+		lineageTag: fcc57641-d4ac-4503-9949-5b097170c2ab
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '#Pesagem Cntr Importação Recepção' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 1, 0.001)
+
+	annotation PBI_Id = 0b8afa70aae14a9c839f0fecc43decb6
+

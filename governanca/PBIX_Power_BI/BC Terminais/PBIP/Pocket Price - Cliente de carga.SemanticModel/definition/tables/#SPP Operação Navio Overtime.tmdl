@@ -1,0 +1,27 @@
+table '#SPP Operação Navio Overtime'
+	lineageTag: dbdcd800-e74a-47c7-b9c4-dbb012499fba
+
+	measure 'Valor Operação Navio Overtime' = SELECTEDVALUE('#SPP Operação Navio Overtime'[Operação Navio Overtime])
+		lineageTag: dd5026e4-531a-4e39-9ac1-b1d6676fb7bd
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Operação Navio Overtime'
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 2e025f90-e779-41b2-bb63-845058e028d3
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition '#SPP Operação Navio Overtime' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 0.5, 0.0001)
+
+	annotation PBI_Id = 37b625a884cd4bbfbb610c35469a3575
+

@@ -1,0 +1,394 @@
+table '_Medidas Ranking Armadores'
+	lineageTag: ea638988-0df2-46c5-91b1-7f5af8a65019
+	sourceLineageTag: 60a39a32-4dde-447a-97a1-d500c881f5a5
+
+	measure 'Diversif. Serviços' = EXTERNALMEASURE("Diversif. Serviços", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		lineageTag: 6d0ba712-9f1a-45d5-80c6-78d015951214
+		sourceLineageTag: fb58b04f-8764-4691-b35b-6d4c97a8eb67
+		dataCategory: Uncategorized
+
+	measure 'Reposic. Vazios' = EXTERNALMEASURE("Reposic. Vazios", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		lineageTag: ac003334-f7f3-4a52-ba7c-dbc061b98886
+		sourceLineageTag: 278356ed-fea5-4f4e-9343-d6f52fc0ad4a
+		dataCategory: Uncategorized
+
+	measure Reefer = EXTERNALMEASURE("Reefer", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		lineageTag: 7f0ce15d-26d3-4424-8bc3-56078f213f70
+		sourceLineageTag: 11795cb5-913c-4a08-a7d0-17657703f42c
+		dataCategory: Uncategorized
+
+	measure 'Volume Total' = EXTERNALMEASURE("Volume Total", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		lineageTag: abddafd0-31e3-4cea-a5d7-a3a86bf13ebf
+		sourceLineageTag: f0d37f9b-3d12-44c7-9b03-323a27553505
+		dataCategory: Uncategorized
+
+	measure 'Pocket Price' = EXTERNALMEASURE("Pocket Price", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		lineageTag: 756e8a34-eeae-4168-84d0-a12b57c1d335
+		sourceLineageTag: 932a14d1-14a9-4ad6-a54f-820c4b867c88
+		dataCategory: Uncategorized
+
+	measure 'Ticket Médio 2' = EXTERNALMEASURE("Ticket Médio", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		lineageTag: dcf7e3e0-f1be-47f8-862d-dfaebabe16c2
+		sourceLineageTag: cf47e882-dcd7-4f24-b898-1480106f2cf0
+		dataCategory: Uncategorized
+
+	measure 'Box Rate' = EXTERNALMEASURE("Box Rate", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		lineageTag: 074092d2-1682-4bf8-855d-8130846bcf60
+		sourceLineageTag: 91bedb19-56d9-4dc9-8aef-9153c97be972
+		dataCategory: Uncategorized
+
+	measure 'Fat. Demais Serviços' = EXTERNALMEASURE("Fat. Demais Serviços", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		lineageTag: 06f06faf-f498-42c3-8486-cf46fb3ee878
+		sourceLineageTag: a8d00220-e852-46e4-a245-20162dc156f8
+		dataCategory: Uncategorized
+
+	measure 'Fat. Operação Navio' = EXTERNALMEASURE("Fat. Operação Navio", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		lineageTag: 39d7e5d6-3eaa-4253-ae0f-e5395163d1d0
+		sourceLineageTag: b6a6338f-a2cd-4822-bb61-3e509c7bcd0a
+		dataCategory: Uncategorized
+
+	measure 'Navio Fora de Janela' = EXTERNALMEASURE("Navio Fora de Janela", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		lineageTag: b9fef846-84b7-46ad-b56d-8c6711f23a6a
+		sourceLineageTag: c9e0e357-5fa8-4688-8076-a27fc39be86f
+		dataCategory: Uncategorized
+
+	measure 'Navios LOA > 330m' = EXTERNALMEASURE("Navios LOA > 330m", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		lineageTag: 89c0326a-28b4-4256-b5dd-b36930a4870f
+		sourceLineageTag: b268ea62-8a12-44bc-b96e-559ba0d0361c
+		dataCategory: Uncategorized
+
+	measure Trades = EXTERNALMEASURE("Trades", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		lineageTag: 3d7a3d48-97e1-4e9a-98ea-5e9f01f4b9c0
+		sourceLineageTag: 72962d5c-8296-4acc-8624-5556d579f8da
+		dataCategory: Uncategorized
+
+	measure Linhas = EXTERNALMEASURE("Linhas", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		lineageTag: a1112ad1-a796-4e78-b3ff-803f98e5cc02
+		sourceLineageTag: 08609427-87a3-4af6-95fc-b33bd2a245ba
+		dataCategory: Uncategorized
+
+	measure 'Performance de Escalas' = EXTERNALMEASURE("Performance de Escalas", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		lineageTag: 57621346-cd6b-4103-b051-7b9b2452238a
+		sourceLineageTag: f4581e26-f324-405f-8f8c-c44233748eb2
+		dataCategory: Uncategorized
+
+	measure 'Efeito Prazo Pgto' = EXTERNALMEASURE("Efeito Prazo Pgto", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		lineageTag: b47c25e3-fbba-4424-a918-965be93663dc
+		sourceLineageTag: 24e750e5-a6a3-4367-ab0c-ed27bfead6e8
+		dataCategory: Uncategorized
+
+	measure 'Juros e Multas' = EXTERNALMEASURE("Juros e Multas", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		lineageTag: 7430b578-d960-4721-8fff-429c17d0dc1a
+		sourceLineageTag: 57491943-bca9-4e61-b76c-38ba46ff1c94
+		dataCategory: Uncategorized
+
+	measure 'CAR Ranking' = EXTERNALMEASURE("CAR Ranking", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		lineageTag: 5c99e13d-ea2d-4228-a918-189f0b7677f3
+		sourceLineageTag: 10759d4c-c29f-4dee-aad3-5441129760f4
+		dataCategory: Uncategorized
+
+	measure PMR = EXTERNALMEASURE("PMR", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		lineageTag: d914718b-a57a-485a-88c6-04bafa0290f4
+		sourceLineageTag: f35c176d-f661-43e1-b34f-abd2999f20c4
+		dataCategory: Uncategorized
+
+	measure Financeiro = EXTERNALMEASURE("Financeiro", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		lineageTag: 82b2bd24-77f7-4cb8-b25a-cb584422ab0b
+		sourceLineageTag: ff1e0887-699f-4950-a2c0-7b5db9460706
+		dataCategory: Uncategorized
+
+	measure Operacional = EXTERNALMEASURE("Operacional", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		lineageTag: f8b84a19-d93d-4a5d-b578-3a370ffa7948
+		sourceLineageTag: 6d2feee1-32d9-4931-9eeb-4359085f6947
+		dataCategory: Uncategorized
+
+	measure Receita = EXTERNALMEASURE("Receita", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		lineageTag: 642a6df0-f535-409f-9cba-747579b497ce
+		sourceLineageTag: d68758d7-1567-4287-889c-583b19956481
+		dataCategory: Uncategorized
+
+	measure Volume = EXTERNALMEASURE("Volume", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		lineageTag: f050a10d-0248-4791-b792-e47172d71130
+		sourceLineageTag: 8bdb7a33-57cd-47d6-8cb8-c30e9ac905ff
+		dataCategory: Uncategorized
+
+	column TEMPO_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: fc7f6272-63dd-4336-ba21-29f0957be9d3
+		sourceLineageTag: 089f25e1-b27e-4b10-8d0c-8287c597ebcf
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: TEMPO_ID
+
+		annotation SummarizationSetBy = User
+
+	column 'Grupo Armador Ranking'
+		dataType: string
+		lineageTag: db1169f6-130e-49fd-a82a-3ab869a611bd
+		sourceLineageTag: 9538cfbb-9bed-4b69-b1a3-bdbea967729d
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Grupo Armador Ranking
+
+		annotation SummarizationSetBy = User
+
+	column 'Indice PMR'
+		dataType: double
+		formatString: #,0
+		lineageTag: 050e37ed-7beb-4b4c-b1e0-e4b9d13572fe
+		sourceLineageTag: 83233a51-ea4d-4564-85c9-d1a84bbe75a1
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Indice PMR
+
+		annotation SummarizationSetBy = User
+
+	column 'Indice CAR Range'
+		dataType: double
+		formatString: #,0
+		lineageTag: 7d6ff3dc-99bb-4b0a-8079-230a199992c2
+		sourceLineageTag: b3fe3cc2-7cfa-47dd-9d42-59425d3756b9
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Indice CAR Range
+
+		annotation SummarizationSetBy = User
+
+	column 'Indice Juros e Multa'
+		dataType: double
+		formatString: #,0
+		lineageTag: 75b3475f-c0bf-4a46-b17b-ea2b011bf0bb
+		sourceLineageTag: 710ef3b9-643d-4d06-8b8e-16aa4a10d191
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Indice Juros e Multa
+
+		annotation SummarizationSetBy = User
+
+	column 'Indice Efeito do Prazo de Pagamento'
+		dataType: double
+		formatString: #,0
+		lineageTag: 7971ef7a-0692-4d92-9e38-2ce0a0242b2b
+		sourceLineageTag: 4c0e2108-5a0e-4ebf-b9d5-31724f510cb7
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Indice Efeito do Prazo de Pagamento
+
+		annotation SummarizationSetBy = User
+
+	column 'Indice Performance Escalas Sistema'
+		dataType: double
+		formatString: #,0
+		lineageTag: dfd164a1-ef93-4529-af49-65937fef4aa2
+		sourceLineageTag: 59097aea-0739-4c96-8544-d17d8459a185
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Indice Performance Escalas Sistema
+
+		annotation SummarizationSetBy = User
+
+	column 'Indice Linhas Atendidas'
+		dataType: double
+		formatString: #,0
+		lineageTag: 8e50b729-b1bd-49ac-9759-c2672349e46f
+		sourceLineageTag: 02f6ec96-8d18-44fc-adf8-ce473b4b0fe7
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Indice Linhas Atendidas
+
+		annotation SummarizationSetBy = User
+
+	column 'Indice Trades Atendidos'
+		dataType: double
+		formatString: #,0
+		lineageTag: ab225fa4-ac70-492e-afb1-0e1cffae775b
+		sourceLineageTag: 3ddb6392-93c6-4b44-b65a-1bb31c5cbc98
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Indice Trades Atendidos
+
+		annotation SummarizationSetBy = User
+
+	column 'Indice Navios LOA acima de 330'
+		dataType: double
+		formatString: #,0
+		lineageTag: f338f528-51d2-4d5d-828a-1e78ea76dc4b
+		sourceLineageTag: 0b4b47a8-1362-4d4e-abee-8b5bb0dc738a
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Indice Navios LOA acima de 330
+
+		annotation SummarizationSetBy = User
+
+	column 'Indice Navios Fora de Janela'
+		dataType: double
+		formatString: #,0
+		lineageTag: 3603f531-e142-48f9-a37c-df6e4a6f9562
+		sourceLineageTag: 5a978261-f980-40ce-a184-82b4811a0bcd
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Indice Navios Fora de Janela
+
+		annotation SummarizationSetBy = User
+
+	column 'Indice Faturamento Operação Navio'
+		dataType: double
+		formatString: #,0
+		lineageTag: 74e3174a-5551-4710-85a1-7a5cbcc2f542
+		sourceLineageTag: 30ba4eae-1289-4560-b91e-ce024efb6f8c
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Indice Faturamento Operação Navio
+
+		annotation SummarizationSetBy = User
+
+	column 'Indice Faturamento Demais Serviços'
+		dataType: double
+		formatString: #,0
+		lineageTag: 3cc72ccd-fc82-4474-a5ec-6788cfc4ed15
+		sourceLineageTag: 3c3441ef-5b8d-41ec-a596-89a4e8712e73
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Indice Faturamento Demais Serviços
+
+		annotation SummarizationSetBy = User
+
+	column 'Indice Preço Box Rate'
+		dataType: double
+		formatString: #,0
+		lineageTag: a8b7bf86-bec6-40ba-aed8-8db233d9b7ec
+		sourceLineageTag: 9a28d420-ab20-43f4-a9cc-e549bd821ff7
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Indice Preço Box Rate
+
+		annotation SummarizationSetBy = User
+
+	column 'Indice Ticket Médio'
+		dataType: double
+		formatString: #,0
+		lineageTag: 6ab42697-2a82-4324-be0c-d9bd2237e9a5
+		sourceLineageTag: c892036e-4b9c-481b-9693-a6812accec16
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Indice Ticket Médio
+
+		annotation SummarizationSetBy = User
+
+	column 'Indice Pocket Price Armador'
+		dataType: double
+		formatString: #,0
+		lineageTag: d79805be-5bd5-4685-bf23-74ac0505ebc5
+		sourceLineageTag: 68465178-1d5c-4ccf-8deb-7b73328e9c98
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Indice Pocket Price Armador
+
+		annotation SummarizationSetBy = User
+
+	column 'Indice Volume Total'
+		dataType: double
+		formatString: #,0
+		lineageTag: 39d4cc7d-f82f-4727-a5dc-aba026c5ad90
+		sourceLineageTag: 7e2a6f6f-a814-4466-b9a4-61674d037664
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Indice Volume Total
+
+		annotation SummarizationSetBy = User
+
+	column 'Indice Volume Reefer'
+		dataType: double
+		formatString: #,0
+		lineageTag: f9af51bd-fde9-49d2-b325-f89b7b918521
+		sourceLineageTag: 8c831a17-5060-4334-aa99-70fa4fc00a38
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Indice Volume Reefer
+
+		annotation SummarizationSetBy = User
+
+	column 'Indice % Reposicionamento Vazios'
+		dataType: double
+		formatString: #,0
+		lineageTag: aa955ffd-fd12-4ffd-8264-d886aa7a6d6d
+		sourceLineageTag: f2b6f855-175a-4c92-acd0-a501c34fdb9b
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Indice % Reposicionamento Vazios
+
+		annotation SummarizationSetBy = User
+
+	column 'Indice Diversificação Serviços'
+		dataType: double
+		formatString: #,0
+		lineageTag: e644c92e-8f43-43e1-bae7-d78d6f5474f7
+		sourceLineageTag: 98ee8581-022b-4247-8a9b-4009308cf03f
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Indice Diversificação Serviços
+
+		annotation SummarizationSetBy = User
+
+	column 'Indice Performance Escalas Planilha'
+		dataType: double
+		formatString: #,0
+		lineageTag: a2556659-b7de-4de1-bd8f-5bf7f7339088
+		sourceLineageTag: 948833d1-a906-4c47-8f08-edbd6ebd1178
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Indice Performance Escalas Planilha
+
+		annotation SummarizationSetBy = User
+
+	column 'Ranking Armador'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 5ba2850a-b7d0-4992-915a-b5c59f616fd6
+		sourceLineageTag: 31778355-2406-4442-aecf-7a91c09196a5
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Ranking Armador
+
+		annotation SummarizationSetBy = User
+
+	column 'Indice Performance de Escalas'
+		dataType: double
+		formatString: #,0
+		lineageTag: 669fdb5c-9e8c-4313-81b3-187d675ef77e
+		sourceLineageTag: df32db60-573e-4fdc-ac94-f99a541464b3
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Indice Performance de Escalas
+
+		annotation SummarizationSetBy = User
+
+	partition '_Medidas Ranking Armadores' = entity
+		mode: directQuery
+		source
+			entityName: _Medidas Ranking Armadores
+			expressionSource: 'DirectQuery para AS – Modelo Operações Portuárias'
+

@@ -1,0 +1,28 @@
+table '#Vol Reefer'
+	lineageTag: 30822329-ba7b-458b-9ae8-f6c810e7336f
+
+	measure 'Valor #Vol Reefer' = SELECTEDVALUE('#Vol Reefer'[#Vol Reefer])
+		lineageTag: f7738fcf-e85b-4ce3-8898-c1869c34e94c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#Vol Reefer'
+		lineageTag: aba89558-bea5-4127-80db-e539cafa2bcc
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '#Vol Reefer' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 1, 0.001)
+
+	annotation PBI_Id = 70829b46917940068593d06f1c12006f
+

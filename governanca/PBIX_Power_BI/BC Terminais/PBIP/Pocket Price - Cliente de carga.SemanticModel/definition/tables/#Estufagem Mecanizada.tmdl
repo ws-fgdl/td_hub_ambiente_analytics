@@ -1,0 +1,28 @@
+table '#Estufagem Mecanizada'
+	lineageTag: bb6a4d11-71db-4fed-83bf-828839304b6f
+
+	measure 'Valor #Estufagem Mecanizada' = SELECTEDVALUE('#Estufagem Mecanizada'[#Estufagem Mecanizada])
+		lineageTag: 79a1e487-b1d1-400f-9bb3-327b00451078
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#Estufagem Mecanizada'
+		lineageTag: 3ece8f44-0569-4df1-9c70-945177cf41ae
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '#Estufagem Mecanizada' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 1, 0.001)
+
+	annotation PBI_Id = fca46105d6d34708aec2e7105765b61d
+

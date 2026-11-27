@@ -1,0 +1,26 @@
+table '#SBP Box Rate Cheio LC'
+	lineageTag: 62e66d55-d75c-456e-9f95-5bc148ceefc4
+
+	measure 'Valor #SBP Box Rate Cheio LC' = SELECTEDVALUE('#SBP Box Rate Cheio LC'[#SBP Box Rate Cheio LC])
+		formatString: 0.0000
+		lineageTag: b37d88fc-2614-451a-91d2-7a909db2a08e
+
+	column '#SBP Box Rate Cheio LC'
+		formatString: 0.0000%;-0.0000%;0.0000%
+		lineageTag: df332911-bb3e-4670-b889-18715e166989
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition '#SBP Box Rate Cheio LC' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 0.5, 0.0001)
+
+	annotation PBI_Id = 88a1e6afa1a24df3bb3fbd5cb8f55fd3
+

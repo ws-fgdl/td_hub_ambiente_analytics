@@ -1,0 +1,62 @@
+table 'Tipo Container'
+	lineageTag: 6134468e-2546-4adc-979a-9d2b7e5067d6
+	sourceLineageTag: 74e0b5cb-93ca-4353-8705-49969925be55
+
+	column 'Tipo Container ID'
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		lineageTag: 355cdbfd-cdb1-4ae9-b2c2-264e46c90253
+		sourceLineageTag: 26ca03f1-a545-4b5f-bd99-aa999d0a636d
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Tipo Container ID
+
+		annotation SummarizationSetBy = User
+
+	column Classe
+		dataType: string
+		lineageTag: dc54930e-199f-43c7-b361-91674a4e79ea
+		sourceLineageTag: 652cf23e-37d9-453d-9fad-6dcfcca5947b
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Classe
+
+		annotation SummarizationSetBy = User
+
+	column ISO
+		dataType: string
+		lineageTag: e71d14c8-6138-4f31-b0ee-e2ec367614f2
+		sourceLineageTag: 6e05760b-f300-4e3f-83e6-fca5fecfd566
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: ISO
+
+		annotation SummarizationSetBy = User
+
+	column 'Tipo Container'
+		dataType: string
+		lineageTag: f16a713f-6fec-4274-b829-3c055f45a903
+		sourceLineageTag: e139d7e6-e104-4c55-a866-9f273e6e5bd2
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Tipo Container
+
+		annotation SummarizationSetBy = User
+
+	column 'Tipo de Container'
+		dataType: string
+		lineageTag: 821d9781-5bc2-469a-a7fc-ae6537f4e481
+		sourceLineageTag: 98d571e3-6bde-44d2-a1ad-c36a22235bca
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Tipo de Container
+
+		annotation SummarizationSetBy = User
+
+	partition 'Tipo Container' = entity
+		mode: directQuery
+		source
+			entityName: Tipo Container
+			expressionSource: 'DirectQuery para AS – Modelo Operações Portuárias'
+

@@ -1,0 +1,42 @@
+table 'Porto Origem'
+	lineageTag: a55c0b22-b47d-4a1b-8854-282f5fdaf5c3
+	sourceLineageTag: 521afd81-9f8d-4e67-a20f-d32c0d13f383
+
+	column 'Porto Origem ID'
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		lineageTag: f6bf57d7-9cb8-489a-bc5a-e4653c79c031
+		sourceLineageTag: 7dc92173-26b8-491e-bccb-f610a5369b9b
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Porto Origem ID
+
+		annotation SummarizationSetBy = User
+
+	column 'Código Porto Origem'
+		dataType: string
+		lineageTag: b26ecb50-e6c3-462b-845d-f172da78216a
+		sourceLineageTag: c70d76ca-0580-48e4-9090-e627196d8b8b
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Código Porto Origem
+
+		annotation SummarizationSetBy = User
+
+	column 'Porto Origem'
+		dataType: string
+		lineageTag: 42517bf9-0eb9-4b07-b4c9-f8dcf0943d3d
+		sourceLineageTag: ff40f2ba-7afd-4902-b8af-19bd76ea076f
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Porto Origem
+
+		annotation SummarizationSetBy = User
+
+	partition 'Porto Origem' = entity
+		mode: directQuery
+		source
+			entityName: Porto Origem
+			expressionSource: 'DirectQuery para AS – Modelo Operações Portuárias'
+

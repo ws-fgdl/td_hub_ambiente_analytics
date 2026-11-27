@@ -1,0 +1,28 @@
+table 'Armaz. EXP Vol. P2'
+	lineageTag: 1bcdd94b-9036-4d46-8861-51b0e38a07ca
+
+	measure 'Valor Armaz. EXP Vol. P2' = SELECTEDVALUE('Armaz. EXP Vol. P2'[Armaz. EXP Vol. P2])
+		lineageTag: 1b9ee737-7145-46cb-b57a-e17cc1611a7e
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Armaz. EXP Vol. P2'
+		lineageTag: 9e81ce5d-8886-45aa-9ff9-7243c60859af
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'Armaz. EXP Vol. P2' = calculated
+		mode: import
+		source = GENERATESERIES(-30, 30, 1)
+
+	annotation PBI_Id = 2927923f87294071834a5d71087b4eeb
+

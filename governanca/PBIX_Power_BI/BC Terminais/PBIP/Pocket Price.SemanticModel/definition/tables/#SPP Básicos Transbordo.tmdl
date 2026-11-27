@@ -1,0 +1,27 @@
+table '#SPP Básicos Transbordo'
+	lineageTag: efc6dee3-a9aa-473c-9b50-34fbef2a57f4
+
+	measure 'Valor Básicos Transbordo' = SELECTEDVALUE('#SPP Básicos Transbordo'[Básios Transbordo])
+		lineageTag: 00ece62e-dad6-4db9-bc69-8150cd8bb8ee
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Básios Transbordo'
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 0020c639-78a1-400b-bdbb-80b855806bb7
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition '#SPP Básicos Transbordo' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 0.5, 0.0001)
+
+	annotation PBI_Id = 0a7be2227ae34ae3849e825ce54f59c6
+

@@ -1,0 +1,27 @@
+table exemplo
+	lineageTag: aef20101-468c-4529-9e77-54f2745cc4a7
+
+	measure 'Valor exemplo' = SELECTEDVALUE('exemplo'[exemplo])
+		lineageTag: 325819b8-e870-41b3-9bc8-c2f24e9e8898
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column exemplo
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 3aa5f161-6666-4040-ad2e-85655d9c0f61
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition exemplo = calculated
+		mode: import
+		source = GENERATESERIES(-1, 1, 0.001)
+
+	annotation PBI_Id = e03d57c6011f44468754de7ba99c4411
+

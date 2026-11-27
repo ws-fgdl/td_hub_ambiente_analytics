@@ -1,0 +1,28 @@
+table #Overtime
+	lineageTag: d24ee7fb-f962-488c-bb9e-c5d058738cff
+
+	measure 'Valor #Overtime' = SELECTEDVALUE('#Overtime'[#Overtime])
+		lineageTag: 262ebeeb-9692-4b6e-a320-4375a1706458
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column #Overtime
+		lineageTag: 814c188c-0582-44f2-8ee9-9d64c066acd5
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition #Overtime = calculated
+		mode: import
+		source = GENERATESERIES(-1, 1, 0.001)
+
+	annotation PBI_Id = 725e686c4082412a98a0951abfad15a5
+

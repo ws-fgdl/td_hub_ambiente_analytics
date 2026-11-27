@@ -1,0 +1,505 @@
+table '_Medidas Market Share'
+	lineageTag: 967d8c76-6a2b-485e-8e25-19c40964eacf
+	sourceLineageTag: c7408a26-8493-48be-b314-563c212fadb7
+
+	measure Slicer_Possui_Market_Share_Sim_Não = EXTERNALMEASURE("Slicer_Possui_Market_Share_Sim_Não", STRING, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 1e566ddb-fd37-42ce-bbe8-1a81a94211a7
+		sourceLineageTag: 6f127146-61fc-451e-bc32-51e677fe7c5f
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isText":true}
+
+	measure 'Valor CIF' = EXTERNALMEASURE("Valor CIF", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 7decd224-8651-424b-8c92-9c628bc90924
+		sourceLineageTag: 32e7a571-97a1-41b8-8e74-fd421a09dba9
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Dias Terminal' = EXTERNALMEASURE("Dias Terminal", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: d6a427c0-df3d-45db-9ed5-58fd12589ea6
+		sourceLineageTag: 6dfdb9f3-f45a-467d-8f9c-2003d1cc955b
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Dias BL' = EXTERNALMEASURE("Dias BL", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: ada8331c-05f9-4039-ae5e-96df4db4dc64
+		sourceLineageTag: 6bffe837-48b8-49c8-ac6d-dc3d98ea0136
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Produtos Armazenados' = EXTERNALMEASURE("Total Produtos Armazenados", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 4297041f-b43e-4087-b395-a116287e48d1
+		sourceLineageTag: 117304b0-17c8-4f81-96c5-add3b57d9001
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Saída Cntr DI' = EXTERNALMEASURE("Saída Cntr DI", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		lineageTag: 687638cb-d51b-46b4-bb98-d62e4e8c1205
+		sourceLineageTag: d4118e0b-e598-4ac4-87fa-4ad556a84e4e
+		dataCategory: Uncategorized
+
+	measure 'Saída Cntr DTA' = EXTERNALMEASURE("Saída Cntr DTA", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		lineageTag: 1333d03f-7918-45c0-9258-d65fcaab8851
+		sourceLineageTag: 89ed4f3b-5e50-4daf-b973-e1baac14ca99
+		dataCategory: Uncategorized
+
+	measure 'Saida Cntr Total' = EXTERNALMEASURE("Saida Cntr Total", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		lineageTag: 5604997a-552a-4510-8dae-cdd1f6afa111
+		sourceLineageTag: 8c3e5f15-082b-4e30-8deb-a2f8acf4de37
+		dataCategory: Uncategorized
+
+	measure 'Market Share %' = EXTERNALMEASURE("Market Share %", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: c4e70c6e-b76b-41bd-8822-ad202df6c1d2
+		sourceLineageTag: 6723cfa5-c3ef-4617-9c08-e3551f63cd8c
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Valor CIF PY' = EXTERNALMEASURE("Valor CIF PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PY
+		lineageTag: d17d1fe5-3b61-4a88-9503-c97bba4e6f7c
+		sourceLineageTag: 21baa09b-92a1-46eb-9fdc-592b021f8a5a
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Valor CIF PYTD' = EXTERNALMEASURE("Valor CIF PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PYTD
+		lineageTag: 0160042b-7699-4cfd-bba8-a2a1f52e9017
+		sourceLineageTag: 73ba812d-f3de-4012-92db-96295f2876dc
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Valor CIF YTD' = EXTERNALMEASURE("Valor CIF YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: YTD
+		lineageTag: a2393f5a-899a-4241-b029-553ec7c27978
+		sourceLineageTag: 87579f88-fba3-4613-8c4c-4eb141b67ceb
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Dias Terminal PY' = EXTERNALMEASURE("Dias Terminal PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PY
+		lineageTag: d9204edb-268f-43ea-b117-132d2fc63767
+		sourceLineageTag: c7cdbcaa-c552-4433-8fe2-b3eef13167b0
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Dias Terminal PYTD' = EXTERNALMEASURE("Dias Terminal PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PYTD
+		lineageTag: 250fb6fe-bd10-4f15-b794-34f7c6f16c1f
+		sourceLineageTag: 69c8651a-5c0d-4180-bd9c-27ec0951a532
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Dias Terminal YTD' = EXTERNALMEASURE("Dias Terminal YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: YTD
+		lineageTag: 0c9594ea-e532-4210-aa40-8455fdb003d2
+		sourceLineageTag: 7ae48fd6-cdf4-454f-93c9-66703abec1b2
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Dias BL PY' = EXTERNALMEASURE("Dias BL PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PY
+		lineageTag: 7068cbf3-dc99-4a72-b49f-f71aa58621ed
+		sourceLineageTag: c3f9121f-666f-4a83-b8bf-7c32ded5e44c
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Dias BL PYTD' = EXTERNALMEASURE("Dias BL PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PYTD
+		lineageTag: 110f7a70-fb04-415e-be5e-2a6574f43526
+		sourceLineageTag: 4e926b1f-7606-40c6-af5e-48687864f322
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Dias BL YTD' = EXTERNALMEASURE("Dias BL YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: YTD
+		lineageTag: 89df6292-9c9c-4334-97d5-ab832bf3dc8c
+		sourceLineageTag: 35a483aa-731b-4dea-b7cb-380782a5ba22
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Produtos Armazenados PY' = EXTERNALMEASURE("Total Produtos Armazenados PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PY
+		lineageTag: 4a9abc9c-1605-47bc-a73f-29c6faeec251
+		sourceLineageTag: f0c78a69-e973-4235-8587-6e1cfb329463
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Produtos Armazenados PYTD' = EXTERNALMEASURE("Total Produtos Armazenados PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PYTD
+		lineageTag: 34996c89-1a64-47ed-bef2-63db5f7b1cc1
+		sourceLineageTag: 28bd932e-b176-481b-a5c3-bd065c103bfb
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Produtos Armazenados YTD' = EXTERNALMEASURE("Total Produtos Armazenados YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: YTD
+		lineageTag: ebfa64f5-cef5-4f86-9978-d8ca6fd5ce25
+		sourceLineageTag: 9fb07267-9037-4cec-bcc3-060eea311a51
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Saída Cntr DI PY' = EXTERNALMEASURE("Saída Cntr DI PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PY
+		lineageTag: c56079ea-f1a0-497e-b02c-a433e61b5ea4
+		sourceLineageTag: 519d905f-3f5e-4566-b6b3-09ede2040754
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Saída Cntr DI PYTD' = EXTERNALMEASURE("Saída Cntr DI PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PYTD
+		lineageTag: b35d2901-1c7d-4ee8-9d5c-52cedc84672e
+		sourceLineageTag: e17a57f8-6e05-411d-bb90-4d7c706581ad
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Saída Cntr DI YTD' = EXTERNALMEASURE("Saída Cntr DI YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: YTD
+		lineageTag: b1bf745e-044c-4206-8e8a-bfa5b745e591
+		sourceLineageTag: ad1e8dc8-8aec-437c-8d21-388448c5877f
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Saída Cntr DTA PY' = EXTERNALMEASURE("Saída Cntr DTA PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PY
+		lineageTag: b6316f7c-652e-4778-8f76-ccdcb6d0c90b
+		sourceLineageTag: 6b74abb8-7658-4045-82bc-945845e2cb19
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Saída Cntr DTA PYTD' = EXTERNALMEASURE("Saída Cntr DTA PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PYTD
+		lineageTag: 52a85f25-6868-4614-8b30-3168ebd38a1c
+		sourceLineageTag: 61de74a6-0327-41b5-a1a2-369a07e47182
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Saída Cntr DTA YTD' = EXTERNALMEASURE("Saída Cntr DTA YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: YTD
+		lineageTag: 6fdbdc6a-0ae6-440f-beb8-b2e4d3fa8c85
+		sourceLineageTag: e5c2c8ed-ac81-41d9-b914-d79f70e71985
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Saida Cntr Total PY' = EXTERNALMEASURE("Saida Cntr Total PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PY
+		lineageTag: 7ed9634a-660e-4048-bd5b-d818d5dc8060
+		sourceLineageTag: 7eef019b-d3bc-432a-9e6b-3192d65edd50
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Saida Cntr Total PYTD' = EXTERNALMEASURE("Saida Cntr Total PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PYTD
+		lineageTag: f00a2f83-c3ca-4694-86e1-91665b3d77ff
+		sourceLineageTag: 0b520c28-9bff-43e8-90e5-9f213f991dcf
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Saida Cntr Total YTD' = EXTERNALMEASURE("Saida Cntr Total YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: YTD
+		lineageTag: fe8766f5-3397-479f-a427-7a148179a9da
+		sourceLineageTag: f974f977-aa60-45ba-9aa5-33dae63352bb
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Market Share % PY' = EXTERNALMEASURE("Market Share % PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PY
+		lineageTag: fcaf3fba-9d0e-4653-94f6-13610843287e
+		sourceLineageTag: edff1d8b-fcf3-46a9-bd18-f307681187e2
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Market Share % PYTD' = EXTERNALMEASURE("Market Share % PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PYTD
+		lineageTag: 96e29b76-8b79-4904-93ea-81bba8664252
+		sourceLineageTag: aff20959-f687-4402-b899-3dae47f06459
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Market Share % YTD' = EXTERNALMEASURE("Market Share % YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: YTD
+		lineageTag: d01d3c77-1f61-466b-90d4-2b9284d6727a
+		sourceLineageTag: 8ebe45bf-9770-4743-9759-52ba5cbd1501
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column MKT_SHARE_ID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: f6ef8a47-b965-418a-b158-79fd23ad6325
+		sourceLineageTag: 1f4947aa-09d0-4230-825f-2a76b8297464
+		dataCategory: Uncategorized
+		summarizeBy: count
+		sourceColumn: MKT_SHARE_ID
+
+		annotation SummarizationSetBy = User
+
+	column COD_EMPRESA
+		dataType: string
+		isHidden
+		lineageTag: 8aca99bb-d0c6-4f0a-a2f6-55df682bc440
+		sourceLineageTag: 8ab130e6-cea1-4c84-87a7-0e4184f85dfe
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: COD_EMPRESA
+
+		annotation SummarizationSetBy = User
+
+	column TEMPO_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: 751d91da-6f54-4f70-8d00-662603d72cb2
+		sourceLineageTag: 85971ed2-e5dc-4a3c-8dd3-abc4d3a19bbe
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: TEMPO_ID
+
+		annotation SummarizationSetBy = User
+
+	column TIPO_DOCUMENTO_ID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: b86b3b91-ae72-426c-b906-b77f8c8a5ba1
+		sourceLineageTag: e6187fe4-253c-452a-a61e-57b9621b1ad4
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: TIPO_DOCUMENTO_ID
+
+		annotation SummarizationSetBy = User
+
+	column COD_CLIENTE_SAP_IMP
+		dataType: string
+		isHidden
+		lineageTag: 71e529c0-8f53-40ec-b8a1-5431ccebf13c
+		sourceLineageTag: f790ec6a-19b2-4a43-95a1-d3bf3e93aeac
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: COD_CLIENTE_SAP_IMP
+
+		annotation SummarizationSetBy = User
+
+	column COD_CLIENTE_SAP_SOL
+		dataType: string
+		isHidden
+		lineageTag: 8eb60f8f-103d-418e-901c-9c8510e0802d
+		sourceLineageTag: 42629327-7e2c-46ee-bd25-e1dddc6ec7d6
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: COD_CLIENTE_SAP_SOL
+
+		annotation SummarizationSetBy = User
+
+	column VENDEDOR_COMERC_ID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 68dd594d-cfd0-4e28-b269-d8068461aadd
+		sourceLineageTag: 8fac96d1-bbfb-4e9f-a54e-de4222498011
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: VENDEDOR_COMERC_ID
+
+		annotation SummarizationSetBy = User
+
+	column GRUPO_ID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 4f5c947e-56b0-44a9-a65e-d368b94d28b8
+		sourceLineageTag: 64f5e14b-6cdb-493b-b60b-79c6b217d593
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: GRUPO_ID
+
+		annotation SummarizationSetBy = User
+
+	column EADI_ID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: fb42c2e4-8c5c-4bc2-8328-ade7abb92362
+		sourceLineageTag: 7bcd14b9-082a-4609-8fd4-d4ed2cf5119d
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: EADI_ID
+
+		annotation SummarizationSetBy = User
+
+	column SEGMENTACAO_ID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 8574a688-623c-4206-994c-d0efbbe6d198
+		sourceLineageTag: 5f82e448-0531-4ee3-bcbc-20414e506784
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: SEGMENTACAO_ID
+
+		annotation SummarizationSetBy = User
+
+	column SERVICO_ID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 038cf1be-fc39-42c7-b1be-5c814938d9b7
+		sourceLineageTag: 0e6ab1bb-a074-4c4d-831f-e4c3e17bdadf
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: SERVICO_ID
+
+		annotation SummarizationSetBy = User
+
+	column VALOR_CIF
+		dataType: double
+		isHidden
+		lineageTag: 24d20439-c1a6-45df-b3e9-f90b0d3fc418
+		sourceLineageTag: 85a56d52-ec45-4aaf-b773-7c9643e0c40f
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: VALOR_CIF
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DIAS_TERMINAL
+		dataType: double
+		isHidden
+		lineageTag: f90c6d9b-7092-42c9-b16c-5ef720fe4ef4
+		sourceLineageTag: 94e663a8-9c8c-44f2-9939-1a92ab1dde6f
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: DIAS_TERMINAL
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DIAS_BL
+		dataType: double
+		isHidden
+		lineageTag: a95c566c-0578-49c4-82d3-d616078242b3
+		sourceLineageTag: ad2ec022-93de-47ba-9f23-c0c2ddcf806c
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: DIAS_BL
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TOTAL_ARMZ_TECON
+		dataType: double
+		isHidden
+		lineageTag: f7a604ea-6658-48b5-b6ec-7b5e22c1a485
+		sourceLineageTag: a7d90a34-6dc0-4f24-b7ed-f2ed3ada9e12
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: TOTAL_ARMZ_TECON
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ARM_ID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 8b8f2c0f-05e9-4e54-bfde-92d721d0d2ac
+		sourceLineageTag: c75d7e9f-f17e-4dc1-a280-aa9b29440a05
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: ARM_ID
+
+		annotation SummarizationSetBy = User
+
+	column TAMANHO_ID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 56a675f2-c865-4425-bc95-768011ecf6fe
+		sourceLineageTag: 8a5ff81c-9645-4854-be4c-5e3b1582aaea
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: TAMANHO_ID
+
+		annotation SummarizationSetBy = User
+
+	column TOTAL_ARMZ_TECON_DI
+		dataType: double
+		isHidden
+		lineageTag: e34b3d89-d4cc-4f6c-96ac-d69a2a8a6652
+		sourceLineageTag: 69968857-f2b7-450a-afa7-da293c2b4c4d
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: TOTAL_ARMZ_TECON_DI
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TOTAL_ARMZ_TECON_DTA
+		dataType: double
+		isHidden
+		lineageTag: 7d4b7ccf-08e3-4d80-acf3-94d3f4dd7b95
+		sourceLineageTag: 7496be8b-45d3-4000-94ca-f8f6d424f358
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: TOTAL_ARMZ_TECON_DTA
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TOTAL_ARMZ_TECON_DI_DTA
+		dataType: double
+		isHidden
+		lineageTag: dc630e55-9adf-49be-b89b-826f0fbd068c
+		sourceLineageTag: 90464e6e-a6d2-4998-8548-0392dd363ccd
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: TOTAL_ARMZ_TECON_DI_DTA
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '_Medidas Market Share' = entity
+		mode: directQuery
+		source
+			entityName: _Medidas Market Share
+			expressionSource: 'DirectQuery para AS – Modelo Operações Portuárias'
+

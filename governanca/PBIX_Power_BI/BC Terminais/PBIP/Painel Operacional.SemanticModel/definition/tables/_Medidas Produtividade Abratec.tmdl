@@ -1,0 +1,1658 @@
+table '_Medidas Produtividade Abratec'
+	lineageTag: 28a54cfb-375f-40a6-8072-5953bb17bec9
+	sourceLineageTag: dead78ee-743e-41d7-974f-bf48a11e4d4d
+
+	measure Slicer_Possui_Produtividade_Abratec_Sim_Não = EXTERNALMEASURE("Slicer_Possui_Produtividade_Abratec_Sim_Não", STRING, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: e7e663b4-b427-4339-a3c7-5fe31ff3114d
+		sourceLineageTag: 68d073cc-65aa-4e8f-b48d-52f6b4ca5452
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isText":true}
+
+	measure TOD = EXTERNALMEASURE("TOD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 77a93419-4104-4c13-8ea3-296ab28afd1f
+		sourceLineageTag: 319829f7-038c-46a0-9331-c411d35397b1
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure TOE = EXTERNALMEASURE("TOE", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 83dc92da-7d81-4ccc-864f-95e51e2f5e6d
+		sourceLineageTag: c4e8d35c-1fb9-4d4c-ace6-1618a7ee7d21
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Tempo Total Parada' = EXTERNALMEASURE("Tempo Total Parada", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 110f1e2e-6d4a-4b7f-81c9-d4a52e3bff82
+		sourceLineageTag: 947faa96-48f8-4279-a88a-eda3ef05e97b
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Tempo Parada Meta Armador' = EXTERNALMEASURE("Tempo Parada Meta Armador", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: b30b3619-a585-4768-a199-a2433554278d
+		sourceLineageTag: 174f031b-1dd0-45bb-85d7-dc23d6f9b692
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Caixa Castanhas' = EXTERNALMEASURE("Caixa Castanhas", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 7a078cbf-7f4e-4875-9dc4-0587ccc16a9a
+		sourceLineageTag: 09c8aaa7-512a-4ad1-8fb3-51d6f1c19739
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Movimentos OOG' = EXTERNALMEASURE("Movimentos OOG", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 70d26a2b-c3c3-4d1c-bb29-e36b42ecbcc7
+		sourceLineageTag: 9685157c-e011-40a2-a95b-a79a828ca8a0
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Tampas = EXTERNALMEASURE("Tampas", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 11a894c8-733f-429c-be18-9ec8ea97f5e3
+		sourceLineageTag: 340cbf20-24a7-4ee4-9b32-9168c8383c5a
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Ternos Operados' = EXTERNALMEASURE("Ternos Operados", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 9726ae0f-2f44-4752-9186-f81892fdb958
+		sourceLineageTag: 6c499172-183b-45de-b40c-fe9c200ac43c
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Ternos Solicitados' = EXTERNALMEASURE("Ternos Solicitados", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 0726cd9f-90b9-4425-9e3d-0ea140ab17da
+		sourceLineageTag: 6312a445-8a7f-468b-824c-4d2a9d2b440f
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Qtde Movimentos' = EXTERNALMEASURE("Qtde Movimentos", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 4b7099fa-28c8-4991-8e5d-ac2f361feeb9
+		sourceLineageTag: 6d307c79-1ac7-44d4-98f4-0036d7d36322
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Qtde Movimentos ABRATEC' = EXTERNALMEASURE("Qtde Movimentos ABRATEC", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 458b40e7-eb4c-407e-a49b-9a36292ed5a9
+		sourceLineageTag: 9704c757-5683-4aaf-953d-d02ae92f450d
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Produtividade Liquida' = EXTERNALMEASURE("Produtividade Liquida", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: df2975a6-c4a9-4e81-bc07-0048b85a68db
+		sourceLineageTag: 8c606934-283a-438b-bb93-a4695eb45ff5
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Produtividade Bruta' = EXTERNALMEASURE("Produtividade Bruta", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 5f424c1f-289d-4e78-988c-39ec77bb2cff
+		sourceLineageTag: 15292b57-676e-42b8-be00-25731017f876
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Produtividade Meta Armador' = EXTERNALMEASURE("Produtividade Meta Armador", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 2b2e9e3d-8c6e-4ed8-bd2b-e6a977986be0
+		sourceLineageTag: 8b98b5e4-3667-4896-9c4d-0ea55be82f7d
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Tempo Espera Atracação' = EXTERNALMEASURE("Tempo Espera Atracação", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 44602d9b-c320-4d94-8a0f-2cd051e2ceb8
+		sourceLineageTag: b263f387-434f-4446-ba70-8d39a69e77f0
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Tempo Espera Atracação TTBo' = EXTERNALMEASURE("Tempo Espera Atracação TTBo", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: e706f0d4-5369-4b5a-ac5f-be0f4cfa1b89
+		sourceLineageTag: b0d860c3-787e-4233-adff-cc460bd94a76
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Horas Atracado' = EXTERNALMEASURE("Horas Atracado", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: a5264c9d-607b-499e-aed6-e6d0d8f9adf4
+		sourceLineageTag: 7cec7a11-feed-435c-9d92-b37d3c780adb
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Qtde Operacões' = EXTERNALMEASURE("Qtde Operacões", INTEGER, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: 0
+		lineageTag: 70f539a6-267b-4830-a3be-f828595dec1b
+		sourceLineageTag: e41fc188-a087-48f5-87d1-3de81fe6102c
+		dataCategory: Uncategorized
+
+	measure 'Taxa Terno' = EXTERNALMEASURE("Taxa Terno", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 31daf503-c943-42c9-aab1-93b5ae1c2b3b
+		sourceLineageTag: 1c39b699-11d6-437f-9484-4f4805d708b6
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Prod. Por Periodo.' = EXTERNALMEASURE("Prod. Por Periodo.", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 2669bb4e-7344-44b8-ba35-8e234c78f743
+		sourceLineageTag: 9e5ad425-836b-455e-8f33-c7b3882328d6
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Qtde TEUs' = EXTERNALMEASURE("Qtde TEUs", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 9752bf76-8521-4c5f-9ead-e16ca2218122
+		sourceLineageTag: 37788781-4dae-4c2a-9ce9-cc2104a1feba
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Produtividade Acordada' = EXTERNALMEASURE("Produtividade Acordada", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 9ea9ce91-f14d-4a8b-861b-51a3c6cca1aa
+		sourceLineageTag: 7fe6a807-cb97-4176-b01b-36ebe0fdc283
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Produtividade Acordada Meta Armador' = EXTERNALMEASURE("Produtividade Acordada Meta Armador", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 7c9e7799-ba2d-4aec-9dc8-53a937bf0b07
+		sourceLineageTag: b2b8a56a-9e1a-4273-9d72-9f4c64cf60e8
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Var% Prod. Liquida x Acordada' = EXTERNALMEASURE("Var% Prod. Liquida x Acordada", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: ae3d156b-3f1c-4dfe-be27-e71c95fe9164
+		sourceLineageTag: 4cbd4baf-80ff-4951-a6b6-4bd32ea6bf10
+		dataCategory: Uncategorized
+
+	measure 'Var% Prod. Bruta x Acordada' = EXTERNALMEASURE("Var% Prod. Bruta x Acordada", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: f67a70bc-7b63-45df-82d4-53352905e1b2
+		sourceLineageTag: 6671dca5-61bf-400c-9cf6-01a07fb5f668
+		dataCategory: Uncategorized
+
+	measure Meta = EXTERNALMEASURE("Meta", INTEGER, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: 0%;-0%;0%
+		lineageTag: 73af5bf3-f096-4de6-ba3a-e3926e2437f9
+		sourceLineageTag: 399be0d8-2340-4313-9200-e2694927eb83
+		dataCategory: Uncategorized
+
+	measure Expectation = EXTERNALMEASURE("Expectation", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 5d1f45ef-c387-4e2f-8627-97002e76bb0a
+		sourceLineageTag: e9f2b9c2-bb95-4db6-a25c-f7dc2db67161
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Operation Time' = EXTERNALMEASURE("Operation Time", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: e763a38a-360f-4a62-9b7d-c3ca50f0f7cf
+		sourceLineageTag: bb2e63e6-ed74-45f4-ab84-8b0d52633a8b
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Berthed = EXTERNALMEASURE("Berthed", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 575e3eee-ea1a-4fc2-bda6-3450979507e5
+		sourceLineageTag: 0c9654b8-a3db-4e0b-85ad-8c4375152b79
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Dias Mês' = EXTERNALMEASURE("Dias Mês", INTEGER, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: 0
+		lineageTag: 07a3e3c4-9802-4457-b369-cc9c531ad33f
+		sourceLineageTag: 1c657b31-02b7-48a2-aad1-1f9991a7407f
+		dataCategory: Uncategorized
+
+	measure 'Maximum Productivity' = EXTERNALMEASURE("Maximum Productivity", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: b01b7838-2ddf-4ed3-9061-7d04bfbeebbf
+		sourceLineageTag: fb340771-4462-4af4-b016-ba66521a4066
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'TOE Meta Armador' = EXTERNALMEASURE("TOE Meta Armador", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 4bf8d143-c04d-4bb0-bb13-e2069cd405b5
+		sourceLineageTag: 51ebcc22-9656-4c7d-a8db-5599a7fb5d7d
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Var% Prod. Meta Armador x Acordada' = EXTERNALMEASURE("Var% Prod. Meta Armador x Acordada", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: ad4f302c-b52d-4e28-8f3d-11dc4e96ab7f
+		sourceLineageTag: 96779f95-ebed-4b70-839b-1785ca0f69e5
+		dataCategory: Uncategorized
+
+	measure 'TOD PY' = EXTERNALMEASURE("TOD PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PY
+		lineageTag: d41a954e-90d4-4fad-963c-dc28a67dd1b7
+		sourceLineageTag: aca27909-9d9d-4755-93fe-5bc1e230c278
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'TOD PYTD' = EXTERNALMEASURE("TOD PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PYTD
+		lineageTag: 90b03d99-4520-47d5-8d4c-4373388e7312
+		sourceLineageTag: 7d907215-266a-47ad-9e2b-1e117c0c9aad
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'TOD YTD' = EXTERNALMEASURE("TOD YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: YTD
+		lineageTag: 4add2358-b928-4d19-b108-50ced5686c12
+		sourceLineageTag: 6bd2e2c6-fb5d-4033-94f3-fe9eb5ef27f3
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'TOE PY' = EXTERNALMEASURE("TOE PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PY
+		lineageTag: fb1e1b35-244f-4685-b052-a85a74366a7a
+		sourceLineageTag: 08980e5c-41f5-42e3-92aa-b3cdae73df28
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'TOE PYTD' = EXTERNALMEASURE("TOE PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PYTD
+		lineageTag: a6968819-1f64-4c5e-b65a-39da45b8a92b
+		sourceLineageTag: a8664695-46ed-46b0-b359-df2ef2ae581e
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'TOE YTD' = EXTERNALMEASURE("TOE YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: YTD
+		lineageTag: 706c2364-3eb7-4142-90c0-0cee3556841f
+		sourceLineageTag: 043fd57a-6331-425c-b2ce-e2d98cacba29
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Tempo Total Parada PY' = EXTERNALMEASURE("Tempo Total Parada PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PY
+		lineageTag: 0344a661-1af5-4160-86c4-5659a8bfe1fa
+		sourceLineageTag: e2ea100c-7b68-406c-a882-2282cd61fd8c
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Tempo Total Parada PYTD' = EXTERNALMEASURE("Tempo Total Parada PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PYTD
+		lineageTag: e0be9f0b-81dc-4887-bbfb-54b717d1744f
+		sourceLineageTag: 7b34ed61-4557-4541-8af9-191b53d09da9
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Tempo Total Parada YTD' = EXTERNALMEASURE("Tempo Total Parada YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: YTD
+		lineageTag: e19a1a62-167d-4196-b762-6c50b56086c5
+		sourceLineageTag: 58fb7235-e159-4eac-a741-485d6cc34431
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Tempo Parada Meta Armador PY' = EXTERNALMEASURE("Tempo Parada Meta Armador PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PY
+		lineageTag: f6952b52-d308-4c3a-a868-b0483cde4766
+		sourceLineageTag: 7aae8bae-3184-425e-9bf6-bd2760add21b
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Tempo Parada Meta Armador PYTD' = EXTERNALMEASURE("Tempo Parada Meta Armador PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PYTD
+		lineageTag: a193a405-8b2a-4ac4-8f4d-9253c88a3aa0
+		sourceLineageTag: e1cb0ec3-12eb-481f-8a6d-157161a303d7
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Tempo Parada Meta Armador YTD' = EXTERNALMEASURE("Tempo Parada Meta Armador YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: YTD
+		lineageTag: 7710b640-1fdb-4d0d-802c-1d3c3f1e5990
+		sourceLineageTag: 823ef932-8fdf-4343-a9d9-81ae829e8a8e
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Caixa Castanhas PY' = EXTERNALMEASURE("Caixa Castanhas PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PY
+		lineageTag: ebe86d31-aad2-4a47-8772-ca115f4daf19
+		sourceLineageTag: 60bb3eb8-4fe9-4bc1-967d-3b531c2296bd
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Caixa Castanhas PYTD' = EXTERNALMEASURE("Caixa Castanhas PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PYTD
+		lineageTag: a0beba37-6999-4749-9112-a9d50a6ca481
+		sourceLineageTag: afcb1e75-ca3f-41c8-ade5-811ea83978ab
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Caixa Castanhas YTD' = EXTERNALMEASURE("Caixa Castanhas YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: YTD
+		lineageTag: f131ea6e-2a90-4e61-ad5d-d84a9532d1d0
+		sourceLineageTag: ca2913ec-f08c-4aa3-8380-94d7e049fdeb
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Movimentos OOG PY' = EXTERNALMEASURE("Movimentos OOG PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PY
+		lineageTag: 5b65ef11-5f82-4ec0-9c88-4161270c9ef4
+		sourceLineageTag: 780f5a75-7ba1-4382-8589-188b91da8df2
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Movimentos OOG PYTD' = EXTERNALMEASURE("Movimentos OOG PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PYTD
+		lineageTag: d2703e5a-d467-4ec4-8da3-d810d576aef2
+		sourceLineageTag: 989c203b-ac47-4f69-98f5-196a0bf148ab
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Movimentos OOG YTD' = EXTERNALMEASURE("Movimentos OOG YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: YTD
+		lineageTag: 5ba16cbc-1757-4a81-9b41-12c8c496c2bc
+		sourceLineageTag: 47af13ba-fcb2-4708-810c-e96a9aa4b15a
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Tampas PY' = EXTERNALMEASURE("Tampas PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PY
+		lineageTag: f4fd9894-627a-4b3a-b12e-5bbe2cfb36d3
+		sourceLineageTag: ee1d3097-e4e5-45c6-888e-23dbf76d1316
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Tampas PYTD' = EXTERNALMEASURE("Tampas PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PYTD
+		lineageTag: 2ba2ef7f-91ad-4a0f-b7be-ecae19dbb193
+		sourceLineageTag: f36d51a2-7bd8-4cb2-a0b9-792660829dc0
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Tampas YTD' = EXTERNALMEASURE("Tampas YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: YTD
+		lineageTag: a45feb32-2e84-44ce-8e8c-8f170ac64a89
+		sourceLineageTag: 8a6d62c8-e109-40c7-b5c0-d85f8d9df74b
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Ternos Operados PY' = EXTERNALMEASURE("Ternos Operados PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PY
+		lineageTag: 8189d758-3a2a-4446-a7eb-d4c83192b23b
+		sourceLineageTag: bddc3ff8-c5fa-4034-b086-531b82ad775f
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Ternos Operados PYTD' = EXTERNALMEASURE("Ternos Operados PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PYTD
+		lineageTag: 41db09ed-fa5a-48bd-8d9f-744f0a52e5a2
+		sourceLineageTag: 06bd3878-f4df-4f2d-9da3-dca1d8b329a9
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Ternos Operados YTD' = EXTERNALMEASURE("Ternos Operados YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: YTD
+		lineageTag: fab28afd-df69-400f-ac16-3fe00f9e5254
+		sourceLineageTag: f9dc2057-d72c-4633-8194-270d14e851d7
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Ternos Solicitados PY' = EXTERNALMEASURE("Ternos Solicitados PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PY
+		lineageTag: 47cfa0bf-0a9a-4a4f-84dd-deae0428dfc7
+		sourceLineageTag: 973163c4-c5c9-40e5-bf56-688d7d9e56c8
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Ternos Solicitados PYTD' = EXTERNALMEASURE("Ternos Solicitados PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PYTD
+		lineageTag: 4750a1a1-48ff-45b1-a9d7-2ba05838c350
+		sourceLineageTag: a88ad337-4f6e-4025-b735-a6c314f879de
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Ternos Solicitados YTD' = EXTERNALMEASURE("Ternos Solicitados YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: YTD
+		lineageTag: b249a1d1-6ebc-4090-89dd-3d613071a28a
+		sourceLineageTag: 36f2f3fa-021c-42e0-81d7-74a78ee4051e
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Qtde Movimentos PY' = EXTERNALMEASURE("Qtde Movimentos PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PY
+		lineageTag: 799594fd-36e1-4c25-994a-4faa8c56a967
+		sourceLineageTag: 14869723-2fa6-4724-8d7a-12d9ec9a9ae1
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Qtde Movimentos PYTD' = EXTERNALMEASURE("Qtde Movimentos PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PYTD
+		lineageTag: 50ccfe1f-5580-46ad-94bd-bb2bb109276b
+		sourceLineageTag: 53151de0-a578-4848-b17e-12a6a9c14515
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Qtde Movimentos YTD' = EXTERNALMEASURE("Qtde Movimentos YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: YTD
+		lineageTag: 09f104f4-430c-48f3-9599-b3a50d872c5a
+		sourceLineageTag: a1e0de7f-1577-4fbc-bb5a-7e0cefa19c98
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Qtde Movimentos ABRATEC PY' = EXTERNALMEASURE("Qtde Movimentos ABRATEC PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PY
+		lineageTag: 210990ee-eb5a-4439-a62e-850da1c314a8
+		sourceLineageTag: 9ac2d700-173f-41a7-84e1-df29db06f0b8
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Qtde Movimentos ABRATEC PYTD' = EXTERNALMEASURE("Qtde Movimentos ABRATEC PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PYTD
+		lineageTag: 61c6135b-b2d0-45a0-8873-3f4a2e5981f4
+		sourceLineageTag: 186bea50-b8ba-49fd-9740-75ef77ec5ff9
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Qtde Movimentos ABRATEC YTD' = EXTERNALMEASURE("Qtde Movimentos ABRATEC YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: YTD
+		lineageTag: a9afc637-38ec-486e-b0eb-0835dc70e90a
+		sourceLineageTag: 15b50f91-8e58-4233-845d-5e09a501386c
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Produtividade Liquida PY' = EXTERNALMEASURE("Produtividade Liquida PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PY
+		lineageTag: c1206d32-3047-4727-ac14-a67fdbc06db2
+		sourceLineageTag: a6710026-560f-439c-a6f3-cfe63bd3ea16
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Produtividade Liquida PYTD' = EXTERNALMEASURE("Produtividade Liquida PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PYTD
+		lineageTag: 65f4ed5d-10bc-4f4c-b750-9c1cd84d2cce
+		sourceLineageTag: e6863421-d41d-4fab-b4e9-4cf2c7de033b
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Produtividade Liquida YTD' = EXTERNALMEASURE("Produtividade Liquida YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: YTD
+		lineageTag: 8dd1ef03-494e-484f-8b3f-81e806b70c48
+		sourceLineageTag: 9c4821ba-3d98-4751-849a-b81c208595ee
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Produtividade Bruta PY' = EXTERNALMEASURE("Produtividade Bruta PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PY
+		lineageTag: 1e8da46a-ead6-4f0a-89f5-c1f789c9e2e1
+		sourceLineageTag: e60bd4e3-b517-42f7-b007-c3f8f052cfc0
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Produtividade Bruta PYTD' = EXTERNALMEASURE("Produtividade Bruta PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PYTD
+		lineageTag: bd61d7cd-219b-47e7-8d21-6cd4b15cdce5
+		sourceLineageTag: 97cad38a-4d69-4d00-ad93-70cc61bb2e73
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Produtividade Bruta YTD' = EXTERNALMEASURE("Produtividade Bruta YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: YTD
+		lineageTag: 17057307-68e3-497c-9ef5-e11192d37d8d
+		sourceLineageTag: ce9b9d19-109b-44ba-aaba-5d0326f5c3bc
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Produtividade Meta Armador PY' = EXTERNALMEASURE("Produtividade Meta Armador PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PY
+		lineageTag: 58a2ff0f-4393-47ba-a18e-f64e43d2057f
+		sourceLineageTag: 5746c06d-aafb-432b-90f1-dfeae0d4daa6
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Produtividade Meta Armador PYTD' = EXTERNALMEASURE("Produtividade Meta Armador PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PYTD
+		lineageTag: c97ce709-e397-4a2b-9eb7-4976de936e03
+		sourceLineageTag: ca9f8410-e6fb-4812-864c-1b5162b631d7
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Produtividade Meta Armador YTD' = EXTERNALMEASURE("Produtividade Meta Armador YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: YTD
+		lineageTag: e3b8975d-1c9e-4ca6-9068-aaaef87d5685
+		sourceLineageTag: b594ed0d-9d80-478a-90ae-9456b31c657e
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Tempo Espera Atracação PY' = EXTERNALMEASURE("Tempo Espera Atracação PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PY
+		lineageTag: 44ac1b03-1073-4d71-bbb3-a9d28726353c
+		sourceLineageTag: d00de7ad-a071-4925-a8fe-1c3fa5c0399f
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Tempo Espera Atracação PYTD' = EXTERNALMEASURE("Tempo Espera Atracação PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PYTD
+		lineageTag: 159f122e-6dc0-4c7a-9c25-8a532ee948eb
+		sourceLineageTag: 9d1db3f7-8840-44cb-b906-fa6fc38e79c8
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Tempo Espera Atracação YTD' = EXTERNALMEASURE("Tempo Espera Atracação YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: YTD
+		lineageTag: 859baac5-c5b6-4556-a6a0-17fdaaa9ef2b
+		sourceLineageTag: e6e8572f-3316-4f67-a67e-91d65a7b97f9
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Tempo Espera Atracação TTBo PY' = EXTERNALMEASURE("Tempo Espera Atracação TTBo PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PY
+		lineageTag: d54c2606-f61f-4c62-8f15-ea576945d201
+		sourceLineageTag: bf32d6c1-47f4-4d0f-b3bd-99287b13f6a4
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Tempo Espera Atracação TTBo PYTD' = EXTERNALMEASURE("Tempo Espera Atracação TTBo PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PYTD
+		lineageTag: 18163382-87ac-4685-9ffb-4d1de086d402
+		sourceLineageTag: 1f291d60-c967-4601-bdbc-4d542b93240c
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Tempo Espera Atracação TTBo YTD' = EXTERNALMEASURE("Tempo Espera Atracação TTBo YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: YTD
+		lineageTag: c10d0627-be84-4528-ae0a-00b04e3b363a
+		sourceLineageTag: 5303627e-5d22-4ba4-b55a-1e56da97195b
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Horas Atracado PY' = EXTERNALMEASURE("Horas Atracado PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PY
+		lineageTag: 8187e4f7-3c64-4a6c-b597-ba59a3827e84
+		sourceLineageTag: eed7db6b-06b6-41b9-8eba-e606396be1b5
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Horas Atracado PYTD' = EXTERNALMEASURE("Horas Atracado PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PYTD
+		lineageTag: 6a40e6f7-9a34-4fe8-9a0b-2b46234b748d
+		sourceLineageTag: 4326c8e4-4f9d-40f5-8460-a04d547c9ccd
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Horas Atracado YTD' = EXTERNALMEASURE("Horas Atracado YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: YTD
+		lineageTag: 6896a2cb-540c-4589-b81c-91711a2e9dc2
+		sourceLineageTag: 612667d3-6f22-4271-8e19-bf56f7f081e6
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Qtde Operacões PY' = EXTERNALMEASURE("Qtde Operacões PY", INTEGER, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: 0
+		displayFolder: PY
+		lineageTag: 9dac973a-ca9b-4ec1-845a-8c0bbd030ce9
+		sourceLineageTag: 252167ca-f7be-48cc-a33e-85083384c179
+		dataCategory: Uncategorized
+
+	measure 'Qtde Operacões PYTD' = EXTERNALMEASURE("Qtde Operacões PYTD", INTEGER, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: 0
+		displayFolder: PYTD
+		lineageTag: c682efab-9636-43c0-9148-60903b726a6a
+		sourceLineageTag: 4d45afd7-3c03-4207-878e-0b8857361ff0
+		dataCategory: Uncategorized
+
+	measure 'Qtde Operacões YTD' = EXTERNALMEASURE("Qtde Operacões YTD", INTEGER, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: 0
+		displayFolder: YTD
+		lineageTag: 60e84399-d52f-4376-a8d7-4327937164e6
+		sourceLineageTag: 7de665bd-f9b1-4835-aa90-cb324c5bba67
+		dataCategory: Uncategorized
+
+	measure 'Taxa Terno PY' = EXTERNALMEASURE("Taxa Terno PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PY
+		lineageTag: 21c3afa1-160c-43ab-80e7-7a4ec460b6c3
+		sourceLineageTag: 1019a50d-baa4-4503-968e-8bac5a480fda
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Taxa Terno PYTD' = EXTERNALMEASURE("Taxa Terno PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PYTD
+		lineageTag: 0d508072-6386-4098-af93-2dc4af65ff51
+		sourceLineageTag: eadfc756-856e-49d7-9875-4cec1e33cb01
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Taxa Terno YTD' = EXTERNALMEASURE("Taxa Terno YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: YTD
+		lineageTag: 737a8903-1e28-4714-ad93-e8086cf9ecc0
+		sourceLineageTag: 61da7aee-11b2-4bf2-ae88-dd8cf59b3bb9
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Prod. Por Periodo. PY' = EXTERNALMEASURE("Prod. Por Periodo. PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PY
+		lineageTag: 5c81beb7-0dd0-4a80-b6d0-1cf4872219d2
+		sourceLineageTag: 18098e2e-9ce0-4742-b92c-bcd8fe2512db
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Prod. Por Periodo. PYTD' = EXTERNALMEASURE("Prod. Por Periodo. PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PYTD
+		lineageTag: 3e68ac1c-c1dd-4e40-ac9a-114650761787
+		sourceLineageTag: f93c7034-208f-4c21-a6d7-ad0b506ae250
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Prod. Por Periodo. YTD' = EXTERNALMEASURE("Prod. Por Periodo. YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: YTD
+		lineageTag: 4d6cb935-ae56-4c75-9de2-e47661b5c3cd
+		sourceLineageTag: 46d1fc16-480e-4cce-89c3-bbd70fa1075a
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Qtde TEUs PY' = EXTERNALMEASURE("Qtde TEUs PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PY
+		lineageTag: 5a917730-63ff-4f2d-9cee-16e1dd048efb
+		sourceLineageTag: 185e907a-06f9-4eb0-b89a-1e147de64aa3
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Qtde TEUs PYTD' = EXTERNALMEASURE("Qtde TEUs PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PYTD
+		lineageTag: 429a0402-a1b4-4ee2-b3af-01c8d069689d
+		sourceLineageTag: c124daeb-37f3-41ba-b35f-c5c3ec2efe58
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Qtde TEUs YTD' = EXTERNALMEASURE("Qtde TEUs YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: YTD
+		lineageTag: cebffcc1-4315-4bf2-a1a8-d10efedb4e98
+		sourceLineageTag: df12b424-ad75-47db-81f0-5d2f0da7fcf9
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Produtividade Acordada PY' = EXTERNALMEASURE("Produtividade Acordada PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PY
+		lineageTag: bae911cf-2aa2-4abb-966d-c6abeb98f0e1
+		sourceLineageTag: bb5bc158-cfab-4268-8628-b855e5960d13
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Produtividade Acordada PYTD' = EXTERNALMEASURE("Produtividade Acordada PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PYTD
+		lineageTag: 710070dc-5e34-4be4-bb3b-0c5cc4ad0c1a
+		sourceLineageTag: c716ae72-acf3-4ccc-8b0c-2bff3b3491dd
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Produtividade Acordada YTD' = EXTERNALMEASURE("Produtividade Acordada YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: YTD
+		lineageTag: a4cb7b78-fc76-4731-9eaa-f04fe1060297
+		sourceLineageTag: 1cda3508-8ae8-47d7-af78-5a3b32badbe1
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Produtividade Acordada Meta Armador PY' = EXTERNALMEASURE("Produtividade Acordada Meta Armador PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PY
+		lineageTag: 6fc52ab5-d3f2-4bc4-a4db-55b447de48ff
+		sourceLineageTag: 0fbf1e9d-7e2b-4bba-a82c-2cf28df0ae36
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Produtividade Acordada Meta Armador PYTD' = EXTERNALMEASURE("Produtividade Acordada Meta Armador PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PYTD
+		lineageTag: 0d0f65bd-c7d9-48cd-a429-7cd6620ea2d2
+		sourceLineageTag: fc4f3ee2-7b1c-4445-9da3-d1b1cf2bf256
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Produtividade Acordada Meta Armador YTD' = EXTERNALMEASURE("Produtividade Acordada Meta Armador YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: YTD
+		lineageTag: 95302540-4869-434b-99ff-2fe0ca2299e8
+		sourceLineageTag: 950652f8-e33b-4a79-becb-bfbd36a9613c
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Var% Prod. Liquida x Acordada PY' = EXTERNALMEASURE("Var% Prod. Liquida x Acordada PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: PY
+		lineageTag: 22f09289-7d80-45b7-a7f4-6820cdb73d8e
+		sourceLineageTag: 22f284c9-ea55-4cd5-b31d-298eed019181
+		dataCategory: Uncategorized
+
+	measure 'Var% Prod. Liquida x Acordada PYTD' = EXTERNALMEASURE("Var% Prod. Liquida x Acordada PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: PYTD
+		lineageTag: 96daeef5-c3e8-45f9-bb4c-a91af5cba826
+		sourceLineageTag: 664e3c25-e1c9-4d2e-903a-e6bcf09acab7
+		dataCategory: Uncategorized
+
+	measure 'Var% Prod. Liquida x Acordada YTD' = EXTERNALMEASURE("Var% Prod. Liquida x Acordada YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: YTD
+		lineageTag: b2ae2739-dd48-4a12-b0ea-0b1db70591fa
+		sourceLineageTag: d4e759f9-f483-46a2-954a-e8976ecbd8c0
+		dataCategory: Uncategorized
+
+	measure 'Var% Prod. Bruta x Acordada PY' = EXTERNALMEASURE("Var% Prod. Bruta x Acordada PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: PY
+		lineageTag: ab538249-0f83-474e-9319-83ef35aa36dc
+		sourceLineageTag: 7127fc33-8fb3-40fc-a3c1-c5b05854884b
+		dataCategory: Uncategorized
+
+	measure 'Var% Prod. Bruta x Acordada PYTD' = EXTERNALMEASURE("Var% Prod. Bruta x Acordada PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: PYTD
+		lineageTag: 29a95aca-5a5d-4e53-84e7-2ace8c4e2b42
+		sourceLineageTag: a47ea61d-89e7-4151-a88e-386ee83a2086
+		dataCategory: Uncategorized
+
+	measure 'Var% Prod. Bruta x Acordada YTD' = EXTERNALMEASURE("Var% Prod. Bruta x Acordada YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: YTD
+		lineageTag: bcd43624-07ea-4b92-9cde-6a64e2f1c8ee
+		sourceLineageTag: 0657424b-d83c-4302-ab7e-2490794ec16e
+		dataCategory: Uncategorized
+
+	measure 'Meta PY' = EXTERNALMEASURE("Meta PY", INTEGER, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: 0
+		displayFolder: PY
+		lineageTag: 4b631ebc-7425-4376-8f34-c36c693ae8a2
+		sourceLineageTag: 360a5a98-6a06-460e-a728-39a6a87be2eb
+		dataCategory: Uncategorized
+
+	measure 'Meta PYTD' = EXTERNALMEASURE("Meta PYTD", INTEGER, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: 0
+		displayFolder: PYTD
+		lineageTag: 2681ed26-54a7-44eb-a38f-45e087912543
+		sourceLineageTag: 00831606-fd6f-49a3-8a91-eb5da496bfed
+		dataCategory: Uncategorized
+
+	measure 'Meta YTD' = EXTERNALMEASURE("Meta YTD", INTEGER, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: 0
+		displayFolder: YTD
+		lineageTag: 13bebd48-96ac-42f1-aee2-7a4c5c9badef
+		sourceLineageTag: 44ea1913-a0cb-498d-99ac-d3275734fb05
+		dataCategory: Uncategorized
+
+	measure 'Expectation PY' = EXTERNALMEASURE("Expectation PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PY
+		lineageTag: 82fcdedb-db1d-401c-9245-22e2124aa329
+		sourceLineageTag: 09275023-e379-4fc4-a8f4-2116d1ae96ec
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Expectation PYTD' = EXTERNALMEASURE("Expectation PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PYTD
+		lineageTag: 1e191e01-299e-4f85-9ce6-fed3e3d7fdd3
+		sourceLineageTag: db2d722c-ab95-4b9d-b637-bf43a13535e8
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Expectation YTD' = EXTERNALMEASURE("Expectation YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: YTD
+		lineageTag: 97cda0ff-4c6f-449c-ad52-c2954573293a
+		sourceLineageTag: 52b4fb4e-5778-486a-a60a-350089a0cea5
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Operation Time PY' = EXTERNALMEASURE("Operation Time PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PY
+		lineageTag: cada5351-99b3-4167-b136-b846069120c7
+		sourceLineageTag: 36fd7138-6108-4bc5-9a68-dfb313b38bc9
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Operation Time PYTD' = EXTERNALMEASURE("Operation Time PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PYTD
+		lineageTag: 182db32a-59f6-43ce-b8b0-da8eda83871d
+		sourceLineageTag: 0c82952a-b144-43eb-8057-c4462437a73a
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Operation Time YTD' = EXTERNALMEASURE("Operation Time YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: YTD
+		lineageTag: dc83fd6b-8f10-4c07-b8e2-21c7df780c44
+		sourceLineageTag: 28072e74-7562-486d-b6e5-4dac950ca8f1
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Berthed PY' = EXTERNALMEASURE("Berthed PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PY
+		lineageTag: b74f620e-943d-47a6-b07b-16a4d8aa4918
+		sourceLineageTag: 8d711b6b-7ce0-4e33-9cbf-0546317e495c
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Berthed PYTD' = EXTERNALMEASURE("Berthed PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PYTD
+		lineageTag: 3ce69965-0240-4497-a5c7-2d0dda653be4
+		sourceLineageTag: 0490967c-0e8d-4a76-9d65-be06954c069e
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Berthed YTD' = EXTERNALMEASURE("Berthed YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: YTD
+		lineageTag: 5293e945-f5a7-4b8f-9d0c-2a0d96130572
+		sourceLineageTag: 6ac1caf4-2f00-4999-ba46-c922e2a7720d
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Dias Mês PY' = EXTERNALMEASURE("Dias Mês PY", INTEGER, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: 0
+		displayFolder: PY
+		lineageTag: d43a938a-34c3-4c7f-a871-505b2475da19
+		sourceLineageTag: dbd42f85-b1b1-4833-9a6d-48af3e59c141
+		dataCategory: Uncategorized
+
+	measure 'Dias Mês PYTD' = EXTERNALMEASURE("Dias Mês PYTD", INTEGER, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: 0
+		displayFolder: PYTD
+		lineageTag: 6bd5ab02-ca6e-4730-93dc-e36d32201976
+		sourceLineageTag: b9dd58c0-b8c7-4265-b0f3-56aaf51211ec
+		dataCategory: Uncategorized
+
+	measure 'Dias Mês YTD' = EXTERNALMEASURE("Dias Mês YTD", INTEGER, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: 0
+		displayFolder: YTD
+		lineageTag: b30011f3-eb10-491c-966f-7d30bacef978
+		sourceLineageTag: 2809fadb-56c0-40cb-842b-da65b68cdb1f
+		dataCategory: Uncategorized
+
+	measure 'Maximum Productivity PY' = EXTERNALMEASURE("Maximum Productivity PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PY
+		lineageTag: ba2b7d6a-3a82-4fe2-b792-4ad200d2a67e
+		sourceLineageTag: 0a5fc25c-d6fe-4342-929d-49fdfa3bcb7f
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Maximum Productivity PYTD' = EXTERNALMEASURE("Maximum Productivity PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PYTD
+		lineageTag: 7ec37dea-bc10-475b-9923-afedc027e684
+		sourceLineageTag: 9fc120e4-2b0d-40a8-8f4c-ad345aaf44ea
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Maximum Productivity YTD' = EXTERNALMEASURE("Maximum Productivity YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: YTD
+		lineageTag: 39ed5006-f1fd-4fe1-a2ec-0e3820520ccf
+		sourceLineageTag: 1114ab75-5bdd-41a3-a998-99f25ec23574
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'TOE Meta Armador PY' = EXTERNALMEASURE("TOE Meta Armador PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PY
+		lineageTag: f7a2d41b-b0cd-4f6a-ba5c-f205f6e1627e
+		sourceLineageTag: 4a0de5eb-00b4-4c3c-9270-cc440380daf0
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'TOE Meta Armador PYTD' = EXTERNALMEASURE("TOE Meta Armador PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: PYTD
+		lineageTag: 6044f451-6890-4b49-800e-e452674f5f97
+		sourceLineageTag: 8a6465ab-c3e0-4109-8a2e-9d55526c2f38
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'TOE Meta Armador YTD' = EXTERNALMEASURE("TOE Meta Armador YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		displayFolder: YTD
+		lineageTag: 0c11fe08-de0e-4600-86d2-4d4cbba72d37
+		sourceLineageTag: 409697b9-bcf4-49a3-ab87-2aaa6189f246
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Var% Prod. Meta Armador x Acordada PY' = EXTERNALMEASURE("Var% Prod. Meta Armador x Acordada PY", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: PY
+		lineageTag: d862fed9-da2f-4841-893d-6b2c66d969ef
+		sourceLineageTag: a0763a44-4f19-45a0-888f-cb73ca27831a
+		dataCategory: Uncategorized
+
+	measure 'Var% Prod. Meta Armador x Acordada PYTD' = EXTERNALMEASURE("Var% Prod. Meta Armador x Acordada PYTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: PYTD
+		lineageTag: 3aead380-26b9-4108-9dc9-309a393b3d35
+		sourceLineageTag: 44cc815c-1864-46ad-b05d-4a8e13012a70
+		dataCategory: Uncategorized
+
+	measure 'Var% Prod. Meta Armador x Acordada YTD' = EXTERNALMEASURE("Var% Prod. Meta Armador x Acordada YTD", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: YTD
+		lineageTag: b0c18b28-f96c-4307-ac35-25d9ad1dc758
+		sourceLineageTag: 5c51be03-1e3b-4c79-a3c8-929835fa43a7
+		dataCategory: Uncategorized
+
+	measure 'Berth Occupancy' = EXTERNALMEASURE("Berth Occupancy", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 390f6600-61d1-42f3-b811-a33cf5c3d9ca
+		sourceLineageTag: 0c1e08ae-a634-457f-82c2-ce0d6c05fd43
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Average Productivity' = EXTERNALMEASURE("Average Productivity", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 712c61d2-dd97-4ddc-ad4e-438c46732ddf
+		sourceLineageTag: 35989ae6-5a9f-48c5-b736-9942fd1ce30e
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Produtividade Acordada Min' = EXTERNALMEASURE("Produtividade Acordada Min", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 17c91042-241c-4779-aa35-bc8254e5e977
+		sourceLineageTag: d4417583-4f52-4077-8000-3671c0d3332e
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'TOE Médio' = EXTERNALMEASURE("TOE Médio", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		lineageTag: bc4de5a1-b43b-4c3f-8c26-59c09d28a652
+		sourceLineageTag: 63147525-fb2a-42a5-af2f-cbf3bf55d299
+		dataCategory: Uncategorized
+
+	measure 'Movimentos / navio' = EXTERNALMEASURE("Movimentos / navio", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		lineageTag: 4114dd40-d2fe-40a7-bfb9-e8a59914d0b9
+		sourceLineageTag: 8cf064c1-4b93-4aac-8634-f4eb61de0a1f
+		dataCategory: Uncategorized
+
+	measure 'Média Movimentos' = EXTERNALMEASURE("Média Movimentos", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		lineageTag: c19f67d9-e70d-4f31-b3b1-cf3f90ddef55
+		sourceLineageTag: 8e41ae54-3fd5-42ef-938c-6447d058ee3f
+		dataCategory: Uncategorized
+
+	measure 'Variação Ternos' = EXTERNALMEASURE("Variação Ternos", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		lineageTag: 23eed2b0-6909-4754-b353-cb54f19f42ed
+		sourceLineageTag: c80bf605-a1b3-4f6a-ba91-8be094e53a4e
+		dataCategory: Uncategorized
+
+	measure '% Ocupação de Cais' = EXTERNALMEASURE("% Ocupação de Cais", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 8ef33cca-9173-48c2-93f2-32008fbc0545
+		sourceLineageTag: d7670737-29d6-4298-8873-dc0be4b18ff9
+		dataCategory: Uncategorized
+
+	measure 'Horas Terno' = EXTERNALMEASURE("Horas Terno", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0.00
+		lineageTag: 3bea5908-0bd6-434c-bbcf-cd6c04f16201
+		sourceLineageTag: 14d3ca62-1ec2-48f6-b00c-6b03d45c686b
+		dataCategory: Uncategorized
+
+	measure 'Quantidade CNTRs' = EXTERNALMEASURE("Quantidade CNTRs", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: #,0
+		lineageTag: 8c373dbd-95f4-446a-9718-0bea11afacfc
+		sourceLineageTag: 96e34bb6-6e52-4512-a721-0fa5cd1dd5b1
+		dataCategory: Uncategorized
+
+	measure 'Med. Prod. Meta Armador x Acordada (Mensal)' = EXTERNALMEASURE("Med. Prod. Meta Armador x Acordada (Mensal)", DOUBLE, "DirectQuery para AS – Modelo Operações Portuárias")
+		formatString: 0%;-0%;0%
+		lineageTag: 90b6dd6a-4dca-4111-8498-08bd39f7ce19
+		sourceLineageTag: ac378729-3e77-4ed4-8d7e-09303f7153a6
+		dataCategory: Uncategorized
+
+	column ID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 62f851b4-305e-4c28-8837-465859cea76f
+		sourceLineageTag: ea1c341d-7aa8-4f51-9f18-cbee011e3e5b
+		dataCategory: Uncategorized
+		summarizeBy: count
+		sourceColumn: ID
+
+		annotation SummarizationSetBy = User
+
+	column TEMPO_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: 570844cd-debb-4b57-97b9-2e326a0d9a78
+		sourceLineageTag: eb0cee0a-bb0a-4f04-997b-664646225b65
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: TEMPO_ID
+
+		annotation SummarizationSetBy = User
+
+	column COD_EMPR_SAP
+		dataType: string
+		isHidden
+		lineageTag: 75468fab-8dba-4602-b645-a5360a163fbe
+		sourceLineageTag: 9e1c1c0a-228b-457e-847b-e5404c5d237a
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: COD_EMPR_SAP
+
+		annotation SummarizationSetBy = User
+
+	column OPERACAO_ID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 745c4185-bec9-4652-aebe-b8e3e77e1a58
+		sourceLineageTag: 067a581f-5d00-4ee4-8c98-60c807639b43
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: OPERACAO_ID
+
+		annotation SummarizationSetBy = User
+
+	column LINHA_ID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: b85871c7-171a-4d66-bd27-ea9c92d02fc9
+		sourceLineageTag: dbcd471f-177a-447e-8b8d-5975d6f1e6c6
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: LINHA_ID
+
+		annotation SummarizationSetBy = User
+
+	column T_BRUTO
+		dataType: double
+		isHidden
+		lineageTag: 45dd8a49-3990-4279-967f-9c038ace4dc9
+		sourceLineageTag: 8c6c69a1-d840-41f2-8380-98bcb0ccbc7a
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: T_BRUTO
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column T_PARADA
+		dataType: double
+		isHidden
+		lineageTag: 03338250-8944-46db-bc17-d8c14135fcce
+		sourceLineageTag: a69bdc76-711f-4664-a400-32452337c18b
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: T_PARADA
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Q_CASTANHA
+		dataType: double
+		isHidden
+		lineageTag: 59a00586-5c3e-4bd0-bd22-70901d54ac3a
+		sourceLineageTag: e58dd020-e0b5-42dc-91ad-10a023b1a90a
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Q_CASTANHA
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Q_MOV_OOG
+		dataType: double
+		isHidden
+		lineageTag: c1380cac-47e9-47a1-8133-27ec159e9ffa
+		sourceLineageTag: 977a35e7-bb07-4e59-a6aa-43f1112fada8
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Q_MOV_OOG
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Q_TAMPA
+		dataType: double
+		isHidden
+		lineageTag: 26d419de-602f-4d06-aa94-2a1f1d424b32
+		sourceLineageTag: 337220f8-eebd-4b91-878c-01cf6a59c276
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Q_TAMPA
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Q_TERNO
+		dataType: double
+		isHidden
+		lineageTag: bae05c9c-4484-48a9-a8ed-c56d3f34032c
+		sourceLineageTag: e3ffc50f-f9ff-4e38-9cbf-0d79d2ad5b67
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Q_TERNO
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Q_MOV
+		dataType: double
+		isHidden
+		lineageTag: 7c5d850e-ac9e-43ef-8904-6706793d4df2
+		sourceLineageTag: 2ec7e292-24ca-4612-95bb-474311f9373a
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Q_MOV
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Q_MOV_ABRATEC
+		dataType: double
+		isHidden
+		lineageTag: 229c8200-284a-45fd-93b2-3d83ddf38cd5
+		sourceLineageTag: 8a9d2acf-f5c1-4c9c-8d10-f3df173c99d5
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Q_MOV_ABRATEC
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column MPH_ABRATEC
+		dataType: double
+		lineageTag: c997aaa1-c917-4be4-8404-8d4b190f24f1
+		sourceLineageTag: 85c31290-4b80-4e6b-84a0-0ee591cfad59
+		dataCategory: Uncategorized
+		summarizeBy: average
+		sourceColumn: MPH_ABRATEC
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column NAVIO_ID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 25eaa785-18a7-4a2d-8539-4b0cf31c45a1
+		sourceLineageTag: f9857a8b-95e8-40e3-8392-a42c233ebfa0
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: NAVIO_ID
+
+		annotation SummarizationSetBy = User
+
+	column ARM_ID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 0665a892-cb11-4ff3-9097-b76d3394911a
+		sourceLineageTag: 35bea90c-abad-4bcb-8ab8-6e2ebe6fcb89
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: ARM_ID
+
+		annotation SummarizationSetBy = User
+
+	column 'Parada Mau Tempo'
+		dataType: double
+		isHidden
+		lineageTag: e6e943ae-31c7-451c-bf01-8fb5e1d06774
+		sourceLineageTag: a2eb8d61-4aeb-4bf0-bfa0-98861b395688
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Parada Mau Tempo
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column COLTOE
+		dataType: double
+		isHidden
+		lineageTag: 68f7e1dc-e6b3-4727-a99a-cbb3a73814ef
+		sourceLineageTag: b5b5eb42-e6bf-488f-a9b8-80b5feeabc2a
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: COLTOE
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column PROD_BRUTA
+		dataType: double
+		isHidden
+		lineageTag: 35a7d49f-5da4-4f64-90ec-d738d1adad61
+		sourceLineageTag: 595dc5b2-cb12-4b66-bded-056d8f582afb
+		dataCategory: Uncategorized
+		summarizeBy: average
+		sourceColumn: PROD_BRUTA
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TERNOS_SOLICITADOS
+		dataType: double
+		isHidden
+		lineageTag: 827b0d42-9c4d-48fb-b560-ead28f24e37e
+		sourceLineageTag: 0adeffb6-a4e5-4382-87ef-d6510dc7fad6
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: TERNOS_SOLICITADOS
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Produtividade por Movimentação'
+		dataType: string
+		lineageTag: 033fafe0-225f-4bd3-8cff-2fe9f5194fdd
+		sourceLineageTag: 15380a6e-a612-46cd-99ea-81169dfbc4f7
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Produtividade por Movimentação
+
+		annotation SummarizationSetBy = User
+
+	column TEMPO_ESPERA_ATRACACAO
+		dataType: double
+		isHidden
+		lineageTag: d9c90425-3504-4ed6-b8c8-4069d0f2d2d5
+		sourceLineageTag: ed2321d1-f2f3-4c21-9143-1e62fcb1dc8d
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: TEMPO_ESPERA_ATRACACAO
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column HORAS_ATRACADO
+		dataType: double
+		isHidden
+		lineageTag: 74b698d6-33f2-44a9-bbf6-8249544b19ad
+		sourceLineageTag: 46510f8e-936e-4a22-a66d-542007ca7454
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: HORAS_ATRACADO
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TAXA_TERNO
+		dataType: double
+		isHidden
+		lineageTag: 8e00cf46-eec7-4fb7-b298-d348c887bde6
+		sourceLineageTag: 3361ad6d-ab6d-4ff5-a129-1e0eb4322dd1
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: TAXA_TERNO
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FLAG_N4_PRODUTIVIDADE
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 91165f20-1766-4eb9-9f95-535b48b02c66
+		sourceLineageTag: 1e2d4e66-fdb2-4bb3-84af-886b7cb6fc09
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: FLAG_N4_PRODUTIVIDADE
+
+		annotation SummarizationSetBy = User
+
+	column FLAG_COMPUTA_ABRATEC
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 06adb76a-da3e-4c47-ad67-1484352f407c
+		sourceLineageTag: 064ddcbe-40de-4d2d-89af-92eff04e73e4
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: FLAG_COMPUTA_ABRATEC
+
+		annotation SummarizationSetBy = User
+
+	column Q_TEUS
+		dataType: double
+		isHidden
+		lineageTag: 6226938c-26bb-4ef4-af6f-ebdf107038bd
+		sourceLineageTag: 18547111-6c67-48f8-a862-63d962b51df0
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Q_TEUS
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column BERCO_ID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 8266cb4d-b5b4-4013-b6b0-a20238e6f1fb
+		sourceLineageTag: b657e567-cf45-4ad2-bf08-db7714bb3087
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: BERCO_ID
+
+		annotation SummarizationSetBy = User
+
+	column TEMPO_ESPERA_ATRACACAO_TTBO
+		dataType: double
+		isHidden
+		lineageTag: 9daebfe7-4d9a-435b-a3fe-7c23e12b26ae
+		sourceLineageTag: cc5dd4d8-ff9d-4c54-8d3d-94475c3468d4
+		dataCategory: Uncategorized
+		summarizeBy: average
+		sourceColumn: TEMPO_ESPERA_ATRACACAO_TTBO
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column HORAS_TERNO
+		dataType: double
+		isHidden
+		lineageTag: d44257f1-645a-450a-9aab-a067e1217cc9
+		sourceLineageTag: fcfe8422-71c6-4343-b510-11882c59c254
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: HORAS_TERNO
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TIPO_VIAGEM_ID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: efed127c-7824-4954-ad4b-6f66d9b7ecad
+		sourceLineageTag: fdba5970-dd81-4710-ac57-1cea901008cc
+		dataCategory: Uncategorized
+		summarizeBy: count
+		sourceColumn: TIPO_VIAGEM_ID
+
+		annotation SummarizationSetBy = User
+
+	column PROD_ACORDADA
+		dataType: double
+		lineageTag: 08fb3506-859e-4990-8040-e45d1a838cd5
+		sourceLineageTag: b910265a-d08f-477d-ac2d-0911602835d9
+		dataCategory: Uncategorized
+		summarizeBy: average
+		sourceColumn: PROD_ACORDADA
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column MOVES
+		dataType: string
+		isHidden
+		lineageTag: 1b870c8e-cf69-4ebd-9f81-443f82ebb857
+		sourceLineageTag: 9a54e6fe-b8d6-4e3b-9e2c-00f297c9232f
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: MOVES
+
+		annotation SummarizationSetBy = User
+
+	column LAST_DAY
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 93b0a9d6-e46c-48f9-9335-8319d5e6bd50
+		sourceLineageTag: ae490421-3721-4318-8936-ea4c1178e9ea
+		dataCategory: Uncategorized
+		summarizeBy: max
+		sourceColumn: LAST_DAY
+
+		annotation SummarizationSetBy = User
+
+	column OPERACAO_ID_N4
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 965cb986-45cb-4856-91a6-d463af231af0
+		sourceLineageTag: b8c3668f-a3ec-47b3-8150-875d12f9ba47
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: OPERACAO_ID_N4
+
+		annotation SummarizationSetBy = User
+
+	column T_PARADA_META_PROD_ARM
+		dataType: double
+		isHidden
+		lineageTag: dbdafbb6-7f39-4b9f-9dac-94ac293f7b66
+		sourceLineageTag: c8535393-18da-40a5-86ad-4086f292f828
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: T_PARADA_META_PROD_ARM
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column MPH_ABRATEC_META_PROD_ARM
+		dataType: double
+		isHidden
+		lineageTag: 6366dfc8-6103-4cf7-a9bc-56a0644abcee
+		sourceLineageTag: 3b383ae2-1d7b-4b48-a407-7c542cd2af1a
+		dataCategory: Uncategorized
+		summarizeBy: average
+		sourceColumn: MPH_ABRATEC_META_PROD_ARM
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TOE_META_PROD_ARM
+		dataType: double
+		isHidden
+		lineageTag: 47e569b9-6c81-43c7-abee-370b653f7c45
+		sourceLineageTag: b4f0e1a2-9939-4cb2-8742-02880bcf11fe
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: TOE_META_PROD_ARM
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column JANELA
+		dataType: string
+		isHidden
+		lineageTag: c628b890-3b33-41af-b21f-ae3ef1ce1df4
+		sourceLineageTag: 3646cc68-d25e-4014-b517-935c508b9b95
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: JANELA
+
+		annotation SummarizationSetBy = User
+
+	column CONSIDERAR
+		dataType: string
+		isHidden
+		lineageTag: 59c3dbe1-4f7a-4d48-b1c8-11dcb2361532
+		sourceLineageTag: cdc19fa2-1c45-480b-af8d-70d89e929bde
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: CONSIDERAR
+
+		annotation SummarizationSetBy = User
+
+	column PROD_ACORDADA_META_PROD_ARM
+		dataType: double
+		isHidden
+		lineageTag: d62dcae7-2e5a-437d-a29d-d6ac8381fbcc
+		sourceLineageTag: fb6f8371-8dc0-4c97-a7e8-5a9527504f5c
+		dataCategory: Uncategorized
+		summarizeBy: average
+		sourceColumn: PROD_ACORDADA_META_PROD_ARM
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Col Var% Prod. Liquida x Acordada'
+		dataType: double
+		lineageTag: cb037095-7f7e-4f8b-8f4b-1ad28c997e5a
+		sourceLineageTag: b3329645-ae60-4313-a195-af1e15aa4086
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Col Var% Prod. Liquida x Acordada
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Col Var% Prod. Bruta x Acordada'
+		dataType: double
+		lineageTag: ad3b2500-7ded-477f-932e-0e748660b214
+		sourceLineageTag: fe3fcb7c-2212-4bef-8da4-7a2e1e5c87b7
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Col Var% Prod. Bruta x Acordada
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Col Var% Prod. Meta Armador x Acordada'
+		dataType: double
+		lineageTag: fe0b50bd-ef70-42d0-9d63-496791e2cdf8
+		sourceLineageTag: e5e0939a-9bbe-4818-af58-99f7ae31fb48
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Col Var% Prod. Meta Armador x Acordada
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Parada Mau Tempo SN'
+		dataType: string
+		lineageTag: 9e75cee4-e32c-43e4-8139-0aa94d1ec97b
+		sourceLineageTag: d78ace6d-e2df-46ae-b29d-feacddb26588
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Parada Mau Tempo SN
+
+		annotation SummarizationSetBy = User
+
+	column 'Possui Produtividade Acordada'
+		dataType: string
+		lineageTag: 14b5b152-742a-41d7-9bc2-68d45e3c911c
+		sourceLineageTag: 7c1ae32a-831d-4fba-a089-2479ad16b6a8
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Possui Produtividade Acordada
+
+		annotation SummarizationSetBy = User
+
+	column 'Navio Vessel Visit e Mês'
+		dataType: string
+		lineageTag: 1a23f844-5b6d-4911-a6f3-149ced42d019
+		sourceLineageTag: b4aec2ab-a4f5-4a9d-97e6-8c46a3f7e28b
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Navio Vessel Visit e Mês
+
+		annotation SummarizationSetBy = User
+
+	partition '_Medidas Produtividade Abratec' = entity
+		mode: directQuery
+		source
+			entityName: _Medidas Produtividade Abratec
+			expressionSource: 'DirectQuery para AS – Modelo Operações Portuárias'
+

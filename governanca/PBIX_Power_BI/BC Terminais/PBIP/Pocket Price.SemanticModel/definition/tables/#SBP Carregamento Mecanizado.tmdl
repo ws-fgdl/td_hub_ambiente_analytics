@@ -1,0 +1,27 @@
+table '#SBP Carregamento Mecanizado'
+	lineageTag: ddd0bb10-e581-485a-8822-e62b8a476b8e
+
+	measure 'Valor #SBP Carregamento Mecanizado' = SELECTEDVALUE('#SBP Carregamento Mecanizado'[#SBP Carregamento Mecanizado])
+		lineageTag: e4e35368-8b51-4937-a8d3-024e31f98d72
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#SBP Carregamento Mecanizado'
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: a30c2adb-86c8-4d49-837e-71e0ee840183
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition '#SBP Carregamento Mecanizado' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 0.5, 0.0001)
+
+	annotation PBI_Id = 7f7e6a1126e04876abca8b2dbea5a3b0
+

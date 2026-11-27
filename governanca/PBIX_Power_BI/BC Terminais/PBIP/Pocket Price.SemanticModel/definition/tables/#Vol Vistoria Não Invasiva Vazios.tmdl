@@ -1,0 +1,27 @@
+table '#Vol Vistoria Não Invasiva Vazios'
+	lineageTag: 9fdcfa4e-5d16-4200-96c6-38cfb4f4a70d
+
+	measure 'Valor #Vol Vistoria Não Invasiva Vazios' = SELECTEDVALUE('#Vol Vistoria Não Invasiva Vazios'[#Vol Vistoria Não Invasiva Vazios])
+		lineageTag: 74fa0eab-1612-4d7b-a5d1-042fb14759a1
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#Vol Vistoria Não Invasiva Vazios'
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: e084e179-48e2-40da-b18b-4af8271eaa31
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition '#Vol Vistoria Não Invasiva Vazios' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 1, 0.01)
+
+	annotation PBI_Id = 7a748ce516c24490ab515517165dfd13
+

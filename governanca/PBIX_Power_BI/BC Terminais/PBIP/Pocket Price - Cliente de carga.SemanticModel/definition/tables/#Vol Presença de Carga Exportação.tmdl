@@ -1,0 +1,28 @@
+table '#Vol Presença de Carga Exportação'
+	lineageTag: c58d4bd3-9056-4af2-bc85-ca43e409be03
+
+	measure 'Valor #Vol Presença de Carga Exportação' = SELECTEDVALUE('#Vol Presença de Carga Exportação'[#Vol Presença de Carga Exportação])
+		lineageTag: 88247566-19b6-4fc4-9920-ad33cc1bca43
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#Vol Presença de Carga Exportação'
+		lineageTag: e8eb6469-d9af-4c9a-b8f0-c919bf3cb238
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '#Vol Presença de Carga Exportação' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 1, 0.001)
+
+	annotation PBI_Id = d8f078fd87af4fb9b9a2563790078fda
+

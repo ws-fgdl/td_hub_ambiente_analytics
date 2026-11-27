@@ -1,0 +1,153 @@
+table Tabela_Inframar
+	lineageTag: 4f86cb9f-61f2-4be6-9e37-d44db1b9168a
+
+	column Ano
+		formatString: 0
+		lineageTag: 98e7fbf1-9748-4084-bde2-76dc6355e27c
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Ano]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Status
+		lineageTag: 125041ba-f5fd-42f4-87fb-6e6855a7f4d7
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Status]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Price
+		lineageTag: cd914397-e0bc-4004-bdaa-c9b7f87a8b5b
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Price]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Modalidade
+		lineageTag: ddeafe8d-054d-4653-a586-a3f5a6649ea1
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Modalidade]
+
+		annotation SummarizationSetBy = Automatic
+
+	column UN
+		lineageTag: 8b7395c5-32ab-435e-94b8-e9cc240d40ca
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [UN]
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_mod_ano = Tabela_Inframar[Modalidade]&Tabela_Inframar[Ano]
+		lineageTag: 485ca649-4474-44b9-a4c0-b0d6e28b66fd
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column percent_price
+		lineageTag: 28a2d1f9-87cc-4527-af26-cde81a52a866
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [percent_price]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Price_Ano_Anterior
+		lineageTag: d60777c4-81bd-49c3-83f0-29c4b322b98c
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Price_Ano_Anterior]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition Tabela_Inframar = calculated
+		mode: import
+		source = ```
+				
+				VAR TabelaBase = 
+				    DATATABLE(
+				        "Ano", INTEGER,
+				        "Status", STRING,
+				        "Price", DOUBLE,
+				        "Modalidade", STRING,
+				        "UN", STRING,
+				        "percent_price", DOUBLE,
+				        {
+				            {2018, "Cheio", 19.4, "Box Rate Cheio CAB", "TRG", 0.8775},
+				            {2019, "Cheio", 19.4, "Box Rate Cheio CAB", "TRG", 0.8775},
+				            {2020, "Cheio", 19.4, "Box Rate Cheio CAB", "TRG", 0.8775},
+				            {2021, "Cheio", 19.4, "Box Rate Cheio CAB", "TRG", 0.8775},
+				            {2022, "Cheio", 19.4, "Box Rate Cheio CAB", "TRG", 0.8775},
+				            {2018, "Vazio", 9.7, "Box Rate Vazio CAB", "TRG", 0.8775},
+				            {2019, "Vazio", 9.7, "Box Rate Vazio CAB", "TRG", 0.8775},
+				            {2020, "Vazio", 9.7, "Box Rate Vazio CAB", "TRG", 0.8775},
+				            {2021, "Vazio", 9.7, "Box Rate Vazio CAB", "TRG", 0.8775},
+				            {2022, "Vazio", 9.7, "Box Rate Vazio CAB", "TRG", 0.8775},
+				            {2018, "Cheio", 32.35, "Box Rate Cheio LC", "TRG", 0.97},
+				            {2019, "Cheio", 32.35, "Box Rate Cheio LC", "TRG", 0.97},
+				            {2020, "Cheio", 32.35, "Box Rate Cheio LC", "TRG", 0.97},
+				            {2021, "Cheio", 32.35, "Box Rate Cheio LC", "TRG", 0.97},
+				            {2022, "Cheio", 32.35, "Box Rate Cheio LC", "TRG", 0.97},
+				            {2018, "Vazio", 16.17, "Box Rate Vazio LC", "TRG", 0.97},
+				            {2019, "Vazio", 16.17, "Box Rate Vazio LC", "TRG", 0.97},
+				            {2020, "Vazio", 16.17, "Box Rate Vazio LC", "TRG", 0.97},
+				            {2021, "Vazio", 16.17, "Box Rate Vazio LC", "TRG", 0.97},
+				            {2022, "Vazio", 16.17, "Box Rate Vazio LC", "TRG", 0.97},
+				            {2019, "Vazio", 6.19, "Box Rate Vazio CAB", "TSV", 0.8575},
+				            {2018, "Vazio", 6.19, "Box Rate Vazio CAB", "TSV", 0.8575},
+				            {2020, "Vazio", 7.03, "Box Rate Vazio CAB", "TSV", 0.8575},
+				            {2021, "Vazio", 11.53, "Box Rate Vazio CAB", "TSV", 0.8575},
+				            {2022, "Vazio", 11.53, "Box Rate Vazio CAB", "TSV", 0.8575},
+				            {2019, "Cheio", 22.11, "Box Rate Cheio CAB", "TSV", 0.8575},
+				            {2018, "Cheio", 22.11, "Box Rate Cheio CAB", "TSV", 0.8575},
+				            {2020, "Cheio", 25.09, "Box Rate Cheio CAB", "TSV", 0.8575},
+				            {2021, "Cheio", 41.17, "Box Rate Cheio CAB", "TSV", 0.8575},
+				            {2022, "Cheio", 41.17, "Box Rate Cheio CAB", "TSV", 0.8575},
+				            {2019, "Cheio", 41.17, "Box Rate Cheio LC", "TSV", 0.95},
+				            {2018, "Cheio", 41.17, "Box Rate Cheio LC", "TSV", 0.95},
+				            {2020, "Cheio", 41.17, "Box Rate Cheio LC", "TSV", 0.95},
+				            {2021, "Cheio", 41.17, "Box Rate Cheio LC", "TSV", 0.95},
+				            {2022, "Cheio", 41.17, "Box Rate Cheio LC", "TSV", 0.95},
+				            {2019, "Vazio", 11.53, "Box Rate Vazio LC", "TSV", 0.95},
+				            {2018, "Vazio", 11.53, "Box Rate Vazio LC", "TSV", 0.95},
+				            {2020, "Vazio", 11.53, "Box Rate Vazio LC", "TSV", 0.95},
+				            {2021, "Vazio", 11.53, "Box Rate Vazio LC", "TSV", 0.95},
+				            {2022, "Vazio", 11.53, "Box Rate Vazio LC", "TSV", 0.95}
+				        }
+				    )
+				
+				RETURN
+				    ADDCOLUMNS(
+				        TabelaBase,
+				        "Price_Ano_Anterior",
+				        VAR _AnoAtual = [Ano]
+				        VAR _Modalidade = [Modalidade]
+				        VAR _UN = [UN]
+				        VAR _Status = [Status]
+				        
+				        RETURN
+				            MAXX(
+				                FILTER(
+				                    TabelaBase,
+				                    [Ano] = _AnoAtual - 1 &&
+				                    [Modalidade] = _Modalidade &&
+				                    [UN] = _UN &&
+				                    [Status] = _Status
+				                ),
+				                [Price]
+				            )
+				    )
+				```
+
+	annotation PBI_Id = 4a7783b33ad04683b3a3e3fe72756472
+

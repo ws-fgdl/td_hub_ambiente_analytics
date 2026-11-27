@@ -1,0 +1,17 @@
+table STATUS_CNTR
+	lineageTag: ca222cf2-5269-46ee-9915-c4537067f5e1
+
+	column status_container
+		lineageTag: 2597fda3-26cb-4841-9893-b36c1f402883
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [status_container]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition STATUS_CNTR = calculated
+		mode: import
+		source = UNION(ROW("status_container","CHEIO"),ROW("status_container","VAZIO"))
+
+	annotation PBI_Id = 58572b1d4c9d4cfb82a34f97f835420f
+

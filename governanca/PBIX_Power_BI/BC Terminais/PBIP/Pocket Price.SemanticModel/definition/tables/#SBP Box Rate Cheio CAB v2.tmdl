@@ -1,0 +1,39 @@
+table '#SBP Box Rate Cheio CAB v2'
+	lineageTag: ca715270-4dab-4f7b-9b9a-26fcc132d145
+
+	measure 'Valor #SBP Box Rate Cheio CAB v2' =
+			
+			COALESCE(SELECTEDVALUE('#SBP Box Rate Cheio CAB v2'[BoxRateDecimal]), 0)
+		lineageTag: e0d9f434-6e9b-4b59-a15a-55aec9bb1d99
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Value
+		lineageTag: f42b8bf6-1eee-4741-a598-9765d8b553ea
+		isNameInferred
+		sourceColumn: [Value]
+
+	column BoxRateDecimal = DIVIDE('#SBP Box Rate Cheio CAB v2'[Value], 10000)
+		formatString: 0.0000%;-0.0000%;0.0000%
+		lineageTag: 4dac2e28-5b11-48a5-b651-7a77f22950c2
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column BoxRateLabel = FORMAT('#SBP Box Rate Cheio CAB v2'[BoxRateDecimal], "0.0000")
+		lineageTag: ce7eb9b8-f37f-4f82-9461-2728ec4881f4
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition '#SBP Box Rate Cheio CAB v2' = calculated
+		mode: import
+		source =
+				
+				SELECTCOLUMNS(
+				    '#Param BoxRate_Int',
+				    "Value", '#Param BoxRate_Int'[Value]
+				)
+
+	annotation PBI_Id = 8e23c1b9c9144788b58a35ad11087107
+

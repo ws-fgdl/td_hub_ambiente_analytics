@@ -1,0 +1,37 @@
+table '#Inciso XIV v2'
+	lineageTag: f84ca26f-77b7-4e5e-9fdc-be235a578f62
+
+	measure 'Valor #SBP Inciso XIV v2' =
+			
+			COALESCE(SELECTEDVALUE('#Inciso XIV v2'[IncisoDecimal]), 0)
+		lineageTag: e7f2c4d9-f1a4-4bdb-9870-a055ee094fde
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Value
+		formatString: 0
+		lineageTag: c428fdd4-2499-47b2-bfcb-c28d7cf4f2d4
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Value]
+
+		annotation SummarizationSetBy = Automatic
+
+	column IncisoDecimal = DIVIDE('#Inciso XIV v2'[Value], 10000)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: c59ac42a-5971-4924-84fa-b68c78351396
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	partition '#Inciso XIV v2' = calculated
+		mode: import
+		source =
+				
+				SELECTCOLUMNS(
+				    '#Param BoxRate_Int',
+				    "Value", '#Param BoxRate_Int'[Value]
+				)
+
+	annotation PBI_Id = 40821f1b03584722a325a0cc0f8f8950
+

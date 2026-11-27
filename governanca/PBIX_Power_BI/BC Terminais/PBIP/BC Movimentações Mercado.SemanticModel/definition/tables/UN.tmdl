@@ -1,0 +1,17 @@
+table UN
+	lineageTag: 0e837a9f-43f3-4e2d-b917-606c9a222948
+
+	column UN
+		lineageTag: 7439b811-7a5b-4645-8385-eccf8c0acde3
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [UN]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition UN = calculated
+		mode: import
+		source = UNION(ROW("UN","TRG"),ROW("UN","TSV"))
+
+	annotation PBI_Id = 78e37c1abec34c29a1accbc8fa127fc8
+

@@ -1,0 +1,26 @@
+table '#Param Valor Mínimo Contrato P2'
+	lineageTag: 0ba900ec-f913-47da-b2a3-50c73941d810
+
+	measure 'Valor #Param Valor Mínimo Contrato P2 (selecionado)' = SELECTEDVALUE('#Param Valor Mínimo Contrato P2'[#Param Valor Mínimo Contrato P2])
+		formatString: 0
+		lineageTag: 0763c8f1-5674-4bbb-82ef-ef4a5f58082d
+
+	column '#Param Valor Mínimo Contrato P2'
+		formatString: 0
+		lineageTag: 18069f85-425c-499e-adae-9fd803756601
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition '#Param Valor Mínimo Contrato P2' = calculated
+		mode: import
+		source = GENERATESERIES(1000, 5000, 100)
+
+	annotation PBI_Id = 282ff4a10df641caa8c63b8515ed0b79
+

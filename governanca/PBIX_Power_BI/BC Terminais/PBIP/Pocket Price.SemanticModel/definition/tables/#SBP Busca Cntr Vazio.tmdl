@@ -1,0 +1,27 @@
+table '#SBP Busca Cntr Vazio'
+	lineageTag: d118ba9f-68a8-41a4-9302-84c1db9fc4eb
+
+	measure 'Valor #SBP Busca Cntr Vazio' = SELECTEDVALUE('#SBP Busca Cntr Vazio'[#SBP Busca Cntr Vazio])
+		lineageTag: 90396cd5-67d1-4e62-8aec-7f786c7701e8
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#SBP Busca Cntr Vazio'
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 0bf7da22-94f5-482a-9111-ddc586fca339
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition '#SBP Busca Cntr Vazio' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 0.5, 0.0001)
+
+	annotation PBI_Id = 5df8d95564a044fca0e45a59742cd50f
+

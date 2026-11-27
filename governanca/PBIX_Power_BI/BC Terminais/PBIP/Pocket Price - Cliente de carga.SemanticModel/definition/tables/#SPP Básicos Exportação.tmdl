@@ -1,0 +1,27 @@
+table '#SPP Básicos Exportação'
+	lineageTag: 8f096984-89cf-40be-9aea-eb86e70791a4
+
+	measure 'Valor Básicos Exportação' = SELECTEDVALUE('#SPP Básicos Exportação'[Básicos Exportação])
+		lineageTag: 5dda4b6c-72b0-4cf2-93b3-0de190250990
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Básicos Exportação'
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 32fbbe41-0086-4861-b5ad-21b431491aca
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition '#SPP Básicos Exportação' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 0.5, 0.0001)
+
+	annotation PBI_Id = bfb898dc17114e44998cdb15c16b401f
+

@@ -1,0 +1,27 @@
+table '#SBP Remoção a Bordo Vazio'
+	lineageTag: e469bbdb-0978-4528-a440-af024ab8a9f3
+
+	measure 'Valor #SBP Remoção a Bordo Vazio' = SELECTEDVALUE('#SBP Remoção a Bordo Vazio'[#SBP Remoção a Bordo Vazio])
+		lineageTag: b31ec842-8572-455c-8dfa-127dc58d50ef
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#SBP Remoção a Bordo Vazio'
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: e0754011-1fb7-4b22-b7ca-bd57e95844fe
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition '#SBP Remoção a Bordo Vazio' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 4, 0.001)
+
+	annotation PBI_Id = a40778142fd14bcb925ebfaa1baea0d6
+

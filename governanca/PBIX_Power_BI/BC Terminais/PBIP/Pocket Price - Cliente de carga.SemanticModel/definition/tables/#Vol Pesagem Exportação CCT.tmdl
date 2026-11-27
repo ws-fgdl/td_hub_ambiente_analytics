@@ -1,0 +1,28 @@
+table '#Vol Pesagem Exportação CCT'
+	lineageTag: 686212cf-70c0-4c4c-b535-79c265776ace
+
+	measure 'Valor #Vol Pesagem Exportação CCT' = SELECTEDVALUE('#Vol Pesagem Exportação CCT'[#Vol Pesagem Exportação CCT])
+		lineageTag: b3c220a6-e58a-417a-867a-d84c1a784473
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#Vol Pesagem Exportação CCT'
+		lineageTag: aa846229-16b9-4633-912b-9f4a3ca24b76
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '#Vol Pesagem Exportação CCT' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 1, 0.001)
+
+	annotation PBI_Id = 75cb0436afc248d3bc87ba27f72229a5
+

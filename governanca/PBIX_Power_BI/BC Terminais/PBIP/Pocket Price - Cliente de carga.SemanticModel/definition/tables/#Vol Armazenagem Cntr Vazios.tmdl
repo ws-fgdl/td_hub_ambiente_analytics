@@ -1,0 +1,27 @@
+table '#Vol Armazenagem Cntr Vazios'
+	lineageTag: 2bf85234-049d-460e-a162-417db6e967f0
+
+	measure 'Valor #Vol Armazenagem Cntr Vazios' = SELECTEDVALUE('#Vol Armazenagem Cntr Vazios'[#Vol Armazenagem Cntr Vazios])
+		lineageTag: 1ec8f1c1-c057-4caa-b27d-2e3e0300564a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#Vol Armazenagem Cntr Vazios'
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 270c8509-6b8a-4980-b0c9-006ccf070ea3
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition '#Vol Armazenagem Cntr Vazios' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 1, 0.01)
+
+	annotation PBI_Id = 33c11ecb7c2749928057097592661896
+

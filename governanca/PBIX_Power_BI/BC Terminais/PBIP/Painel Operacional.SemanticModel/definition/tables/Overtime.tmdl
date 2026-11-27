@@ -1,0 +1,43 @@
+table Overtime
+	lineageTag: fdb9f6ab-4160-43ea-b5fc-0fdeb2466f8a
+	sourceLineageTag: 2424b2ce-e6ef-4582-a452-e21ea7640e1e
+
+	column 'Overtime Código'
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		lineageTag: 16c87a63-6d05-488c-97de-7da2d3fdad19
+		sourceLineageTag: 850ca932-3309-44ae-a8ea-cd420060c249
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Overtime Código
+
+		annotation SummarizationSetBy = User
+
+	column DSC_BOOLEAN1
+		dataType: string
+		isHidden
+		lineageTag: 69583c4f-bc82-4955-b313-156c372801b9
+		sourceLineageTag: 3879099a-63c9-4857-8382-8a28166a0150
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: DSC_BOOLEAN1
+
+		annotation SummarizationSetBy = User
+
+	column Overtime
+		dataType: string
+		lineageTag: d2df5572-c84c-4378-b655-1f56c06adf9e
+		sourceLineageTag: 6a8e4b55-81ad-4ace-b6c0-2b58a1bebcaa
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Overtime
+
+		annotation SummarizationSetBy = User
+
+	partition Overtime = entity
+		mode: directQuery
+		source
+			entityName: Overtime
+			expressionSource: 'DirectQuery para AS – Modelo Operações Portuárias'
+

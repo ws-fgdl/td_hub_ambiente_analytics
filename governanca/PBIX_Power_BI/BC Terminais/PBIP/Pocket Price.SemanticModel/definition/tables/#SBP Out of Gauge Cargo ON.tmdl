@@ -1,0 +1,27 @@
+table '#SBP Out of Gauge Cargo ON'
+	lineageTag: 0cc1ee54-2162-4626-817b-7eccc4bdd19c
+
+	measure 'Valor #SBP Out of Gauge Cargo ON' = SELECTEDVALUE('#SBP Out of Gauge Cargo ON'[#SBP Out of Gauge Cargo])
+		lineageTag: ca7f333c-c550-4856-a553-73e27c5255e3
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#SBP Out of Gauge Cargo'
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: dca9f89b-d945-4313-b78d-7d37ac017f7b
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition '#SBP Out of Gauge Cargo ON' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 0.5, 0.0001)
+
+	annotation PBI_Id = c0b681adf5f64238b04d6f55478ad7fb
+

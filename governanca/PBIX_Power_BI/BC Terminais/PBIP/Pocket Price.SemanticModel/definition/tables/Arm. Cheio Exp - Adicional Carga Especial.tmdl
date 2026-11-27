@@ -1,0 +1,27 @@
+table 'Arm. Cheio Exp - Adicional Carga Especial'
+	lineageTag: 75984c58-a390-4bc2-8d82-d8cd4a7d6be1
+
+	measure 'Valor Arm. Cheio Exp - Adicional Carga Especial (selecionado)' = SELECTEDVALUE('Arm. Cheio Exp - Adicional Carga Especial'[Arm. Cheio Exp - Adicional Carga Especial])
+		lineageTag: 058622c1-86ce-400d-9414-a220c92aaf2f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Arm. Cheio Exp - Adicional Carga Especial'
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: fed173d1-61b0-4887-af62-e10d15e8ed02
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition 'Arm. Cheio Exp - Adicional Carga Especial' = calculated
+		mode: import
+		source = GENERATESERIES(0, 1, 0.001)
+
+	annotation PBI_Id = 5a5bb0cf9c8c4a8ca09b4c3712912e34
+

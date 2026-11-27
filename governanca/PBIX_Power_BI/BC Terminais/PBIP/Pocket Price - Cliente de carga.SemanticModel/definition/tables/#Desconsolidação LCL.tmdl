@@ -1,0 +1,28 @@
+table '#Desconsolidação LCL'
+	lineageTag: 2e66a4ab-6e13-4490-a32f-9bd8a71a2319
+
+	measure 'Valor #Desconsolidação LCL' = SELECTEDVALUE('#Desconsolidação LCL'[#Desconsolidação LCL])
+		lineageTag: 5936bef8-a6b5-46bc-b5c2-0ae6299b93a7
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#Desconsolidação LCL'
+		lineageTag: 87dd6a10-b8ec-4017-ac77-da2acaa2aa5e
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '#Desconsolidação LCL' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 1, 0.001)
+
+	annotation PBI_Id = 4fc62390a2a345a3aadbf04b3caa38aa
+

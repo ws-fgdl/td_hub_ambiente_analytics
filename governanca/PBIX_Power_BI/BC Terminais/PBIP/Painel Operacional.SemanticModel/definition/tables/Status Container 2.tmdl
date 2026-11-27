@@ -1,0 +1,49 @@
+table 'Status Container 2'
+	lineageTag: c4901daf-ea47-422b-ad45-6ed7fbc2f06b
+	sourceLineageTag: a6e6aac8-e654-432e-90e4-2a15375e05c5
+
+	measure 'Status Selecionados' = EXTERNALMEASURE("Status Selecionados", STRING, "DirectQuery para AS – Modelo Operações Portuárias")
+		lineageTag: 20f49c63-dfae-4b39-ab7c-21bd730e44c9
+		sourceLineageTag: 94ec74ef-6318-48d2-93cd-3d7c4f836bcf
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isText":true}
+
+	column 'Status Container ID'
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		lineageTag: 07d8cb98-f842-4040-a187-a9663af29732
+		sourceLineageTag: 007574e1-3761-4504-8423-2d82d2bba3d9
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Status Container ID
+
+		annotation SummarizationSetBy = User
+
+	column 'Código Status Container'
+		dataType: string
+		lineageTag: f7e9a2f1-2b23-4553-a083-bfbd044f59e1
+		sourceLineageTag: dc87d29c-4a68-4b2b-943a-c657e230d078
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Código Status Container
+
+		annotation SummarizationSetBy = User
+
+	column 'Status Container'
+		dataType: string
+		lineageTag: 7c72ff21-81d6-4c60-a44f-580f85f7359d
+		sourceLineageTag: 1f435c46-1ea9-4c5f-a950-ab395fc10dae
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Status Container
+
+		annotation SummarizationSetBy = User
+
+	partition 'Status Container 2' = entity
+		mode: directQuery
+		source
+			entityName: Status Container
+			expressionSource: 'DirectQuery para AS – Modelo Operações Portuárias'
+

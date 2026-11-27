@@ -1,0 +1,258 @@
+table 'Pocket Price Armador'
+	lineageTag: accdd306-bcae-488f-822c-207cf966caf2
+	sourceLineageTag: d71da9c7-cde7-470c-80b1-cf75e60aacc6
+
+	column COD_EMPR_SAP
+		dataType: string
+		isHidden
+		lineageTag: 88e1668c-6303-478b-afa5-884cdbc3c76e
+		sourceLineageTag: f2dff0df-4599-42c0-bf96-5a565d192f19
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: COD_EMPR_SAP
+
+		annotation SummarizationSetBy = User
+
+	column TEMPO_ID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 5666524e-3170-4c8e-9361-adb19e326cdb
+		sourceLineageTag: 5c0b6b5f-5768-4ce8-a6e6-612041c9c77d
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: TEMPO_ID
+
+		annotation SummarizationSetBy = User
+
+	column GRUPO_ID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: b9388902-61ee-4ec4-bb48-8ad6f3f403e9
+		sourceLineageTag: 8712b158-c928-4803-831d-d44451436bcf
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: GRUPO_ID
+
+		annotation SummarizationSetBy = User
+
+	column GRUPO_RECEITA_ID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 86e62b00-2422-4cb9-8610-b1c21df9c52f
+		sourceLineageTag: 99b7447f-aa2d-4db5-9521-6954522856e8
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: GRUPO_RECEITA_ID
+
+		annotation SummarizationSetBy = User
+
+	column CCUSTO_TECON_ID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: fcb6fc14-09ac-4377-bc80-704b1c37e2a7
+		sourceLineageTag: 515693f6-da0a-486c-8f37-085fc6bd9e13
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: CCUSTO_TECON_ID
+
+		annotation SummarizationSetBy = User
+
+	column STATUS_CNTR_ID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 4bd7690d-1246-488c-b64b-2b122d1903b8
+		sourceLineageTag: 902876f4-b314-4e97-b0b0-b50ecc353868
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: STATUS_CNTR_ID
+
+		annotation SummarizationSetBy = User
+
+	column 'Valor Receita'
+		dataType: double
+		lineageTag: 70b46bec-26fa-4ba8-b867-1c3de4e24f7e
+		sourceLineageTag: 7f929e87-f63d-421d-afbb-83081b22fce5
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Valor Receita
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Qtd OS'
+		dataType: double
+		lineageTag: 74523045-0c4f-4a93-a3d2-935d9ff01adb
+		sourceLineageTag: 5c6113dc-40e3-4cd5-9ec8-8f2bcaa75366
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Qtd OS
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Valor Receita PY'
+		dataType: double
+		lineageTag: d1ebf4a2-c9cb-4139-bed0-ee3ef244c36d
+		sourceLineageTag: 185049f1-bf3a-4ffb-8fd2-2ade817f3201
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Valor Receita PY
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Qtd OS PY'
+		dataType: double
+		lineageTag: 7024152b-5849-44e5-a697-f136f4734283
+		sourceLineageTag: d0c6d8cc-b4f6-4038-acc1-0156121d6edf
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Qtd OS PY
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Valor Receita YTD'
+		dataType: double
+		lineageTag: 5b499ff8-9704-4794-a270-2b1ef38a92ae
+		sourceLineageTag: 8f37a6e7-95c3-4186-b206-922cf7e3479e
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Valor Receita YTD
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Qtd OS YTD'
+		dataType: double
+		lineageTag: b54aff32-d988-4440-8ceb-4300d1ee4c3a
+		sourceLineageTag: d59f8e37-dec6-4ec1-a64c-777b51262751
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Qtd OS YTD
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Valor Receita PYTD'
+		dataType: double
+		lineageTag: ec3fd562-a668-4a78-acb4-0433b6cae67f
+		sourceLineageTag: af825660-9ff6-4303-a495-0121ff32bbba
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Valor Receita PYTD
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Qtd OS PYTD'
+		dataType: double
+		lineageTag: e68ffc50-5315-42ce-894e-032fa197491b
+		sourceLineageTag: 13c6bebc-27d6-482b-8708-d17e4c812ef8
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Qtd OS PYTD
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DH_CARGA
+		dataType: dateTime
+		formatString: General Number
+		lineageTag: e57de74d-7353-4be3-b6be-8032acc92250
+		sourceLineageTag: c330a6b9-6049-4694-bc3d-14b8e41fa82a
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: DH_CARGA
+
+		annotation SummarizationSetBy = User
+
+	column CLIENTE_ARMADOR
+		dataType: string
+		isHidden
+		lineageTag: 432cbc96-69e2-4794-84b9-389d531d1ddd
+		sourceLineageTag: 7d267571-7a59-495d-94cc-2164b652e809
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: CLIENTE_ARMADOR
+
+		annotation SummarizationSetBy = User
+
+	column VENDEDOR_COMERC_ID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: db36ebc1-71e9-4bdc-acd0-1aa7ea579a2b
+		sourceLineageTag: 199a086d-72a9-4065-91a3-372d9b71ac0e
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: VENDEDOR_COMERC_ID
+
+		annotation SummarizationSetBy = User
+
+	column SEGMENTACAO_ID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 1d8a7c1d-8061-417d-9f78-17f3d8272cb3
+		sourceLineageTag: f8768c76-8664-4326-80f2-4466ae69f169
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: SEGMENTACAO_ID
+
+		annotation SummarizationSetBy = User
+
+	column 'Receita PP'
+		dataType: double
+		lineageTag: 606e6ce5-ebac-4658-81c4-d82efdcb44a7
+		sourceLineageTag: 18faf9ac-3d64-417d-be0c-20b677f427e5
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Receita PP
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Receita PP Grupo'
+		dataType: double
+		lineageTag: ef93a939-f6c3-4d76-beb9-ee239c998930
+		sourceLineageTag: 56b4e6ca-968c-481c-8910-7b1cf75a30f7
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Receita PP Grupo
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DSC_GRUPO_ARMADOR
+		dataType: string
+		isHidden
+		lineageTag: 24a24a11-9d93-4fa9-94dd-e754a75d8cdd
+		sourceLineageTag: ee7062ae-7577-4a33-9384-47bf0165f949
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: DSC_GRUPO_ARMADOR
+
+		annotation SummarizationSetBy = User
+
+	partition 'Pocket Price Armador' = entity
+		mode: directQuery
+		source
+			entityName: Pocket Price Armador
+			expressionSource: 'DirectQuery para AS – Modelo Operações Portuárias'
+

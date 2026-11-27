@@ -1,0 +1,28 @@
+table '#Vistoria Invasiva em Plataforma'
+	lineageTag: 7235690a-cf8a-44b7-9437-f588afdd1d8b
+
+	measure 'Valor #Vistoria Invasiva em Plataforma' = SELECTEDVALUE('#Vistoria Invasiva em Plataforma'[#Vistoria Invasiva em Plataforma])
+		lineageTag: 5dc323c2-18aa-4172-b865-eba5c75942fe
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#Vistoria Invasiva em Plataforma'
+		lineageTag: c471f710-fe52-4751-be74-75b0640b0164
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '#Vistoria Invasiva em Plataforma' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 1, 0.001)
+
+	annotation PBI_Id = 14ae15b3b9d14317b80ca9258ec671a5
+

@@ -1,0 +1,28 @@
+table '#Transferência de Lote'
+	lineageTag: 31897e5a-215b-431d-bd4e-aeffac8de4fc
+
+	measure 'Valor #Transferência de Lote' = SELECTEDVALUE('#Transferência de Lote'[#Transferência de Lote])
+		lineageTag: 258376fd-705b-4771-9e66-43f7e84ba66c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '#Transferência de Lote'
+		lineageTag: fbc528bb-b49f-47d0-8088-3b9d71cf00a2
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '#Transferência de Lote' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 1, 0.001)
+
+	annotation PBI_Id = d0d81519136f49a2b808e9123629388e
+
